@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Generated\" />
+  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\native\linux-x64\cimgui.so">
+			<Link>runtimes\linux-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<PackagePath>runtimes/linux-x64/native</PackagePath>
+			<Pack>true</Pack>
+		</None>
+		<None Include="..\native\win-x64\cimgui.dll">
+			<Link>runtimes\win-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<PackagePath>runtimes/win-x64/native</PackagePath>
+			<Pack>true</Pack>
+		</None>
+	</ItemGroup>
+</Project>

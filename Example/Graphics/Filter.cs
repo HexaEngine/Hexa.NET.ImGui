@@ -1,0 +1,42 @@
+﻿namespace HexaEngine.Core.Graphics
+{
+    public enum Filter : int
+    {
+        MinMagMipPoint = unchecked(0),
+        MinMagPointMipLinear = unchecked(1),
+        MinPointMagLinearMipPoint = unchecked(4),
+        MinPointMagMipLinear = unchecked(5),
+        MinLinearMagMipPoint = unchecked(16),
+        MinLinearMagPointMipLinear = unchecked(17),
+        MinMagLinearMipPoint = unchecked(20),
+        MinMagMipLinear = unchecked(21),
+        Anisotropic = unchecked(85),
+        ComparisonMinMagMipPoint = unchecked(128),
+        ComparisonMinMagPointMipLinear = unchecked(129),
+        ComparisonMinPointMagLinearMipPoint = unchecked(132),
+        ComparisonMinPointMagMipLinear = unchecked(133),
+        ComparisonMinLinearMagMipPoint = unchecked(144),
+        ComparisonMinLinearMagPointMipLinear = unchecked(145),
+        ComparisonMinMagLinearMipPoint = unchecked(148),
+        ComparisonMinMagMipLinear = unchecked(149),
+        ComparisonAnisotropic = unchecked(213),
+        MinimumMinMagMipPoint = unchecked(256),
+        MinimumMinMagPointMipLinear = unchecked(257),
+        MinimumMinPointMagLinearMipPoint = unchecked(260),
+        MinimumMinPointMagMipLinear = unchecked(261),
+        MinimumMinLinearMagMipPoint = unchecked(272),
+        MinimumMinLinearMagPointMipLinear = unchecked(273),
+        MinimumMinMagLinearMipPoint = unchecked(276),
+        MinimumMinMagMipLinear = unchecked(277),
+        MinimumAnisotropic = unchecked(341),
+        MaximumMinMagMipPoint = unchecked(384),
+        MaximumMinMagPointMipLinear = unchecked(385),
+        MaximumMinPointMagLinearMipPoint = unchecked(388),
+        MaximumMinPointMagMipLinear = unchecked(389),
+        MaximumMinLinearMagMipPoint = unchecked(400),
+        MaximumMinLinearMagPointMipLinear = unchecked(401),
+        MaximumMinMagLinearMipPoint = unchecked(404),
+        MaximumMinMagMipLinear = unchecked(405),
+        MaximumAnisotropic = unchecked(469)
+    }
+}
