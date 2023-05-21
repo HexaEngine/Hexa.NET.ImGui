@@ -41,7 +41,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (ImNodesIO* @this = &this)
 			{
-				ImNodes.Destroy(@this);
+				ImNodes.DestroyNative(@this);
 			}
 		}
 
@@ -57,7 +57,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (EmulateThreeButtonMouse* @this = &this)
 			{
-				ImNodes.Destroy(@this);
+				ImNodes.DestroyNative(@this);
 			}
 		}
 
@@ -73,7 +73,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (LinkDetachWithModifierClick* @this = &this)
 			{
-				ImNodes.Destroy(@this);
+				ImNodes.DestroyNative(@this);
 			}
 		}
 
@@ -89,7 +89,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (MultipleSelectModifier* @this = &this)
 			{
-				ImNodes.Destroy(@this);
+				ImNodes.DestroyNative(@this);
 			}
 		}
 
@@ -121,7 +121,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (ImNodesStyle* @this = &this)
 			{
-				ImNodes.Destroy(@this);
+				ImNodes.DestroyNative(@this);
 			}
 		}
 

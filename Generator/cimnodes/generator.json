@@ -5,6 +5,10 @@
   "GenerateSizeOfStructs": false,
   "KnownConstantNames": {},
   "KnownEnumValueNames": { "": "" },
+  "KnownDefaultValueNames": {
+    "ImNodesMiniMapLocation_TopLeft": "ImNodesMiniMapLocation.TopLeft",
+    "ImNodesPinShape_CircleFilled": "ImNodesPinShape.CircleFilled"
+  },
   "KnownEnumPrefixes": {},
   "KnownExtensionPrefixes": {},
   "KnownExtensionNames": {},

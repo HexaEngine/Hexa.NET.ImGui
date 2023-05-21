@@ -3,7 +3,7 @@
     using HexaEngine.Core;
     using HexaEngine.Core.Input;
     using HexaEngine.Core.Windows;
-    using HexaEngine.ImGui;
+    using HexaEngine.ImGuiNET;
     using Silk.NET.SDL;
 
     internal class ImGuiInputHandler : IDisposable

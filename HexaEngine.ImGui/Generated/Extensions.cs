@@ -18,18 +18,18 @@ namespace HexaEngine.ImGuiNET
 	{
 		public static void Image(this ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1, Vector4 tintCol, Vector4 borderCol)
 		{
-			ImGui.Image(userTextureId, size, uv0, uv1, tintCol, borderCol);
+			ImGui.ImageNative(userTextureId, size, uv0, uv1, tintCol, borderCol);
 		}
 
 		public static bool Close(this ImFileHandle file)
 		{
-			bool ret = ImGui.ImFileClose(file);
+			bool ret = ImGui.ImFileCloseNative(file);
 			return ret;
 		}
 
 		public static ulong GetSize(this ImFileHandle file)
 		{
-			ulong ret = ImGui.ImFileGetSize(file);
+			ulong ret = ImGui.ImFileGetSizeNative(file);
 			return ret;
 		}
 

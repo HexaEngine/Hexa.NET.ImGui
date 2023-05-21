@@ -20,439 +20,879 @@ namespace HexaEngine.ImNodesNET
 		internal const string LibName = "cimnodes";
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "EmulateThreeButtonMouse_EmulateThreeButtonMouse")]
-		public static extern EmulateThreeButtonMouse* EmulateThreeButtonMouse();
+		public static extern EmulateThreeButtonMouse* EmulateThreeButtonMouseNative();
+
+		public static EmulateThreeButtonMouse* EmulateThreeButtonMouse()
+		{
+			EmulateThreeButtonMouse* ret = EmulateThreeButtonMouseNative();
+			return ret;
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "EmulateThreeButtonMouse_destroy")]
-		public static extern void Destroy(EmulateThreeButtonMouse* self);
+		public static extern void DestroyNative(EmulateThreeButtonMouse* self);
+
+		public static void Destroy(EmulateThreeButtonMouse* self)
+		{
+			DestroyNative(self);
+		}
 
 		public static void Destroy(ref EmulateThreeButtonMouse self)
 		{
 			fixed (EmulateThreeButtonMouse* pself = &self)
 			{
-				Destroy((EmulateThreeButtonMouse*)pself);
+				DestroyNative((EmulateThreeButtonMouse*)pself);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "LinkDetachWithModifierClick_LinkDetachWithModifierClick")]
-		public static extern LinkDetachWithModifierClick* LinkDetachWithModifierClick();
+		public static extern LinkDetachWithModifierClick* LinkDetachWithModifierClickNative();
+
+		public static LinkDetachWithModifierClick* LinkDetachWithModifierClick()
+		{
+			LinkDetachWithModifierClick* ret = LinkDetachWithModifierClickNative();
+			return ret;
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "LinkDetachWithModifierClick_destroy")]
-		public static extern void Destroy(LinkDetachWithModifierClick* self);
+		public static extern void DestroyNative(LinkDetachWithModifierClick* self);
+
+		public static void Destroy(LinkDetachWithModifierClick* self)
+		{
+			DestroyNative(self);
+		}
 
 		public static void Destroy(ref LinkDetachWithModifierClick self)
 		{
 			fixed (LinkDetachWithModifierClick* pself = &self)
 			{
-				Destroy((LinkDetachWithModifierClick*)pself);
+				DestroyNative((LinkDetachWithModifierClick*)pself);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MultipleSelectModifier_MultipleSelectModifier")]
-		public static extern MultipleSelectModifier* MultipleSelectModifier();
+		public static extern MultipleSelectModifier* MultipleSelectModifierNative();
+
+		public static MultipleSelectModifier* MultipleSelectModifier()
+		{
+			MultipleSelectModifier* ret = MultipleSelectModifierNative();
+			return ret;
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MultipleSelectModifier_destroy")]
-		public static extern void Destroy(MultipleSelectModifier* self);
+		public static extern void DestroyNative(MultipleSelectModifier* self);
+
+		public static void Destroy(MultipleSelectModifier* self)
+		{
+			DestroyNative(self);
+		}
 
 		public static void Destroy(ref MultipleSelectModifier self)
 		{
 			fixed (MultipleSelectModifier* pself = &self)
 			{
-				Destroy((MultipleSelectModifier*)pself);
+				DestroyNative((MultipleSelectModifier*)pself);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodesIO_ImNodesIO")]
-		public static extern ImNodesIO* ImNodesIO();
+		public static extern ImNodesIO* ImNodesIONative();
+
+		public static ImNodesIO* ImNodesIO()
+		{
+			ImNodesIO* ret = ImNodesIONative();
+			return ret;
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodesIO_destroy")]
-		public static extern void Destroy(ImNodesIO* self);
+		public static extern void DestroyNative(ImNodesIO* self);
+
+		public static void Destroy(ImNodesIO* self)
+		{
+			DestroyNative(self);
+		}
 
 		public static void Destroy(ref ImNodesIO self)
 		{
 			fixed (ImNodesIO* pself = &self)
 			{
-				Destroy((ImNodesIO*)pself);
+				DestroyNative((ImNodesIO*)pself);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodesStyle_ImNodesStyle")]
-		public static extern ImNodesStyle* ImNodesStyle();
+		public static extern ImNodesStyle* ImNodesStyleNative();
+
+		public static ImNodesStyle* ImNodesStyle()
+		{
+			ImNodesStyle* ret = ImNodesStyleNative();
+			return ret;
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodesStyle_destroy")]
-		public static extern void Destroy(ImNodesStyle* self);
+		public static extern void DestroyNative(ImNodesStyle* self);
+
+		public static void Destroy(ImNodesStyle* self)
+		{
+			DestroyNative(self);
+		}
 
 		public static void Destroy(ref ImNodesStyle self)
 		{
 			fixed (ImNodesStyle* pself = &self)
 			{
-				Destroy((ImNodesStyle*)pself);
+				DestroyNative((ImNodesStyle*)pself);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_CreateContext")]
-		public static extern ImNodesContext* CreateContext();
+		public static extern ImNodesContext* CreateContextNative();
+
+		public static ImNodesContext* CreateContext()
+		{
+			ImNodesContext* ret = CreateContextNative();
+			return ret;
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_DestroyContext")]
-		public static extern void DestroyContext(ImNodesContext* ctx);
+		public static extern void DestroyContextNative(ImNodesContext* ctx);
+
+		public static void DestroyContext(ImNodesContext* ctx)
+		{
+			DestroyContextNative(ctx);
+		}
 
 		public static void DestroyContext(ref ImNodesContext ctx)
 		{
 			fixed (ImNodesContext* pctx = &ctx)
 			{
-				DestroyContext((ImNodesContext*)pctx);
+				DestroyContextNative((ImNodesContext*)pctx);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetCurrentContext")]
-		public static extern ImNodesContext* GetCurrentContext();
+		public static extern ImNodesContext* GetCurrentContextNative();
+
+		public static ImNodesContext* GetCurrentContext()
+		{
+			ImNodesContext* ret = GetCurrentContextNative();
+			return ret;
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetCurrentContext")]
-		public static extern void SetCurrentContext(ImNodesContext* ctx);
+		public static extern void SetCurrentContextNative(ImNodesContext* ctx);
+
+		public static void SetCurrentContext(ImNodesContext* ctx)
+		{
+			SetCurrentContextNative(ctx);
+		}
 
 		public static void SetCurrentContext(ref ImNodesContext ctx)
 		{
 			fixed (ImNodesContext* pctx = &ctx)
 			{
-				SetCurrentContext((ImNodesContext*)pctx);
+				SetCurrentContextNative((ImNodesContext*)pctx);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextCreate")]
-		public static extern ImNodesEditorContext* EditorContextCreate();
+		public static extern ImNodesEditorContext* EditorContextCreateNative();
+
+		public static ImNodesEditorContext* EditorContextCreate()
+		{
+			ImNodesEditorContext* ret = EditorContextCreateNative();
+			return ret;
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextFree")]
-		public static extern void EditorContextFree(ImNodesEditorContext* noname1);
+		public static extern void EditorContextFreeNative(ImNodesEditorContext* noname1);
+
+		public static void EditorContextFree(ImNodesEditorContext* noname1)
+		{
+			EditorContextFreeNative(noname1);
+		}
 
 		public static void EditorContextFree(ref ImNodesEditorContext noname1)
 		{
 			fixed (ImNodesEditorContext* pnoname1 = &noname1)
 			{
-				EditorContextFree((ImNodesEditorContext*)pnoname1);
+				EditorContextFreeNative((ImNodesEditorContext*)pnoname1);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextSet")]
-		public static extern void EditorContextSet(ImNodesEditorContext* noname1);
+		public static extern void EditorContextSetNative(ImNodesEditorContext* noname1);
+
+		public static void EditorContextSet(ImNodesEditorContext* noname1)
+		{
+			EditorContextSetNative(noname1);
+		}
 
 		public static void EditorContextSet(ref ImNodesEditorContext noname1)
 		{
 			fixed (ImNodesEditorContext* pnoname1 = &noname1)
 			{
-				EditorContextSet((ImNodesEditorContext*)pnoname1);
+				EditorContextSetNative((ImNodesEditorContext*)pnoname1);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextGetPanning")]
-		public static extern void EditorContextGetPanning(Vector2* output);
+		public static extern void EditorContextGetPanningNative(Vector2* output);
+
+		public static void EditorContextGetPanning(Vector2* output)
+		{
+			EditorContextGetPanningNative(output);
+		}
 
 		public static void EditorContextGetPanning(ref Vector2 output)
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				EditorContextGetPanning((Vector2*)poutput);
+				EditorContextGetPanningNative((Vector2*)poutput);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextResetPanning")]
-		public static extern void EditorContextResetPanning(Vector2 pos);
+		public static extern void EditorContextResetPanningNative(Vector2 pos);
+
+		public static void EditorContextResetPanning(Vector2 pos)
+		{
+			EditorContextResetPanningNative(pos);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextMoveToNode")]
-		public static extern void EditorContextMoveToNode(int nodeId);
+		public static extern void EditorContextMoveToNodeNative(int nodeId);
+
+		public static void EditorContextMoveToNode(int nodeId)
+		{
+			EditorContextMoveToNodeNative(nodeId);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetIO")]
-		public static extern ImNodesIO* GetIO();
+		public static extern ImNodesIO* GetIONative();
+
+		public static ImNodesIO* GetIO()
+		{
+			ImNodesIO* ret = GetIONative();
+			return ret;
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetStyle")]
-		public static extern ImNodesStyle* GetStyle();
+		public static extern ImNodesStyle* GetStyleNative();
+
+		public static ImNodesStyle* GetStyle()
+		{
+			ImNodesStyle* ret = GetStyleNative();
+			return ret;
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_StyleColorsDark")]
-		public static extern void StyleColorsDark(ImNodesStyle* dest);
+		public static extern void StyleColorsDarkNative(ImNodesStyle* dest);
+
+		public static void StyleColorsDark(ImNodesStyle* dest)
+		{
+			StyleColorsDarkNative(dest);
+		}
 
 		public static void StyleColorsDark(ref ImNodesStyle dest)
 		{
 			fixed (ImNodesStyle* pdest = &dest)
 			{
-				StyleColorsDark((ImNodesStyle*)pdest);
+				StyleColorsDarkNative((ImNodesStyle*)pdest);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_StyleColorsClassic")]
-		public static extern void StyleColorsClassic(ImNodesStyle* dest);
+		public static extern void StyleColorsClassicNative(ImNodesStyle* dest);
+
+		public static void StyleColorsClassic(ImNodesStyle* dest)
+		{
+			StyleColorsClassicNative(dest);
+		}
 
 		public static void StyleColorsClassic(ref ImNodesStyle dest)
 		{
 			fixed (ImNodesStyle* pdest = &dest)
 			{
-				StyleColorsClassic((ImNodesStyle*)pdest);
+				StyleColorsClassicNative((ImNodesStyle*)pdest);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_StyleColorsLight")]
-		public static extern void StyleColorsLight(ImNodesStyle* dest);
+		public static extern void StyleColorsLightNative(ImNodesStyle* dest);
+
+		public static void StyleColorsLight(ImNodesStyle* dest)
+		{
+			StyleColorsLightNative(dest);
+		}
 
 		public static void StyleColorsLight(ref ImNodesStyle dest)
 		{
 			fixed (ImNodesStyle* pdest = &dest)
 			{
-				StyleColorsLight((ImNodesStyle*)pdest);
+				StyleColorsLightNative((ImNodesStyle*)pdest);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginNodeEditor")]
-		public static extern void BeginNodeEditor();
+		public static extern void BeginNodeEditorNative();
+
+		public static void BeginNodeEditor()
+		{
+			BeginNodeEditorNative();
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndNodeEditor")]
-		public static extern void EndNodeEditor();
+		public static extern void EndNodeEditorNative();
+
+		public static void EndNodeEditor()
+		{
+			EndNodeEditorNative();
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_MiniMap")]
-		public static extern void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*> nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData);
+		public static extern void MiniMapNative(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*> nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData);
+
+		public static void MiniMap()
+		{
+			MiniMapNative(0.2f, ImNodesMiniMapLocation.TopLeft, default, default);
+		}
+
+		public static void MiniMap(float minimapSizeFraction)
+		{
+			MiniMapNative(minimapSizeFraction, ImNodesMiniMapLocation.TopLeft, default, default);
+		}
+
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location)
+		{
+			MiniMapNative(minimapSizeFraction, location, default, default);
+		}
+
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*> nodeHoveringCallback)
+		{
+			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, default);
+		}
+
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*> nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		{
+			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, nodeHoveringCallbackData);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PushColorStyle")]
-		public static extern void PushColorStyle(ImNodesCol item, uint color);
+		public static extern void PushColorStyleNative(ImNodesCol item, uint color);
+
+		public static void PushColorStyle(ImNodesCol item, uint color)
+		{
+			PushColorStyleNative(item, color);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PopColorStyle")]
-		public static extern void PopColorStyle();
+		public static extern void PopColorStyleNative();
+
+		public static void PopColorStyle()
+		{
+			PopColorStyleNative();
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PushStyleVar_Float")]
-		public static extern void PushStyleVar(ImNodesStyleVar styleItem, float value);
+		public static extern void PushStyleVarNative(ImNodesStyleVar styleItem, float value);
+
+		public static void PushStyleVar(ImNodesStyleVar styleItem, float value)
+		{
+			PushStyleVarNative(styleItem, value);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PushStyleVar_Vec2")]
-		public static extern void PushStyleVar(ImNodesStyleVar styleItem, Vector2 value);
+		public static extern void PushStyleVarNative(ImNodesStyleVar styleItem, Vector2 value);
+
+		public static void PushStyleVar(ImNodesStyleVar styleItem, Vector2 value)
+		{
+			PushStyleVarNative(styleItem, value);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginNode")]
-		public static extern void BeginNode(int id);
+		public static extern void BeginNodeNative(int id);
+
+		public static void BeginNode(int id)
+		{
+			BeginNodeNative(id);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndNode")]
-		public static extern void EndNode();
+		public static extern void EndNodeNative();
+
+		public static void EndNode()
+		{
+			EndNodeNative();
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeDimensions")]
-		public static extern void GetNodeDimensions(Vector2* output, int id);
+		public static extern void GetNodeDimensionsNative(Vector2* output, int id);
+
+		public static void GetNodeDimensions(Vector2* output, int id)
+		{
+			GetNodeDimensionsNative(output, id);
+		}
 
 		public static void GetNodeDimensions(ref Vector2 output, int id)
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				GetNodeDimensions((Vector2*)poutput, id);
+				GetNodeDimensionsNative((Vector2*)poutput, id);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginNodeTitleBar")]
-		public static extern void BeginNodeTitleBar();
+		public static extern void BeginNodeTitleBarNative();
+
+		public static void BeginNodeTitleBar()
+		{
+			BeginNodeTitleBarNative();
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndNodeTitleBar")]
-		public static extern void EndNodeTitleBar();
+		public static extern void EndNodeTitleBarNative();
+
+		public static void EndNodeTitleBar()
+		{
+			EndNodeTitleBarNative();
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginInputAttribute")]
-		public static extern void BeginInputAttribute(int id, ImNodesPinShape shape);
+		public static extern void BeginInputAttributeNative(int id, ImNodesPinShape shape);
+
+		public static void BeginInputAttribute(int id)
+		{
+			BeginInputAttributeNative(id, (ImNodesPinShape)(ImNodesPinShape.CircleFilled));
+		}
+
+		public static void BeginInputAttribute(int id, ImNodesPinShape shape)
+		{
+			BeginInputAttributeNative(id, shape);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndInputAttribute")]
-		public static extern void EndInputAttribute();
+		public static extern void EndInputAttributeNative();
+
+		public static void EndInputAttribute()
+		{
+			EndInputAttributeNative();
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginOutputAttribute")]
-		public static extern void BeginOutputAttribute(int id, ImNodesPinShape shape);
+		public static extern void BeginOutputAttributeNative(int id, ImNodesPinShape shape);
+
+		public static void BeginOutputAttribute(int id)
+		{
+			BeginOutputAttributeNative(id, (ImNodesPinShape)(ImNodesPinShape.CircleFilled));
+		}
+
+		public static void BeginOutputAttribute(int id, ImNodesPinShape shape)
+		{
+			BeginOutputAttributeNative(id, shape);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndOutputAttribute")]
-		public static extern void EndOutputAttribute();
+		public static extern void EndOutputAttributeNative();
+
+		public static void EndOutputAttribute()
+		{
+			EndOutputAttributeNative();
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginStaticAttribute")]
-		public static extern void BeginStaticAttribute(int id);
+		public static extern void BeginStaticAttributeNative(int id);
+
+		public static void BeginStaticAttribute(int id)
+		{
+			BeginStaticAttributeNative(id);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndStaticAttribute")]
-		public static extern void EndStaticAttribute();
+		public static extern void EndStaticAttributeNative();
+
+		public static void EndStaticAttribute()
+		{
+			EndStaticAttributeNative();
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PushAttributeFlag")]
-		public static extern void PushAttributeFlag(ImNodesAttributeFlags flag);
+		public static extern void PushAttributeFlagNative(ImNodesAttributeFlags flag);
+
+		public static void PushAttributeFlag(ImNodesAttributeFlags flag)
+		{
+			PushAttributeFlagNative(flag);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PopAttributeFlag")]
-		public static extern void PopAttributeFlag();
+		public static extern void PopAttributeFlagNative();
+
+		public static void PopAttributeFlag()
+		{
+			PopAttributeFlagNative();
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_Link")]
-		public static extern void Link(int id, int startAttributeId, int endAttributeId);
+		public static extern void LinkNative(int id, int startAttributeId, int endAttributeId);
+
+		public static void Link(int id, int startAttributeId, int endAttributeId)
+		{
+			LinkNative(id, startAttributeId, endAttributeId);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetNodeDraggable")]
-		public static extern void SetNodeDraggable(int nodeId, bool draggable);
+		public static extern void SetNodeDraggableNative(int nodeId, bool draggable);
+
+		public static void SetNodeDraggable(int nodeId, bool draggable)
+		{
+			SetNodeDraggableNative(nodeId, draggable);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetNodeScreenSpacePos")]
-		public static extern void SetNodeScreenSpacePos(int nodeId, Vector2 screenSpacePos);
+		public static extern void SetNodeScreenSpacePosNative(int nodeId, Vector2 screenSpacePos);
+
+		public static void SetNodeScreenSpacePos(int nodeId, Vector2 screenSpacePos)
+		{
+			SetNodeScreenSpacePosNative(nodeId, screenSpacePos);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetNodeEditorSpacePos")]
-		public static extern void SetNodeEditorSpacePos(int nodeId, Vector2 editorSpacePos);
+		public static extern void SetNodeEditorSpacePosNative(int nodeId, Vector2 editorSpacePos);
+
+		public static void SetNodeEditorSpacePos(int nodeId, Vector2 editorSpacePos)
+		{
+			SetNodeEditorSpacePosNative(nodeId, editorSpacePos);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetNodeGridSpacePos")]
-		public static extern void SetNodeGridSpacePos(int nodeId, Vector2 gridPos);
+		public static extern void SetNodeGridSpacePosNative(int nodeId, Vector2 gridPos);
+
+		public static void SetNodeGridSpacePos(int nodeId, Vector2 gridPos)
+		{
+			SetNodeGridSpacePosNative(nodeId, gridPos);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeScreenSpacePos")]
-		public static extern void GetNodeScreenSpacePos(Vector2* output, int nodeId);
+		public static extern void GetNodeScreenSpacePosNative(Vector2* output, int nodeId);
+
+		public static void GetNodeScreenSpacePos(Vector2* output, int nodeId)
+		{
+			GetNodeScreenSpacePosNative(output, nodeId);
+		}
 
 		public static void GetNodeScreenSpacePos(ref Vector2 output, int nodeId)
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				GetNodeScreenSpacePos((Vector2*)poutput, nodeId);
+				GetNodeScreenSpacePosNative((Vector2*)poutput, nodeId);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeEditorSpacePos")]
-		public static extern void GetNodeEditorSpacePos(Vector2* output, int nodeId);
+		public static extern void GetNodeEditorSpacePosNative(Vector2* output, int nodeId);
+
+		public static void GetNodeEditorSpacePos(Vector2* output, int nodeId)
+		{
+			GetNodeEditorSpacePosNative(output, nodeId);
+		}
 
 		public static void GetNodeEditorSpacePos(ref Vector2 output, int nodeId)
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				GetNodeEditorSpacePos((Vector2*)poutput, nodeId);
+				GetNodeEditorSpacePosNative((Vector2*)poutput, nodeId);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeGridSpacePos")]
-		public static extern void GetNodeGridSpacePos(Vector2* output, int nodeId);
+		public static extern void GetNodeGridSpacePosNative(Vector2* output, int nodeId);
+
+		public static void GetNodeGridSpacePos(Vector2* output, int nodeId)
+		{
+			GetNodeGridSpacePosNative(output, nodeId);
+		}
 
 		public static void GetNodeGridSpacePos(ref Vector2 output, int nodeId)
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				GetNodeGridSpacePos((Vector2*)poutput, nodeId);
+				GetNodeGridSpacePosNative((Vector2*)poutput, nodeId);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SnapNodeToGrid")]
-		public static extern void SnapNodeToGrid(int nodeId);
+		public static extern void SnapNodeToGridNative(int nodeId);
+
+		public static void SnapNodeToGrid(int nodeId)
+		{
+			SnapNodeToGridNative(nodeId);
+		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsEditorHovered")]
-		public static extern bool IsEditorHovered();
+		public static extern bool IsEditorHoveredNative();
+
+		public static bool IsEditorHovered()
+		{
+			bool ret = IsEditorHoveredNative();
+			return ret;
+		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsNodeHovered")]
-		public static extern bool IsNodeHovered(int* nodeId);
+		public static extern bool IsNodeHoveredNative(int* nodeId);
+
+		public static bool IsNodeHovered(int* nodeId)
+		{
+			bool ret = IsNodeHoveredNative(nodeId);
+			return ret;
+		}
 
 		public static bool IsNodeHovered(ref int nodeId)
 		{
 			fixed (int* pnodeId = &nodeId)
 			{
-				bool ret = IsNodeHovered((int*)pnodeId);
+				bool ret = IsNodeHoveredNative((int*)pnodeId);
 				return ret;
 			}
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkHovered")]
-		public static extern bool IsLinkHovered(int* linkId);
+		public static extern bool IsLinkHoveredNative(int* linkId);
+
+		public static bool IsLinkHovered(int* linkId)
+		{
+			bool ret = IsLinkHoveredNative(linkId);
+			return ret;
+		}
 
 		public static bool IsLinkHovered(ref int linkId)
 		{
 			fixed (int* plinkId = &linkId)
 			{
-				bool ret = IsLinkHovered((int*)plinkId);
+				bool ret = IsLinkHoveredNative((int*)plinkId);
 				return ret;
 			}
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsPinHovered")]
-		public static extern bool IsPinHovered(int* attributeId);
+		public static extern bool IsPinHoveredNative(int* attributeId);
+
+		public static bool IsPinHovered(int* attributeId)
+		{
+			bool ret = IsPinHoveredNative(attributeId);
+			return ret;
+		}
 
 		public static bool IsPinHovered(ref int attributeId)
 		{
 			fixed (int* pattributeId = &attributeId)
 			{
-				bool ret = IsPinHovered((int*)pattributeId);
+				bool ret = IsPinHoveredNative((int*)pattributeId);
 				return ret;
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_NumSelectedNodes")]
-		public static extern int NumSelectedNodes();
+		public static extern int NumSelectedNodesNative();
+
+		public static int NumSelectedNodes()
+		{
+			int ret = NumSelectedNodesNative();
+			return ret;
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_NumSelectedLinks")]
-		public static extern int NumSelectedLinks();
+		public static extern int NumSelectedLinksNative();
+
+		public static int NumSelectedLinks()
+		{
+			int ret = NumSelectedLinksNative();
+			return ret;
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetSelectedNodes")]
-		public static extern void GetSelectedNodes(int* nodeIds);
+		public static extern void GetSelectedNodesNative(int* nodeIds);
+
+		public static void GetSelectedNodes(int* nodeIds)
+		{
+			GetSelectedNodesNative(nodeIds);
+		}
 
 		public static void GetSelectedNodes(ref int nodeIds)
 		{
 			fixed (int* pnodeIds = &nodeIds)
 			{
-				GetSelectedNodes((int*)pnodeIds);
+				GetSelectedNodesNative((int*)pnodeIds);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetSelectedLinks")]
-		public static extern void GetSelectedLinks(int* linkIds);
+		public static extern void GetSelectedLinksNative(int* linkIds);
+
+		public static void GetSelectedLinks(int* linkIds)
+		{
+			GetSelectedLinksNative(linkIds);
+		}
 
 		public static void GetSelectedLinks(ref int linkIds)
 		{
 			fixed (int* plinkIds = &linkIds)
 			{
-				GetSelectedLinks((int*)plinkIds);
+				GetSelectedLinksNative((int*)plinkIds);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_ClearNodeSelection_Nil")]
-		public static extern void ClearNodeSelection();
+		public static extern void ClearNodeSelectionNative();
+
+		public static void ClearNodeSelection()
+		{
+			ClearNodeSelectionNative();
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_ClearLinkSelection_Nil")]
-		public static extern void ClearLinkSelection();
+		public static extern void ClearLinkSelectionNative();
+
+		public static void ClearLinkSelection()
+		{
+			ClearLinkSelectionNative();
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SelectNode")]
-		public static extern void SelectNode(int nodeId);
+		public static extern void SelectNodeNative(int nodeId);
+
+		public static void SelectNode(int nodeId)
+		{
+			SelectNodeNative(nodeId);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_ClearNodeSelection_Int")]
-		public static extern void ClearNodeSelection(int nodeId);
+		public static extern void ClearNodeSelectionNative(int nodeId);
+
+		public static void ClearNodeSelection(int nodeId)
+		{
+			ClearNodeSelectionNative(nodeId);
+		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsNodeSelected")]
-		public static extern bool IsNodeSelected(int nodeId);
+		public static extern bool IsNodeSelectedNative(int nodeId);
+
+		public static bool IsNodeSelected(int nodeId)
+		{
+			bool ret = IsNodeSelectedNative(nodeId);
+			return ret;
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SelectLink")]
-		public static extern void SelectLink(int linkId);
+		public static extern void SelectLinkNative(int linkId);
+
+		public static void SelectLink(int linkId)
+		{
+			SelectLinkNative(linkId);
+		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_ClearLinkSelection_Int")]
-		public static extern void ClearLinkSelection(int linkId);
+		public static extern void ClearLinkSelectionNative(int linkId);
+
+		public static void ClearLinkSelection(int linkId)
+		{
+			ClearLinkSelectionNative(linkId);
+		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkSelected")]
-		public static extern bool IsLinkSelected(int linkId);
+		public static extern bool IsLinkSelectedNative(int linkId);
+
+		public static bool IsLinkSelected(int linkId)
+		{
+			bool ret = IsLinkSelectedNative(linkId);
+			return ret;
+		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsAttributeActive")]
-		public static extern bool IsAttributeActive();
+		public static extern bool IsAttributeActiveNative();
+
+		public static bool IsAttributeActive()
+		{
+			bool ret = IsAttributeActiveNative();
+			return ret;
+		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsAnyAttributeActive")]
-		public static extern bool IsAnyAttributeActive(int* attributeId);
+		public static extern bool IsAnyAttributeActiveNative(int* attributeId);
+
+		public static bool IsAnyAttributeActive()
+		{
+			bool ret = IsAnyAttributeActiveNative((int*)(default));
+			return ret;
+		}
+
+		public static bool IsAnyAttributeActive(int* attributeId)
+		{
+			bool ret = IsAnyAttributeActiveNative(attributeId);
+			return ret;
+		}
 
 		public static bool IsAnyAttributeActive(ref int attributeId)
 		{
 			fixed (int* pattributeId = &attributeId)
 			{
-				bool ret = IsAnyAttributeActive((int*)pattributeId);
+				bool ret = IsAnyAttributeActiveNative((int*)pattributeId);
 				return ret;
 			}
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkStarted")]
-		public static extern bool IsLinkStarted(int* startedAtAttributeId);
+		public static extern bool IsLinkStartedNative(int* startedAtAttributeId);
+
+		public static bool IsLinkStarted(int* startedAtAttributeId)
+		{
+			bool ret = IsLinkStartedNative(startedAtAttributeId);
+			return ret;
+		}
 
 		public static bool IsLinkStarted(ref int startedAtAttributeId)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkStarted((int*)pstartedAtAttributeId);
+				bool ret = IsLinkStartedNative((int*)pstartedAtAttributeId);
 				return ret;
 			}
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkDropped")]
-		public static extern bool IsLinkDropped(int* startedAtAttributeId, bool includingDetachedLinks);
+		public static extern bool IsLinkDroppedNative(int* startedAtAttributeId, bool includingDetachedLinks);
+
+		public static bool IsLinkDropped()
+		{
+			bool ret = IsLinkDroppedNative((int*)(default), true);
+			return ret;
+		}
+
+		public static bool IsLinkDropped(int* startedAtAttributeId)
+		{
+			bool ret = IsLinkDroppedNative(startedAtAttributeId, true);
+			return ret;
+		}
+
+		public static bool IsLinkDropped(int* startedAtAttributeId, bool includingDetachedLinks)
+		{
+			bool ret = IsLinkDroppedNative(startedAtAttributeId, includingDetachedLinks);
+			return ret;
+		}
 
 		public static bool IsLinkDropped(ref int startedAtAttributeId)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkDropped((int*)pstartedAtAttributeId, true);
+				bool ret = IsLinkDroppedNative((int*)pstartedAtAttributeId, true);
 				return ret;
 			}
 		}
@@ -461,20 +901,32 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkDropped((int*)pstartedAtAttributeId, includingDetachedLinks);
+				bool ret = IsLinkDroppedNative((int*)pstartedAtAttributeId, includingDetachedLinks);
 				return ret;
 			}
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkCreated_BoolPtr")]
-		public static extern bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap);
+		public static extern bool IsLinkCreatedNative(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap);
+
+		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId)
+		{
+			bool ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, (bool*)(default));
+			return ret;
+		}
+
+		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
+		{
+			bool ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, createdFromSnap);
+			return ret;
+		}
 
 		public static bool IsLinkCreated(ref int startedAtAttributeId, int* endedAtAttributeId)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkCreated((int*)pstartedAtAttributeId, endedAtAttributeId, (bool*)(null));
+				bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, endedAtAttributeId, (bool*)(default));
 				return ret;
 			}
 		}
@@ -483,7 +935,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkCreated((int*)pstartedAtAttributeId, endedAtAttributeId, createdFromSnap);
+				bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, endedAtAttributeId, createdFromSnap);
 				return ret;
 			}
 		}
@@ -492,7 +944,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 			{
-				bool ret = IsLinkCreated(startedAtAttributeId, (int*)pendedAtAttributeId, (bool*)(null));
+				bool ret = IsLinkCreatedNative(startedAtAttributeId, (int*)pendedAtAttributeId, (bool*)(default));
 				return ret;
 			}
 		}
@@ -501,7 +953,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 			{
-				bool ret = IsLinkCreated(startedAtAttributeId, (int*)pendedAtAttributeId, createdFromSnap);
+				bool ret = IsLinkCreatedNative(startedAtAttributeId, (int*)pendedAtAttributeId, createdFromSnap);
 				return ret;
 			}
 		}
@@ -512,7 +964,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreated((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, (bool*)(null));
+					bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, (bool*)(default));
 					return ret;
 				}
 			}
@@ -524,7 +976,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreated((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, createdFromSnap);
+					bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, createdFromSnap);
 					return ret;
 				}
 			}
@@ -534,7 +986,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (bool* pcreatedFromSnap = &createdFromSnap)
 			{
-				bool ret = IsLinkCreated(startedAtAttributeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+				bool ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 				return ret;
 			}
 		}
@@ -545,7 +997,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					bool ret = IsLinkCreated((int*)pstartedAtAttributeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+					bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 					return ret;
 				}
 			}
@@ -557,7 +1009,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					bool ret = IsLinkCreated(startedAtAttributeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+					bool ret = IsLinkCreatedNative(startedAtAttributeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 					return ret;
 				}
 			}
@@ -571,7 +1023,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						bool ret = IsLinkCreated((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+						bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 						return ret;
 					}
 				}
@@ -580,13 +1032,25 @@ namespace HexaEngine.ImNodesNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkCreated_IntPtr")]
-		public static extern bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap);
+		public static extern bool IsLinkCreatedNative(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap);
+
+		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
+		{
+			bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
+			return ret;
+		}
+
+		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
+		{
+			bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
+			return ret;
+		}
 
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
-				bool ret = IsLinkCreated((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(null));
+				bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
 				return ret;
 			}
 		}
@@ -595,7 +1059,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
-				bool ret = IsLinkCreated((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
+				bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
 				return ret;
 			}
 		}
@@ -604,7 +1068,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkCreated(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(null));
+				bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
 				return ret;
 			}
 		}
@@ -613,7 +1077,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkCreated(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
+				bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
 				return ret;
 			}
 		}
@@ -624,7 +1088,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 				{
-					bool ret = IsLinkCreated((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(null));
+					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
 					return ret;
 				}
 			}
@@ -636,7 +1100,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 				{
-					bool ret = IsLinkCreated((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
+					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
 					return ret;
 				}
 			}
@@ -646,7 +1110,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pendedAtNodeId = &endedAtNodeId)
 			{
-				bool ret = IsLinkCreated(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(null));
+				bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
 				return ret;
 			}
 		}
@@ -655,7 +1119,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pendedAtNodeId = &endedAtNodeId)
 			{
-				bool ret = IsLinkCreated(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
+				bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
 				return ret;
 			}
 		}
@@ -666,7 +1130,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtNodeId = &endedAtNodeId)
 				{
-					bool ret = IsLinkCreated((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(null));
+					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
 					return ret;
 				}
 			}
@@ -678,7 +1142,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtNodeId = &endedAtNodeId)
 				{
-					bool ret = IsLinkCreated((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
+					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
 					return ret;
 				}
 			}
@@ -690,7 +1154,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtNodeId = &endedAtNodeId)
 				{
-					bool ret = IsLinkCreated(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(null));
+					bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
 					return ret;
 				}
 			}
@@ -702,7 +1166,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtNodeId = &endedAtNodeId)
 				{
-					bool ret = IsLinkCreated(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
+					bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
 					return ret;
 				}
 			}
@@ -716,7 +1180,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtNodeId = &endedAtNodeId)
 					{
-						bool ret = IsLinkCreated((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(null));
+						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
 						return ret;
 					}
 				}
@@ -731,7 +1195,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtNodeId = &endedAtNodeId)
 					{
-						bool ret = IsLinkCreated((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
+						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
 						return ret;
 					}
 				}
@@ -742,7 +1206,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 			{
-				bool ret = IsLinkCreated(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(null));
+				bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
 				return ret;
 			}
 		}
@@ -751,7 +1215,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 			{
-				bool ret = IsLinkCreated(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+				bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 				return ret;
 			}
 		}
@@ -762,7 +1226,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreated((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(null));
+					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
 					return ret;
 				}
 			}
@@ -774,7 +1238,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreated((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 					return ret;
 				}
 			}
@@ -786,7 +1250,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreated(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(null));
+					bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
 					return ret;
 				}
 			}
@@ -798,7 +1262,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreated(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+					bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 					return ret;
 				}
 			}
@@ -812,7 +1276,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						bool ret = IsLinkCreated((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(null));
+						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
 						return ret;
 					}
 				}
@@ -827,7 +1291,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						bool ret = IsLinkCreated((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 						return ret;
 					}
 				}
@@ -840,7 +1304,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreated(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(null));
+					bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
 					return ret;
 				}
 			}
@@ -852,7 +1316,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreated(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+					bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 					return ret;
 				}
 			}
@@ -866,7 +1330,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						bool ret = IsLinkCreated((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(null));
+						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
 						return ret;
 					}
 				}
@@ -881,7 +1345,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						bool ret = IsLinkCreated((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 						return ret;
 					}
 				}
@@ -896,7 +1360,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						bool ret = IsLinkCreated(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(null));
+						bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
 						return ret;
 					}
 				}
@@ -911,7 +1375,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						bool ret = IsLinkCreated(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+						bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 						return ret;
 					}
 				}
@@ -928,7 +1392,7 @@ namespace HexaEngine.ImNodesNET
 					{
 						fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 						{
-							bool ret = IsLinkCreated((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(null));
+							bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
 							return ret;
 						}
 					}
@@ -946,7 +1410,7 @@ namespace HexaEngine.ImNodesNET
 					{
 						fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 						{
-							bool ret = IsLinkCreated((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+							bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 							return ret;
 						}
 					}
@@ -958,7 +1422,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (bool* pcreatedFromSnap = &createdFromSnap)
 			{
-				bool ret = IsLinkCreated(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+				bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 				return ret;
 			}
 		}
@@ -969,7 +1433,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					bool ret = IsLinkCreated((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 					return ret;
 				}
 			}
@@ -981,7 +1445,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					bool ret = IsLinkCreated(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+					bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 					return ret;
 				}
 			}
@@ -995,7 +1459,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						bool ret = IsLinkCreated((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 						return ret;
 					}
 				}
@@ -1008,7 +1472,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					bool ret = IsLinkCreated(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+					bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 					return ret;
 				}
 			}
@@ -1022,7 +1486,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						bool ret = IsLinkCreated((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 						return ret;
 					}
 				}
@@ -1037,7 +1501,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						bool ret = IsLinkCreated(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+						bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 						return ret;
 					}
 				}
@@ -1054,7 +1518,7 @@ namespace HexaEngine.ImNodesNET
 					{
 						fixed (bool* pcreatedFromSnap = &createdFromSnap)
 						{
-							bool ret = IsLinkCreated((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+							bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 							return ret;
 						}
 					}
@@ -1068,7 +1532,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					bool ret = IsLinkCreated(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+					bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 					return ret;
 				}
 			}
@@ -1082,7 +1546,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						bool ret = IsLinkCreated((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 						return ret;
 					}
 				}
@@ -1097,7 +1561,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						bool ret = IsLinkCreated(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+						bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 						return ret;
 					}
 				}
@@ -1114,7 +1578,7 @@ namespace HexaEngine.ImNodesNET
 					{
 						fixed (bool* pcreatedFromSnap = &createdFromSnap)
 						{
-							bool ret = IsLinkCreated((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+							bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 							return ret;
 						}
 					}
@@ -1130,7 +1594,7 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						bool ret = IsLinkCreated(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+						bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 						return ret;
 					}
 				}
@@ -1147,7 +1611,7 @@ namespace HexaEngine.ImNodesNET
 					{
 						fixed (bool* pcreatedFromSnap = &createdFromSnap)
 						{
-							bool ret = IsLinkCreated((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+							bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 							return ret;
 						}
 					}
@@ -1165,7 +1629,7 @@ namespace HexaEngine.ImNodesNET
 					{
 						fixed (bool* pcreatedFromSnap = &createdFromSnap)
 						{
-							bool ret = IsLinkCreated(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+							bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 							return ret;
 						}
 					}
@@ -1185,7 +1649,7 @@ namespace HexaEngine.ImNodesNET
 						{
 							fixed (bool* pcreatedFromSnap = &createdFromSnap)
 							{
-								bool ret = IsLinkCreated((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+								bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 								return ret;
 							}
 						}
@@ -1196,29 +1660,47 @@ namespace HexaEngine.ImNodesNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkDestroyed")]
-		public static extern bool IsLinkDestroyed(int* linkId);
+		public static extern bool IsLinkDestroyedNative(int* linkId);
+
+		public static bool IsLinkDestroyed(int* linkId)
+		{
+			bool ret = IsLinkDestroyedNative(linkId);
+			return ret;
+		}
 
 		public static bool IsLinkDestroyed(ref int linkId)
 		{
 			fixed (int* plinkId = &linkId)
 			{
-				bool ret = IsLinkDestroyed((int*)plinkId);
+				bool ret = IsLinkDestroyedNative((int*)plinkId);
 				return ret;
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SaveCurrentEditorStateToIniString")]
-		public static extern byte* SaveCurrentEditorStateToIniString(nuint* dataSize);
+		public static extern byte* SaveCurrentEditorStateToIniStringNative(nuint* dataSize);
+
+		public static byte* SaveCurrentEditorStateToIniString()
+		{
+			byte* ret = SaveCurrentEditorStateToIniStringNative((nuint*)(default));
+			return ret;
+		}
+
+		public static byte* SaveCurrentEditorStateToIniString(nuint* dataSize)
+		{
+			byte* ret = SaveCurrentEditorStateToIniStringNative(dataSize);
+			return ret;
+		}
 
 		public static string SaveCurrentEditorStateToIniStringS()
 		{
-			string ret = Marshal.PtrToStringAnsi((nint)SaveCurrentEditorStateToIniString((nuint*)(null)));
+			string ret = Marshal.PtrToStringAnsi((nint)SaveCurrentEditorStateToIniStringNative((nuint*)(default)));
 			return ret;
 		}
 
 		public static string SaveCurrentEditorStateToIniStringS(nuint* dataSize)
 		{
-			string ret = Marshal.PtrToStringAnsi((nint)SaveCurrentEditorStateToIniString(dataSize));
+			string ret = Marshal.PtrToStringAnsi((nint)SaveCurrentEditorStateToIniStringNative(dataSize));
 			return ret;
 		}
 
@@ -1226,7 +1708,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
-				string ret = Marshal.PtrToStringAnsi((nint)SaveCurrentEditorStateToIniString((nuint*)pdataSize));
+				string ret = Marshal.PtrToStringAnsi((nint)SaveCurrentEditorStateToIniStringNative((nuint*)pdataSize));
 				return ret;
 			}
 		}
@@ -1235,23 +1717,35 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
-				byte* ret = SaveCurrentEditorStateToIniString((nuint*)pdataSize);
+				byte* ret = SaveCurrentEditorStateToIniStringNative((nuint*)pdataSize);
 				return ret;
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SaveEditorStateToIniString")]
-		public static extern byte* SaveEditorStateToIniString(ImNodesEditorContext* editor, nuint* dataSize);
+		public static extern byte* SaveEditorStateToIniStringNative(ImNodesEditorContext* editor, nuint* dataSize);
+
+		public static byte* SaveEditorStateToIniString(ImNodesEditorContext* editor)
+		{
+			byte* ret = SaveEditorStateToIniStringNative(editor, (nuint*)(default));
+			return ret;
+		}
+
+		public static byte* SaveEditorStateToIniString(ImNodesEditorContext* editor, nuint* dataSize)
+		{
+			byte* ret = SaveEditorStateToIniStringNative(editor, dataSize);
+			return ret;
+		}
 
 		public static string SaveEditorStateToIniStringS(ImNodesEditorContext* editor)
 		{
-			string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniString(editor, (nuint*)(null)));
+			string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniStringNative(editor, (nuint*)(default)));
 			return ret;
 		}
 
 		public static string SaveEditorStateToIniStringS(ImNodesEditorContext* editor, nuint* dataSize)
 		{
-			string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniString(editor, dataSize));
+			string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniStringNative(editor, dataSize));
 			return ret;
 		}
 
@@ -1259,7 +1753,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
-				string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniString((ImNodesEditorContext*)peditor, (nuint*)(null)));
+				string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)(default)));
 				return ret;
 			}
 		}
@@ -1268,7 +1762,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
-				string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniString((ImNodesEditorContext*)peditor, dataSize));
+				string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, dataSize));
 				return ret;
 			}
 		}
@@ -1277,7 +1771,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
-				byte* ret = SaveEditorStateToIniString((ImNodesEditorContext*)peditor, (nuint*)(null));
+				byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)(default));
 				return ret;
 			}
 		}
@@ -1286,7 +1780,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
-				byte* ret = SaveEditorStateToIniString((ImNodesEditorContext*)peditor, dataSize);
+				byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, dataSize);
 				return ret;
 			}
 		}
@@ -1295,7 +1789,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
-				string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniString(editor, (nuint*)pdataSize));
+				string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniStringNative(editor, (nuint*)pdataSize));
 				return ret;
 			}
 		}
@@ -1304,7 +1798,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
-				byte* ret = SaveEditorStateToIniString(editor, (nuint*)pdataSize);
+				byte* ret = SaveEditorStateToIniStringNative(editor, (nuint*)pdataSize);
 				return ret;
 			}
 		}
@@ -1315,7 +1809,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (nuint* pdataSize = &dataSize)
 				{
-					string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniString((ImNodesEditorContext*)peditor, (nuint*)pdataSize));
+					string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)pdataSize));
 					return ret;
 				}
 			}
@@ -1327,20 +1821,25 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (nuint* pdataSize = &dataSize)
 				{
-					byte* ret = SaveEditorStateToIniString((ImNodesEditorContext*)peditor, (nuint*)pdataSize);
+					byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)pdataSize);
 					return ret;
 				}
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_LoadCurrentEditorStateFromIniString")]
-		public static extern void LoadCurrentEditorStateFromIniString(byte* data, nuint dataSize);
+		public static extern void LoadCurrentEditorStateFromIniStringNative(byte* data, nuint dataSize);
+
+		public static void LoadCurrentEditorStateFromIniString(byte* data, nuint dataSize)
+		{
+			LoadCurrentEditorStateFromIniStringNative(data, dataSize);
+		}
 
 		public static void LoadCurrentEditorStateFromIniString(ref byte data, nuint dataSize)
 		{
 			fixed (byte* pdata = &data)
 			{
-				LoadCurrentEditorStateFromIniString((byte*)pdata, dataSize);
+				LoadCurrentEditorStateFromIniStringNative((byte*)pdata, dataSize);
 			}
 		}
 
@@ -1363,7 +1862,7 @@ namespace HexaEngine.ImNodesNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(data, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			LoadCurrentEditorStateFromIniString(pStr0, dataSize);
+			LoadCurrentEditorStateFromIniStringNative(pStr0, dataSize);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1371,13 +1870,18 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_LoadEditorStateFromIniString")]
-		public static extern void LoadEditorStateFromIniString(ImNodesEditorContext* editor, byte* data, nuint dataSize);
+		public static extern void LoadEditorStateFromIniStringNative(ImNodesEditorContext* editor, byte* data, nuint dataSize);
+
+		public static void LoadEditorStateFromIniString(ImNodesEditorContext* editor, byte* data, nuint dataSize)
+		{
+			LoadEditorStateFromIniStringNative(editor, data, dataSize);
+		}
 
 		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, byte* data, nuint dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
-				LoadEditorStateFromIniString((ImNodesEditorContext*)peditor, data, dataSize);
+				LoadEditorStateFromIniStringNative((ImNodesEditorContext*)peditor, data, dataSize);
 			}
 		}
 
@@ -1385,7 +1889,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (byte* pdata = &data)
 			{
-				LoadEditorStateFromIniString(editor, (byte*)pdata, dataSize);
+				LoadEditorStateFromIniStringNative(editor, (byte*)pdata, dataSize);
 			}
 		}
 
@@ -1408,7 +1912,7 @@ namespace HexaEngine.ImNodesNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(data, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			LoadEditorStateFromIniString(editor, pStr0, dataSize);
+			LoadEditorStateFromIniStringNative(editor, pStr0, dataSize);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1421,7 +1925,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (byte* pdata = &data)
 				{
-					LoadEditorStateFromIniString((ImNodesEditorContext*)peditor, (byte*)pdata, dataSize);
+					LoadEditorStateFromIniStringNative((ImNodesEditorContext*)peditor, (byte*)pdata, dataSize);
 				}
 			}
 		}
@@ -1447,7 +1951,7 @@ namespace HexaEngine.ImNodesNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(data, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				LoadEditorStateFromIniString((ImNodesEditorContext*)peditor, pStr0, dataSize);
+				LoadEditorStateFromIniStringNative((ImNodesEditorContext*)peditor, pStr0, dataSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1456,13 +1960,18 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SaveCurrentEditorStateToIniFile")]
-		public static extern void SaveCurrentEditorStateToIniFile(byte* fileName);
+		public static extern void SaveCurrentEditorStateToIniFileNative(byte* fileName);
+
+		public static void SaveCurrentEditorStateToIniFile(byte* fileName)
+		{
+			SaveCurrentEditorStateToIniFileNative(fileName);
+		}
 
 		public static void SaveCurrentEditorStateToIniFile(ref byte fileName)
 		{
 			fixed (byte* pfileName = &fileName)
 			{
-				SaveCurrentEditorStateToIniFile((byte*)pfileName);
+				SaveCurrentEditorStateToIniFileNative((byte*)pfileName);
 			}
 		}
 
@@ -1485,7 +1994,7 @@ namespace HexaEngine.ImNodesNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(fileName, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			SaveCurrentEditorStateToIniFile(pStr0);
+			SaveCurrentEditorStateToIniFileNative(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1493,13 +2002,18 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SaveEditorStateToIniFile")]
-		public static extern void SaveEditorStateToIniFile(ImNodesEditorContext* editor, byte* fileName);
+		public static extern void SaveEditorStateToIniFileNative(ImNodesEditorContext* editor, byte* fileName);
+
+		public static void SaveEditorStateToIniFile(ImNodesEditorContext* editor, byte* fileName)
+		{
+			SaveEditorStateToIniFileNative(editor, fileName);
+		}
 
 		public static void SaveEditorStateToIniFile(ref ImNodesEditorContext editor, byte* fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
-				SaveEditorStateToIniFile((ImNodesEditorContext*)peditor, fileName);
+				SaveEditorStateToIniFileNative((ImNodesEditorContext*)peditor, fileName);
 			}
 		}
 
@@ -1507,7 +2021,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (byte* pfileName = &fileName)
 			{
-				SaveEditorStateToIniFile(editor, (byte*)pfileName);
+				SaveEditorStateToIniFileNative(editor, (byte*)pfileName);
 			}
 		}
 
@@ -1530,7 +2044,7 @@ namespace HexaEngine.ImNodesNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(fileName, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			SaveEditorStateToIniFile(editor, pStr0);
+			SaveEditorStateToIniFileNative(editor, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1543,7 +2057,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (byte* pfileName = &fileName)
 				{
-					SaveEditorStateToIniFile((ImNodesEditorContext*)peditor, (byte*)pfileName);
+					SaveEditorStateToIniFileNative((ImNodesEditorContext*)peditor, (byte*)pfileName);
 				}
 			}
 		}
@@ -1569,7 +2083,7 @@ namespace HexaEngine.ImNodesNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(fileName, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				SaveEditorStateToIniFile((ImNodesEditorContext*)peditor, pStr0);
+				SaveEditorStateToIniFileNative((ImNodesEditorContext*)peditor, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1578,13 +2092,18 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_LoadCurrentEditorStateFromIniFile")]
-		public static extern void LoadCurrentEditorStateFromIniFile(byte* fileName);
+		public static extern void LoadCurrentEditorStateFromIniFileNative(byte* fileName);
+
+		public static void LoadCurrentEditorStateFromIniFile(byte* fileName)
+		{
+			LoadCurrentEditorStateFromIniFileNative(fileName);
+		}
 
 		public static void LoadCurrentEditorStateFromIniFile(ref byte fileName)
 		{
 			fixed (byte* pfileName = &fileName)
 			{
-				LoadCurrentEditorStateFromIniFile((byte*)pfileName);
+				LoadCurrentEditorStateFromIniFileNative((byte*)pfileName);
 			}
 		}
 
@@ -1607,7 +2126,7 @@ namespace HexaEngine.ImNodesNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(fileName, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			LoadCurrentEditorStateFromIniFile(pStr0);
+			LoadCurrentEditorStateFromIniFileNative(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1615,13 +2134,18 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_LoadEditorStateFromIniFile")]
-		public static extern void LoadEditorStateFromIniFile(ImNodesEditorContext* editor, byte* fileName);
+		public static extern void LoadEditorStateFromIniFileNative(ImNodesEditorContext* editor, byte* fileName);
+
+		public static void LoadEditorStateFromIniFile(ImNodesEditorContext* editor, byte* fileName)
+		{
+			LoadEditorStateFromIniFileNative(editor, fileName);
+		}
 
 		public static void LoadEditorStateFromIniFile(ref ImNodesEditorContext editor, byte* fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
-				LoadEditorStateFromIniFile((ImNodesEditorContext*)peditor, fileName);
+				LoadEditorStateFromIniFileNative((ImNodesEditorContext*)peditor, fileName);
 			}
 		}
 
@@ -1629,7 +2153,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (byte* pfileName = &fileName)
 			{
-				LoadEditorStateFromIniFile(editor, (byte*)pfileName);
+				LoadEditorStateFromIniFileNative(editor, (byte*)pfileName);
 			}
 		}
 
@@ -1652,7 +2176,7 @@ namespace HexaEngine.ImNodesNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(fileName, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			LoadEditorStateFromIniFile(editor, pStr0);
+			LoadEditorStateFromIniFileNative(editor, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1665,7 +2189,7 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (byte* pfileName = &fileName)
 				{
-					LoadEditorStateFromIniFile((ImNodesEditorContext*)peditor, (byte*)pfileName);
+					LoadEditorStateFromIniFileNative((ImNodesEditorContext*)peditor, (byte*)pfileName);
 				}
 			}
 		}
@@ -1691,7 +2215,7 @@ namespace HexaEngine.ImNodesNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(fileName, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				LoadEditorStateFromIniFile((ImNodesEditorContext*)peditor, pStr0);
+				LoadEditorStateFromIniFileNative((ImNodesEditorContext*)peditor, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1705,7 +2229,18 @@ namespace HexaEngine.ImNodesNET
 		/// ::GetIO().KeyCtrl
 		/// </summary>
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "getIOKeyCtrlPtr")]
-		public static extern bool* GetIOKeyCtrlPtr();
+		public static extern bool* GetIOKeyCtrlPtrNative();
+
+		/// <summary>
+		/// needed for io.link_detach_with_modifier_click.modifier = 
+		/// &ImGui
+		/// ::GetIO().KeyCtrl
+		/// </summary>
+		public static bool* GetIOKeyCtrlPtr()
+		{
+			bool* ret = GetIOKeyCtrlPtrNative();
+			return ret;
+		}
 
 	}
 }

@@ -6,7 +6,7 @@ namespace HexaEngine.Rendering
     using HexaEngine.Core.Graphics;
     using HexaEngine.Core.Windows;
     using HexaEngine.Mathematics;
-    using HexaEngine.ImGui;
+    using HexaEngine.ImGuiNET;
     using System.Numerics;
     using System.Runtime.InteropServices;
     using ImDrawIdx = System.UInt16;

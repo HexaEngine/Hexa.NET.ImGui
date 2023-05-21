@@ -9,7 +9,7 @@
     using HexaEngine.Rendering;
     using System;
     using System.Numerics;
-    using HexaEngine.ImGui;
+    using HexaEngine.ImGuiNET;
 
     public class Window : SdlWindow, IRenderWindow
     {

@@ -58,7 +58,7 @@ namespace HexaEngine.ImGuizmoNET
 		{
 			fixed (Style* @this = &this)
 			{
-				ImGuizmo.Destroy(@this);
+				ImGuizmo.DestroyNative(@this);
 			}
 		}
 

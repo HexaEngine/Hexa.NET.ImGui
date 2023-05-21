@@ -184,7 +184,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotRange* @this = &this)
 			{
-				double ret = ImPlot.Clamp(@this, value);
+				double ret = ImPlot.ClampNative(@this, value);
 				return ret;
 			}
 		}
@@ -193,7 +193,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotRange* @this = &this)
 			{
-				bool ret = ImPlot.Contains(@this, value);
+				bool ret = ImPlot.ContainsNative(@this, value);
 				return ret;
 			}
 		}
@@ -202,7 +202,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotRange* @this = &this)
 			{
-				ImPlot.Destroy(@this);
+				ImPlot.DestroyNative(@this);
 			}
 		}
 
@@ -210,7 +210,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotRange* @this = &this)
 			{
-				double ret = ImPlot.Size(@this);
+				double ret = ImPlot.SizeNative(@this);
 				return ret;
 			}
 		}
@@ -521,7 +521,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotStyle* @this = &this)
 			{
-				ImPlot.Destroy(@this);
+				ImPlot.DestroyNative(@this);
 			}
 		}
 
@@ -668,7 +668,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotInputMap* @this = &this)
 			{
-				ImPlot.Destroy(@this);
+				ImPlot.DestroyNative(@this);
 			}
 		}
 
@@ -764,7 +764,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotPoint* @this = &this)
 			{
-				ImPlot.Destroy(@this);
+				ImPlot.DestroyNative(@this);
 			}
 		}
 
@@ -781,7 +781,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotPoint* poutput = &output)
 			{
-				ImPlot.Clamp(poutput, self, p);
+				ImPlot.ClampNative(poutput, self, p);
 			}
 		}
 
@@ -789,7 +789,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotRect* pself = &self)
 			{
-				ImPlot.Clamp(output, pself, p);
+				ImPlot.ClampNative(output, pself, p);
 			}
 		}
 
@@ -799,21 +799,21 @@ namespace HexaEngine.ImPlotNET
 			{
 				fixed (ImPlotRect* pself = &self)
 				{
-					ImPlot.Clamp(poutput, pself, p);
+					ImPlot.ClampNative(poutput, pself, p);
 				}
 			}
 		}
 
 		public unsafe void Clamp(ImPlotPoint* output, ImPlotRect* self, ImPlotPoint p)
 		{
-			ImPlot.Clamp(output, self, p);
+			ImPlot.ClampNative(output, self, p);
 		}
 
 		public unsafe void Clamp(ref ImPlotPoint output, ImPlotRect* self, double x, double y)
 		{
 			fixed (ImPlotPoint* poutput = &output)
 			{
-				ImPlot.Clamp(poutput, self, x, y);
+				ImPlot.ClampNative(poutput, self, x, y);
 			}
 		}
 
@@ -821,7 +821,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotRect* pself = &self)
 			{
-				ImPlot.Clamp(output, pself, x, y);
+				ImPlot.ClampNative(output, pself, x, y);
 			}
 		}
 
@@ -831,21 +831,21 @@ namespace HexaEngine.ImPlotNET
 			{
 				fixed (ImPlotRect* pself = &self)
 				{
-					ImPlot.Clamp(poutput, pself, x, y);
+					ImPlot.ClampNative(poutput, pself, x, y);
 				}
 			}
 		}
 
 		public unsafe void Clamp(ImPlotPoint* output, ImPlotRect* self, double x, double y)
 		{
-			ImPlot.Clamp(output, self, x, y);
+			ImPlot.ClampNative(output, self, x, y);
 		}
 
 		public unsafe bool Contains(ImPlotPoint p)
 		{
 			fixed (ImPlotRect* @this = &this)
 			{
-				bool ret = ImPlot.Contains(@this, p);
+				bool ret = ImPlot.ContainsNative(@this, p);
 				return ret;
 			}
 		}
@@ -854,7 +854,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotRect* @this = &this)
 			{
-				bool ret = ImPlot.Contains(@this, x, y);
+				bool ret = ImPlot.ContainsNative(@this, x, y);
 				return ret;
 			}
 		}
@@ -863,7 +863,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotRect* @this = &this)
 			{
-				ImPlot.Destroy(@this);
+				ImPlot.DestroyNative(@this);
 			}
 		}
 
@@ -871,7 +871,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotPoint* poutput = &output)
 			{
-				ImPlot.Max(poutput, self);
+				ImPlot.MaxNative(poutput, self);
 			}
 		}
 
@@ -879,7 +879,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotRect* pself = &self)
 			{
-				ImPlot.Max(output, pself);
+				ImPlot.MaxNative(output, pself);
 			}
 		}
 
@@ -889,21 +889,21 @@ namespace HexaEngine.ImPlotNET
 			{
 				fixed (ImPlotRect* pself = &self)
 				{
-					ImPlot.Max(poutput, pself);
+					ImPlot.MaxNative(poutput, pself);
 				}
 			}
 		}
 
 		public unsafe void Max(ImPlotPoint* output, ImPlotRect* self)
 		{
-			ImPlot.Max(output, self);
+			ImPlot.MaxNative(output, self);
 		}
 
 		public unsafe void Min(ref ImPlotPoint output, ImPlotRect* self)
 		{
 			fixed (ImPlotPoint* poutput = &output)
 			{
-				ImPlot.Min(poutput, self);
+				ImPlot.MinNative(poutput, self);
 			}
 		}
 
@@ -911,7 +911,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotRect* pself = &self)
 			{
-				ImPlot.Min(output, pself);
+				ImPlot.MinNative(output, pself);
 			}
 		}
 
@@ -921,21 +921,21 @@ namespace HexaEngine.ImPlotNET
 			{
 				fixed (ImPlotRect* pself = &self)
 				{
-					ImPlot.Min(poutput, pself);
+					ImPlot.MinNative(poutput, pself);
 				}
 			}
 		}
 
 		public unsafe void Min(ImPlotPoint* output, ImPlotRect* self)
 		{
-			ImPlot.Min(output, self);
+			ImPlot.MinNative(output, self);
 		}
 
 		public unsafe void Size(ref ImPlotPoint output, ImPlotRect* self)
 		{
 			fixed (ImPlotPoint* poutput = &output)
 			{
-				ImPlot.Size(poutput, self);
+				ImPlot.SizeNative(poutput, self);
 			}
 		}
 
@@ -943,7 +943,7 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotRect* pself = &self)
 			{
-				ImPlot.Size(output, pself);
+				ImPlot.SizeNative(output, pself);
 			}
 		}
 
@@ -953,14 +953,14 @@ namespace HexaEngine.ImPlotNET
 			{
 				fixed (ImPlotRect* pself = &self)
 				{
-					ImPlot.Size(poutput, pself);
+					ImPlot.SizeNative(poutput, pself);
 				}
 			}
 		}
 
 		public unsafe void Size(ImPlotPoint* output, ImPlotRect* self)
 		{
-			ImPlot.Size(output, self);
+			ImPlot.SizeNative(output, self);
 		}
 
 	}

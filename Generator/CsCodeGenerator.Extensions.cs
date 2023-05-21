@@ -107,7 +107,7 @@
                     WriteStringConvertToManaged(sb, cppFunction.ReturnType);
                 }
 
-                sb.Append($"{CsCodeGeneratorSettings.Default.ApiName}.{command}(");
+                sb.Append($"{CsCodeGeneratorSettings.Default.ApiName}.{command}Native(");
                 int strings = 0;
                 int stacks = 0;
                 for (int j = 0; j < cppFunction.Parameters.Count; j++)

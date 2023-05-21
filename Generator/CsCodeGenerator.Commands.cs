@@ -43,7 +43,7 @@
                     bool boolReturn = returnCsName == "bool";
                     bool canUseOut = s_outReturnFunctions.Contains(cppFunction.Name);
                     var argumentsString = GetParameterSignature(cppFunction, canUseOut);
-                    var header = $"{returnCsName} {csName}({argumentsString})";
+                    var header = $"{returnCsName} {csName}Native({argumentsString})";
                     if (s_definedFunctions.Contains(header))
                         continue;
                     s_definedFunctions.Add(header);
@@ -70,6 +70,8 @@
             string returnCsName = GetCsTypeName(cppFunction.ReturnType, false);
             bool voidReturn = IsVoid(cppFunction.ReturnType);
             bool stringReturn = IsString(cppFunction.ReturnType);
+
+            WriteMethod(writer, cppFunction, command, voidReturn, false, returnCsName, nativeSignature);
 
             if (stringReturn)
             {
@@ -134,7 +136,18 @@
                     WriteStringConvertToManaged(sb, cppFunction.ReturnType);
                 }
 
-                sb.Append($"{command}(");
+                bool hasManaged = false;
+                for (int j = paramList.Length; j < cppFunction.Parameters.Count; j++)
+                {
+                    var cppParameter = cppFunction.Parameters[j];
+                    var paramCsDefault = GetDefaultValue(cppFunction.Name, cppParameter, false);
+                    if (IsString(cppParameter.Type))
+                        hasManaged = true;
+                }
+                if (hasManaged)
+                    sb.Append($"{command}(");
+                else
+                    sb.Append($"{command}Native(");
                 Stack<(string, CppParameter, string)> stack = new();
                 int strings = 0;
                 Stack<string> arrays = new();
@@ -838,7 +851,7 @@
             }
 
             if (value == "NULL")
-                return "null";
+                return "default";
             if (value == "FLT_MAX")
                 return "float.MaxValue";
             if (value == "-FLT_MAX")
@@ -848,7 +861,7 @@
             if (value == "-FLT_MIN")
                 return "-float.MinValue";
             if (value == "nullptr")
-                return "null";
+                return "default";
 
             if (value.StartsWith("ImVec") && sanitize)
                 return null;

@@ -1,7 +1,7 @@
 ﻿namespace HexaEngine.Core.Debugging
 {
     using HexaEngine.Core.Collections;
-    using HexaEngine.ImGui;
+    using HexaEngine.ImGuiNET;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -390,7 +390,7 @@
                     {
                         ImGui.PushStyleColor(ImGuiCol.Text, consoleColorPalette[item.Severity]);
                         ImGui.TextUnformatted(item.Message);
-                        ImGui.PopStyleColor(1);
+                        ImGui.PopStyleColor();
                     }
                     else
                     {
@@ -409,7 +409,7 @@
                         // Draw time stamp.
                         ImGui.PushStyleColor(ImGuiCol.Text, consoleColorPalette[LogSeverity.Timestamp]);
                         ImGui.Text(item.Timestamp);
-                        ImGui.PopStyleColor(1);
+                        ImGui.PopStyleColor();
                     }
                 }
 
@@ -490,7 +490,7 @@
         private static unsafe void HelpMaker(string desc)
         {
             ImGui.TextDisabled("(?)");
-            if (ImGui.IsItemHovered(ImGuiHoveredFlags.None))
+            if (ImGui.IsItemHovered())
             {
                 ImGui.BeginTooltip();
                 ImGui.PushTextWrapPos(ImGui.GetFontSize() * 35.0f);
@@ -509,22 +509,22 @@
                 {
                     // Colored output
                     ImGui.Checkbox("Colored Output", ref m_ColoredOutput);
-                    ImGui.SameLine(0, 0);
+                    ImGui.SameLine();
                     HelpMaker("Enable colored command output");
 
                     // Auto Scroll
                     ImGui.Checkbox("Auto Scroll", ref m_AutoScroll);
-                    ImGui.SameLine(0, 0);
+                    ImGui.SameLine();
                     HelpMaker("Automatically scroll to bottom of console log");
 
                     // Filter bar
                     ImGui.Checkbox("Filter Bar", ref m_FilterBar);
-                    ImGui.SameLine(0, 0);
+                    ImGui.SameLine();
                     HelpMaker("Enable console filter bar");
 
                     // Time stamp
                     ImGui.Checkbox("Time Stamps", ref m_TimeStamps);
-                    ImGui.SameLine(0, 0);
+                    ImGui.SameLine();
                     HelpMaker("Display command execution timestamps");
 
                     // Reset to default settings
@@ -546,7 +546,7 @@
                         }
 
                         ImGui.SetItemDefaultFocus();
-                        ImGui.SameLine(0, 0);
+                        ImGui.SameLine();
                         if (ImGui.Button("Cancel", new Vector2(120, 0)))
                         { ImGui.CloseCurrentPopup(); }
                         ImGui.EndPopup();
@@ -563,14 +563,14 @@
                             ImGuiColorEditFlags.Float | ImGuiColorEditFlags.AlphaPreview | ImGuiColorEditFlags.NoInputs | ImGuiColorEditFlags.AlphaBar;
 
                     ImGui.TextUnformatted("Color Palette");
-                    ImGui.Indent(0);
+                    ImGui.Indent();
                     ImGui.ColorEdit4("Command##", ref consoleColorPalette[LogSeverity.Command], flags);
                     ImGui.ColorEdit4("Log##", ref consoleColorPalette[LogSeverity.Log], flags);
                     ImGui.ColorEdit4("Warning##", ref consoleColorPalette[LogSeverity.Warning], flags);
                     ImGui.ColorEdit4("Error##", ref consoleColorPalette[LogSeverity.Error], flags);
                     ImGui.ColorEdit4("Info##", ref consoleColorPalette[LogSeverity.Info], flags);
                     ImGui.ColorEdit4("Time Stamp##", ref consoleColorPalette[LogSeverity.Timestamp], flags);
-                    ImGui.Unindent(0);
+                    ImGui.Unindent();
 
                     ImGui.Separator();
 

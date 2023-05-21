@@ -47,7 +47,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawCmd* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -55,7 +55,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawCmd* @this = &this)
 			{
-				ImTextureID ret = ImGui.GetTexID(@this);
+				ImTextureID ret = ImGui.GetTexIDNative(@this);
 				return ret;
 			}
 		}
@@ -86,7 +86,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				int ret = ImGui._CalcCircleAutoSegmentCount(@this, radius);
+				int ret = ImGui._CalcCircleAutoSegmentCountNative(@this, radius);
 				return ret;
 			}
 		}
@@ -95,7 +95,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui._ClearFreeMemory(@this);
+				ImGui._ClearFreeMemoryNative(@this);
 			}
 		}
 
@@ -103,7 +103,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui._OnChangedClipRect(@this);
+				ImGui._OnChangedClipRectNative(@this);
 			}
 		}
 
@@ -111,7 +111,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui._OnChangedTextureID(@this);
+				ImGui._OnChangedTextureIDNative(@this);
 			}
 		}
 
@@ -119,7 +119,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui._OnChangedVtxOffset(@this);
+				ImGui._OnChangedVtxOffsetNative(@this);
 			}
 		}
 
@@ -127,7 +127,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui._PathArcToFastEx(@this, center, radius, aMinSample, aMaxSample, aStep);
+				ImGui._PathArcToFastExNative(@this, center, radius, aMinSample, aMaxSample, aStep);
 			}
 		}
 
@@ -135,7 +135,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui._PathArcToN(@this, center, radius, aMin, aMax, numSegments);
+				ImGui._PathArcToNNative(@this, center, radius, aMin, aMax, numSegments);
 			}
 		}
 
@@ -143,7 +143,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui._PopUnusedDrawCmd(@this);
+				ImGui._PopUnusedDrawCmdNative(@this);
 			}
 		}
 
@@ -151,7 +151,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui._ResetForNewFrame(@this);
+				ImGui._ResetForNewFrameNative(@this);
 			}
 		}
 
@@ -159,7 +159,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui._TryMergeDrawCmds(@this);
+				ImGui._TryMergeDrawCmdsNative(@this);
 			}
 		}
 
@@ -167,7 +167,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddBezierCubic(@this, p1, p2, p3, p4, col, thickness, numSegments);
+				ImGui.AddBezierCubicNative(@this, p1, p2, p3, p4, col, thickness, numSegments);
 			}
 		}
 
@@ -175,7 +175,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddBezierQuadratic(@this, p1, p2, p3, col, thickness, numSegments);
+				ImGui.AddBezierQuadraticNative(@this, p1, p2, p3, col, thickness, numSegments);
 			}
 		}
 
@@ -183,7 +183,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddCallback(@this, callback, callbackData);
+				ImGui.AddCallbackNative(@this, callback, callbackData);
 			}
 		}
 
@@ -191,7 +191,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddCircle(@this, center, radius, col, numSegments, thickness);
+				ImGui.AddCircleNative(@this, center, radius, col, numSegments, thickness);
 			}
 		}
 
@@ -199,7 +199,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddCircleFilled(@this, center, radius, col, numSegments);
+				ImGui.AddCircleFilledNative(@this, center, radius, col, numSegments);
 			}
 		}
 
@@ -209,7 +209,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* ppoints = &points)
 				{
-					ImGui.AddConvexPolyFilled(@this, ppoints, numPoints, col);
+					ImGui.AddConvexPolyFilledNative(@this, ppoints, numPoints, col);
 				}
 			}
 		}
@@ -218,7 +218,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddConvexPolyFilled(@this, points, numPoints, col);
+				ImGui.AddConvexPolyFilledNative(@this, points, numPoints, col);
 			}
 		}
 
@@ -226,7 +226,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddDrawCmd(@this);
+				ImGui.AddDrawCmdNative(@this);
 			}
 		}
 
@@ -234,7 +234,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImage(@this, userTextureId, pMin, pMax, uvMin, uvMax, col);
+				ImGui.AddImageNative(@this, userTextureId, pMin, pMax, uvMin, uvMax, col);
 			}
 		}
 
@@ -242,7 +242,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageQuad(@this, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
+				ImGui.AddImageQuadNative(@this, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
 			}
 		}
 
@@ -250,7 +250,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddImageRounded(@this, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
+				ImGui.AddImageRoundedNative(@this, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
 			}
 		}
 
@@ -258,7 +258,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddLine(@this, p1, p2, col, thickness);
+				ImGui.AddLineNative(@this, p1, p2, col, thickness);
 			}
 		}
 
@@ -266,7 +266,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddNgon(@this, center, radius, col, numSegments, thickness);
+				ImGui.AddNgonNative(@this, center, radius, col, numSegments, thickness);
 			}
 		}
 
@@ -274,7 +274,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddNgonFilled(@this, center, radius, col, numSegments);
+				ImGui.AddNgonFilledNative(@this, center, radius, col, numSegments);
 			}
 		}
 
@@ -284,7 +284,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* ppoints = &points)
 				{
-					ImGui.AddPolyline(@this, ppoints, numPoints, col, flags, thickness);
+					ImGui.AddPolylineNative(@this, ppoints, numPoints, col, flags, thickness);
 				}
 			}
 		}
@@ -293,7 +293,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddPolyline(@this, points, numPoints, col, flags, thickness);
+				ImGui.AddPolylineNative(@this, points, numPoints, col, flags, thickness);
 			}
 		}
 
@@ -301,7 +301,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddQuad(@this, p1, p2, p3, p4, col, thickness);
+				ImGui.AddQuadNative(@this, p1, p2, p3, p4, col, thickness);
 			}
 		}
 
@@ -309,7 +309,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddQuadFilled(@this, p1, p2, p3, p4, col);
+				ImGui.AddQuadFilledNative(@this, p1, p2, p3, p4, col);
 			}
 		}
 
@@ -317,7 +317,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddRect(@this, pMin, pMax, col, rounding, flags, thickness);
+				ImGui.AddRectNative(@this, pMin, pMax, col, rounding, flags, thickness);
 			}
 		}
 
@@ -325,7 +325,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddRectFilled(@this, pMin, pMax, col, rounding, flags);
+				ImGui.AddRectFilledNative(@this, pMin, pMax, col, rounding, flags);
 			}
 		}
 
@@ -333,7 +333,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddRectFilledMultiColor(@this, pMin, pMax, colUprLeft, colUprRight, colBotRight, colBotLeft);
+				ImGui.AddRectFilledMultiColorNative(@this, pMin, pMax, colUprLeft, colUprRight, colBotRight, colBotLeft);
 			}
 		}
 
@@ -343,7 +343,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.AddText(@this, pos, col, ptextBegin, textEnd);
+					ImGui.AddTextNative(@this, pos, col, ptextBegin, textEnd);
 				}
 			}
 		}
@@ -369,7 +369,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.AddText(@this, pos, col, pStr0, textEnd);
+				ImGui.AddTextNative(@this, pos, col, pStr0, textEnd);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -380,7 +380,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.AddText(@this, pos, col, textBegin, ptextEnd);
+					ImGui.AddTextNative(@this, pos, col, textBegin, ptextEnd);
 				}
 			}
 		}
@@ -406,7 +406,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.AddText(@this, pos, col, textBegin, pStr0);
+				ImGui.AddTextNative(@this, pos, col, textBegin, pStr0);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -419,7 +419,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.AddText(@this, pos, col, ptextBegin, ptextEnd);
+						ImGui.AddTextNative(@this, pos, col, ptextBegin, ptextEnd);
 					}
 				}
 			}
@@ -463,7 +463,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.AddText(@this, pos, col, pStr0, pStr1);
+				ImGui.AddTextNative(@this, pos, col, pStr0, pStr1);
 				Marshal.FreeHGlobal((nint)pStr1);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
@@ -473,7 +473,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddText(@this, pos, col, textBegin, textEnd);
+				ImGui.AddTextNative(@this, pos, col, textBegin, textEnd);
 			}
 		}
 
@@ -483,7 +483,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImFont* pfont = &font)
 				{
-					ImGui.AddText(@this, pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
+					ImGui.AddTextNative(@this, pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
 				}
 			}
 		}
@@ -494,7 +494,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.AddText(@this, font, fontSize, pos, col, ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
 				}
 			}
 		}
@@ -520,7 +520,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.AddText(@this, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
+				ImGui.AddTextNative(@this, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -533,7 +533,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextBegin = &textBegin)
 					{
-						ImGui.AddText(@this, pfont, fontSize, pos, col, ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+						ImGui.AddTextNative(@this, pfont, fontSize, pos, col, ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
 					}
 				}
 			}
@@ -562,7 +562,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.AddText(@this, pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
+					ImGui.AddTextNative(@this, pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
 			}
@@ -574,7 +574,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.AddText(@this, font, fontSize, pos, col, textBegin, ptextEnd, wrapWidth, cpuFineClipRect);
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, textBegin, ptextEnd, wrapWidth, cpuFineClipRect);
 				}
 			}
 		}
@@ -600,7 +600,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.AddText(@this, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, cpuFineClipRect);
+				ImGui.AddTextNative(@this, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, cpuFineClipRect);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -613,7 +613,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.AddText(@this, pfont, fontSize, pos, col, textBegin, ptextEnd, wrapWidth, cpuFineClipRect);
+						ImGui.AddTextNative(@this, pfont, fontSize, pos, col, textBegin, ptextEnd, wrapWidth, cpuFineClipRect);
 					}
 				}
 			}
@@ -642,7 +642,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.AddText(@this, pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, cpuFineClipRect);
+					ImGui.AddTextNative(@this, pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, cpuFineClipRect);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
 			}
@@ -656,7 +656,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.AddText(@this, font, fontSize, pos, col, ptextBegin, ptextEnd, wrapWidth, cpuFineClipRect);
+						ImGui.AddTextNative(@this, font, fontSize, pos, col, ptextBegin, ptextEnd, wrapWidth, cpuFineClipRect);
 					}
 				}
 			}
@@ -700,7 +700,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.AddText(@this, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, cpuFineClipRect);
+				ImGui.AddTextNative(@this, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, cpuFineClipRect);
 				Marshal.FreeHGlobal((nint)pStr1);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
@@ -716,7 +716,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (byte* ptextEnd = &textEnd)
 						{
-							ImGui.AddText(@this, pfont, fontSize, pos, col, ptextBegin, ptextEnd, wrapWidth, cpuFineClipRect);
+							ImGui.AddTextNative(@this, pfont, fontSize, pos, col, ptextBegin, ptextEnd, wrapWidth, cpuFineClipRect);
 						}
 					}
 				}
@@ -763,7 +763,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 						pStr1[pStrOffset1] = 0;
 					}
-					ImGui.AddText(@this, pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, cpuFineClipRect);
+					ImGui.AddTextNative(@this, pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, cpuFineClipRect);
 					Marshal.FreeHGlobal((nint)pStr1);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
@@ -776,7 +776,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 				{
-					ImGui.AddText(@this, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, pcpuFineClipRect);
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, pcpuFineClipRect);
 				}
 			}
 		}
@@ -789,7 +789,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 					{
-						ImGui.AddText(@this, pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, pcpuFineClipRect);
+						ImGui.AddTextNative(@this, pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, pcpuFineClipRect);
 					}
 				}
 			}
@@ -803,7 +803,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 					{
-						ImGui.AddText(@this, font, fontSize, pos, col, ptextBegin, textEnd, wrapWidth, pcpuFineClipRect);
+						ImGui.AddTextNative(@this, font, fontSize, pos, col, ptextBegin, textEnd, wrapWidth, pcpuFineClipRect);
 					}
 				}
 			}
@@ -832,7 +832,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 				{
-					ImGui.AddText(@this, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, pcpuFineClipRect);
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, pcpuFineClipRect);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
 			}
@@ -848,7 +848,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 						{
-							ImGui.AddText(@this, pfont, fontSize, pos, col, ptextBegin, textEnd, wrapWidth, pcpuFineClipRect);
+							ImGui.AddTextNative(@this, pfont, fontSize, pos, col, ptextBegin, textEnd, wrapWidth, pcpuFineClipRect);
 						}
 					}
 				}
@@ -880,7 +880,7 @@ namespace HexaEngine.ImGuiNET
 					}
 					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 					{
-						ImGui.AddText(@this, pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, pcpuFineClipRect);
+						ImGui.AddTextNative(@this, pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, pcpuFineClipRect);
 						Marshal.FreeHGlobal((nint)pStr0);
 					}
 				}
@@ -895,7 +895,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 					{
-						ImGui.AddText(@this, font, fontSize, pos, col, textBegin, ptextEnd, wrapWidth, pcpuFineClipRect);
+						ImGui.AddTextNative(@this, font, fontSize, pos, col, textBegin, ptextEnd, wrapWidth, pcpuFineClipRect);
 					}
 				}
 			}
@@ -924,7 +924,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 				{
-					ImGui.AddText(@this, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, pcpuFineClipRect);
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, pcpuFineClipRect);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
 			}
@@ -940,7 +940,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 						{
-							ImGui.AddText(@this, pfont, fontSize, pos, col, textBegin, ptextEnd, wrapWidth, pcpuFineClipRect);
+							ImGui.AddTextNative(@this, pfont, fontSize, pos, col, textBegin, ptextEnd, wrapWidth, pcpuFineClipRect);
 						}
 					}
 				}
@@ -972,7 +972,7 @@ namespace HexaEngine.ImGuiNET
 					}
 					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 					{
-						ImGui.AddText(@this, pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, pcpuFineClipRect);
+						ImGui.AddTextNative(@this, pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, pcpuFineClipRect);
 						Marshal.FreeHGlobal((nint)pStr0);
 					}
 				}
@@ -989,7 +989,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 						{
-							ImGui.AddText(@this, font, fontSize, pos, col, ptextBegin, ptextEnd, wrapWidth, pcpuFineClipRect);
+							ImGui.AddTextNative(@this, font, fontSize, pos, col, ptextBegin, ptextEnd, wrapWidth, pcpuFineClipRect);
 						}
 					}
 				}
@@ -1036,7 +1036,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 				{
-					ImGui.AddText(@this, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, pcpuFineClipRect);
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, pcpuFineClipRect);
 					Marshal.FreeHGlobal((nint)pStr1);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
@@ -1055,7 +1055,7 @@ namespace HexaEngine.ImGuiNET
 						{
 							fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 							{
-								ImGui.AddText(@this, pfont, fontSize, pos, col, ptextBegin, ptextEnd, wrapWidth, pcpuFineClipRect);
+								ImGui.AddTextNative(@this, pfont, fontSize, pos, col, ptextBegin, ptextEnd, wrapWidth, pcpuFineClipRect);
 							}
 						}
 					}
@@ -1105,7 +1105,7 @@ namespace HexaEngine.ImGuiNET
 					}
 					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 					{
-						ImGui.AddText(@this, pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, pcpuFineClipRect);
+						ImGui.AddTextNative(@this, pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, pcpuFineClipRect);
 						Marshal.FreeHGlobal((nint)pStr1);
 						Marshal.FreeHGlobal((nint)pStr0);
 					}
@@ -1117,7 +1117,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddText(@this, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
+				ImGui.AddTextNative(@this, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
 			}
 		}
 
@@ -1125,7 +1125,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddTriangle(@this, p1, p2, p3, col, thickness);
+				ImGui.AddTriangleNative(@this, p1, p2, p3, col, thickness);
 			}
 		}
 
@@ -1133,7 +1133,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.AddTriangleFilled(@this, p1, p2, p3, col);
+				ImGui.AddTriangleFilledNative(@this, p1, p2, p3, col);
 			}
 		}
 
@@ -1141,7 +1141,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.ChannelsMerge(@this);
+				ImGui.ChannelsMergeNative(@this);
 			}
 		}
 
@@ -1149,7 +1149,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.ChannelsSetCurrent(@this, n);
+				ImGui.ChannelsSetCurrentNative(@this, n);
 			}
 		}
 
@@ -1157,7 +1157,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.ChannelsSplit(@this, count);
+				ImGui.ChannelsSplitNative(@this, count);
 			}
 		}
 
@@ -1165,7 +1165,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImDrawList* ret = ImGui.CloneOutput(@this);
+				ImDrawList* ret = ImGui.CloneOutputNative(@this);
 				return ret;
 			}
 		}
@@ -1174,7 +1174,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -1182,7 +1182,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				ImGui.GetClipRectMax(poutput, self);
+				ImGui.GetClipRectMaxNative(poutput, self);
 			}
 		}
 
@@ -1190,7 +1190,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* pself = &self)
 			{
-				ImGui.GetClipRectMax(output, pself);
+				ImGui.GetClipRectMaxNative(output, pself);
 			}
 		}
 
@@ -1200,21 +1200,21 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawList* pself = &self)
 				{
-					ImGui.GetClipRectMax(poutput, pself);
+					ImGui.GetClipRectMaxNative(poutput, pself);
 				}
 			}
 		}
 
 		public unsafe void GetClipRectMax(Vector2* output, ImDrawList* self)
 		{
-			ImGui.GetClipRectMax(output, self);
+			ImGui.GetClipRectMaxNative(output, self);
 		}
 
 		public unsafe void GetClipRectMin(ref Vector2 output, ImDrawList* self)
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				ImGui.GetClipRectMin(poutput, self);
+				ImGui.GetClipRectMinNative(poutput, self);
 			}
 		}
 
@@ -1222,7 +1222,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* pself = &self)
 			{
-				ImGui.GetClipRectMin(output, pself);
+				ImGui.GetClipRectMinNative(output, pself);
 			}
 		}
 
@@ -1232,21 +1232,21 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawList* pself = &self)
 				{
-					ImGui.GetClipRectMin(poutput, pself);
+					ImGui.GetClipRectMinNative(poutput, pself);
 				}
 			}
 		}
 
 		public unsafe void GetClipRectMin(Vector2* output, ImDrawList* self)
 		{
-			ImGui.GetClipRectMin(output, self);
+			ImGui.GetClipRectMinNative(output, self);
 		}
 
 		public unsafe void PathArcTo(Vector2 center, float radius, float aMin, float aMax, int numSegments)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PathArcTo(@this, center, radius, aMin, aMax, numSegments);
+				ImGui.PathArcToNative(@this, center, radius, aMin, aMax, numSegments);
 			}
 		}
 
@@ -1254,7 +1254,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PathArcToFast(@this, center, radius, aMinOf12, aMaxOf12);
+				ImGui.PathArcToFastNative(@this, center, radius, aMinOf12, aMaxOf12);
 			}
 		}
 
@@ -1262,7 +1262,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PathBezierCubicCurveTo(@this, p2, p3, p4, numSegments);
+				ImGui.PathBezierCubicCurveToNative(@this, p2, p3, p4, numSegments);
 			}
 		}
 
@@ -1270,7 +1270,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PathBezierQuadraticCurveTo(@this, p2, p3, numSegments);
+				ImGui.PathBezierQuadraticCurveToNative(@this, p2, p3, numSegments);
 			}
 		}
 
@@ -1278,7 +1278,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PathClear(@this);
+				ImGui.PathClearNative(@this);
 			}
 		}
 
@@ -1286,7 +1286,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PathFillConvex(@this, col);
+				ImGui.PathFillConvexNative(@this, col);
 			}
 		}
 
@@ -1294,7 +1294,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PathLineTo(@this, pos);
+				ImGui.PathLineToNative(@this, pos);
 			}
 		}
 
@@ -1302,7 +1302,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PathLineToMergeDuplicate(@this, pos);
+				ImGui.PathLineToMergeDuplicateNative(@this, pos);
 			}
 		}
 
@@ -1310,7 +1310,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PathRect(@this, rectMin, rectMax, rounding, flags);
+				ImGui.PathRectNative(@this, rectMin, rectMax, rounding, flags);
 			}
 		}
 
@@ -1318,7 +1318,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PathStroke(@this, col, flags, thickness);
+				ImGui.PathStrokeNative(@this, col, flags, thickness);
 			}
 		}
 
@@ -1326,7 +1326,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PopClipRect(@this);
+				ImGui.PopClipRectNative(@this);
 			}
 		}
 
@@ -1334,7 +1334,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PopTextureID(@this);
+				ImGui.PopTextureIDNative(@this);
 			}
 		}
 
@@ -1342,7 +1342,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PrimQuadUV(@this, a, b, c, d, uvA, uvB, uvC, uvD, col);
+				ImGui.PrimQuadUVNative(@this, a, b, c, d, uvA, uvB, uvC, uvD, col);
 			}
 		}
 
@@ -1350,7 +1350,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PrimRect(@this, a, b, col);
+				ImGui.PrimRectNative(@this, a, b, col);
 			}
 		}
 
@@ -1358,7 +1358,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PrimRectUV(@this, a, b, uvA, uvB, col);
+				ImGui.PrimRectUVNative(@this, a, b, uvA, uvB, col);
 			}
 		}
 
@@ -1366,7 +1366,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PrimReserve(@this, idxCount, vtxCount);
+				ImGui.PrimReserveNative(@this, idxCount, vtxCount);
 			}
 		}
 
@@ -1374,7 +1374,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PrimUnreserve(@this, idxCount, vtxCount);
+				ImGui.PrimUnreserveNative(@this, idxCount, vtxCount);
 			}
 		}
 
@@ -1382,7 +1382,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PrimVtx(@this, pos, uv, col);
+				ImGui.PrimVtxNative(@this, pos, uv, col);
 			}
 		}
 
@@ -1390,7 +1390,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PrimWriteIdx(@this, idx);
+				ImGui.PrimWriteIdxNative(@this, idx);
 			}
 		}
 
@@ -1398,7 +1398,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PrimWriteVtx(@this, pos, uv, col);
+				ImGui.PrimWriteVtxNative(@this, pos, uv, col);
 			}
 		}
 
@@ -1406,7 +1406,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PushClipRect(@this, clipRectMin, clipRectMax, intersectWithCurrentClipRect);
+				ImGui.PushClipRectNative(@this, clipRectMin, clipRectMax, intersectWithCurrentClipRect);
 			}
 		}
 
@@ -1414,7 +1414,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PushClipRectFullScreen(@this);
+				ImGui.PushClipRectFullScreenNative(@this);
 			}
 		}
 
@@ -1422,7 +1422,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PushTextureID(@this, textureId);
+				ImGui.PushTextureIDNative(@this, textureId);
 			}
 		}
 
@@ -1562,7 +1562,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImFontConfig* psrcCfg = &srcCfg)
 				{
-					ImGui.AddGlyph(@this, psrcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
+					ImGui.AddGlyphNative(@this, psrcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
 				}
 			}
 		}
@@ -1571,7 +1571,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.AddGlyph(@this, srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
+				ImGui.AddGlyphNative(@this, srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
 			}
 		}
 
@@ -1579,7 +1579,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.AddRemapChar(@this, dst, src, overwriteDst);
+				ImGui.AddRemapCharNative(@this, dst, src, overwriteDst);
 			}
 		}
 
@@ -1587,7 +1587,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.BuildLookupTable(@this);
+				ImGui.BuildLookupTableNative(@this);
 			}
 		}
 
@@ -1595,7 +1595,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
+				ImGui.CalcTextSizeANative(poutput, self, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
 			}
 		}
 
@@ -1603,7 +1603,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* pself = &self)
 			{
-				ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
+				ImGui.CalcTextSizeANative(output, pself, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
 			}
 		}
 
@@ -1613,7 +1613,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImFont* pself = &self)
 				{
-					ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
+					ImGui.CalcTextSizeANative(poutput, pself, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
 				}
 			}
 		}
@@ -1622,7 +1622,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, ptextBegin, textEnd, remaining);
+				ImGui.CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, ptextBegin, textEnd, remaining);
 			}
 		}
 
@@ -1645,7 +1645,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
+			ImGui.CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
 			Marshal.FreeHGlobal((nint)pStr0);
 		}
 
@@ -1655,7 +1655,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, ptextBegin, textEnd, remaining);
+					ImGui.CalcTextSizeANative(poutput, self, size, maxWidth, wrapWidth, ptextBegin, textEnd, remaining);
 				}
 			}
 		}
@@ -1681,7 +1681,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
+				ImGui.CalcTextSizeANative(poutput, self, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -1692,7 +1692,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, ptextBegin, textEnd, remaining);
+					ImGui.CalcTextSizeANative(output, pself, size, maxWidth, wrapWidth, ptextBegin, textEnd, remaining);
 				}
 			}
 		}
@@ -1718,7 +1718,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
+				ImGui.CalcTextSizeANative(output, pself, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -1731,7 +1731,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextBegin = &textBegin)
 					{
-						ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, ptextBegin, textEnd, remaining);
+						ImGui.CalcTextSizeANative(poutput, pself, size, maxWidth, wrapWidth, ptextBegin, textEnd, remaining);
 					}
 				}
 			}
@@ -1760,7 +1760,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
+					ImGui.CalcTextSizeANative(poutput, pself, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
 			}
@@ -1770,7 +1770,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, textBegin, ptextEnd, remaining);
+				ImGui.CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, ptextEnd, remaining);
 			}
 		}
 
@@ -1793,7 +1793,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
+			ImGui.CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
 			Marshal.FreeHGlobal((nint)pStr0);
 		}
 
@@ -1803,7 +1803,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, textBegin, ptextEnd, remaining);
+					ImGui.CalcTextSizeANative(poutput, self, size, maxWidth, wrapWidth, textBegin, ptextEnd, remaining);
 				}
 			}
 		}
@@ -1829,7 +1829,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
+				ImGui.CalcTextSizeANative(poutput, self, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -1840,7 +1840,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, textBegin, ptextEnd, remaining);
+					ImGui.CalcTextSizeANative(output, pself, size, maxWidth, wrapWidth, textBegin, ptextEnd, remaining);
 				}
 			}
 		}
@@ -1866,7 +1866,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
+				ImGui.CalcTextSizeANative(output, pself, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -1879,7 +1879,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, textBegin, ptextEnd, remaining);
+						ImGui.CalcTextSizeANative(poutput, pself, size, maxWidth, wrapWidth, textBegin, ptextEnd, remaining);
 					}
 				}
 			}
@@ -1908,7 +1908,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
+					ImGui.CalcTextSizeANative(poutput, pself, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
 			}
@@ -1920,7 +1920,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, remaining);
+					ImGui.CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, remaining);
 				}
 			}
 		}
@@ -1961,7 +1961,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
+			ImGui.CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
 			Marshal.FreeHGlobal((nint)pStr1);
 			Marshal.FreeHGlobal((nint)pStr0);
 		}
@@ -1974,7 +1974,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, remaining);
+						ImGui.CalcTextSizeANative(poutput, self, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, remaining);
 					}
 				}
 			}
@@ -2018,7 +2018,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
+				ImGui.CalcTextSizeANative(poutput, self, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
 				Marshal.FreeHGlobal((nint)pStr1);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
@@ -2032,7 +2032,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, remaining);
+						ImGui.CalcTextSizeANative(output, pself, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, remaining);
 					}
 				}
 			}
@@ -2076,7 +2076,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
+				ImGui.CalcTextSizeANative(output, pself, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
 				Marshal.FreeHGlobal((nint)pStr1);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
@@ -2092,7 +2092,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (byte* ptextEnd = &textEnd)
 						{
-							ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, remaining);
+							ImGui.CalcTextSizeANative(poutput, pself, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, remaining);
 						}
 					}
 				}
@@ -2139,7 +2139,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 						pStr1[pStrOffset1] = 0;
 					}
-					ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
+					ImGui.CalcTextSizeANative(poutput, pself, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
 					Marshal.FreeHGlobal((nint)pStr1);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
@@ -2150,7 +2150,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte** premaining = &remaining)
 			{
-				ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, textBegin, textEnd, premaining);
+				ImGui.CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, textEnd, premaining);
 			}
 		}
 
@@ -2160,7 +2160,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte** premaining = &remaining)
 				{
-					ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, textBegin, textEnd, premaining);
+					ImGui.CalcTextSizeANative(poutput, self, size, maxWidth, wrapWidth, textBegin, textEnd, premaining);
 				}
 			}
 		}
@@ -2171,7 +2171,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte** premaining = &remaining)
 				{
-					ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, textBegin, textEnd, premaining);
+					ImGui.CalcTextSizeANative(output, pself, size, maxWidth, wrapWidth, textBegin, textEnd, premaining);
 				}
 			}
 		}
@@ -2184,7 +2184,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte** premaining = &remaining)
 					{
-						ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, textBegin, textEnd, premaining);
+						ImGui.CalcTextSizeANative(poutput, pself, size, maxWidth, wrapWidth, textBegin, textEnd, premaining);
 					}
 				}
 			}
@@ -2196,7 +2196,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte** premaining = &remaining)
 				{
-					ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, ptextBegin, textEnd, premaining);
+					ImGui.CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, ptextBegin, textEnd, premaining);
 				}
 			}
 		}
@@ -2222,7 +2222,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (byte** premaining = &remaining)
 			{
-				ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, pStr0, textEnd, premaining);
+				ImGui.CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, pStr0, textEnd, premaining);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -2235,7 +2235,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte** premaining = &remaining)
 					{
-						ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, ptextBegin, textEnd, premaining);
+						ImGui.CalcTextSizeANative(poutput, self, size, maxWidth, wrapWidth, ptextBegin, textEnd, premaining);
 					}
 				}
 			}
@@ -2264,7 +2264,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (byte** premaining = &remaining)
 				{
-					ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, pStr0, textEnd, premaining);
+					ImGui.CalcTextSizeANative(poutput, self, size, maxWidth, wrapWidth, pStr0, textEnd, premaining);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
 			}
@@ -2278,7 +2278,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte** premaining = &remaining)
 					{
-						ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, ptextBegin, textEnd, premaining);
+						ImGui.CalcTextSizeANative(output, pself, size, maxWidth, wrapWidth, ptextBegin, textEnd, premaining);
 					}
 				}
 			}
@@ -2307,7 +2307,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (byte** premaining = &remaining)
 				{
-					ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, pStr0, textEnd, premaining);
+					ImGui.CalcTextSizeANative(output, pself, size, maxWidth, wrapWidth, pStr0, textEnd, premaining);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
 			}
@@ -2323,7 +2323,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (byte** premaining = &remaining)
 						{
-							ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, ptextBegin, textEnd, premaining);
+							ImGui.CalcTextSizeANative(poutput, pself, size, maxWidth, wrapWidth, ptextBegin, textEnd, premaining);
 						}
 					}
 				}
@@ -2355,7 +2355,7 @@ namespace HexaEngine.ImGuiNET
 					}
 					fixed (byte** premaining = &remaining)
 					{
-						ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, pStr0, textEnd, premaining);
+						ImGui.CalcTextSizeANative(poutput, pself, size, maxWidth, wrapWidth, pStr0, textEnd, premaining);
 						Marshal.FreeHGlobal((nint)pStr0);
 					}
 				}
@@ -2368,7 +2368,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte** premaining = &remaining)
 				{
-					ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, textBegin, ptextEnd, premaining);
+					ImGui.CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, ptextEnd, premaining);
 				}
 			}
 		}
@@ -2394,7 +2394,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (byte** premaining = &remaining)
 			{
-				ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, textBegin, pStr0, premaining);
+				ImGui.CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, pStr0, premaining);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -2407,7 +2407,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte** premaining = &remaining)
 					{
-						ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, textBegin, ptextEnd, premaining);
+						ImGui.CalcTextSizeANative(poutput, self, size, maxWidth, wrapWidth, textBegin, ptextEnd, premaining);
 					}
 				}
 			}
@@ -2436,7 +2436,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (byte** premaining = &remaining)
 				{
-					ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, textBegin, pStr0, premaining);
+					ImGui.CalcTextSizeANative(poutput, self, size, maxWidth, wrapWidth, textBegin, pStr0, premaining);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
 			}
@@ -2450,7 +2450,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte** premaining = &remaining)
 					{
-						ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, textBegin, ptextEnd, premaining);
+						ImGui.CalcTextSizeANative(output, pself, size, maxWidth, wrapWidth, textBegin, ptextEnd, premaining);
 					}
 				}
 			}
@@ -2479,7 +2479,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (byte** premaining = &remaining)
 				{
-					ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, textBegin, pStr0, premaining);
+					ImGui.CalcTextSizeANative(output, pself, size, maxWidth, wrapWidth, textBegin, pStr0, premaining);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
 			}
@@ -2495,7 +2495,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (byte** premaining = &remaining)
 						{
-							ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, textBegin, ptextEnd, premaining);
+							ImGui.CalcTextSizeANative(poutput, pself, size, maxWidth, wrapWidth, textBegin, ptextEnd, premaining);
 						}
 					}
 				}
@@ -2527,7 +2527,7 @@ namespace HexaEngine.ImGuiNET
 					}
 					fixed (byte** premaining = &remaining)
 					{
-						ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, textBegin, pStr0, premaining);
+						ImGui.CalcTextSizeANative(poutput, pself, size, maxWidth, wrapWidth, textBegin, pStr0, premaining);
 						Marshal.FreeHGlobal((nint)pStr0);
 					}
 				}
@@ -2542,7 +2542,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte** premaining = &remaining)
 					{
-						ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, premaining);
+						ImGui.CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, premaining);
 					}
 				}
 			}
@@ -2586,7 +2586,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (byte** premaining = &remaining)
 			{
-				ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, pStr0, pStr1, premaining);
+				ImGui.CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, pStr0, pStr1, premaining);
 				Marshal.FreeHGlobal((nint)pStr1);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
@@ -2602,7 +2602,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (byte** premaining = &remaining)
 						{
-							ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, premaining);
+							ImGui.CalcTextSizeANative(poutput, self, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, premaining);
 						}
 					}
 				}
@@ -2649,7 +2649,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (byte** premaining = &remaining)
 				{
-					ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, pStr0, pStr1, premaining);
+					ImGui.CalcTextSizeANative(poutput, self, size, maxWidth, wrapWidth, pStr0, pStr1, premaining);
 					Marshal.FreeHGlobal((nint)pStr1);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
@@ -2666,7 +2666,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (byte** premaining = &remaining)
 						{
-							ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, premaining);
+							ImGui.CalcTextSizeANative(output, pself, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, premaining);
 						}
 					}
 				}
@@ -2713,7 +2713,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (byte** premaining = &remaining)
 				{
-					ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, pStr0, pStr1, premaining);
+					ImGui.CalcTextSizeANative(output, pself, size, maxWidth, wrapWidth, pStr0, pStr1, premaining);
 					Marshal.FreeHGlobal((nint)pStr1);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
@@ -2732,7 +2732,7 @@ namespace HexaEngine.ImGuiNET
 						{
 							fixed (byte** premaining = &remaining)
 							{
-								ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, premaining);
+								ImGui.CalcTextSizeANative(poutput, pself, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, premaining);
 							}
 						}
 					}
@@ -2782,7 +2782,7 @@ namespace HexaEngine.ImGuiNET
 					}
 					fixed (byte** premaining = &remaining)
 					{
-						ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, pStr0, pStr1, premaining);
+						ImGui.CalcTextSizeANative(poutput, pself, size, maxWidth, wrapWidth, pStr0, pStr1, premaining);
 						Marshal.FreeHGlobal((nint)pStr1);
 						Marshal.FreeHGlobal((nint)pStr0);
 					}
@@ -2792,7 +2792,7 @@ namespace HexaEngine.ImGuiNET
 
 		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, byte** remaining)
 		{
-			ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
+			ImGui.CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
 		}
 
 		public unsafe string CalcWordWrapPositionAS(float scale, ref byte text, byte* textEnd, float wrapWidth)
@@ -2801,7 +2801,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptext = &text)
 				{
-					string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionA(@this, scale, ptext, textEnd, wrapWidth));
+					string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionANative(@this, scale, ptext, textEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -2813,7 +2813,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptext = &text)
 				{
-					byte* ret = ImGui.CalcWordWrapPositionA(@this, scale, ptext, textEnd, wrapWidth);
+					byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, ptext, textEnd, wrapWidth);
 					return ret;
 				}
 			}
@@ -2840,7 +2840,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionA(@this, scale, pStr0, textEnd, wrapWidth));
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, textEnd, wrapWidth));
 				Marshal.FreeHGlobal((nint)pStr0);
 				return ret;
 			}
@@ -2867,7 +2867,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte* ret = ImGui.CalcWordWrapPositionA(@this, scale, pStr0, textEnd, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, textEnd, wrapWidth);
 				Marshal.FreeHGlobal((nint)pStr0);
 				return ret;
 			}
@@ -2879,7 +2879,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionA(@this, scale, text, ptextEnd, wrapWidth));
+					string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionANative(@this, scale, text, ptextEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -2891,7 +2891,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					byte* ret = ImGui.CalcWordWrapPositionA(@this, scale, text, ptextEnd, wrapWidth);
+					byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, text, ptextEnd, wrapWidth);
 					return ret;
 				}
 			}
@@ -2918,7 +2918,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionA(@this, scale, text, pStr0, wrapWidth));
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionANative(@this, scale, text, pStr0, wrapWidth));
 				Marshal.FreeHGlobal((nint)pStr0);
 				return ret;
 			}
@@ -2945,7 +2945,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte* ret = ImGui.CalcWordWrapPositionA(@this, scale, text, pStr0, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, text, pStr0, wrapWidth);
 				Marshal.FreeHGlobal((nint)pStr0);
 				return ret;
 			}
@@ -2959,7 +2959,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionA(@this, scale, ptext, ptextEnd, wrapWidth));
+						string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionANative(@this, scale, ptext, ptextEnd, wrapWidth));
 						return ret;
 					}
 				}
@@ -2974,7 +2974,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						byte* ret = ImGui.CalcWordWrapPositionA(@this, scale, ptext, ptextEnd, wrapWidth);
+						byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, ptext, ptextEnd, wrapWidth);
 						return ret;
 					}
 				}
@@ -3019,7 +3019,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionA(@this, scale, pStr0, pStr1, wrapWidth));
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, pStr1, wrapWidth));
 				Marshal.FreeHGlobal((nint)pStr1);
 				Marshal.FreeHGlobal((nint)pStr0);
 				return ret;
@@ -3064,7 +3064,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				byte* ret = ImGui.CalcWordWrapPositionA(@this, scale, pStr0, pStr1, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, pStr1, wrapWidth);
 				Marshal.FreeHGlobal((nint)pStr1);
 				Marshal.FreeHGlobal((nint)pStr0);
 				return ret;
@@ -3075,7 +3075,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionA(@this, scale, text, textEnd, wrapWidth));
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionANative(@this, scale, text, textEnd, wrapWidth));
 				return ret;
 			}
 		}
@@ -3084,7 +3084,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				byte* ret = ImGui.CalcWordWrapPositionA(@this, scale, text, textEnd, wrapWidth);
+				byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, text, textEnd, wrapWidth);
 				return ret;
 			}
 		}
@@ -3093,7 +3093,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.ClearOutputData(@this);
+				ImGui.ClearOutputDataNative(@this);
 			}
 		}
 
@@ -3101,7 +3101,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -3109,7 +3109,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImFontGlyph* ret = ImGui.FindGlyph(@this, c);
+				ImFontGlyph* ret = ImGui.FindGlyphNative(@this, c);
 				return ret;
 			}
 		}
@@ -3118,7 +3118,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImFontGlyph* ret = ImGui.FindGlyphNoFallback(@this, c);
+				ImFontGlyph* ret = ImGui.FindGlyphNoFallbackNative(@this, c);
 				return ret;
 			}
 		}
@@ -3127,7 +3127,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				float ret = ImGui.GetCharAdvance(@this, c);
+				float ret = ImGui.GetCharAdvanceNative(@this, c);
 				return ret;
 			}
 		}
@@ -3136,7 +3136,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				string ret = Marshal.PtrToStringAnsi((nint)ImGui.GetDebugName(@this));
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.GetDebugNameNative(@this));
 				return ret;
 			}
 		}
@@ -3145,7 +3145,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				byte* ret = ImGui.GetDebugName(@this);
+				byte* ret = ImGui.GetDebugNameNative(@this);
 				return ret;
 			}
 		}
@@ -3154,7 +3154,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.GrowIndex(@this, newSize);
+				ImGui.GrowIndexNative(@this, newSize);
 			}
 		}
 
@@ -3162,7 +3162,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				bool ret = ImGui.IsGlyphRangeUnused(@this, cBegin, cLast);
+				bool ret = ImGui.IsGlyphRangeUnusedNative(@this, cBegin, cLast);
 				return ret;
 			}
 		}
@@ -3171,7 +3171,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				bool ret = ImGui.IsLoaded(@this);
+				bool ret = ImGui.IsLoadedNative(@this);
 				return ret;
 			}
 		}
@@ -3182,7 +3182,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					ImGui.RenderChar(@this, pdrawList, size, pos, col, c);
+					ImGui.RenderCharNative(@this, pdrawList, size, pos, col, c);
 				}
 			}
 		}
@@ -3191,7 +3191,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.RenderChar(@this, drawList, size, pos, col, c);
+				ImGui.RenderCharNative(@this, drawList, size, pos, col, c);
 			}
 		}
 
@@ -3201,7 +3201,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					ImGui.RenderText(@this, pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(@this, pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
 				}
 			}
 		}
@@ -3212,7 +3212,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.RenderText(@this, drawList, size, pos, col, clipRect, ptextBegin, textEnd, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, ptextBegin, textEnd, wrapWidth, cpuFineClip);
 				}
 			}
 		}
@@ -3238,7 +3238,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderText(@this, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip);
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -3251,7 +3251,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextBegin = &textBegin)
 					{
-						ImGui.RenderText(@this, pdrawList, size, pos, col, clipRect, ptextBegin, textEnd, wrapWidth, cpuFineClip);
+						ImGui.RenderTextNative(@this, pdrawList, size, pos, col, clipRect, ptextBegin, textEnd, wrapWidth, cpuFineClip);
 					}
 				}
 			}
@@ -3280,7 +3280,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderText(@this, pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(@this, pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
 			}
@@ -3292,7 +3292,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderText(@this, drawList, size, pos, col, clipRect, textBegin, ptextEnd, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, ptextEnd, wrapWidth, cpuFineClip);
 				}
 			}
 		}
@@ -3318,7 +3318,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderText(@this, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip);
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -3331,7 +3331,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderText(@this, pdrawList, size, pos, col, clipRect, textBegin, ptextEnd, wrapWidth, cpuFineClip);
+						ImGui.RenderTextNative(@this, pdrawList, size, pos, col, clipRect, textBegin, ptextEnd, wrapWidth, cpuFineClip);
 					}
 				}
 			}
@@ -3360,7 +3360,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderText(@this, pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(@this, pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
 			}
@@ -3374,7 +3374,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderText(@this, drawList, size, pos, col, clipRect, ptextBegin, ptextEnd, wrapWidth, cpuFineClip);
+						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, ptextBegin, ptextEnd, wrapWidth, cpuFineClip);
 					}
 				}
 			}
@@ -3418,7 +3418,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.RenderText(@this, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip);
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip);
 				Marshal.FreeHGlobal((nint)pStr1);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
@@ -3434,7 +3434,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (byte* ptextEnd = &textEnd)
 						{
-							ImGui.RenderText(@this, pdrawList, size, pos, col, clipRect, ptextBegin, ptextEnd, wrapWidth, cpuFineClip);
+							ImGui.RenderTextNative(@this, pdrawList, size, pos, col, clipRect, ptextBegin, ptextEnd, wrapWidth, cpuFineClip);
 						}
 					}
 				}
@@ -3481,7 +3481,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 						pStr1[pStrOffset1] = 0;
 					}
-					ImGui.RenderText(@this, pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(@this, pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip);
 					Marshal.FreeHGlobal((nint)pStr1);
 					Marshal.FreeHGlobal((nint)pStr0);
 				}
@@ -3492,7 +3492,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.RenderText(@this, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
 			}
 		}
 
@@ -3500,7 +3500,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.SetGlyphVisible(@this, c, visible);
+				ImGui.SetGlyphVisibleNative(@this, c, visible);
 			}
 		}
 
@@ -3658,7 +3658,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImFont* pfont = &font)
 				{
-					int ret = ImGui.AddCustomRectFontGlyph(@this, pfont, id, width, height, advanceX, offset);
+					int ret = ImGui.AddCustomRectFontGlyphNative(@this, pfont, id, width, height, advanceX, offset);
 					return ret;
 				}
 			}
@@ -3668,7 +3668,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				int ret = ImGui.AddCustomRectFontGlyph(@this, font, id, width, height, advanceX, offset);
+				int ret = ImGui.AddCustomRectFontGlyphNative(@this, font, id, width, height, advanceX, offset);
 				return ret;
 			}
 		}
@@ -3677,7 +3677,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				int ret = ImGui.AddCustomRectRegular(@this, width, height);
+				int ret = ImGui.AddCustomRectRegularNative(@this, width, height);
 				return ret;
 			}
 		}
@@ -3688,7 +3688,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFont(@this, pfontCfg);
+					ImFont* ret = ImGui.AddFontNative(@this, pfontCfg);
 					return ret;
 				}
 			}
@@ -3698,7 +3698,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFont(@this, fontCfg);
+				ImFont* ret = ImGui.AddFontNative(@this, fontCfg);
 				return ret;
 			}
 		}
@@ -3709,7 +3709,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontDefault(@this, pfontCfg);
+					ImFont* ret = ImGui.AddFontDefaultNative(@this, pfontCfg);
 					return ret;
 				}
 			}
@@ -3719,7 +3719,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontDefault(@this, fontCfg);
+				ImFont* ret = ImGui.AddFontDefaultNative(@this, fontCfg);
 				return ret;
 			}
 		}
@@ -3730,7 +3730,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* pfilename = &filename)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTF(@this, pfilename, sizePixels, fontCfg, glyphRanges);
+					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pfilename, sizePixels, fontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -3757,7 +3757,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = ImGui.AddFontFromFileTTF(@this, pStr0, sizePixels, fontCfg, glyphRanges);
+				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, fontCfg, glyphRanges);
 				Marshal.FreeHGlobal((nint)pStr0);
 				return ret;
 			}
@@ -3769,7 +3769,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTF(@this, filename, sizePixels, pfontCfg, glyphRanges);
+					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -3783,7 +3783,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImFontConfig* pfontCfg = &fontCfg)
 					{
-						ImFont* ret = ImGui.AddFontFromFileTTF(@this, pfilename, sizePixels, pfontCfg, glyphRanges);
+						ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pfilename, sizePixels, pfontCfg, glyphRanges);
 						return ret;
 					}
 				}
@@ -3813,7 +3813,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTF(@this, pStr0, sizePixels, pfontCfg, glyphRanges);
+					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, pfontCfg, glyphRanges);
 					Marshal.FreeHGlobal((nint)pStr0);
 					return ret;
 				}
@@ -3826,7 +3826,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTF(@this, filename, sizePixels, fontCfg, pglyphRanges);
+					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, fontCfg, pglyphRanges);
 					return ret;
 				}
 			}
@@ -3840,7 +3840,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = ImGui.AddFontFromFileTTF(@this, pfilename, sizePixels, fontCfg, pglyphRanges);
+						ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pfilename, sizePixels, fontCfg, pglyphRanges);
 						return ret;
 					}
 				}
@@ -3870,7 +3870,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = ImGui.AddFontFromFileTTF(@this, pStr0, sizePixels, fontCfg, pglyphRanges);
+					ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, fontCfg, pglyphRanges);
 					Marshal.FreeHGlobal((nint)pStr0);
 					return ret;
 				}
@@ -3885,7 +3885,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = ImGui.AddFontFromFileTTF(@this, filename, sizePixels, pfontCfg, pglyphRanges);
+						ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, pfontCfg, pglyphRanges);
 						return ret;
 					}
 				}
@@ -3902,7 +3902,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (char* pglyphRanges = &glyphRanges)
 						{
-							ImFont* ret = ImGui.AddFontFromFileTTF(@this, pfilename, sizePixels, pfontCfg, pglyphRanges);
+							ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pfilename, sizePixels, pfontCfg, pglyphRanges);
 							return ret;
 						}
 					}
@@ -3935,7 +3935,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = ImGui.AddFontFromFileTTF(@this, pStr0, sizePixels, pfontCfg, pglyphRanges);
+						ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, pStr0, sizePixels, pfontCfg, pglyphRanges);
 						Marshal.FreeHGlobal((nint)pStr0);
 						return ret;
 					}
@@ -3947,7 +3947,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontFromFileTTF(@this, filename, sizePixels, fontCfg, glyphRanges);
+				ImFont* ret = ImGui.AddFontFromFileTTFNative(@this, filename, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -3958,7 +3958,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pcompressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
+					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pcompressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -3985,7 +3985,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pStr0, sizePixels, fontCfg, glyphRanges);
+				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, fontCfg, glyphRanges);
 				Marshal.FreeHGlobal((nint)pStr0);
 				return ret;
 			}
@@ -3997,7 +3997,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, compressedFontDataBase85, sizePixels, pfontCfg, glyphRanges);
+					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDataBase85, sizePixels, pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -4011,7 +4011,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImFontConfig* pfontCfg = &fontCfg)
 					{
-						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pcompressedFontDataBase85, sizePixels, pfontCfg, glyphRanges);
+						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pcompressedFontDataBase85, sizePixels, pfontCfg, glyphRanges);
 						return ret;
 					}
 				}
@@ -4041,7 +4041,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pStr0, sizePixels, pfontCfg, glyphRanges);
+					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, pfontCfg, glyphRanges);
 					Marshal.FreeHGlobal((nint)pStr0);
 					return ret;
 				}
@@ -4054,7 +4054,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, compressedFontDataBase85, sizePixels, fontCfg, pglyphRanges);
+					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDataBase85, sizePixels, fontCfg, pglyphRanges);
 					return ret;
 				}
 			}
@@ -4068,7 +4068,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pcompressedFontDataBase85, sizePixels, fontCfg, pglyphRanges);
+						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pcompressedFontDataBase85, sizePixels, fontCfg, pglyphRanges);
 						return ret;
 					}
 				}
@@ -4098,7 +4098,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pStr0, sizePixels, fontCfg, pglyphRanges);
+					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, fontCfg, pglyphRanges);
 					Marshal.FreeHGlobal((nint)pStr0);
 					return ret;
 				}
@@ -4113,7 +4113,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, compressedFontDataBase85, sizePixels, pfontCfg, pglyphRanges);
+						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDataBase85, sizePixels, pfontCfg, pglyphRanges);
 						return ret;
 					}
 				}
@@ -4130,7 +4130,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (char* pglyphRanges = &glyphRanges)
 						{
-							ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pcompressedFontDataBase85, sizePixels, pfontCfg, pglyphRanges);
+							ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pcompressedFontDataBase85, sizePixels, pfontCfg, pglyphRanges);
 							return ret;
 						}
 					}
@@ -4163,7 +4163,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pStr0, sizePixels, pfontCfg, pglyphRanges);
+						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, pStr0, sizePixels, pfontCfg, pglyphRanges);
 						Marshal.FreeHGlobal((nint)pStr0);
 						return ret;
 					}
@@ -4175,7 +4175,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, compressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
+				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, compressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -4186,7 +4186,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedTTF(@this, compressedFontData, compressedFontSize, sizePixels, pfontCfg, glyphRanges);
+					ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontSize, sizePixels, pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -4198,7 +4198,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryCompressedTTF(@this, compressedFontData, compressedFontSize, sizePixels, fontCfg, pglyphRanges);
+					ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontSize, sizePixels, fontCfg, pglyphRanges);
 					return ret;
 				}
 			}
@@ -4212,7 +4212,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = ImGui.AddFontFromMemoryCompressedTTF(@this, compressedFontData, compressedFontSize, sizePixels, pfontCfg, pglyphRanges);
+						ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontSize, sizePixels, pfontCfg, pglyphRanges);
 						return ret;
 					}
 				}
@@ -4223,7 +4223,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTF(@this, compressedFontData, compressedFontSize, sizePixels, fontCfg, glyphRanges);
+				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontSize, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -4234,7 +4234,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryTTF(@this, fontData, fontSize, sizePixels, pfontCfg, glyphRanges);
+					ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontSize, sizePixels, pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
@@ -4246,7 +4246,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = ImGui.AddFontFromMemoryTTF(@this, fontData, fontSize, sizePixels, fontCfg, pglyphRanges);
+					ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontSize, sizePixels, fontCfg, pglyphRanges);
 					return ret;
 				}
 			}
@@ -4260,7 +4260,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = ImGui.AddFontFromMemoryTTF(@this, fontData, fontSize, sizePixels, pfontCfg, pglyphRanges);
+						ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontSize, sizePixels, pfontCfg, pglyphRanges);
 						return ret;
 					}
 				}
@@ -4271,7 +4271,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFont* ret = ImGui.AddFontFromMemoryTTF(@this, fontData, fontSize, sizePixels, fontCfg, glyphRanges);
+				ImFont* ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontSize, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
@@ -4280,7 +4280,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				bool ret = ImGui.Build(@this);
+				bool ret = ImGui.BuildNative(@this);
 				return ret;
 			}
 		}
@@ -4291,7 +4291,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImFontAtlasCustomRect* prect = &rect)
 				{
-					ImGui.CalcCustomRectUV(@this, prect, outUvMin, outUvMax);
+					ImGui.CalcCustomRectUVNative(@this, prect, outUvMin, outUvMax);
 				}
 			}
 		}
@@ -4302,7 +4302,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* poutUvMin = &outUvMin)
 				{
-					ImGui.CalcCustomRectUV(@this, rect, poutUvMin, outUvMax);
+					ImGui.CalcCustomRectUVNative(@this, rect, poutUvMin, outUvMax);
 				}
 			}
 		}
@@ -4315,7 +4315,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutUvMin = &outUvMin)
 					{
-						ImGui.CalcCustomRectUV(@this, prect, poutUvMin, outUvMax);
+						ImGui.CalcCustomRectUVNative(@this, prect, poutUvMin, outUvMax);
 					}
 				}
 			}
@@ -4327,7 +4327,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* poutUvMax = &outUvMax)
 				{
-					ImGui.CalcCustomRectUV(@this, rect, outUvMin, poutUvMax);
+					ImGui.CalcCustomRectUVNative(@this, rect, outUvMin, poutUvMax);
 				}
 			}
 		}
@@ -4340,7 +4340,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutUvMax = &outUvMax)
 					{
-						ImGui.CalcCustomRectUV(@this, prect, outUvMin, poutUvMax);
+						ImGui.CalcCustomRectUVNative(@this, prect, outUvMin, poutUvMax);
 					}
 				}
 			}
@@ -4354,7 +4354,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutUvMax = &outUvMax)
 					{
-						ImGui.CalcCustomRectUV(@this, rect, poutUvMin, poutUvMax);
+						ImGui.CalcCustomRectUVNative(@this, rect, poutUvMin, poutUvMax);
 					}
 				}
 			}
@@ -4370,7 +4370,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector2* poutUvMax = &outUvMax)
 						{
-							ImGui.CalcCustomRectUV(@this, prect, poutUvMin, poutUvMax);
+							ImGui.CalcCustomRectUVNative(@this, prect, poutUvMin, poutUvMax);
 						}
 					}
 				}
@@ -4381,7 +4381,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImGui.CalcCustomRectUV(@this, rect, outUvMin, outUvMax);
+				ImGui.CalcCustomRectUVNative(@this, rect, outUvMin, outUvMax);
 			}
 		}
 
@@ -4389,7 +4389,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImGui.Clear(@this);
+				ImGui.ClearNative(@this);
 			}
 		}
 
@@ -4397,7 +4397,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImGui.ClearFonts(@this);
+				ImGui.ClearFontsNative(@this);
 			}
 		}
 
@@ -4405,7 +4405,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImGui.ClearInputData(@this);
+				ImGui.ClearInputDataNative(@this);
 			}
 		}
 
@@ -4413,7 +4413,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImGui.ClearTexData(@this);
+				ImGui.ClearTexDataNative(@this);
 			}
 		}
 
@@ -4421,7 +4421,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -4429,7 +4429,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFontAtlasCustomRect* ret = ImGui.GetCustomRectByIndex(@this, index);
+				ImFontAtlasCustomRect* ret = ImGui.GetCustomRectByIndexNative(@this, index);
 				return ret;
 			}
 		}
@@ -4438,7 +4438,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				char* ret = ImGui.GetGlyphRangesChineseFull(@this);
+				char* ret = ImGui.GetGlyphRangesChineseFullNative(@this);
 				return ret;
 			}
 		}
@@ -4447,7 +4447,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				char* ret = ImGui.GetGlyphRangesChineseSimplifiedCommon(@this);
+				char* ret = ImGui.GetGlyphRangesChineseSimplifiedCommonNative(@this);
 				return ret;
 			}
 		}
@@ -4456,7 +4456,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				char* ret = ImGui.GetGlyphRangesCyrillic(@this);
+				char* ret = ImGui.GetGlyphRangesCyrillicNative(@this);
 				return ret;
 			}
 		}
@@ -4465,7 +4465,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				char* ret = ImGui.GetGlyphRangesDefault(@this);
+				char* ret = ImGui.GetGlyphRangesDefaultNative(@this);
 				return ret;
 			}
 		}
@@ -4474,7 +4474,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				char* ret = ImGui.GetGlyphRangesGreek(@this);
+				char* ret = ImGui.GetGlyphRangesGreekNative(@this);
 				return ret;
 			}
 		}
@@ -4483,7 +4483,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				char* ret = ImGui.GetGlyphRangesJapanese(@this);
+				char* ret = ImGui.GetGlyphRangesJapaneseNative(@this);
 				return ret;
 			}
 		}
@@ -4492,7 +4492,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				char* ret = ImGui.GetGlyphRangesKorean(@this);
+				char* ret = ImGui.GetGlyphRangesKoreanNative(@this);
 				return ret;
 			}
 		}
@@ -4501,7 +4501,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				char* ret = ImGui.GetGlyphRangesThai(@this);
+				char* ret = ImGui.GetGlyphRangesThaiNative(@this);
 				return ret;
 			}
 		}
@@ -4510,7 +4510,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				char* ret = ImGui.GetGlyphRangesVietnamese(@this);
+				char* ret = ImGui.GetGlyphRangesVietnameseNative(@this);
 				return ret;
 			}
 		}
@@ -4521,7 +4521,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* poutOffset = &outOffset)
 				{
-					bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, outSize, outUvBorder, outUvFill);
+					bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, poutOffset, outSize, outUvBorder, outUvFill);
 					return ret;
 				}
 			}
@@ -4533,7 +4533,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* poutSize = &outSize)
 				{
-					bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, poutSize, outUvBorder, outUvFill);
+					bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, poutSize, outUvBorder, outUvFill);
 					return ret;
 				}
 			}
@@ -4547,7 +4547,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutSize = &outSize)
 					{
-						bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, poutSize, outUvBorder, outUvFill);
+						bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, poutOffset, poutSize, outUvBorder, outUvFill);
 						return ret;
 					}
 				}
@@ -4560,7 +4560,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* poutUvBorder = &outUvBorder)
 				{
-					bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, outSize, poutUvBorder, outUvFill);
+					bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, poutUvBorder, outUvFill);
 					return ret;
 				}
 			}
@@ -4574,7 +4574,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutUvBorder = &outUvBorder)
 					{
-						bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, outSize, poutUvBorder, outUvFill);
+						bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, poutOffset, outSize, poutUvBorder, outUvFill);
 						return ret;
 					}
 				}
@@ -4589,7 +4589,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutUvBorder = &outUvBorder)
 					{
-						bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, poutSize, poutUvBorder, outUvFill);
+						bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, poutSize, poutUvBorder, outUvFill);
 						return ret;
 					}
 				}
@@ -4606,7 +4606,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector2* poutUvBorder = &outUvBorder)
 						{
-							bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, poutSize, poutUvBorder, outUvFill);
+							bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, poutOffset, poutSize, poutUvBorder, outUvFill);
 							return ret;
 						}
 					}
@@ -4620,7 +4620,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* poutUvFill = &outUvFill)
 				{
-					bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, outSize, outUvBorder, poutUvFill);
+					bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, outUvBorder, poutUvFill);
 					return ret;
 				}
 			}
@@ -4634,7 +4634,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutUvFill = &outUvFill)
 					{
-						bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, outSize, outUvBorder, poutUvFill);
+						bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, poutOffset, outSize, outUvBorder, poutUvFill);
 						return ret;
 					}
 				}
@@ -4649,7 +4649,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutUvFill = &outUvFill)
 					{
-						bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, poutSize, outUvBorder, poutUvFill);
+						bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, poutSize, outUvBorder, poutUvFill);
 						return ret;
 					}
 				}
@@ -4666,7 +4666,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector2* poutUvFill = &outUvFill)
 						{
-							bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, poutSize, outUvBorder, poutUvFill);
+							bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, poutOffset, poutSize, outUvBorder, poutUvFill);
 							return ret;
 						}
 					}
@@ -4682,7 +4682,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutUvFill = &outUvFill)
 					{
-						bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, outSize, poutUvBorder, poutUvFill);
+						bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, poutUvBorder, poutUvFill);
 						return ret;
 					}
 				}
@@ -4699,7 +4699,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector2* poutUvFill = &outUvFill)
 						{
-							bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, outSize, poutUvBorder, poutUvFill);
+							bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, poutOffset, outSize, poutUvBorder, poutUvFill);
 							return ret;
 						}
 					}
@@ -4717,7 +4717,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector2* poutUvFill = &outUvFill)
 						{
-							bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, poutSize, poutUvBorder, poutUvFill);
+							bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, poutSize, poutUvBorder, poutUvFill);
 							return ret;
 						}
 					}
@@ -4737,7 +4737,7 @@ namespace HexaEngine.ImGuiNET
 						{
 							fixed (Vector2* poutUvFill = &outUvFill)
 							{
-								bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, poutSize, poutUvBorder, poutUvFill);
+								bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, poutOffset, poutSize, poutUvBorder, poutUvFill);
 								return ret;
 							}
 						}
@@ -4750,7 +4750,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, outSize, outUvBorder, outUvFill);
+				bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, outUvBorder, outUvFill);
 				return ret;
 			}
 		}
@@ -4761,7 +4761,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte** poutPixels = &outPixels)
 				{
-					ImGui.GetTexDataAsAlpha8(@this, poutPixels, outWidth, outHeight, outBytesPerPixel);
+					ImGui.GetTexDataAsAlpha8Native(@this, poutPixels, outWidth, outHeight, outBytesPerPixel);
 				}
 			}
 		}
@@ -4772,7 +4772,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (int* poutWidth = &outWidth)
 				{
-					ImGui.GetTexDataAsAlpha8(@this, outPixels, poutWidth, outHeight, outBytesPerPixel);
+					ImGui.GetTexDataAsAlpha8Native(@this, outPixels, poutWidth, outHeight, outBytesPerPixel);
 				}
 			}
 		}
@@ -4785,7 +4785,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (int* poutWidth = &outWidth)
 					{
-						ImGui.GetTexDataAsAlpha8(@this, poutPixels, poutWidth, outHeight, outBytesPerPixel);
+						ImGui.GetTexDataAsAlpha8Native(@this, poutPixels, poutWidth, outHeight, outBytesPerPixel);
 					}
 				}
 			}
@@ -4797,7 +4797,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (int* poutHeight = &outHeight)
 				{
-					ImGui.GetTexDataAsAlpha8(@this, outPixels, outWidth, poutHeight, outBytesPerPixel);
+					ImGui.GetTexDataAsAlpha8Native(@this, outPixels, outWidth, poutHeight, outBytesPerPixel);
 				}
 			}
 		}
@@ -4810,7 +4810,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (int* poutHeight = &outHeight)
 					{
-						ImGui.GetTexDataAsAlpha8(@this, poutPixels, outWidth, poutHeight, outBytesPerPixel);
+						ImGui.GetTexDataAsAlpha8Native(@this, poutPixels, outWidth, poutHeight, outBytesPerPixel);
 					}
 				}
 			}
@@ -4824,7 +4824,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (int* poutHeight = &outHeight)
 					{
-						ImGui.GetTexDataAsAlpha8(@this, outPixels, poutWidth, poutHeight, outBytesPerPixel);
+						ImGui.GetTexDataAsAlpha8Native(@this, outPixels, poutWidth, poutHeight, outBytesPerPixel);
 					}
 				}
 			}
@@ -4840,7 +4840,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (int* poutHeight = &outHeight)
 						{
-							ImGui.GetTexDataAsAlpha8(@this, poutPixels, poutWidth, poutHeight, outBytesPerPixel);
+							ImGui.GetTexDataAsAlpha8Native(@this, poutPixels, poutWidth, poutHeight, outBytesPerPixel);
 						}
 					}
 				}
@@ -4853,7 +4853,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 				{
-					ImGui.GetTexDataAsAlpha8(@this, outPixels, outWidth, outHeight, poutBytesPerPixel);
+					ImGui.GetTexDataAsAlpha8Native(@this, outPixels, outWidth, outHeight, poutBytesPerPixel);
 				}
 			}
 		}
@@ -4866,7 +4866,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 					{
-						ImGui.GetTexDataAsAlpha8(@this, poutPixels, outWidth, outHeight, poutBytesPerPixel);
+						ImGui.GetTexDataAsAlpha8Native(@this, poutPixels, outWidth, outHeight, poutBytesPerPixel);
 					}
 				}
 			}
@@ -4880,7 +4880,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 					{
-						ImGui.GetTexDataAsAlpha8(@this, outPixels, poutWidth, outHeight, poutBytesPerPixel);
+						ImGui.GetTexDataAsAlpha8Native(@this, outPixels, poutWidth, outHeight, poutBytesPerPixel);
 					}
 				}
 			}
@@ -4896,7 +4896,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 						{
-							ImGui.GetTexDataAsAlpha8(@this, poutPixels, poutWidth, outHeight, poutBytesPerPixel);
+							ImGui.GetTexDataAsAlpha8Native(@this, poutPixels, poutWidth, outHeight, poutBytesPerPixel);
 						}
 					}
 				}
@@ -4911,7 +4911,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 					{
-						ImGui.GetTexDataAsAlpha8(@this, outPixels, outWidth, poutHeight, poutBytesPerPixel);
+						ImGui.GetTexDataAsAlpha8Native(@this, outPixels, outWidth, poutHeight, poutBytesPerPixel);
 					}
 				}
 			}
@@ -4927,7 +4927,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 						{
-							ImGui.GetTexDataAsAlpha8(@this, poutPixels, outWidth, poutHeight, poutBytesPerPixel);
+							ImGui.GetTexDataAsAlpha8Native(@this, poutPixels, outWidth, poutHeight, poutBytesPerPixel);
 						}
 					}
 				}
@@ -4944,7 +4944,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 						{
-							ImGui.GetTexDataAsAlpha8(@this, outPixels, poutWidth, poutHeight, poutBytesPerPixel);
+							ImGui.GetTexDataAsAlpha8Native(@this, outPixels, poutWidth, poutHeight, poutBytesPerPixel);
 						}
 					}
 				}
@@ -4963,7 +4963,7 @@ namespace HexaEngine.ImGuiNET
 						{
 							fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 							{
-								ImGui.GetTexDataAsAlpha8(@this, poutPixels, poutWidth, poutHeight, poutBytesPerPixel);
+								ImGui.GetTexDataAsAlpha8Native(@this, poutPixels, poutWidth, poutHeight, poutBytesPerPixel);
 							}
 						}
 					}
@@ -4975,7 +4975,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImGui.GetTexDataAsAlpha8(@this, outPixels, outWidth, outHeight, outBytesPerPixel);
+				ImGui.GetTexDataAsAlpha8Native(@this, outPixels, outWidth, outHeight, outBytesPerPixel);
 			}
 		}
 
@@ -4985,7 +4985,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte** poutPixels = &outPixels)
 				{
-					ImGui.GetTexDataAsRGBA32(@this, poutPixels, outWidth, outHeight, outBytesPerPixel);
+					ImGui.GetTexDataAsRGBA32Native(@this, poutPixels, outWidth, outHeight, outBytesPerPixel);
 				}
 			}
 		}
@@ -4996,7 +4996,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (int* poutWidth = &outWidth)
 				{
-					ImGui.GetTexDataAsRGBA32(@this, outPixels, poutWidth, outHeight, outBytesPerPixel);
+					ImGui.GetTexDataAsRGBA32Native(@this, outPixels, poutWidth, outHeight, outBytesPerPixel);
 				}
 			}
 		}
@@ -5009,7 +5009,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (int* poutWidth = &outWidth)
 					{
-						ImGui.GetTexDataAsRGBA32(@this, poutPixels, poutWidth, outHeight, outBytesPerPixel);
+						ImGui.GetTexDataAsRGBA32Native(@this, poutPixels, poutWidth, outHeight, outBytesPerPixel);
 					}
 				}
 			}
@@ -5021,7 +5021,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (int* poutHeight = &outHeight)
 				{
-					ImGui.GetTexDataAsRGBA32(@this, outPixels, outWidth, poutHeight, outBytesPerPixel);
+					ImGui.GetTexDataAsRGBA32Native(@this, outPixels, outWidth, poutHeight, outBytesPerPixel);
 				}
 			}
 		}
@@ -5034,7 +5034,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (int* poutHeight = &outHeight)
 					{
-						ImGui.GetTexDataAsRGBA32(@this, poutPixels, outWidth, poutHeight, outBytesPerPixel);
+						ImGui.GetTexDataAsRGBA32Native(@this, poutPixels, outWidth, poutHeight, outBytesPerPixel);
 					}
 				}
 			}
@@ -5048,7 +5048,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (int* poutHeight = &outHeight)
 					{
-						ImGui.GetTexDataAsRGBA32(@this, outPixels, poutWidth, poutHeight, outBytesPerPixel);
+						ImGui.GetTexDataAsRGBA32Native(@this, outPixels, poutWidth, poutHeight, outBytesPerPixel);
 					}
 				}
 			}
@@ -5064,7 +5064,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (int* poutHeight = &outHeight)
 						{
-							ImGui.GetTexDataAsRGBA32(@this, poutPixels, poutWidth, poutHeight, outBytesPerPixel);
+							ImGui.GetTexDataAsRGBA32Native(@this, poutPixels, poutWidth, poutHeight, outBytesPerPixel);
 						}
 					}
 				}
@@ -5077,7 +5077,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 				{
-					ImGui.GetTexDataAsRGBA32(@this, outPixels, outWidth, outHeight, poutBytesPerPixel);
+					ImGui.GetTexDataAsRGBA32Native(@this, outPixels, outWidth, outHeight, poutBytesPerPixel);
 				}
 			}
 		}
@@ -5090,7 +5090,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 					{
-						ImGui.GetTexDataAsRGBA32(@this, poutPixels, outWidth, outHeight, poutBytesPerPixel);
+						ImGui.GetTexDataAsRGBA32Native(@this, poutPixels, outWidth, outHeight, poutBytesPerPixel);
 					}
 				}
 			}
@@ -5104,7 +5104,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 					{
-						ImGui.GetTexDataAsRGBA32(@this, outPixels, poutWidth, outHeight, poutBytesPerPixel);
+						ImGui.GetTexDataAsRGBA32Native(@this, outPixels, poutWidth, outHeight, poutBytesPerPixel);
 					}
 				}
 			}
@@ -5120,7 +5120,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 						{
-							ImGui.GetTexDataAsRGBA32(@this, poutPixels, poutWidth, outHeight, poutBytesPerPixel);
+							ImGui.GetTexDataAsRGBA32Native(@this, poutPixels, poutWidth, outHeight, poutBytesPerPixel);
 						}
 					}
 				}
@@ -5135,7 +5135,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 					{
-						ImGui.GetTexDataAsRGBA32(@this, outPixels, outWidth, poutHeight, poutBytesPerPixel);
+						ImGui.GetTexDataAsRGBA32Native(@this, outPixels, outWidth, poutHeight, poutBytesPerPixel);
 					}
 				}
 			}
@@ -5151,7 +5151,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 						{
-							ImGui.GetTexDataAsRGBA32(@this, poutPixels, outWidth, poutHeight, poutBytesPerPixel);
+							ImGui.GetTexDataAsRGBA32Native(@this, poutPixels, outWidth, poutHeight, poutBytesPerPixel);
 						}
 					}
 				}
@@ -5168,7 +5168,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 						{
-							ImGui.GetTexDataAsRGBA32(@this, outPixels, poutWidth, poutHeight, poutBytesPerPixel);
+							ImGui.GetTexDataAsRGBA32Native(@this, outPixels, poutWidth, poutHeight, poutBytesPerPixel);
 						}
 					}
 				}
@@ -5187,7 +5187,7 @@ namespace HexaEngine.ImGuiNET
 						{
 							fixed (int* poutBytesPerPixel = &outBytesPerPixel)
 							{
-								ImGui.GetTexDataAsRGBA32(@this, poutPixels, poutWidth, poutHeight, poutBytesPerPixel);
+								ImGui.GetTexDataAsRGBA32Native(@this, poutPixels, poutWidth, poutHeight, poutBytesPerPixel);
 							}
 						}
 					}
@@ -5199,7 +5199,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImGui.GetTexDataAsRGBA32(@this, outPixels, outWidth, outHeight, outBytesPerPixel);
+				ImGui.GetTexDataAsRGBA32Native(@this, outPixels, outWidth, outHeight, outBytesPerPixel);
 			}
 		}
 
@@ -5207,7 +5207,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				bool ret = ImGui.IsBuilt(@this);
+				bool ret = ImGui.IsBuiltNative(@this);
 				return ret;
 			}
 		}
@@ -5216,7 +5216,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImGui.SetTexID(@this, id);
+				ImGui.SetTexIDNative(@this, id);
 			}
 		}
 
@@ -5257,7 +5257,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlasCustomRect* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -5265,7 +5265,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlasCustomRect* @this = &this)
 			{
-				bool ret = ImGui.IsPacked(@this);
+				bool ret = ImGui.IsPackedNative(@this);
 				return ret;
 			}
 		}
@@ -5309,7 +5309,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontConfig* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -5370,7 +5370,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawListSplitter* @this = &this)
 			{
-				ImGui.Clear(@this);
+				ImGui.ClearNative(@this);
 			}
 		}
 
@@ -5378,7 +5378,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawListSplitter* @this = &this)
 			{
-				ImGui.ClearFreeMemory(@this);
+				ImGui.ClearFreeMemoryNative(@this);
 			}
 		}
 
@@ -5386,7 +5386,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawListSplitter* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -5396,7 +5396,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					ImGui.Merge(@this, pdrawList);
+					ImGui.MergeNative(@this, pdrawList);
 				}
 			}
 		}
@@ -5405,7 +5405,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawListSplitter* @this = &this)
 			{
-				ImGui.Merge(@this, drawList);
+				ImGui.MergeNative(@this, drawList);
 			}
 		}
 
@@ -5415,7 +5415,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					ImGui.SetCurrentChannel(@this, pdrawList, channelIdx);
+					ImGui.SetCurrentChannelNative(@this, pdrawList, channelIdx);
 				}
 			}
 		}
@@ -5424,7 +5424,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawListSplitter* @this = &this)
 			{
-				ImGui.SetCurrentChannel(@this, drawList, channelIdx);
+				ImGui.SetCurrentChannelNative(@this, drawList, channelIdx);
 			}
 		}
 
@@ -5434,7 +5434,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					ImGui.Split(@this, pdrawList, count);
+					ImGui.SplitNative(@this, pdrawList, count);
 				}
 			}
 		}
@@ -5443,7 +5443,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawListSplitter* @this = &this)
 			{
-				ImGui.Split(@this, drawList, count);
+				ImGui.SplitNative(@this, drawList, count);
 			}
 		}
 
@@ -5476,7 +5476,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawData* @this = &this)
 			{
-				ImGui.Clear(@this);
+				ImGui.ClearNative(@this);
 			}
 		}
 
@@ -5484,7 +5484,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawData* @this = &this)
 			{
-				ImGui.DeIndexAllBuffers(@this);
+				ImGui.DeIndexAllBuffersNative(@this);
 			}
 		}
 
@@ -5492,7 +5492,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawData* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -5500,7 +5500,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawData* @this = &this)
 			{
-				ImGui.ScaleClipRects(@this, fbScale);
+				ImGui.ScaleClipRectsNative(@this, fbScale);
 			}
 		}
 
@@ -5532,7 +5532,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiViewport* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -5540,7 +5540,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				ImGui.GetCenter(poutput, self);
+				ImGui.GetCenterNative(poutput, self);
 			}
 		}
 
@@ -5548,7 +5548,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiViewport* pself = &self)
 			{
-				ImGui.GetCenter(output, pself);
+				ImGui.GetCenterNative(output, pself);
 			}
 		}
 
@@ -5558,21 +5558,21 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiViewport* pself = &self)
 				{
-					ImGui.GetCenter(poutput, pself);
+					ImGui.GetCenterNative(poutput, pself);
 				}
 			}
 		}
 
 		public unsafe void GetCenter(Vector2* output, ImGuiViewport* self)
 		{
-			ImGui.GetCenter(output, self);
+			ImGui.GetCenterNative(output, self);
 		}
 
 		public unsafe void GetWorkCenter(ref Vector2 output, ImGuiViewport* self)
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				ImGui.GetWorkCenter(poutput, self);
+				ImGui.GetWorkCenterNative(poutput, self);
 			}
 		}
 
@@ -5580,7 +5580,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiViewport* pself = &self)
 			{
-				ImGui.GetWorkCenter(output, pself);
+				ImGui.GetWorkCenterNative(output, pself);
 			}
 		}
 
@@ -5590,14 +5590,14 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiViewport* pself = &self)
 				{
-					ImGui.GetWorkCenter(poutput, pself);
+					ImGui.GetWorkCenterNative(poutput, pself);
 				}
 			}
 		}
 
 		public unsafe void GetWorkCenter(Vector2* output, ImGuiViewport* self)
 		{
-			ImGui.GetWorkCenter(output, self);
+			ImGui.GetWorkCenterNative(output, self);
 		}
 
 	}
@@ -5612,7 +5612,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
-				ImGui.AddChar(@this, c);
+				ImGui.AddCharNative(@this, c);
 			}
 		}
 
@@ -5622,7 +5622,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (char* pranges = &ranges)
 				{
-					ImGui.AddRanges(@this, pranges);
+					ImGui.AddRangesNative(@this, pranges);
 				}
 			}
 		}
@@ -5631,7 +5631,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
-				ImGui.AddRanges(@this, ranges);
+				ImGui.AddRangesNative(@this, ranges);
 			}
 		}
 
@@ -5641,7 +5641,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptext = &text)
 				{
-					ImGui.AddText(@this, ptext, textEnd);
+					ImGui.AddTextNative(@this, ptext, textEnd);
 				}
 			}
 		}
@@ -5667,7 +5667,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.AddText(@this, pStr0, textEnd);
+				ImGui.AddTextNative(@this, pStr0, textEnd);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -5678,7 +5678,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.AddText(@this, text, ptextEnd);
+					ImGui.AddTextNative(@this, text, ptextEnd);
 				}
 			}
 		}
@@ -5704,7 +5704,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.AddText(@this, text, pStr0);
+				ImGui.AddTextNative(@this, text, pStr0);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -5717,7 +5717,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.AddText(@this, ptext, ptextEnd);
+						ImGui.AddTextNative(@this, ptext, ptextEnd);
 					}
 				}
 			}
@@ -5761,7 +5761,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.AddText(@this, pStr0, pStr1);
+				ImGui.AddTextNative(@this, pStr0, pStr1);
 				Marshal.FreeHGlobal((nint)pStr1);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
@@ -5771,7 +5771,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
-				ImGui.AddText(@this, text, textEnd);
+				ImGui.AddTextNative(@this, text, textEnd);
 			}
 		}
 
@@ -5781,7 +5781,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImVectorImWchar* poutRanges = &outRanges)
 				{
-					ImGui.BuildRanges(@this, poutRanges);
+					ImGui.BuildRangesNative(@this, poutRanges);
 				}
 			}
 		}
@@ -5790,7 +5790,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
-				ImGui.BuildRanges(@this, outRanges);
+				ImGui.BuildRangesNative(@this, outRanges);
 			}
 		}
 
@@ -5798,7 +5798,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
-				ImGui.Clear(@this);
+				ImGui.ClearNative(@this);
 			}
 		}
 
@@ -5806,7 +5806,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -5814,7 +5814,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
-				bool ret = ImGui.GetBit(@this, n);
+				bool ret = ImGui.GetBitNative(@this, n);
 				return ret;
 			}
 		}
@@ -5823,7 +5823,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
-				ImGui.SetBit(@this, n);
+				ImGui.SetBitNative(@this, n);
 			}
 		}
 
@@ -5848,7 +5848,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImColor* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -5856,7 +5856,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImColor* @this = &this)
 			{
-				ImGui.HSV(@this, h, s, v, a);
+				ImGui.HSVNative(@this, h, s, v, a);
 			}
 		}
 
@@ -5864,7 +5864,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImColor* @this = &this)
 			{
-				ImGui.SetHSV(@this, h, s, v, a);
+				ImGui.SetHSVNative(@this, h, s, v, a);
 			}
 		}
 
@@ -7091,7 +7091,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddFocusEvent(@this, focused);
+				ImGui.AddFocusEventNative(@this, focused);
 			}
 		}
 
@@ -7099,7 +7099,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddInputCharacter(@this, c);
+				ImGui.AddInputCharacterNative(@this, c);
 			}
 		}
 
@@ -7109,7 +7109,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* pstr = &str)
 				{
-					ImGui.AddInputCharactersUTF8(@this, pstr);
+					ImGui.AddInputCharactersUTF8Native(@this, pstr);
 				}
 			}
 		}
@@ -7135,7 +7135,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.AddInputCharactersUTF8(@this, pStr0);
+				ImGui.AddInputCharactersUTF8Native(@this, pStr0);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -7144,7 +7144,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddInputCharactersUTF8(@this, str);
+				ImGui.AddInputCharactersUTF8Native(@this, str);
 			}
 		}
 
@@ -7152,7 +7152,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddInputCharacterUTF16(@this, c);
+				ImGui.AddInputCharacterUTF16Native(@this, c);
 			}
 		}
 
@@ -7160,7 +7160,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddKeyAnalogEvent(@this, key, down, v);
+				ImGui.AddKeyAnalogEventNative(@this, key, down, v);
 			}
 		}
 
@@ -7168,7 +7168,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddKeyEvent(@this, key, down);
+				ImGui.AddKeyEventNative(@this, key, down);
 			}
 		}
 
@@ -7176,7 +7176,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddMouseButtonEvent(@this, button, down);
+				ImGui.AddMouseButtonEventNative(@this, button, down);
 			}
 		}
 
@@ -7184,7 +7184,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddMousePosEvent(@this, x, y);
+				ImGui.AddMousePosEventNative(@this, x, y);
 			}
 		}
 
@@ -7192,7 +7192,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddMouseSourceEvent(@this, source);
+				ImGui.AddMouseSourceEventNative(@this, source);
 			}
 		}
 
@@ -7200,7 +7200,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddMouseViewportEvent(@this, id);
+				ImGui.AddMouseViewportEventNative(@this, id);
 			}
 		}
 
@@ -7208,7 +7208,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddMouseWheelEvent(@this, wheelX, wheelY);
+				ImGui.AddMouseWheelEventNative(@this, wheelX, wheelY);
 			}
 		}
 
@@ -7216,7 +7216,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.ClearInputCharacters(@this);
+				ImGui.ClearInputCharactersNative(@this);
 			}
 		}
 
@@ -7224,7 +7224,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.ClearInputKeys(@this);
+				ImGui.ClearInputKeysNative(@this);
 			}
 		}
 
@@ -7232,7 +7232,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -7240,7 +7240,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.SetAppAcceptingEvents(@this, acceptingEvents);
+				ImGui.SetAppAcceptingEventsNative(@this, acceptingEvents);
 			}
 		}
 
@@ -7248,7 +7248,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.SetKeyEventNativeData(@this, key, nativeKeycode, nativeScancode, nativeLegacyIndex);
+				ImGui.SetKeyEventNativeDataNative(@this, key, nativeKeycode, nativeScancode, nativeLegacyIndex);
 			}
 		}
 
@@ -7266,7 +7266,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiPlatformImeData* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -7316,7 +7316,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiPlatformIO* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -7346,7 +7346,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiPlatformMonitor* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -7479,7 +7479,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStyle* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -7487,7 +7487,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStyle* @this = &this)
 			{
-				ImGui.ScaleAllSizes(@this, scaleFactor);
+				ImGui.ScaleAllSizesNative(@this, scaleFactor);
 			}
 		}
 
@@ -7765,7 +7765,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiWindowClass* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -7910,7 +7910,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				ImGui.BuildSortByKey(@this);
+				ImGui.BuildSortByKeyNative(@this);
 			}
 		}
 
@@ -7918,7 +7918,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				ImGui.Clear(@this);
+				ImGui.ClearNative(@this);
 			}
 		}
 
@@ -7926,7 +7926,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				bool ret = ImGui.GetBool(@this, key, defaultVal);
+				bool ret = ImGui.GetBoolNative(@this, key, defaultVal);
 				return ret;
 			}
 		}
@@ -7935,7 +7935,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				bool* ret = ImGui.GetBoolRef(@this, key, defaultVal);
+				bool* ret = ImGui.GetBoolRefNative(@this, key, defaultVal);
 				return ret;
 			}
 		}
@@ -7944,7 +7944,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				float ret = ImGui.GetFloat(@this, key, defaultVal);
+				float ret = ImGui.GetFloatNative(@this, key, defaultVal);
 				return ret;
 			}
 		}
@@ -7953,7 +7953,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				float* ret = ImGui.GetFloatRef(@this, key, defaultVal);
+				float* ret = ImGui.GetFloatRefNative(@this, key, defaultVal);
 				return ret;
 			}
 		}
@@ -7962,7 +7962,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				int ret = ImGui.GetInt(@this, key, defaultVal);
+				int ret = ImGui.GetIntNative(@this, key, defaultVal);
 				return ret;
 			}
 		}
@@ -7971,7 +7971,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				int* ret = ImGui.GetIntRef(@this, key, defaultVal);
+				int* ret = ImGui.GetIntRefNative(@this, key, defaultVal);
 				return ret;
 			}
 		}
@@ -7980,7 +7980,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				void* ret = ImGui.GetVoidPtr(@this, key);
+				void* ret = ImGui.GetVoidPtrNative(@this, key);
 				return ret;
 			}
 		}
@@ -7989,7 +7989,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				void** ret = ImGui.GetVoidPtrRef(@this, key, defaultVal);
+				void** ret = ImGui.GetVoidPtrRefNative(@this, key, defaultVal);
 				return ret;
 			}
 		}
@@ -7998,7 +7998,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				ImGui.SetAllInt(@this, val);
+				ImGui.SetAllIntNative(@this, val);
 			}
 		}
 
@@ -8006,7 +8006,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				ImGui.SetBool(@this, key, val);
+				ImGui.SetBoolNative(@this, key, val);
 			}
 		}
 
@@ -8014,7 +8014,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				ImGui.SetFloat(@this, key, val);
+				ImGui.SetFloatNative(@this, key, val);
 			}
 		}
 
@@ -8022,7 +8022,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				ImGui.SetInt(@this, key, val);
+				ImGui.SetIntNative(@this, key, val);
 			}
 		}
 
@@ -8030,7 +8030,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				ImGui.SetVoidPtr(@this, key, val);
+				ImGui.SetVoidPtrNative(@this, key, val);
 			}
 		}
 
@@ -8068,7 +8068,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStoragePair* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -8273,7 +8273,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* pstr = &str)
 				{
-					ImGui.append(@this, pstr, strEnd);
+					ImGui.appendNative(@this, pstr, strEnd);
 				}
 			}
 		}
@@ -8299,7 +8299,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.append(@this, pStr0, strEnd);
+				ImGui.appendNative(@this, pStr0, strEnd);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -8310,7 +8310,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* pstrEnd = &strEnd)
 				{
-					ImGui.append(@this, str, pstrEnd);
+					ImGui.appendNative(@this, str, pstrEnd);
 				}
 			}
 		}
@@ -8336,7 +8336,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.append(@this, str, pStr0);
+				ImGui.appendNative(@this, str, pStr0);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -8349,7 +8349,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* pstrEnd = &strEnd)
 					{
-						ImGui.append(@this, pstr, pstrEnd);
+						ImGui.appendNative(@this, pstr, pstrEnd);
 					}
 				}
 			}
@@ -8393,7 +8393,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.append(@this, pStr0, pStr1);
+				ImGui.appendNative(@this, pStr0, pStr1);
 				Marshal.FreeHGlobal((nint)pStr1);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
@@ -8403,7 +8403,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				ImGui.append(@this, str, strEnd);
+				ImGui.appendNative(@this, str, strEnd);
 			}
 		}
 
@@ -8416,7 +8416,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* pfmt = &fmt)
 				{
-					ImGui.appendf(@this, pfmt);
+					ImGui.appendfNative(@this, pfmt);
 				}
 			}
 		}
@@ -8445,7 +8445,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.appendf(@this, pStr0);
+				ImGui.appendfNative(@this, pStr0);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -8457,7 +8457,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				ImGui.appendf(@this, fmt);
+				ImGui.appendfNative(@this, fmt);
 			}
 		}
 
@@ -8467,7 +8467,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* pfmt = &fmt)
 				{
-					ImGui.appendfv(@this, pfmt, args);
+					ImGui.appendfvNative(@this, pfmt, args);
 				}
 			}
 		}
@@ -8493,7 +8493,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.appendfv(@this, pStr0, args);
+				ImGui.appendfvNative(@this, pStr0, args);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -8502,7 +8502,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				ImGui.appendfv(@this, fmt, args);
+				ImGui.appendfvNative(@this, fmt, args);
 			}
 		}
 
@@ -8510,7 +8510,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				string ret = Marshal.PtrToStringAnsi((nint)ImGui.begin(@this));
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.beginNative(@this));
 				return ret;
 			}
 		}
@@ -8519,7 +8519,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				byte* ret = ImGui.begin(@this);
+				byte* ret = ImGui.beginNative(@this);
 				return ret;
 			}
 		}
@@ -8528,7 +8528,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				string ret = Marshal.PtrToStringAnsi((nint)ImGui.c_str(@this));
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.c_strNative(@this));
 				return ret;
 			}
 		}
@@ -8537,7 +8537,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				byte* ret = ImGui.c_str(@this);
+				byte* ret = ImGui.c_strNative(@this);
 				return ret;
 			}
 		}
@@ -8546,7 +8546,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				ImGui.clear(@this);
+				ImGui.clearNative(@this);
 			}
 		}
 
@@ -8554,7 +8554,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -8562,7 +8562,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				bool ret = ImGui.empty(@this);
+				bool ret = ImGui.emptyNative(@this);
 				return ret;
 			}
 		}
@@ -8571,7 +8571,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				string ret = Marshal.PtrToStringAnsi((nint)ImGui.end(@this));
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.endNative(@this));
 				return ret;
 			}
 		}
@@ -8580,7 +8580,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				byte* ret = ImGui.end(@this);
+				byte* ret = ImGui.endNative(@this);
 				return ret;
 			}
 		}
@@ -8589,7 +8589,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				ImGui.reserve(@this, capacity);
+				ImGui.reserveNative(@this, capacity);
 			}
 		}
 
@@ -8597,7 +8597,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				int ret = ImGui.size(@this);
+				int ret = ImGui.sizeNative(@this);
 				return ret;
 			}
 		}
@@ -8886,7 +8886,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiPayload* @this = &this)
 			{
-				ImGui.Clear(@this);
+				ImGui.ClearNative(@this);
 			}
 		}
 
@@ -8894,7 +8894,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiPayload* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -8904,7 +8904,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptype = &type)
 				{
-					bool ret = ImGui.IsDataType(@this, ptype);
+					bool ret = ImGui.IsDataTypeNative(@this, ptype);
 					return ret;
 				}
 			}
@@ -8931,7 +8931,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				bool ret = ImGui.IsDataType(@this, pStr0);
+				bool ret = ImGui.IsDataTypeNative(@this, pStr0);
 				Marshal.FreeHGlobal((nint)pStr0);
 				return ret;
 			}
@@ -8941,7 +8941,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiPayload* @this = &this)
 			{
-				bool ret = ImGui.IsDataType(@this, type);
+				bool ret = ImGui.IsDataTypeNative(@this, type);
 				return ret;
 			}
 		}
@@ -8950,7 +8950,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiPayload* @this = &this)
 			{
-				bool ret = ImGui.IsDelivery(@this);
+				bool ret = ImGui.IsDeliveryNative(@this);
 				return ret;
 			}
 		}
@@ -8959,7 +8959,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiPayload* @this = &this)
 			{
-				bool ret = ImGui.IsPreview(@this);
+				bool ret = ImGui.IsPreviewNative(@this);
 				return ret;
 			}
 		}
@@ -9011,7 +9011,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiListClipper* @this = &this)
 			{
-				ImGui.Begin(@this, itemsCount, itemsHeight);
+				ImGui.BeginNative(@this, itemsCount, itemsHeight);
 			}
 		}
 
@@ -9019,7 +9019,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiListClipper* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -9027,7 +9027,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiListClipper* @this = &this)
 			{
-				ImGui.End(@this);
+				ImGui.EndNative(@this);
 			}
 		}
 
@@ -9035,7 +9035,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiListClipper* @this = &this)
 			{
-				ImGui.ForceDisplayRangeByIndices(@this, itemMin, itemMax);
+				ImGui.ForceDisplayRangeByIndicesNative(@this, itemMin, itemMax);
 			}
 		}
 
@@ -9043,7 +9043,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiListClipper* @this = &this)
 			{
-				bool ret = ImGui.Step(@this);
+				bool ret = ImGui.StepNative(@this);
 				return ret;
 			}
 		}
@@ -9310,7 +9310,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTableColumnSortSpecs* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -9337,7 +9337,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTableSortSpecs* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -9804,7 +9804,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
-				ImGui.ClearSelection(@this);
+				ImGui.ClearSelectionNative(@this);
 			}
 		}
 
@@ -9812,7 +9812,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
-				ImGui.DeleteChars(@this, pos, bytesCount);
+				ImGui.DeleteCharsNative(@this, pos, bytesCount);
 			}
 		}
 
@@ -9820,7 +9820,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -9828,7 +9828,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
-				bool ret = ImGui.HasSelection(@this);
+				bool ret = ImGui.HasSelectionNative(@this);
 				return ret;
 			}
 		}
@@ -9839,7 +9839,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptext = &text)
 				{
-					ImGui.InsertChars(@this, pos, ptext, textEnd);
+					ImGui.InsertCharsNative(@this, pos, ptext, textEnd);
 				}
 			}
 		}
@@ -9865,7 +9865,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.InsertChars(@this, pos, pStr0, textEnd);
+				ImGui.InsertCharsNative(@this, pos, pStr0, textEnd);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -9876,7 +9876,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.InsertChars(@this, pos, text, ptextEnd);
+					ImGui.InsertCharsNative(@this, pos, text, ptextEnd);
 				}
 			}
 		}
@@ -9902,7 +9902,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.InsertChars(@this, pos, text, pStr0);
+				ImGui.InsertCharsNative(@this, pos, text, pStr0);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
 		}
@@ -9915,7 +9915,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.InsertChars(@this, pos, ptext, ptextEnd);
+						ImGui.InsertCharsNative(@this, pos, ptext, ptextEnd);
 					}
 				}
 			}
@@ -9959,7 +9959,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.InsertChars(@this, pos, pStr0, pStr1);
+				ImGui.InsertCharsNative(@this, pos, pStr0, pStr1);
 				Marshal.FreeHGlobal((nint)pStr1);
 				Marshal.FreeHGlobal((nint)pStr0);
 			}
@@ -9969,7 +9969,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
-				ImGui.InsertChars(@this, pos, text, textEnd);
+				ImGui.InsertCharsNative(@this, pos, text, textEnd);
 			}
 		}
 
@@ -9977,7 +9977,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
-				ImGui.SelectAll(@this);
+				ImGui.SelectAllNative(@this);
 			}
 		}
 
@@ -9993,7 +9993,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiOnceUponAFrame* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -10011,7 +10011,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
-				ImGui.Build(@this);
+				ImGui.BuildNative(@this);
 			}
 		}
 
@@ -10019,7 +10019,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
-				ImGui.Clear(@this);
+				ImGui.ClearNative(@this);
 			}
 		}
 
@@ -10027,7 +10027,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -10037,7 +10037,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* plabel = &label)
 				{
-					bool ret = ImGui.Draw(@this, plabel, width);
+					bool ret = ImGui.DrawNative(@this, plabel, width);
 					return ret;
 				}
 			}
@@ -10064,7 +10064,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				bool ret = ImGui.Draw(@this, pStr0, width);
+				bool ret = ImGui.DrawNative(@this, pStr0, width);
 				Marshal.FreeHGlobal((nint)pStr0);
 				return ret;
 			}
@@ -10074,7 +10074,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
-				bool ret = ImGui.Draw(@this, label, width);
+				bool ret = ImGui.DrawNative(@this, label, width);
 				return ret;
 			}
 		}
@@ -10083,7 +10083,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
-				bool ret = ImGui.IsActive(@this);
+				bool ret = ImGui.IsActiveNative(@this);
 				return ret;
 			}
 		}
@@ -10094,7 +10094,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptext = &text)
 				{
-					bool ret = ImGui.PassFilter(@this, ptext, textEnd);
+					bool ret = ImGui.PassFilterNative(@this, ptext, textEnd);
 					return ret;
 				}
 			}
@@ -10121,7 +10121,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				bool ret = ImGui.PassFilter(@this, pStr0, textEnd);
+				bool ret = ImGui.PassFilterNative(@this, pStr0, textEnd);
 				Marshal.FreeHGlobal((nint)pStr0);
 				return ret;
 			}
@@ -10133,7 +10133,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					bool ret = ImGui.PassFilter(@this, text, ptextEnd);
+					bool ret = ImGui.PassFilterNative(@this, text, ptextEnd);
 					return ret;
 				}
 			}
@@ -10160,7 +10160,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				bool ret = ImGui.PassFilter(@this, text, pStr0);
+				bool ret = ImGui.PassFilterNative(@this, text, pStr0);
 				Marshal.FreeHGlobal((nint)pStr0);
 				return ret;
 			}
@@ -10174,7 +10174,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						bool ret = ImGui.PassFilter(@this, ptext, ptextEnd);
+						bool ret = ImGui.PassFilterNative(@this, ptext, ptextEnd);
 						return ret;
 					}
 				}
@@ -10219,7 +10219,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				bool ret = ImGui.PassFilter(@this, pStr0, pStr1);
+				bool ret = ImGui.PassFilterNative(@this, pStr0, pStr1);
 				Marshal.FreeHGlobal((nint)pStr1);
 				Marshal.FreeHGlobal((nint)pStr0);
 				return ret;
@@ -10230,7 +10230,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
-				bool ret = ImGui.PassFilter(@this, text, textEnd);
+				bool ret = ImGui.PassFilterNative(@this, text, textEnd);
 				return ret;
 			}
 		}
@@ -10257,7 +10257,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextRange* @this = &this)
 			{
-				ImGui.Destroy(@this);
+				ImGui.DestroyNative(@this);
 			}
 		}
 
@@ -10265,7 +10265,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextRange* @this = &this)
 			{
-				bool ret = ImGui.empty(@this);
+				bool ret = ImGui.emptyNative(@this);
 				return ret;
 			}
 		}
@@ -10276,7 +10276,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImVectorImGuiTextRange* poutput = &output)
 				{
-					ImGui.split(@this, separator, poutput);
+					ImGui.splitNative(@this, separator, poutput);
 				}
 			}
 		}
@@ -10285,7 +10285,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiTextRange* @this = &this)
 			{
-				ImGui.split(@this, separator, output);
+				ImGui.splitNative(@this, separator, output);
 			}
 		}
 

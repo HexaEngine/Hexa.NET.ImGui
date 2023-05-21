@@ -20,10 +20,11 @@
     "sizeof(ImS64)": "sizeof(long)",
     "sizeof(ImU64)": "sizeof(ulong)",
     "ImPlotBin_Sturges": "(int)ImPlotBin.Sturges",
-    "ImPlotPoint(1,1)": "*ImPlotPoint(1,1)",
-    "ImPlotPoint(0,0)": "*ImPlotPoint(0,0)",
-    "ImPlotRect()": "*ImPlotRect()",
-    "ImPlotRange()": "*ImPlotRange()"
+    "ImPlotPoint(1,1)": "*ImPlotPointNative(1,1)",
+    "ImPlotPoint(0,0)": "*ImPlotPointNative(0,0)",
+    "ImPlotRect()": "*ImPlotRectNative()",
+    "ImPlotRange()": "*ImPlotRangeNative()",
+    "ImPlotCond_Once": "ImPlotCond.Once"
   },
   "KnownEnumPrefixes": {},
   "KnownExtensionPrefixes": {},
