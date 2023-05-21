@@ -1,4 +1,4 @@
-﻿namespace HexaEngine.ImGuizmo
+﻿namespace HexaEngine.ImGuizmoNET
 {
     using System;
     using System.Reflection;

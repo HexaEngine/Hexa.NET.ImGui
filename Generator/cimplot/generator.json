@@ -1,5 +1,5 @@
 {
-  "Namespace": "HexaEngine.ImPlot",
+  "Namespace": "HexaEngine.ImPlotNET",
   "ApiName": "ImPlot",
   "LibName": "cimplot",
   "GenerateSizeOfStructs": false,
@@ -97,5 +97,5 @@
   "AllowedFunctions": [],
   "AllowedTypes": [],
   "AllowedEnums": [],
-  "Usings": [ "System.Numerics", "HexaEngine.ImGui" ]
+  "Usings": [ "System.Numerics", "HexaEngine.ImGuiNET" ]
 }

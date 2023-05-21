@@ -1,4 +1,4 @@
-﻿namespace HexaEngine.ImGui
+﻿namespace HexaEngine.ImGuiNET
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public static unsafe class Utils
+    internal static unsafe class Utils
     {
         public static T* Alloc<T>(int size) where T : unmanaged => (T*)Marshal.AllocHGlobal(size * sizeof(T));
 

@@ -1,5 +1,5 @@
 {
-  "Namespace": "HexaEngine.ImGuizmo",
+  "Namespace": "HexaEngine.ImGuizmoNET",
   "ApiName": "ImGuizmo",
   "LibName": "cimguizmo",
   "GenerateSizeOfStructs": false,
@@ -79,5 +79,5 @@
   "AllowedFunctions": [],
   "AllowedTypes": [],
   "AllowedEnums": [],
-  "Usings": [ "System.Numerics", "HexaEngine.ImGui" ]
+  "Usings": [ "System.Numerics", "HexaEngine.ImGuiNET" ]
 }

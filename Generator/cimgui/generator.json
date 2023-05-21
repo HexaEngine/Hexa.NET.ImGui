@@ -1,5 +1,5 @@
 {
-  "Namespace": "HexaEngine.ImGui",
+  "Namespace": "HexaEngine.ImGuiNET",
   "ApiName": "ImGui",
   "LibName": "cimgui",
   "GenerateSizeOfStructs": false,

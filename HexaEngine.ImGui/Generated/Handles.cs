@@ -11,7 +11,7 @@ using System;
 using System.Diagnostics;
 using System.Numerics;
 
-namespace HexaEngine.ImGui
+namespace HexaEngine.ImGuiNET
 {
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	public readonly partial struct ImTextureID : IEquatable<ImTextureID>

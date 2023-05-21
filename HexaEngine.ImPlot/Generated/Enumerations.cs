@@ -9,9 +9,9 @@
 
 using System;
 using System.Numerics;
-using HexaEngine.ImGui;
+using HexaEngine.ImGuiNET;
 
-namespace HexaEngine.ImPlot
+namespace HexaEngine.ImPlotNET
 {
 	public enum ImAxis
 	{

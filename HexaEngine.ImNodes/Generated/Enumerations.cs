@@ -9,9 +9,9 @@
 
 using System;
 using System.Numerics;
-using HexaEngine.ImGui;
+using HexaEngine.ImGuiNET;
 
-namespace HexaEngine.ImNodes
+namespace HexaEngine.ImNodesNET
 {
 	public enum ImNodesCol
 	{

@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Numerics;
 
-namespace HexaEngine.ImGui
+namespace HexaEngine.ImGuiNET
 {
 	public static unsafe class Extensions
 	{

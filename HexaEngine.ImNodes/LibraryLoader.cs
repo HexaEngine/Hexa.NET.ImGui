@@ -1,4 +1,4 @@
-﻿namespace HexaEngine.ImNodes
+﻿namespace HexaEngine.ImNodesNET
 {
     using System;
     using System.Reflection;

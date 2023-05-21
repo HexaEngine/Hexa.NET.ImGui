@@ -1,4 +1,4 @@
-namespace HexaEngine.ImGuizmo
+namespace HexaEngine.ImGuizmoNET
 {
     public static unsafe partial class ImGuizmo
     {

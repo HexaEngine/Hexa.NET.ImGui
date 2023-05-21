@@ -1,4 +1,4 @@
-﻿namespace HexaEngine.ImPlot
+﻿namespace HexaEngine.ImPlotNET
 {
     using System;
     using System.Reflection;

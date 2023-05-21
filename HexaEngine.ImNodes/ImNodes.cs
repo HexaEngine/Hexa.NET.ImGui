@@ -1,4 +1,4 @@
-namespace HexaEngine.ImNodes
+namespace HexaEngine.ImNodesNET
 {
     public static unsafe partial class ImNodes
     {

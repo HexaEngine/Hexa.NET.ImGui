@@ -10,8 +10,8 @@
 using System;
 using System.Diagnostics;
 using System.Numerics;
-using HexaEngine.ImGui;
+using HexaEngine.ImGuiNET;
 
-namespace HexaEngine.ImGuizmo
+namespace HexaEngine.ImGuizmoNET
 {
 }

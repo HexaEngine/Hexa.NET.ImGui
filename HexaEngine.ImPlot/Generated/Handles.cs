@@ -10,9 +10,9 @@
 using System;
 using System.Diagnostics;
 using System.Numerics;
-using HexaEngine.ImGui;
+using HexaEngine.ImGuiNET;
 
-namespace HexaEngine.ImPlot
+namespace HexaEngine.ImPlotNET
 {
 	public unsafe delegate int ImPlotFormatter(double value, byte* buff, int size, void* userData);
 

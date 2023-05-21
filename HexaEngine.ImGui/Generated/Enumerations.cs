@@ -10,7 +10,7 @@
 using System;
 using System.Numerics;
 
-namespace HexaEngine.ImGui
+namespace HexaEngine.ImGuiNET
 {
 	public enum ImGuiMouseSource
 	{

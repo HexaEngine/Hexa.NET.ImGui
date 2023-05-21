@@ -1,4 +1,4 @@
-﻿namespace HexaEngine.ImGui
+﻿namespace HexaEngine.ImGuiNET
 {
     using System;
     using System.Reflection;

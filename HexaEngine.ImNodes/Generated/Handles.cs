@@ -10,9 +10,9 @@
 using System;
 using System.Diagnostics;
 using System.Numerics;
-using HexaEngine.ImGui;
+using HexaEngine.ImGuiNET;
 
-namespace HexaEngine.ImNodes
+namespace HexaEngine.ImNodesNET
 {
 	public unsafe delegate void ImNodesMiniMapNodeHoveringCallback(int intValue, void* voidValue);
 

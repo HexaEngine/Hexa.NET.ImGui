@@ -11,9 +11,9 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Numerics;
-using HexaEngine.ImGui;
+using HexaEngine.ImGuiNET;
 
-namespace HexaEngine.ImNodes
+namespace HexaEngine.ImNodesNET
 {
 	public static unsafe class Extensions
 	{

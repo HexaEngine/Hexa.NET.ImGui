@@ -1,4 +1,4 @@
-namespace HexaEngine.ImPlot
+namespace HexaEngine.ImPlotNET
 {
     public static unsafe partial class ImPlot
     {
