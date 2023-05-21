@@ -9,6 +9,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Numerics;
 
 namespace HexaEngine.ImGui
 {
@@ -32,45 +33,9 @@ namespace HexaEngine.ImGui
 		private string DebuggerDisplay => string.Format("ImTextureID [0x{0}]", Handle.ToString("X"));
 	}
 
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	public readonly partial struct ImDrawCallback : IEquatable<ImDrawCallback>
-	{
-		public ImDrawCallback(nint handle) { Handle = handle; }
-		public nint Handle { get; }
-		public bool IsNull => Handle == 0;
-		public static ImDrawCallback Null => new ImDrawCallback(0);
-		public static implicit operator ImDrawCallback(nint handle) => new ImDrawCallback(handle);
-		public static bool operator ==(ImDrawCallback left, ImDrawCallback right) => left.Handle == right.Handle;
-		public static bool operator !=(ImDrawCallback left, ImDrawCallback right) => left.Handle != right.Handle;
-		public static bool operator ==(ImDrawCallback left, nint right) => left.Handle == right;
-		public static bool operator !=(ImDrawCallback left, nint right) => left.Handle != right;
-		public bool Equals(ImDrawCallback other) => Handle == other.Handle;
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImDrawCallback handle && Equals(handle);
-		/// <inheritdoc/>
-		public override int GetHashCode() => Handle.GetHashCode();
-		private string DebuggerDisplay => string.Format("ImDrawCallback [0x{0}]", Handle.ToString("X"));
-	}
+	public unsafe delegate void ImDrawCallback(ImDrawList* parentList, ImDrawCmd* cmd);
 
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	public readonly partial struct ImGuiSizeCallback : IEquatable<ImGuiSizeCallback>
-	{
-		public ImGuiSizeCallback(nint handle) { Handle = handle; }
-		public nint Handle { get; }
-		public bool IsNull => Handle == 0;
-		public static ImGuiSizeCallback Null => new ImGuiSizeCallback(0);
-		public static implicit operator ImGuiSizeCallback(nint handle) => new ImGuiSizeCallback(handle);
-		public static bool operator ==(ImGuiSizeCallback left, ImGuiSizeCallback right) => left.Handle == right.Handle;
-		public static bool operator !=(ImGuiSizeCallback left, ImGuiSizeCallback right) => left.Handle != right.Handle;
-		public static bool operator ==(ImGuiSizeCallback left, nint right) => left.Handle == right;
-		public static bool operator !=(ImGuiSizeCallback left, nint right) => left.Handle != right;
-		public bool Equals(ImGuiSizeCallback other) => Handle == other.Handle;
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImGuiSizeCallback handle && Equals(handle);
-		/// <inheritdoc/>
-		public override int GetHashCode() => Handle.GetHashCode();
-		private string DebuggerDisplay => string.Format("ImGuiSizeCallback [0x{0}]", Handle.ToString("X"));
-	}
+	public unsafe delegate void ImGuiSizeCallback(ImGuiSizeCallbackData* data);
 
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	public readonly partial struct ImBitArrayPtr : IEquatable<ImBitArrayPtr>
@@ -92,25 +57,7 @@ namespace HexaEngine.ImGui
 		private string DebuggerDisplay => string.Format("ImBitArrayPtr [0x{0}]", Handle.ToString("X"));
 	}
 
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	public readonly partial struct ImGuiContextHookCallback : IEquatable<ImGuiContextHookCallback>
-	{
-		public ImGuiContextHookCallback(nint handle) { Handle = handle; }
-		public nint Handle { get; }
-		public bool IsNull => Handle == 0;
-		public static ImGuiContextHookCallback Null => new ImGuiContextHookCallback(0);
-		public static implicit operator ImGuiContextHookCallback(nint handle) => new ImGuiContextHookCallback(handle);
-		public static bool operator ==(ImGuiContextHookCallback left, ImGuiContextHookCallback right) => left.Handle == right.Handle;
-		public static bool operator !=(ImGuiContextHookCallback left, ImGuiContextHookCallback right) => left.Handle != right.Handle;
-		public static bool operator ==(ImGuiContextHookCallback left, nint right) => left.Handle == right;
-		public static bool operator !=(ImGuiContextHookCallback left, nint right) => left.Handle != right;
-		public bool Equals(ImGuiContextHookCallback other) => Handle == other.Handle;
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImGuiContextHookCallback handle && Equals(handle);
-		/// <inheritdoc/>
-		public override int GetHashCode() => Handle.GetHashCode();
-		private string DebuggerDisplay => string.Format("ImGuiContextHookCallback [0x{0}]", Handle.ToString("X"));
-	}
+	public unsafe delegate void ImGuiContextHookCallback(ImGuiContext* ctx, ImGuiContextHook* hook);
 
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	public readonly partial struct ImFileHandle : IEquatable<ImFileHandle>
@@ -132,84 +79,12 @@ namespace HexaEngine.ImGui
 		private string DebuggerDisplay => string.Format("ImFileHandle [0x{0}]", Handle.ToString("X"));
 	}
 
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	public readonly partial struct ImGuiInputTextCallback : IEquatable<ImGuiInputTextCallback>
-	{
-		public ImGuiInputTextCallback(nint handle) { Handle = handle; }
-		public nint Handle { get; }
-		public bool IsNull => Handle == 0;
-		public static ImGuiInputTextCallback Null => new ImGuiInputTextCallback(0);
-		public static implicit operator ImGuiInputTextCallback(nint handle) => new ImGuiInputTextCallback(handle);
-		public static bool operator ==(ImGuiInputTextCallback left, ImGuiInputTextCallback right) => left.Handle == right.Handle;
-		public static bool operator !=(ImGuiInputTextCallback left, ImGuiInputTextCallback right) => left.Handle != right.Handle;
-		public static bool operator ==(ImGuiInputTextCallback left, nint right) => left.Handle == right;
-		public static bool operator !=(ImGuiInputTextCallback left, nint right) => left.Handle != right;
-		public bool Equals(ImGuiInputTextCallback other) => Handle == other.Handle;
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImGuiInputTextCallback handle && Equals(handle);
-		/// <inheritdoc/>
-		public override int GetHashCode() => Handle.GetHashCode();
-		private string DebuggerDisplay => string.Format("ImGuiInputTextCallback [0x{0}]", Handle.ToString("X"));
-	}
+	public unsafe delegate int ImGuiInputTextCallback(ImGuiInputTextCallbackData* data);
 
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	public readonly partial struct ImGuiMemAllocFunc : IEquatable<ImGuiMemAllocFunc>
-	{
-		public ImGuiMemAllocFunc(nint handle) { Handle = handle; }
-		public nint Handle { get; }
-		public bool IsNull => Handle == 0;
-		public static ImGuiMemAllocFunc Null => new ImGuiMemAllocFunc(0);
-		public static implicit operator ImGuiMemAllocFunc(nint handle) => new ImGuiMemAllocFunc(handle);
-		public static bool operator ==(ImGuiMemAllocFunc left, ImGuiMemAllocFunc right) => left.Handle == right.Handle;
-		public static bool operator !=(ImGuiMemAllocFunc left, ImGuiMemAllocFunc right) => left.Handle != right.Handle;
-		public static bool operator ==(ImGuiMemAllocFunc left, nint right) => left.Handle == right;
-		public static bool operator !=(ImGuiMemAllocFunc left, nint right) => left.Handle != right;
-		public bool Equals(ImGuiMemAllocFunc other) => Handle == other.Handle;
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImGuiMemAllocFunc handle && Equals(handle);
-		/// <inheritdoc/>
-		public override int GetHashCode() => Handle.GetHashCode();
-		private string DebuggerDisplay => string.Format("ImGuiMemAllocFunc [0x{0}]", Handle.ToString("X"));
-	}
+	public unsafe delegate void* ImGuiMemAllocFunc(nuint sz, void* userData);
 
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	public readonly partial struct ImGuiMemFreeFunc : IEquatable<ImGuiMemFreeFunc>
-	{
-		public ImGuiMemFreeFunc(nint handle) { Handle = handle; }
-		public nint Handle { get; }
-		public bool IsNull => Handle == 0;
-		public static ImGuiMemFreeFunc Null => new ImGuiMemFreeFunc(0);
-		public static implicit operator ImGuiMemFreeFunc(nint handle) => new ImGuiMemFreeFunc(handle);
-		public static bool operator ==(ImGuiMemFreeFunc left, ImGuiMemFreeFunc right) => left.Handle == right.Handle;
-		public static bool operator !=(ImGuiMemFreeFunc left, ImGuiMemFreeFunc right) => left.Handle != right.Handle;
-		public static bool operator ==(ImGuiMemFreeFunc left, nint right) => left.Handle == right;
-		public static bool operator !=(ImGuiMemFreeFunc left, nint right) => left.Handle != right;
-		public bool Equals(ImGuiMemFreeFunc other) => Handle == other.Handle;
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImGuiMemFreeFunc handle && Equals(handle);
-		/// <inheritdoc/>
-		public override int GetHashCode() => Handle.GetHashCode();
-		private string DebuggerDisplay => string.Format("ImGuiMemFreeFunc [0x{0}]", Handle.ToString("X"));
-	}
+	public unsafe delegate void ImGuiMemFreeFunc(void* ptr, void* userData);
 
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	public readonly partial struct ImGuiErrorLogCallback : IEquatable<ImGuiErrorLogCallback>
-	{
-		public ImGuiErrorLogCallback(nint handle) { Handle = handle; }
-		public nint Handle { get; }
-		public bool IsNull => Handle == 0;
-		public static ImGuiErrorLogCallback Null => new ImGuiErrorLogCallback(0);
-		public static implicit operator ImGuiErrorLogCallback(nint handle) => new ImGuiErrorLogCallback(handle);
-		public static bool operator ==(ImGuiErrorLogCallback left, ImGuiErrorLogCallback right) => left.Handle == right.Handle;
-		public static bool operator !=(ImGuiErrorLogCallback left, ImGuiErrorLogCallback right) => left.Handle != right.Handle;
-		public static bool operator ==(ImGuiErrorLogCallback left, nint right) => left.Handle == right;
-		public static bool operator !=(ImGuiErrorLogCallback left, nint right) => left.Handle != right;
-		public bool Equals(ImGuiErrorLogCallback other) => Handle == other.Handle;
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImGuiErrorLogCallback handle && Equals(handle);
-		/// <inheritdoc/>
-		public override int GetHashCode() => Handle.GetHashCode();
-		private string DebuggerDisplay => string.Format("ImGuiErrorLogCallback [0x{0}]", Handle.ToString("X"));
-	}
+	public unsafe delegate void ImGuiErrorLogCallback(void* userData, byte* fmt);
 
 }

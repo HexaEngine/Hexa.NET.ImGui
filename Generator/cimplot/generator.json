@@ -1,0 +1,101 @@
+{
+  "Namespace": "HexaEngine.ImPlot",
+  "ApiName": "ImPlot",
+  "LibName": "cimplot",
+  "GenerateSizeOfStructs": false,
+  "KnownConstantNames": {},
+  "KnownEnumValueNames": {
+    "": "",
+    "ImGuiCond_None": "0",
+    "ImGuiCond_Always": "1",
+    "ImGuiCond_Once": "2"
+  },
+  "KnownDefaultValueNames": {
+    "sizeof(ImS8)": "sizeof(sbyte)",
+    "sizeof(ImU8)": "sizeof(byte)",
+    "sizeof(ImS16)": "sizeof(short)",
+    "sizeof(ImU16)": "sizeof(ushort)",
+    "sizeof(ImS32)": "sizeof(int)",
+    "sizeof(ImU32)": "sizeof(uint)",
+    "sizeof(ImS64)": "sizeof(long)",
+    "sizeof(ImU64)": "sizeof(ulong)",
+    "ImPlotBin_Sturges": "(int)ImPlotBin.Sturges",
+    "ImPlotPoint(1,1)": "*ImPlotPoint(1,1)",
+    "ImPlotPoint(0,0)": "*ImPlotPoint(0,0)",
+    "ImPlotRect()": "*ImPlotRect()",
+    "ImPlotRange()": "*ImPlotRange()"
+  },
+  "KnownEnumPrefixes": {},
+  "KnownExtensionPrefixes": {},
+  "KnownExtensionNames": {},
+  "KnownStructMethods": {},
+  "IgnoredParts": [ "bit", "Ig", "ImGui", "Str", "Arr" ],
+  "PreserveCaps": [ "" ],
+  "Keywords": [ "object", "event", "out", "base" ],
+  "IgnoredTypes": [ "ImVec4", "ImVec3", "ImVec2" ],
+  "ArrayMappings": [
+    {
+      "Primitive": 11,
+      "Size": 4,
+      "Name": "ref Vector4"
+    },
+    {
+      "Primitive": 11,
+      "Size": 3,
+      "Name": "ref Vector3"
+    },
+    {
+      "Primitive": 11,
+      "Size": 2,
+      "Name": "ref Vector2"
+    },
+    {
+      "Primitive": 11,
+      "Size": 16,
+      "Name": "ref Matrix4x4"
+    }
+  ],
+  "NameMappings": {
+    "uint8_t": "byte",
+    "uint16_t": "ushort",
+    "uint32_t": "uint",
+    "uint64_t": "ulong",
+    "int8_t": "sbyte",
+    "int32_t": "int",
+    "int16_t": "short",
+    "int64_t": "long",
+    "int64_t*": "long*",
+    "unsigned char": "byte",
+    "signed char": "sbyte",
+    "char": "byte",
+    "size_t": "nuint",
+    "time_t": "long",
+    "ImVec2": "Vector2",
+    "ImVec3": "Vector3",
+    "ImVec4": "Vector4",
+    "ImGuiID": "int",
+    "ImS8": "sbyte",
+    "ImU8": "byte",
+    "ImS16": "short",
+    "ImU16": "ushort",
+    "ImS32": "int",
+    "ImU32": "uint",
+    "ImS64": "long",
+    "ImU64": "ulong",
+    "ImWchar16": "char",
+    "ImWchar": "char",
+    "ImDrawIdx": "ushort",
+    "ImGuiKeyChord": "int",
+    "ImGuiKeyRoutingIndex": "short",
+    "ImPoolIdx": "int",
+    "ImGuiTableDrawChannelIdx": "byte",
+    "ImGuiTableColumnIdx": "sbyte",
+    "ImGuiDockRequest": "void",
+    "ImGuiDockNodeSettings": "void",
+    "va_list": "nuint"
+  },
+  "AllowedFunctions": [],
+  "AllowedTypes": [],
+  "AllowedEnums": [],
+  "Usings": [ "System.Numerics", "HexaEngine.ImGui" ]
+}

@@ -301,7 +301,7 @@
             ///////////////////////////////////////////////////////////////////////////
 
             // Begin Console Window.
-            ImGui.PushStyleVarFloat(ImGuiStyleVar.Alpha, m_WindowAlpha);
+            ImGui.PushStyleVar(ImGuiStyleVar.Alpha, m_WindowAlpha);
             if (!ImGui.Begin(m_ConsoleName, ref m_consoleOpen, ImGuiWindowFlags.MenuBar))
             {
                 ImGui.PopStyleVar(1);
@@ -348,10 +348,10 @@
         private static unsafe void LogWindow()
         {
             float footerHeightToReserve = ImGui.GetStyle()->ItemSpacing.Y + ImGui.GetFrameHeightWithSpacing();
-            if (ImGui.BeginChildStr("ScrollRegion##", new Vector2(0, -footerHeightToReserve), false, 0))
+            if (ImGui.BeginChild("ScrollRegion##", new Vector2(0, -footerHeightToReserve)))
             {
                 Vector2 output;
-                ImGui.CalcTextSize(&output, "00:00:00:0000", (byte*)null, false, 0);
+                ImGui.CalcTextSize(&output, "00:00:00:0000");
 
                 // Display colored command output.
                 float timestamp_width = output.X;    // Timestamp.
@@ -388,13 +388,13 @@
                     // Items.
                     if (m_ColoredOutput)
                     {
-                        ImGui.PushStyleColorVec4(ImGuiCol.Text, consoleColorPalette[item.Severity]);
-                        ImGui.TextUnformatted(item.Message, (byte*)null);
+                        ImGui.PushStyleColor(ImGuiCol.Text, consoleColorPalette[item.Severity]);
+                        ImGui.TextUnformatted(item.Message);
                         ImGui.PopStyleColor(1);
                     }
                     else
                     {
-                        ImGui.TextUnformatted(item.Message, (byte*)null);
+                        ImGui.TextUnformatted(item.Message);
                     }
 
                     // Time stamp.
@@ -407,7 +407,7 @@
                         ImGui.SameLine(ImGui.GetColumnWidth(-1) - timestamp_width, 0);
 
                         // Draw time stamp.
-                        ImGui.PushStyleColorVec4(ImGuiCol.Text, consoleColorPalette[LogSeverity.Timestamp]);
+                        ImGui.PushStyleColor(ImGuiCol.Text, consoleColorPalette[LogSeverity.Timestamp]);
                         ImGui.Text(item.Timestamp);
                         ImGui.PopStyleColor(1);
                     }
@@ -444,7 +444,7 @@
 
             // Input widget. (Width an always fixed width)
             ImGui.PushItemWidth(-ImGui.GetStyle()->ItemSpacing.X * 7);
-            if (ImGui.InputText("Input", ref m_Buffer, m_Buffer_size, inputTextFlags, default, null))
+            if (ImGui.InputText("Input", ref m_Buffer, m_Buffer_size, inputTextFlags, default))
             {
                 // Validate.
                 if (!string.IsNullOrWhiteSpace(m_Buffer))
@@ -494,7 +494,7 @@
             {
                 ImGui.BeginTooltip();
                 ImGui.PushTextWrapPos(ImGui.GetFontSize() * 35.0f);
-                ImGui.TextUnformatted(desc, (byte*)null);
+                ImGui.TextUnformatted(desc);
                 ImGui.PopTextWrapPos();
                 ImGui.EndTooltip();
             }
@@ -530,7 +530,7 @@
                     // Reset to default settings
                     if (ImGui.Button("Reset settings", new(ImGui.GetColumnWidth(0), 0)))
                     {
-                        ImGui.OpenPopupStr("Reset Settings?", ImGuiPopupFlags.None);
+                        ImGui.OpenPopup("Reset Settings?");
                     }
 
                     // Confirmation
@@ -562,7 +562,7 @@
                     ImGuiColorEditFlags flags =
                             ImGuiColorEditFlags.Float | ImGuiColorEditFlags.AlphaPreview | ImGuiColorEditFlags.NoInputs | ImGuiColorEditFlags.AlphaBar;
 
-                    ImGui.TextUnformatted("Color Palette", (byte*)null);
+                    ImGui.TextUnformatted("Color Palette");
                     ImGui.Indent(0);
                     ImGui.ColorEdit4("Command##", ref consoleColorPalette[LogSeverity.Command], flags);
                     ImGui.ColorEdit4("Log##", ref consoleColorPalette[LogSeverity.Log], flags);
@@ -576,7 +576,7 @@
 
                     // Window transparency.
                     ImGui.TextUnformatted("Background", (byte*)null);
-                    ImGui.SliderFloat("Transparency##", ref m_WindowAlpha, 0.1f, 1.0f, (byte*)null, ImGuiSliderFlags.None);
+                    ImGui.SliderFloat("Transparency##", ref m_WindowAlpha, 0.1f, 1.0f);
 
                     ImGui.EndMenu();
                 }

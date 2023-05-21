@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using System;
+using System.Numerics;
 
 namespace HexaEngine.ImGui
 {

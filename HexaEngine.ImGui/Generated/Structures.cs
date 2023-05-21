@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Numerics;
 
@@ -2023,7 +2024,7 @@ namespace HexaEngine.ImGui
 		public unsafe ImGuiWindow* RootWindowForTitleBarHighlight;
 		public unsafe ImGuiWindow* RootWindowForNav;
 		public unsafe ImGuiWindow* NavLastChildNavWindow;
-		public unsafe fixed int NavLastIds[2];
+		public unsafe fixed uint NavLastIds[2];
 		public ImRect NavRectRel_0;
 		public ImRect NavRectRel_1;
 		public Vector2 NavPreferredScoringPosRel_0;
@@ -3151,7 +3152,7 @@ namespace HexaEngine.ImGui
 		public StbUndoRecord UndoRec_96;
 		public StbUndoRecord UndoRec_97;
 		public StbUndoRecord UndoRec_98;
-		public unsafe fixed char UndoChar[999];
+		public unsafe fixed ushort UndoChar[999];
 		public short UndoPoint;
 		public short RedoPoint;
 		public int UndoCharPoint;
@@ -3199,7 +3200,12 @@ namespace HexaEngine.ImGui
 	{
 		public int Size;
 		public int Capacity;
-		public unsafe void* Data;
+		public unsafe ImGuiDockRequest* Data;
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiDockRequest
+	{
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3207,7 +3213,12 @@ namespace HexaEngine.ImGui
 	{
 		public int Size;
 		public int Capacity;
-		public unsafe void* Data;
+		public unsafe ImGuiDockNodeSettings* Data;
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiDockNodeSettings
+	{
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3393,6 +3404,11 @@ namespace HexaEngine.ImGui
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiInputTextDeactivateData
+	{
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiLocEntry
 	{
 		public ImGuiLocKey Key;
@@ -3408,6 +3424,11 @@ namespace HexaEngine.ImGui
 		public sbyte ColumnsCount;
 		public sbyte ColumnsCountMax;
 		public bool WantApply;
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiTableColumnsSettings
+	{
 	}
 
 	[StructLayout(LayoutKind.Sequential)]

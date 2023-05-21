@@ -7,21 +7,29 @@
 
     public partial class CsCodeGenerator
     {
+        private static readonly HashSet<string> s_definedExtensions = new();
+
         private static void GenerateExtensions(CppCompilation compilation, string outputPath)
         {
+            string[] usings = { "System", "System.Runtime.CompilerServices", "System.Runtime.InteropServices" };
             // Generate Functions
-            using var writer = new CodeWriter(Path.Combine(outputPath, "Extensions.cs"),
-                "System",
-                "System.Runtime.CompilerServices",
-                "System.Runtime.InteropServices",
-                "System.Numerics"
-                );
+            using var writer = new CodeWriter(Path.Combine(outputPath, "Extensions.cs"), usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
             using (writer.PushBlock($"public static unsafe class Extensions"))
             {
                 for (int i = 0; i < compilation.Typedefs.Count; i++)
                 {
                     CppTypedef typedef = compilation.Typedefs[i];
+                    if (CsCodeGeneratorSettings.Default.IgnoredTypedefs.Contains(typedef.Name))
+                        continue;
+                    if (s_definedExtensions.Contains(typedef.Name))
+                        continue;
+                    s_definedExtensions.Add(typedef.Name);
                     if (typedef.ElementType is not CppPointerType)
+                    {
+                        continue;
+                    }
+
+                    if (IsDelegate(typedef, out _))
                     {
                         continue;
                     }
@@ -29,7 +37,10 @@
                     for (int j = 0; j < compilation.Functions.Count; j++)
                     {
                         var cppFunction = compilation.Functions[j];
-
+                        if (CsCodeGeneratorSettings.Default.AllowedFunctions.Count != 0 && !CsCodeGeneratorSettings.Default.AllowedFunctions.Contains(cppFunction.Name))
+                            continue;
+                        if (CsCodeGeneratorSettings.Default.IgnoredFunctions.Contains(cppFunction.Name))
+                            continue;
                         if (cppFunction.Parameters.Count == 0 || cppFunction.Parameters[0].Type.TypeKind == CppTypeKind.Pointer)
                             continue;
 
@@ -40,7 +51,7 @@
                             var csExtensionName = GetPrettyExtensionName(csFunctionName, extensionPrefix);
                             bool canUseOut = s_outReturnFunctions.Contains(cppFunction.Name);
                             var argumentsString = GetParameterSignature(cppFunction, canUseOut);
-                            var sigs = GetVariantParameterSignatures(cppFunction.Parameters, argumentsString, canUseOut);
+                            var sigs = GetVariantParameterSignatures(cppFunction.Name, cppFunction.Parameters, argumentsString, canUseOut);
                             sigs.Add(argumentsString);
 
                             WriteExtensions(writer, cppFunction, csFunctionName, csExtensionName, sigs);

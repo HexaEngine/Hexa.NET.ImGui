@@ -15,7 +15,7 @@
 
     public static partial class CsCodeGenerator
     {
-        private static readonly HashSet<string> s_instanceFunctions = new()
+        private static readonly HashSet<string> s_definedFunctions = new()
         {
         };
 
@@ -25,46 +25,28 @@
 
         private static void GenerateCommands(CppCompilation compilation, string outputPath)
         {
+            string[] usings = { "System", "System.Runtime.CompilerServices", "System.Runtime.InteropServices" };
             // Generate Functions
-            using var writer = new CodeWriter(Path.Combine(outputPath, "Commands.cs"),
-                "System",
-                "System.Runtime.CompilerServices",
-                "System.Runtime.InteropServices",
-                "System.Numerics"
-                );
-
-            var commands = new Dictionary<string, CppFunction>();
-            var instanceCommands = new Dictionary<string, CppFunction>();
-            var deviceCommands = new Dictionary<string, CppFunction>();
-            foreach (CppFunction? cppFunction in compilation.Functions)
-            {
-                string? returnType = GetCsTypeName(cppFunction.ReturnType, false);
-                bool canUseOut = s_outReturnFunctions.Contains(cppFunction.Name);
-                string? csName = GetPrettyCommandName(cppFunction.Name);
-
-                commands.Add(csName, cppFunction);
-
-                if (cppFunction.Parameters.Count > 0)
-                {
-                    var firstParameter = cppFunction.Parameters[0];
-                    if (firstParameter.Type is CppTypedef typedef)
-                    {
-                        deviceCommands.Add(csName, cppFunction);
-                    }
-                }
-            }
+            using var writer = new CodeWriter(Path.Combine(outputPath, "Commands.cs"), usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
 
             using (writer.PushBlock($"public unsafe partial class {CsCodeGeneratorSettings.Default.ApiName}"))
             {
                 writer.WriteLine($"internal const string LibName = \"{CsCodeGeneratorSettings.Default.LibName}\";\n");
-                foreach (KeyValuePair<string, CppFunction> command in commands)
+                foreach (CppFunction? cppFunction in compilation.Functions)
                 {
-                    CppFunction cppFunction = command.Value;
-
+                    if (CsCodeGeneratorSettings.Default.AllowedFunctions.Count != 0 && !CsCodeGeneratorSettings.Default.AllowedFunctions.Contains(cppFunction.Name))
+                        continue;
+                    if (CsCodeGeneratorSettings.Default.IgnoredFunctions.Contains(cppFunction.Name))
+                        continue;
+                    string? csName = GetPrettyCommandName(cppFunction.Name);
                     string returnCsName = GetCsTypeName(cppFunction.ReturnType, false);
                     bool boolReturn = returnCsName == "bool";
                     bool canUseOut = s_outReturnFunctions.Contains(cppFunction.Name);
                     var argumentsString = GetParameterSignature(cppFunction, canUseOut);
+                    var header = $"{returnCsName} {csName}({argumentsString})";
+                    if (s_definedFunctions.Contains(header))
+                        continue;
+                    s_definedFunctions.Add(header);
 
                     WriteCsSummary(cppFunction.Comment, writer);
                     if (boolReturn)
@@ -73,12 +55,12 @@
                     }
 
                     writer.WriteLine($"[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = \"{cppFunction.Name}\")]");
-                    writer.WriteLine($"public static extern {returnCsName} {command.Key}({argumentsString});");
+                    writer.WriteLine($"public static extern {header};");
                     writer.WriteLine();
 
-                    var sign = GetParameterList(cppFunction.Parameters, canUseOut);
-                    var sigs = GetVariantParameterLists(cppFunction.Parameters, argumentsString, canUseOut);
-                    WriteMethods(writer, cppFunction, command.Key, sign, sigs);
+                    var sign = GetParameterList(cppFunction.Name, cppFunction.Parameters, canUseOut);
+                    var sigs = GetVariantParameterLists(cppFunction.Name, cppFunction.Parameters, string.Join(string.Empty, sign), canUseOut);
+                    WriteMethods(writer, cppFunction, csName, sign, sigs);
                 }
             }
         }
@@ -109,21 +91,37 @@
 
         private static void WriteMethod(CodeWriter writer, CppFunction cppFunction, string command, bool voidReturn, bool stringReturn, string returnCsName, string[] paramList)
         {
-            string signature = string.Join(string.Empty, paramList);
+            string signature = string.Join(", ", paramList);
+
+            string header = stringReturn ? $"string {command}S({signature})" : $"{returnCsName} {command}({signature})";
+
+            if (s_definedFunctions.Contains(header))
+            {
+                return;
+            }
+
+            s_definedFunctions.Add(header);
+
+            for (int j = paramList.Length - 1; j >= 0; j--)
+            {
+                var isRef = paramList[j].StartsWith("ref");
+                var isArray = paramList[j].Contains("[]");
+                var isPointer = paramList[j].Contains('*');
+                var isString = paramList[j].StartsWith("string");
+                if (isArray || isRef)
+                    break;
+
+                var cppParameter = cppFunction.Parameters[j];
+                if (!TryGetDefaultValue(cppFunction.Name, cppParameter, true, out var paramCsDefault))
+                {
+                    break;
+                }
+
+                WriteMethod(writer, cppFunction, command, voidReturn, stringReturn, returnCsName, paramList.Take(j).ToArray());
+            }
 
             WriteCsSummary(cppFunction.Comment, writer);
-            string header;
-
-            if (stringReturn)
-            {
-                header = $"public static string {command}S({signature})";
-            }
-            else
-            {
-                header = $"public static {returnCsName} {command}({signature})";
-            }
-
-            using (writer.PushBlock(header))
+            using (writer.PushBlock($"public static {header}"))
             {
                 StringBuilder sb = new();
                 if (!voidReturn)
@@ -141,22 +139,40 @@
                 int strings = 0;
                 Stack<string> arrays = new();
                 int stacks = 0;
+
                 for (int j = 0; j < cppFunction.Parameters.Count; j++)
                 {
-                    var isRef = paramList[j].StartsWith("ref");
-                    var isStr = paramList[j].Contains("string");
-                    var isArray = paramList[j].Contains("[]");
                     var cppParameter = cppFunction.Parameters[j];
+                    var isRef = false;
+                    var isStr = false;
+                    var isArray = false;
+                    var isConst = true;
+                    if (j < paramList.Length)
+                    {
+                        isRef = paramList[j].StartsWith("ref");
+                        isStr = paramList[j].Contains("string");
+                        isArray = paramList[j].Contains("[]");
+                        isConst = false;
+                    }
 
                     var paramCsTypeName = GetCsTypeName(cppParameter.Type, false);
                     var paramCsName = GetParameterName(cppParameter.Type, cppParameter.Name);
-
-                    if (isStr)
+                    if (isConst)
+                    {
+                        var paramCsDefault = GetDefaultValue(cppFunction.Name, cppParameter, false);
+                        if (IsString(cppParameter.Type))
+                            sb.Append($"(string){paramCsDefault}");
+                        else if (cppParameter.Type is CppTypedef typedef && typedef.ElementType.TypeKind == CppTypeKind.Primitive || IsPointer(cppParameter.Type) || cppParameter.Type.TypeKind == CppTypeKind.Array)
+                            sb.Append($"({paramCsTypeName})({paramCsDefault})");
+                        else
+                            sb.Append($"{paramCsDefault}");
+                    }
+                    else if (isStr)
                     {
                         if (isArray)
                         {
                             WriteStringArrayConvertToUnmanaged(writer, cppParameter.Type, paramCsName, arrays.Count);
-                            sb.Append($"pAStr{arrays.Count}");
+                            sb.Append($"pStrArray{arrays.Count}");
                             arrays.Push(paramCsName);
                         }
                         else
@@ -181,6 +197,7 @@
                     {
                         sb.Append(paramCsName);
                     }
+
                     if (j != cppFunction.Parameters.Count - 1)
                     {
                         sb.Append(", ");
@@ -211,7 +228,7 @@
                 while (strings > 0)
                 {
                     strings--;
-                    writer.WriteLine($"Marshal.FreeHGlobal((nint)pStr{strings});");
+                    WriteStringFree(writer, strings);
                 }
 
                 if (!voidReturn)
@@ -231,7 +248,7 @@
 
         public static string GetParameterSignature(CppFunction cppFunction, bool canUseOut)
         {
-            return GetParameterSignature(cppFunction.Parameters, canUseOut);
+            return GetParameterSignature(cppFunction.Name, cppFunction.Parameters, canUseOut);
         }
 
         private static string GetCleanParamType(string param)
@@ -325,11 +342,35 @@
             CppPrimitiveKind primitiveKind = GetPrimitiveKind(type, false);
             if (primitiveKind == CppPrimitiveKind.Char)
             {
-                writer.WriteLine($"byte* pStr{i} = (byte*)Marshal.StringToHGlobalAnsi({name});");
+                writer.WriteLine($"byte* pStr{i} = null;");
+                writer.WriteLine($"int pStrSize{i} = 0;");
+                using (writer.PushBlock($"if ({name} != null)"))
+                {
+                    writer.WriteLine($"pStrSize{i} = Utils.GetByteCountUTF8({name});");
+                    using (writer.PushBlock($"if (pStrSize{i} >= Utils.MaxStackallocSize)"))
+                    {
+                        writer.WriteLine($"pStr{i} = Utils.Alloc<byte>(pStrSize{i} + 1);");
+                    }
+                    using (writer.PushBlock("else"))
+                    {
+                        writer.WriteLine($"byte* pStrStack{i} = stackalloc byte[pStrSize{i} + 1];");
+                        writer.WriteLine($"pStr{i} = pStrStack{i};");
+                    }
+                    writer.WriteLine($"int pStrOffset{i} = Utils.EncodeStringUTF8({name}, pStr{i}, pStrSize{i});");
+                    writer.WriteLine($"pStr{i}[pStrOffset{i}] = 0;");
+                }
             }
             if (primitiveKind == CppPrimitiveKind.WChar)
             {
                 writer.WriteLine($"char* pStr{i} = (char*)Marshal.StringToHGlobalUni({name});");
+            }
+        }
+
+        private static void WriteStringFree(CodeWriter writer, int i)
+        {
+            using (writer.PushBlock($"if (pStrSize{i} >= Utils.MaxStackallocSize)"))
+            {
+                writer.WriteLine($"Utils.Free(pStr{i});");
             }
         }
 
@@ -338,10 +379,23 @@
             CppPrimitiveKind primitiveKind = GetPrimitiveKind(type, false);
             if (primitiveKind == CppPrimitiveKind.Char)
             {
-                writer.WriteLine($"byte** pAStr{i} = (byte**)Marshal.AllocHGlobal(sizeof(nuint) * {name}.Length);");
+                writer.WriteLine($"byte** pStrArray{i} = null;");
+                writer.WriteLine($"int pStrArraySize{i} = Utils.GetByteCountArray({name});");
+                using (writer.PushBlock($"if ({name} != null)"))
+                {
+                    using (writer.PushBlock($"if (pStrArraySize{i} > Utils.MaxStackallocSize)"))
+                    {
+                        writer.WriteLine($"pStrArray{i} = (byte**)Utils.Alloc<byte>(pStrArraySize{i});");
+                    }
+                    using (writer.PushBlock("else"))
+                    {
+                        writer.WriteLine($"byte* pStrArrayStack{i} = stackalloc byte[pStrArraySize{i}];");
+                        writer.WriteLine($"pStrArray{i} = (byte**)pStrArrayStack{i};");
+                    }
+                }
                 using (writer.PushBlock($"for (int i = 0; i < {name}.Length; i++)"))
                 {
-                    writer.WriteLine($"pAStr{i}[i] = (byte*)Marshal.StringToHGlobalAnsi({name}[i]);");
+                    writer.WriteLine($"pStrArray{i}[i] = (byte*)Marshal.StringToHGlobalAnsi({name}[i]);");
                 }
             }
             if (primitiveKind == CppPrimitiveKind.WChar)
@@ -358,12 +412,12 @@
         {
             using (writer.PushBlock($"for (int i = 0; i < {name}.Length; i++)"))
             {
-                writer.WriteLine($"Marshal.FreeHGlobal((nint)pAStr{i}[i]);");
+                writer.WriteLine($"Utils.Free(pStrArray{i}[i]);");
             }
-            writer.WriteLine($"Marshal.FreeHGlobal((nint)pAStr{i});");
+            writer.WriteLine($"Utils.Free(pStrArray{i});");
         }
 
-        private static string GetParameterSignature(IList<CppParameter> parameters, bool canUseOut)
+        private static string GetParameterSignature(string functionName, IList<CppParameter> parameters, bool canUseOut)
         {
             StringBuilder argumentBuilder = new();
             int index = 0;
@@ -381,6 +435,7 @@
                 }
 
                 argumentBuilder.Append(paramCsTypeName).Append(' ').Append(paramCsName);
+
                 if (index < parameters.Count - 1)
                 {
                     argumentBuilder.Append(", ");
@@ -392,7 +447,7 @@
             return argumentBuilder.ToString();
         }
 
-        private static string[] GetParameterList(IList<CppParameter> parameters, bool canUseOut)
+        private static string[] GetParameterList(string functionName, IList<CppParameter> parameters, bool canUseOut)
         {
             string[] parameterList = new string[parameters.Count];
             var argumentBuilder = new StringBuilder();
@@ -411,10 +466,6 @@
                 }
 
                 argumentBuilder.Append(paramCsTypeName).Append(' ').Append(paramCsName);
-                if (index < parameters.Count - 1)
-                {
-                    argumentBuilder.Append(", ");
-                }
 
                 parameterList[index] = argumentBuilder.ToString();
                 argumentBuilder.Clear();
@@ -452,7 +503,7 @@
             return argumentBuilder.ToString();
         }
 
-        private static List<string> GetVariantParameterSignatures(IList<CppParameter> parameters, string originalSig, bool canUseOut)
+        private static List<string> GetVariantParameterSignatures(string functionName, IList<CppParameter> parameters, string originalSig, bool canUseOut)
         {
             List<string> result = new();
             StringBuilder argumentBuilder = new();
@@ -483,6 +534,7 @@
                     }
 
                     argumentBuilder.Append(paramCsTypeName).Append(' ').Append(paramCsName);
+
                     if (index < parameters.Count - 1)
                     {
                         argumentBuilder.Append(", ");
@@ -545,7 +597,7 @@
             return result;
         }
 
-        private static List<string[]> GetVariantParameterLists(IList<CppParameter> parameters, string originalSig, bool canUseOut)
+        private static List<string[]> GetVariantParameterLists(string functionName, IList<CppParameter> parameters, string originalSig, bool canUseOut)
         {
             List<string[]> signatures = new();
             StringBuilder signatureBuilder = new();
@@ -564,11 +616,12 @@
                         var bit = (ix & (1 << j - 64)) != 0;
                         CppParameter cppParameter = parameters[j];
                         string paramCsTypeName;
+
                         if (bit)
                         {
-                            if (cppParameter.Type is CppArrayType arrayType)
+                            if (cppParameter.Type is CppArrayType arrayType && arrayType.Size > 0)
                             {
-                                paramCsTypeName = GetCsTypeName(arrayType.ElementType, false);
+                                paramCsTypeName = "ref " + GetCsTypeName(arrayType.ElementType, false);
                             }
                             else
                             {
@@ -589,10 +642,6 @@
                         }
 
                         paramBuilder.Append(paramCsTypeName).Append(' ').Append(paramCsName);
-                        if (index < parameters.Count - 1)
-                        {
-                            paramBuilder.Append(", ");
-                        }
 
                         var param = paramBuilder.ToString();
                         signatureBuilder.Append(param);
@@ -653,10 +702,6 @@
                         }
 
                         paramBuilder.Append(paramCsTypeName).Append(' ').Append(paramCsName);
-                        if (index < parameters.Count - 1)
-                        {
-                            paramBuilder.Append(", ");
-                        }
 
                         var param = paramBuilder.ToString();
                         signatureBuilder.Append(param);
@@ -696,6 +741,14 @@
             {
                 return "baseValue";
             }
+            if (name == "void")
+            {
+                return "voidValue";
+            }
+            if (name == "int")
+            {
+                return "intValue";
+            }
             if (CsCodeGeneratorSettings.Default.Keywords.Contains(name))
             {
                 return "@" + name;
@@ -712,10 +765,10 @@
                 switch (type.TypeKind)
                 {
                     case CppTypeKind.Primitive:
-                        return (type as CppPrimitiveType).GetDisplayName();
+                        return GetParameterName(type, (type as CppPrimitiveType).GetDisplayName());
 
                     case CppTypeKind.Pointer:
-                        return (type as CppPointerType).ElementType.GetDisplayName();
+                        return GetParameterName((type as CppPointerType).ElementType, (type as CppPointerType).ElementType.GetDisplayName());
 
                     case CppTypeKind.Reference:
                         break;
@@ -750,6 +803,68 @@
             }
 
             return NormalizeParameterName(name);
+        }
+
+        public static bool TryGetDefaultValue(string functionName, CppParameter parameter, bool sanitize, out string? defaultValue)
+        {
+            if (CsCodeGeneratorSettings.Default.TryGetFunctionMapping(functionName, out var mapping))
+            {
+                if (mapping.Defaults.TryGetValue(parameter.Name, out var value))
+                {
+                    defaultValue = NormalizeValue(value, sanitize);
+                    return true;
+                }
+            }
+            defaultValue = null;
+            return false;
+        }
+
+        public static string? GetDefaultValue(string functionName, CppParameter parameter, bool sanitize = true)
+        {
+            if (CsCodeGeneratorSettings.Default.TryGetFunctionMapping(functionName, out var mapping))
+            {
+                if (mapping.Defaults.TryGetValue(parameter.Name, out var value))
+                    return NormalizeValue(value, sanitize);
+            }
+
+            return null;
+        }
+
+        public static string? NormalizeValue(string value, bool sanitize)
+        {
+            if (CsCodeGeneratorSettings.Default.KnownDefaultValueNames.TryGetValue(value, out var names))
+            {
+                return names;
+            }
+
+            if (value == "NULL")
+                return "null";
+            if (value == "FLT_MAX")
+                return "float.MaxValue";
+            if (value == "-FLT_MAX")
+                return "-float.MaxValue";
+            if (value == "FLT_MIN")
+                return "float.MinValue";
+            if (value == "-FLT_MIN")
+                return "-float.MinValue";
+            if (value == "nullptr")
+                return "null";
+
+            if (value.StartsWith("ImVec") && sanitize)
+                return null;
+            if (value.StartsWith("ImVec2"))
+            {
+                value = value[7..][..(value.Length - 8)];
+                var parts = value.Split(',');
+                return $"new Vector2({NormalizeValue(parts[0], sanitize)},{NormalizeValue(parts[1], sanitize)})";
+            }
+            if (value.StartsWith("ImVec4"))
+            {
+                value = value[7..][..(value.Length - 8)];
+                var parts = value.Split(',');
+                return $"new Vector4({NormalizeValue(parts[0], sanitize)},{NormalizeValue(parts[1], sanitize)},{NormalizeValue(parts[2], sanitize)},{NormalizeValue(parts[3], sanitize)})";
+            }
+            return value;
         }
 
         private static string NormalizeParameterName(string name)
@@ -808,6 +923,11 @@
 
         public static string GetPrettyCommandName(string function)
         {
+            if (CsCodeGeneratorSettings.Default.TryGetFunctionMapping(function, out var mapping))
+            {
+                return mapping.FriendlyName;
+            }
+
             string[] parts = GetCsCleanName(function).SplitByCase();
 
             StringBuilder sb = new();

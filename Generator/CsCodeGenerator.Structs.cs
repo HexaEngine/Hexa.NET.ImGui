@@ -2,31 +2,33 @@
 {
     using ClangSharp;
     using CppAst;
-    using Microsoft.VisualBasic.FileIO;
     using System.IO;
     using System.Linq;
-    using System.Reflection.Metadata;
     using System.Text;
 
     public static partial class CsCodeGenerator
     {
+        private static readonly HashSet<string> s_definedTypes = new();
+
         private static void GenerateStructAndUnions(CppCompilation compilation, string outputPath)
         {
+            string[] usings = { "System", "System.Runtime.CompilerServices", "System.Runtime.InteropServices" };
+
             // Generate Structures
-            using var writer = new CodeWriter(Path.Combine(outputPath, "Structures.cs"),
-                "System",
-                "System.Runtime.InteropServices",
-                "System.Numerics"
-                );
+            using var writer = new CodeWriter(Path.Combine(outputPath, "Structures.cs"), usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
 
             // Print All classes, structs
             for (int i = 0; i < compilation.Classes.Count; i++)
             {
                 CppClass? cppClass = compilation.Classes[i];
-                if (CsCodeGeneratorSettings.Default.IgnoredTypes.Contains(cppClass.Name))
-                {
+                if (CsCodeGeneratorSettings.Default.AllowedTypes.Count != 0 && !CsCodeGeneratorSettings.Default.AllowedTypes.Contains(cppClass.Name))
                     continue;
-                }
+                if (CsCodeGeneratorSettings.Default.IgnoredTypes.Contains(cppClass.Name))
+                    continue;
+                if (s_definedTypes.Contains(cppClass.Name))
+                    continue;
+                s_definedTypes.Add(cppClass.Name);
+
                 string csName = GetCsCleanName(cppClass.Name);
                 WriteClass(writer, compilation, cppClass, csName);
             }
@@ -34,9 +36,7 @@
 
         public static void WriteClass(CodeWriter writer, CppCompilation compilation, CppClass cppClass, string csName)
         {
-            if (cppClass.ClassKind == CppClassKind.Class ||
-                    cppClass.SizeOf == 0 ||
-                    cppClass.Name.EndsWith("_T"))
+            if (cppClass.ClassKind == CppClassKind.Class || cppClass.Name.EndsWith("_T") || csName == "void")
             {
                 return;
             }
@@ -133,18 +133,6 @@
             writer.WriteLine();
         }
 
-        public delegate void Name(int a);
-
-        public static void WriteDelegate(CodeWriter writer, CppField cppField, CppFunctionType type)
-        {
-            string csFieldName = NormalizeFieldName(cppField.Name);
-            string returnCsName = GetCsTypeName(type.ReturnType, false);
-            string signature = GetParameterSignature(type.Parameters, false);
-            WriteCsSummary(cppField.Comment, writer);
-            writer.WriteLine($"public unsafe delegate {returnCsName} {csFieldName}({signature});");
-            writer.WriteLine();
-        }
-
         private static void WriteField(CodeWriter writer, CppField field, bool isUnion = false, bool isReadOnly = false)
         {
             string csFieldName = NormalizeFieldName(field.Name);
@@ -156,25 +144,26 @@
 
             if (field.Type is CppArrayType arrayType)
             {
+                string csFieldType = GetCsTypeName(arrayType.ElementType, false);
                 bool canUseFixed = false;
                 if (arrayType.ElementType is CppPrimitiveType)
                 {
                     canUseFixed = true;
                 }
-                else if (arrayType.ElementType is CppTypedef typedef && IsPrimitive(typedef, out _))
+                else if (arrayType.ElementType is CppTypedef typedef && IsPrimitive(typedef, out var primitive))
                 {
+                    csFieldType = GetCsTypeName(primitive, false);
                     canUseFixed = true;
                 }
 
                 if (canUseFixed)
                 {
-                    string csFieldType = GetCsTypeName(arrayType.ElementType, false);
                     writer.WriteLine($"public unsafe fixed {csFieldType} {csFieldName}[{arrayType.Size}];");
                 }
                 else
                 {
                     string unsafePrefix = string.Empty;
-                    string csFieldType = GetCsTypeName(arrayType.ElementType, false);
+
                     if (csFieldType.EndsWith('*'))
                     {
                         unsafePrefix = "unsafe ";
@@ -601,6 +590,25 @@
             return false;
         }
 
+        public static bool IsDelegate(CppType cppType, out CppFunctionType cppFunction)
+        {
+            if (cppType is CppTypedef typedefType)
+            {
+                return IsDelegate(typedefType.ElementType, out cppFunction);
+            }
+            if (cppType is CppPointerType cppPointer)
+            {
+                return IsDelegate(cppPointer.ElementType, out cppFunction);
+            }
+            if (cppType is CppFunctionType functionType)
+            {
+                cppFunction = functionType;
+                return true;
+            }
+            cppFunction = null;
+            return false;
+        }
+
         private static string NormalizeFieldName(string name)
         {
             var parts = name.Split('_', StringSplitOptions.RemoveEmptyEntries);
@@ -623,36 +631,5 @@
         In = 0,
         Out = 1,
         InOut = 2,
-    }
-
-    public class CsType
-    {
-        public string Name { get; set; }
-    }
-
-    public class CsParameter
-    {
-        public List<string> Attributes { get; set; } = new();
-
-        public List<string> Modifiers { get; set; } = new();
-
-        public CsType Type { get; set; }
-
-        public string Name { get; set; }
-
-        public bool IsPointer { get; set; }
-
-        public bool IsArray { get; set; }
-    }
-
-    public class CsFunction
-    {
-        public List<string> Attributes { get; set; } = new();
-
-        public List<string> Modifiers { get; set; } = new();
-
-        public List<CsParameter> Parameters { get; set; } = new();
-
-        public CsType ReturnType { get; set; } = new();
     }
 }

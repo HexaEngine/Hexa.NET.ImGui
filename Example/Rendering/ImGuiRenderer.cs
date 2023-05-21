@@ -40,8 +40,8 @@ namespace HexaEngine.Rendering
 
             var io = ImGui.GetIO();
 
-            var config = ImGui.ImFontConfigImFontConfig();
-            ImGui.ImFontAtlasAddFontDefault(io->Fonts, config);
+            var config = ImGui.ImFontConfig();
+            ImGui.AddFontDefault(io->Fonts, config);
 
             config->MergeMode = true;
             config->GlyphMinAdvanceX = 18;
@@ -52,7 +52,7 @@ namespace HexaEngine.Rendering
                 var bytes = File.ReadAllBytes("assets/fonts/SEGMDL2.TTF");
                 fixed (byte* buffer2 = bytes)
                 {
-                    ImGui.ImFontAtlasAddFontFromMemoryTTF(io->Fonts, buffer2, bytes.Length, 14, config, buffer);
+                    ImGui.AddFontFromMemoryTTF(io->Fonts, buffer2, bytes.Length, 14, config, buffer);
                 }
             }
 
@@ -153,7 +153,7 @@ namespace HexaEngine.Rendering
             inputHandler.Update();
             ImGui.NewFrame();
 
-            ImGui.PushStyleColorVec4(ImGuiCol.WindowBg, Vector4.Zero);
+            ImGui.PushStyleColor(ImGuiCol.WindowBg, Vector4.Zero);
             ImGui.DockSpaceOverViewport(null, ImGuiDockNodeFlags.PassthruCentralNode, null);
             ImGui.PopStyleColor(1);
         }
@@ -241,7 +241,7 @@ namespace HexaEngine.Rendering
 
             SetupRenderState(data, ctx);
 
-            ImGui.ImDrawDataScaleClipRects(data, io->DisplayFramebufferScale);
+            ImGui.ScaleClipRects(data, io->DisplayFramebufferScale);
 
             // Render command lists
             // (Because we merged all buffers into a single one, we maintain our own offset into them)
@@ -315,7 +315,7 @@ namespace HexaEngine.Rendering
             byte* pixels;
             int width;
             int height;
-            ImGui.ImFontAtlasGetTexDataAsRGBA32(io->Fonts, &pixels, &width, &height, null);
+            ImGui.GetTexDataAsRGBA32(io->Fonts, &pixels, &width, &height, null);
 
             var texDesc = new Texture2DDescription
             {

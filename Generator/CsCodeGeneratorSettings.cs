@@ -3,15 +3,16 @@
     using CppAst;
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Text.Json;
 
     public class CsCodeGeneratorSettings
     {
-        static CsCodeGeneratorSettings()
+        public static void Load(string file)
         {
-            if (File.Exists("generator.json"))
+            if (File.Exists(file))
             {
-                Default = JsonSerializer.Deserialize<CsCodeGeneratorSettings>(File.ReadAllText("generator.json")) ?? new();
+                Default = JsonSerializer.Deserialize<CsCodeGeneratorSettings>(File.ReadAllText(file)) ?? new();
             }
             else
             {
@@ -20,7 +21,7 @@
             Default.Save();
         }
 
-        public static CsCodeGeneratorSettings Default { get; }
+        public static CsCodeGeneratorSettings Default { get; private set; }
 
         public string Namespace { get; set; } = string.Empty;
 
@@ -40,6 +41,8 @@
 
         public Dictionary<string, string> KnownExtensionNames { get; set; } = new();
 
+        public Dictionary<string, string> KnownDefaultValueNames { get; set; } = new();
+
         public Dictionary<string, List<string>> KnownStructMethods { get; set; } = new();
 
         public HashSet<string> IgnoredParts { get; set; } = new(StringComparer.OrdinalIgnoreCase);
@@ -48,7 +51,15 @@
 
         public HashSet<string> Keywords { get; set; } = new();
 
-        public List<string> IgnoredTypes { get; set; } = new();
+        public HashSet<string> IgnoredFunctions { get; set; } = new();
+
+        public HashSet<string> IgnoredTypes { get; set; } = new();
+
+        public HashSet<string> IgnoredEnums { get; set; } = new();
+
+        public HashSet<string> IgnoredTypedefs { get; set; } = new();
+
+        public List<FunctionMapping> FunctionMappings { get; set; } = new();
 
         public List<ArrayMapping> ArrayMappings { get; set; } = new();
 
@@ -66,20 +77,38 @@
             { "unsigned char", "byte" },
             { "signed char", "sbyte" },
             { "char", "byte" },
-            { "size_t", "nuint" },
-
-            { "spvc_bool", "bool" },
-            { "spvc_constant_id", "uint" },
-            { "spvc_variable_id", "uint" },
-            { "spvc_type_id", "uint" },
-            { "spvc_hlsl_binding_flags", "uint" },
-            { "spvc_msl_shader_input", "SpvcMslShaderInterfaceVar" },
-            { "spvc_msl_vertex_format", "SpvcMslShaderVariableFormat" }
+            { "size_t", "nuint" }
         };
+
+        public List<string> AllowedFunctions { get; set; } = new();
+
+        public List<string> AllowedTypes { get; set; } = new();
+
+        public List<string> AllowedEnums { get; set; } = new();
+
+        public List<string> AllowedTypedefs { get; set; } = new();
+
+        public List<string> Usings { get; set; } = new();
 
         public void Save()
         {
             File.WriteAllText("generator.json", JsonSerializer.Serialize(Default));
+        }
+
+        public bool TryGetFunctionMapping(string functionName, [NotNullWhen(true)] out FunctionMapping? mapping)
+        {
+            for (int i = 0; i < FunctionMappings.Count; i++)
+            {
+                var functionMapping = FunctionMappings[i];
+                if (functionMapping.ExportedName == functionName)
+                {
+                    mapping = functionMapping;
+                    return true;
+                }
+            }
+
+            mapping = null;
+            return false;
         }
     }
 }

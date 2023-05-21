@@ -1,7 +1,7 @@
 {
   "Namespace": "HexaEngine.ImGui",
   "ApiName": "ImGui",
-  "LibName": "spirv-cross-c-shared",
+  "LibName": "cimgui",
   "GenerateSizeOfStructs": false,
   "KnownConstantNames": {},
   "KnownEnumValueNames": { "": "" },
@@ -9,7 +9,7 @@
   "KnownExtensionPrefixes": {},
   "KnownExtensionNames": {},
   "KnownStructMethods": {},
-  "IgnoredParts": [ "bit", "Ig", "ImGui" ],
+  "IgnoredParts": [ "bit", "Ig", "ImGui", "Str", "Arr" ],
   "PreserveCaps": [ "" ],
   "Keywords": [ "object", "event", "out", "base" ],
   "IgnoredTypes": [ "ImVec4", "ImVec3", "ImVec2" ],
@@ -18,6 +18,11 @@
       "Primitive": 11,
       "Size": 4,
       "Name": "ref Vector4"
+    },
+    {
+      "Primitive": 11,
+      "Size": 3,
+      "Name": "ref Vector3"
     },
     {
       "Primitive": 11,
@@ -60,6 +65,7 @@
     "ImGuiTableDrawChannelIdx": "byte",
     "ImGuiTableColumnIdx": "sbyte",
     "ImGuiDockRequest": "void",
-    "ImGuiDockNodeSettings": "void"
+    "ImGuiDockNodeSettings": "void",
+    "va_list": "nuint"
   }
 }

@@ -9,13 +9,26 @@
 
     public static partial class CsCodeGenerator
     {
+        private static readonly HashSet<string> s_definedEnums = new();
+
         public static void GenerateEnums(CppCompilation compilation, string outputPath)
         {
-            using var writer = new CodeWriter(Path.Combine(outputPath, "Enumerations.cs"), "System");
+            string[] usings = { "System" };
+
+            using var writer = new CodeWriter(Path.Combine(outputPath, "Enumerations.cs"), usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
             var createdEnums = new Dictionary<string, string>();
 
             foreach (CppEnum cppEnum in compilation.Enums)
             {
+                if (CsCodeGeneratorSettings.Default.AllowedEnums.Count != 0 && !CsCodeGeneratorSettings.Default.AllowedEnums.Contains(cppEnum.Name))
+                    continue;
+                if (CsCodeGeneratorSettings.Default.IgnoredEnums.Contains(cppEnum.Name))
+                    continue;
+
+                if (s_definedEnums.Contains(cppEnum.Name))
+                    continue;
+                s_definedEnums.Add(cppEnum.Name);
+
                 string csName = GetCsCleanName(cppEnum.Name);
                 string enumNamePrefix = GetEnumNamePrefix(cppEnum.Name);
                 if (csName.EndsWith("_"))
@@ -32,8 +45,9 @@
                 WriteCsSummary(cppEnum.Comment, writer);
                 using (writer.PushBlock($"public enum {csName}"))
                 {
-                    foreach (var enumItem in cppEnum.Items)
+                    for (int i = 0; i < cppEnum.Items.Count; i++)
                     {
+                        CppEnumItem? enumItem = cppEnum.Items[i];
                         var enumItemName = GetEnumItemName(cppEnum, enumItem.Name, enumNamePrefix);
 
                         if (!string.IsNullOrEmpty(extensionPrefix) && enumItemName.EndsWith(extensionPrefix))
@@ -50,6 +64,12 @@
                         if (enumItem.ValueExpression is CppRawExpression rawExpression)
                         {
                             string enumValueName = GetEnumItemName(cppEnum, rawExpression.Text, enumNamePrefix);
+
+                            if (enumItem.Name == rawExpression.Text)
+                            {
+                                writer.WriteLine($"{enumItemName} = {i},");
+                                continue;
+                            }
 
                             if (!string.IsNullOrEmpty(extensionPrefix) && enumValueName.EndsWith(extensionPrefix))
                             {

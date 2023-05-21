@@ -33,20 +33,5 @@ namespace HexaEngine.ImGui
 			return ret;
 		}
 
-		public static void SetAllocatorFunctions(this ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc, void* userData)
-		{
-			ImGui.SetAllocatorFunctions(allocFunc, freeFunc, userData);
-		}
-
-		public static void CheckEndFrameRecover(this ImGuiErrorLogCallback logCallback, void* userData)
-		{
-			ImGui.ErrorCheckEndFrameRecover(logCallback, userData);
-		}
-
-		public static void CheckEndWindowRecover(this ImGuiErrorLogCallback logCallback, void* userData)
-		{
-			ImGui.ErrorCheckEndWindowRecover(logCallback, userData);
-		}
-
 	}
 }

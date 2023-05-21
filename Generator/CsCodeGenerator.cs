@@ -98,6 +98,11 @@
             if (type is CppTypedef typedef)
             {
                 var typeDefCsName = GetCsCleanName(typedef.Name);
+                if (IsDelegate(typedef, out var functionType))
+                {
+                    typeDefCsName = $"delegate*<{GetNamelessParameterSignature(functionType.Parameters, false)}>";
+                }
+
                 if (isPointer)
                     return typeDefCsName + "*";
 
@@ -264,6 +269,12 @@
             if (type is CppTypedef typedef)
             {
                 var typeDefCsName = GetCsCleanName(typedef.Name);
+                if (IsDelegate(typedef, out var functionType))
+                {
+                    typeDefCsName = $"delegate*<{GetNamelessParameterSignature(functionType.Parameters, false)}>";
+                    if (isPointer)
+                        return typeDefCsName + "*";
+                }
                 if (isPointer)
                     return "ref " + typeDefCsName;
 
@@ -284,7 +295,7 @@
                 return GetCsWrapperTypeName(pointerType);
             }
 
-            if (type is CppArrayType arrayType)
+            if (type is CppArrayType arrayType && arrayType.Size > 0)
             {
                 if (TryGetArrayMapping(arrayType, out string? mapping))
                 {
@@ -292,6 +303,11 @@
                 }
 
                 return GetCsWrapperTypeName(arrayType.ElementType, true);
+            }
+            else if (type is CppArrayType arrayType1 && arrayType1.Size < 0)
+            {
+                var arrayName = GetCsTypeName(arrayType1.ElementType, false);
+                return arrayName + "*";
             }
 
             return string.Empty;

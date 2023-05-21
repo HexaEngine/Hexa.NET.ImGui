@@ -74,7 +74,7 @@
         private unsafe void KeyboardCharInput(object? sender, Core.Input.Events.KeyboardCharEventArgs e)
         {
             var io = ImGui.GetIO();
-            ImGui.ImGuiIOAddInputCharacterUTF16(io, e.Char);
+            ImGui.AddInputCharacterUTF16(io, e.Char);
         }
 
         private unsafe void KeyboardInput(object? sender, Core.Input.Events.KeyboardEventArgs e)
