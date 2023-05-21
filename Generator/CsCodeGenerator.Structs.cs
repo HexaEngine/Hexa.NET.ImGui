@@ -112,7 +112,18 @@
                     }
                 }
 
-                if (CsCodeGeneratorSettings.Default.KnownStructMethods.TryGetValue(cppClass.Name, out var functions))
+                writer.WriteLine();
+
+                for (int j = 0; j < cppClass.Fields.Count; j++)
+                {
+                    CppField cppField = cppClass.Fields[j];
+                    if (cppField.Type.TypeKind == CppTypeKind.Array)
+                    {
+                        WriteProperty(writer, cppField, isReadOnly);
+                    }
+                }
+
+                if (CsCodeGeneratorSettings.Default.KnownMemberFunctions.TryGetValue(cppClass.Name, out var functions))
                 {
                     writer.WriteLine();
 
@@ -211,6 +222,49 @@
                 }
 
                 writer.WriteLine($"public {fieldPrefix}{csFieldType} {csFieldName};");
+            }
+        }
+
+        private static void WriteProperty(CodeWriter writer, CppField field, bool isReadOnly = false)
+        {
+            string csFieldName = NormalizeFieldName(field.Name);
+            WriteCsSummary(field.Comment, writer);
+            if (field.Type is CppArrayType arrayType)
+            {
+                string csFieldType = GetCsTypeName(arrayType.ElementType, false);
+                bool canUseFixed = false;
+                if (arrayType.ElementType is CppPrimitiveType)
+                {
+                    canUseFixed = true;
+                }
+                else if (arrayType.ElementType is CppTypedef typedef && IsPrimitive(typedef, out var primitive))
+                {
+                    csFieldType = GetCsTypeName(primitive, false);
+                    canUseFixed = true;
+                }
+
+                if (canUseFixed)
+                {
+                }
+                else
+                {
+                    if (csFieldType.EndsWith('*'))
+                    {
+                        return;
+                    }
+
+                    writer.WriteLine($"public unsafe Span<{csFieldType}> {csFieldName}");
+                    using (writer.PushBlock(""))
+                    {
+                        using (writer.PushBlock("get"))
+                        {
+                            using (writer.PushBlock($"fixed ({csFieldType}* p = &this.{csFieldName}_0)"))
+                            {
+                                writer.WriteLine($"return new Span<{csFieldType}>(p, {arrayType.Size});");
+                            }
+                        }
+                    }
+                }
             }
         }
 

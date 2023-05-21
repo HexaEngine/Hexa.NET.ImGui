@@ -41,7 +41,7 @@ namespace HexaEngine.Rendering
             var io = ImGui.GetIO();
 
             var config = ImGui.ImFontConfig();
-            ImGui.AddFontDefault(io->Fonts, config);
+            io->Fonts->AddFontDefault(config);
 
             config->MergeMode = true;
             config->GlyphMinAdvanceX = 18;
@@ -52,17 +52,18 @@ namespace HexaEngine.Rendering
                 var bytes = File.ReadAllBytes("assets/fonts/SEGMDL2.TTF");
                 fixed (byte* buffer2 = bytes)
                 {
-                    ImGui.AddFontFromMemoryTTF(io->Fonts, buffer2, bytes.Length, 14, config, buffer);
+                    io->Fonts->AddFontFromMemoryTTF(buffer2, bytes.Length, 14, config, buffer);
                 }
             }
 
             io->ConfigFlags |= ImGuiConfigFlags.DockingEnable | ImGuiConfigFlags.NavEnableGamepad;
             io->BackendFlags |= ImGuiBackendFlags.RendererHasVtxOffset | ImGuiBackendFlags.HasMouseCursors;
             ImGui.StyleColorsDark(ImGui.GetStyle());
+
             CreateDeviceObjects();
 
             var style = ImGui.GetStyle();
-            var colors = &style->Colors_0;
+            var colors = style->Colors;
 
             colors[(int)ImGuiCol.Text] = new Vector4(1.00f, 1.00f, 1.00f, 1.00f);
             colors[(int)ImGuiCol.TextDisabled] = new Vector4(0.50f, 0.50f, 0.50f, 1.00f);
@@ -241,7 +242,7 @@ namespace HexaEngine.Rendering
 
             SetupRenderState(data, ctx);
 
-            ImGui.ScaleClipRects(data, io->DisplayFramebufferScale);
+            data->ScaleClipRects(io->DisplayFramebufferScale);
 
             // Render command lists
             // (Because we merged all buffers into a single one, we maintain our own offset into them)

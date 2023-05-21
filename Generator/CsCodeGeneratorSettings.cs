@@ -43,7 +43,7 @@
 
         public Dictionary<string, string> KnownDefaultValueNames { get; set; } = new();
 
-        public Dictionary<string, List<string>> KnownStructMethods { get; set; } = new();
+        public Dictionary<string, List<string>> KnownMemberFunctions { get; set; } = new();
 
         public HashSet<string> IgnoredParts { get; set; } = new(StringComparer.OrdinalIgnoreCase);
 

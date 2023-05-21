@@ -91,7 +91,21 @@
                 var functionDefinition = implotDefinitions.Functions[i];
                 for (int j = 0; j < functionDefinition.Overloads.Length; j++)
                 {
-                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(functionDefinition.Overloads[j].ExportedName, functionDefinition.Overloads[j].FriendlyName, functionDefinition.Overloads[j].DefaultValues));
+                    var overload = functionDefinition.Overloads[j];
+                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(overload.ExportedName, overload.FriendlyName, overload.DefaultValues));
+
+                    if (overload.IsMemberFunction && !overload.IsConstructor)
+                    {
+                        if (CsCodeGeneratorSettings.Default.KnownMemberFunctions.TryGetValue(overload.StructName, out var knownFunctions))
+                        {
+                            if (!knownFunctions.Contains(overload.ExportedName))
+                                knownFunctions.Add(overload.ExportedName);
+                        }
+                        else
+                        {
+                            CsCodeGeneratorSettings.Default.KnownMemberFunctions.Add(overload.StructName, new List<string>() { overload.ExportedName });
+                        }
+                    }
                 }
             }
 
@@ -169,7 +183,21 @@
                 var functionDefinition = imnodesDefinitions.Functions[i];
                 for (int j = 0; j < functionDefinition.Overloads.Length; j++)
                 {
-                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(functionDefinition.Overloads[j].ExportedName, functionDefinition.Overloads[j].FriendlyName, functionDefinition.Overloads[j].DefaultValues));
+                    var overload = functionDefinition.Overloads[j];
+                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(overload.ExportedName, overload.FriendlyName, overload.DefaultValues));
+
+                    if (overload.IsMemberFunction && !overload.IsConstructor)
+                    {
+                        if (CsCodeGeneratorSettings.Default.KnownMemberFunctions.TryGetValue(overload.StructName, out var knownFunctions))
+                        {
+                            if (!knownFunctions.Contains(overload.ExportedName))
+                                knownFunctions.Add(overload.ExportedName);
+                        }
+                        else
+                        {
+                            CsCodeGeneratorSettings.Default.KnownMemberFunctions.Add(overload.StructName, new List<string>() { overload.ExportedName });
+                        }
+                    }
                 }
             }
 
@@ -247,7 +275,21 @@
                 var functionDefinition = imguizmoDefinitions.Functions[i];
                 for (int j = 0; j < functionDefinition.Overloads.Length; j++)
                 {
-                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(functionDefinition.Overloads[j].ExportedName, functionDefinition.Overloads[j].FriendlyName, functionDefinition.Overloads[j].DefaultValues));
+                    var overload = functionDefinition.Overloads[j];
+                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(overload.ExportedName, overload.FriendlyName, overload.DefaultValues));
+
+                    if (overload.IsMemberFunction && !overload.IsConstructor)
+                    {
+                        if (CsCodeGeneratorSettings.Default.KnownMemberFunctions.TryGetValue(overload.StructName, out var knownFunctions))
+                        {
+                            if (!knownFunctions.Contains(overload.ExportedName))
+                                knownFunctions.Add(overload.ExportedName);
+                        }
+                        else
+                        {
+                            CsCodeGeneratorSettings.Default.KnownMemberFunctions.Add(overload.StructName, new List<string>() { overload.ExportedName });
+                        }
+                    }
                 }
             }
 
@@ -294,29 +336,21 @@
                 var functionDefinition = imguiDefinitions.Functions[i];
                 for (int j = 0; j < functionDefinition.Overloads.Length; j++)
                 {
-                    //CsCodeGeneratorSettings.Default.AllowedFunctions.Add(functionDefinition.Overloads[j].ExportedName);
-                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(functionDefinition.Overloads[j].ExportedName, functionDefinition.Overloads[j].FriendlyName, functionDefinition.Overloads[j].DefaultValues));
-                }
-            }
-            for (int i = 0; i < imguiDefinitions.Enums.Length; i++)
-            {
-                var enumDefinition = imguiDefinitions.Enums[i];
-                //CsCodeGeneratorSettings.Default.AllowedEnums.Add(enumDefinition.Names[0]);
-            }
-            for (int i = 0; i < imguiDefinitions.Types.Length; i++)
-            {
-                var typeDefinition = imguiDefinitions.Types[i];
-                // CsCodeGeneratorSettings.Default.AllowedTypes.Add(typeDefinition.Name);
-            }
-            for (int i = 0; i < imguiDefinitions.Typedefs.Length; i++)
-            {
-                var typedefDefinition = imguiDefinitions.Typedefs[i];
-                //if (typedefDefinition.Name == "ImGuiContext")
-                //    continue;
-                //CsCodeGeneratorSettings.Default.AllowedTypedefs.Add(typedefDefinition.Name);
-                if (typedefDefinition.IsStruct)
-                {
-                    //CsCodeGeneratorSettings.Default.AllowedTypes.Add(typedefDefinition.Name);
+                    var overload = functionDefinition.Overloads[j];
+                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(overload.ExportedName, overload.FriendlyName, overload.DefaultValues));
+
+                    if (overload.IsMemberFunction && !overload.IsConstructor)
+                    {
+                        if (CsCodeGeneratorSettings.Default.KnownMemberFunctions.TryGetValue(overload.StructName, out var knownFunctions))
+                        {
+                            if (!knownFunctions.Contains(overload.ExportedName))
+                                knownFunctions.Add(overload.ExportedName);
+                        }
+                        else
+                        {
+                            CsCodeGeneratorSettings.Default.KnownMemberFunctions.Add(overload.StructName, new List<string>() { overload.ExportedName });
+                        }
+                    }
                 }
             }
 

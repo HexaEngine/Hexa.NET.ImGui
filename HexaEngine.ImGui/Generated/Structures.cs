@@ -19,6 +19,7 @@ namespace HexaEngine.ImGui
 	{
 		public ImVectorImDrawCmd CmdBuffer;
 		public ImVectorImDrawIdx IdxBuffer;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -27,6 +28,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImDrawCmd* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -39,6 +41,25 @@ namespace HexaEngine.ImGui
 		public uint ElemCount;
 		public unsafe delegate*<ImDrawList*, ImDrawCmd*, void> UserCallback;
 		public unsafe void* UserCallbackData;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImDrawCmd* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe ImTextureID GetTexID()
+		{
+			fixed (ImDrawCmd* @this = &this)
+			{
+				ImTextureID ret = ImGui.GetTexID(@this);
+				return ret;
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -59,6 +80,1352 @@ namespace HexaEngine.ImGui
 		public ImDrawCmdHeader CmdHeader;
 		public ImDrawListSplitter Splitter;
 		public float FringeScale;
+
+
+		public unsafe int _CalcCircleAutoSegmentCount(float radius)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				int ret = ImGui._CalcCircleAutoSegmentCount(@this, radius);
+				return ret;
+			}
+		}
+
+		public unsafe void _ClearFreeMemory()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui._ClearFreeMemory(@this);
+			}
+		}
+
+		public unsafe void _OnChangedClipRect()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui._OnChangedClipRect(@this);
+			}
+		}
+
+		public unsafe void _OnChangedTextureID()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui._OnChangedTextureID(@this);
+			}
+		}
+
+		public unsafe void _OnChangedVtxOffset()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui._OnChangedVtxOffset(@this);
+			}
+		}
+
+		public unsafe void _PathArcToFastEx(Vector2 center, float radius, int aMinSample, int aMaxSample, int aStep)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui._PathArcToFastEx(@this, center, radius, aMinSample, aMaxSample, aStep);
+			}
+		}
+
+		public unsafe void _PathArcToN(Vector2 center, float radius, float aMin, float aMax, int numSegments)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui._PathArcToN(@this, center, radius, aMin, aMax, numSegments);
+			}
+		}
+
+		public unsafe void _PopUnusedDrawCmd()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui._PopUnusedDrawCmd(@this);
+			}
+		}
+
+		public unsafe void _ResetForNewFrame()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui._ResetForNewFrame(@this);
+			}
+		}
+
+		public unsafe void _TryMergeDrawCmds()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui._TryMergeDrawCmds(@this);
+			}
+		}
+
+		public unsafe void AddBezierCubic(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddBezierCubic(@this, p1, p2, p3, p4, col, thickness, numSegments);
+			}
+		}
+
+		public unsafe void AddBezierQuadratic(Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddBezierQuadratic(@this, p1, p2, p3, col, thickness, numSegments);
+			}
+		}
+
+		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*> callback, void* callbackData)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddCallback(@this, callback, callbackData);
+			}
+		}
+
+		public unsafe void AddCircle(Vector2 center, float radius, uint col, int numSegments, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddCircle(@this, center, radius, col, numSegments, thickness);
+			}
+		}
+
+		public unsafe void AddCircleFilled(Vector2 center, float radius, uint col, int numSegments)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddCircleFilled(@this, center, radius, col, numSegments);
+			}
+		}
+
+		public unsafe void AddConvexPolyFilled(ref Vector2 points, int numPoints, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (Vector2* ppoints = &points)
+				{
+					ImGui.AddConvexPolyFilled(@this, ppoints, numPoints, col);
+				}
+			}
+		}
+
+		public unsafe void AddConvexPolyFilled(Vector2* points, int numPoints, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddConvexPolyFilled(@this, points, numPoints, col);
+			}
+		}
+
+		public unsafe void AddDrawCmd()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddDrawCmd(@this);
+			}
+		}
+
+		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddImage(@this, userTextureId, pMin, pMax, uvMin, uvMax, col);
+			}
+		}
+
+		public unsafe void AddImageQuad(ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddImageQuad(@this, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
+			}
+		}
+
+		public unsafe void AddImageRounded(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddImageRounded(@this, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
+			}
+		}
+
+		public unsafe void AddLine(Vector2 p1, Vector2 p2, uint col, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddLine(@this, p1, p2, col, thickness);
+			}
+		}
+
+		public unsafe void AddNgon(Vector2 center, float radius, uint col, int numSegments, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddNgon(@this, center, radius, col, numSegments, thickness);
+			}
+		}
+
+		public unsafe void AddNgonFilled(Vector2 center, float radius, uint col, int numSegments)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddNgonFilled(@this, center, radius, col, numSegments);
+			}
+		}
+
+		public unsafe void AddPolyline(ref Vector2 points, int numPoints, uint col, ImDrawFlags flags, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (Vector2* ppoints = &points)
+				{
+					ImGui.AddPolyline(@this, ppoints, numPoints, col, flags, thickness);
+				}
+			}
+		}
+
+		public unsafe void AddPolyline(Vector2* points, int numPoints, uint col, ImDrawFlags flags, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddPolyline(@this, points, numPoints, col, flags, thickness);
+			}
+		}
+
+		public unsafe void AddQuad(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddQuad(@this, p1, p2, p3, p4, col, thickness);
+			}
+		}
+
+		public unsafe void AddQuadFilled(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddQuadFilled(@this, p1, p2, p3, p4, col);
+			}
+		}
+
+		public unsafe void AddRect(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddRect(@this, pMin, pMax, col, rounding, flags, thickness);
+			}
+		}
+
+		public unsafe void AddRectFilled(Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddRectFilled(@this, pMin, pMax, col, rounding, flags);
+			}
+		}
+
+		public unsafe void AddRectFilledMultiColor(Vector2 pMin, Vector2 pMax, uint colUprLeft, uint colUprRight, uint colBotRight, uint colBotLeft)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddRectFilledMultiColor(@this, pMin, pMax, colUprLeft, colUprRight, colBotRight, colBotLeft);
+			}
+		}
+
+		public unsafe void AddText(Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					ImGui.AddText(@this, pos, col, ptextBegin, textEnd);
+				}
+			}
+		}
+
+		public unsafe void AddText(Vector2 pos, uint col, string textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.AddText(@this, pos, col, pStr0, textEnd);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void AddText(Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImGui.AddText(@this, pos, col, textBegin, ptextEnd);
+				}
+			}
+		}
+
+		public unsafe void AddText(Vector2 pos, uint col, byte* textBegin, string textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.AddText(@this, pos, col, textBegin, pStr0);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void AddText(Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImGui.AddText(@this, pos, col, ptextBegin, ptextEnd);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(Vector2 pos, uint col, string textBegin, string textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				ImGui.AddText(@this, pos, col, pStr0, pStr1);
+				Marshal.FreeHGlobal((nint)pStr1);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void AddText(Vector2 pos, uint col, byte* textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddText(@this, pos, col, textBegin, textEnd);
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					ImGui.AddText(@this, pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					ImGui.AddText(@this, font, fontSize, pos, col, ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.AddText(@this, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						ImGui.AddText(@this, pfont, fontSize, pos, col, ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					ImGui.AddText(@this, pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImGui.AddText(@this, font, fontSize, pos, col, textBegin, ptextEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.AddText(@this, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, cpuFineClipRect);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImGui.AddText(@this, pfont, fontSize, pos, col, textBegin, ptextEnd, wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					ImGui.AddText(@this, pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, cpuFineClipRect);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImGui.AddText(@this, font, fontSize, pos, col, ptextBegin, ptextEnd, wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				ImGui.AddText(@this, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, cpuFineClipRect);
+				Marshal.FreeHGlobal((nint)pStr1);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (byte* ptextEnd = &textEnd)
+						{
+							ImGui.AddText(@this, pfont, fontSize, pos, col, ptextBegin, ptextEnd, wrapWidth, cpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte* pStr1 = null;
+					int pStrSize1 = 0;
+					if (textEnd != null)
+					{
+						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize1 >= Utils.MaxStackallocSize)
+						{
+							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						}
+						else
+						{
+							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+							pStr1 = pStrStack1;
+						}
+						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+						pStr1[pStrOffset1] = 0;
+					}
+					ImGui.AddText(@this, pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, cpuFineClipRect);
+					Marshal.FreeHGlobal((nint)pStr1);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					ImGui.AddText(@this, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, pcpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddText(@this, pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddText(@this, font, fontSize, pos, col, ptextBegin, textEnd, wrapWidth, pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					ImGui.AddText(@this, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, pcpuFineClipRect);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							ImGui.AddText(@this, pfont, fontSize, pos, col, ptextBegin, textEnd, wrapWidth, pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddText(@this, pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, pcpuFineClipRect);
+						Marshal.FreeHGlobal((nint)pStr0);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddText(@this, font, fontSize, pos, col, textBegin, ptextEnd, wrapWidth, pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					ImGui.AddText(@this, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, pcpuFineClipRect);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							ImGui.AddText(@this, pfont, fontSize, pos, col, textBegin, ptextEnd, wrapWidth, pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddText(@this, pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, pcpuFineClipRect);
+						Marshal.FreeHGlobal((nint)pStr0);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							ImGui.AddText(@this, font, fontSize, pos, col, ptextBegin, ptextEnd, wrapWidth, pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					ImGui.AddText(@this, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, pcpuFineClipRect);
+					Marshal.FreeHGlobal((nint)pStr1);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (byte* ptextEnd = &textEnd)
+						{
+							fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+							{
+								ImGui.AddText(@this, pfont, fontSize, pos, col, ptextBegin, ptextEnd, wrapWidth, pcpuFineClipRect);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte* pStr1 = null;
+					int pStrSize1 = 0;
+					if (textEnd != null)
+					{
+						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize1 >= Utils.MaxStackallocSize)
+						{
+							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						}
+						else
+						{
+							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+							pStr1 = pStrStack1;
+						}
+						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+						pStr1[pStrOffset1] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddText(@this, pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, pcpuFineClipRect);
+						Marshal.FreeHGlobal((nint)pStr1);
+						Marshal.FreeHGlobal((nint)pStr0);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddText(@this, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
+			}
+		}
+
+		public unsafe void AddTriangle(Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddTriangle(@this, p1, p2, p3, col, thickness);
+			}
+		}
+
+		public unsafe void AddTriangleFilled(Vector2 p1, Vector2 p2, Vector2 p3, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddTriangleFilled(@this, p1, p2, p3, col);
+			}
+		}
+
+		public unsafe void ChannelsMerge()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.ChannelsMerge(@this);
+			}
+		}
+
+		public unsafe void ChannelsSetCurrent(int n)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.ChannelsSetCurrent(@this, n);
+			}
+		}
+
+		public unsafe void ChannelsSplit(int count)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.ChannelsSplit(@this, count);
+			}
+		}
+
+		public unsafe ImDrawList* CloneOutput()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImDrawList* ret = ImGui.CloneOutput(@this);
+				return ret;
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe void GetClipRectMax(ref Vector2 output, ImDrawList* self)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				ImGui.GetClipRectMax(poutput, self);
+			}
+		}
+
+		public unsafe void GetClipRectMax(Vector2* output, ref ImDrawList self)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				ImGui.GetClipRectMax(output, pself);
+			}
+		}
+
+		public unsafe void GetClipRectMax(ref Vector2 output, ref ImDrawList self)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImDrawList* pself = &self)
+				{
+					ImGui.GetClipRectMax(poutput, pself);
+				}
+			}
+		}
+
+		public unsafe void GetClipRectMax(Vector2* output, ImDrawList* self)
+		{
+			ImGui.GetClipRectMax(output, self);
+		}
+
+		public unsafe void GetClipRectMin(ref Vector2 output, ImDrawList* self)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				ImGui.GetClipRectMin(poutput, self);
+			}
+		}
+
+		public unsafe void GetClipRectMin(Vector2* output, ref ImDrawList self)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				ImGui.GetClipRectMin(output, pself);
+			}
+		}
+
+		public unsafe void GetClipRectMin(ref Vector2 output, ref ImDrawList self)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImDrawList* pself = &self)
+				{
+					ImGui.GetClipRectMin(poutput, pself);
+				}
+			}
+		}
+
+		public unsafe void GetClipRectMin(Vector2* output, ImDrawList* self)
+		{
+			ImGui.GetClipRectMin(output, self);
+		}
+
+		public unsafe void PathArcTo(Vector2 center, float radius, float aMin, float aMax, int numSegments)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PathArcTo(@this, center, radius, aMin, aMax, numSegments);
+			}
+		}
+
+		public unsafe void PathArcToFast(Vector2 center, float radius, int aMinOf12, int aMaxOf12)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PathArcToFast(@this, center, radius, aMinOf12, aMaxOf12);
+			}
+		}
+
+		public unsafe void PathBezierCubicCurveTo(Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PathBezierCubicCurveTo(@this, p2, p3, p4, numSegments);
+			}
+		}
+
+		public unsafe void PathBezierQuadraticCurveTo(Vector2 p2, Vector2 p3, int numSegments)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PathBezierQuadraticCurveTo(@this, p2, p3, numSegments);
+			}
+		}
+
+		public unsafe void PathClear()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PathClear(@this);
+			}
+		}
+
+		public unsafe void PathFillConvex(uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PathFillConvex(@this, col);
+			}
+		}
+
+		public unsafe void PathLineTo(Vector2 pos)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PathLineTo(@this, pos);
+			}
+		}
+
+		public unsafe void PathLineToMergeDuplicate(Vector2 pos)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PathLineToMergeDuplicate(@this, pos);
+			}
+		}
+
+		public unsafe void PathRect(Vector2 rectMin, Vector2 rectMax, float rounding, ImDrawFlags flags)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PathRect(@this, rectMin, rectMax, rounding, flags);
+			}
+		}
+
+		public unsafe void PathStroke(uint col, ImDrawFlags flags, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PathStroke(@this, col, flags, thickness);
+			}
+		}
+
+		public unsafe void PopClipRect()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PopClipRect(@this);
+			}
+		}
+
+		public unsafe void PopTextureID()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PopTextureID(@this);
+			}
+		}
+
+		public unsafe void PrimQuadUV(Vector2 a, Vector2 b, Vector2 c, Vector2 d, Vector2 uvA, Vector2 uvB, Vector2 uvC, Vector2 uvD, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PrimQuadUV(@this, a, b, c, d, uvA, uvB, uvC, uvD, col);
+			}
+		}
+
+		public unsafe void PrimRect(Vector2 a, Vector2 b, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PrimRect(@this, a, b, col);
+			}
+		}
+
+		public unsafe void PrimRectUV(Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PrimRectUV(@this, a, b, uvA, uvB, col);
+			}
+		}
+
+		public unsafe void PrimReserve(int idxCount, int vtxCount)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PrimReserve(@this, idxCount, vtxCount);
+			}
+		}
+
+		public unsafe void PrimUnreserve(int idxCount, int vtxCount)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PrimUnreserve(@this, idxCount, vtxCount);
+			}
+		}
+
+		public unsafe void PrimVtx(Vector2 pos, Vector2 uv, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PrimVtx(@this, pos, uv, col);
+			}
+		}
+
+		public unsafe void PrimWriteIdx(ushort idx)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PrimWriteIdx(@this, idx);
+			}
+		}
+
+		public unsafe void PrimWriteVtx(Vector2 pos, Vector2 uv, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PrimWriteVtx(@this, pos, uv, col);
+			}
+		}
+
+		public unsafe void PushClipRect(Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PushClipRect(@this, clipRectMin, clipRectMax, intersectWithCurrentClipRect);
+			}
+		}
+
+		public unsafe void PushClipRectFullScreen()
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PushClipRectFullScreen(@this);
+			}
+		}
+
+		public unsafe void PushTextureID(ImTextureID textureId)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PushTextureID(@this, textureId);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -67,6 +1434,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ushort* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -75,6 +1443,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImDrawVert* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -83,6 +1452,7 @@ namespace HexaEngine.ImGui
 		public Vector2 Pos;
 		public Vector2 Uv;
 		public uint Col;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -147,6 +1517,18 @@ namespace HexaEngine.ImGui
 		public float ArcFastRadiusCutoff;
 		public unsafe fixed byte CircleSegmentCounts[64];
 		public unsafe Vector4* TexUvLines;
+
+		public unsafe Span<Vector2> ArcFastVtx
+		
+		{
+			get
+			{
+				fixed (Vector2* p = &this.ArcFastVtx_0)
+				{
+					return new Span<Vector2>(p, 48);
+				}
+			}
+		}
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -172,6 +1554,1956 @@ namespace HexaEngine.ImGui
 		public float Descent;
 		public int MetricsTotalSurface;
 		public unsafe fixed byte Used4kPagesMap[2];
+
+
+		public unsafe void AddGlyph(ref ImFontConfig srcCfg, char c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImFontConfig* psrcCfg = &srcCfg)
+				{
+					ImGui.AddGlyph(@this, psrcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
+				}
+			}
+		}
+
+		public unsafe void AddGlyph(ImFontConfig* srcCfg, char c, float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, float advanceX)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				ImGui.AddGlyph(@this, srcCfg, c, x0, y0, x1, y1, u0, v0, u1, v1, advanceX);
+			}
+		}
+
+		public unsafe void AddRemapChar(char dst, char src, bool overwriteDst)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				ImGui.AddRemapChar(@this, dst, src, overwriteDst);
+			}
+		}
+
+		public unsafe void BuildLookupTable()
+		{
+			fixed (ImFont* @this = &this)
+			{
+				ImGui.BuildLookupTable(@this);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, byte** remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, byte** remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, byte** remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, byte** remaining)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, ptextBegin, textEnd, remaining);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, byte** remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
+			Marshal.FreeHGlobal((nint)pStr0);
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, byte** remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, ptextBegin, textEnd, remaining);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, byte** remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, byte** remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, ptextBegin, textEnd, remaining);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, byte** remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, byte** remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, ptextBegin, textEnd, remaining);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, byte** remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, textBegin, ptextEnd, remaining);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, byte** remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
+			Marshal.FreeHGlobal((nint)pStr0);
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, textBegin, ptextEnd, remaining);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, byte** remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, textBegin, ptextEnd, remaining);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, byte** remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, textBegin, ptextEnd, remaining);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, byte** remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, remaining);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, byte** remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
+			Marshal.FreeHGlobal((nint)pStr1);
+			Marshal.FreeHGlobal((nint)pStr0);
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, remaining);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, byte** remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
+				Marshal.FreeHGlobal((nint)pStr1);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, remaining);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, byte** remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
+				Marshal.FreeHGlobal((nint)pStr1);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (byte* ptextEnd = &textEnd)
+						{
+							ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, remaining);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, byte** remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte* pStr1 = null;
+					int pStrSize1 = 0;
+					if (textEnd != null)
+					{
+						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize1 >= Utils.MaxStackallocSize)
+						{
+							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						}
+						else
+						{
+							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+							pStr1 = pStrStack1;
+						}
+						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+						pStr1[pStrOffset1] = 0;
+					}
+					ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
+					Marshal.FreeHGlobal((nint)pStr1);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (byte** premaining = &remaining)
+			{
+				ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, textBegin, textEnd, premaining);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, textBegin, textEnd, premaining);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, textBegin, textEnd, premaining);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, textBegin, textEnd, premaining);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, ptextBegin, textEnd, premaining);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, ref byte* remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte** premaining = &remaining)
+			{
+				ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, pStr0, textEnd, premaining);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, ptextBegin, textEnd, premaining);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, pStr0, textEnd, premaining);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, ptextBegin, textEnd, premaining);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, pStr0, textEnd, premaining);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, ptextBegin, textEnd, premaining);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (byte** premaining = &remaining)
+					{
+						ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, pStr0, textEnd, premaining);
+						Marshal.FreeHGlobal((nint)pStr0);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (byte** premaining = &remaining)
+				{
+					ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, textBegin, ptextEnd, premaining);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, ref byte* remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte** premaining = &remaining)
+			{
+				ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, textBegin, pStr0, premaining);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, textBegin, ptextEnd, premaining);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, textBegin, pStr0, premaining);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, textBegin, ptextEnd, premaining);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, textBegin, pStr0, premaining);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, textBegin, ptextEnd, premaining);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (byte** premaining = &remaining)
+					{
+						ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, textBegin, pStr0, premaining);
+						Marshal.FreeHGlobal((nint)pStr0);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (byte** premaining = &remaining)
+					{
+						ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, premaining);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, ref byte* remaining)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (byte** premaining = &remaining)
+			{
+				ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, pStr0, pStr1, premaining);
+				Marshal.FreeHGlobal((nint)pStr1);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, premaining);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					ImGui.CalcTextSizeA(poutput, self, size, maxWidth, wrapWidth, pStr0, pStr1, premaining);
+					Marshal.FreeHGlobal((nint)pStr1);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (byte** premaining = &remaining)
+						{
+							ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, premaining);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				fixed (byte** premaining = &remaining)
+				{
+					ImGui.CalcTextSizeA(output, pself, size, maxWidth, wrapWidth, pStr0, pStr1, premaining);
+					Marshal.FreeHGlobal((nint)pStr1);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (byte* ptextEnd = &textEnd)
+						{
+							fixed (byte** premaining = &remaining)
+							{
+								ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, ptextBegin, ptextEnd, premaining);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(ref Vector2 output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, ref byte* remaining)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImFont* pself = &self)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte* pStr1 = null;
+					int pStrSize1 = 0;
+					if (textEnd != null)
+					{
+						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize1 >= Utils.MaxStackallocSize)
+						{
+							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						}
+						else
+						{
+							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+							pStr1 = pStrStack1;
+						}
+						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+						pStr1[pStrOffset1] = 0;
+					}
+					fixed (byte** premaining = &remaining)
+					{
+						ImGui.CalcTextSizeA(poutput, pself, size, maxWidth, wrapWidth, pStr0, pStr1, premaining);
+						Marshal.FreeHGlobal((nint)pStr1);
+						Marshal.FreeHGlobal((nint)pStr0);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, byte** remaining)
+		{
+			ImGui.CalcTextSizeA(output, self, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, ref byte text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptext = &text)
+				{
+					string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionA(@this, scale, ptext, textEnd, wrapWidth));
+					return ret;
+				}
+			}
+		}
+
+		public unsafe byte* CalcWordWrapPositionA(float scale, ref byte text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptext = &text)
+				{
+					byte* ret = ImGui.CalcWordWrapPositionA(@this, scale, ptext, textEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, string text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionA(@this, scale, pStr0, textEnd, wrapWidth));
+				Marshal.FreeHGlobal((nint)pStr0);
+				return ret;
+			}
+		}
+
+		public unsafe byte* CalcWordWrapPositionA(float scale, string text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = ImGui.CalcWordWrapPositionA(@this, scale, pStr0, textEnd, wrapWidth);
+				Marshal.FreeHGlobal((nint)pStr0);
+				return ret;
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionA(@this, scale, text, ptextEnd, wrapWidth));
+					return ret;
+				}
+			}
+		}
+
+		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					byte* ret = ImGui.CalcWordWrapPositionA(@this, scale, text, ptextEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionA(@this, scale, text, pStr0, wrapWidth));
+				Marshal.FreeHGlobal((nint)pStr0);
+				return ret;
+			}
+		}
+
+		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = ImGui.CalcWordWrapPositionA(@this, scale, text, pStr0, wrapWidth);
+				Marshal.FreeHGlobal((nint)pStr0);
+				return ret;
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, ref byte text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionA(@this, scale, ptext, ptextEnd, wrapWidth));
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe byte* CalcWordWrapPositionA(float scale, ref byte text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						byte* ret = ImGui.CalcWordWrapPositionA(@this, scale, ptext, ptextEnd, wrapWidth);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, string text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionA(@this, scale, pStr0, pStr1, wrapWidth));
+				Marshal.FreeHGlobal((nint)pStr1);
+				Marshal.FreeHGlobal((nint)pStr0);
+				return ret;
+			}
+		}
+
+		public unsafe byte* CalcWordWrapPositionA(float scale, string text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte* ret = ImGui.CalcWordWrapPositionA(@this, scale, pStr0, pStr1, wrapWidth);
+				Marshal.FreeHGlobal((nint)pStr1);
+				Marshal.FreeHGlobal((nint)pStr0);
+				return ret;
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.CalcWordWrapPositionA(@this, scale, text, textEnd, wrapWidth));
+				return ret;
+			}
+		}
+
+		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte* ret = ImGui.CalcWordWrapPositionA(@this, scale, text, textEnd, wrapWidth);
+				return ret;
+			}
+		}
+
+		public unsafe void ClearOutputData()
+		{
+			fixed (ImFont* @this = &this)
+			{
+				ImGui.ClearOutputData(@this);
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImFont* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe ImFontGlyph* FindGlyph(char c)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				ImFontGlyph* ret = ImGui.FindGlyph(@this, c);
+				return ret;
+			}
+		}
+
+		public unsafe ImFontGlyph* FindGlyphNoFallback(char c)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				ImFontGlyph* ret = ImGui.FindGlyphNoFallback(@this, c);
+				return ret;
+			}
+		}
+
+		public unsafe float GetCharAdvance(char c)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				float ret = ImGui.GetCharAdvance(@this, c);
+				return ret;
+			}
+		}
+
+		public unsafe string GetDebugNameS()
+		{
+			fixed (ImFont* @this = &this)
+			{
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.GetDebugName(@this));
+				return ret;
+			}
+		}
+
+		public unsafe byte* GetDebugName()
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte* ret = ImGui.GetDebugName(@this);
+				return ret;
+			}
+		}
+
+		public unsafe void GrowIndex(int newSize)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				ImGui.GrowIndex(@this, newSize);
+			}
+		}
+
+		public unsafe bool IsGlyphRangeUnused(uint cBegin, uint cLast)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				bool ret = ImGui.IsGlyphRangeUnused(@this, cBegin, cLast);
+				return ret;
+			}
+		}
+
+		public unsafe bool IsLoaded()
+		{
+			fixed (ImFont* @this = &this)
+			{
+				bool ret = ImGui.IsLoaded(@this);
+				return ret;
+			}
+		}
+
+		public unsafe void RenderChar(ref ImDrawList drawList, float size, Vector2 pos, uint col, char c)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					ImGui.RenderChar(@this, pdrawList, size, pos, col, c);
+				}
+			}
+		}
+
+		public unsafe void RenderChar(ImDrawList* drawList, float size, Vector2 pos, uint col, char c)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				ImGui.RenderChar(@this, drawList, size, pos, col, c);
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					ImGui.RenderText(@this, pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					ImGui.RenderText(@this, drawList, size, pos, col, clipRect, ptextBegin, textEnd, wrapWidth, cpuFineClip);
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.RenderText(@this, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						ImGui.RenderText(@this, pdrawList, size, pos, col, clipRect, ptextBegin, textEnd, wrapWidth, cpuFineClip);
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					ImGui.RenderText(@this, pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImGui.RenderText(@this, drawList, size, pos, col, clipRect, textBegin, ptextEnd, wrapWidth, cpuFineClip);
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, string textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.RenderText(@this, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImGui.RenderText(@this, pdrawList, size, pos, col, clipRect, textBegin, ptextEnd, wrapWidth, cpuFineClip);
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, string textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					ImGui.RenderText(@this, pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImGui.RenderText(@this, drawList, size, pos, col, clipRect, ptextBegin, ptextEnd, wrapWidth, cpuFineClip);
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, string textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				ImGui.RenderText(@this, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip);
+				Marshal.FreeHGlobal((nint)pStr1);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, ref byte textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (byte* ptextEnd = &textEnd)
+						{
+							ImGui.RenderText(@this, pdrawList, size, pos, col, clipRect, ptextBegin, ptextEnd, wrapWidth, cpuFineClip);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, string textBegin, string textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte* pStr1 = null;
+					int pStrSize1 = 0;
+					if (textEnd != null)
+					{
+						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize1 >= Utils.MaxStackallocSize)
+						{
+							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						}
+						else
+						{
+							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+							pStr1 = pStrStack1;
+						}
+						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+						pStr1[pStrOffset1] = 0;
+					}
+					ImGui.RenderText(@this, pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip);
+					Marshal.FreeHGlobal((nint)pStr1);
+					Marshal.FreeHGlobal((nint)pStr0);
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				ImGui.RenderText(@this, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
+			}
+		}
+
+		public unsafe void SetGlyphVisible(char c, bool visible)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				ImGui.SetGlyphVisible(@this, c, visible);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -180,6 +3512,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe float* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -188,6 +3521,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe char* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -196,6 +3530,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImFontGlyph* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -213,6 +3548,7 @@ namespace HexaEngine.ImGui
 		public float V0;
 		public float U1;
 		public float V1;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -303,6 +3639,1587 @@ namespace HexaEngine.ImGui
 		public uint FontBuilderFlags;
 		public int PackIdMouseCursors;
 		public int PackIdLines;
+
+		public unsafe Span<Vector4> TexUvLines
+		
+		{
+			get
+			{
+				fixed (Vector4* p = &this.TexUvLines_0)
+				{
+					return new Span<Vector4>(p, 64);
+				}
+			}
+		}
+
+		public unsafe int AddCustomRectFontGlyph(ref ImFont font, char id, int width, int height, float advanceX, Vector2 offset)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					int ret = ImGui.AddCustomRectFontGlyph(@this, pfont, id, width, height, advanceX, offset);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe int AddCustomRectFontGlyph(ImFont* font, char id, int width, int height, float advanceX, Vector2 offset)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				int ret = ImGui.AddCustomRectFontGlyph(@this, font, id, width, height, advanceX, offset);
+				return ret;
+			}
+		}
+
+		public unsafe int AddCustomRectRegular(int width, int height)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				int ret = ImGui.AddCustomRectRegular(@this, width, height);
+				return ret;
+			}
+		}
+
+		public unsafe ImFont* AddFont(ref ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFont* ret = ImGui.AddFont(@this, pfontCfg);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFont(ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFont* ret = ImGui.AddFont(@this, fontCfg);
+				return ret;
+			}
+		}
+
+		public unsafe ImFont* AddFontDefault(ref ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFont* ret = ImGui.AddFontDefault(@this, pfontCfg);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontDefault(ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFont* ret = ImGui.AddFontDefault(@this, fontCfg);
+				return ret;
+			}
+		}
+
+		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = &filename)
+				{
+					ImFont* ret = ImGui.AddFontFromFileTTF(@this, pfilename, sizePixels, fontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (filename != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(filename);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImFont* ret = ImGui.AddFontFromFileTTF(@this, pStr0, sizePixels, fontCfg, glyphRanges);
+				Marshal.FreeHGlobal((nint)pStr0);
+				return ret;
+			}
+		}
+
+		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFont* ret = ImGui.AddFontFromFileTTF(@this, filename, sizePixels, pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = &filename)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						ImFont* ret = ImGui.AddFontFromFileTTF(@this, pfilename, sizePixels, pfontCfg, glyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (filename != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(filename);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFont* ret = ImGui.AddFontFromFileTTF(@this, pStr0, sizePixels, pfontCfg, glyphRanges);
+					Marshal.FreeHGlobal((nint)pStr0);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (char* pglyphRanges = &glyphRanges)
+				{
+					ImFont* ret = ImGui.AddFontFromFileTTF(@this, filename, sizePixels, fontCfg, pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = &filename)
+				{
+					fixed (char* pglyphRanges = &glyphRanges)
+					{
+						ImFont* ret = ImGui.AddFontFromFileTTF(@this, pfilename, sizePixels, fontCfg, pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (filename != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(filename);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (char* pglyphRanges = &glyphRanges)
+				{
+					ImFont* ret = ImGui.AddFontFromFileTTF(@this, pStr0, sizePixels, fontCfg, pglyphRanges);
+					Marshal.FreeHGlobal((nint)pStr0);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (char* pglyphRanges = &glyphRanges)
+					{
+						ImFont* ret = ImGui.AddFontFromFileTTF(@this, filename, sizePixels, pfontCfg, pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromFileTTF(ref byte filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = &filename)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						fixed (char* pglyphRanges = &glyphRanges)
+						{
+							ImFont* ret = ImGui.AddFontFromFileTTF(@this, pfilename, sizePixels, pfontCfg, pglyphRanges);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromFileTTF(string filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (filename != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(filename);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (char* pglyphRanges = &glyphRanges)
+					{
+						ImFont* ret = ImGui.AddFontFromFileTTF(@this, pStr0, sizePixels, pfontCfg, pglyphRanges);
+						Marshal.FreeHGlobal((nint)pStr0);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromFileTTF(byte* filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFont* ret = ImGui.AddFontFromFileTTF(@this, filename, sizePixels, fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
+				{
+					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pcompressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDataBase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDataBase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pStr0, sizePixels, fontCfg, glyphRanges);
+				Marshal.FreeHGlobal((nint)pStr0);
+				return ret;
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, compressedFontDataBase85, sizePixels, pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pcompressedFontDataBase85, sizePixels, pfontCfg, glyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDataBase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDataBase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pStr0, sizePixels, pfontCfg, glyphRanges);
+					Marshal.FreeHGlobal((nint)pStr0);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (char* pglyphRanges = &glyphRanges)
+				{
+					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, compressedFontDataBase85, sizePixels, fontCfg, pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
+				{
+					fixed (char* pglyphRanges = &glyphRanges)
+					{
+						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pcompressedFontDataBase85, sizePixels, fontCfg, pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDataBase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDataBase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (char* pglyphRanges = &glyphRanges)
+				{
+					ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pStr0, sizePixels, fontCfg, pglyphRanges);
+					Marshal.FreeHGlobal((nint)pStr0);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (char* pglyphRanges = &glyphRanges)
+					{
+						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, compressedFontDataBase85, sizePixels, pfontCfg, pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						fixed (char* pglyphRanges = &glyphRanges)
+						{
+							ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pcompressedFontDataBase85, sizePixels, pfontCfg, pglyphRanges);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (compressedFontDataBase85 != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDataBase85);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (char* pglyphRanges = &glyphRanges)
+					{
+						ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, pStr0, sizePixels, pfontCfg, pglyphRanges);
+						Marshal.FreeHGlobal((nint)pStr0);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFont* ret = ImGui.AddFontFromMemoryCompressedBase85TTF(@this, compressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFont* ret = ImGui.AddFontFromMemoryCompressedTTF(@this, compressedFontData, compressedFontSize, sizePixels, pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (char* pglyphRanges = &glyphRanges)
+				{
+					ImFont* ret = ImGui.AddFontFromMemoryCompressedTTF(@this, compressedFontData, compressedFontSize, sizePixels, fontCfg, pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (char* pglyphRanges = &glyphRanges)
+					{
+						ImFont* ret = ImGui.AddFontFromMemoryCompressedTTF(@this, compressedFontData, compressedFontSize, sizePixels, pfontCfg, pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFont* ret = ImGui.AddFontFromMemoryCompressedTTF(@this, compressedFontData, compressedFontSize, sizePixels, fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFont* ret = ImGui.AddFontFromMemoryTTF(@this, fontData, fontSize, sizePixels, pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (char* pglyphRanges = &glyphRanges)
+				{
+					ImFont* ret = ImGui.AddFontFromMemoryTTF(@this, fontData, fontSize, sizePixels, fontCfg, pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (char* pglyphRanges = &glyphRanges)
+					{
+						ImFont* ret = ImGui.AddFontFromMemoryTTF(@this, fontData, fontSize, sizePixels, pfontCfg, pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFont* AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFont* ret = ImGui.AddFontFromMemoryTTF(@this, fontData, fontSize, sizePixels, fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		public unsafe bool Build()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				bool ret = ImGui.Build(@this);
+				return ret;
+			}
+		}
+
+		public unsafe void CalcCustomRectUV(ref ImFontAtlasCustomRect rect, Vector2* outUvMin, Vector2* outUvMax)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontAtlasCustomRect* prect = &rect)
+				{
+					ImGui.CalcCustomRectUV(@this, prect, outUvMin, outUvMax);
+				}
+			}
+		}
+
+		public unsafe void CalcCustomRectUV(ImFontAtlasCustomRect* rect, ref Vector2 outUvMin, Vector2* outUvMax)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutUvMin = &outUvMin)
+				{
+					ImGui.CalcCustomRectUV(@this, rect, poutUvMin, outUvMax);
+				}
+			}
+		}
+
+		public unsafe void CalcCustomRectUV(ref ImFontAtlasCustomRect rect, ref Vector2 outUvMin, Vector2* outUvMax)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontAtlasCustomRect* prect = &rect)
+				{
+					fixed (Vector2* poutUvMin = &outUvMin)
+					{
+						ImGui.CalcCustomRectUV(@this, prect, poutUvMin, outUvMax);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcCustomRectUV(ImFontAtlasCustomRect* rect, Vector2* outUvMin, ref Vector2 outUvMax)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutUvMax = &outUvMax)
+				{
+					ImGui.CalcCustomRectUV(@this, rect, outUvMin, poutUvMax);
+				}
+			}
+		}
+
+		public unsafe void CalcCustomRectUV(ref ImFontAtlasCustomRect rect, Vector2* outUvMin, ref Vector2 outUvMax)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontAtlasCustomRect* prect = &rect)
+				{
+					fixed (Vector2* poutUvMax = &outUvMax)
+					{
+						ImGui.CalcCustomRectUV(@this, prect, outUvMin, poutUvMax);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcCustomRectUV(ImFontAtlasCustomRect* rect, ref Vector2 outUvMin, ref Vector2 outUvMax)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutUvMin = &outUvMin)
+				{
+					fixed (Vector2* poutUvMax = &outUvMax)
+					{
+						ImGui.CalcCustomRectUV(@this, rect, poutUvMin, poutUvMax);
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcCustomRectUV(ref ImFontAtlasCustomRect rect, ref Vector2 outUvMin, ref Vector2 outUvMax)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (ImFontAtlasCustomRect* prect = &rect)
+				{
+					fixed (Vector2* poutUvMin = &outUvMin)
+					{
+						fixed (Vector2* poutUvMax = &outUvMax)
+						{
+							ImGui.CalcCustomRectUV(@this, prect, poutUvMin, poutUvMax);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void CalcCustomRectUV(ImFontAtlasCustomRect* rect, Vector2* outUvMin, Vector2* outUvMax)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImGui.CalcCustomRectUV(@this, rect, outUvMin, outUvMax);
+			}
+		}
+
+		public unsafe void Clear()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImGui.Clear(@this);
+			}
+		}
+
+		public unsafe void ClearFonts()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImGui.ClearFonts(@this);
+			}
+		}
+
+		public unsafe void ClearInputData()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImGui.ClearInputData(@this);
+			}
+		}
+
+		public unsafe void ClearTexData()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImGui.ClearTexData(@this);
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe ImFontAtlasCustomRect* GetCustomRectByIndex(int index)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImFontAtlasCustomRect* ret = ImGui.GetCustomRectByIndex(@this, index);
+				return ret;
+			}
+		}
+
+		public unsafe char* GetGlyphRangesChineseFull()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				char* ret = ImGui.GetGlyphRangesChineseFull(@this);
+				return ret;
+			}
+		}
+
+		public unsafe char* GetGlyphRangesChineseSimplifiedCommon()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				char* ret = ImGui.GetGlyphRangesChineseSimplifiedCommon(@this);
+				return ret;
+			}
+		}
+
+		public unsafe char* GetGlyphRangesCyrillic()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				char* ret = ImGui.GetGlyphRangesCyrillic(@this);
+				return ret;
+			}
+		}
+
+		public unsafe char* GetGlyphRangesDefault()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				char* ret = ImGui.GetGlyphRangesDefault(@this);
+				return ret;
+			}
+		}
+
+		public unsafe char* GetGlyphRangesGreek()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				char* ret = ImGui.GetGlyphRangesGreek(@this);
+				return ret;
+			}
+		}
+
+		public unsafe char* GetGlyphRangesJapanese()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				char* ret = ImGui.GetGlyphRangesJapanese(@this);
+				return ret;
+			}
+		}
+
+		public unsafe char* GetGlyphRangesKorean()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				char* ret = ImGui.GetGlyphRangesKorean(@this);
+				return ret;
+			}
+		}
+
+		public unsafe char* GetGlyphRangesThai()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				char* ret = ImGui.GetGlyphRangesThai(@this);
+				return ret;
+			}
+		}
+
+		public unsafe char* GetGlyphRangesVietnamese()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				char* ret = ImGui.GetGlyphRangesVietnamese(@this);
+				return ret;
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, Vector2* outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutOffset = &outOffset)
+				{
+					bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, outSize, outUvBorder, outUvFill);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, Vector2* outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutSize = &outSize)
+				{
+					bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, poutSize, outUvBorder, outUvFill);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, ref Vector2 outSize, Vector2* outUvBorder, Vector2* outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutOffset = &outOffset)
+				{
+					fixed (Vector2* poutSize = &outSize)
+					{
+						bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, poutSize, outUvBorder, outUvFill);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutUvBorder = &outUvBorder)
+				{
+					bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, outSize, poutUvBorder, outUvFill);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, Vector2* outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutOffset = &outOffset)
+				{
+					fixed (Vector2* poutUvBorder = &outUvBorder)
+					{
+						bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, outSize, poutUvBorder, outUvFill);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutSize = &outSize)
+				{
+					fixed (Vector2* poutUvBorder = &outUvBorder)
+					{
+						bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, poutSize, poutUvBorder, outUvFill);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutOffset = &outOffset)
+				{
+					fixed (Vector2* poutSize = &outSize)
+					{
+						fixed (Vector2* poutUvBorder = &outUvBorder)
+						{
+							bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, poutSize, poutUvBorder, outUvFill);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutUvFill = &outUvFill)
+				{
+					bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, outSize, outUvBorder, poutUvFill);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutOffset = &outOffset)
+				{
+					fixed (Vector2* poutUvFill = &outUvFill)
+					{
+						bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, outSize, outUvBorder, poutUvFill);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutSize = &outSize)
+				{
+					fixed (Vector2* poutUvFill = &outUvFill)
+					{
+						bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, poutSize, outUvBorder, poutUvFill);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, ref Vector2 outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutOffset = &outOffset)
+				{
+					fixed (Vector2* poutSize = &outSize)
+					{
+						fixed (Vector2* poutUvFill = &outUvFill)
+						{
+							bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, poutSize, outUvBorder, poutUvFill);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutUvBorder = &outUvBorder)
+				{
+					fixed (Vector2* poutUvFill = &outUvFill)
+					{
+						bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, outSize, poutUvBorder, poutUvFill);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, Vector2* outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutOffset = &outOffset)
+				{
+					fixed (Vector2* poutUvBorder = &outUvBorder)
+					{
+						fixed (Vector2* poutUvFill = &outUvFill)
+						{
+							bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, outSize, poutUvBorder, poutUvFill);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutSize = &outSize)
+				{
+					fixed (Vector2* poutUvBorder = &outUvBorder)
+					{
+						fixed (Vector2* poutUvFill = &outUvFill)
+						{
+							bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, poutSize, poutUvBorder, poutUvFill);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutOffset = &outOffset)
+				{
+					fixed (Vector2* poutSize = &outSize)
+					{
+						fixed (Vector2* poutUvBorder = &outUvBorder)
+						{
+							fixed (Vector2* poutUvFill = &outUvFill)
+							{
+								bool ret = ImGui.GetMouseCursorTexData(@this, cursor, poutOffset, poutSize, poutUvBorder, poutUvFill);
+								return ret;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, Vector2* outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				bool ret = ImGui.GetMouseCursorTexData(@this, cursor, outOffset, outSize, outUvBorder, outUvFill);
+				return ret;
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(ref byte* outPixels, int* outWidth, int* outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					ImGui.GetTexDataAsAlpha8(@this, poutPixels, outWidth, outHeight, outBytesPerPixel);
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(byte** outPixels, ref int outWidth, int* outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (int* poutWidth = &outWidth)
+				{
+					ImGui.GetTexDataAsAlpha8(@this, outPixels, poutWidth, outHeight, outBytesPerPixel);
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(ref byte* outPixels, ref int outWidth, int* outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					fixed (int* poutWidth = &outWidth)
+					{
+						ImGui.GetTexDataAsAlpha8(@this, poutPixels, poutWidth, outHeight, outBytesPerPixel);
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(byte** outPixels, int* outWidth, ref int outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (int* poutHeight = &outHeight)
+				{
+					ImGui.GetTexDataAsAlpha8(@this, outPixels, outWidth, poutHeight, outBytesPerPixel);
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(ref byte* outPixels, int* outWidth, ref int outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					fixed (int* poutHeight = &outHeight)
+					{
+						ImGui.GetTexDataAsAlpha8(@this, poutPixels, outWidth, poutHeight, outBytesPerPixel);
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(byte** outPixels, ref int outWidth, ref int outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (int* poutWidth = &outWidth)
+				{
+					fixed (int* poutHeight = &outHeight)
+					{
+						ImGui.GetTexDataAsAlpha8(@this, outPixels, poutWidth, poutHeight, outBytesPerPixel);
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(ref byte* outPixels, ref int outWidth, ref int outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					fixed (int* poutWidth = &outWidth)
+					{
+						fixed (int* poutHeight = &outHeight)
+						{
+							ImGui.GetTexDataAsAlpha8(@this, poutPixels, poutWidth, poutHeight, outBytesPerPixel);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(byte** outPixels, int* outWidth, int* outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+				{
+					ImGui.GetTexDataAsAlpha8(@this, outPixels, outWidth, outHeight, poutBytesPerPixel);
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(ref byte* outPixels, int* outWidth, int* outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+					{
+						ImGui.GetTexDataAsAlpha8(@this, poutPixels, outWidth, outHeight, poutBytesPerPixel);
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(byte** outPixels, ref int outWidth, int* outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (int* poutWidth = &outWidth)
+				{
+					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+					{
+						ImGui.GetTexDataAsAlpha8(@this, outPixels, poutWidth, outHeight, poutBytesPerPixel);
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(ref byte* outPixels, ref int outWidth, int* outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					fixed (int* poutWidth = &outWidth)
+					{
+						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+						{
+							ImGui.GetTexDataAsAlpha8(@this, poutPixels, poutWidth, outHeight, poutBytesPerPixel);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(byte** outPixels, int* outWidth, ref int outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (int* poutHeight = &outHeight)
+				{
+					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+					{
+						ImGui.GetTexDataAsAlpha8(@this, outPixels, outWidth, poutHeight, poutBytesPerPixel);
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(ref byte* outPixels, int* outWidth, ref int outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					fixed (int* poutHeight = &outHeight)
+					{
+						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+						{
+							ImGui.GetTexDataAsAlpha8(@this, poutPixels, outWidth, poutHeight, poutBytesPerPixel);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(byte** outPixels, ref int outWidth, ref int outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (int* poutWidth = &outWidth)
+				{
+					fixed (int* poutHeight = &outHeight)
+					{
+						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+						{
+							ImGui.GetTexDataAsAlpha8(@this, outPixels, poutWidth, poutHeight, poutBytesPerPixel);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(ref byte* outPixels, ref int outWidth, ref int outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					fixed (int* poutWidth = &outWidth)
+					{
+						fixed (int* poutHeight = &outHeight)
+						{
+							fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+							{
+								ImGui.GetTexDataAsAlpha8(@this, poutPixels, poutWidth, poutHeight, poutBytesPerPixel);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsAlpha8(byte** outPixels, int* outWidth, int* outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImGui.GetTexDataAsAlpha8(@this, outPixels, outWidth, outHeight, outBytesPerPixel);
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(ref byte* outPixels, int* outWidth, int* outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					ImGui.GetTexDataAsRGBA32(@this, poutPixels, outWidth, outHeight, outBytesPerPixel);
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(byte** outPixels, ref int outWidth, int* outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (int* poutWidth = &outWidth)
+				{
+					ImGui.GetTexDataAsRGBA32(@this, outPixels, poutWidth, outHeight, outBytesPerPixel);
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(ref byte* outPixels, ref int outWidth, int* outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					fixed (int* poutWidth = &outWidth)
+					{
+						ImGui.GetTexDataAsRGBA32(@this, poutPixels, poutWidth, outHeight, outBytesPerPixel);
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(byte** outPixels, int* outWidth, ref int outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (int* poutHeight = &outHeight)
+				{
+					ImGui.GetTexDataAsRGBA32(@this, outPixels, outWidth, poutHeight, outBytesPerPixel);
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(ref byte* outPixels, int* outWidth, ref int outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					fixed (int* poutHeight = &outHeight)
+					{
+						ImGui.GetTexDataAsRGBA32(@this, poutPixels, outWidth, poutHeight, outBytesPerPixel);
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(byte** outPixels, ref int outWidth, ref int outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (int* poutWidth = &outWidth)
+				{
+					fixed (int* poutHeight = &outHeight)
+					{
+						ImGui.GetTexDataAsRGBA32(@this, outPixels, poutWidth, poutHeight, outBytesPerPixel);
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(ref byte* outPixels, ref int outWidth, ref int outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					fixed (int* poutWidth = &outWidth)
+					{
+						fixed (int* poutHeight = &outHeight)
+						{
+							ImGui.GetTexDataAsRGBA32(@this, poutPixels, poutWidth, poutHeight, outBytesPerPixel);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(byte** outPixels, int* outWidth, int* outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+				{
+					ImGui.GetTexDataAsRGBA32(@this, outPixels, outWidth, outHeight, poutBytesPerPixel);
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(ref byte* outPixels, int* outWidth, int* outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+					{
+						ImGui.GetTexDataAsRGBA32(@this, poutPixels, outWidth, outHeight, poutBytesPerPixel);
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(byte** outPixels, ref int outWidth, int* outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (int* poutWidth = &outWidth)
+				{
+					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+					{
+						ImGui.GetTexDataAsRGBA32(@this, outPixels, poutWidth, outHeight, poutBytesPerPixel);
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(ref byte* outPixels, ref int outWidth, int* outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					fixed (int* poutWidth = &outWidth)
+					{
+						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+						{
+							ImGui.GetTexDataAsRGBA32(@this, poutPixels, poutWidth, outHeight, poutBytesPerPixel);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(byte** outPixels, int* outWidth, ref int outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (int* poutHeight = &outHeight)
+				{
+					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+					{
+						ImGui.GetTexDataAsRGBA32(@this, outPixels, outWidth, poutHeight, poutBytesPerPixel);
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(ref byte* outPixels, int* outWidth, ref int outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					fixed (int* poutHeight = &outHeight)
+					{
+						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+						{
+							ImGui.GetTexDataAsRGBA32(@this, poutPixels, outWidth, poutHeight, poutBytesPerPixel);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(byte** outPixels, ref int outWidth, ref int outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (int* poutWidth = &outWidth)
+				{
+					fixed (int* poutHeight = &outHeight)
+					{
+						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+						{
+							ImGui.GetTexDataAsRGBA32(@this, outPixels, poutWidth, poutHeight, poutBytesPerPixel);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(ref byte* outPixels, ref int outWidth, ref int outHeight, ref int outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte** poutPixels = &outPixels)
+				{
+					fixed (int* poutWidth = &outWidth)
+					{
+						fixed (int* poutHeight = &outHeight)
+						{
+							fixed (int* poutBytesPerPixel = &outBytesPerPixel)
+							{
+								ImGui.GetTexDataAsRGBA32(@this, poutPixels, poutWidth, poutHeight, poutBytesPerPixel);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void GetTexDataAsRGBA32(byte** outPixels, int* outWidth, int* outHeight, int* outBytesPerPixel)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImGui.GetTexDataAsRGBA32(@this, outPixels, outWidth, outHeight, outBytesPerPixel);
+			}
+		}
+
+		public unsafe bool IsBuilt()
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				bool ret = ImGui.IsBuilt(@this);
+				return ret;
+			}
+		}
+
+		public unsafe void SetTexID(ImTextureID id)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				ImGui.SetTexID(@this, id);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -311,6 +5228,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImFont** Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -319,6 +5237,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImFontAtlasCustomRect* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -332,6 +5251,25 @@ namespace HexaEngine.ImGui
 		public float GlyphAdvanceX;
 		public Vector2 GlyphOffset;
 		public unsafe ImFont* Font;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImFontAtlasCustomRect* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe bool IsPacked()
+		{
+			fixed (ImFontAtlasCustomRect* @this = &this)
+			{
+				bool ret = ImGui.IsPacked(@this);
+				return ret;
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -340,6 +5278,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImFontConfig* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -364,12 +5303,23 @@ namespace HexaEngine.ImGui
 		public char EllipsisChar;
 		public unsafe fixed byte Name[40];
 		public unsafe ImFont* DstFont;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImFontConfig* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontBuilderIO
 	{
 		public unsafe delegate*<ImFontAtlas*, bool>* FontBuilderBuild;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -378,6 +5328,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe Vector2* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -386,6 +5337,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe Vector4* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -394,6 +5346,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImTextureID* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -402,6 +5355,7 @@ namespace HexaEngine.ImGui
 		public Vector4 ClipRect;
 		public ImTextureID TextureId;
 		public uint VtxOffset;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -410,6 +5364,89 @@ namespace HexaEngine.ImGui
 		public int Current;
 		public int Count;
 		public ImVectorImDrawChannel Channels;
+
+
+		public unsafe void Clear()
+		{
+			fixed (ImDrawListSplitter* @this = &this)
+			{
+				ImGui.Clear(@this);
+			}
+		}
+
+		public unsafe void ClearFreeMemory()
+		{
+			fixed (ImDrawListSplitter* @this = &this)
+			{
+				ImGui.ClearFreeMemory(@this);
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImDrawListSplitter* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe void Merge(ref ImDrawList drawList)
+		{
+			fixed (ImDrawListSplitter* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					ImGui.Merge(@this, pdrawList);
+				}
+			}
+		}
+
+		public unsafe void Merge(ImDrawList* drawList)
+		{
+			fixed (ImDrawListSplitter* @this = &this)
+			{
+				ImGui.Merge(@this, drawList);
+			}
+		}
+
+		public unsafe void SetCurrentChannel(ref ImDrawList drawList, int channelIdx)
+		{
+			fixed (ImDrawListSplitter* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					ImGui.SetCurrentChannel(@this, pdrawList, channelIdx);
+				}
+			}
+		}
+
+		public unsafe void SetCurrentChannel(ImDrawList* drawList, int channelIdx)
+		{
+			fixed (ImDrawListSplitter* @this = &this)
+			{
+				ImGui.SetCurrentChannel(@this, drawList, channelIdx);
+			}
+		}
+
+		public unsafe void Split(ref ImDrawList drawList, int count)
+		{
+			fixed (ImDrawListSplitter* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					ImGui.Split(@this, pdrawList, count);
+				}
+			}
+		}
+
+		public unsafe void Split(ImDrawList* drawList, int count)
+		{
+			fixed (ImDrawListSplitter* @this = &this)
+			{
+				ImGui.Split(@this, drawList, count);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -418,6 +5455,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImDrawChannel* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -432,6 +5470,40 @@ namespace HexaEngine.ImGui
 		public Vector2 DisplaySize;
 		public Vector2 FramebufferScale;
 		public unsafe ImGuiViewport* OwnerViewport;
+
+
+		public unsafe void Clear()
+		{
+			fixed (ImDrawData* @this = &this)
+			{
+				ImGui.Clear(@this);
+			}
+		}
+
+		public unsafe void DeIndexAllBuffers()
+		{
+			fixed (ImDrawData* @this = &this)
+			{
+				ImGui.DeIndexAllBuffers(@this);
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImDrawData* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe void ScaleClipRects(Vector2 fbScale)
+		{
+			fixed (ImDrawData* @this = &this)
+			{
+				ImGui.ScaleClipRects(@this, fbScale);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -454,12 +5526,307 @@ namespace HexaEngine.ImGui
 		public bool PlatformRequestMove;
 		public bool PlatformRequestResize;
 		public bool PlatformRequestClose;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiViewport* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe void GetCenter(ref Vector2 output, ImGuiViewport* self)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				ImGui.GetCenter(poutput, self);
+			}
+		}
+
+		public unsafe void GetCenter(Vector2* output, ref ImGuiViewport self)
+		{
+			fixed (ImGuiViewport* pself = &self)
+			{
+				ImGui.GetCenter(output, pself);
+			}
+		}
+
+		public unsafe void GetCenter(ref Vector2 output, ref ImGuiViewport self)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImGuiViewport* pself = &self)
+				{
+					ImGui.GetCenter(poutput, pself);
+				}
+			}
+		}
+
+		public unsafe void GetCenter(Vector2* output, ImGuiViewport* self)
+		{
+			ImGui.GetCenter(output, self);
+		}
+
+		public unsafe void GetWorkCenter(ref Vector2 output, ImGuiViewport* self)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				ImGui.GetWorkCenter(poutput, self);
+			}
+		}
+
+		public unsafe void GetWorkCenter(Vector2* output, ref ImGuiViewport self)
+		{
+			fixed (ImGuiViewport* pself = &self)
+			{
+				ImGui.GetWorkCenter(output, pself);
+			}
+		}
+
+		public unsafe void GetWorkCenter(ref Vector2 output, ref ImGuiViewport self)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImGuiViewport* pself = &self)
+				{
+					ImGui.GetWorkCenter(poutput, pself);
+				}
+			}
+		}
+
+		public unsafe void GetWorkCenter(Vector2* output, ImGuiViewport* self)
+		{
+			ImGui.GetWorkCenter(output, self);
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontGlyphRangesBuilder
 	{
 		public ImVectorImU32 UsedChars;
+
+
+		public unsafe void AddChar(char c)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				ImGui.AddChar(@this, c);
+			}
+		}
+
+		public unsafe void AddRanges(ref char ranges)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				fixed (char* pranges = &ranges)
+				{
+					ImGui.AddRanges(@this, pranges);
+				}
+			}
+		}
+
+		public unsafe void AddRanges(char* ranges)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				ImGui.AddRanges(@this, ranges);
+			}
+		}
+
+		public unsafe void AddText(ref byte text, byte* textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				fixed (byte* ptext = &text)
+				{
+					ImGui.AddText(@this, ptext, textEnd);
+				}
+			}
+		}
+
+		public unsafe void AddText(string text, byte* textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.AddText(@this, pStr0, textEnd);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void AddText(byte* text, ref byte textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImGui.AddText(@this, text, ptextEnd);
+				}
+			}
+		}
+
+		public unsafe void AddText(byte* text, string textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.AddText(@this, text, pStr0);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void AddText(ref byte text, ref byte textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImGui.AddText(@this, ptext, ptextEnd);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(string text, string textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				ImGui.AddText(@this, pStr0, pStr1);
+				Marshal.FreeHGlobal((nint)pStr1);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void AddText(byte* text, byte* textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				ImGui.AddText(@this, text, textEnd);
+			}
+		}
+
+		public unsafe void BuildRanges(ref ImVectorImWchar outRanges)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				fixed (ImVectorImWchar* poutRanges = &outRanges)
+				{
+					ImGui.BuildRanges(@this, poutRanges);
+				}
+			}
+		}
+
+		public unsafe void BuildRanges(ImVectorImWchar* outRanges)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				ImGui.BuildRanges(@this, outRanges);
+			}
+		}
+
+		public unsafe void Clear()
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				ImGui.Clear(@this);
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe bool GetBit(nuint n)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				bool ret = ImGui.GetBit(@this, n);
+				return ret;
+			}
+		}
+
+		public unsafe void SetBit(nuint n)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				ImGui.SetBit(@this, n);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -468,12 +5835,39 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe uint* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImColor
 	{
 		public Vector4 Value;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImColor* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe void HSV(float h, float s, float v, float a)
+		{
+			fixed (ImColor* @this = &this)
+			{
+				ImGui.HSV(@this, h, s, v, a);
+			}
+		}
+
+		public unsafe void SetHSV(float h, float s, float v, float a)
+		{
+			fixed (ImColor* @this = &this)
+			{
+				ImGui.SetHSV(@this, h, s, v, a);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -879,6 +6273,18 @@ namespace HexaEngine.ImGui
 		public int WantCaptureKeyboardNextFrame;
 		public int WantTextInputNextFrame;
 		public ImVectorChar TempBuffer;
+
+		public unsafe Span<ImGuiKeyOwnerData> KeysOwnerData
+		
+		{
+			get
+			{
+				fixed (ImGuiKeyOwnerData* p = &this.KeysOwnerData_0)
+				{
+					return new Span<ImGuiKeyOwnerData>(p, 140);
+				}
+			}
+		}
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1646,6 +7052,206 @@ namespace HexaEngine.ImGui
 		public bool BackendUsingLegacyNavInputArray;
 		public char InputQueueSurrogate;
 		public ImVectorImWchar InputQueueCharacters;
+
+		public unsafe Span<ImGuiKeyData> KeysData
+		
+		{
+			get
+			{
+				fixed (ImGuiKeyData* p = &this.KeysData_0)
+				{
+					return new Span<ImGuiKeyData>(p, 652);
+				}
+			}
+		}
+		public unsafe Span<Vector2> MouseClickedPos
+		
+		{
+			get
+			{
+				fixed (Vector2* p = &this.MouseClickedPos_0)
+				{
+					return new Span<Vector2>(p, 5);
+				}
+			}
+		}
+		public unsafe Span<Vector2> MouseDragMaxDistanceAbs
+		
+		{
+			get
+			{
+				fixed (Vector2* p = &this.MouseDragMaxDistanceAbs_0)
+				{
+					return new Span<Vector2>(p, 5);
+				}
+			}
+		}
+
+		public unsafe void AddFocusEvent(bool focused)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.AddFocusEvent(@this, focused);
+			}
+		}
+
+		public unsafe void AddInputCharacter(uint c)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.AddInputCharacter(@this, c);
+			}
+		}
+
+		public unsafe void AddInputCharactersUTF8(ref byte str)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				fixed (byte* pstr = &str)
+				{
+					ImGui.AddInputCharactersUTF8(@this, pstr);
+				}
+			}
+		}
+
+		public unsafe void AddInputCharactersUTF8(string str)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (str != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(str);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.AddInputCharactersUTF8(@this, pStr0);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void AddInputCharactersUTF8(byte* str)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.AddInputCharactersUTF8(@this, str);
+			}
+		}
+
+		public unsafe void AddInputCharacterUTF16(char c)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.AddInputCharacterUTF16(@this, c);
+			}
+		}
+
+		public unsafe void AddKeyAnalogEvent(ImGuiKey key, bool down, float v)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.AddKeyAnalogEvent(@this, key, down, v);
+			}
+		}
+
+		public unsafe void AddKeyEvent(ImGuiKey key, bool down)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.AddKeyEvent(@this, key, down);
+			}
+		}
+
+		public unsafe void AddMouseButtonEvent(int button, bool down)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.AddMouseButtonEvent(@this, button, down);
+			}
+		}
+
+		public unsafe void AddMousePosEvent(float x, float y)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.AddMousePosEvent(@this, x, y);
+			}
+		}
+
+		public unsafe void AddMouseSourceEvent(ImGuiMouseSource source)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.AddMouseSourceEvent(@this, source);
+			}
+		}
+
+		public unsafe void AddMouseViewportEvent(int id)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.AddMouseViewportEvent(@this, id);
+			}
+		}
+
+		public unsafe void AddMouseWheelEvent(float wheelX, float wheelY)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.AddMouseWheelEvent(@this, wheelX, wheelY);
+			}
+		}
+
+		public unsafe void ClearInputCharacters()
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.ClearInputCharacters(@this);
+			}
+		}
+
+		public unsafe void ClearInputKeys()
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.ClearInputKeys(@this);
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe void SetAppAcceptingEvents(bool acceptingEvents)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.SetAppAcceptingEvents(@this, acceptingEvents);
+			}
+		}
+
+		public unsafe void SetKeyEventNativeData(ImGuiKey key, int nativeKeycode, int nativeScancode, int nativeLegacyIndex)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				ImGui.SetKeyEventNativeData(@this, key, nativeKeycode, nativeScancode, nativeLegacyIndex);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1654,6 +7260,16 @@ namespace HexaEngine.ImGui
 		public bool WantVisible;
 		public Vector2 InputPos;
 		public float InputLineHeight;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiPlatformImeData* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1663,6 +7279,7 @@ namespace HexaEngine.ImGui
 		public float DownDuration;
 		public float DownDurationPrev;
 		public float AnalogValue;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1693,6 +7310,16 @@ namespace HexaEngine.ImGui
 		public unsafe delegate*<ImGuiViewport*, void*, void>* RendererSwapBuffers;
 		public ImVectorImGuiPlatformMonitor Monitors;
 		public ImVectorImGuiViewportPtr Viewports;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiPlatformIO* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1701,6 +7328,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiPlatformMonitor* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1712,6 +7340,16 @@ namespace HexaEngine.ImGui
 		public Vector2 WorkSize;
 		public float DpiScale;
 		public unsafe void* PlatformHandle;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiPlatformMonitor* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1720,6 +7358,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiViewport** Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1823,6 +7462,35 @@ namespace HexaEngine.ImGui
 		public Vector4 Colors_52;
 		public Vector4 Colors_53;
 		public Vector4 Colors_54;
+
+		public unsafe Span<Vector4> Colors
+		
+		{
+			get
+			{
+				fixed (Vector4* p = &this.Colors_0)
+				{
+					return new Span<Vector4>(p, 55);
+				}
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiStyle* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe void ScaleAllSizes(float scaleFactor)
+		{
+			fixed (ImGuiStyle* @this = &this)
+			{
+				ImGui.ScaleAllSizes(@this, scaleFactor);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1831,6 +7499,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiInputEvent* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Explicit)]
@@ -1850,6 +7519,7 @@ namespace HexaEngine.ImGui
 		public ImGuiInputEventText Text;
 		[FieldOffset(0)]
 		public ImGuiInputEventAppFocused AppFocused;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1860,6 +7530,7 @@ namespace HexaEngine.ImGui
 		public uint EventId;
 		public ImGuiInputEventUnion ImGuiInputEventUnion;
 		public bool AddedByTestEngine;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1868,6 +7539,7 @@ namespace HexaEngine.ImGui
 		public float PosX;
 		public float PosY;
 		public ImGuiMouseSource MouseSource;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1876,6 +7548,7 @@ namespace HexaEngine.ImGui
 		public float WheelX;
 		public float WheelY;
 		public ImGuiMouseSource MouseSource;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1884,12 +7557,14 @@ namespace HexaEngine.ImGui
 		public int Button;
 		public bool Down;
 		public ImGuiMouseSource MouseSource;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiInputEventMouseViewport
 	{
 		public int HoveredViewportID;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1898,18 +7573,21 @@ namespace HexaEngine.ImGui
 		public ImGuiKey Key;
 		public bool Down;
 		public float AnalogValue;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiInputEventText
 	{
 		public uint Char;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiInputEventAppFocused
 	{
 		public bool Focused;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1918,6 +7596,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiWindow** Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2044,6 +7723,29 @@ namespace HexaEngine.ImGui
 		public int DockId;
 		public ImGuiItemStatusFlags DockTabItemStatusFlags;
 		public ImRect DockTabItemRect;
+
+		public unsafe Span<ImRect> NavRectRel
+		
+		{
+			get
+			{
+				fixed (ImRect* p = &this.NavRectRel_0)
+				{
+					return new Span<ImRect>(p, 2);
+				}
+			}
+		}
+		public unsafe Span<Vector2> NavPreferredScoringPosRel
+		
+		{
+			get
+			{
+				fixed (Vector2* p = &this.NavPreferredScoringPosRel_0)
+				{
+					return new Span<Vector2>(p, 2);
+				}
+			}
+		}
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2057,6 +7759,16 @@ namespace HexaEngine.ImGui
 		public ImGuiDockNodeFlags DockNodeFlagsOverrideSet;
 		public bool DockingAlwaysTabBar;
 		public bool DockingAllowUnclassed;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiWindowClass* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2085,6 +7797,7 @@ namespace HexaEngine.ImGui
 		public Vector2 WorkOffsetMax;
 		public Vector2 BuildWorkOffsetMin;
 		public Vector2 BuildWorkOffsetMax;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2092,6 +7805,18 @@ namespace HexaEngine.ImGui
 	{
 		public ImVectorImDrawListPtr Layers_0;
 		public ImVectorImDrawListPtr Layers_1;
+
+		public unsafe Span<ImVectorImDrawListPtr> Layers
+		
+		{
+			get
+			{
+				fixed (ImVectorImDrawListPtr* p = &this.Layers_0)
+				{
+					return new Span<ImVectorImDrawListPtr>(p, 2);
+				}
+			}
+		}
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2100,6 +7825,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImDrawList** Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2108,6 +7834,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe int* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2149,12 +7876,14 @@ namespace HexaEngine.ImGui
 		public float TextWrapPos;
 		public ImVectorFloat ItemWidthStack;
 		public ImVectorFloat TextWrapPosStack;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImVec1
 	{
 		public float X;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2168,12 +7897,143 @@ namespace HexaEngine.ImGui
 		public ushort OffsetShortcut;
 		public ushort OffsetMark;
 		public unsafe fixed ushort Widths[4];
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiStorage
 	{
 		public ImVectorImGuiStoragePair Data;
+
+
+		public unsafe void BuildSortByKey()
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				ImGui.BuildSortByKey(@this);
+			}
+		}
+
+		public unsafe void Clear()
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				ImGui.Clear(@this);
+			}
+		}
+
+		public unsafe bool GetBool(int key, bool defaultVal)
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				bool ret = ImGui.GetBool(@this, key, defaultVal);
+				return ret;
+			}
+		}
+
+		public unsafe bool* GetBoolRef(int key, bool defaultVal)
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				bool* ret = ImGui.GetBoolRef(@this, key, defaultVal);
+				return ret;
+			}
+		}
+
+		public unsafe float GetFloat(int key, float defaultVal)
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				float ret = ImGui.GetFloat(@this, key, defaultVal);
+				return ret;
+			}
+		}
+
+		public unsafe float* GetFloatRef(int key, float defaultVal)
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				float* ret = ImGui.GetFloatRef(@this, key, defaultVal);
+				return ret;
+			}
+		}
+
+		public unsafe int GetInt(int key, int defaultVal)
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				int ret = ImGui.GetInt(@this, key, defaultVal);
+				return ret;
+			}
+		}
+
+		public unsafe int* GetIntRef(int key, int defaultVal)
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				int* ret = ImGui.GetIntRef(@this, key, defaultVal);
+				return ret;
+			}
+		}
+
+		public unsafe void* GetVoidPtr(int key)
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				void* ret = ImGui.GetVoidPtr(@this, key);
+				return ret;
+			}
+		}
+
+		public unsafe void** GetVoidPtrRef(int key, void* defaultVal)
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				void** ret = ImGui.GetVoidPtrRef(@this, key, defaultVal);
+				return ret;
+			}
+		}
+
+		public unsafe void SetAllInt(int val)
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				ImGui.SetAllInt(@this, val);
+			}
+		}
+
+		public unsafe void SetBool(int key, bool val)
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				ImGui.SetBool(@this, key, val);
+			}
+		}
+
+		public unsafe void SetFloat(int key, float val)
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				ImGui.SetFloat(@this, key, val);
+			}
+		}
+
+		public unsafe void SetInt(int key, int val)
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				ImGui.SetInt(@this, key, val);
+			}
+		}
+
+		public unsafe void SetVoidPtr(int key, void* val)
+		{
+			fixed (ImGuiStorage* @this = &this)
+			{
+				ImGui.SetVoidPtr(@this, key, val);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2182,6 +8042,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiStoragePair* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Explicit)]
@@ -2193,6 +8054,7 @@ namespace HexaEngine.ImGui
 		public float ValF;
 		[FieldOffset(0)]
 		public unsafe void* ValP;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2200,6 +8062,16 @@ namespace HexaEngine.ImGui
 	{
 		public int Key;
 		public ImGuiStoragePairUnion ImGuiStoragePairUnion;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiStoragePair* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2222,6 +8094,7 @@ namespace HexaEngine.ImGui
 		public ImRect HostBackupParentWorkRect;
 		public ImVectorImGuiOldColumnData Columns;
 		public ImDrawListSplitter Splitter;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2229,6 +8102,7 @@ namespace HexaEngine.ImGui
 	{
 		public Vector2 Min;
 		public Vector2 Max;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2237,6 +8111,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiOldColumnData* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2246,6 +8121,7 @@ namespace HexaEngine.ImGui
 		public float OffsetNormBeforeResize;
 		public ImGuiOldColumnFlags Flags;
 		public ImRect ClipRect;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2253,6 +8129,7 @@ namespace HexaEngine.ImGui
 	{
 		public short X;
 		public short Y;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2261,12 +8138,14 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiOldColumns* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiWindowDockStyle
 	{
 		public unsafe fixed uint Colors[6];
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2314,6 +8193,7 @@ namespace HexaEngine.ImGui
 		public bool WantMouseMove;
 		public bool WantHiddenTabBarUpdate;
 		public bool WantHiddenTabBarToggle;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2350,6 +8230,7 @@ namespace HexaEngine.ImGui
 		public Vector2 FramePadding;
 		public Vector2 BackupCursorPos;
 		public ImGuiTextBuffer TabsNames;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2358,6 +8239,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiTabItem* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2376,12 +8258,350 @@ namespace HexaEngine.ImGui
 		public short BeginOrder;
 		public short IndexDuringLayout;
 		public bool WantClose;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTextBuffer
 	{
 		public ImVectorChar Buf;
+
+
+		public unsafe void append(ref byte str, byte* strEnd)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				fixed (byte* pstr = &str)
+				{
+					ImGui.append(@this, pstr, strEnd);
+				}
+			}
+		}
+
+		public unsafe void append(string str, byte* strEnd)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (str != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(str);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.append(@this, pStr0, strEnd);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void append(byte* str, ref byte strEnd)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				fixed (byte* pstrEnd = &strEnd)
+				{
+					ImGui.append(@this, str, pstrEnd);
+				}
+			}
+		}
+
+		public unsafe void append(byte* str, string strEnd)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (strEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.append(@this, str, pStr0);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void append(ref byte str, ref byte strEnd)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				fixed (byte* pstr = &str)
+				{
+					fixed (byte* pstrEnd = &strEnd)
+					{
+						ImGui.append(@this, pstr, pstrEnd);
+					}
+				}
+			}
+		}
+
+		public unsafe void append(string str, string strEnd)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (str != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(str);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (strEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(strEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				ImGui.append(@this, pStr0, pStr1);
+				Marshal.FreeHGlobal((nint)pStr1);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void append(byte* str, byte* strEnd)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				ImGui.append(@this, str, strEnd);
+			}
+		}
+
+		/// <summary>
+		/// no appendfV
+		/// </summary>
+		public unsafe void appendf(ref byte fmt)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				fixed (byte* pfmt = &fmt)
+				{
+					ImGui.appendf(@this, pfmt);
+				}
+			}
+		}
+
+		/// <summary>
+		/// no appendfV
+		/// </summary>
+		public unsafe void appendf(string fmt)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.appendf(@this, pStr0);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		/// <summary>
+		/// no appendfV
+		/// </summary>
+		public unsafe void appendf(byte* fmt)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				ImGui.appendf(@this, fmt);
+			}
+		}
+
+		public unsafe void appendfv(ref byte fmt, nuint args)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				fixed (byte* pfmt = &fmt)
+				{
+					ImGui.appendfv(@this, pfmt, args);
+				}
+			}
+		}
+
+		public unsafe void appendfv(string fmt, nuint args)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.appendfv(@this, pStr0, args);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void appendfv(byte* fmt, nuint args)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				ImGui.appendfv(@this, fmt, args);
+			}
+		}
+
+		public unsafe string beginS()
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.begin(@this));
+				return ret;
+			}
+		}
+
+		public unsafe byte* begin()
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				byte* ret = ImGui.begin(@this);
+				return ret;
+			}
+		}
+
+		public unsafe string c_strS()
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.c_str(@this));
+				return ret;
+			}
+		}
+
+		public unsafe byte* c_str()
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				byte* ret = ImGui.c_str(@this);
+				return ret;
+			}
+		}
+
+		public unsafe void clear()
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				ImGui.clear(@this);
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe bool empty()
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				bool ret = ImGui.empty(@this);
+				return ret;
+			}
+		}
+
+		public unsafe string endS()
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				string ret = Marshal.PtrToStringAnsi((nint)ImGui.end(@this));
+				return ret;
+			}
+		}
+
+		public unsafe byte* end()
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				byte* ret = ImGui.end(@this);
+				return ret;
+			}
+		}
+
+		public unsafe void reserve(int capacity)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				ImGui.reserve(@this, capacity);
+			}
+		}
+
+		public unsafe int size()
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				int ret = ImGui.size(@this);
+				return ret;
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2390,6 +8610,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe byte* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2398,6 +8619,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiWindowStackData* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2406,6 +8628,7 @@ namespace HexaEngine.ImGui
 		public unsafe ImGuiWindow* Window;
 		public ImGuiLastItemData ParentLastItemDataBackup;
 		public ImGuiStackSizes StackSizesOnBegin;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2417,6 +8640,7 @@ namespace HexaEngine.ImGui
 		public ImRect Rect;
 		public ImRect NavRect;
 		public ImRect DisplayRect;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2431,6 +8655,7 @@ namespace HexaEngine.ImGui
 		public short SizeOfItemFlagsStack;
 		public short SizeOfBeginPopupStack;
 		public short SizeOfDisabledStack;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2440,6 +8665,7 @@ namespace HexaEngine.ImGui
 		public int OwnerNext;
 		public bool LockThisFrame;
 		public bool LockUntilRelease;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2448,6 +8674,7 @@ namespace HexaEngine.ImGui
 		public unsafe fixed short Index[140];
 		public ImVectorImGuiKeyRoutingData Entries;
 		public ImVectorImGuiKeyRoutingData EntriesNext;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2456,6 +8683,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiKeyRoutingData* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2466,6 +8694,7 @@ namespace HexaEngine.ImGui
 		public byte RoutingNextScore;
 		public int RoutingCurr;
 		public int RoutingNext;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2476,6 +8705,7 @@ namespace HexaEngine.ImGui
 		public int FocusScopeId;
 		public ImGuiCond OpenCond;
 		public bool OpenVal;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2501,6 +8731,7 @@ namespace HexaEngine.ImGui
 		public int DockId;
 		public ImGuiWindowClass WindowClass;
 		public Vector2 MenuBarOffsetMinVal;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2510,6 +8741,7 @@ namespace HexaEngine.ImGui
 		public Vector2 Pos;
 		public Vector2 CurrentSize;
 		public Vector2 DesiredSize;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2518,6 +8750,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiColorMod* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2525,6 +8758,7 @@ namespace HexaEngine.ImGui
 	{
 		public ImGuiCol Col;
 		public Vector4 BackupValue;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2533,6 +8767,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiStyleMod* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Explicit)]
@@ -2542,6 +8777,7 @@ namespace HexaEngine.ImGui
 		public unsafe fixed int BackupInt[2];
 		[FieldOffset(0)]
 		public unsafe fixed float BackupFloat[2];
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2549,6 +8785,7 @@ namespace HexaEngine.ImGui
 	{
 		public ImGuiStyleVar VarIdx;
 		public ImGuiStyleModUnion ImGuiStyleModUnion;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2557,6 +8794,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiItemFlags* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2565,6 +8803,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiGroupData* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2581,6 +8820,7 @@ namespace HexaEngine.ImGui
 		public bool BackupActiveIdPreviousFrameIsAlive;
 		public bool BackupHoveredIdIsAlive;
 		public bool EmitItem;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2589,6 +8829,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiPopupData* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2602,6 +8843,7 @@ namespace HexaEngine.ImGui
 		public int OpenParentId;
 		public Vector2 OpenPopupPos;
 		public Vector2 OpenMousePos;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2610,6 +8852,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiViewportP** Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2623,6 +8866,7 @@ namespace HexaEngine.ImGui
 		public float DistBox;
 		public float DistCenter;
 		public float DistAxial;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2636,6 +8880,90 @@ namespace HexaEngine.ImGui
 		public unsafe fixed byte DataType[33];
 		public bool Preview;
 		public bool Delivery;
+
+
+		public unsafe void Clear()
+		{
+			fixed (ImGuiPayload* @this = &this)
+			{
+				ImGui.Clear(@this);
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiPayload* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe bool IsDataType(ref byte type)
+		{
+			fixed (ImGuiPayload* @this = &this)
+			{
+				fixed (byte* ptype = &type)
+				{
+					bool ret = ImGui.IsDataType(@this, ptype);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe bool IsDataType(string type)
+		{
+			fixed (ImGuiPayload* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (type != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(type);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				bool ret = ImGui.IsDataType(@this, pStr0);
+				Marshal.FreeHGlobal((nint)pStr0);
+				return ret;
+			}
+		}
+
+		public unsafe bool IsDataType(byte* type)
+		{
+			fixed (ImGuiPayload* @this = &this)
+			{
+				bool ret = ImGui.IsDataType(@this, type);
+				return ret;
+			}
+		}
+
+		public unsafe bool IsDelivery()
+		{
+			fixed (ImGuiPayload* @this = &this)
+			{
+				bool ret = ImGui.IsDelivery(@this);
+				return ret;
+			}
+		}
+
+		public unsafe bool IsPreview()
+		{
+			fixed (ImGuiPayload* @this = &this)
+			{
+				bool ret = ImGui.IsPreview(@this);
+				return ret;
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2644,6 +8972,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe byte* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2652,6 +8981,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiListClipperData* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2662,6 +8992,7 @@ namespace HexaEngine.ImGui
 		public int StepNo;
 		public int ItemsFrozen;
 		public ImVectorImGuiListClipperRange Ranges;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2674,6 +9005,49 @@ namespace HexaEngine.ImGui
 		public float ItemsHeight;
 		public float StartPosY;
 		public unsafe void* TempData;
+
+
+		public unsafe void Begin(int itemsCount, float itemsHeight)
+		{
+			fixed (ImGuiListClipper* @this = &this)
+			{
+				ImGui.Begin(@this, itemsCount, itemsHeight);
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiListClipper* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe void End()
+		{
+			fixed (ImGuiListClipper* @this = &this)
+			{
+				ImGui.End(@this);
+			}
+		}
+
+		public unsafe void ForceDisplayRangeByIndices(int itemMin, int itemMax)
+		{
+			fixed (ImGuiListClipper* @this = &this)
+			{
+				ImGui.ForceDisplayRangeByIndices(@this, itemMin, itemMax);
+			}
+		}
+
+		public unsafe bool Step()
+		{
+			fixed (ImGuiListClipper* @this = &this)
+			{
+				bool ret = ImGui.Step(@this);
+				return ret;
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2682,6 +9056,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiListClipperRange* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2692,6 +9067,7 @@ namespace HexaEngine.ImGui
 		public bool PosToIndexConvert;
 		public sbyte PosToIndexOffsetMin;
 		public sbyte PosToIndexOffsetMax;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2802,6 +9178,7 @@ namespace HexaEngine.ImGui
 		public bool HasScrollbarYPrev;
 		public bool MemoryCompacted;
 		public bool HostSkipItems;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2819,6 +9196,7 @@ namespace HexaEngine.ImGui
 		public ImVec1 HostBackupColumnsOffset;
 		public float HostBackupItemWidth;
 		public int HostBackupItemWidthStackSize;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2826,6 +9204,7 @@ namespace HexaEngine.ImGui
 	{
 		public unsafe ImGuiTableColumn* Data;
 		public unsafe ImGuiTableColumn* DataEnd;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2872,6 +9251,7 @@ namespace HexaEngine.ImGui
 		public byte SortDirectionsAvailCount;
 		public byte SortDirectionsAvailMask;
 		public byte SortDirectionsAvailList;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2879,6 +9259,7 @@ namespace HexaEngine.ImGui
 	{
 		public unsafe sbyte* Data;
 		public unsafe sbyte* DataEnd;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2886,6 +9267,7 @@ namespace HexaEngine.ImGui
 	{
 		public unsafe ImGuiTableCellData* Data;
 		public unsafe ImGuiTableCellData* DataEnd;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2893,6 +9275,7 @@ namespace HexaEngine.ImGui
 	{
 		public uint BgColor;
 		public sbyte Column;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2902,6 +9285,7 @@ namespace HexaEngine.ImGui
 		public float LastOuterHeight;
 		public float LastFirstRowHeight;
 		public float LastFrozenHeight;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2910,6 +9294,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiTableInstanceData* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2919,6 +9304,16 @@ namespace HexaEngine.ImGui
 		public short ColumnIndex;
 		public short SortOrder;
 		public ImGuiSortDirection SortDirection;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiTableColumnSortSpecs* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2927,6 +9322,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiTableColumnSortSpecs* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2935,6 +9331,16 @@ namespace HexaEngine.ImGui
 		public unsafe ImGuiTableColumnSortSpecs* Specs;
 		public int SpecsCount;
 		public bool SpecsDirty;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiTableSortSpecs* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2943,6 +9349,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiTableTempData* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2952,6 +9359,7 @@ namespace HexaEngine.ImGui
 		public ImGuiStorage Map;
 		public int FreeIdx;
 		public int AliveCount;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2960,6 +9368,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiTable* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2969,6 +9378,7 @@ namespace HexaEngine.ImGui
 		public ImGuiStorage Map;
 		public int FreeIdx;
 		public int AliveCount;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2977,6 +9387,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiTabBar* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2985,6 +9396,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiPtrOrIndex* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -2992,6 +9404,7 @@ namespace HexaEngine.ImGui
 	{
 		public unsafe void* Ptr;
 		public int Index;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3000,6 +9413,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiShrinkWidthItem* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3008,6 +9422,7 @@ namespace HexaEngine.ImGui
 		public int Index;
 		public float Width;
 		public float InitialWidth;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3029,6 +9444,7 @@ namespace HexaEngine.ImGui
 		public bool SelectedAllMouseLock;
 		public bool Edited;
 		public ImGuiInputTextFlags Flags;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3048,6 +9464,7 @@ namespace HexaEngine.ImGui
 		public byte Padding3;
 		public float PreferredX;
 		public StbUndoState Undostate;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3157,6 +9574,18 @@ namespace HexaEngine.ImGui
 		public short RedoPoint;
 		public int UndoCharPoint;
 		public int RedoCharPoint;
+
+		public unsafe Span<StbUndoRecord> UndoRec
+		
+		{
+			get
+			{
+				fixed (StbUndoRecord* p = &this.UndoRec_0)
+				{
+					return new Span<StbUndoRecord>(p, 99);
+				}
+			}
+		}
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3166,6 +9595,7 @@ namespace HexaEngine.ImGui
 		public int InsertLength;
 		public int DeleteLength;
 		public int CharStorage;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3173,6 +9603,7 @@ namespace HexaEngine.ImGui
 	{
 		public int ID;
 		public ImVectorChar TextA;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3184,6 +9615,7 @@ namespace HexaEngine.ImGui
 		public Vector2 BackupCursorPosPrevLine;
 		public float BackupPrevLineTextBaseOffset;
 		public ImGuiLayoutType BackupLayout;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3193,6 +9625,7 @@ namespace HexaEngine.ImGui
 		public ImVectorImGuiDockRequest Requests;
 		public ImVectorImGuiDockNodeSettings NodesSettings;
 		public bool WantFullRebuild;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3201,11 +9634,13 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiDockRequest* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiDockRequest
 	{
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3214,11 +9649,13 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiDockNodeSettings* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiDockNodeSettings
 	{
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3227,6 +9664,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiSettingsHandler* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3241,18 +9679,21 @@ namespace HexaEngine.ImGui
 		public unsafe delegate*<ImGuiContext*, ImGuiSettingsHandler*, void>* ApplyAllFn;
 		public unsafe delegate*<ImGuiContext*, ImGuiSettingsHandler*, ImGuiTextBuffer*, void>* WriteAllFn;
 		public unsafe void* UserData;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImChunkStreamImGuiWindowSettings
 	{
 		public ImVectorChar Buf;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImChunkStreamImGuiTableSettings
 	{
 		public ImVectorChar Buf;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3261,6 +9702,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiContextHook* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3271,6 +9713,7 @@ namespace HexaEngine.ImGui
 		public int Owner;
 		public unsafe delegate*<ImGuiContext*, ImGuiContextHook*, void> Callback;
 		public unsafe void* UserData;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3278,6 +9721,7 @@ namespace HexaEngine.ImGui
 	{
 		public ImVectorInt LineOffsets;
 		public int EndOffset;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3286,6 +9730,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe int* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3302,6 +9747,7 @@ namespace HexaEngine.ImGui
 		public bool ShowDockingNodes;
 		public int ShowWindowsRectsType;
 		public int ShowTablesRectsType;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3313,6 +9759,7 @@ namespace HexaEngine.ImGui
 		public ImVectorImGuiStackLevelInfo Results;
 		public bool CopyToClipboardOnCtrlC;
 		public float CopyToClipboardLastTime;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3321,6 +9768,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiStackLevelInfo* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3331,6 +9779,7 @@ namespace HexaEngine.ImGui
 		public bool QuerySuccess;
 		public ImGuiDataType DataType;
 		public unsafe fixed byte Desc[57];
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3349,12 +9798,205 @@ namespace HexaEngine.ImGui
 		public int CursorPos;
 		public int SelectionStart;
 		public int SelectionEnd;
+
+
+		public unsafe void ClearSelection()
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				ImGui.ClearSelection(@this);
+			}
+		}
+
+		public unsafe void DeleteChars(int pos, int bytesCount)
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				ImGui.DeleteChars(@this, pos, bytesCount);
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe bool HasSelection()
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				bool ret = ImGui.HasSelection(@this);
+				return ret;
+			}
+		}
+
+		public unsafe void InsertChars(int pos, ref byte text, byte* textEnd)
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				fixed (byte* ptext = &text)
+				{
+					ImGui.InsertChars(@this, pos, ptext, textEnd);
+				}
+			}
+		}
+
+		public unsafe void InsertChars(int pos, string text, byte* textEnd)
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.InsertChars(@this, pos, pStr0, textEnd);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void InsertChars(int pos, byte* text, ref byte textEnd)
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImGui.InsertChars(@this, pos, text, ptextEnd);
+				}
+			}
+		}
+
+		public unsafe void InsertChars(int pos, byte* text, string textEnd)
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImGui.InsertChars(@this, pos, text, pStr0);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void InsertChars(int pos, ref byte text, ref byte textEnd)
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImGui.InsertChars(@this, pos, ptext, ptextEnd);
+					}
+				}
+			}
+		}
+
+		public unsafe void InsertChars(int pos, string text, string textEnd)
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				ImGui.InsertChars(@this, pos, pStr0, pStr1);
+				Marshal.FreeHGlobal((nint)pStr1);
+				Marshal.FreeHGlobal((nint)pStr0);
+			}
+		}
+
+		public unsafe void InsertChars(int pos, byte* text, byte* textEnd)
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				ImGui.InsertChars(@this, pos, text, textEnd);
+			}
+		}
+
+		public unsafe void SelectAll()
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				ImGui.SelectAll(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiOnceUponAFrame
 	{
 		public int RefFrame;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiOnceUponAFrame* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3363,6 +10005,236 @@ namespace HexaEngine.ImGui
 		public unsafe fixed byte InputBuf[256];
 		public ImVectorImGuiTextRange Filters;
 		public int CountGrep;
+
+
+		public unsafe void Build()
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				ImGui.Build(@this);
+			}
+		}
+
+		public unsafe void Clear()
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				ImGui.Clear(@this);
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe bool Draw(ref byte label, float width)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				fixed (byte* plabel = &label)
+				{
+					bool ret = ImGui.Draw(@this, plabel, width);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe bool Draw(string label, float width)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				bool ret = ImGui.Draw(@this, pStr0, width);
+				Marshal.FreeHGlobal((nint)pStr0);
+				return ret;
+			}
+		}
+
+		public unsafe bool Draw(byte* label, float width)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				bool ret = ImGui.Draw(@this, label, width);
+				return ret;
+			}
+		}
+
+		public unsafe bool IsActive()
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				bool ret = ImGui.IsActive(@this);
+				return ret;
+			}
+		}
+
+		public unsafe bool PassFilter(ref byte text, byte* textEnd)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				fixed (byte* ptext = &text)
+				{
+					bool ret = ImGui.PassFilter(@this, ptext, textEnd);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe bool PassFilter(string text, byte* textEnd)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				bool ret = ImGui.PassFilter(@this, pStr0, textEnd);
+				Marshal.FreeHGlobal((nint)pStr0);
+				return ret;
+			}
+		}
+
+		public unsafe bool PassFilter(byte* text, ref byte textEnd)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					bool ret = ImGui.PassFilter(@this, text, ptextEnd);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe bool PassFilter(byte* text, string textEnd)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				bool ret = ImGui.PassFilter(@this, text, pStr0);
+				Marshal.FreeHGlobal((nint)pStr0);
+				return ret;
+			}
+		}
+
+		public unsafe bool PassFilter(ref byte text, ref byte textEnd)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						bool ret = ImGui.PassFilter(@this, ptext, ptextEnd);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe bool PassFilter(string text, string textEnd)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				bool ret = ImGui.PassFilter(@this, pStr0, pStr1);
+				Marshal.FreeHGlobal((nint)pStr1);
+				Marshal.FreeHGlobal((nint)pStr0);
+				return ret;
+			}
+		}
+
+		public unsafe bool PassFilter(byte* text, byte* textEnd)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				bool ret = ImGui.PassFilter(@this, text, textEnd);
+				return ret;
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3371,6 +10243,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe ImGuiTextRange* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3378,12 +10251,51 @@ namespace HexaEngine.ImGui
 	{
 		public unsafe byte* B;
 		public unsafe byte* E;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiTextRange* @this = &this)
+			{
+				ImGui.Destroy(@this);
+			}
+		}
+
+		public unsafe bool empty()
+		{
+			fixed (ImGuiTextRange* @this = &this)
+			{
+				bool ret = ImGui.empty(@this);
+				return ret;
+			}
+		}
+
+		public unsafe void split(byte separator, ref ImVectorImGuiTextRange output)
+		{
+			fixed (ImGuiTextRange* @this = &this)
+			{
+				fixed (ImVectorImGuiTextRange* poutput = &output)
+				{
+					ImGui.split(@this, separator, poutput);
+				}
+			}
+		}
+
+		public unsafe void split(byte separator, ImVectorImGuiTextRange* output)
+		{
+			fixed (ImGuiTextRange* @this = &this)
+			{
+				ImGui.split(@this, separator, output);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImBitVector
 	{
 		public ImVectorImU32 Storage;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3392,6 +10304,7 @@ namespace HexaEngine.ImGui
 		public ImGuiDataType Type;
 		public uint Count;
 		public uint Offset;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3401,11 +10314,13 @@ namespace HexaEngine.ImGui
 		public unsafe byte* Name;
 		public unsafe byte* PrintFmt;
 		public unsafe byte* ScanFmt;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiInputTextDeactivateData
 	{
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3413,6 +10328,7 @@ namespace HexaEngine.ImGui
 	{
 		public ImGuiLocKey Key;
 		public unsafe byte* Text;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3424,11 +10340,13 @@ namespace HexaEngine.ImGui
 		public sbyte ColumnsCount;
 		public sbyte ColumnsCountMax;
 		public bool WantApply;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTableColumnsSettings
 	{
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3445,6 +10363,7 @@ namespace HexaEngine.ImGui
 		public bool Collapsed;
 		public bool WantApply;
 		public bool WantDelete;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3453,6 +10372,7 @@ namespace HexaEngine.ImGui
 		public int Size;
 		public int Capacity;
 		public unsafe byte** Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3464,18 +10384,21 @@ namespace HexaEngine.ImGui
 		public float Ymin;
 		public float Ymax;
 		public int NumChars;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiDataTypeTempStorage
 	{
 		public unsafe fixed byte Data[8];
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImBitArrayImGuiKeyNamedKeyCOUNTLessImGuiKeyNamedKeyBEGIN
 	{
 		public unsafe fixed uint Storage[5];
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -3489,6 +10412,7 @@ namespace HexaEngine.ImGui
 		public byte SortDirection;
 		public byte IsEnabled;
 		public byte IsStretch;
+
 	}
 
 }

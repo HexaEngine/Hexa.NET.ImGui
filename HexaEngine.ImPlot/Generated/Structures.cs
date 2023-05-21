@@ -49,6 +49,7 @@ namespace HexaEngine.ImPlot
 		public ImPoolImPlotAlignmentData AlignmentData;
 		public unsafe ImPlotAlignmentData* CurrentAlignmentH;
 		public unsafe ImPlotAlignmentData* CurrentAlignmentV;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -58,6 +59,7 @@ namespace HexaEngine.ImPlot
 		public ImGuiStorage Map;
 		public int FreeIdx;
 		public int AliveCount;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -66,6 +68,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe ImPlotPlot* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -102,6 +105,18 @@ namespace HexaEngine.ImPlot
 		public bool Selecting;
 		public bool Selected;
 		public bool ContextLocked;
+
+		public unsafe Span<ImPlotAxis> Axes
+		
+		{
+			get
+			{
+				fixed (ImPlotAxis* p = &this.Axes_0)
+				{
+					return new Span<ImPlotAxis>(p, 6);
+				}
+			}
+		}
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -155,6 +170,7 @@ namespace HexaEngine.ImPlot
 		public bool ShowDefaultTicks;
 		public bool Hovered;
 		public bool Held;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -162,6 +178,43 @@ namespace HexaEngine.ImPlot
 	{
 		public double Min;
 		public double Max;
+
+
+		public unsafe double Clamp(double value)
+		{
+			fixed (ImPlotRange* @this = &this)
+			{
+				double ret = ImPlot.Clamp(@this, value);
+				return ret;
+			}
+		}
+
+		public unsafe bool Contains(double value)
+		{
+			fixed (ImPlotRange* @this = &this)
+			{
+				bool ret = ImPlot.Contains(@this, value);
+				return ret;
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotRange* @this = &this)
+			{
+				ImPlot.Destroy(@this);
+			}
+		}
+
+		public unsafe double Size()
+		{
+			fixed (ImPlotRange* @this = &this)
+			{
+				double ret = ImPlot.Size(@this);
+				return ret;
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -172,6 +225,7 @@ namespace HexaEngine.ImPlot
 		public Vector2 MaxSize;
 		public Vector2 LateSize;
 		public int Levels;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -180,6 +234,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe ImPlotTick* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -193,6 +248,7 @@ namespace HexaEngine.ImPlot
 		public bool ShowLabel;
 		public int Level;
 		public int Idx;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -200,6 +256,7 @@ namespace HexaEngine.ImPlot
 	{
 		public long S;
 		public int Us;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -209,6 +266,7 @@ namespace HexaEngine.ImPlot
 		public ImPlotLegend Legend;
 		public ImPoolImPlotItem ItemPool;
 		public int ColormapIdx;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -224,6 +282,7 @@ namespace HexaEngine.ImPlot
 		public bool Hovered;
 		public bool Held;
 		public bool CanGoInside;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -233,6 +292,7 @@ namespace HexaEngine.ImPlot
 		public ImGuiStorage Map;
 		public int FreeIdx;
 		public int AliveCount;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -241,6 +301,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe ImPlotItem* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -253,6 +314,7 @@ namespace HexaEngine.ImPlot
 		public bool Show;
 		public bool LegendHovered;
 		public bool SeenThisFrame;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -262,6 +324,7 @@ namespace HexaEngine.ImPlot
 		public ImGuiStorage Map;
 		public int FreeIdx;
 		public int AliveCount;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -270,6 +333,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe ImPlotSubplot* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -294,6 +358,7 @@ namespace HexaEngine.ImPlot
 		public unsafe fixed float TempSizes[2];
 		public bool FrameHovered;
 		public bool HasTitle;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -302,6 +367,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe ImPlotAlignmentData* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -312,6 +378,7 @@ namespace HexaEngine.ImPlot
 		public float PadB;
 		public float PadAMax;
 		public float PadBMax;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -320,6 +387,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe ImPlotRange* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -328,6 +396,7 @@ namespace HexaEngine.ImPlot
 		public ImVectorImPlotAnnotation Annotations;
 		public ImGuiTextBuffer TextBuffer;
 		public int Size;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -336,6 +405,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe ImPlotAnnotation* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -347,6 +417,7 @@ namespace HexaEngine.ImPlot
 		public uint ColorFg;
 		public int TextOffset;
 		public bool Clamp;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -355,6 +426,7 @@ namespace HexaEngine.ImPlot
 		public ImVectorImPlotTag Tags;
 		public ImGuiTextBuffer TextBuffer;
 		public int Size;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -363,6 +435,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe ImPlotTag* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -373,6 +446,7 @@ namespace HexaEngine.ImPlot
 		public uint ColorBg;
 		public uint ColorFg;
 		public int TextOffset;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -430,6 +504,27 @@ namespace HexaEngine.ImPlot
 		public bool UseLocalTime;
 		public bool UseISO8601;
 		public bool Use24HourClock;
+
+		public unsafe Span<Vector4> Colors
+		
+		{
+			get
+			{
+				fixed (Vector4* p = &this.Colors_0)
+				{
+					return new Span<Vector4>(p, 21);
+				}
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotStyle* @this = &this)
+			{
+				ImPlot.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -446,6 +541,7 @@ namespace HexaEngine.ImPlot
 		public ImVectorBool Quals;
 		public ImGuiStorage Map;
 		public int Count;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -454,6 +550,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe bool* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -462,6 +559,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe ImPlotColormap* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -470,6 +568,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe double* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -496,6 +595,18 @@ namespace HexaEngine.ImPlot
 		public unsafe double* LinkedMax_3;
 		public unsafe double* LinkedMax_4;
 		public unsafe double* LinkedMax_5;
+
+		public unsafe Span<ImPlotRange> Range
+		
+		{
+			get
+			{
+				fixed (ImPlotRange* p = &this.Range_0)
+				{
+					return new Span<ImPlotRange>(p, 6);
+				}
+			}
+		}
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -522,6 +633,18 @@ namespace HexaEngine.ImPlot
 		public bool HasHidden;
 		public bool Hidden;
 		public ImPlotCond HiddenCond;
+
+		public unsafe Span<Vector4> Colors
+		
+		{
+			get
+			{
+				fixed (Vector4* p = &this.Colors_0)
+				{
+					return new Span<Vector4>(p, 5);
+				}
+			}
+		}
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -539,6 +662,16 @@ namespace HexaEngine.ImPlot
 		public int OverrideMod;
 		public int ZoomMod;
 		public float ZoomRate;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotInputMap* @this = &this)
+			{
+				ImPlot.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -548,11 +681,13 @@ namespace HexaEngine.ImPlot
 		public ImGuiStorage Map;
 		public int FreeIdx;
 		public int AliveCount;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImPlotAxisColor
 	{
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -561,6 +696,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe short* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -569,6 +705,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe int* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -577,6 +714,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe long* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -585,6 +723,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe sbyte* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -593,6 +732,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe ushort* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -601,6 +741,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe ulong* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -609,6 +750,7 @@ namespace HexaEngine.ImPlot
 		public int Size;
 		public int Capacity;
 		public unsafe byte* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -616,6 +758,16 @@ namespace HexaEngine.ImPlot
 	{
 		public double X;
 		public double Y;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotPoint* @this = &this)
+			{
+				ImPlot.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -623,6 +775,194 @@ namespace HexaEngine.ImPlot
 	{
 		public ImPlotRange X;
 		public ImPlotRange Y;
+
+
+		public unsafe void Clamp(ref ImPlotPoint output, ImPlotRect* self, ImPlotPoint p)
+		{
+			fixed (ImPlotPoint* poutput = &output)
+			{
+				ImPlot.Clamp(poutput, self, p);
+			}
+		}
+
+		public unsafe void Clamp(ImPlotPoint* output, ref ImPlotRect self, ImPlotPoint p)
+		{
+			fixed (ImPlotRect* pself = &self)
+			{
+				ImPlot.Clamp(output, pself, p);
+			}
+		}
+
+		public unsafe void Clamp(ref ImPlotPoint output, ref ImPlotRect self, ImPlotPoint p)
+		{
+			fixed (ImPlotPoint* poutput = &output)
+			{
+				fixed (ImPlotRect* pself = &self)
+				{
+					ImPlot.Clamp(poutput, pself, p);
+				}
+			}
+		}
+
+		public unsafe void Clamp(ImPlotPoint* output, ImPlotRect* self, ImPlotPoint p)
+		{
+			ImPlot.Clamp(output, self, p);
+		}
+
+		public unsafe void Clamp(ref ImPlotPoint output, ImPlotRect* self, double x, double y)
+		{
+			fixed (ImPlotPoint* poutput = &output)
+			{
+				ImPlot.Clamp(poutput, self, x, y);
+			}
+		}
+
+		public unsafe void Clamp(ImPlotPoint* output, ref ImPlotRect self, double x, double y)
+		{
+			fixed (ImPlotRect* pself = &self)
+			{
+				ImPlot.Clamp(output, pself, x, y);
+			}
+		}
+
+		public unsafe void Clamp(ref ImPlotPoint output, ref ImPlotRect self, double x, double y)
+		{
+			fixed (ImPlotPoint* poutput = &output)
+			{
+				fixed (ImPlotRect* pself = &self)
+				{
+					ImPlot.Clamp(poutput, pself, x, y);
+				}
+			}
+		}
+
+		public unsafe void Clamp(ImPlotPoint* output, ImPlotRect* self, double x, double y)
+		{
+			ImPlot.Clamp(output, self, x, y);
+		}
+
+		public unsafe bool Contains(ImPlotPoint p)
+		{
+			fixed (ImPlotRect* @this = &this)
+			{
+				bool ret = ImPlot.Contains(@this, p);
+				return ret;
+			}
+		}
+
+		public unsafe bool Contains(double x, double y)
+		{
+			fixed (ImPlotRect* @this = &this)
+			{
+				bool ret = ImPlot.Contains(@this, x, y);
+				return ret;
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImPlotRect* @this = &this)
+			{
+				ImPlot.Destroy(@this);
+			}
+		}
+
+		public unsafe void Max(ref ImPlotPoint output, ImPlotRect* self)
+		{
+			fixed (ImPlotPoint* poutput = &output)
+			{
+				ImPlot.Max(poutput, self);
+			}
+		}
+
+		public unsafe void Max(ImPlotPoint* output, ref ImPlotRect self)
+		{
+			fixed (ImPlotRect* pself = &self)
+			{
+				ImPlot.Max(output, pself);
+			}
+		}
+
+		public unsafe void Max(ref ImPlotPoint output, ref ImPlotRect self)
+		{
+			fixed (ImPlotPoint* poutput = &output)
+			{
+				fixed (ImPlotRect* pself = &self)
+				{
+					ImPlot.Max(poutput, pself);
+				}
+			}
+		}
+
+		public unsafe void Max(ImPlotPoint* output, ImPlotRect* self)
+		{
+			ImPlot.Max(output, self);
+		}
+
+		public unsafe void Min(ref ImPlotPoint output, ImPlotRect* self)
+		{
+			fixed (ImPlotPoint* poutput = &output)
+			{
+				ImPlot.Min(poutput, self);
+			}
+		}
+
+		public unsafe void Min(ImPlotPoint* output, ref ImPlotRect self)
+		{
+			fixed (ImPlotRect* pself = &self)
+			{
+				ImPlot.Min(output, pself);
+			}
+		}
+
+		public unsafe void Min(ref ImPlotPoint output, ref ImPlotRect self)
+		{
+			fixed (ImPlotPoint* poutput = &output)
+			{
+				fixed (ImPlotRect* pself = &self)
+				{
+					ImPlot.Min(poutput, pself);
+				}
+			}
+		}
+
+		public unsafe void Min(ImPlotPoint* output, ImPlotRect* self)
+		{
+			ImPlot.Min(output, self);
+		}
+
+		public unsafe void Size(ref ImPlotPoint output, ImPlotRect* self)
+		{
+			fixed (ImPlotPoint* poutput = &output)
+			{
+				ImPlot.Size(poutput, self);
+			}
+		}
+
+		public unsafe void Size(ImPlotPoint* output, ref ImPlotRect self)
+		{
+			fixed (ImPlotRect* pself = &self)
+			{
+				ImPlot.Size(output, pself);
+			}
+		}
+
+		public unsafe void Size(ref ImPlotPoint output, ref ImPlotRect self)
+		{
+			fixed (ImPlotPoint* poutput = &output)
+			{
+				fixed (ImPlotRect* pself = &self)
+				{
+					ImPlot.Size(poutput, pself);
+				}
+			}
+		}
+
+		public unsafe void Size(ImPlotPoint* output, ImPlotRect* self)
+		{
+			ImPlot.Size(output, self);
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -632,6 +972,7 @@ namespace HexaEngine.ImPlot
 		public ImPlotTimeFmt Time;
 		public bool UseISO8601;
 		public bool Use24HourClock;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -641,6 +982,7 @@ namespace HexaEngine.ImPlot
 		public double Y;
 		public double Neg;
 		public double Pos;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -650,6 +992,7 @@ namespace HexaEngine.ImPlot
 		public ImPlotDateTimeSpec Spec;
 		public unsafe delegate*<double, byte*, int, void*, int> UserFormatter;
 		public unsafe void* UserFormatterData;
+
 	}
 
 }

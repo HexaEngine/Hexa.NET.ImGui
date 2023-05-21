@@ -18,11 +18,13 @@ namespace HexaEngine.ImNodes
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImNodesContext
 	{
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImNodesEditorContext
 	{
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -33,24 +35,64 @@ namespace HexaEngine.ImNodes
 		public MultipleSelectModifier MultipleSelectModifier;
 		public int AltMouseButton;
 		public float AutoPanningSpeed;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImNodesIO* @this = &this)
+			{
+				ImNodes.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct EmulateThreeButtonMouse
 	{
 		public unsafe bool* Modifier;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (EmulateThreeButtonMouse* @this = &this)
+			{
+				ImNodes.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct LinkDetachWithModifierClick
 	{
 		public unsafe bool* Modifier;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (LinkDetachWithModifierClick* @this = &this)
+			{
+				ImNodes.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct MultipleSelectModifier
 	{
 		public unsafe bool* Modifier;
+
+
+		public unsafe void Destroy()
+		{
+			fixed (MultipleSelectModifier* @this = &this)
+			{
+				ImNodes.Destroy(@this);
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -73,6 +115,16 @@ namespace HexaEngine.ImNodes
 		public Vector2 MiniMapOffset;
 		public ImNodesStyleFlags Flags;
 		public unsafe fixed uint Colors[29];
+
+
+		public unsafe void Destroy()
+		{
+			fixed (ImNodesStyle* @this = &this)
+			{
+				ImNodes.Destroy(@this);
+			}
+		}
+
 	}
 
 }

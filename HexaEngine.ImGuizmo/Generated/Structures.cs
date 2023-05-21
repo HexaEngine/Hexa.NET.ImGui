@@ -41,6 +41,27 @@ namespace HexaEngine.ImGuizmo
 		public Vector4 Colors_12;
 		public Vector4 Colors_13;
 		public Vector4 Colors_14;
+
+		public unsafe Span<Vector4> Colors
+		
+		{
+			get
+			{
+				fixed (Vector4* p = &this.Colors_0)
+				{
+					return new Span<Vector4>(p, 15);
+				}
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (Style* @this = &this)
+			{
+				ImGuizmo.Destroy(@this);
+			}
+		}
+
 	}
 
 }
