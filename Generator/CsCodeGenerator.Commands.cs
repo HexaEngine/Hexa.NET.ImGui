@@ -4,10 +4,15 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Text;
 
     public static partial class CsCodeGenerator
     {
+        private static readonly HashSet<string> DefinedVariationsFunctions = new()
+        {
+        };
+
         public static readonly HashSet<string> DefinedFunctions = new()
         {
         };
@@ -18,6 +23,7 @@
 
         private static void GenerateCommands(CppCompilation compilation, string outputPath)
         {
+            DefinedVariationsFunctions.Clear();
             string[] usings = { "System", "System.Runtime.CompilerServices", "System.Runtime.InteropServices" };
             // Generate Functions
             using var writer = new CodeWriter(Path.Combine(outputPath, "Commands.cs"), usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
@@ -33,6 +39,12 @@
                         continue;
                     if (CsCodeGeneratorSettings.Default.IgnoredFunctions.Contains(cppFunction.Name))
                         continue;
+
+                    var cppHeader = $"{cppFunction.ReturnType} {cppFunction.Name}({string.Join(", ", cppFunction.Parameters)})";
+                    if (DefinedFunctions.Contains(cppHeader))
+                        continue;
+                    DefinedFunctions.Add(cppHeader);
+
                     string? csName = GetPrettyCommandName(cppFunction.Name);
                     string returnCsName = GetCsTypeName(cppFunction.ReturnType, false);
                     CppPrimitiveKind returnKind = GetPrimitiveKind(cppFunction.ReturnType, false);
@@ -41,9 +53,6 @@
                     bool canUseOut = s_outReturnFunctions.Contains(cppFunction.Name);
                     var argumentsString = GetParameterSignature(cppFunction, canUseOut);
                     var header = $"{returnCsName} {csName}Native({argumentsString})";
-                    if (DefinedFunctions.Contains(header))
-                        continue;
-                    DefinedFunctions.Add(header);
 
                     WriteCsSummary(cppFunction.Comment, writer);
                     if (boolReturn)
@@ -94,7 +103,7 @@
 
                     function.Overloads.Add(overload);
                     GenerateVariations(cppFunction.Parameters, overload, false);
-                    WriteMethods(writer, DefinedFunctions, function, overload, false, "public static");
+                    WriteMethods(writer, DefinedVariationsFunctions, function, overload, false, "public static");
                 }
             }
         }

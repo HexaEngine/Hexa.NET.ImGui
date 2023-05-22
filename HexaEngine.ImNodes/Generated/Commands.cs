@@ -177,6 +177,11 @@ namespace HexaEngine.ImNodesNET
 			DestroyContextNative(ctx);
 		}
 
+		public static void DestroyContext()
+		{
+			DestroyContextNative((ImNodesContext*)(default));
+		}
+
 		public static void DestroyContext(ref ImNodesContext ctx)
 		{
 			fixed (ImNodesContext* pctx = &ctx)
@@ -311,6 +316,11 @@ namespace HexaEngine.ImNodesNET
 			StyleColorsDarkNative(dest);
 		}
 
+		public static void StyleColorsDark()
+		{
+			StyleColorsDarkNative((ImNodesStyle*)(default));
+		}
+
 		public static void StyleColorsDark(ref ImNodesStyle dest)
 		{
 			fixed (ImNodesStyle* pdest = &dest)
@@ -327,6 +337,11 @@ namespace HexaEngine.ImNodesNET
 			StyleColorsClassicNative(dest);
 		}
 
+		public static void StyleColorsClassic()
+		{
+			StyleColorsClassicNative((ImNodesStyle*)(default));
+		}
+
 		public static void StyleColorsClassic(ref ImNodesStyle dest)
 		{
 			fixed (ImNodesStyle* pdest = &dest)
@@ -341,6 +356,11 @@ namespace HexaEngine.ImNodesNET
 		public static void StyleColorsLight(ImNodesStyle* dest)
 		{
 			StyleColorsLightNative(dest);
+		}
+
+		public static void StyleColorsLight()
+		{
+			StyleColorsLightNative((ImNodesStyle*)(default));
 		}
 
 		public static void StyleColorsLight(ref ImNodesStyle dest)
@@ -425,6 +445,19 @@ namespace HexaEngine.ImNodesNET
 		public static void PushStyleVar(ImNodesStyleVar styleItem, Vector2 value)
 		{
 			PushStyleVarNative(styleItem, value);
+		}
+
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PopStyleVar")]
+		internal static extern void PopStyleVarNative(int count);
+
+		public static void PopStyleVar(int count)
+		{
+			PopStyleVarNative(count);
+		}
+
+		public static void PopStyleVar()
+		{
+			PopStyleVarNative((int)(1));
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginNode")]
