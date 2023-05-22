@@ -8,7 +8,7 @@
 
     public static partial class CsCodeGenerator
     {
-        private static readonly HashSet<string> s_definedFunctions = new()
+        public static readonly HashSet<string> DefinedFunctions = new()
         {
         };
 
@@ -41,9 +41,9 @@
                     bool canUseOut = s_outReturnFunctions.Contains(cppFunction.Name);
                     var argumentsString = GetParameterSignature(cppFunction, canUseOut);
                     var header = $"{returnCsName} {csName}Native({argumentsString})";
-                    if (s_definedFunctions.Contains(header))
+                    if (DefinedFunctions.Contains(header))
                         continue;
-                    s_definedFunctions.Add(header);
+                    DefinedFunctions.Add(header);
 
                     WriteCsSummary(cppFunction.Comment, writer);
                     if (boolReturn)
@@ -94,7 +94,7 @@
 
                     function.Overloads.Add(overload);
                     GenerateVariations(cppFunction.Parameters, overload, false);
-                    WriteMethods(writer, s_definedFunctions, function, overload, false, "public static");
+                    WriteMethods(writer, DefinedFunctions, function, overload, false, "public static");
                 }
             }
         }

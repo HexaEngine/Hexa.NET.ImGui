@@ -144,6 +144,22 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetImGuiContext")]
+		internal static extern void SetImGuiContextNative(ImGuiContext* ctx);
+
+		public static void SetImGuiContext(ImGuiContext* ctx)
+		{
+			SetImGuiContextNative(ctx);
+		}
+
+		public static void SetImGuiContext(ref ImGuiContext ctx)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				SetImGuiContextNative((ImGuiContext*)pctx);
+			}
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_CreateContext")]
 		internal static extern ImNodesContext* CreateContextNative();
 

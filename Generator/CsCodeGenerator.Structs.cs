@@ -8,7 +8,7 @@
 
     public static partial class CsCodeGenerator
     {
-        private static readonly HashSet<string> s_definedTypes = new();
+        public static readonly HashSet<string> DefinedTypes = new();
 
         private static void GenerateStructAndUnions(CppCompilation compilation, string outputPath)
         {
@@ -25,9 +25,9 @@
                     continue;
                 if (CsCodeGeneratorSettings.Default.IgnoredTypes.Contains(cppClass.Name))
                     continue;
-                if (s_definedTypes.Contains(cppClass.Name))
+                if (DefinedTypes.Contains(cppClass.Name))
                     continue;
-                s_definedTypes.Add(cppClass.Name);
+                DefinedTypes.Add(cppClass.Name);
 
                 string csName = GetCsCleanName(cppClass.Name);
                 WriteClass(writer, compilation, cppClass, csName);

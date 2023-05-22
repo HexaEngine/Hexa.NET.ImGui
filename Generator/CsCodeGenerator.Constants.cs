@@ -8,6 +8,8 @@
 
     public partial class CsCodeGenerator
     {
+        public static readonly HashSet<string> DefinedConstants = new();
+
         private static void GenerateConstants(CppCompilation compilation, string outputPath)
         {
             /*

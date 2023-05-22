@@ -6,7 +6,7 @@
 
     public static partial class CsCodeGenerator
     {
-        private static readonly HashSet<string> s_definedTypedefs = new();
+        public static readonly HashSet<string> DefinedTypedefs = new();
 
         private static void GenerateHandles(CppCompilation compilation, string outputPath)
         {
@@ -20,9 +20,9 @@
                     continue;
                 if (CsCodeGeneratorSettings.Default.IgnoredTypedefs.Contains(typedef.Name))
                     continue;
-                if (s_definedTypedefs.Contains(typedef.Name))
+                if (DefinedTypedefs.Contains(typedef.Name))
                     continue;
-                s_definedTypedefs.Add(typedef.Name);
+                DefinedTypedefs.Add(typedef.Name);
 
                 if (typedef.ElementType is CppPointerType pointerType)
                 {

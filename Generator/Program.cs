@@ -3,50 +3,27 @@
     using CppAst;
     using System.Reflection.Metadata;
 
-    public class ArrayMapping
-    {
-        private CppPrimitiveKind primitive;
-        private int size;
-        private string name;
-
-        public ArrayMapping(CppPrimitiveKind primitive, int size, string name)
-        {
-            this.primitive = primitive;
-            this.size = size;
-            this.name = name;
-        }
-
-        public CppPrimitiveKind Primitive { get => primitive; set => primitive = value; }
-
-        public int Size { get => size; set => size = value; }
-
-        public string Name { get => name; set => name = value; }
-    }
-
-    public class FunctionMapping
-    {
-        public FunctionMapping(string exportedName, string friendlyName, Dictionary<string, string> defaults)
-        {
-            ExportedName = exportedName;
-            FriendlyName = friendlyName;
-            Defaults = defaults;
-        }
-
-        public string ExportedName { get; set; }
-
-        public string FriendlyName { get; set; }
-
-        public Dictionary<string, string> Defaults { get; set; }
-    }
-
     internal unsafe class Program
     {
         private static void Main(string[] args)
         {
             GenerateImGui();
+            var constants = CsCodeGenerator.DefinedConstants.ToList();
+            var enums = CsCodeGenerator.DefinedEnums.ToList();
+            var extensions = CsCodeGenerator.DefinedExtensions.ToList();
+            var functions = CsCodeGenerator.DefinedFunctions.ToList();
+            var typedefs = CsCodeGenerator.DefinedTypedefs.ToList();
+            var types = CsCodeGenerator.DefinedTypes.ToList();
+
             GenerateImGuizmo();
+            CsCodeGenerator.Reset();
+            CsCodeGenerator.CopyFrom(constants, enums, extensions, functions, typedefs, types);
             GenerateImNodes();
+            CsCodeGenerator.Reset();
+            CsCodeGenerator.CopyFrom(constants, enums, extensions, functions, typedefs, types);
             GenerateImPlot();
+            CsCodeGenerator.Reset();
+            CsCodeGenerator.CopyFrom(constants, enums, extensions, functions, typedefs, types);
         }
 
         private static int GenerateImPlot()

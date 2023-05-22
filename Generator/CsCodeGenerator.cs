@@ -15,6 +15,44 @@
             GenerateCommands(compilation, outputPath);
         }
 
+        public static void Reset()
+        {
+            DefinedConstants.Clear();
+            DefinedEnums.Clear();
+            DefinedExtensions.Clear();
+            DefinedFunctions.Clear();
+            DefinedTypedefs.Clear();
+            DefinedTypes.Clear();
+        }
+
+        public static void CopyFrom(List<string> constants, List<string> enums, List<string> extensions, List<string> functions, List<string> typedefs, List<string> types)
+        {
+            for (int i = 0; i < constants.Count; i++)
+            {
+                DefinedConstants.Add(constants[i]);
+            }
+            for (int i = 0; i < enums.Count; i++)
+            {
+                DefinedEnums.Add(enums[i]);
+            }
+            for (int i = 0; i < extensions.Count; i++)
+            {
+                DefinedExtensions.Add(extensions[i]);
+            }
+            for (int i = 0; i < functions.Count; i++)
+            {
+                DefinedFunctions.Add(functions[i]);
+            }
+            for (int i = 0; i < typedefs.Count; i++)
+            {
+                DefinedTypedefs.Add(typedefs[i]);
+            }
+            for (int i = 0; i < types.Count; i++)
+            {
+                DefinedTypes.Add(types[i]);
+            }
+        }
+
         public static void AddCsMapping(string typeName, string csTypeName)
         {
             CsCodeGeneratorSettings.Default.NameMappings.Add(typeName, csTypeName);

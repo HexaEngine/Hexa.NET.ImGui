@@ -9,7 +9,7 @@
 
     public static partial class CsCodeGenerator
     {
-        private static readonly HashSet<string> s_definedEnums = new();
+        public static readonly HashSet<string> DefinedEnums = new();
 
         public static void GenerateEnums(CppCompilation compilation, string outputPath)
         {
@@ -25,9 +25,9 @@
                 if (CsCodeGeneratorSettings.Default.IgnoredEnums.Contains(cppEnum.Name))
                     continue;
 
-                if (s_definedEnums.Contains(cppEnum.Name))
+                if (DefinedEnums.Contains(cppEnum.Name))
                     continue;
-                s_definedEnums.Add(cppEnum.Name);
+                DefinedEnums.Add(cppEnum.Name);
 
                 string csName = GetCsCleanName(cppEnum.Name);
                 string enumNamePrefix = GetEnumNamePrefix(cppEnum.Name);

@@ -7,7 +7,7 @@
 
     public partial class CsCodeGenerator
     {
-        private static readonly HashSet<string> s_definedExtensions = new();
+        public static readonly HashSet<string> DefinedExtensions = new();
 
         private static void GenerateExtensions(CppCompilation compilation, string outputPath)
         {
@@ -21,9 +21,9 @@
                     CppTypedef typedef = compilation.Typedefs[i];
                     if (CsCodeGeneratorSettings.Default.IgnoredTypedefs.Contains(typedef.Name))
                         continue;
-                    if (s_definedExtensions.Contains(typedef.Name))
+                    if (DefinedExtensions.Contains(typedef.Name))
                         continue;
-                    s_definedExtensions.Add(typedef.Name);
+                    DefinedExtensions.Add(typedef.Name);
                     if (typedef.ElementType is not CppPointerType)
                     {
                         continue;
