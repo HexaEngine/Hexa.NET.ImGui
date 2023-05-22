@@ -293,7 +293,7 @@
             m_ScrollToBottom = true;
         }
 
-        public static void Draw()
+        public static unsafe void Draw()
         {
             //semaphore.Wait();
             ///////////////////////////////////////////////////////////////////////////
@@ -350,11 +350,8 @@
             float footerHeightToReserve = ImGui.GetStyle()->ItemSpacing.Y + ImGui.GetFrameHeightWithSpacing();
             if (ImGui.BeginChild("ScrollRegion##", new Vector2(0, -footerHeightToReserve)))
             {
-                Vector2 output;
-                ImGui.CalcTextSize(&output, "00:00:00:0000");
-
                 // Display colored command output.
-                float timestamp_width = output.X;    // Timestamp.
+                float timestamp_width = ImGui.CalcTextSize("00:00:00:0000").X;    // Timestamp.
                 int count = 0;                                                                       // Item count.
 
                 // Wrap items.

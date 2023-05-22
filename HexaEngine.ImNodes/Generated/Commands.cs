@@ -238,9 +238,11 @@ namespace HexaEngine.ImNodesNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextGetPanning")]
 		internal static extern void EditorContextGetPanningNative(Vector2* output);
 
-		public static void EditorContextGetPanning(Vector2* output)
+		public static Vector2 EditorContextGetPanning()
 		{
-			EditorContextGetPanningNative(output);
+			Vector2 ret;
+			EditorContextGetPanningNative(&ret);
+			return ret;
 		}
 
 		public static void EditorContextGetPanning(ref Vector2 output)
@@ -428,9 +430,11 @@ namespace HexaEngine.ImNodesNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeDimensions")]
 		internal static extern void GetNodeDimensionsNative(Vector2* output, int id);
 
-		public static void GetNodeDimensions(Vector2* output, int id)
+		public static Vector2 GetNodeDimensions(int id)
 		{
-			GetNodeDimensionsNative(output, id);
+			Vector2 ret;
+			GetNodeDimensionsNative(&ret, id);
+			return ret;
 		}
 
 		public static void GetNodeDimensions(ref Vector2 output, int id)
@@ -574,9 +578,11 @@ namespace HexaEngine.ImNodesNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeScreenSpacePos")]
 		internal static extern void GetNodeScreenSpacePosNative(Vector2* output, int nodeId);
 
-		public static void GetNodeScreenSpacePos(Vector2* output, int nodeId)
+		public static Vector2 GetNodeScreenSpacePos(int nodeId)
 		{
-			GetNodeScreenSpacePosNative(output, nodeId);
+			Vector2 ret;
+			GetNodeScreenSpacePosNative(&ret, nodeId);
+			return ret;
 		}
 
 		public static void GetNodeScreenSpacePos(ref Vector2 output, int nodeId)
@@ -590,9 +596,11 @@ namespace HexaEngine.ImNodesNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeEditorSpacePos")]
 		internal static extern void GetNodeEditorSpacePosNative(Vector2* output, int nodeId);
 
-		public static void GetNodeEditorSpacePos(Vector2* output, int nodeId)
+		public static Vector2 GetNodeEditorSpacePos(int nodeId)
 		{
-			GetNodeEditorSpacePosNative(output, nodeId);
+			Vector2 ret;
+			GetNodeEditorSpacePosNative(&ret, nodeId);
+			return ret;
 		}
 
 		public static void GetNodeEditorSpacePos(ref Vector2 output, int nodeId)
@@ -606,9 +614,11 @@ namespace HexaEngine.ImNodesNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeGridSpacePos")]
 		internal static extern void GetNodeGridSpacePosNative(Vector2* output, int nodeId);
 
-		public static void GetNodeGridSpacePos(Vector2* output, int nodeId)
+		public static Vector2 GetNodeGridSpacePos(int nodeId)
 		{
-			GetNodeGridSpacePosNative(output, nodeId);
+			Vector2 ret;
+			GetNodeGridSpacePosNative(&ret, nodeId);
+			return ret;
 		}
 
 		public static void GetNodeGridSpacePos(ref Vector2 output, int nodeId)
@@ -1692,11 +1702,32 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
+		public static string SaveCurrentEditorStateToIniStringS()
+		{
+			string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative((nuint*)(default)));
+			return ret;
+		}
+
+		public static string SaveCurrentEditorStateToIniStringS(nuint* dataSize)
+		{
+			string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative(dataSize));
+			return ret;
+		}
+
 		public static byte* SaveCurrentEditorStateToIniString(ref nuint dataSize)
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
 				byte* ret = SaveCurrentEditorStateToIniStringNative((nuint*)pdataSize);
+				return ret;
+			}
+		}
+
+		public static string SaveCurrentEditorStateToIniStringS(ref nuint dataSize)
+		{
+			fixed (nuint* pdataSize = &dataSize)
+			{
+				string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative((nuint*)pdataSize));
 				return ret;
 			}
 		}
@@ -1713,6 +1744,18 @@ namespace HexaEngine.ImNodesNET
 		public static byte* SaveEditorStateToIniString(ImNodesEditorContext* editor)
 		{
 			byte* ret = SaveEditorStateToIniStringNative(editor, (nuint*)(default));
+			return ret;
+		}
+
+		public static string SaveEditorStateToIniStringS(ImNodesEditorContext* editor)
+		{
+			string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, (nuint*)(default)));
+			return ret;
+		}
+
+		public static string SaveEditorStateToIniStringS(ImNodesEditorContext* editor, nuint* dataSize)
+		{
+			string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, dataSize));
 			return ret;
 		}
 
@@ -1734,11 +1777,38 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
+		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)(default)));
+				return ret;
+			}
+		}
+
+		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor, nuint* dataSize)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, dataSize));
+				return ret;
+			}
+		}
+
 		public static byte* SaveEditorStateToIniString(ImNodesEditorContext* editor, ref nuint dataSize)
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
 				byte* ret = SaveEditorStateToIniStringNative(editor, (nuint*)pdataSize);
+				return ret;
+			}
+		}
+
+		public static string SaveEditorStateToIniStringS(ImNodesEditorContext* editor, ref nuint dataSize)
+		{
+			fixed (nuint* pdataSize = &dataSize)
+			{
+				string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, (nuint*)pdataSize));
 				return ret;
 			}
 		}
@@ -1750,6 +1820,18 @@ namespace HexaEngine.ImNodesNET
 				fixed (nuint* pdataSize = &dataSize)
 				{
 					byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)pdataSize);
+					return ret;
+				}
+			}
+		}
+
+		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor, ref nuint dataSize)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				fixed (nuint* pdataSize = &dataSize)
+				{
+					string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)pdataSize));
 					return ret;
 				}
 			}

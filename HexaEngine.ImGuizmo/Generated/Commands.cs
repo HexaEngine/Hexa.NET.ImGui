@@ -626,39 +626,39 @@ namespace HexaEngine.ImGuizmoNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_Manipulate")]
-		internal static extern bool ManipulateNative(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap);
+		internal static extern bool ManipulateNative(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap);
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			bool ret = ManipulateNative(view, projection, operation, mode, matrix, deltaMatrix, snap, localBounds, boundsSnap);
 			return ret;
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds)
 		{
 			bool ret = ManipulateNative(view, projection, operation, mode, matrix, deltaMatrix, snap, localBounds, (float*)(default));
 			return ret;
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap)
 		{
 			bool ret = ManipulateNative(view, projection, operation, mode, matrix, deltaMatrix, snap, (float*)(default), (float*)(default));
 			return ret;
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix)
 		{
 			bool ret = ManipulateNative(view, projection, operation, mode, matrix, deltaMatrix, (float*)(default), (float*)(default), (float*)(default));
 			return ret;
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix)
 		{
 			bool ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)(default), (float*)(default), (float*)(default), (float*)(default));
 			return ret;
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -667,7 +667,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -676,7 +676,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -685,7 +685,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix)
 		{
 			fixed (float* pview = &view)
 			{
@@ -694,7 +694,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix)
 		{
 			fixed (float* pview = &view)
 			{
@@ -703,7 +703,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -712,7 +712,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -721,7 +721,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -730,7 +730,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -739,7 +739,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -748,7 +748,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -760,7 +760,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -772,7 +772,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -784,7 +784,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix)
 		{
 			fixed (float* pview = &view)
 			{
@@ -796,7 +796,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix)
 		{
 			fixed (float* pview = &view)
 			{
@@ -808,7 +808,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -817,7 +817,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -826,7 +826,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -835,7 +835,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -844,7 +844,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -853,7 +853,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -865,7 +865,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -877,7 +877,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -889,7 +889,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix)
 		{
 			fixed (float* pview = &view)
 			{
@@ -901,7 +901,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix)
 		{
 			fixed (float* pview = &view)
 			{
@@ -913,7 +913,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -925,7 +925,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -937,7 +937,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -949,7 +949,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -961,7 +961,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -973,7 +973,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -988,7 +988,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1003,7 +1003,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1018,7 +1018,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1033,7 +1033,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1048,7 +1048,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -1057,7 +1057,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -1066,7 +1066,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -1075,7 +1075,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -1084,7 +1084,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1096,7 +1096,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1108,7 +1108,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1120,7 +1120,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1132,7 +1132,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1144,7 +1144,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1156,7 +1156,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1168,7 +1168,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1180,7 +1180,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1195,7 +1195,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1210,7 +1210,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1225,7 +1225,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1240,7 +1240,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -1252,7 +1252,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -1264,7 +1264,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -1276,7 +1276,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -1288,7 +1288,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1303,7 +1303,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1318,7 +1318,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1333,7 +1333,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1348,7 +1348,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1363,7 +1363,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1378,7 +1378,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1393,7 +1393,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1408,7 +1408,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1426,7 +1426,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1444,7 +1444,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1462,7 +1462,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1480,7 +1480,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* psnap = &snap)
 			{
@@ -1489,7 +1489,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* psnap = &snap)
 			{
@@ -1498,7 +1498,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap)
 		{
 			fixed (float* psnap = &snap)
 			{
@@ -1507,7 +1507,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1519,7 +1519,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1531,7 +1531,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1543,7 +1543,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1555,7 +1555,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1567,7 +1567,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1579,7 +1579,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1594,7 +1594,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1609,7 +1609,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1624,7 +1624,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -1636,7 +1636,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -1648,7 +1648,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -1660,7 +1660,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1675,7 +1675,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1690,7 +1690,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1705,7 +1705,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1720,7 +1720,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1735,7 +1735,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1750,7 +1750,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1768,7 +1768,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1786,7 +1786,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1804,7 +1804,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -1816,7 +1816,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -1828,7 +1828,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -1840,7 +1840,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1855,7 +1855,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1870,7 +1870,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1885,7 +1885,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1900,7 +1900,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1915,7 +1915,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -1930,7 +1930,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1948,7 +1948,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1966,7 +1966,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -1984,7 +1984,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -1999,7 +1999,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -2014,7 +2014,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -2029,7 +2029,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2047,7 +2047,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2065,7 +2065,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2083,7 +2083,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2101,7 +2101,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2119,7 +2119,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2137,7 +2137,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2158,7 +2158,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2179,7 +2179,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2200,7 +2200,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* plocalBounds = &localBounds)
 			{
@@ -2209,7 +2209,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* plocalBounds = &localBounds)
 			{
@@ -2218,7 +2218,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2230,7 +2230,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2242,7 +2242,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2254,7 +2254,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2266,7 +2266,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2281,7 +2281,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2296,7 +2296,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -2308,7 +2308,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -2320,7 +2320,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2335,7 +2335,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2350,7 +2350,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2365,7 +2365,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2380,7 +2380,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2398,7 +2398,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2416,7 +2416,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -2428,7 +2428,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -2440,7 +2440,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2455,7 +2455,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2470,7 +2470,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2485,7 +2485,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2500,7 +2500,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2518,7 +2518,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2536,7 +2536,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -2551,7 +2551,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -2566,7 +2566,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2584,7 +2584,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2602,7 +2602,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2620,7 +2620,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2638,7 +2638,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2659,7 +2659,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2680,7 +2680,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* psnap = &snap)
 			{
@@ -2692,7 +2692,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* psnap = &snap)
 			{
@@ -2704,7 +2704,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2719,7 +2719,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2734,7 +2734,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2749,7 +2749,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2764,7 +2764,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2782,7 +2782,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2800,7 +2800,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -2815,7 +2815,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -2830,7 +2830,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2848,7 +2848,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2866,7 +2866,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2884,7 +2884,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -2902,7 +2902,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2923,7 +2923,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2944,7 +2944,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -2959,7 +2959,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -2974,7 +2974,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -2992,7 +2992,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3010,7 +3010,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3028,7 +3028,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3046,7 +3046,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3067,7 +3067,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3088,7 +3088,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -3106,7 +3106,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -3124,7 +3124,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3145,7 +3145,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3166,7 +3166,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3187,7 +3187,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3208,7 +3208,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3232,7 +3232,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3256,7 +3256,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pboundsSnap = &boundsSnap)
 			{
@@ -3265,7 +3265,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3277,7 +3277,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3289,7 +3289,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3304,7 +3304,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -3316,7 +3316,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3331,7 +3331,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3346,7 +3346,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3364,7 +3364,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -3376,7 +3376,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3391,7 +3391,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3406,7 +3406,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3424,7 +3424,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -3439,7 +3439,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3457,7 +3457,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3475,7 +3475,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3496,7 +3496,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* psnap = &snap)
 			{
@@ -3508,7 +3508,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3523,7 +3523,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3538,7 +3538,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3556,7 +3556,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -3571,7 +3571,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3589,7 +3589,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3607,7 +3607,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3628,7 +3628,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -3643,7 +3643,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3661,7 +3661,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3679,7 +3679,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3700,7 +3700,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -3718,7 +3718,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3739,7 +3739,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3760,7 +3760,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3784,7 +3784,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* plocalBounds = &localBounds)
 			{
@@ -3796,7 +3796,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3811,7 +3811,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3826,7 +3826,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3844,7 +3844,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -3859,7 +3859,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3877,7 +3877,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3895,7 +3895,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3916,7 +3916,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -3931,7 +3931,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3949,7 +3949,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -3967,7 +3967,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -3988,7 +3988,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -4006,7 +4006,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -4027,7 +4027,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -4048,7 +4048,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -4072,7 +4072,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* psnap = &snap)
 			{
@@ -4087,7 +4087,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -4105,7 +4105,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -4123,7 +4123,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -4144,7 +4144,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -4162,7 +4162,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -4183,7 +4183,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -4204,7 +4204,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -4228,7 +4228,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
 			{
@@ -4246,7 +4246,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -4267,7 +4267,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -4288,7 +4288,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -4312,7 +4312,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -4333,7 +4333,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -4357,7 +4357,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -4381,7 +4381,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static bool Manipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
+		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
 			{
@@ -4425,14 +4425,14 @@ namespace HexaEngine.ImGuizmoNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_ViewManipulate_FloatPtr")]
-		internal static extern void ViewManipulateNative(float* view, float* projection, Operation operation, Mode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor);
+		internal static extern void ViewManipulateNative(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor);
 
-		public static void ViewManipulate(float* view, float* projection, Operation operation, Mode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		public static void ViewManipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			ViewManipulateNative(view, projection, operation, mode, matrix, length, position, size, backgroundColor);
 		}
 
-		public static void ViewManipulate(ref float view, float* projection, Operation operation, Mode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		public static void ViewManipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			fixed (float* pview = &view)
 			{
@@ -4440,7 +4440,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static void ViewManipulate(float* view, ref float projection, Operation operation, Mode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		public static void ViewManipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -4448,7 +4448,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static void ViewManipulate(ref float view, ref float projection, Operation operation, Mode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		public static void ViewManipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			fixed (float* pview = &view)
 			{
@@ -4459,7 +4459,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static void ViewManipulate(float* view, float* projection, Operation operation, Mode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		public static void ViewManipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			fixed (float* pmatrix = &matrix)
 			{
@@ -4467,7 +4467,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static void ViewManipulate(ref float view, float* projection, Operation operation, Mode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		public static void ViewManipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			fixed (float* pview = &view)
 			{
@@ -4478,7 +4478,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static void ViewManipulate(float* view, ref float projection, Operation operation, Mode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		public static void ViewManipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			fixed (float* pprojection = &projection)
 			{
@@ -4489,7 +4489,7 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		public static void ViewManipulate(ref float view, ref float projection, Operation operation, Mode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		public static void ViewManipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			fixed (float* pview = &view)
 			{
@@ -4513,9 +4513,9 @@ namespace HexaEngine.ImGuizmoNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_IsOver_OPERATION")]
-		internal static extern bool IsOverNative(Operation op);
+		internal static extern bool IsOverNative(ImGuizmoOperation op);
 
-		public static bool IsOver(Operation op)
+		public static bool IsOver(ImGuizmoOperation op)
 		{
 			bool ret = IsOverNative(op);
 			return ret;

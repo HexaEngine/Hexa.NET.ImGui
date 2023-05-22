@@ -9,7 +9,7 @@
   "KnownExtensionPrefixes": {},
   "KnownExtensionNames": {},
   "KnownStructMethods": {},
-  "IgnoredParts": [ "bit", "Ig", "ImGui", "Str", "Arr" ],
+  "IgnoredParts": [ "bit", "Ig", "ImGui", "Str", "Arr", "ImGuizmo" ],
   "PreserveCaps": [ "" ],
   "Keywords": [ "object", "event", "out", "base" ],
   "IgnoredTypes": [ "ImVec4", "ImVec3", "ImVec2" ],
@@ -72,9 +72,9 @@
     "ImGuiDockRequest": "void",
     "ImGuiDockNodeSettings": "void",
     "va_list": "nuint",
-    "OPERATION": "Operation",
-    "MODE": "Mode",
-    "COLOR": "Color"
+    "OPERATION": "ImGuizmoOperation",
+    "MODE": "ImGuizmoMode",
+    "COLOR": "ImGuizmoColor"
   },
   "AllowedFunctions": [],
   "AllowedTypes": [],

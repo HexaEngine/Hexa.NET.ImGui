@@ -13,7 +13,7 @@ using HexaEngine.ImGuiNET;
 
 namespace HexaEngine.ImGuizmoNET
 {
-	public enum Operation
+	public enum ImGuizmoOperation
 	{
 		TranslateX = unchecked((int)(1U<<0)),
 		TranslateY = unchecked((int)(1U<<1)),
@@ -36,13 +36,13 @@ namespace HexaEngine.ImGuizmoNET
 		Universal = unchecked(14463),
 	}
 
-	public enum Mode
+	public enum ImGuizmoMode
 	{
 		Local = unchecked(0),
 		World = unchecked(1),
 	}
 
-	public enum Color
+	public enum ImGuizmoColor
 	{
 		DirectionX = unchecked(0),
 		DirectionY = unchecked(1),

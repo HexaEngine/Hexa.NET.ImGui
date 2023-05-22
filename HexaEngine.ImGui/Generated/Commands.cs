@@ -438,6 +438,12 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string GetVersionS()
+		{
+			string ret = Utils.DecodeStringUTF8(GetVersionNative());
+			return ret;
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igStyleColorsDark")]
 		internal static extern void StyleColorsDarkNative(ImGuiStyle* dst);
 
@@ -1022,9 +1028,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetWindowPos")]
 		internal static extern void GetWindowPosNative(Vector2* output);
 
-		public static void GetWindowPos(Vector2* output)
+		public static Vector2 GetWindowPos()
 		{
-			GetWindowPosNative(output);
+			Vector2 ret;
+			GetWindowPosNative(&ret);
+			return ret;
 		}
 
 		public static void GetWindowPos(ref Vector2 output)
@@ -1038,9 +1046,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetWindowSize")]
 		internal static extern void GetWindowSizeNative(Vector2* output);
 
-		public static void GetWindowSize(Vector2* output)
+		public static Vector2 GetWindowSize()
 		{
-			GetWindowSizeNative(output);
+			Vector2 ret;
+			GetWindowSizeNative(&ret);
+			return ret;
 		}
 
 		public static void GetWindowSize(ref Vector2 output)
@@ -1523,9 +1533,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetContentRegionAvail")]
 		internal static extern void GetContentRegionAvailNative(Vector2* output);
 
-		public static void GetContentRegionAvail(Vector2* output)
+		public static Vector2 GetContentRegionAvail()
 		{
-			GetContentRegionAvailNative(output);
+			Vector2 ret;
+			GetContentRegionAvailNative(&ret);
+			return ret;
 		}
 
 		public static void GetContentRegionAvail(ref Vector2 output)
@@ -1539,9 +1551,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetContentRegionMax")]
 		internal static extern void GetContentRegionMaxNative(Vector2* output);
 
-		public static void GetContentRegionMax(Vector2* output)
+		public static Vector2 GetContentRegionMax()
 		{
-			GetContentRegionMaxNative(output);
+			Vector2 ret;
+			GetContentRegionMaxNative(&ret);
+			return ret;
 		}
 
 		public static void GetContentRegionMax(ref Vector2 output)
@@ -1555,9 +1569,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetWindowContentRegionMin")]
 		internal static extern void GetWindowContentRegionMinNative(Vector2* output);
 
-		public static void GetWindowContentRegionMin(Vector2* output)
+		public static Vector2 GetWindowContentRegionMin()
 		{
-			GetWindowContentRegionMinNative(output);
+			Vector2 ret;
+			GetWindowContentRegionMinNative(&ret);
+			return ret;
 		}
 
 		public static void GetWindowContentRegionMin(ref Vector2 output)
@@ -1571,9 +1587,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetWindowContentRegionMax")]
 		internal static extern void GetWindowContentRegionMaxNative(Vector2* output);
 
-		public static void GetWindowContentRegionMax(Vector2* output)
+		public static Vector2 GetWindowContentRegionMax()
 		{
-			GetWindowContentRegionMaxNative(output);
+			Vector2 ret;
+			GetWindowContentRegionMaxNative(&ret);
+			return ret;
 		}
 
 		public static void GetWindowContentRegionMax(ref Vector2 output)
@@ -1877,9 +1895,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetFontTexUvWhitePixel")]
 		internal static extern void GetFontTexUvWhitePixelNative(Vector2* output);
 
-		public static void GetFontTexUvWhitePixel(Vector2* output)
+		public static Vector2 GetFontTexUvWhitePixel()
 		{
-			GetFontTexUvWhitePixelNative(output);
+			Vector2 ret;
+			GetFontTexUvWhitePixelNative(&ret);
+			return ret;
 		}
 
 		public static void GetFontTexUvWhitePixel(ref Vector2 output)
@@ -2027,9 +2047,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetCursorPos")]
 		internal static extern void GetCursorPosNative(Vector2* output);
 
-		public static void GetCursorPos(Vector2* output)
+		public static Vector2 GetCursorPos()
 		{
-			GetCursorPosNative(output);
+			Vector2 ret;
+			GetCursorPosNative(&ret);
+			return ret;
 		}
 
 		public static void GetCursorPos(ref Vector2 output)
@@ -2085,9 +2107,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetCursorStartPos")]
 		internal static extern void GetCursorStartPosNative(Vector2* output);
 
-		public static void GetCursorStartPos(Vector2* output)
+		public static Vector2 GetCursorStartPos()
 		{
-			GetCursorStartPosNative(output);
+			Vector2 ret;
+			GetCursorStartPosNative(&ret);
+			return ret;
 		}
 
 		public static void GetCursorStartPos(ref Vector2 output)
@@ -2101,9 +2125,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetCursorScreenPos")]
 		internal static extern void GetCursorScreenPosNative(Vector2* output);
 
-		public static void GetCursorScreenPos(Vector2* output)
+		public static Vector2 GetCursorScreenPos()
 		{
-			GetCursorScreenPosNative(output);
+			Vector2 ret;
+			GetCursorScreenPosNative(&ret);
+			return ret;
 		}
 
 		public static void GetCursorScreenPos(ref Vector2 output)
@@ -52915,6 +52941,18 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string TableGetColumnNameS()
+		{
+			string ret = Utils.DecodeStringUTF8(TableGetColumnNameNative((int)(-1)));
+			return ret;
+		}
+
+		public static string TableGetColumnNameS(int columnN)
+		{
+			string ret = Utils.DecodeStringUTF8(TableGetColumnNameNative(columnN));
+			return ret;
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTableGetColumnFlags")]
 		internal static extern ImGuiTableColumnFlags TableGetColumnFlagsNative(int columnN);
 
@@ -54313,9 +54351,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetItemRectMin")]
 		internal static extern void GetItemRectMinNative(Vector2* output);
 
-		public static void GetItemRectMin(Vector2* output)
+		public static Vector2 GetItemRectMin()
 		{
-			GetItemRectMinNative(output);
+			Vector2 ret;
+			GetItemRectMinNative(&ret);
+			return ret;
 		}
 
 		public static void GetItemRectMin(ref Vector2 output)
@@ -54329,9 +54369,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetItemRectMax")]
 		internal static extern void GetItemRectMaxNative(Vector2* output);
 
-		public static void GetItemRectMax(Vector2* output)
+		public static Vector2 GetItemRectMax()
 		{
-			GetItemRectMaxNative(output);
+			Vector2 ret;
+			GetItemRectMaxNative(&ret);
+			return ret;
 		}
 
 		public static void GetItemRectMax(ref Vector2 output)
@@ -54345,9 +54387,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetItemRectSize")]
 		internal static extern void GetItemRectSizeNative(Vector2* output);
 
-		public static void GetItemRectSize(Vector2* output)
+		public static Vector2 GetItemRectSize()
 		{
-			GetItemRectSizeNative(output);
+			Vector2 ret;
+			GetItemRectSizeNative(&ret);
+			return ret;
 		}
 
 		public static void GetItemRectSize(ref Vector2 output)
@@ -54485,6 +54529,12 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string GetStyleColorNameS(ImGuiCol idx)
+		{
+			string ret = Utils.DecodeStringUTF8(GetStyleColorNameNative(idx));
+			return ret;
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igSetStateStorage")]
 		internal static extern void SetStateStorageNative(ImGuiStorage* storage);
 
@@ -54537,24 +54587,32 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igCalcTextSize")]
 		internal static extern void CalcTextSizeNative(Vector2* output, byte* text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth);
 
-		public static void CalcTextSize(Vector2* output, byte* text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static Vector2 CalcTextSize(byte* text)
 		{
-			CalcTextSizeNative(output, text, textEnd, hideTextAfterDoubleHash, wrapWidth);
+			Vector2 ret;
+			CalcTextSizeNative(&ret, text, (byte*)(default), (bool)(false), (float)(-1.0f));
+			return ret;
 		}
 
-		public static void CalcTextSize(Vector2* output, byte* text, byte* textEnd, bool hideTextAfterDoubleHash)
+		public static Vector2 CalcTextSize(byte* text, byte* textEnd)
 		{
-			CalcTextSizeNative(output, text, textEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+			Vector2 ret;
+			CalcTextSizeNative(&ret, text, textEnd, (bool)(false), (float)(-1.0f));
+			return ret;
 		}
 
-		public static void CalcTextSize(Vector2* output, byte* text, byte* textEnd)
+		public static Vector2 CalcTextSize(byte* text, byte* textEnd, bool hideTextAfterDoubleHash)
 		{
-			CalcTextSizeNative(output, text, textEnd, (bool)(false), (float)(-1.0f));
+			Vector2 ret;
+			CalcTextSizeNative(&ret, text, textEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+			return ret;
 		}
 
-		public static void CalcTextSize(Vector2* output, byte* text)
+		public static Vector2 CalcTextSize(byte* text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
 		{
-			CalcTextSizeNative(output, text, (byte*)(default), (bool)(false), (float)(-1.0f));
+			Vector2 ret;
+			CalcTextSizeNative(&ret, text, textEnd, hideTextAfterDoubleHash, wrapWidth);
+			return ret;
 		}
 
 		public static void CalcTextSize(ref Vector2 output, byte* text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
@@ -54589,39 +54647,47 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSize(Vector2* output, ref byte text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static Vector2 CalcTextSize(ref byte text)
 		{
 			fixed (byte* ptext = &text)
 			{
-				CalcTextSizeNative(output, (byte*)ptext, textEnd, hideTextAfterDoubleHash, wrapWidth);
+				Vector2 ret;
+				CalcTextSizeNative(&ret, (byte*)ptext, (byte*)(default), (bool)(false), (float)(-1.0f));
+				return ret;
 			}
 		}
 
-		public static void CalcTextSize(Vector2* output, ref byte text, byte* textEnd, bool hideTextAfterDoubleHash)
+		public static Vector2 CalcTextSize(ref byte text, byte* textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
-				CalcTextSizeNative(output, (byte*)ptext, textEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+				Vector2 ret;
+				CalcTextSizeNative(&ret, (byte*)ptext, textEnd, (bool)(false), (float)(-1.0f));
+				return ret;
 			}
 		}
 
-		public static void CalcTextSize(Vector2* output, ref byte text, byte* textEnd)
+		public static Vector2 CalcTextSize(ref byte text, byte* textEnd, bool hideTextAfterDoubleHash)
 		{
 			fixed (byte* ptext = &text)
 			{
-				CalcTextSizeNative(output, (byte*)ptext, textEnd, (bool)(false), (float)(-1.0f));
+				Vector2 ret;
+				CalcTextSizeNative(&ret, (byte*)ptext, textEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+				return ret;
 			}
 		}
 
-		public static void CalcTextSize(Vector2* output, ref byte text)
+		public static Vector2 CalcTextSize(ref byte text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
-				CalcTextSizeNative(output, (byte*)ptext, (byte*)(default), (bool)(false), (float)(-1.0f));
+				Vector2 ret;
+				CalcTextSizeNative(&ret, (byte*)ptext, textEnd, hideTextAfterDoubleHash, wrapWidth);
+				return ret;
 			}
 		}
 
-		public static void CalcTextSize(Vector2* output, string text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static Vector2 CalcTextSize(string text)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -54640,14 +54706,16 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeNative(output, pStr0, textEnd, hideTextAfterDoubleHash, wrapWidth);
+			Vector2 ret;
+			CalcTextSizeNative(&ret, pStr0, (byte*)(default), (bool)(false), (float)(-1.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
-		public static void CalcTextSize(Vector2* output, string text, byte* textEnd, bool hideTextAfterDoubleHash)
+		public static Vector2 CalcTextSize(string text, byte* textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -54666,14 +54734,16 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeNative(output, pStr0, textEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+			Vector2 ret;
+			CalcTextSizeNative(&ret, pStr0, textEnd, (bool)(false), (float)(-1.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
-		public static void CalcTextSize(Vector2* output, string text, byte* textEnd)
+		public static Vector2 CalcTextSize(string text, byte* textEnd, bool hideTextAfterDoubleHash)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -54692,14 +54762,16 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeNative(output, pStr0, textEnd, (bool)(false), (float)(-1.0f));
+			Vector2 ret;
+			CalcTextSizeNative(&ret, pStr0, textEnd, hideTextAfterDoubleHash, (float)(-1.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
-		public static void CalcTextSize(Vector2* output, string text)
+		public static Vector2 CalcTextSize(string text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -54718,11 +54790,13 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeNative(output, pStr0, (byte*)(default), (bool)(false), (float)(-1.0f));
+			Vector2 ret;
+			CalcTextSizeNative(&ret, pStr0, textEnd, hideTextAfterDoubleHash, wrapWidth);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		public static void CalcTextSize(ref Vector2 output, ref byte text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
@@ -54885,31 +54959,37 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSize(Vector2* output, byte* text, ref byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static Vector2 CalcTextSize(byte* text, ref byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				CalcTextSizeNative(output, text, (byte*)ptextEnd, hideTextAfterDoubleHash, wrapWidth);
+				Vector2 ret;
+				CalcTextSizeNative(&ret, text, (byte*)ptextEnd, (bool)(false), (float)(-1.0f));
+				return ret;
 			}
 		}
 
-		public static void CalcTextSize(Vector2* output, byte* text, ref byte textEnd, bool hideTextAfterDoubleHash)
+		public static Vector2 CalcTextSize(byte* text, ref byte textEnd, bool hideTextAfterDoubleHash)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				CalcTextSizeNative(output, text, (byte*)ptextEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+				Vector2 ret;
+				CalcTextSizeNative(&ret, text, (byte*)ptextEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+				return ret;
 			}
 		}
 
-		public static void CalcTextSize(Vector2* output, byte* text, ref byte textEnd)
+		public static Vector2 CalcTextSize(byte* text, ref byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				CalcTextSizeNative(output, text, (byte*)ptextEnd, (bool)(false), (float)(-1.0f));
+				Vector2 ret;
+				CalcTextSizeNative(&ret, text, (byte*)ptextEnd, hideTextAfterDoubleHash, wrapWidth);
+				return ret;
 			}
 		}
 
-		public static void CalcTextSize(Vector2* output, byte* text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static Vector2 CalcTextSize(byte* text, string textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -54928,14 +55008,16 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeNative(output, text, pStr0, hideTextAfterDoubleHash, wrapWidth);
+			Vector2 ret;
+			CalcTextSizeNative(&ret, text, pStr0, (bool)(false), (float)(-1.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
-		public static void CalcTextSize(Vector2* output, byte* text, string textEnd, bool hideTextAfterDoubleHash)
+		public static Vector2 CalcTextSize(byte* text, string textEnd, bool hideTextAfterDoubleHash)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -54954,14 +55036,16 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeNative(output, text, pStr0, hideTextAfterDoubleHash, (float)(-1.0f));
+			Vector2 ret;
+			CalcTextSizeNative(&ret, text, pStr0, hideTextAfterDoubleHash, (float)(-1.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
-		public static void CalcTextSize(Vector2* output, byte* text, string textEnd)
+		public static Vector2 CalcTextSize(byte* text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -54980,11 +55064,13 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeNative(output, text, pStr0, (bool)(false), (float)(-1.0f));
+			Vector2 ret;
+			CalcTextSizeNative(&ret, text, pStr0, hideTextAfterDoubleHash, wrapWidth);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		public static void CalcTextSize(ref Vector2 output, byte* text, ref byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
@@ -55107,40 +55193,46 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSize(Vector2* output, ref byte text, ref byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static Vector2 CalcTextSize(ref byte text, ref byte textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					CalcTextSizeNative(output, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash, wrapWidth);
+					Vector2 ret;
+					CalcTextSizeNative(&ret, (byte*)ptext, (byte*)ptextEnd, (bool)(false), (float)(-1.0f));
+					return ret;
 				}
 			}
 		}
 
-		public static void CalcTextSize(Vector2* output, ref byte text, ref byte textEnd, bool hideTextAfterDoubleHash)
+		public static Vector2 CalcTextSize(ref byte text, ref byte textEnd, bool hideTextAfterDoubleHash)
 		{
 			fixed (byte* ptext = &text)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					CalcTextSizeNative(output, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+					Vector2 ret;
+					CalcTextSizeNative(&ret, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+					return ret;
 				}
 			}
 		}
 
-		public static void CalcTextSize(Vector2* output, ref byte text, ref byte textEnd)
+		public static Vector2 CalcTextSize(ref byte text, ref byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					CalcTextSizeNative(output, (byte*)ptext, (byte*)ptextEnd, (bool)(false), (float)(-1.0f));
+					Vector2 ret;
+					CalcTextSizeNative(&ret, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash, wrapWidth);
+					return ret;
 				}
 			}
 		}
 
-		public static void CalcTextSize(Vector2* output, string text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
+		public static Vector2 CalcTextSize(string text, string textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -55176,7 +55268,8 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			CalcTextSizeNative(output, pStr0, pStr1, hideTextAfterDoubleHash, wrapWidth);
+			Vector2 ret;
+			CalcTextSizeNative(&ret, pStr0, pStr1, (bool)(false), (float)(-1.0f));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -55185,9 +55278,10 @@ namespace HexaEngine.ImGuiNET
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
-		public static void CalcTextSize(Vector2* output, string text, string textEnd, bool hideTextAfterDoubleHash)
+		public static Vector2 CalcTextSize(string text, string textEnd, bool hideTextAfterDoubleHash)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -55223,7 +55317,8 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			CalcTextSizeNative(output, pStr0, pStr1, hideTextAfterDoubleHash, (float)(-1.0f));
+			Vector2 ret;
+			CalcTextSizeNative(&ret, pStr0, pStr1, hideTextAfterDoubleHash, (float)(-1.0f));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -55232,9 +55327,10 @@ namespace HexaEngine.ImGuiNET
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
-		public static void CalcTextSize(Vector2* output, string text, string textEnd)
+		public static Vector2 CalcTextSize(string text, string textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -55270,7 +55366,8 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			CalcTextSizeNative(output, pStr0, pStr1, (bool)(false), (float)(-1.0f));
+			Vector2 ret;
+			CalcTextSizeNative(&ret, pStr0, pStr1, hideTextAfterDoubleHash, wrapWidth);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -55279,6 +55376,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		public static void CalcTextSize(ref Vector2 output, ref byte text, ref byte textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
@@ -55476,9 +55574,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igColorConvertU32ToFloat4")]
 		internal static extern void ColorConvertU32ToFloat4Native(Vector4* output, uint input);
 
-		public static void ColorConvertU32ToFloat4(Vector4* output, uint input)
+		public static Vector4 ColorConvertU32ToFloat4(uint input)
 		{
-			ColorConvertU32ToFloat4Native(output, input);
+			Vector4 ret;
+			ColorConvertU32ToFloat4Native(&ret, input);
+			return ret;
 		}
 
 		public static void ColorConvertU32ToFloat4(ref Vector4 output, uint input)
@@ -55710,6 +55810,12 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string GetKeyNameS(ImGuiKey key)
+		{
+			string ret = Utils.DecodeStringUTF8(GetKeyNameNative(key));
+			return ret;
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igSetNextFrameWantCaptureKeyboard")]
 		internal static extern void SetNextFrameWantCaptureKeyboardNative(bool wantCaptureKeyboard);
 
@@ -55827,9 +55933,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetMousePos")]
 		internal static extern void GetMousePosNative(Vector2* output);
 
-		public static void GetMousePos(Vector2* output)
+		public static Vector2 GetMousePos()
 		{
-			GetMousePosNative(output);
+			Vector2 ret;
+			GetMousePosNative(&ret);
+			return ret;
 		}
 
 		public static void GetMousePos(ref Vector2 output)
@@ -55843,9 +55951,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetMousePosOnOpeningCurrentPopup")]
 		internal static extern void GetMousePosOnOpeningCurrentPopupNative(Vector2* output);
 
-		public static void GetMousePosOnOpeningCurrentPopup(Vector2* output)
+		public static Vector2 GetMousePosOnOpeningCurrentPopup()
 		{
-			GetMousePosOnOpeningCurrentPopupNative(output);
+			Vector2 ret;
+			GetMousePosOnOpeningCurrentPopupNative(&ret);
+			return ret;
 		}
 
 		public static void GetMousePosOnOpeningCurrentPopup(ref Vector2 output)
@@ -55875,19 +55985,25 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetMouseDragDelta")]
 		internal static extern void GetMouseDragDeltaNative(Vector2* output, ImGuiMouseButton button, float lockThreshold);
 
-		public static void GetMouseDragDelta(Vector2* output, ImGuiMouseButton button, float lockThreshold)
+		public static Vector2 GetMouseDragDelta()
 		{
-			GetMouseDragDeltaNative(output, button, lockThreshold);
+			Vector2 ret;
+			GetMouseDragDeltaNative(&ret, (ImGuiMouseButton)(0), (float)(-1.0f));
+			return ret;
 		}
 
-		public static void GetMouseDragDelta(Vector2* output, ImGuiMouseButton button)
+		public static Vector2 GetMouseDragDelta(ImGuiMouseButton button)
 		{
-			GetMouseDragDeltaNative(output, button, (float)(-1.0f));
+			Vector2 ret;
+			GetMouseDragDeltaNative(&ret, button, (float)(-1.0f));
+			return ret;
 		}
 
-		public static void GetMouseDragDelta(Vector2* output)
+		public static Vector2 GetMouseDragDelta(ImGuiMouseButton button, float lockThreshold)
 		{
-			GetMouseDragDeltaNative(output, (ImGuiMouseButton)(0), (float)(-1.0f));
+			Vector2 ret;
+			GetMouseDragDeltaNative(&ret, button, lockThreshold);
+			return ret;
 		}
 
 		public static void GetMouseDragDelta(ref Vector2 output, ImGuiMouseButton button, float lockThreshold)
@@ -55958,6 +56074,12 @@ namespace HexaEngine.ImGuiNET
 		public static byte* GetClipboardText()
 		{
 			byte* ret = GetClipboardTextNative();
+			return ret;
+		}
+
+		public static string GetClipboardTextS()
+		{
+			string ret = Utils.DecodeStringUTF8(GetClipboardTextNative());
 			return ret;
 		}
 
@@ -56183,11 +56305,32 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string SaveIniSettingsToMemoryS()
+		{
+			string ret = Utils.DecodeStringUTF8(SaveIniSettingsToMemoryNative((nuint*)(default)));
+			return ret;
+		}
+
+		public static string SaveIniSettingsToMemoryS(nuint* outIniSize)
+		{
+			string ret = Utils.DecodeStringUTF8(SaveIniSettingsToMemoryNative(outIniSize));
+			return ret;
+		}
+
 		public static byte* SaveIniSettingsToMemory(ref nuint outIniSize)
 		{
 			fixed (nuint* poutIniSize = &outIniSize)
 			{
 				byte* ret = SaveIniSettingsToMemoryNative((nuint*)poutIniSize);
+				return ret;
+			}
+		}
+
+		public static string SaveIniSettingsToMemoryS(ref nuint outIniSize)
+		{
+			fixed (nuint* poutIniSize = &outIniSize)
+			{
+				string ret = Utils.DecodeStringUTF8(SaveIniSettingsToMemoryNative((nuint*)poutIniSize));
 				return ret;
 			}
 		}
@@ -58484,11 +58627,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string beginS(ImGuiTextBuffer* self)
+		{
+			string ret = Utils.DecodeStringUTF8(beginNative(self));
+			return ret;
+		}
+
 		public static byte* begin(ref ImGuiTextBuffer self)
 		{
 			fixed (ImGuiTextBuffer* pself = &self)
 			{
 				byte* ret = beginNative((ImGuiTextBuffer*)pself);
+				return ret;
+			}
+		}
+
+		public static string beginS(ref ImGuiTextBuffer self)
+		{
+			fixed (ImGuiTextBuffer* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(beginNative((ImGuiTextBuffer*)pself));
 				return ret;
 			}
 		}
@@ -58502,11 +58660,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string endS(ImGuiTextBuffer* self)
+		{
+			string ret = Utils.DecodeStringUTF8(endNative(self));
+			return ret;
+		}
+
 		public static byte* end(ref ImGuiTextBuffer self)
 		{
 			fixed (ImGuiTextBuffer* pself = &self)
 			{
 				byte* ret = endNative((ImGuiTextBuffer*)pself);
+				return ret;
+			}
+		}
+
+		public static string endS(ref ImGuiTextBuffer self)
+		{
+			fixed (ImGuiTextBuffer* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(endNative((ImGuiTextBuffer*)pself));
 				return ret;
 			}
 		}
@@ -58589,11 +58762,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string c_strS(ImGuiTextBuffer* self)
+		{
+			string ret = Utils.DecodeStringUTF8(c_strNative(self));
+			return ret;
+		}
+
 		public static byte* c_str(ref ImGuiTextBuffer self)
 		{
 			fixed (ImGuiTextBuffer* pself = &self)
 			{
 				byte* ret = c_strNative((ImGuiTextBuffer*)pself);
+				return ret;
+			}
+		}
+
+		public static string c_strS(ref ImGuiTextBuffer self)
+		{
+			fixed (ImGuiTextBuffer* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(c_strNative((ImGuiTextBuffer*)pself));
 				return ret;
 			}
 		}
@@ -59676,14 +59864,18 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImColor_HSV")]
 		internal static extern void HSVNative(ImColor* output, float h, float s, float v, float a);
 
-		public static void HSV(ImColor* output, float h, float s, float v, float a)
+		public static ImColor HSV(float h, float s, float v)
 		{
-			HSVNative(output, h, s, v, a);
+			ImColor ret;
+			HSVNative(&ret, h, s, v, (float)(1.0f));
+			return ret;
 		}
 
-		public static void HSV(ImColor* output, float h, float s, float v)
+		public static ImColor HSV(float h, float s, float v, float a)
 		{
-			HSVNative(output, h, s, v, (float)(1.0f));
+			ImColor ret;
+			HSVNative(&ret, h, s, v, a);
+			return ret;
 		}
 
 		public static void HSV(ref ImColor output, float h, float s, float v, float a)
@@ -60037,9 +60229,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImDrawList_GetClipRectMin")]
 		internal static extern void GetClipRectMinNative(Vector2* output, ImDrawList* self);
 
-		public static void GetClipRectMin(Vector2* output, ImDrawList* self)
+		public static Vector2 GetClipRectMin(ImDrawList* self)
 		{
-			GetClipRectMinNative(output, self);
+			Vector2 ret;
+			GetClipRectMinNative(&ret, self);
+			return ret;
 		}
 
 		public static void GetClipRectMin(ref Vector2 output, ImDrawList* self)
@@ -60050,11 +60244,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void GetClipRectMin(Vector2* output, ref ImDrawList self)
+		public static Vector2 GetClipRectMin(ref ImDrawList self)
 		{
 			fixed (ImDrawList* pself = &self)
 			{
-				GetClipRectMinNative(output, (ImDrawList*)pself);
+				Vector2 ret;
+				GetClipRectMinNative(&ret, (ImDrawList*)pself);
+				return ret;
 			}
 		}
 
@@ -60072,9 +60268,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImDrawList_GetClipRectMax")]
 		internal static extern void GetClipRectMaxNative(Vector2* output, ImDrawList* self);
 
-		public static void GetClipRectMax(Vector2* output, ImDrawList* self)
+		public static Vector2 GetClipRectMax(ImDrawList* self)
 		{
-			GetClipRectMaxNative(output, self);
+			Vector2 ret;
+			GetClipRectMaxNative(&ret, self);
+			return ret;
 		}
 
 		public static void GetClipRectMax(ref Vector2 output, ImDrawList* self)
@@ -60085,11 +60283,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void GetClipRectMax(Vector2* output, ref ImDrawList self)
+		public static Vector2 GetClipRectMax(ref ImDrawList self)
 		{
 			fixed (ImDrawList* pself = &self)
 			{
-				GetClipRectMaxNative(output, (ImDrawList*)pself);
+				Vector2 ret;
+				GetClipRectMaxNative(&ret, (ImDrawList*)pself);
+				return ret;
 			}
 		}
 
@@ -69298,6 +69498,12 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string GetDebugNameS(ImFont* self)
+		{
+			string ret = Utils.DecodeStringUTF8(GetDebugNameNative(self));
+			return ret;
+		}
+
 		public static byte* GetDebugName(ref ImFont self)
 		{
 			fixed (ImFont* pself = &self)
@@ -69307,22 +69513,37 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
+		public static string GetDebugNameS(ref ImFont self)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(GetDebugNameNative((ImFont*)pself));
+				return ret;
+			}
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFont_CalcTextSizeA")]
 		internal static extern void CalcTextSizeANative(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, byte** remaining);
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, byte** remaining)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin)
 		{
-			CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
+			Vector2 ret;
+			CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, (byte*)(default), (byte**)(default));
+			return ret;
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd)
 		{
-			CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, textEnd, (byte**)(default));
+			Vector2 ret;
+			CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, textEnd, (byte**)(default));
+			return ret;
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, byte** remaining)
 		{
-			CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, (byte*)(default), (byte**)(default));
+			Vector2 ret;
+			CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
+			return ret;
 		}
 
 		public static void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, byte** remaining)
@@ -69349,27 +69570,33 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, byte** remaining)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin)
 		{
 			fixed (ImFont* pself = &self)
 			{
-				CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
+				Vector2 ret;
+				CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)(default), (byte**)(default));
+				return ret;
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd)
 		{
 			fixed (ImFont* pself = &self)
 			{
-				CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, textEnd, (byte**)(default));
+				Vector2 ret;
+				CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, textEnd, (byte**)(default));
+				return ret;
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, byte** remaining)
 		{
 			fixed (ImFont* pself = &self)
 			{
-				CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)(default), (byte**)(default));
+				Vector2 ret;
+				CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
+				return ret;
 			}
 		}
 
@@ -69406,31 +69633,37 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, byte** remaining)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, remaining);
+				Vector2 ret;
+				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)(default), (byte**)(default));
+				return ret;
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)(default));
+				Vector2 ret;
+				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)(default));
+				return ret;
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, byte** remaining)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)(default), (byte**)(default));
+				Vector2 ret;
+				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, remaining);
+				return ret;
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, byte** remaining)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -69449,14 +69682,16 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
+			Vector2 ret;
+			CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, (byte*)(default), (byte**)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -69475,14 +69710,16 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, pStr0, textEnd, (byte**)(default));
+			Vector2 ret;
+			CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, textEnd, (byte**)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, byte** remaining)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -69501,11 +69738,13 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, pStr0, (byte*)(default), (byte**)(default));
+			Vector2 ret;
+			CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		public static void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, byte** remaining)
@@ -69628,40 +69867,46 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, byte** remaining)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin)
 		{
 			fixed (ImFont* pself = &self)
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, remaining);
+					Vector2 ret;
+					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)(default), (byte**)(default));
+					return ret;
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd)
 		{
 			fixed (ImFont* pself = &self)
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)(default));
+					Vector2 ret;
+					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)(default));
+					return ret;
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, byte** remaining)
 		{
 			fixed (ImFont* pself = &self)
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)(default), (byte**)(default));
+					Vector2 ret;
+					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, remaining);
+					return ret;
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, byte** remaining)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -69682,15 +69927,17 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
+				Vector2 ret;
+				CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)(default), (byte**)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -69711,15 +69958,17 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, textEnd, (byte**)(default));
+				Vector2 ret;
+				CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, textEnd, (byte**)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, byte** remaining)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -69740,11 +69989,13 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, (byte*)(default), (byte**)(default));
+				Vector2 ret;
+				CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, textEnd, remaining);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
@@ -69886,23 +70137,27 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
+				Vector2 ret;
+				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
+				return ret;
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
+				Vector2 ret;
+				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
+				return ret;
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, byte** remaining)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -69921,14 +70176,16 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
+			Vector2 ret;
+			CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, byte** remaining)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -69947,11 +70204,13 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)(default));
+			Vector2 ret;
+			CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		public static void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
@@ -70034,29 +70293,33 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd)
 		{
 			fixed (ImFont* pself = &self)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
+					Vector2 ret;
+					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
+					return ret;
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, byte** remaining)
 		{
 			fixed (ImFont* pself = &self)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)(default));
+					Vector2 ret;
+					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, remaining);
+					return ret;
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, byte** remaining)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -70077,15 +70340,17 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
+				Vector2 ret;
+				CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, byte** remaining)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -70106,11 +70371,13 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)(default));
+				Vector2 ret;
+				CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, remaining);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
@@ -70206,29 +70473,33 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
+					Vector2 ret;
+					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
+					return ret;
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
+					Vector2 ret;
+					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
+					return ret;
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, byte** remaining)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -70264,7 +70535,8 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
+			Vector2 ret;
+			CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)(default));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -70273,9 +70545,10 @@ namespace HexaEngine.ImGuiNET
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, byte** remaining)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -70311,7 +70584,8 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)(default));
+			Vector2 ret;
+			CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -70320,6 +70594,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		public static void CalcTextSizeA(ref Vector2 output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
@@ -70450,7 +70725,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -70458,13 +70733,15 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
+						Vector2 ret;
+						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
+						return ret;
 					}
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, byte** remaining)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -70472,13 +70749,15 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)(default));
+						Vector2 ret;
+						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, remaining);
+						return ret;
 					}
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, byte** remaining)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -70516,7 +70795,8 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
+				Vector2 ret;
+				CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)(default));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -70525,10 +70805,11 @@ namespace HexaEngine.ImGuiNET
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, byte** remaining)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -70566,7 +70847,8 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)(default));
+				Vector2 ret;
+				CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, remaining);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -70575,6 +70857,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
@@ -70718,11 +71001,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, ref byte* remaining)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, ref byte* remaining)
 		{
 			fixed (byte** premaining = &remaining)
 			{
-				CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, textEnd, (byte**)premaining);
+				Vector2 ret;
+				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, textEnd, (byte**)premaining);
+				return ret;
 			}
 		}
 
@@ -70737,13 +71022,15 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, ref byte* remaining)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, ref byte* remaining)
 		{
 			fixed (ImFont* pself = &self)
 			{
 				fixed (byte** premaining = &remaining)
 				{
-					CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, textEnd, (byte**)premaining);
+					Vector2 ret;
+					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, textEnd, (byte**)premaining);
+					return ret;
 				}
 			}
 		}
@@ -70762,18 +71049,20 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, ref byte* remaining)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, ref byte* remaining)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
 				fixed (byte** premaining = &remaining)
 				{
-					CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)premaining);
+					Vector2 ret;
+					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)premaining);
+					return ret;
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, ref byte* remaining)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, ref byte* remaining)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -70794,11 +71083,13 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (byte** premaining = &remaining)
 			{
-				CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, pStr0, textEnd, (byte**)premaining);
+				Vector2 ret;
+				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, textEnd, (byte**)premaining);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
@@ -70848,7 +71139,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, ref byte* remaining)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, byte* textEnd, ref byte* remaining)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -70856,13 +71147,15 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte** premaining = &remaining)
 					{
-						CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)premaining);
+						Vector2 ret;
+						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, textEnd, (byte**)premaining);
+						return ret;
 					}
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, ref byte* remaining)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, byte* textEnd, ref byte* remaining)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -70885,11 +71178,13 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (byte** premaining = &remaining)
 				{
-					CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, textEnd, (byte**)premaining);
+					Vector2 ret;
+					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, textEnd, (byte**)premaining);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -70946,18 +71241,20 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, ref byte* remaining)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, ref byte* remaining)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
 				fixed (byte** premaining = &remaining)
 				{
-					CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+					Vector2 ret;
+					CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+					return ret;
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, ref byte* remaining)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, ref byte* remaining)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -70978,11 +71275,13 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (byte** premaining = &remaining)
 			{
-				CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)premaining);
+				Vector2 ret;
+				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)premaining);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
@@ -71032,7 +71331,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, ref byte* remaining)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, ref byte textEnd, ref byte* remaining)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -71040,13 +71339,15 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte** premaining = &remaining)
 					{
-						CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+						Vector2 ret;
+						CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, (byte*)ptextEnd, (byte**)premaining);
+						return ret;
 					}
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, ref byte* remaining)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, byte* textBegin, string textEnd, ref byte* remaining)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -71069,11 +71370,13 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (byte** premaining = &remaining)
 				{
-					CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)premaining);
+					Vector2 ret;
+					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, textBegin, pStr0, (byte**)premaining);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -71130,7 +71433,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, ref byte* remaining)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, ref byte* remaining)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -71138,13 +71441,15 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte** premaining = &remaining)
 					{
-						CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+						Vector2 ret;
+						CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+						return ret;
 					}
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, ref byte* remaining)
+		public static Vector2 CalcTextSizeA(ImFont* self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, ref byte* remaining)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -71182,7 +71487,8 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (byte** premaining = &remaining)
 			{
-				CalcTextSizeANative(output, self, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)premaining);
+				Vector2 ret;
+				CalcTextSizeANative(&ret, self, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)premaining);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -71191,6 +71497,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					Utils.Free(pStr0);
 				}
+				return ret;
 			}
 		}
 
@@ -71264,7 +71571,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, ref byte* remaining)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, ref byte textBegin, ref byte textEnd, ref byte* remaining)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -71274,14 +71581,16 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (byte** premaining = &remaining)
 						{
-							CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+							Vector2 ret;
+							CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, (byte*)ptextBegin, (byte*)ptextEnd, (byte**)premaining);
+							return ret;
 						}
 					}
 				}
 			}
 		}
 
-		public static void CalcTextSizeA(Vector2* output, ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, ref byte* remaining)
+		public static Vector2 CalcTextSizeA(ref ImFont self, float size, float maxWidth, float wrapWidth, string textBegin, string textEnd, ref byte* remaining)
 		{
 			fixed (ImFont* pself = &self)
 			{
@@ -71321,7 +71630,8 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (byte** premaining = &remaining)
 				{
-					CalcTextSizeANative(output, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)premaining);
+					Vector2 ret;
+					CalcTextSizeANative(&ret, (ImFont*)pself, size, maxWidth, wrapWidth, pStr0, pStr1, (byte**)premaining);
 					if (pStrSize1 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr1);
@@ -71330,6 +71640,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						Utils.Free(pStr0);
 					}
+					return ret;
 				}
 			}
 		}
@@ -71419,6 +71730,12 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string CalcWordWrapPositionAS(ImFont* self, float scale, byte* text, byte* textEnd, float wrapWidth)
+		{
+			string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative(self, scale, text, textEnd, wrapWidth));
+			return ret;
+		}
+
 		public static byte* CalcWordWrapPositionA(ref ImFont self, float scale, byte* text, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* pself = &self)
@@ -71428,11 +71745,29 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
+		public static string CalcWordWrapPositionAS(ref ImFont self, float scale, byte* text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative((ImFont*)pself, scale, text, textEnd, wrapWidth));
+				return ret;
+			}
+		}
+
 		public static byte* CalcWordWrapPositionA(ImFont* self, float scale, ref byte text, byte* textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
 			{
 				byte* ret = CalcWordWrapPositionANative(self, scale, (byte*)ptext, textEnd, wrapWidth);
+				return ret;
+			}
+		}
+
+		public static string CalcWordWrapPositionAS(ImFont* self, float scale, ref byte text, byte* textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative(self, scale, (byte*)ptext, textEnd, wrapWidth));
 				return ret;
 			}
 		}
@@ -71464,6 +71799,33 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string CalcWordWrapPositionAS(ImFont* self, float scale, string text, byte* textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative(self, scale, pStr0, textEnd, wrapWidth));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* CalcWordWrapPositionA(ref ImFont self, float scale, ref byte text, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* pself = &self)
@@ -71471,6 +71833,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* ptext = &text)
 				{
 					byte* ret = CalcWordWrapPositionANative((ImFont*)pself, scale, (byte*)ptext, textEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		public static string CalcWordWrapPositionAS(ref ImFont self, float scale, ref byte text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = &text)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative((ImFont*)pself, scale, (byte*)ptext, textEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -71506,11 +71880,50 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
+		public static string CalcWordWrapPositionAS(ref ImFont self, float scale, string text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative((ImFont*)pself, scale, pStr0, textEnd, wrapWidth));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
 		public static byte* CalcWordWrapPositionA(ImFont* self, float scale, byte* text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
 				byte* ret = CalcWordWrapPositionANative(self, scale, text, (byte*)ptextEnd, wrapWidth);
+				return ret;
+			}
+		}
+
+		public static string CalcWordWrapPositionAS(ImFont* self, float scale, byte* text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative(self, scale, text, (byte*)ptextEnd, wrapWidth));
 				return ret;
 			}
 		}
@@ -71542,6 +71955,33 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string CalcWordWrapPositionAS(ImFont* self, float scale, byte* text, string textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative(self, scale, text, pStr0, wrapWidth));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* CalcWordWrapPositionA(ref ImFont self, float scale, byte* text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* pself = &self)
@@ -71549,6 +71989,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* ptextEnd = &textEnd)
 				{
 					byte* ret = CalcWordWrapPositionANative((ImFont*)pself, scale, text, (byte*)ptextEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		public static string CalcWordWrapPositionAS(ref ImFont self, float scale, byte* text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative((ImFont*)pself, scale, text, (byte*)ptextEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -71584,6 +72036,36 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
+		public static string CalcWordWrapPositionAS(ref ImFont self, float scale, byte* text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative((ImFont*)pself, scale, text, pStr0, wrapWidth));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
 		public static byte* CalcWordWrapPositionA(ImFont* self, float scale, ref byte text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptext = &text)
@@ -71591,6 +72073,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* ptextEnd = &textEnd)
 				{
 					byte* ret = CalcWordWrapPositionANative(self, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		public static string CalcWordWrapPositionAS(ImFont* self, float scale, ref byte text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative(self, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -71644,6 +72138,54 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string CalcWordWrapPositionAS(ImFont* self, float scale, string text, string textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative(self, scale, pStr0, pStr1, wrapWidth));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* CalcWordWrapPositionA(ref ImFont self, float scale, ref byte text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* pself = &self)
@@ -71653,6 +72195,21 @@ namespace HexaEngine.ImGuiNET
 					fixed (byte* ptextEnd = &textEnd)
 					{
 						byte* ret = CalcWordWrapPositionANative((ImFont*)pself, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public static string CalcWordWrapPositionAS(ref ImFont self, float scale, ref byte text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative((ImFont*)pself, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
 						return ret;
 					}
 				}
@@ -71698,6 +72255,57 @@ namespace HexaEngine.ImGuiNET
 					pStr1[pStrOffset1] = 0;
 				}
 				byte* ret = CalcWordWrapPositionANative((ImFont*)pself, scale, pStr0, pStr1, wrapWidth);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		public static string CalcWordWrapPositionAS(ref ImFont self, float scale, string text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative((ImFont*)pself, scale, pStr0, pStr1, wrapWidth));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -73747,9 +74355,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiViewport_GetCenter")]
 		internal static extern void GetCenterNative(Vector2* output, ImGuiViewport* self);
 
-		public static void GetCenter(Vector2* output, ImGuiViewport* self)
+		public static Vector2 GetCenter(ImGuiViewport* self)
 		{
-			GetCenterNative(output, self);
+			Vector2 ret;
+			GetCenterNative(&ret, self);
+			return ret;
 		}
 
 		public static void GetCenter(ref Vector2 output, ImGuiViewport* self)
@@ -73760,11 +74370,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void GetCenter(Vector2* output, ref ImGuiViewport self)
+		public static Vector2 GetCenter(ref ImGuiViewport self)
 		{
 			fixed (ImGuiViewport* pself = &self)
 			{
-				GetCenterNative(output, (ImGuiViewport*)pself);
+				Vector2 ret;
+				GetCenterNative(&ret, (ImGuiViewport*)pself);
+				return ret;
 			}
 		}
 
@@ -73782,9 +74394,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiViewport_GetWorkCenter")]
 		internal static extern void GetWorkCenterNative(Vector2* output, ImGuiViewport* self);
 
-		public static void GetWorkCenter(Vector2* output, ImGuiViewport* self)
+		public static Vector2 GetWorkCenter(ImGuiViewport* self)
 		{
-			GetWorkCenterNative(output, self);
+			Vector2 ret;
+			GetWorkCenterNative(&ret, self);
+			return ret;
 		}
 
 		public static void GetWorkCenter(ref Vector2 output, ImGuiViewport* self)
@@ -73795,11 +74409,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void GetWorkCenter(Vector2* output, ref ImGuiViewport self)
+		public static Vector2 GetWorkCenter(ref ImGuiViewport self)
 		{
 			fixed (ImGuiViewport* pself = &self)
 			{
-				GetWorkCenterNative(output, (ImGuiViewport*)pself);
+				Vector2 ret;
+				GetWorkCenterNative(&ret, (ImGuiViewport*)pself);
+				return ret;
 			}
 		}
 
@@ -74425,11 +75041,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStrdupS(byte* str)
+		{
+			string ret = Utils.DecodeStringUTF8(ImStrdupNative(str));
+			return ret;
+		}
+
 		public static byte* ImStrdup(ref byte str)
 		{
 			fixed (byte* pstr = &str)
 			{
 				byte* ret = ImStrdupNative((byte*)pstr);
+				return ret;
+			}
+		}
+
+		public static string ImStrdupS(ref byte str)
+		{
+			fixed (byte* pstr = &str)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStrdupNative((byte*)pstr));
 				return ret;
 			}
 		}
@@ -74461,6 +75092,33 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStrdupS(string str)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (str != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(str);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStrdupNative(pStr0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImStrdupcpy")]
 		internal static extern byte* ImStrdupcpyNative(byte* dst, nuint* pDstSize, byte* str);
 
@@ -74470,11 +75128,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStrdupcpyS(byte* dst, nuint* pDstSize, byte* str)
+		{
+			string ret = Utils.DecodeStringUTF8(ImStrdupcpyNative(dst, pDstSize, str));
+			return ret;
+		}
+
 		public static byte* ImStrdupcpy(ref byte dst, nuint* pDstSize, byte* str)
 		{
 			fixed (byte* pdst = &dst)
 			{
 				byte* ret = ImStrdupcpyNative((byte*)pdst, pDstSize, str);
+				return ret;
+			}
+		}
+
+		public static string ImStrdupcpyS(ref byte dst, nuint* pDstSize, byte* str)
+		{
+			fixed (byte* pdst = &dst)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStrdupcpyNative((byte*)pdst, pDstSize, str));
 				return ret;
 			}
 		}
@@ -74507,11 +75180,48 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStrdupcpyS(ref string dst, nuint* pDstSize, byte* str)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (dst != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(dst);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(dst, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStrdupcpyNative(pStr0, pDstSize, str));
+			dst = Utils.DecodeStringUTF8(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStrdupcpy(byte* dst, ref nuint pDstSize, byte* str)
 		{
 			fixed (nuint* ppDstSize = &pDstSize)
 			{
 				byte* ret = ImStrdupcpyNative(dst, (nuint*)ppDstSize, str);
+				return ret;
+			}
+		}
+
+		public static string ImStrdupcpyS(byte* dst, ref nuint pDstSize, byte* str)
+		{
+			fixed (nuint* ppDstSize = &pDstSize)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStrdupcpyNative(dst, (nuint*)ppDstSize, str));
 				return ret;
 			}
 		}
@@ -74523,6 +75233,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (nuint* ppDstSize = &pDstSize)
 				{
 					byte* ret = ImStrdupcpyNative((byte*)pdst, (nuint*)ppDstSize, str);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImStrdupcpyS(ref byte dst, ref nuint pDstSize, byte* str)
+		{
+			fixed (byte* pdst = &dst)
+			{
+				fixed (nuint* ppDstSize = &pDstSize)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStrdupcpyNative((byte*)pdst, (nuint*)ppDstSize, str));
 					return ret;
 				}
 			}
@@ -74559,11 +75281,51 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
+		public static string ImStrdupcpyS(ref string dst, ref nuint pDstSize, byte* str)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (dst != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(dst);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(dst, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (nuint* ppDstSize = &pDstSize)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStrdupcpyNative(pStr0, (nuint*)ppDstSize, str));
+				dst = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
 		public static byte* ImStrdupcpy(byte* dst, nuint* pDstSize, ref byte str)
 		{
 			fixed (byte* pstr = &str)
 			{
 				byte* ret = ImStrdupcpyNative(dst, pDstSize, (byte*)pstr);
+				return ret;
+			}
+		}
+
+		public static string ImStrdupcpyS(byte* dst, nuint* pDstSize, ref byte str)
+		{
+			fixed (byte* pstr = &str)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStrdupcpyNative(dst, pDstSize, (byte*)pstr));
 				return ret;
 			}
 		}
@@ -74595,6 +75357,33 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStrdupcpyS(byte* dst, nuint* pDstSize, string str)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (str != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(str);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStrdupcpyNative(dst, pDstSize, pStr0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStrdupcpy(ref byte dst, nuint* pDstSize, ref byte str)
 		{
 			fixed (byte* pdst = &dst)
@@ -74602,6 +75391,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* pstr = &str)
 				{
 					byte* ret = ImStrdupcpyNative((byte*)pdst, pDstSize, (byte*)pstr);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImStrdupcpyS(ref byte dst, nuint* pDstSize, ref byte str)
+		{
+			fixed (byte* pdst = &dst)
+			{
+				fixed (byte* pstr = &str)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStrdupcpyNative((byte*)pdst, pDstSize, (byte*)pstr));
 					return ret;
 				}
 			}
@@ -74656,6 +75457,55 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStrdupcpyS(ref string dst, nuint* pDstSize, string str)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (dst != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(dst);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(dst, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (str != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(str);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(str, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStrdupcpyNative(pStr0, pDstSize, pStr1));
+			dst = Utils.DecodeStringUTF8(pStr0);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStrdupcpy(byte* dst, ref nuint pDstSize, ref byte str)
 		{
 			fixed (nuint* ppDstSize = &pDstSize)
@@ -74663,6 +75513,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* pstr = &str)
 				{
 					byte* ret = ImStrdupcpyNative(dst, (nuint*)ppDstSize, (byte*)pstr);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImStrdupcpyS(byte* dst, ref nuint pDstSize, ref byte str)
+		{
+			fixed (nuint* ppDstSize = &pDstSize)
+			{
+				fixed (byte* pstr = &str)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStrdupcpyNative(dst, (nuint*)ppDstSize, (byte*)pstr));
 					return ret;
 				}
 			}
@@ -74698,6 +75560,36 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
+		public static string ImStrdupcpyS(byte* dst, ref nuint pDstSize, string str)
+		{
+			fixed (nuint* ppDstSize = &pDstSize)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (str != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(str);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImStrdupcpyNative(dst, (nuint*)ppDstSize, pStr0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
 		public static byte* ImStrdupcpy(ref byte dst, ref nuint pDstSize, ref byte str)
 		{
 			fixed (byte* pdst = &dst)
@@ -74707,6 +75599,21 @@ namespace HexaEngine.ImGuiNET
 					fixed (byte* pstr = &str)
 					{
 						byte* ret = ImStrdupcpyNative((byte*)pdst, (nuint*)ppDstSize, (byte*)pstr);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public static string ImStrdupcpyS(ref byte dst, ref nuint pDstSize, ref byte str)
+		{
+			fixed (byte* pdst = &dst)
+			{
+				fixed (nuint* ppDstSize = &pDstSize)
+				{
+					fixed (byte* pstr = &str)
+					{
+						string ret = Utils.DecodeStringUTF8(ImStrdupcpyNative((byte*)pdst, (nuint*)ppDstSize, (byte*)pstr));
 						return ret;
 					}
 				}
@@ -74765,6 +75672,58 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
+		public static string ImStrdupcpyS(ref string dst, ref nuint pDstSize, string str)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (dst != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(dst);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(dst, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (nuint* ppDstSize = &pDstSize)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (str != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(str);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(str, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImStrdupcpyNative(pStr0, (nuint*)ppDstSize, pStr1));
+				dst = Utils.DecodeStringUTF8(pStr0);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImStrchrRange")]
 		internal static extern byte* ImStrchrRangeNative(byte* strBegin, byte* strEnd, byte c);
 
@@ -74774,11 +75733,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStrchrRangeS(byte* strBegin, byte* strEnd, byte c)
+		{
+			string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative(strBegin, strEnd, c));
+			return ret;
+		}
+
 		public static byte* ImStrchrRange(ref byte strBegin, byte* strEnd, byte c)
 		{
 			fixed (byte* pstrBegin = &strBegin)
 			{
 				byte* ret = ImStrchrRangeNative((byte*)pstrBegin, strEnd, c);
+				return ret;
+			}
+		}
+
+		public static string ImStrchrRangeS(ref byte strBegin, byte* strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = &strBegin)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative((byte*)pstrBegin, strEnd, c));
 				return ret;
 			}
 		}
@@ -74810,11 +75784,47 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStrchrRangeS(string strBegin, byte* strEnd, byte c)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative(pStr0, strEnd, c));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStrchrRange(byte* strBegin, ref byte strEnd, byte c)
 		{
 			fixed (byte* pstrEnd = &strEnd)
 			{
 				byte* ret = ImStrchrRangeNative(strBegin, (byte*)pstrEnd, c);
+				return ret;
+			}
+		}
+
+		public static string ImStrchrRangeS(byte* strBegin, ref byte strEnd, byte c)
+		{
+			fixed (byte* pstrEnd = &strEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative(strBegin, (byte*)pstrEnd, c));
 				return ret;
 			}
 		}
@@ -74846,6 +75856,33 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStrchrRangeS(byte* strBegin, string strEnd, byte c)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative(strBegin, pStr0, c));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStrchrRange(ref byte strBegin, ref byte strEnd, byte c)
 		{
 			fixed (byte* pstrBegin = &strBegin)
@@ -74853,6 +75890,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* pstrEnd = &strEnd)
 				{
 					byte* ret = ImStrchrRangeNative((byte*)pstrBegin, (byte*)pstrEnd, c);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImStrchrRangeS(ref byte strBegin, ref byte strEnd, byte c)
+		{
+			fixed (byte* pstrBegin = &strBegin)
+			{
+				fixed (byte* pstrEnd = &strEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative((byte*)pstrBegin, (byte*)pstrEnd, c));
 					return ret;
 				}
 			}
@@ -74906,6 +75955,54 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStrchrRangeS(string strBegin, string strEnd, byte c)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (strEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative(pStr0, pStr1, c));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImStrlenW")]
 		internal static extern int ImStrlenWNative(char* str);
 
@@ -74933,11 +76030,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStreolRangeS(byte* str, byte* strEnd)
+		{
+			string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(str, strEnd));
+			return ret;
+		}
+
 		public static byte* ImStreolRange(ref byte str, byte* strEnd)
 		{
 			fixed (byte* pstr = &str)
 			{
 				byte* ret = ImStreolRangeNative((byte*)pstr, strEnd);
+				return ret;
+			}
+		}
+
+		public static string ImStreolRangeS(ref byte str, byte* strEnd)
+		{
+			fixed (byte* pstr = &str)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStreolRangeNative((byte*)pstr, strEnd));
 				return ret;
 			}
 		}
@@ -74969,11 +76081,47 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStreolRangeS(string str, byte* strEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (str != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(str);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(pStr0, strEnd));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStreolRange(byte* str, ref byte strEnd)
 		{
 			fixed (byte* pstrEnd = &strEnd)
 			{
 				byte* ret = ImStreolRangeNative(str, (byte*)pstrEnd);
+				return ret;
+			}
+		}
+
+		public static string ImStreolRangeS(byte* str, ref byte strEnd)
+		{
+			fixed (byte* pstrEnd = &strEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(str, (byte*)pstrEnd));
 				return ret;
 			}
 		}
@@ -75005,6 +76153,33 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStreolRangeS(byte* str, string strEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(str, pStr0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStreolRange(ref byte str, ref byte strEnd)
 		{
 			fixed (byte* pstr = &str)
@@ -75012,6 +76187,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* pstrEnd = &strEnd)
 				{
 					byte* ret = ImStreolRangeNative((byte*)pstr, (byte*)pstrEnd);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImStreolRangeS(ref byte str, ref byte strEnd)
+		{
+			fixed (byte* pstr = &str)
+			{
+				fixed (byte* pstrEnd = &strEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStreolRangeNative((byte*)pstr, (byte*)pstrEnd));
 					return ret;
 				}
 			}
@@ -75054,6 +76241,54 @@ namespace HexaEngine.ImGuiNET
 				pStr1[pStrOffset1] = 0;
 			}
 			byte* ret = ImStreolRangeNative(pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static string ImStreolRangeS(string str, string strEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (str != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(str);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (strEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(pStr0, pStr1));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -75113,11 +76348,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(byte* haystack, byte* haystackEnd, byte* needle, byte* needleEnd)
+		{
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, haystackEnd, needle, needleEnd));
+			return ret;
+		}
+
 		public static byte* ImStristr(ref byte haystack, byte* haystackEnd, byte* needle, byte* needleEnd)
 		{
 			fixed (byte* phaystack = &haystack)
 			{
 				byte* ret = ImStristrNative((byte*)phaystack, haystackEnd, needle, needleEnd);
+				return ret;
+			}
+		}
+
+		public static string ImStristrS(ref byte haystack, byte* haystackEnd, byte* needle, byte* needleEnd)
+		{
+			fixed (byte* phaystack = &haystack)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, haystackEnd, needle, needleEnd));
 				return ret;
 			}
 		}
@@ -75149,11 +76399,47 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(string haystack, byte* haystackEnd, byte* needle, byte* needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (haystack != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(haystack);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, haystackEnd, needle, needleEnd));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStristr(byte* haystack, ref byte haystackEnd, byte* needle, byte* needleEnd)
 		{
 			fixed (byte* phaystackEnd = &haystackEnd)
 			{
 				byte* ret = ImStristrNative(haystack, (byte*)phaystackEnd, needle, needleEnd);
+				return ret;
+			}
+		}
+
+		public static string ImStristrS(byte* haystack, ref byte haystackEnd, byte* needle, byte* needleEnd)
+		{
+			fixed (byte* phaystackEnd = &haystackEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, (byte*)phaystackEnd, needle, needleEnd));
 				return ret;
 			}
 		}
@@ -75185,6 +76471,33 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(byte* haystack, string haystackEnd, byte* needle, byte* needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (haystackEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, pStr0, needle, needleEnd));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStristr(ref byte haystack, ref byte haystackEnd, byte* needle, byte* needleEnd)
 		{
 			fixed (byte* phaystack = &haystack)
@@ -75192,6 +76505,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* phaystackEnd = &haystackEnd)
 				{
 					byte* ret = ImStristrNative((byte*)phaystack, (byte*)phaystackEnd, needle, needleEnd);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImStristrS(ref byte haystack, ref byte haystackEnd, byte* needle, byte* needleEnd)
+		{
+			fixed (byte* phaystack = &haystack)
+			{
+				fixed (byte* phaystackEnd = &haystackEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, (byte*)phaystackEnd, needle, needleEnd));
 					return ret;
 				}
 			}
@@ -75245,11 +76570,68 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(string haystack, string haystackEnd, byte* needle, byte* needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (haystack != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(haystack);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (haystackEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(haystackEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(haystackEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, pStr1, needle, needleEnd));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStristr(byte* haystack, byte* haystackEnd, ref byte needle, byte* needleEnd)
 		{
 			fixed (byte* pneedle = &needle)
 			{
 				byte* ret = ImStristrNative(haystack, haystackEnd, (byte*)pneedle, needleEnd);
+				return ret;
+			}
+		}
+
+		public static string ImStristrS(byte* haystack, byte* haystackEnd, ref byte needle, byte* needleEnd)
+		{
+			fixed (byte* pneedle = &needle)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, haystackEnd, (byte*)pneedle, needleEnd));
 				return ret;
 			}
 		}
@@ -75281,6 +76663,33 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(byte* haystack, byte* haystackEnd, string needle, byte* needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (needle != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(needle);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(needle, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, haystackEnd, pStr0, needleEnd));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStristr(ref byte haystack, byte* haystackEnd, ref byte needle, byte* needleEnd)
 		{
 			fixed (byte* phaystack = &haystack)
@@ -75288,6 +76697,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* pneedle = &needle)
 				{
 					byte* ret = ImStristrNative((byte*)phaystack, haystackEnd, (byte*)pneedle, needleEnd);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImStristrS(ref byte haystack, byte* haystackEnd, ref byte needle, byte* needleEnd)
+		{
+			fixed (byte* phaystack = &haystack)
+			{
+				fixed (byte* pneedle = &needle)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, haystackEnd, (byte*)pneedle, needleEnd));
 					return ret;
 				}
 			}
@@ -75341,6 +76762,54 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(string haystack, byte* haystackEnd, string needle, byte* needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (haystack != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(haystack);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (needle != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(needle);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, haystackEnd, pStr1, needleEnd));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStristr(byte* haystack, ref byte haystackEnd, ref byte needle, byte* needleEnd)
 		{
 			fixed (byte* phaystackEnd = &haystackEnd)
@@ -75348,6 +76817,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* pneedle = &needle)
 				{
 					byte* ret = ImStristrNative(haystack, (byte*)phaystackEnd, (byte*)pneedle, needleEnd);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImStristrS(byte* haystack, ref byte haystackEnd, ref byte needle, byte* needleEnd)
+		{
+			fixed (byte* phaystackEnd = &haystackEnd)
+			{
+				fixed (byte* pneedle = &needle)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, (byte*)phaystackEnd, (byte*)pneedle, needleEnd));
 					return ret;
 				}
 			}
@@ -75401,6 +76882,54 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(byte* haystack, string haystackEnd, string needle, byte* needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (haystackEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (needle != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(needle);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, pStr0, pStr1, needleEnd));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStristr(ref byte haystack, ref byte haystackEnd, ref byte needle, byte* needleEnd)
 		{
 			fixed (byte* phaystack = &haystack)
@@ -75410,6 +76939,21 @@ namespace HexaEngine.ImGuiNET
 					fixed (byte* pneedle = &needle)
 					{
 						byte* ret = ImStristrNative((byte*)phaystack, (byte*)phaystackEnd, (byte*)pneedle, needleEnd);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public static string ImStristrS(ref byte haystack, ref byte haystackEnd, ref byte needle, byte* needleEnd)
+		{
+			fixed (byte* phaystack = &haystack)
+			{
+				fixed (byte* phaystackEnd = &haystackEnd)
+				{
+					fixed (byte* pneedle = &needle)
+					{
+						string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, (byte*)phaystackEnd, (byte*)pneedle, needleEnd));
 						return ret;
 					}
 				}
@@ -75485,11 +77029,89 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(string haystack, string haystackEnd, string needle, byte* needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (haystack != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(haystack);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (haystackEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(haystackEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(haystackEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte* pStr2 = null;
+			int pStrSize2 = 0;
+			if (needle != null)
+			{
+				pStrSize2 = Utils.GetByteCountUTF8(needle);
+				if (pStrSize2 >= Utils.MaxStackallocSize)
+				{
+					pStr2 = Utils.Alloc<byte>(pStrSize2 + 1);
+				}
+				else
+				{
+					byte* pStrStack2 = stackalloc byte[pStrSize2 + 1];
+					pStr2 = pStrStack2;
+				}
+				int pStrOffset2 = Utils.EncodeStringUTF8(needle, pStr2, pStrSize2);
+				pStr2[pStrOffset2] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, pStr1, pStr2, needleEnd));
+			if (pStrSize2 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr2);
+			}
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStristr(byte* haystack, byte* haystackEnd, byte* needle, ref byte needleEnd)
 		{
 			fixed (byte* pneedleEnd = &needleEnd)
 			{
 				byte* ret = ImStristrNative(haystack, haystackEnd, needle, (byte*)pneedleEnd);
+				return ret;
+			}
+		}
+
+		public static string ImStristrS(byte* haystack, byte* haystackEnd, byte* needle, ref byte needleEnd)
+		{
+			fixed (byte* pneedleEnd = &needleEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, haystackEnd, needle, (byte*)pneedleEnd));
 				return ret;
 			}
 		}
@@ -75521,6 +77143,33 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(byte* haystack, byte* haystackEnd, byte* needle, string needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (needleEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(needleEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(needleEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, haystackEnd, needle, pStr0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStristr(ref byte haystack, byte* haystackEnd, byte* needle, ref byte needleEnd)
 		{
 			fixed (byte* phaystack = &haystack)
@@ -75528,6 +77177,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* pneedleEnd = &needleEnd)
 				{
 					byte* ret = ImStristrNative((byte*)phaystack, haystackEnd, needle, (byte*)pneedleEnd);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImStristrS(ref byte haystack, byte* haystackEnd, byte* needle, ref byte needleEnd)
+		{
+			fixed (byte* phaystack = &haystack)
+			{
+				fixed (byte* pneedleEnd = &needleEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, haystackEnd, needle, (byte*)pneedleEnd));
 					return ret;
 				}
 			}
@@ -75581,6 +77242,54 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(string haystack, byte* haystackEnd, byte* needle, string needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (haystack != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(haystack);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (needleEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(needleEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(needleEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, haystackEnd, needle, pStr1));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStristr(byte* haystack, ref byte haystackEnd, byte* needle, ref byte needleEnd)
 		{
 			fixed (byte* phaystackEnd = &haystackEnd)
@@ -75588,6 +77297,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* pneedleEnd = &needleEnd)
 				{
 					byte* ret = ImStristrNative(haystack, (byte*)phaystackEnd, needle, (byte*)pneedleEnd);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImStristrS(byte* haystack, ref byte haystackEnd, byte* needle, ref byte needleEnd)
+		{
+			fixed (byte* phaystackEnd = &haystackEnd)
+			{
+				fixed (byte* pneedleEnd = &needleEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, (byte*)phaystackEnd, needle, (byte*)pneedleEnd));
 					return ret;
 				}
 			}
@@ -75641,6 +77362,54 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(byte* haystack, string haystackEnd, byte* needle, string needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (haystackEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (needleEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(needleEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(needleEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, pStr0, needle, pStr1));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStristr(ref byte haystack, ref byte haystackEnd, byte* needle, ref byte needleEnd)
 		{
 			fixed (byte* phaystack = &haystack)
@@ -75650,6 +77419,21 @@ namespace HexaEngine.ImGuiNET
 					fixed (byte* pneedleEnd = &needleEnd)
 					{
 						byte* ret = ImStristrNative((byte*)phaystack, (byte*)phaystackEnd, needle, (byte*)pneedleEnd);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public static string ImStristrS(ref byte haystack, ref byte haystackEnd, byte* needle, ref byte needleEnd)
+		{
+			fixed (byte* phaystack = &haystack)
+			{
+				fixed (byte* phaystackEnd = &haystackEnd)
+				{
+					fixed (byte* pneedleEnd = &needleEnd)
+					{
+						string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, (byte*)phaystackEnd, needle, (byte*)pneedleEnd));
 						return ret;
 					}
 				}
@@ -75725,6 +77509,75 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(string haystack, string haystackEnd, byte* needle, string needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (haystack != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(haystack);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (haystackEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(haystackEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(haystackEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte* pStr2 = null;
+			int pStrSize2 = 0;
+			if (needleEnd != null)
+			{
+				pStrSize2 = Utils.GetByteCountUTF8(needleEnd);
+				if (pStrSize2 >= Utils.MaxStackallocSize)
+				{
+					pStr2 = Utils.Alloc<byte>(pStrSize2 + 1);
+				}
+				else
+				{
+					byte* pStrStack2 = stackalloc byte[pStrSize2 + 1];
+					pStr2 = pStrStack2;
+				}
+				int pStrOffset2 = Utils.EncodeStringUTF8(needleEnd, pStr2, pStrSize2);
+				pStr2[pStrOffset2] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, pStr1, needle, pStr2));
+			if (pStrSize2 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr2);
+			}
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStristr(byte* haystack, byte* haystackEnd, ref byte needle, ref byte needleEnd)
 		{
 			fixed (byte* pneedle = &needle)
@@ -75732,6 +77585,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* pneedleEnd = &needleEnd)
 				{
 					byte* ret = ImStristrNative(haystack, haystackEnd, (byte*)pneedle, (byte*)pneedleEnd);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImStristrS(byte* haystack, byte* haystackEnd, ref byte needle, ref byte needleEnd)
+		{
+			fixed (byte* pneedle = &needle)
+			{
+				fixed (byte* pneedleEnd = &needleEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, haystackEnd, (byte*)pneedle, (byte*)pneedleEnd));
 					return ret;
 				}
 			}
@@ -75785,6 +77650,54 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(byte* haystack, byte* haystackEnd, string needle, string needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (needle != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(needle);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(needle, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (needleEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(needleEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(needleEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, haystackEnd, pStr0, pStr1));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStristr(ref byte haystack, byte* haystackEnd, ref byte needle, ref byte needleEnd)
 		{
 			fixed (byte* phaystack = &haystack)
@@ -75794,6 +77707,21 @@ namespace HexaEngine.ImGuiNET
 					fixed (byte* pneedleEnd = &needleEnd)
 					{
 						byte* ret = ImStristrNative((byte*)phaystack, haystackEnd, (byte*)pneedle, (byte*)pneedleEnd);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public static string ImStristrS(ref byte haystack, byte* haystackEnd, ref byte needle, ref byte needleEnd)
+		{
+			fixed (byte* phaystack = &haystack)
+			{
+				fixed (byte* pneedle = &needle)
+				{
+					fixed (byte* pneedleEnd = &needleEnd)
+					{
+						string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, haystackEnd, (byte*)pneedle, (byte*)pneedleEnd));
 						return ret;
 					}
 				}
@@ -75869,6 +77797,75 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(string haystack, byte* haystackEnd, string needle, string needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (haystack != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(haystack);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (needle != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(needle);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte* pStr2 = null;
+			int pStrSize2 = 0;
+			if (needleEnd != null)
+			{
+				pStrSize2 = Utils.GetByteCountUTF8(needleEnd);
+				if (pStrSize2 >= Utils.MaxStackallocSize)
+				{
+					pStr2 = Utils.Alloc<byte>(pStrSize2 + 1);
+				}
+				else
+				{
+					byte* pStrStack2 = stackalloc byte[pStrSize2 + 1];
+					pStr2 = pStrStack2;
+				}
+				int pStrOffset2 = Utils.EncodeStringUTF8(needleEnd, pStr2, pStrSize2);
+				pStr2[pStrOffset2] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, haystackEnd, pStr1, pStr2));
+			if (pStrSize2 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr2);
+			}
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStristr(byte* haystack, ref byte haystackEnd, ref byte needle, ref byte needleEnd)
 		{
 			fixed (byte* phaystackEnd = &haystackEnd)
@@ -75878,6 +77875,21 @@ namespace HexaEngine.ImGuiNET
 					fixed (byte* pneedleEnd = &needleEnd)
 					{
 						byte* ret = ImStristrNative(haystack, (byte*)phaystackEnd, (byte*)pneedle, (byte*)pneedleEnd);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public static string ImStristrS(byte* haystack, ref byte haystackEnd, ref byte needle, ref byte needleEnd)
+		{
+			fixed (byte* phaystackEnd = &haystackEnd)
+			{
+				fixed (byte* pneedle = &needle)
+				{
+					fixed (byte* pneedleEnd = &needleEnd)
+					{
+						string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, (byte*)phaystackEnd, (byte*)pneedle, (byte*)pneedleEnd));
 						return ret;
 					}
 				}
@@ -75953,6 +77965,75 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(byte* haystack, string haystackEnd, string needle, string needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (haystackEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(haystackEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(haystackEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (needle != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(needle);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(needle, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte* pStr2 = null;
+			int pStrSize2 = 0;
+			if (needleEnd != null)
+			{
+				pStrSize2 = Utils.GetByteCountUTF8(needleEnd);
+				if (pStrSize2 >= Utils.MaxStackallocSize)
+				{
+					pStr2 = Utils.Alloc<byte>(pStrSize2 + 1);
+				}
+				else
+				{
+					byte* pStrStack2 = stackalloc byte[pStrSize2 + 1];
+					pStr2 = pStrStack2;
+				}
+				int pStrOffset2 = Utils.EncodeStringUTF8(needleEnd, pStr2, pStrSize2);
+				pStr2[pStrOffset2] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, pStr0, pStr1, pStr2));
+			if (pStrSize2 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr2);
+			}
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImStristr(ref byte haystack, ref byte haystackEnd, ref byte needle, ref byte needleEnd)
 		{
 			fixed (byte* phaystack = &haystack)
@@ -75964,6 +78045,24 @@ namespace HexaEngine.ImGuiNET
 						fixed (byte* pneedleEnd = &needleEnd)
 						{
 							byte* ret = ImStristrNative((byte*)phaystack, (byte*)phaystackEnd, (byte*)pneedle, (byte*)pneedleEnd);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		public static string ImStristrS(ref byte haystack, ref byte haystackEnd, ref byte needle, ref byte needleEnd)
+		{
+			fixed (byte* phaystack = &haystack)
+			{
+				fixed (byte* phaystackEnd = &haystackEnd)
+				{
+					fixed (byte* pneedle = &needle)
+					{
+						fixed (byte* pneedleEnd = &needleEnd)
+						{
+							string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, (byte*)phaystackEnd, (byte*)pneedle, (byte*)pneedleEnd));
 							return ret;
 						}
 					}
@@ -76061,6 +78160,96 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImStristrS(string haystack, string haystackEnd, string needle, string needleEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (haystack != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(haystack);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(haystack, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (haystackEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(haystackEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(haystackEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte* pStr2 = null;
+			int pStrSize2 = 0;
+			if (needle != null)
+			{
+				pStrSize2 = Utils.GetByteCountUTF8(needle);
+				if (pStrSize2 >= Utils.MaxStackallocSize)
+				{
+					pStr2 = Utils.Alloc<byte>(pStrSize2 + 1);
+				}
+				else
+				{
+					byte* pStrStack2 = stackalloc byte[pStrSize2 + 1];
+					pStr2 = pStrStack2;
+				}
+				int pStrOffset2 = Utils.EncodeStringUTF8(needle, pStr2, pStrSize2);
+				pStr2[pStrOffset2] = 0;
+			}
+			byte* pStr3 = null;
+			int pStrSize3 = 0;
+			if (needleEnd != null)
+			{
+				pStrSize3 = Utils.GetByteCountUTF8(needleEnd);
+				if (pStrSize3 >= Utils.MaxStackallocSize)
+				{
+					pStr3 = Utils.Alloc<byte>(pStrSize3 + 1);
+				}
+				else
+				{
+					byte* pStrStack3 = stackalloc byte[pStrSize3 + 1];
+					pStr3 = pStrStack3;
+				}
+				int pStrOffset3 = Utils.EncodeStringUTF8(needleEnd, pStr3, pStrSize3);
+				pStr3[pStrOffset3] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStristrNative(pStr0, pStr1, pStr2, pStr3));
+			if (pStrSize3 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr3);
+			}
+			if (pStrSize2 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr2);
+			}
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImStrTrimBlanks")]
 		internal static extern void ImTrimBlanksNative(byte* str);
 
@@ -76113,11 +78302,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImSkipBlankS(byte* str)
+		{
+			string ret = Utils.DecodeStringUTF8(ImSkipBlankNative(str));
+			return ret;
+		}
+
 		public static byte* ImSkipBlank(ref byte str)
 		{
 			fixed (byte* pstr = &str)
 			{
 				byte* ret = ImSkipBlankNative((byte*)pstr);
+				return ret;
+			}
+		}
+
+		public static string ImSkipBlankS(ref byte str)
+		{
+			fixed (byte* pstr = &str)
+			{
+				string ret = Utils.DecodeStringUTF8(ImSkipBlankNative((byte*)pstr));
 				return ret;
 			}
 		}
@@ -76142,6 +78346,33 @@ namespace HexaEngine.ImGuiNET
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* ret = ImSkipBlankNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static string ImSkipBlankS(string str)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (str != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(str);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImSkipBlankNative(pStr0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -76863,11 +79094,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImParseFormatFindStartS(byte* format)
+		{
+			string ret = Utils.DecodeStringUTF8(ImParseFormatFindStartNative(format));
+			return ret;
+		}
+
 		public static byte* ImParseFormatFindStart(ref byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
 				byte* ret = ImParseFormatFindStartNative((byte*)pformat);
+				return ret;
+			}
+		}
+
+		public static string ImParseFormatFindStartS(ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatFindStartNative((byte*)pformat));
 				return ret;
 			}
 		}
@@ -76899,6 +79145,33 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImParseFormatFindStartS(string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImParseFormatFindStartNative(pStr0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImParseFormatFindEnd")]
 		internal static extern byte* ImParseFormatFindEndNative(byte* format);
 
@@ -76908,11 +79181,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImParseFormatFindEndS(byte* format)
+		{
+			string ret = Utils.DecodeStringUTF8(ImParseFormatFindEndNative(format));
+			return ret;
+		}
+
 		public static byte* ImParseFormatFindEnd(ref byte format)
 		{
 			fixed (byte* pformat = &format)
 			{
 				byte* ret = ImParseFormatFindEndNative((byte*)pformat);
+				return ret;
+			}
+		}
+
+		public static string ImParseFormatFindEndS(ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatFindEndNative((byte*)pformat));
 				return ret;
 			}
 		}
@@ -76944,6 +79232,33 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImParseFormatFindEndS(string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImParseFormatFindEndNative(pStr0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImParseFormatTrimDecorations")]
 		internal static extern byte* ImParseFormatTrimDecorationsNative(byte* format, byte* buf, nuint bufSize);
 
@@ -76953,11 +79268,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImParseFormatTrimDecorationsS(byte* format, byte* buf, nuint bufSize)
+		{
+			string ret = Utils.DecodeStringUTF8(ImParseFormatTrimDecorationsNative(format, buf, bufSize));
+			return ret;
+		}
+
 		public static byte* ImParseFormatTrimDecorations(ref byte format, byte* buf, nuint bufSize)
 		{
 			fixed (byte* pformat = &format)
 			{
 				byte* ret = ImParseFormatTrimDecorationsNative((byte*)pformat, buf, bufSize);
+				return ret;
+			}
+		}
+
+		public static string ImParseFormatTrimDecorationsS(ref byte format, byte* buf, nuint bufSize)
+		{
+			fixed (byte* pformat = &format)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatTrimDecorationsNative((byte*)pformat, buf, bufSize));
 				return ret;
 			}
 		}
@@ -76989,11 +79319,47 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImParseFormatTrimDecorationsS(string format, byte* buf, nuint bufSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImParseFormatTrimDecorationsNative(pStr0, buf, bufSize));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImParseFormatTrimDecorations(byte* format, ref byte buf, nuint bufSize)
 		{
 			fixed (byte* pbuf = &buf)
 			{
 				byte* ret = ImParseFormatTrimDecorationsNative(format, (byte*)pbuf, bufSize);
+				return ret;
+			}
+		}
+
+		public static string ImParseFormatTrimDecorationsS(byte* format, ref byte buf, nuint bufSize)
+		{
+			fixed (byte* pbuf = &buf)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatTrimDecorationsNative(format, (byte*)pbuf, bufSize));
 				return ret;
 			}
 		}
@@ -77026,6 +79392,34 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImParseFormatTrimDecorationsS(byte* format, ref string buf, nuint bufSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (buf != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(buf);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(buf, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImParseFormatTrimDecorationsNative(format, pStr0, bufSize));
+			buf = Utils.DecodeStringUTF8(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImParseFormatTrimDecorations(ref byte format, ref byte buf, nuint bufSize)
 		{
 			fixed (byte* pformat = &format)
@@ -77033,6 +79427,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* pbuf = &buf)
 				{
 					byte* ret = ImParseFormatTrimDecorationsNative((byte*)pformat, (byte*)pbuf, bufSize);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImParseFormatTrimDecorationsS(ref byte format, ref byte buf, nuint bufSize)
+		{
+			fixed (byte* pformat = &format)
+			{
+				fixed (byte* pbuf = &buf)
+				{
+					string ret = Utils.DecodeStringUTF8(ImParseFormatTrimDecorationsNative((byte*)pformat, (byte*)pbuf, bufSize));
 					return ret;
 				}
 			}
@@ -77075,6 +79481,55 @@ namespace HexaEngine.ImGuiNET
 				pStr1[pStrOffset1] = 0;
 			}
 			byte* ret = ImParseFormatTrimDecorationsNative(pStr0, pStr1, bufSize);
+			buf = Utils.DecodeStringUTF8(pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static string ImParseFormatTrimDecorationsS(string format, ref string buf, nuint bufSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (buf != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(buf);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(buf, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImParseFormatTrimDecorationsNative(pStr0, pStr1, bufSize));
 			buf = Utils.DecodeStringUTF8(pStr1);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
@@ -77232,11 +79687,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImParseFormatSanitizeForScanningS(byte* fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative(fmtIn, fmtOut, fmtOutSize));
+			return ret;
+		}
+
 		public static byte* ImParseFormatSanitizeForScanning(ref byte fmtIn, byte* fmtOut, nuint fmtOutSize)
 		{
 			fixed (byte* pfmtIn = &fmtIn)
 			{
 				byte* ret = ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, fmtOut, fmtOutSize);
+				return ret;
+			}
+		}
+
+		public static string ImParseFormatSanitizeForScanningS(ref byte fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = &fmtIn)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, fmtOut, fmtOutSize));
 				return ret;
 			}
 		}
@@ -77268,11 +79738,47 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImParseFormatSanitizeForScanningS(string fmtIn, byte* fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative(pStr0, fmtOut, fmtOutSize));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImParseFormatSanitizeForScanning(byte* fmtIn, ref byte fmtOut, nuint fmtOutSize)
 		{
 			fixed (byte* pfmtOut = &fmtOut)
 			{
 				byte* ret = ImParseFormatSanitizeForScanningNative(fmtIn, (byte*)pfmtOut, fmtOutSize);
+				return ret;
+			}
+		}
+
+		public static string ImParseFormatSanitizeForScanningS(byte* fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtOut = &fmtOut)
+			{
+				string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative(fmtIn, (byte*)pfmtOut, fmtOutSize));
 				return ret;
 			}
 		}
@@ -77305,6 +79811,34 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImParseFormatSanitizeForScanningS(byte* fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtOut != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtOut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtOut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative(fmtIn, pStr0, fmtOutSize));
+			fmtOut = Utils.DecodeStringUTF8(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImParseFormatSanitizeForScanning(ref byte fmtIn, ref byte fmtOut, nuint fmtOutSize)
 		{
 			fixed (byte* pfmtIn = &fmtIn)
@@ -77312,6 +79846,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* pfmtOut = &fmtOut)
 				{
 					byte* ret = ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, (byte*)pfmtOut, fmtOutSize);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImParseFormatSanitizeForScanningS(ref byte fmtIn, ref byte fmtOut, nuint fmtOutSize)
+		{
+			fixed (byte* pfmtIn = &fmtIn)
+			{
+				fixed (byte* pfmtOut = &fmtOut)
+				{
+					string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative((byte*)pfmtIn, (byte*)pfmtOut, fmtOutSize));
 					return ret;
 				}
 			}
@@ -77354,6 +79900,55 @@ namespace HexaEngine.ImGuiNET
 				pStr1[pStrOffset1] = 0;
 			}
 			byte* ret = ImParseFormatSanitizeForScanningNative(pStr0, pStr1, fmtOutSize);
+			fmtOut = Utils.DecodeStringUTF8(pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static string ImParseFormatSanitizeForScanningS(string fmtIn, ref string fmtOut, nuint fmtOutSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmtIn != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(fmtIn);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmtIn, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (fmtOut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(fmtOut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(fmtOut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImParseFormatSanitizeForScanningNative(pStr0, pStr1, fmtOutSize));
 			fmtOut = Utils.DecodeStringUTF8(pStr1);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
@@ -77420,11 +80015,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImTextCharToUtf8S(byte* outBuf, uint c)
+		{
+			string ret = Utils.DecodeStringUTF8(ImTextCharToUtf8Native(outBuf, c));
+			return ret;
+		}
+
 		public static byte* ImTextCharToUtf8(ref byte outBuf, uint c)
 		{
 			fixed (byte* poutBuf = &outBuf)
 			{
 				byte* ret = ImTextCharToUtf8Native((byte*)poutBuf, c);
+				return ret;
+			}
+		}
+
+		public static string ImTextCharToUtf8S(ref byte outBuf, uint c)
+		{
+			fixed (byte* poutBuf = &outBuf)
+			{
+				string ret = Utils.DecodeStringUTF8(ImTextCharToUtf8Native((byte*)poutBuf, c));
 				return ret;
 			}
 		}
@@ -79480,9 +82090,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImMin")]
 		internal static extern void ImMinNative(Vector2* output, Vector2 lhs, Vector2 rhs);
 
-		public static void ImMin(Vector2* output, Vector2 lhs, Vector2 rhs)
+		public static Vector2 ImMin(Vector2 lhs, Vector2 rhs)
 		{
-			ImMinNative(output, lhs, rhs);
+			Vector2 ret;
+			ImMinNative(&ret, lhs, rhs);
+			return ret;
 		}
 
 		public static void ImMin(ref Vector2 output, Vector2 lhs, Vector2 rhs)
@@ -79496,9 +82108,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImMax")]
 		internal static extern void ImMaxNative(Vector2* output, Vector2 lhs, Vector2 rhs);
 
-		public static void ImMax(Vector2* output, Vector2 lhs, Vector2 rhs)
+		public static Vector2 ImMax(Vector2 lhs, Vector2 rhs)
 		{
-			ImMaxNative(output, lhs, rhs);
+			Vector2 ret;
+			ImMaxNative(&ret, lhs, rhs);
+			return ret;
 		}
 
 		public static void ImMax(ref Vector2 output, Vector2 lhs, Vector2 rhs)
@@ -79512,9 +82126,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImClamp")]
 		internal static extern void ImClampNative(Vector2* output, Vector2 v, Vector2 mn, Vector2 mx);
 
-		public static void ImClamp(Vector2* output, Vector2 v, Vector2 mn, Vector2 mx)
+		public static Vector2 ImClamp(Vector2 v, Vector2 mn, Vector2 mx)
 		{
-			ImClampNative(output, v, mn, mx);
+			Vector2 ret;
+			ImClampNative(&ret, v, mn, mx);
+			return ret;
 		}
 
 		public static void ImClamp(ref Vector2 output, Vector2 v, Vector2 mn, Vector2 mx)
@@ -79528,9 +82144,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImLerp_Vec2Float")]
 		internal static extern void ImLerpVec2FloatNative(Vector2* output, Vector2 a, Vector2 b, float t);
 
-		public static void ImLerpVec2Float(Vector2* output, Vector2 a, Vector2 b, float t)
+		public static Vector2 ImLerpVec2Float(Vector2 a, Vector2 b, float t)
 		{
-			ImLerpVec2FloatNative(output, a, b, t);
+			Vector2 ret;
+			ImLerpVec2FloatNative(&ret, a, b, t);
+			return ret;
 		}
 
 		public static void ImLerpVec2Float(ref Vector2 output, Vector2 a, Vector2 b, float t)
@@ -79544,9 +82162,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImLerp_Vec2Vec2")]
 		internal static extern void ImLerpVec2Vec2Native(Vector2* output, Vector2 a, Vector2 b, Vector2 t);
 
-		public static void ImLerpVec2Vec2(Vector2* output, Vector2 a, Vector2 b, Vector2 t)
+		public static Vector2 ImLerpVec2Vec2(Vector2 a, Vector2 b, Vector2 t)
 		{
-			ImLerpVec2Vec2Native(output, a, b, t);
+			Vector2 ret;
+			ImLerpVec2Vec2Native(&ret, a, b, t);
+			return ret;
 		}
 
 		public static void ImLerpVec2Vec2(ref Vector2 output, Vector2 a, Vector2 b, Vector2 t)
@@ -79560,9 +82180,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImLerp_Vec4")]
 		internal static extern void ImLerpVec4Native(Vector4* output, Vector4 a, Vector4 b, float t);
 
-		public static void ImLerpVec4(Vector4* output, Vector4 a, Vector4 b, float t)
+		public static Vector4 ImLerpVec4(Vector4 a, Vector4 b, float t)
 		{
-			ImLerpVec4Native(output, a, b, t);
+			Vector4 ret;
+			ImLerpVec4Native(&ret, a, b, t);
+			return ret;
 		}
 
 		public static void ImLerpVec4(ref Vector4 output, Vector4 a, Vector4 b, float t)
@@ -79630,9 +82252,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImFloor_Vec2")]
 		internal static extern void ImFloorVec2Native(Vector2* output, Vector2 v);
 
-		public static void ImFloorVec2(Vector2* output, Vector2 v)
+		public static Vector2 ImFloorVec2(Vector2 v)
 		{
-			ImFloorVec2Native(output, v);
+			Vector2 ret;
+			ImFloorVec2Native(&ret, v);
+			return ret;
 		}
 
 		public static void ImFloorVec2(ref Vector2 output, Vector2 v)
@@ -79646,9 +82270,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImFloorSigned_Vec2")]
 		internal static extern void ImFloorSignedVec2Native(Vector2* output, Vector2 v);
 
-		public static void ImFloorSignedVec2(Vector2* output, Vector2 v)
+		public static Vector2 ImFloorSignedVec2(Vector2 v)
 		{
-			ImFloorSignedVec2Native(output, v);
+			Vector2 ret;
+			ImFloorSignedVec2Native(&ret, v);
+			return ret;
 		}
 
 		public static void ImFloorSignedVec2(ref Vector2 output, Vector2 v)
@@ -79680,9 +82306,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImRotate")]
 		internal static extern void ImRotateNative(Vector2* output, Vector2 v, float cosA, float sinA);
 
-		public static void ImRotate(Vector2* output, Vector2 v, float cosA, float sinA)
+		public static Vector2 ImRotate(Vector2 v, float cosA, float sinA)
 		{
-			ImRotateNative(output, v, cosA, sinA);
+			Vector2 ret;
+			ImRotateNative(&ret, v, cosA, sinA);
+			return ret;
 		}
 
 		public static void ImRotate(ref Vector2 output, Vector2 v, float cosA, float sinA)
@@ -79705,9 +82333,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImMul")]
 		internal static extern void ImMulNative(Vector2* output, Vector2 lhs, Vector2 rhs);
 
-		public static void ImMul(Vector2* output, Vector2 lhs, Vector2 rhs)
+		public static Vector2 ImMul(Vector2 lhs, Vector2 rhs)
 		{
-			ImMulNative(output, lhs, rhs);
+			Vector2 ret;
+			ImMulNative(&ret, lhs, rhs);
+			return ret;
 		}
 
 		public static void ImMul(ref Vector2 output, Vector2 lhs, Vector2 rhs)
@@ -79740,9 +82370,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImBezierCubicCalc")]
 		internal static extern void ImBezierCubicCalcNative(Vector2* output, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float t);
 
-		public static void ImBezierCubicCalc(Vector2* output, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float t)
+		public static Vector2 ImBezierCubicCalc(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float t)
 		{
-			ImBezierCubicCalcNative(output, p1, p2, p3, p4, t);
+			Vector2 ret;
+			ImBezierCubicCalcNative(&ret, p1, p2, p3, p4, t);
+			return ret;
 		}
 
 		public static void ImBezierCubicCalc(ref Vector2 output, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, float t)
@@ -79756,9 +82388,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImBezierCubicClosestPoint")]
 		internal static extern void ImBezierCubicClosestPointNative(Vector2* output, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 p, int numSegments);
 
-		public static void ImBezierCubicClosestPoint(Vector2* output, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 p, int numSegments)
+		public static Vector2 ImBezierCubicClosestPoint(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 p, int numSegments)
 		{
-			ImBezierCubicClosestPointNative(output, p1, p2, p3, p4, p, numSegments);
+			Vector2 ret;
+			ImBezierCubicClosestPointNative(&ret, p1, p2, p3, p4, p, numSegments);
+			return ret;
 		}
 
 		public static void ImBezierCubicClosestPoint(ref Vector2 output, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 p, int numSegments)
@@ -79772,9 +82406,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImBezierCubicClosestPointCasteljau")]
 		internal static extern void ImBezierCubicClosestPointCasteljauNative(Vector2* output, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 p, float tessTol);
 
-		public static void ImBezierCubicClosestPointCasteljau(Vector2* output, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 p, float tessTol)
+		public static Vector2 ImBezierCubicClosestPointCasteljau(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 p, float tessTol)
 		{
-			ImBezierCubicClosestPointCasteljauNative(output, p1, p2, p3, p4, p, tessTol);
+			Vector2 ret;
+			ImBezierCubicClosestPointCasteljauNative(&ret, p1, p2, p3, p4, p, tessTol);
+			return ret;
 		}
 
 		public static void ImBezierCubicClosestPointCasteljau(ref Vector2 output, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 p, float tessTol)
@@ -79788,9 +82424,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImBezierQuadraticCalc")]
 		internal static extern void ImBezierQuadraticCalcNative(Vector2* output, Vector2 p1, Vector2 p2, Vector2 p3, float t);
 
-		public static void ImBezierQuadraticCalc(Vector2* output, Vector2 p1, Vector2 p2, Vector2 p3, float t)
+		public static Vector2 ImBezierQuadraticCalc(Vector2 p1, Vector2 p2, Vector2 p3, float t)
 		{
-			ImBezierQuadraticCalcNative(output, p1, p2, p3, t);
+			Vector2 ret;
+			ImBezierQuadraticCalcNative(&ret, p1, p2, p3, t);
+			return ret;
 		}
 
 		public static void ImBezierQuadraticCalc(ref Vector2 output, Vector2 p1, Vector2 p2, Vector2 p3, float t)
@@ -79804,9 +82442,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImLineClosestPoint")]
 		internal static extern void ImLineClosestPointNative(Vector2* output, Vector2 a, Vector2 b, Vector2 p);
 
-		public static void ImLineClosestPoint(Vector2* output, Vector2 a, Vector2 b, Vector2 p)
+		public static Vector2 ImLineClosestPoint(Vector2 a, Vector2 b, Vector2 p)
 		{
-			ImLineClosestPointNative(output, a, b, p);
+			Vector2 ret;
+			ImLineClosestPointNative(&ret, a, b, p);
+			return ret;
 		}
 
 		public static void ImLineClosestPoint(ref Vector2 output, Vector2 a, Vector2 b, Vector2 p)
@@ -79830,9 +82470,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImTriangleClosestPoint")]
 		internal static extern void ImTriangleClosestPointNative(Vector2* output, Vector2 a, Vector2 b, Vector2 c, Vector2 p);
 
-		public static void ImTriangleClosestPoint(Vector2* output, Vector2 a, Vector2 b, Vector2 c, Vector2 p)
+		public static Vector2 ImTriangleClosestPoint(Vector2 a, Vector2 b, Vector2 c, Vector2 p)
 		{
-			ImTriangleClosestPointNative(output, a, b, c, p);
+			Vector2 ret;
+			ImTriangleClosestPointNative(&ret, a, b, c, p);
+			return ret;
 		}
 
 		public static void ImTriangleClosestPoint(ref Vector2 output, Vector2 a, Vector2 b, Vector2 c, Vector2 p)
@@ -80072,9 +82714,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImRect_GetCenter")]
 		internal static extern void ImRectGetCenterNative(Vector2* output, ImRect* self);
 
-		public static void ImRectGetCenter(Vector2* output, ImRect* self)
+		public static Vector2 ImRectGetCenter(ImRect* self)
 		{
-			ImRectGetCenterNative(output, self);
+			Vector2 ret;
+			ImRectGetCenterNative(&ret, self);
+			return ret;
 		}
 
 		public static void ImRectGetCenter(ref Vector2 output, ImRect* self)
@@ -80085,11 +82729,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImRectGetCenter(Vector2* output, ref ImRect self)
+		public static Vector2 ImRectGetCenter(ref ImRect self)
 		{
 			fixed (ImRect* pself = &self)
 			{
-				ImRectGetCenterNative(output, (ImRect*)pself);
+				Vector2 ret;
+				ImRectGetCenterNative(&ret, (ImRect*)pself);
+				return ret;
 			}
 		}
 
@@ -80107,9 +82753,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImRect_GetSize")]
 		internal static extern void ImRectGetSizeNative(Vector2* output, ImRect* self);
 
-		public static void ImRectGetSize(Vector2* output, ImRect* self)
+		public static Vector2 ImRectGetSize(ImRect* self)
 		{
-			ImRectGetSizeNative(output, self);
+			Vector2 ret;
+			ImRectGetSizeNative(&ret, self);
+			return ret;
 		}
 
 		public static void ImRectGetSize(ref Vector2 output, ImRect* self)
@@ -80120,11 +82768,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImRectGetSize(Vector2* output, ref ImRect self)
+		public static Vector2 ImRectGetSize(ref ImRect self)
 		{
 			fixed (ImRect* pself = &self)
 			{
-				ImRectGetSizeNative(output, (ImRect*)pself);
+				Vector2 ret;
+				ImRectGetSizeNative(&ret, (ImRect*)pself);
+				return ret;
 			}
 		}
 
@@ -80196,9 +82846,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImRect_GetTL")]
 		internal static extern void ImRectGetTLNative(Vector2* output, ImRect* self);
 
-		public static void ImRectGetTL(Vector2* output, ImRect* self)
+		public static Vector2 ImRectGetTL(ImRect* self)
 		{
-			ImRectGetTLNative(output, self);
+			Vector2 ret;
+			ImRectGetTLNative(&ret, self);
+			return ret;
 		}
 
 		public static void ImRectGetTL(ref Vector2 output, ImRect* self)
@@ -80209,11 +82861,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImRectGetTL(Vector2* output, ref ImRect self)
+		public static Vector2 ImRectGetTL(ref ImRect self)
 		{
 			fixed (ImRect* pself = &self)
 			{
-				ImRectGetTLNative(output, (ImRect*)pself);
+				Vector2 ret;
+				ImRectGetTLNative(&ret, (ImRect*)pself);
+				return ret;
 			}
 		}
 
@@ -80231,9 +82885,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImRect_GetTR")]
 		internal static extern void ImRectGetTRNative(Vector2* output, ImRect* self);
 
-		public static void ImRectGetTR(Vector2* output, ImRect* self)
+		public static Vector2 ImRectGetTR(ImRect* self)
 		{
-			ImRectGetTRNative(output, self);
+			Vector2 ret;
+			ImRectGetTRNative(&ret, self);
+			return ret;
 		}
 
 		public static void ImRectGetTR(ref Vector2 output, ImRect* self)
@@ -80244,11 +82900,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImRectGetTR(Vector2* output, ref ImRect self)
+		public static Vector2 ImRectGetTR(ref ImRect self)
 		{
 			fixed (ImRect* pself = &self)
 			{
-				ImRectGetTRNative(output, (ImRect*)pself);
+				Vector2 ret;
+				ImRectGetTRNative(&ret, (ImRect*)pself);
+				return ret;
 			}
 		}
 
@@ -80266,9 +82924,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImRect_GetBL")]
 		internal static extern void ImRectGetBLNative(Vector2* output, ImRect* self);
 
-		public static void ImRectGetBL(Vector2* output, ImRect* self)
+		public static Vector2 ImRectGetBL(ImRect* self)
 		{
-			ImRectGetBLNative(output, self);
+			Vector2 ret;
+			ImRectGetBLNative(&ret, self);
+			return ret;
 		}
 
 		public static void ImRectGetBL(ref Vector2 output, ImRect* self)
@@ -80279,11 +82939,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImRectGetBL(Vector2* output, ref ImRect self)
+		public static Vector2 ImRectGetBL(ref ImRect self)
 		{
 			fixed (ImRect* pself = &self)
 			{
-				ImRectGetBLNative(output, (ImRect*)pself);
+				Vector2 ret;
+				ImRectGetBLNative(&ret, (ImRect*)pself);
+				return ret;
 			}
 		}
 
@@ -80301,9 +82963,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImRect_GetBR")]
 		internal static extern void ImRectGetBRNative(Vector2* output, ImRect* self);
 
-		public static void ImRectGetBR(Vector2* output, ImRect* self)
+		public static Vector2 ImRectGetBR(ImRect* self)
 		{
-			ImRectGetBRNative(output, self);
+			Vector2 ret;
+			ImRectGetBRNative(&ret, self);
+			return ret;
 		}
 
 		public static void ImRectGetBR(ref Vector2 output, ImRect* self)
@@ -80314,11 +82978,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImRectGetBR(Vector2* output, ref ImRect self)
+		public static Vector2 ImRectGetBR(ref ImRect self)
 		{
 			fixed (ImRect* pself = &self)
 			{
-				ImRectGetBRNative(output, (ImRect*)pself);
+				Vector2 ret;
+				ImRectGetBRNative(&ret, (ImRect*)pself);
+				return ret;
 			}
 		}
 
@@ -80572,9 +83238,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImRect_ToVec4")]
 		internal static extern void ImRectToVec4Native(Vector4* output, ImRect* self);
 
-		public static void ImRectToVec4(Vector4* output, ImRect* self)
+		public static Vector4 ImRectToVec4(ImRect* self)
 		{
-			ImRectToVec4Native(output, self);
+			Vector4 ret;
+			ImRectToVec4Native(&ret, self);
+			return ret;
 		}
 
 		public static void ImRectToVec4(ref Vector4 output, ImRect* self)
@@ -80585,11 +83253,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImRectToVec4(Vector4* output, ref ImRect self)
+		public static Vector4 ImRectToVec4(ref ImRect self)
 		{
 			fixed (ImRect* pself = &self)
 			{
-				ImRectToVec4Native(output, (ImRect*)pself);
+				Vector4 ret;
+				ImRectToVec4Native(&ret, (ImRect*)pself);
+				return ret;
 			}
 		}
 
@@ -80822,6 +83492,12 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImGuiTextIndexGetLineBeginS(ImGuiTextIndex* self, byte* baseValue, int n)
+		{
+			string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineBeginNative(self, baseValue, n));
+			return ret;
+		}
+
 		public static byte* ImGuiTextIndexGetLineBegin(ref ImGuiTextIndex self, byte* baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
@@ -80831,11 +83507,29 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
+		public static string ImGuiTextIndexGetLineBeginS(ref ImGuiTextIndex self, byte* baseValue, int n)
+		{
+			fixed (ImGuiTextIndex* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineBeginNative((ImGuiTextIndex*)pself, baseValue, n));
+				return ret;
+			}
+		}
+
 		public static byte* ImGuiTextIndexGetLineBegin(ImGuiTextIndex* self, ref byte baseValue, int n)
 		{
 			fixed (byte* pbaseValue = &baseValue)
 			{
 				byte* ret = ImGuiTextIndexGetLineBeginNative(self, (byte*)pbaseValue, n);
+				return ret;
+			}
+		}
+
+		public static string ImGuiTextIndexGetLineBeginS(ImGuiTextIndex* self, ref byte baseValue, int n)
+		{
+			fixed (byte* pbaseValue = &baseValue)
+			{
+				string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineBeginNative(self, (byte*)pbaseValue, n));
 				return ret;
 			}
 		}
@@ -80867,6 +83561,33 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImGuiTextIndexGetLineBeginS(ImGuiTextIndex* self, string baseValue, int n)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (baseValue != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(baseValue);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineBeginNative(self, pStr0, n));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImGuiTextIndexGetLineBegin(ref ImGuiTextIndex self, ref byte baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
@@ -80874,6 +83595,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* pbaseValue = &baseValue)
 				{
 					byte* ret = ImGuiTextIndexGetLineBeginNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImGuiTextIndexGetLineBeginS(ref ImGuiTextIndex self, ref byte baseValue, int n)
+		{
+			fixed (ImGuiTextIndex* pself = &self)
+			{
+				fixed (byte* pbaseValue = &baseValue)
+				{
+					string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineBeginNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n));
 					return ret;
 				}
 			}
@@ -80909,12 +83642,48 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
+		public static string ImGuiTextIndexGetLineBeginS(ref ImGuiTextIndex self, string baseValue, int n)
+		{
+			fixed (ImGuiTextIndex* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (baseValue != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(baseValue);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineBeginNative((ImGuiTextIndex*)pself, pStr0, n));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTextIndex_get_line_end")]
 		internal static extern byte* ImGuiTextIndexGetLineEndNative(ImGuiTextIndex* self, byte* baseValue, int n);
 
 		public static byte* ImGuiTextIndexGetLineEnd(ImGuiTextIndex* self, byte* baseValue, int n)
 		{
 			byte* ret = ImGuiTextIndexGetLineEndNative(self, baseValue, n);
+			return ret;
+		}
+
+		public static string ImGuiTextIndexGetLineEndS(ImGuiTextIndex* self, byte* baseValue, int n)
+		{
+			string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineEndNative(self, baseValue, n));
 			return ret;
 		}
 
@@ -80927,11 +83696,29 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
+		public static string ImGuiTextIndexGetLineEndS(ref ImGuiTextIndex self, byte* baseValue, int n)
+		{
+			fixed (ImGuiTextIndex* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineEndNative((ImGuiTextIndex*)pself, baseValue, n));
+				return ret;
+			}
+		}
+
 		public static byte* ImGuiTextIndexGetLineEnd(ImGuiTextIndex* self, ref byte baseValue, int n)
 		{
 			fixed (byte* pbaseValue = &baseValue)
 			{
 				byte* ret = ImGuiTextIndexGetLineEndNative(self, (byte*)pbaseValue, n);
+				return ret;
+			}
+		}
+
+		public static string ImGuiTextIndexGetLineEndS(ImGuiTextIndex* self, ref byte baseValue, int n)
+		{
+			fixed (byte* pbaseValue = &baseValue)
+			{
+				string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineEndNative(self, (byte*)pbaseValue, n));
 				return ret;
 			}
 		}
@@ -80963,6 +83750,33 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImGuiTextIndexGetLineEndS(ImGuiTextIndex* self, string baseValue, int n)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (baseValue != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(baseValue);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineEndNative(self, pStr0, n));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* ImGuiTextIndexGetLineEnd(ref ImGuiTextIndex self, ref byte baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
@@ -80970,6 +83784,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* pbaseValue = &baseValue)
 				{
 					byte* ret = ImGuiTextIndexGetLineEndNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n);
+					return ret;
+				}
+			}
+		}
+
+		public static string ImGuiTextIndexGetLineEndS(ref ImGuiTextIndex self, ref byte baseValue, int n)
+		{
+			fixed (ImGuiTextIndex* pself = &self)
+			{
+				fixed (byte* pbaseValue = &baseValue)
+				{
+					string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineEndNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n));
 					return ret;
 				}
 			}
@@ -80997,6 +83823,36 @@ namespace HexaEngine.ImGuiNET
 					pStr0[pStrOffset0] = 0;
 				}
 				byte* ret = ImGuiTextIndexGetLineEndNative((ImGuiTextIndex*)pself, pStr0, n);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		public static string ImGuiTextIndexGetLineEndS(ref ImGuiTextIndex self, string baseValue, int n)
+		{
+			fixed (ImGuiTextIndex* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (baseValue != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(baseValue);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineEndNative((ImGuiTextIndex*)pself, pStr0, n));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -82395,9 +85251,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiDockNode_Rect")]
 		internal static extern void ImGuiDockNodeRectNative(ImRect* output, ImGuiDockNode* self);
 
-		public static void ImGuiDockNodeRect(ImRect* output, ImGuiDockNode* self)
+		public static ImRect ImGuiDockNodeRect(ImGuiDockNode* self)
 		{
-			ImGuiDockNodeRectNative(output, self);
+			ImRect ret;
+			ImGuiDockNodeRectNative(&ret, self);
+			return ret;
 		}
 
 		public static void ImGuiDockNodeRect(ref ImRect output, ImGuiDockNode* self)
@@ -82408,11 +85266,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImGuiDockNodeRect(ImRect* output, ref ImGuiDockNode self)
+		public static ImRect ImGuiDockNodeRect(ref ImGuiDockNode self)
 		{
 			fixed (ImGuiDockNode* pself = &self)
 			{
-				ImGuiDockNodeRectNative(output, (ImGuiDockNode*)pself);
+				ImRect ret;
+				ImGuiDockNodeRectNative(&ret, (ImGuiDockNode*)pself);
+				return ret;
 			}
 		}
 
@@ -82528,9 +85388,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiViewportP_CalcWorkRectPos")]
 		internal static extern void ImGuiViewportPCalcWorkRectPosNative(Vector2* output, ImGuiViewportP* self, Vector2 offMin);
 
-		public static void ImGuiViewportPCalcWorkRectPos(Vector2* output, ImGuiViewportP* self, Vector2 offMin)
+		public static Vector2 ImGuiViewportPCalcWorkRectPos(ImGuiViewportP* self, Vector2 offMin)
 		{
-			ImGuiViewportPCalcWorkRectPosNative(output, self, offMin);
+			Vector2 ret;
+			ImGuiViewportPCalcWorkRectPosNative(&ret, self, offMin);
+			return ret;
 		}
 
 		public static void ImGuiViewportPCalcWorkRectPos(ref Vector2 output, ImGuiViewportP* self, Vector2 offMin)
@@ -82541,11 +85403,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImGuiViewportPCalcWorkRectPos(Vector2* output, ref ImGuiViewportP self, Vector2 offMin)
+		public static Vector2 ImGuiViewportPCalcWorkRectPos(ref ImGuiViewportP self, Vector2 offMin)
 		{
 			fixed (ImGuiViewportP* pself = &self)
 			{
-				ImGuiViewportPCalcWorkRectPosNative(output, (ImGuiViewportP*)pself, offMin);
+				Vector2 ret;
+				ImGuiViewportPCalcWorkRectPosNative(&ret, (ImGuiViewportP*)pself, offMin);
+				return ret;
 			}
 		}
 
@@ -82563,9 +85427,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiViewportP_CalcWorkRectSize")]
 		internal static extern void ImGuiViewportPCalcWorkRectSizeNative(Vector2* output, ImGuiViewportP* self, Vector2 offMin, Vector2 offMax);
 
-		public static void ImGuiViewportPCalcWorkRectSize(Vector2* output, ImGuiViewportP* self, Vector2 offMin, Vector2 offMax)
+		public static Vector2 ImGuiViewportPCalcWorkRectSize(ImGuiViewportP* self, Vector2 offMin, Vector2 offMax)
 		{
-			ImGuiViewportPCalcWorkRectSizeNative(output, self, offMin, offMax);
+			Vector2 ret;
+			ImGuiViewportPCalcWorkRectSizeNative(&ret, self, offMin, offMax);
+			return ret;
 		}
 
 		public static void ImGuiViewportPCalcWorkRectSize(ref Vector2 output, ImGuiViewportP* self, Vector2 offMin, Vector2 offMax)
@@ -82576,11 +85442,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImGuiViewportPCalcWorkRectSize(Vector2* output, ref ImGuiViewportP self, Vector2 offMin, Vector2 offMax)
+		public static Vector2 ImGuiViewportPCalcWorkRectSize(ref ImGuiViewportP self, Vector2 offMin, Vector2 offMax)
 		{
 			fixed (ImGuiViewportP* pself = &self)
 			{
-				ImGuiViewportPCalcWorkRectSizeNative(output, (ImGuiViewportP*)pself, offMin, offMax);
+				Vector2 ret;
+				ImGuiViewportPCalcWorkRectSizeNative(&ret, (ImGuiViewportP*)pself, offMin, offMax);
+				return ret;
 			}
 		}
 
@@ -82614,9 +85482,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiViewportP_GetMainRect")]
 		internal static extern void ImGuiViewportPGetMainRectNative(ImRect* output, ImGuiViewportP* self);
 
-		public static void ImGuiViewportPGetMainRect(ImRect* output, ImGuiViewportP* self)
+		public static ImRect ImGuiViewportPGetMainRect(ImGuiViewportP* self)
 		{
-			ImGuiViewportPGetMainRectNative(output, self);
+			ImRect ret;
+			ImGuiViewportPGetMainRectNative(&ret, self);
+			return ret;
 		}
 
 		public static void ImGuiViewportPGetMainRect(ref ImRect output, ImGuiViewportP* self)
@@ -82627,11 +85497,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImGuiViewportPGetMainRect(ImRect* output, ref ImGuiViewportP self)
+		public static ImRect ImGuiViewportPGetMainRect(ref ImGuiViewportP self)
 		{
 			fixed (ImGuiViewportP* pself = &self)
 			{
-				ImGuiViewportPGetMainRectNative(output, (ImGuiViewportP*)pself);
+				ImRect ret;
+				ImGuiViewportPGetMainRectNative(&ret, (ImGuiViewportP*)pself);
+				return ret;
 			}
 		}
 
@@ -82649,9 +85521,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiViewportP_GetWorkRect")]
 		internal static extern void ImGuiViewportPGetWorkRectNative(ImRect* output, ImGuiViewportP* self);
 
-		public static void ImGuiViewportPGetWorkRect(ImRect* output, ImGuiViewportP* self)
+		public static ImRect ImGuiViewportPGetWorkRect(ImGuiViewportP* self)
 		{
-			ImGuiViewportPGetWorkRectNative(output, self);
+			ImRect ret;
+			ImGuiViewportPGetWorkRectNative(&ret, self);
+			return ret;
 		}
 
 		public static void ImGuiViewportPGetWorkRect(ref ImRect output, ImGuiViewportP* self)
@@ -82662,11 +85536,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImGuiViewportPGetWorkRect(ImRect* output, ref ImGuiViewportP self)
+		public static ImRect ImGuiViewportPGetWorkRect(ref ImGuiViewportP self)
 		{
 			fixed (ImGuiViewportP* pself = &self)
 			{
-				ImGuiViewportPGetWorkRectNative(output, (ImGuiViewportP*)pself);
+				ImRect ret;
+				ImGuiViewportPGetWorkRectNative(&ret, (ImGuiViewportP*)pself);
+				return ret;
 			}
 		}
 
@@ -82684,9 +85560,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiViewportP_GetBuildWorkRect")]
 		internal static extern void ImGuiViewportPGetBuildWorkRectNative(ImRect* output, ImGuiViewportP* self);
 
-		public static void ImGuiViewportPGetBuildWorkRect(ImRect* output, ImGuiViewportP* self)
+		public static ImRect ImGuiViewportPGetBuildWorkRect(ImGuiViewportP* self)
 		{
-			ImGuiViewportPGetBuildWorkRectNative(output, self);
+			ImRect ret;
+			ImGuiViewportPGetBuildWorkRectNative(&ret, self);
+			return ret;
 		}
 
 		public static void ImGuiViewportPGetBuildWorkRect(ref ImRect output, ImGuiViewportP* self)
@@ -82697,11 +85575,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImGuiViewportPGetBuildWorkRect(ImRect* output, ref ImGuiViewportP self)
+		public static ImRect ImGuiViewportPGetBuildWorkRect(ref ImGuiViewportP self)
 		{
 			fixed (ImGuiViewportP* pself = &self)
 			{
-				ImGuiViewportPGetBuildWorkRectNative(output, (ImGuiViewportP*)pself);
+				ImRect ret;
+				ImGuiViewportPGetBuildWorkRectNative(&ret, (ImGuiViewportP*)pself);
+				return ret;
 			}
 		}
 
@@ -82750,11 +85630,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string ImGuiWindowSettingsGetNameS(ImGuiWindowSettings* self)
+		{
+			string ret = Utils.DecodeStringUTF8(ImGuiWindowSettingsGetNameNative(self));
+			return ret;
+		}
+
 		public static byte* ImGuiWindowSettingsGetName(ref ImGuiWindowSettings self)
 		{
 			fixed (ImGuiWindowSettings* pself = &self)
 			{
 				byte* ret = ImGuiWindowSettingsGetNameNative((ImGuiWindowSettings*)pself);
+				return ret;
+			}
+		}
+
+		public static string ImGuiWindowSettingsGetNameS(ref ImGuiWindowSettings self)
+		{
+			fixed (ImGuiWindowSettings* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(ImGuiWindowSettingsGetNameNative((ImGuiWindowSettings*)pself));
 				return ret;
 			}
 		}
@@ -83362,9 +86257,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiWindow_Rect")]
 		internal static extern void ImGuiWindowRectNative(ImRect* output, ImGuiWindow* self);
 
-		public static void ImGuiWindowRect(ImRect* output, ImGuiWindow* self)
+		public static ImRect ImGuiWindowRect(ImGuiWindow* self)
 		{
-			ImGuiWindowRectNative(output, self);
+			ImRect ret;
+			ImGuiWindowRectNative(&ret, self);
+			return ret;
 		}
 
 		public static void ImGuiWindowRect(ref ImRect output, ImGuiWindow* self)
@@ -83375,11 +86272,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImGuiWindowRect(ImRect* output, ref ImGuiWindow self)
+		public static ImRect ImGuiWindowRect(ref ImGuiWindow self)
 		{
 			fixed (ImGuiWindow* pself = &self)
 			{
-				ImGuiWindowRectNative(output, (ImGuiWindow*)pself);
+				ImRect ret;
+				ImGuiWindowRectNative(&ret, (ImGuiWindow*)pself);
+				return ret;
 			}
 		}
 
@@ -83433,9 +86332,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiWindow_TitleBarRect")]
 		internal static extern void ImGuiWindowTitleBarRectNative(ImRect* output, ImGuiWindow* self);
 
-		public static void ImGuiWindowTitleBarRect(ImRect* output, ImGuiWindow* self)
+		public static ImRect ImGuiWindowTitleBarRect(ImGuiWindow* self)
 		{
-			ImGuiWindowTitleBarRectNative(output, self);
+			ImRect ret;
+			ImGuiWindowTitleBarRectNative(&ret, self);
+			return ret;
 		}
 
 		public static void ImGuiWindowTitleBarRect(ref ImRect output, ImGuiWindow* self)
@@ -83446,11 +86347,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImGuiWindowTitleBarRect(ImRect* output, ref ImGuiWindow self)
+		public static ImRect ImGuiWindowTitleBarRect(ref ImGuiWindow self)
 		{
 			fixed (ImGuiWindow* pself = &self)
 			{
-				ImGuiWindowTitleBarRectNative(output, (ImGuiWindow*)pself);
+				ImRect ret;
+				ImGuiWindowTitleBarRectNative(&ret, (ImGuiWindow*)pself);
+				return ret;
 			}
 		}
 
@@ -83486,9 +86389,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiWindow_MenuBarRect")]
 		internal static extern void ImGuiWindowMenuBarRectNative(ImRect* output, ImGuiWindow* self);
 
-		public static void ImGuiWindowMenuBarRect(ImRect* output, ImGuiWindow* self)
+		public static ImRect ImGuiWindowMenuBarRect(ImGuiWindow* self)
 		{
-			ImGuiWindowMenuBarRectNative(output, self);
+			ImRect ret;
+			ImGuiWindowMenuBarRectNative(&ret, self);
+			return ret;
 		}
 
 		public static void ImGuiWindowMenuBarRect(ref ImRect output, ImGuiWindow* self)
@@ -83499,11 +86404,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ImGuiWindowMenuBarRect(ImRect* output, ref ImGuiWindow self)
+		public static ImRect ImGuiWindowMenuBarRect(ref ImGuiWindow self)
 		{
 			fixed (ImGuiWindow* pself = &self)
 			{
-				ImGuiWindowMenuBarRectNative(output, (ImGuiWindow*)pself);
+				ImRect ret;
+				ImGuiWindowMenuBarRectNative(&ret, (ImGuiWindow*)pself);
+				return ret;
 			}
 		}
 
@@ -83846,9 +86753,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igCalcWindowNextAutoFitSize")]
 		internal static extern void CalcWindowNextAutoFitSizeNative(Vector2* output, ImGuiWindow* window);
 
-		public static void CalcWindowNextAutoFitSize(Vector2* output, ImGuiWindow* window)
+		public static Vector2 CalcWindowNextAutoFitSize(ImGuiWindow* window)
 		{
-			CalcWindowNextAutoFitSizeNative(output, window);
+			Vector2 ret;
+			CalcWindowNextAutoFitSizeNative(&ret, window);
+			return ret;
 		}
 
 		public static void CalcWindowNextAutoFitSize(ref Vector2 output, ImGuiWindow* window)
@@ -83859,11 +86768,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void CalcWindowNextAutoFitSize(Vector2* output, ref ImGuiWindow window)
+		public static Vector2 CalcWindowNextAutoFitSize(ref ImGuiWindow window)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				CalcWindowNextAutoFitSizeNative(output, (ImGuiWindow*)pwindow);
+				Vector2 ret;
+				CalcWindowNextAutoFitSizeNative(&ret, (ImGuiWindow*)pwindow);
+				return ret;
 			}
 		}
 
@@ -84100,9 +87011,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igWindowRectAbsToRel")]
 		internal static extern void WindowRectAbsToRelNative(ImRect* output, ImGuiWindow* window, ImRect r);
 
-		public static void WindowRectAbsToRel(ImRect* output, ImGuiWindow* window, ImRect r)
+		public static ImRect WindowRectAbsToRel(ImGuiWindow* window, ImRect r)
 		{
-			WindowRectAbsToRelNative(output, window, r);
+			ImRect ret;
+			WindowRectAbsToRelNative(&ret, window, r);
+			return ret;
 		}
 
 		public static void WindowRectAbsToRel(ref ImRect output, ImGuiWindow* window, ImRect r)
@@ -84113,11 +87026,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void WindowRectAbsToRel(ImRect* output, ref ImGuiWindow window, ImRect r)
+		public static ImRect WindowRectAbsToRel(ref ImGuiWindow window, ImRect r)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				WindowRectAbsToRelNative(output, (ImGuiWindow*)pwindow, r);
+				ImRect ret;
+				WindowRectAbsToRelNative(&ret, (ImGuiWindow*)pwindow, r);
+				return ret;
 			}
 		}
 
@@ -84135,9 +87050,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igWindowRectRelToAbs")]
 		internal static extern void WindowRectRelToAbsNative(ImRect* output, ImGuiWindow* window, ImRect r);
 
-		public static void WindowRectRelToAbs(ImRect* output, ImGuiWindow* window, ImRect r)
+		public static ImRect WindowRectRelToAbs(ImGuiWindow* window, ImRect r)
 		{
-			WindowRectRelToAbsNative(output, window, r);
+			ImRect ret;
+			WindowRectRelToAbsNative(&ret, window, r);
+			return ret;
 		}
 
 		public static void WindowRectRelToAbs(ref ImRect output, ImGuiWindow* window, ImRect r)
@@ -84148,11 +87065,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void WindowRectRelToAbs(ImRect* output, ref ImGuiWindow window, ImRect r)
+		public static ImRect WindowRectRelToAbs(ref ImGuiWindow window, ImRect r)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				WindowRectRelToAbsNative(output, (ImGuiWindow*)pwindow, r);
+				ImRect ret;
+				WindowRectRelToAbsNative(&ret, (ImGuiWindow*)pwindow, r);
+				return ret;
 			}
 		}
 
@@ -84170,9 +87089,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igWindowPosRelToAbs")]
 		internal static extern void WindowPosRelToAbsNative(Vector2* output, ImGuiWindow* window, Vector2 p);
 
-		public static void WindowPosRelToAbs(Vector2* output, ImGuiWindow* window, Vector2 p)
+		public static Vector2 WindowPosRelToAbs(ImGuiWindow* window, Vector2 p)
 		{
-			WindowPosRelToAbsNative(output, window, p);
+			Vector2 ret;
+			WindowPosRelToAbsNative(&ret, window, p);
+			return ret;
 		}
 
 		public static void WindowPosRelToAbs(ref Vector2 output, ImGuiWindow* window, Vector2 p)
@@ -84183,11 +87104,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void WindowPosRelToAbs(Vector2* output, ref ImGuiWindow window, Vector2 p)
+		public static Vector2 WindowPosRelToAbs(ref ImGuiWindow window, Vector2 p)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				WindowPosRelToAbsNative(output, (ImGuiWindow*)pwindow, p);
+				Vector2 ret;
+				WindowPosRelToAbsNative(&ret, (ImGuiWindow*)pwindow, p);
+				return ret;
 			}
 		}
 
@@ -85048,6 +87971,12 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string LocalizeGetMsgS(ImGuiLocKey key)
+		{
+			string ret = Utils.DecodeStringUTF8(LocalizeGetMsgNative(key));
+			return ret;
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igSetScrollX_WindowPtr")]
 		internal static extern void SetScrollXWindowPtrNative(ImGuiWindow* window, float scrollX);
 
@@ -85139,9 +88068,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igScrollToRectEx")]
 		internal static extern void ScrollToRectExNative(Vector2* output, ImGuiWindow* window, ImRect rect, ImGuiScrollFlags flags);
 
-		public static void ScrollToRectEx(Vector2* output, ImGuiWindow* window, ImRect rect, ImGuiScrollFlags flags)
+		public static Vector2 ScrollToRectEx(ImGuiWindow* window, ImRect rect, ImGuiScrollFlags flags)
 		{
-			ScrollToRectExNative(output, window, rect, flags);
+			Vector2 ret;
+			ScrollToRectExNative(&ret, window, rect, flags);
+			return ret;
 		}
 
 		public static void ScrollToRectEx(ref Vector2 output, ImGuiWindow* window, ImRect rect, ImGuiScrollFlags flags)
@@ -85152,11 +88083,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void ScrollToRectEx(Vector2* output, ref ImGuiWindow window, ImRect rect, ImGuiScrollFlags flags)
+		public static Vector2 ScrollToRectEx(ref ImGuiWindow window, ImRect rect, ImGuiScrollFlags flags)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				ScrollToRectExNative(output, (ImGuiWindow*)pwindow, rect, flags);
+				Vector2 ret;
+				ScrollToRectExNative(&ret, (ImGuiWindow*)pwindow, rect, flags);
+				return ret;
 			}
 		}
 
@@ -85539,9 +88472,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igCalcItemSize")]
 		internal static extern void CalcItemSizeNative(Vector2* output, Vector2 size, float defaultW, float defaultH);
 
-		public static void CalcItemSize(Vector2* output, Vector2 size, float defaultW, float defaultH)
+		public static Vector2 CalcItemSize(Vector2 size, float defaultW, float defaultH)
 		{
-			CalcItemSizeNative(output, size, defaultW, defaultH);
+			Vector2 ret;
+			CalcItemSizeNative(&ret, size, defaultW, defaultH);
+			return ret;
 		}
 
 		public static void CalcItemSize(ref Vector2 output, Vector2 size, float defaultW, float defaultH)
@@ -85582,9 +88517,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetContentRegionMaxAbs")]
 		internal static extern void GetContentRegionMaxAbsNative(Vector2* output);
 
-		public static void GetContentRegionMaxAbs(Vector2* output)
+		public static Vector2 GetContentRegionMaxAbs()
 		{
-			GetContentRegionMaxAbsNative(output);
+			Vector2 ret;
+			GetContentRegionMaxAbsNative(&ret);
+			return ret;
 		}
 
 		public static void GetContentRegionMaxAbs(ref Vector2 output)
@@ -86191,9 +89128,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetPopupAllowedExtentRect")]
 		internal static extern void GetPopupAllowedExtentRectNative(ImRect* output, ImGuiWindow* window);
 
-		public static void GetPopupAllowedExtentRect(ImRect* output, ImGuiWindow* window)
+		public static ImRect GetPopupAllowedExtentRect(ImGuiWindow* window)
 		{
-			GetPopupAllowedExtentRectNative(output, window);
+			ImRect ret;
+			GetPopupAllowedExtentRectNative(&ret, window);
+			return ret;
 		}
 
 		public static void GetPopupAllowedExtentRect(ref ImRect output, ImGuiWindow* window)
@@ -86204,11 +89143,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void GetPopupAllowedExtentRect(ImRect* output, ref ImGuiWindow window)
+		public static ImRect GetPopupAllowedExtentRect(ref ImGuiWindow window)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				GetPopupAllowedExtentRectNative(output, (ImGuiWindow*)pwindow);
+				ImRect ret;
+				GetPopupAllowedExtentRectNative(&ret, (ImGuiWindow*)pwindow);
+				return ret;
 			}
 		}
 
@@ -86262,9 +89203,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igFindBestWindowPosForPopup")]
 		internal static extern void FindBestWindowPosForPopupNative(Vector2* output, ImGuiWindow* window);
 
-		public static void FindBestWindowPosForPopup(Vector2* output, ImGuiWindow* window)
+		public static Vector2 FindBestWindowPosForPopup(ImGuiWindow* window)
 		{
-			FindBestWindowPosForPopupNative(output, window);
+			Vector2 ret;
+			FindBestWindowPosForPopupNative(&ret, window);
+			return ret;
 		}
 
 		public static void FindBestWindowPosForPopup(ref Vector2 output, ImGuiWindow* window)
@@ -86275,11 +89218,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void FindBestWindowPosForPopup(Vector2* output, ref ImGuiWindow window)
+		public static Vector2 FindBestWindowPosForPopup(ref ImGuiWindow window)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				FindBestWindowPosForPopupNative(output, (ImGuiWindow*)pwindow);
+				Vector2 ret;
+				FindBestWindowPosForPopupNative(&ret, (ImGuiWindow*)pwindow);
+				return ret;
 			}
 		}
 
@@ -86297,9 +89242,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igFindBestWindowPosForPopupEx")]
 		internal static extern void FindBestWindowPosForPopupExNative(Vector2* output, Vector2 refPos, Vector2 size, ImGuiDir* lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy);
 
-		public static void FindBestWindowPosForPopupEx(Vector2* output, Vector2 refPos, Vector2 size, ImGuiDir* lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
+		public static Vector2 FindBestWindowPosForPopupEx(Vector2 refPos, Vector2 size, ImGuiDir* lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
 		{
-			FindBestWindowPosForPopupExNative(output, refPos, size, lastDir, rOuter, rAvoid, policy);
+			Vector2 ret;
+			FindBestWindowPosForPopupExNative(&ret, refPos, size, lastDir, rOuter, rAvoid, policy);
+			return ret;
 		}
 
 		public static void FindBestWindowPosForPopupEx(ref Vector2 output, Vector2 refPos, Vector2 size, ImGuiDir* lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
@@ -86310,11 +89257,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void FindBestWindowPosForPopupEx(Vector2* output, Vector2 refPos, Vector2 size, ref ImGuiDir lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
+		public static Vector2 FindBestWindowPosForPopupEx(Vector2 refPos, Vector2 size, ref ImGuiDir lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
 		{
 			fixed (ImGuiDir* plastDir = &lastDir)
 			{
-				FindBestWindowPosForPopupExNative(output, refPos, size, (ImGuiDir*)plastDir, rOuter, rAvoid, policy);
+				Vector2 ret;
+				FindBestWindowPosForPopupExNative(&ret, refPos, size, (ImGuiDir*)plastDir, rOuter, rAvoid, policy);
+				return ret;
 			}
 		}
 
@@ -87313,9 +90262,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetKeyMagnitude2d")]
 		internal static extern void GetKeyMagnitude2dNative(Vector2* output, ImGuiKey keyLeft, ImGuiKey keyRight, ImGuiKey keyUp, ImGuiKey keyDown);
 
-		public static void GetKeyMagnitude2d(Vector2* output, ImGuiKey keyLeft, ImGuiKey keyRight, ImGuiKey keyUp, ImGuiKey keyDown)
+		public static Vector2 GetKeyMagnitude2d(ImGuiKey keyLeft, ImGuiKey keyRight, ImGuiKey keyUp, ImGuiKey keyDown)
 		{
-			GetKeyMagnitude2dNative(output, keyLeft, keyRight, keyUp, keyDown);
+			Vector2 ret;
+			GetKeyMagnitude2dNative(&ret, keyLeft, keyRight, keyUp, keyDown);
+			return ret;
 		}
 
 		public static void GetKeyMagnitude2d(ref Vector2 output, ImGuiKey keyLeft, ImGuiKey keyRight, ImGuiKey keyUp, ImGuiKey keyDown)
@@ -89865,9 +92816,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTableGetCellBgRect")]
 		internal static extern void TableGetCellBgRectNative(ImRect* output, ImGuiTable* table, int columnN);
 
-		public static void TableGetCellBgRect(ImRect* output, ImGuiTable* table, int columnN)
+		public static ImRect TableGetCellBgRect(ImGuiTable* table, int columnN)
 		{
-			TableGetCellBgRectNative(output, table, columnN);
+			ImRect ret;
+			TableGetCellBgRectNative(&ret, table, columnN);
+			return ret;
 		}
 
 		public static void TableGetCellBgRect(ref ImRect output, ImGuiTable* table, int columnN)
@@ -89878,11 +92831,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void TableGetCellBgRect(ImRect* output, ref ImGuiTable table, int columnN)
+		public static ImRect TableGetCellBgRect(ref ImGuiTable table, int columnN)
 		{
 			fixed (ImGuiTable* ptable = &table)
 			{
-				TableGetCellBgRectNative(output, (ImGuiTable*)ptable, columnN);
+				ImRect ret;
+				TableGetCellBgRectNative(&ret, (ImGuiTable*)ptable, columnN);
+				return ret;
 			}
 		}
 
@@ -89906,11 +92861,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string TableGetColumnNameTablePtrS(ImGuiTable* table, int columnN)
+		{
+			string ret = Utils.DecodeStringUTF8(TableGetColumnNameTablePtrNative(table, columnN));
+			return ret;
+		}
+
 		public static byte* TableGetColumnNameTablePtr(ref ImGuiTable table, int columnN)
 		{
 			fixed (ImGuiTable* ptable = &table)
 			{
 				byte* ret = TableGetColumnNameTablePtrNative((ImGuiTable*)ptable, columnN);
+				return ret;
+			}
+		}
+
+		public static string TableGetColumnNameTablePtrS(ref ImGuiTable table, int columnN)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				string ret = Utils.DecodeStringUTF8(TableGetColumnNameTablePtrNative((ImGuiTable*)ptable, columnN));
 				return ret;
 			}
 		}
@@ -90300,11 +93270,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string TabBarGetTabNameS(ImGuiTabBar* tabBar, ImGuiTabItem* tab)
+		{
+			string ret = Utils.DecodeStringUTF8(TabBarGetTabNameNative(tabBar, tab));
+			return ret;
+		}
+
 		public static byte* TabBarGetTabName(ref ImGuiTabBar tabBar, ImGuiTabItem* tab)
 		{
 			fixed (ImGuiTabBar* ptabBar = &tabBar)
 			{
 				byte* ret = TabBarGetTabNameNative((ImGuiTabBar*)ptabBar, tab);
+				return ret;
+			}
+		}
+
+		public static string TabBarGetTabNameS(ref ImGuiTabBar tabBar, ImGuiTabItem* tab)
+		{
+			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			{
+				string ret = Utils.DecodeStringUTF8(TabBarGetTabNameNative((ImGuiTabBar*)ptabBar, tab));
 				return ret;
 			}
 		}
@@ -90318,6 +93303,15 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
+		public static string TabBarGetTabNameS(ImGuiTabBar* tabBar, ref ImGuiTabItem tab)
+		{
+			fixed (ImGuiTabItem* ptab = &tab)
+			{
+				string ret = Utils.DecodeStringUTF8(TabBarGetTabNameNative(tabBar, (ImGuiTabItem*)ptab));
+				return ret;
+			}
+		}
+
 		public static byte* TabBarGetTabName(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab)
 		{
 			fixed (ImGuiTabBar* ptabBar = &tabBar)
@@ -90325,6 +93319,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (ImGuiTabItem* ptab = &tab)
 				{
 					byte* ret = TabBarGetTabNameNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab);
+					return ret;
+				}
+			}
+		}
+
+		public static string TabBarGetTabNameS(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab)
+		{
+			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			{
+				fixed (ImGuiTabItem* ptab = &tab)
+				{
+					string ret = Utils.DecodeStringUTF8(TabBarGetTabNameNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab));
 					return ret;
 				}
 			}
@@ -90991,9 +93997,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTabItemCalcSize_Str")]
 		internal static extern void TabItemCalcSizeNative(Vector2* output, byte* label, bool hasCloseButtonOrUnsavedMarker);
 
-		public static void TabItemCalcSize(Vector2* output, byte* label, bool hasCloseButtonOrUnsavedMarker)
+		public static Vector2 TabItemCalcSize(byte* label, bool hasCloseButtonOrUnsavedMarker)
 		{
-			TabItemCalcSizeNative(output, label, hasCloseButtonOrUnsavedMarker);
+			Vector2 ret;
+			TabItemCalcSizeNative(&ret, label, hasCloseButtonOrUnsavedMarker);
+			return ret;
 		}
 
 		public static void TabItemCalcSize(ref Vector2 output, byte* label, bool hasCloseButtonOrUnsavedMarker)
@@ -91004,15 +94012,17 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void TabItemCalcSize(Vector2* output, ref byte label, bool hasCloseButtonOrUnsavedMarker)
+		public static Vector2 TabItemCalcSize(ref byte label, bool hasCloseButtonOrUnsavedMarker)
 		{
 			fixed (byte* plabel = &label)
 			{
-				TabItemCalcSizeNative(output, (byte*)plabel, hasCloseButtonOrUnsavedMarker);
+				Vector2 ret;
+				TabItemCalcSizeNative(&ret, (byte*)plabel, hasCloseButtonOrUnsavedMarker);
+				return ret;
 			}
 		}
 
-		public static void TabItemCalcSize(Vector2* output, string label, bool hasCloseButtonOrUnsavedMarker)
+		public static Vector2 TabItemCalcSize(string label, bool hasCloseButtonOrUnsavedMarker)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -91031,11 +94041,13 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			TabItemCalcSizeNative(output, pStr0, hasCloseButtonOrUnsavedMarker);
+			Vector2 ret;
+			TabItemCalcSizeNative(&ret, pStr0, hasCloseButtonOrUnsavedMarker);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret;
 		}
 
 		public static void TabItemCalcSize(ref Vector2 output, ref byte label, bool hasCloseButtonOrUnsavedMarker)
@@ -91081,9 +94093,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTabItemCalcSize_WindowPtr")]
 		internal static extern void TabItemCalcSizeWindowPtrNative(Vector2* output, ImGuiWindow* window);
 
-		public static void TabItemCalcSizeWindowPtr(Vector2* output, ImGuiWindow* window)
+		public static Vector2 TabItemCalcSizeWindowPtr(ImGuiWindow* window)
 		{
-			TabItemCalcSizeWindowPtrNative(output, window);
+			Vector2 ret;
+			TabItemCalcSizeWindowPtrNative(&ret, window);
+			return ret;
 		}
 
 		public static void TabItemCalcSizeWindowPtr(ref Vector2 output, ImGuiWindow* window)
@@ -91094,11 +94108,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void TabItemCalcSizeWindowPtr(Vector2* output, ref ImGuiWindow window)
+		public static Vector2 TabItemCalcSizeWindowPtr(ref ImGuiWindow window)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				TabItemCalcSizeWindowPtrNative(output, (ImGuiWindow*)pwindow);
+				Vector2 ret;
+				TabItemCalcSizeWindowPtrNative(&ret, (ImGuiWindow*)pwindow);
+				return ret;
 			}
 		}
 
@@ -94394,11 +97410,26 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string FindRenderedTextEndS(byte* text, byte* textEnd)
+		{
+			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, textEnd));
+			return ret;
+		}
+
 		public static byte* FindRenderedTextEnd(ref byte text, byte* textEnd)
 		{
 			fixed (byte* ptext = &text)
 			{
 				byte* ret = FindRenderedTextEndNative((byte*)ptext, textEnd);
+				return ret;
+			}
+		}
+
+		public static string FindRenderedTextEndS(ref byte text, byte* textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative((byte*)ptext, textEnd));
 				return ret;
 			}
 		}
@@ -94430,11 +97461,47 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string FindRenderedTextEndS(string text, byte* textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(pStr0, textEnd));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* FindRenderedTextEnd(byte* text, ref byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
 				byte* ret = FindRenderedTextEndNative(text, (byte*)ptextEnd);
+				return ret;
+			}
+		}
+
+		public static string FindRenderedTextEndS(byte* text, ref byte textEnd)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, (byte*)ptextEnd));
 				return ret;
 			}
 		}
@@ -94466,6 +97533,33 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
+		public static string FindRenderedTextEndS(byte* text, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, pStr0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		public static byte* FindRenderedTextEnd(ref byte text, ref byte textEnd)
 		{
 			fixed (byte* ptext = &text)
@@ -94473,6 +97567,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* ptextEnd = &textEnd)
 				{
 					byte* ret = FindRenderedTextEndNative((byte*)ptext, (byte*)ptextEnd);
+					return ret;
+				}
+			}
+		}
+
+		public static string FindRenderedTextEndS(ref byte text, ref byte textEnd)
+		{
+			fixed (byte* ptext = &text)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative((byte*)ptext, (byte*)ptextEnd));
 					return ret;
 				}
 			}
@@ -94515,6 +97621,54 @@ namespace HexaEngine.ImGuiNET
 				pStr1[pStrOffset1] = 0;
 			}
 			byte* ret = FindRenderedTextEndNative(pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static string FindRenderedTextEndS(string text, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(pStr0, pStr1));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -95286,9 +98440,11 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetWindowScrollbarRect")]
 		internal static extern void GetWindowScrollbarRectNative(ImRect* output, ImGuiWindow* window, ImGuiAxis axis);
 
-		public static void GetWindowScrollbarRect(ImRect* output, ImGuiWindow* window, ImGuiAxis axis)
+		public static ImRect GetWindowScrollbarRect(ImGuiWindow* window, ImGuiAxis axis)
 		{
-			GetWindowScrollbarRectNative(output, window, axis);
+			ImRect ret;
+			GetWindowScrollbarRectNative(&ret, window, axis);
+			return ret;
 		}
 
 		public static void GetWindowScrollbarRect(ref ImRect output, ImGuiWindow* window, ImGuiAxis axis)
@@ -95299,11 +98455,13 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static void GetWindowScrollbarRect(ImRect* output, ref ImGuiWindow window, ImGuiAxis axis)
+		public static ImRect GetWindowScrollbarRect(ref ImGuiWindow window, ImGuiAxis axis)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				GetWindowScrollbarRectNative(output, (ImGuiWindow*)pwindow, axis);
+				ImRect ret;
+				GetWindowScrollbarRectNative(&ret, (ImGuiWindow*)pwindow, axis);
+				return ret;
 			}
 		}
 

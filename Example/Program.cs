@@ -2,6 +2,7 @@
 {
     using HexaEngine;
     using HexaEngine.Core;
+    using HexaEngine.ImGuiNET;
     using HexaEngine.Windows;
 
     internal class Program

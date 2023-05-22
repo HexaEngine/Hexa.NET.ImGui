@@ -30,7 +30,7 @@
   "KnownExtensionPrefixes": {},
   "KnownExtensionNames": {},
   "KnownStructMethods": {},
-  "IgnoredParts": [ "bit", "Ig", "ImGui", "Str", "Arr" ],
+  "IgnoredParts": [ "bit", "Ig", "ImGui", "Str", "Arr", "ImPlot" ],
   "PreserveCaps": [ "" ],
   "Keywords": [ "object", "event", "out", "base" ],
   "IgnoredTypes": [ "ImVec4", "ImVec3", "ImVec2" ],

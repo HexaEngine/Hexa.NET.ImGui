@@ -2655,6 +2655,15 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
+		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, text, textEnd, wrapWidth));
+				return ret;
+			}
+		}
+
 		public unsafe byte* CalcWordWrapPositionA(float scale, ref byte text, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
@@ -2662,6 +2671,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* ptext = &text)
 				{
 					byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, textEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, ref byte text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptext = &text)
+				{
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, textEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -2697,6 +2718,36 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
+		public unsafe string CalcWordWrapPositionAS(float scale, string text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, textEnd, wrapWidth));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
 		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
@@ -2704,6 +2755,18 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* ptextEnd = &textEnd)
 				{
 					byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, text, (byte*)ptextEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, text, (byte*)ptextEnd, wrapWidth));
 					return ret;
 				}
 			}
@@ -2739,6 +2802,36 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
+		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, text, pStr0, wrapWidth));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
 		public unsafe byte* CalcWordWrapPositionA(float scale, ref byte text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
@@ -2748,6 +2841,21 @@ namespace HexaEngine.ImGuiNET
 					fixed (byte* ptextEnd = &textEnd)
 					{
 						byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, ref byte text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptext = &text)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
 						return ret;
 					}
 				}
@@ -2793,6 +2901,57 @@ namespace HexaEngine.ImGuiNET
 					pStr1[pStrOffset1] = 0;
 				}
 				byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, pStr1, wrapWidth);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, string text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, pStr0, pStr1, wrapWidth));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -2853,6 +3012,15 @@ namespace HexaEngine.ImGuiNET
 			fixed (ImFont* @this = &this)
 			{
 				byte* ret = ImGui.GetDebugNameNative(@this);
+				return ret;
+			}
+		}
+
+		public unsafe string GetDebugNameS()
+		{
+			fixed (ImFont* @this = &this)
+			{
+				string ret = Utils.DecodeStringUTF8(ImGui.GetDebugNameNative(@this));
 				return ret;
 			}
 		}
@@ -9686,11 +9854,29 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
+		public unsafe string beginS()
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				string ret = Utils.DecodeStringUTF8(ImGui.beginNative(@this));
+				return ret;
+			}
+		}
+
 		public unsafe byte* c_str()
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
 				byte* ret = ImGui.c_strNative(@this);
+				return ret;
+			}
+		}
+
+		public unsafe string c_strS()
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				string ret = Utils.DecodeStringUTF8(ImGui.c_strNative(@this));
 				return ret;
 			}
 		}
@@ -9725,6 +9911,15 @@ public unsafe void appendf(string fmt)
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
 				byte* ret = ImGui.endNative(@this);
+				return ret;
+			}
+		}
+
+		public unsafe string endS()
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				string ret = Utils.DecodeStringUTF8(ImGui.endNative(@this));
 				return ret;
 			}
 		}

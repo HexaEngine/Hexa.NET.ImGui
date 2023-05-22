@@ -173,7 +173,7 @@
                         }
 
                         function.Overloads.Add(overload);
-                        GenerateVariations(cppFunction.Parameters, overload, null);
+                        GenerateVariations(cppFunction.Parameters, overload, true);
 
                         bool useThisRef = false;
                         if (cppFunction.Parameters.Count > 0 && IsPointerOf(cppClass, cppFunction.Parameters[0].Type))
