@@ -15,7 +15,6 @@ namespace Generator
         public TypeDefinition[] Types;
         public FunctionDefinition[] Functions;
         public TypedefDefinition[] Typedefs;
-        public Dictionary<string, MethodVariant> Variants;
 
         public static readonly List<string> WellKnownEnums = new List<string>()
         {
@@ -189,38 +188,6 @@ namespace Generator
 
                 return new TypedefDefinition(name, value);
             }).ToArray();
-        }
-    }
-
-    internal class MethodVariant
-    {
-        public string Name { get; }
-
-        public ParameterVariant[] Parameters { get; }
-
-        public MethodVariant(string name, ParameterVariant[] parameters)
-        {
-            Name = name;
-            Parameters = parameters;
-        }
-    }
-
-    internal class ParameterVariant
-    {
-        public string Name { get; }
-
-        public string OriginalType { get; }
-
-        public string[] VariantTypes { get; }
-
-        public bool Used { get; set; }
-
-        public ParameterVariant(string name, string originalType, string[] variantTypes)
-        {
-            Name = name;
-            OriginalType = originalType;
-            VariantTypes = variantTypes;
-            Used = false;
         }
     }
 

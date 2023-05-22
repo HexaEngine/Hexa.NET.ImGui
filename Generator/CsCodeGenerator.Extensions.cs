@@ -46,6 +46,7 @@
 
                         if (cppFunction.Parameters[0].Type.GetDisplayName().Contains(typedef.GetDisplayName()))
                         {
+                            /*
                             var extensionPrefix = GetExtensionNamePrefix(typedef.Name);
                             var csFunctionName = GetPrettyCommandName(cppFunction.Name);
                             var csExtensionName = GetPrettyExtensionName(csFunctionName, extensionPrefix);
@@ -55,6 +56,7 @@
                             sigs.Add(argumentsString);
 
                             WriteExtensions(writer, cppFunction, csFunctionName, csExtensionName, sigs);
+                            */
                         }
                     }
                 }

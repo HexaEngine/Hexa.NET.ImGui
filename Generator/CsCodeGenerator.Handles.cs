@@ -43,7 +43,7 @@
         public static void WriteDelegate(CodeWriter writer, CppTypedef typedef, CppFunctionType type, string csName)
         {
             string returnCsName = GetCsTypeName(type.ReturnType, false);
-            string signature = GetParameterSignature(null, type.Parameters, false);
+            string signature = GetParameterSignature(type.Parameters, false);
             WriteCsSummary(typedef.Comment, writer);
             writer.WriteLine($"public unsafe delegate {returnCsName} {csName}({signature});");
             writer.WriteLine();

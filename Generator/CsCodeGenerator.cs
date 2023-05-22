@@ -12,7 +12,6 @@
             GenerateEnums(compilation, outputPath);
             GenerateHandles(compilation, outputPath);
             GenerateStructAndUnions(compilation, outputPath);
-            GenerateExtensions(compilation, outputPath);
             GenerateCommands(compilation, outputPath);
         }
 
@@ -436,6 +435,47 @@
             if (comment == null || comment.Kind == CppCommentKind.Null)
             {
                 return false;
+            }
+
+            throw new NotImplementedException();
+        }
+
+        private static void WriteCsSummary(CppComment? cppComment, out string? comment)
+        {
+            StringBuilder sb = new();
+            if (cppComment is CppCommentFull full)
+            {
+                sb.AppendLine("/// <summary>");
+                for (int i = 0; i < full.Children.Count; i++)
+                {
+                    WriteCsSummary(full.Children[i], out var subComment);
+                    sb.Append(subComment);
+                }
+                sb.AppendLine("/// </summary>");
+                comment = sb.ToString();
+                return;
+            }
+            if (cppComment is CppCommentParagraph paragraph)
+            {
+                for (int i = 0; i < paragraph.Children.Count; i++)
+                {
+                    WriteCsSummary(paragraph.Children[i], out var subComment);
+                    sb.Append(subComment);
+                }
+                comment = sb.ToString();
+                return;
+            }
+            if (cppComment is CppCommentText text)
+            {
+                sb.AppendLine($"/// " + text.Text);
+                comment = sb.ToString();
+                return;
+            }
+
+            if (cppComment == null || cppComment.Kind == CppCommentKind.Null)
+            {
+                comment = null;
+                return;
             }
 
             throw new NotImplementedException();

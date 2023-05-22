@@ -20,7 +20,7 @@ namespace HexaEngine.ImNodesNET
 		internal const string LibName = "cimnodes";
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "EmulateThreeButtonMouse_EmulateThreeButtonMouse")]
-		public static extern EmulateThreeButtonMouse* EmulateThreeButtonMouseNative();
+		internal static extern EmulateThreeButtonMouse* EmulateThreeButtonMouseNative();
 
 		public static EmulateThreeButtonMouse* EmulateThreeButtonMouse()
 		{
@@ -29,7 +29,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "EmulateThreeButtonMouse_destroy")]
-		public static extern void DestroyNative(EmulateThreeButtonMouse* self);
+		internal static extern void DestroyNative(EmulateThreeButtonMouse* self);
 
 		public static void Destroy(EmulateThreeButtonMouse* self)
 		{
@@ -45,7 +45,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "LinkDetachWithModifierClick_LinkDetachWithModifierClick")]
-		public static extern LinkDetachWithModifierClick* LinkDetachWithModifierClickNative();
+		internal static extern LinkDetachWithModifierClick* LinkDetachWithModifierClickNative();
 
 		public static LinkDetachWithModifierClick* LinkDetachWithModifierClick()
 		{
@@ -54,7 +54,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "LinkDetachWithModifierClick_destroy")]
-		public static extern void DestroyNative(LinkDetachWithModifierClick* self);
+		internal static extern void DestroyNative(LinkDetachWithModifierClick* self);
 
 		public static void Destroy(LinkDetachWithModifierClick* self)
 		{
@@ -70,7 +70,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MultipleSelectModifier_MultipleSelectModifier")]
-		public static extern MultipleSelectModifier* MultipleSelectModifierNative();
+		internal static extern MultipleSelectModifier* MultipleSelectModifierNative();
 
 		public static MultipleSelectModifier* MultipleSelectModifier()
 		{
@@ -79,7 +79,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MultipleSelectModifier_destroy")]
-		public static extern void DestroyNative(MultipleSelectModifier* self);
+		internal static extern void DestroyNative(MultipleSelectModifier* self);
 
 		public static void Destroy(MultipleSelectModifier* self)
 		{
@@ -95,7 +95,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodesIO_ImNodesIO")]
-		public static extern ImNodesIO* ImNodesIONative();
+		internal static extern ImNodesIO* ImNodesIONative();
 
 		public static ImNodesIO* ImNodesIO()
 		{
@@ -104,7 +104,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodesIO_destroy")]
-		public static extern void DestroyNative(ImNodesIO* self);
+		internal static extern void DestroyNative(ImNodesIO* self);
 
 		public static void Destroy(ImNodesIO* self)
 		{
@@ -120,7 +120,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodesStyle_ImNodesStyle")]
-		public static extern ImNodesStyle* ImNodesStyleNative();
+		internal static extern ImNodesStyle* ImNodesStyleNative();
 
 		public static ImNodesStyle* ImNodesStyle()
 		{
@@ -129,7 +129,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodesStyle_destroy")]
-		public static extern void DestroyNative(ImNodesStyle* self);
+		internal static extern void DestroyNative(ImNodesStyle* self);
 
 		public static void Destroy(ImNodesStyle* self)
 		{
@@ -145,7 +145,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_CreateContext")]
-		public static extern ImNodesContext* CreateContextNative();
+		internal static extern ImNodesContext* CreateContextNative();
 
 		public static ImNodesContext* CreateContext()
 		{
@@ -154,7 +154,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_DestroyContext")]
-		public static extern void DestroyContextNative(ImNodesContext* ctx);
+		internal static extern void DestroyContextNative(ImNodesContext* ctx);
 
 		public static void DestroyContext(ImNodesContext* ctx)
 		{
@@ -170,7 +170,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetCurrentContext")]
-		public static extern ImNodesContext* GetCurrentContextNative();
+		internal static extern ImNodesContext* GetCurrentContextNative();
 
 		public static ImNodesContext* GetCurrentContext()
 		{
@@ -179,7 +179,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetCurrentContext")]
-		public static extern void SetCurrentContextNative(ImNodesContext* ctx);
+		internal static extern void SetCurrentContextNative(ImNodesContext* ctx);
 
 		public static void SetCurrentContext(ImNodesContext* ctx)
 		{
@@ -195,7 +195,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextCreate")]
-		public static extern ImNodesEditorContext* EditorContextCreateNative();
+		internal static extern ImNodesEditorContext* EditorContextCreateNative();
 
 		public static ImNodesEditorContext* EditorContextCreate()
 		{
@@ -204,7 +204,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextFree")]
-		public static extern void EditorContextFreeNative(ImNodesEditorContext* noname1);
+		internal static extern void EditorContextFreeNative(ImNodesEditorContext* noname1);
 
 		public static void EditorContextFree(ImNodesEditorContext* noname1)
 		{
@@ -220,7 +220,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextSet")]
-		public static extern void EditorContextSetNative(ImNodesEditorContext* noname1);
+		internal static extern void EditorContextSetNative(ImNodesEditorContext* noname1);
 
 		public static void EditorContextSet(ImNodesEditorContext* noname1)
 		{
@@ -236,7 +236,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextGetPanning")]
-		public static extern void EditorContextGetPanningNative(Vector2* output);
+		internal static extern void EditorContextGetPanningNative(Vector2* output);
 
 		public static void EditorContextGetPanning(Vector2* output)
 		{
@@ -252,7 +252,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextResetPanning")]
-		public static extern void EditorContextResetPanningNative(Vector2 pos);
+		internal static extern void EditorContextResetPanningNative(Vector2 pos);
 
 		public static void EditorContextResetPanning(Vector2 pos)
 		{
@@ -260,7 +260,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextMoveToNode")]
-		public static extern void EditorContextMoveToNodeNative(int nodeId);
+		internal static extern void EditorContextMoveToNodeNative(int nodeId);
 
 		public static void EditorContextMoveToNode(int nodeId)
 		{
@@ -268,7 +268,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetIO")]
-		public static extern ImNodesIO* GetIONative();
+		internal static extern ImNodesIO* GetIONative();
 
 		public static ImNodesIO* GetIO()
 		{
@@ -277,7 +277,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetStyle")]
-		public static extern ImNodesStyle* GetStyleNative();
+		internal static extern ImNodesStyle* GetStyleNative();
 
 		public static ImNodesStyle* GetStyle()
 		{
@@ -286,7 +286,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_StyleColorsDark")]
-		public static extern void StyleColorsDarkNative(ImNodesStyle* dest);
+		internal static extern void StyleColorsDarkNative(ImNodesStyle* dest);
 
 		public static void StyleColorsDark(ImNodesStyle* dest)
 		{
@@ -302,7 +302,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_StyleColorsClassic")]
-		public static extern void StyleColorsClassicNative(ImNodesStyle* dest);
+		internal static extern void StyleColorsClassicNative(ImNodesStyle* dest);
 
 		public static void StyleColorsClassic(ImNodesStyle* dest)
 		{
@@ -318,7 +318,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_StyleColorsLight")]
-		public static extern void StyleColorsLightNative(ImNodesStyle* dest);
+		internal static extern void StyleColorsLightNative(ImNodesStyle* dest);
 
 		public static void StyleColorsLight(ImNodesStyle* dest)
 		{
@@ -334,7 +334,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginNodeEditor")]
-		public static extern void BeginNodeEditorNative();
+		internal static extern void BeginNodeEditorNative();
 
 		public static void BeginNodeEditor()
 		{
@@ -342,7 +342,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndNodeEditor")]
-		public static extern void EndNodeEditorNative();
+		internal static extern void EndNodeEditorNative();
 
 		public static void EndNodeEditor()
 		{
@@ -350,35 +350,35 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_MiniMap")]
-		public static extern void MiniMapNative(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*> nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData);
-
-		public static void MiniMap()
-		{
-			MiniMapNative(0.2f, ImNodesMiniMapLocation.TopLeft, default, default);
-		}
-
-		public static void MiniMap(float minimapSizeFraction)
-		{
-			MiniMapNative(minimapSizeFraction, ImNodesMiniMapLocation.TopLeft, default, default);
-		}
-
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location)
-		{
-			MiniMapNative(minimapSizeFraction, location, default, default);
-		}
-
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*> nodeHoveringCallback)
-		{
-			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, default);
-		}
+		internal static extern void MiniMapNative(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*> nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData);
 
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*> nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
 		{
 			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, nodeHoveringCallbackData);
 		}
 
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*> nodeHoveringCallback)
+		{
+			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+		}
+
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location)
+		{
+			MiniMapNative(minimapSizeFraction, location, (delegate*<int, void*>)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+		}
+
+		public static void MiniMap(float minimapSizeFraction)
+		{
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*>)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+		}
+
+		public static void MiniMap()
+		{
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*>)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PushColorStyle")]
-		public static extern void PushColorStyleNative(ImNodesCol item, uint color);
+		internal static extern void PushColorStyleNative(ImNodesCol item, uint color);
 
 		public static void PushColorStyle(ImNodesCol item, uint color)
 		{
@@ -386,7 +386,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PopColorStyle")]
-		public static extern void PopColorStyleNative();
+		internal static extern void PopColorStyleNative();
 
 		public static void PopColorStyle()
 		{
@@ -394,7 +394,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PushStyleVar_Float")]
-		public static extern void PushStyleVarNative(ImNodesStyleVar styleItem, float value);
+		internal static extern void PushStyleVarNative(ImNodesStyleVar styleItem, float value);
 
 		public static void PushStyleVar(ImNodesStyleVar styleItem, float value)
 		{
@@ -402,7 +402,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PushStyleVar_Vec2")]
-		public static extern void PushStyleVarNative(ImNodesStyleVar styleItem, Vector2 value);
+		internal static extern void PushStyleVarNative(ImNodesStyleVar styleItem, Vector2 value);
 
 		public static void PushStyleVar(ImNodesStyleVar styleItem, Vector2 value)
 		{
@@ -410,7 +410,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginNode")]
-		public static extern void BeginNodeNative(int id);
+		internal static extern void BeginNodeNative(int id);
 
 		public static void BeginNode(int id)
 		{
@@ -418,7 +418,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndNode")]
-		public static extern void EndNodeNative();
+		internal static extern void EndNodeNative();
 
 		public static void EndNode()
 		{
@@ -426,7 +426,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeDimensions")]
-		public static extern void GetNodeDimensionsNative(Vector2* output, int id);
+		internal static extern void GetNodeDimensionsNative(Vector2* output, int id);
 
 		public static void GetNodeDimensions(Vector2* output, int id)
 		{
@@ -442,7 +442,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginNodeTitleBar")]
-		public static extern void BeginNodeTitleBarNative();
+		internal static extern void BeginNodeTitleBarNative();
 
 		public static void BeginNodeTitleBar()
 		{
@@ -450,7 +450,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndNodeTitleBar")]
-		public static extern void EndNodeTitleBarNative();
+		internal static extern void EndNodeTitleBarNative();
 
 		public static void EndNodeTitleBar()
 		{
@@ -458,20 +458,20 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginInputAttribute")]
-		public static extern void BeginInputAttributeNative(int id, ImNodesPinShape shape);
-
-		public static void BeginInputAttribute(int id)
-		{
-			BeginInputAttributeNative(id, (ImNodesPinShape)(ImNodesPinShape.CircleFilled));
-		}
+		internal static extern void BeginInputAttributeNative(int id, ImNodesPinShape shape);
 
 		public static void BeginInputAttribute(int id, ImNodesPinShape shape)
 		{
 			BeginInputAttributeNative(id, shape);
 		}
 
+		public static void BeginInputAttribute(int id)
+		{
+			BeginInputAttributeNative(id, (ImNodesPinShape)(ImNodesPinShape.CircleFilled));
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndInputAttribute")]
-		public static extern void EndInputAttributeNative();
+		internal static extern void EndInputAttributeNative();
 
 		public static void EndInputAttribute()
 		{
@@ -479,20 +479,20 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginOutputAttribute")]
-		public static extern void BeginOutputAttributeNative(int id, ImNodesPinShape shape);
-
-		public static void BeginOutputAttribute(int id)
-		{
-			BeginOutputAttributeNative(id, (ImNodesPinShape)(ImNodesPinShape.CircleFilled));
-		}
+		internal static extern void BeginOutputAttributeNative(int id, ImNodesPinShape shape);
 
 		public static void BeginOutputAttribute(int id, ImNodesPinShape shape)
 		{
 			BeginOutputAttributeNative(id, shape);
 		}
 
+		public static void BeginOutputAttribute(int id)
+		{
+			BeginOutputAttributeNative(id, (ImNodesPinShape)(ImNodesPinShape.CircleFilled));
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndOutputAttribute")]
-		public static extern void EndOutputAttributeNative();
+		internal static extern void EndOutputAttributeNative();
 
 		public static void EndOutputAttribute()
 		{
@@ -500,7 +500,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginStaticAttribute")]
-		public static extern void BeginStaticAttributeNative(int id);
+		internal static extern void BeginStaticAttributeNative(int id);
 
 		public static void BeginStaticAttribute(int id)
 		{
@@ -508,7 +508,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndStaticAttribute")]
-		public static extern void EndStaticAttributeNative();
+		internal static extern void EndStaticAttributeNative();
 
 		public static void EndStaticAttribute()
 		{
@@ -516,7 +516,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PushAttributeFlag")]
-		public static extern void PushAttributeFlagNative(ImNodesAttributeFlags flag);
+		internal static extern void PushAttributeFlagNative(ImNodesAttributeFlags flag);
 
 		public static void PushAttributeFlag(ImNodesAttributeFlags flag)
 		{
@@ -524,7 +524,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PopAttributeFlag")]
-		public static extern void PopAttributeFlagNative();
+		internal static extern void PopAttributeFlagNative();
 
 		public static void PopAttributeFlag()
 		{
@@ -532,7 +532,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_Link")]
-		public static extern void LinkNative(int id, int startAttributeId, int endAttributeId);
+		internal static extern void LinkNative(int id, int startAttributeId, int endAttributeId);
 
 		public static void Link(int id, int startAttributeId, int endAttributeId)
 		{
@@ -540,7 +540,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetNodeDraggable")]
-		public static extern void SetNodeDraggableNative(int nodeId, bool draggable);
+		internal static extern void SetNodeDraggableNative(int nodeId, bool draggable);
 
 		public static void SetNodeDraggable(int nodeId, bool draggable)
 		{
@@ -548,7 +548,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetNodeScreenSpacePos")]
-		public static extern void SetNodeScreenSpacePosNative(int nodeId, Vector2 screenSpacePos);
+		internal static extern void SetNodeScreenSpacePosNative(int nodeId, Vector2 screenSpacePos);
 
 		public static void SetNodeScreenSpacePos(int nodeId, Vector2 screenSpacePos)
 		{
@@ -556,7 +556,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetNodeEditorSpacePos")]
-		public static extern void SetNodeEditorSpacePosNative(int nodeId, Vector2 editorSpacePos);
+		internal static extern void SetNodeEditorSpacePosNative(int nodeId, Vector2 editorSpacePos);
 
 		public static void SetNodeEditorSpacePos(int nodeId, Vector2 editorSpacePos)
 		{
@@ -564,7 +564,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetNodeGridSpacePos")]
-		public static extern void SetNodeGridSpacePosNative(int nodeId, Vector2 gridPos);
+		internal static extern void SetNodeGridSpacePosNative(int nodeId, Vector2 gridPos);
 
 		public static void SetNodeGridSpacePos(int nodeId, Vector2 gridPos)
 		{
@@ -572,7 +572,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeScreenSpacePos")]
-		public static extern void GetNodeScreenSpacePosNative(Vector2* output, int nodeId);
+		internal static extern void GetNodeScreenSpacePosNative(Vector2* output, int nodeId);
 
 		public static void GetNodeScreenSpacePos(Vector2* output, int nodeId)
 		{
@@ -588,7 +588,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeEditorSpacePos")]
-		public static extern void GetNodeEditorSpacePosNative(Vector2* output, int nodeId);
+		internal static extern void GetNodeEditorSpacePosNative(Vector2* output, int nodeId);
 
 		public static void GetNodeEditorSpacePos(Vector2* output, int nodeId)
 		{
@@ -604,7 +604,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeGridSpacePos")]
-		public static extern void GetNodeGridSpacePosNative(Vector2* output, int nodeId);
+		internal static extern void GetNodeGridSpacePosNative(Vector2* output, int nodeId);
 
 		public static void GetNodeGridSpacePos(Vector2* output, int nodeId)
 		{
@@ -620,7 +620,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SnapNodeToGrid")]
-		public static extern void SnapNodeToGridNative(int nodeId);
+		internal static extern void SnapNodeToGridNative(int nodeId);
 
 		public static void SnapNodeToGrid(int nodeId)
 		{
@@ -629,7 +629,7 @@ namespace HexaEngine.ImNodesNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsEditorHovered")]
-		public static extern bool IsEditorHoveredNative();
+		internal static extern bool IsEditorHoveredNative();
 
 		public static bool IsEditorHovered()
 		{
@@ -639,7 +639,7 @@ namespace HexaEngine.ImNodesNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsNodeHovered")]
-		public static extern bool IsNodeHoveredNative(int* nodeId);
+		internal static extern bool IsNodeHoveredNative(int* nodeId);
 
 		public static bool IsNodeHovered(int* nodeId)
 		{
@@ -658,7 +658,7 @@ namespace HexaEngine.ImNodesNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkHovered")]
-		public static extern bool IsLinkHoveredNative(int* linkId);
+		internal static extern bool IsLinkHoveredNative(int* linkId);
 
 		public static bool IsLinkHovered(int* linkId)
 		{
@@ -677,7 +677,7 @@ namespace HexaEngine.ImNodesNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsPinHovered")]
-		public static extern bool IsPinHoveredNative(int* attributeId);
+		internal static extern bool IsPinHoveredNative(int* attributeId);
 
 		public static bool IsPinHovered(int* attributeId)
 		{
@@ -695,7 +695,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_NumSelectedNodes")]
-		public static extern int NumSelectedNodesNative();
+		internal static extern int NumSelectedNodesNative();
 
 		public static int NumSelectedNodes()
 		{
@@ -704,7 +704,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_NumSelectedLinks")]
-		public static extern int NumSelectedLinksNative();
+		internal static extern int NumSelectedLinksNative();
 
 		public static int NumSelectedLinks()
 		{
@@ -713,7 +713,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetSelectedNodes")]
-		public static extern void GetSelectedNodesNative(int* nodeIds);
+		internal static extern void GetSelectedNodesNative(int* nodeIds);
 
 		public static void GetSelectedNodes(int* nodeIds)
 		{
@@ -729,7 +729,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetSelectedLinks")]
-		public static extern void GetSelectedLinksNative(int* linkIds);
+		internal static extern void GetSelectedLinksNative(int* linkIds);
 
 		public static void GetSelectedLinks(int* linkIds)
 		{
@@ -745,7 +745,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_ClearNodeSelection_Nil")]
-		public static extern void ClearNodeSelectionNative();
+		internal static extern void ClearNodeSelectionNative();
 
 		public static void ClearNodeSelection()
 		{
@@ -753,7 +753,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_ClearLinkSelection_Nil")]
-		public static extern void ClearLinkSelectionNative();
+		internal static extern void ClearLinkSelectionNative();
 
 		public static void ClearLinkSelection()
 		{
@@ -761,7 +761,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SelectNode")]
-		public static extern void SelectNodeNative(int nodeId);
+		internal static extern void SelectNodeNative(int nodeId);
 
 		public static void SelectNode(int nodeId)
 		{
@@ -769,7 +769,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_ClearNodeSelection_Int")]
-		public static extern void ClearNodeSelectionNative(int nodeId);
+		internal static extern void ClearNodeSelectionNative(int nodeId);
 
 		public static void ClearNodeSelection(int nodeId)
 		{
@@ -778,7 +778,7 @@ namespace HexaEngine.ImNodesNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsNodeSelected")]
-		public static extern bool IsNodeSelectedNative(int nodeId);
+		internal static extern bool IsNodeSelectedNative(int nodeId);
 
 		public static bool IsNodeSelected(int nodeId)
 		{
@@ -787,7 +787,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SelectLink")]
-		public static extern void SelectLinkNative(int linkId);
+		internal static extern void SelectLinkNative(int linkId);
 
 		public static void SelectLink(int linkId)
 		{
@@ -795,7 +795,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_ClearLinkSelection_Int")]
-		public static extern void ClearLinkSelectionNative(int linkId);
+		internal static extern void ClearLinkSelectionNative(int linkId);
 
 		public static void ClearLinkSelection(int linkId)
 		{
@@ -804,7 +804,7 @@ namespace HexaEngine.ImNodesNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkSelected")]
-		public static extern bool IsLinkSelectedNative(int linkId);
+		internal static extern bool IsLinkSelectedNative(int linkId);
 
 		public static bool IsLinkSelected(int linkId)
 		{
@@ -814,7 +814,7 @@ namespace HexaEngine.ImNodesNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsAttributeActive")]
-		public static extern bool IsAttributeActiveNative();
+		internal static extern bool IsAttributeActiveNative();
 
 		public static bool IsAttributeActive()
 		{
@@ -824,17 +824,17 @@ namespace HexaEngine.ImNodesNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsAnyAttributeActive")]
-		public static extern bool IsAnyAttributeActiveNative(int* attributeId);
-
-		public static bool IsAnyAttributeActive()
-		{
-			bool ret = IsAnyAttributeActiveNative((int*)(default));
-			return ret;
-		}
+		internal static extern bool IsAnyAttributeActiveNative(int* attributeId);
 
 		public static bool IsAnyAttributeActive(int* attributeId)
 		{
 			bool ret = IsAnyAttributeActiveNative(attributeId);
+			return ret;
+		}
+
+		public static bool IsAnyAttributeActive()
+		{
+			bool ret = IsAnyAttributeActiveNative((int*)(default));
 			return ret;
 		}
 
@@ -849,7 +849,7 @@ namespace HexaEngine.ImNodesNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkStarted")]
-		public static extern bool IsLinkStartedNative(int* startedAtAttributeId);
+		internal static extern bool IsLinkStartedNative(int* startedAtAttributeId);
 
 		public static bool IsLinkStarted(int* startedAtAttributeId)
 		{
@@ -868,19 +868,7 @@ namespace HexaEngine.ImNodesNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkDropped")]
-		public static extern bool IsLinkDroppedNative(int* startedAtAttributeId, bool includingDetachedLinks);
-
-		public static bool IsLinkDropped()
-		{
-			bool ret = IsLinkDroppedNative((int*)(default), true);
-			return ret;
-		}
-
-		public static bool IsLinkDropped(int* startedAtAttributeId)
-		{
-			bool ret = IsLinkDroppedNative(startedAtAttributeId, true);
-			return ret;
-		}
+		internal static extern bool IsLinkDroppedNative(int* startedAtAttributeId, bool includingDetachedLinks);
 
 		public static bool IsLinkDropped(int* startedAtAttributeId, bool includingDetachedLinks)
 		{
@@ -888,13 +876,16 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
-		public static bool IsLinkDropped(ref int startedAtAttributeId)
+		public static bool IsLinkDropped(int* startedAtAttributeId)
 		{
-			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
-			{
-				bool ret = IsLinkDroppedNative((int*)pstartedAtAttributeId, true);
-				return ret;
-			}
+			bool ret = IsLinkDroppedNative(startedAtAttributeId, (bool)(true));
+			return ret;
+		}
+
+		public static bool IsLinkDropped()
+		{
+			bool ret = IsLinkDroppedNative((int*)(default), (bool)(true));
+			return ret;
 		}
 
 		public static bool IsLinkDropped(ref int startedAtAttributeId, bool includingDetachedLinks)
@@ -906,15 +897,18 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
+		public static bool IsLinkDropped(ref int startedAtAttributeId)
+		{
+			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
+			{
+				bool ret = IsLinkDroppedNative((int*)pstartedAtAttributeId, (bool)(true));
+				return ret;
+			}
+		}
+
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkCreated_BoolPtr")]
-		public static extern bool IsLinkCreatedNative(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap);
-
-		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId)
-		{
-			bool ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, (bool*)(default));
-			return ret;
-		}
+		internal static extern bool IsLinkCreatedNative(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap);
 
 		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
@@ -922,13 +916,10 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
-		public static bool IsLinkCreated(ref int startedAtAttributeId, int* endedAtAttributeId)
+		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId)
 		{
-			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
-			{
-				bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, endedAtAttributeId, (bool*)(default));
-				return ret;
-			}
+			bool ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, (bool*)(default));
+			return ret;
 		}
 
 		public static bool IsLinkCreated(ref int startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
@@ -940,11 +931,11 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtAttributeId, ref int endedAtAttributeId)
+		public static bool IsLinkCreated(ref int startedAtAttributeId, int* endedAtAttributeId)
 		{
-			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
+			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkCreatedNative(startedAtAttributeId, (int*)pendedAtAttributeId, (bool*)(default));
+				bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, endedAtAttributeId, (bool*)(default));
 				return ret;
 			}
 		}
@@ -958,15 +949,12 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtAttributeId, ref int endedAtAttributeId)
+		public static bool IsLinkCreated(int* startedAtAttributeId, ref int endedAtAttributeId)
 		{
-			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
+			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 			{
-				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-				{
-					bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, (bool*)(default));
-					return ret;
-				}
+				bool ret = IsLinkCreatedNative(startedAtAttributeId, (int*)pendedAtAttributeId, (bool*)(default));
+				return ret;
 			}
 		}
 
@@ -977,6 +965,18 @@ namespace HexaEngine.ImNodesNET
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
 					bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, createdFromSnap);
+					return ret;
+				}
+			}
+		}
+
+		public static bool IsLinkCreated(ref int startedAtAttributeId, ref int endedAtAttributeId)
+		{
+			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
+			{
+				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
+				{
+					bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, (bool*)(default));
 					return ret;
 				}
 			}
@@ -1032,13 +1032,7 @@ namespace HexaEngine.ImNodesNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkCreated_IntPtr")]
-		public static extern bool IsLinkCreatedNative(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap);
-
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
-		{
-			bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
-			return ret;
-		}
+		internal static extern bool IsLinkCreatedNative(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap);
 
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
@@ -1046,13 +1040,10 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
+		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
 		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
-			{
-				bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
-				return ret;
-			}
+			bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
+			return ret;
 		}
 
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
@@ -1064,11 +1055,11 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
+		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
 		{
-			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
+			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
-				bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
+				bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
 				return ret;
 			}
 		}
@@ -1082,15 +1073,12 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
+		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
 		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
+			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
-				{
-					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
-					return ret;
-				}
+				bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
+				return ret;
 			}
 		}
 
@@ -1106,12 +1094,15 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
+		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
 		{
-			fixed (int* pendedAtNodeId = &endedAtNodeId)
+			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
-				bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
-				return ret;
+				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
+				{
+					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
+					return ret;
+				}
 			}
 		}
 
@@ -1124,15 +1115,12 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
+		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
 		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
+			fixed (int* pendedAtNodeId = &endedAtNodeId)
 			{
-				fixed (int* pendedAtNodeId = &endedAtNodeId)
-				{
-					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
-					return ret;
-				}
+				bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
+				return ret;
 			}
 		}
 
@@ -1148,13 +1136,13 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
+		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
 		{
-			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
+			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
 				fixed (int* pendedAtNodeId = &endedAtNodeId)
 				{
-					bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
+					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
 					return ret;
 				}
 			}
@@ -1172,17 +1160,14 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
+		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
 		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
+			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
+				fixed (int* pendedAtNodeId = &endedAtNodeId)
 				{
-					fixed (int* pendedAtNodeId = &endedAtNodeId)
-					{
-						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
-						return ret;
-					}
+					bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
+					return ret;
 				}
 			}
 		}
@@ -1202,12 +1187,18 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
+		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
 		{
-			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
+			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
-				bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-				return ret;
+				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
+				{
+					fixed (int* pendedAtNodeId = &endedAtNodeId)
+					{
+						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
+						return ret;
+					}
+				}
 			}
 		}
 
@@ -1220,15 +1211,12 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
+		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
 		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
+			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 			{
-				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-				{
-					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-					return ret;
-				}
+				bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+				return ret;
 			}
 		}
 
@@ -1244,13 +1232,13 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
+		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
 		{
-			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
+			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
 					return ret;
 				}
 			}
@@ -1268,17 +1256,14 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
+		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
 		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
+			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
+				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-					{
-						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-						return ret;
-					}
+					bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+					return ret;
 				}
 			}
 		}
@@ -1298,14 +1283,17 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
+		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
 		{
-			fixed (int* pendedAtNodeId = &endedAtNodeId)
+			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
-				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
+				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 				{
-					bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-					return ret;
+					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
+					{
+						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+						return ret;
+					}
 				}
 			}
 		}
@@ -1322,17 +1310,14 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
+		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
 		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
+			fixed (int* pendedAtNodeId = &endedAtNodeId)
 			{
-				fixed (int* pendedAtNodeId = &endedAtNodeId)
+				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-					{
-						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-						return ret;
-					}
+					bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+					return ret;
 				}
 			}
 		}
@@ -1352,15 +1337,15 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
+		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
 		{
-			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
+			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
 				fixed (int* pendedAtNodeId = &endedAtNodeId)
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
 						return ret;
 					}
 				}
@@ -1382,19 +1367,16 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
+		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
 		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
+			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
+				fixed (int* pendedAtNodeId = &endedAtNodeId)
 				{
-					fixed (int* pendedAtNodeId = &endedAtNodeId)
+					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-						{
-							bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-							return ret;
-						}
+						bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+						return ret;
 					}
 				}
 			}
@@ -1411,6 +1393,24 @@ namespace HexaEngine.ImNodesNET
 						fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 						{
 							bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+							return ret;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
+		{
+			fixed (int* pstartedAtNodeId = &startedAtNodeId)
+			{
+				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
+				{
+					fixed (int* pendedAtNodeId = &endedAtNodeId)
+					{
+						fixed (int* pendedAtAttributeId = &endedAtAttributeId)
+						{
+							bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
 							return ret;
 						}
 					}
@@ -1660,7 +1660,7 @@ namespace HexaEngine.ImNodesNET
 
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkDestroyed")]
-		public static extern bool IsLinkDestroyedNative(int* linkId);
+		internal static extern bool IsLinkDestroyedNative(int* linkId);
 
 		public static bool IsLinkDestroyed(int* linkId)
 		{
@@ -1678,13 +1678,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SaveCurrentEditorStateToIniString")]
-		public static extern byte* SaveCurrentEditorStateToIniStringNative(nuint* dataSize);
-
-		public static byte* SaveCurrentEditorStateToIniString()
-		{
-			byte* ret = SaveCurrentEditorStateToIniStringNative((nuint*)(default));
-			return ret;
-		}
+		internal static extern byte* SaveCurrentEditorStateToIniStringNative(nuint* dataSize);
 
 		public static byte* SaveCurrentEditorStateToIniString(nuint* dataSize)
 		{
@@ -1692,25 +1686,10 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
-		public static string SaveCurrentEditorStateToIniStringS()
+		public static byte* SaveCurrentEditorStateToIniString()
 		{
-			string ret = Marshal.PtrToStringAnsi((nint)SaveCurrentEditorStateToIniStringNative((nuint*)(default)));
+			byte* ret = SaveCurrentEditorStateToIniStringNative((nuint*)(default));
 			return ret;
-		}
-
-		public static string SaveCurrentEditorStateToIniStringS(nuint* dataSize)
-		{
-			string ret = Marshal.PtrToStringAnsi((nint)SaveCurrentEditorStateToIniStringNative(dataSize));
-			return ret;
-		}
-
-		public static string SaveCurrentEditorStateToIniStringS(ref nuint dataSize)
-		{
-			fixed (nuint* pdataSize = &dataSize)
-			{
-				string ret = Marshal.PtrToStringAnsi((nint)SaveCurrentEditorStateToIniStringNative((nuint*)pdataSize));
-				return ret;
-			}
 		}
 
 		public static byte* SaveCurrentEditorStateToIniString(ref nuint dataSize)
@@ -1723,13 +1702,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SaveEditorStateToIniString")]
-		public static extern byte* SaveEditorStateToIniStringNative(ImNodesEditorContext* editor, nuint* dataSize);
-
-		public static byte* SaveEditorStateToIniString(ImNodesEditorContext* editor)
-		{
-			byte* ret = SaveEditorStateToIniStringNative(editor, (nuint*)(default));
-			return ret;
-		}
+		internal static extern byte* SaveEditorStateToIniStringNative(ImNodesEditorContext* editor, nuint* dataSize);
 
 		public static byte* SaveEditorStateToIniString(ImNodesEditorContext* editor, nuint* dataSize)
 		{
@@ -1737,32 +1710,17 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
-		public static string SaveEditorStateToIniStringS(ImNodesEditorContext* editor)
+		public static byte* SaveEditorStateToIniString(ImNodesEditorContext* editor)
 		{
-			string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniStringNative(editor, (nuint*)(default)));
+			byte* ret = SaveEditorStateToIniStringNative(editor, (nuint*)(default));
 			return ret;
 		}
 
-		public static string SaveEditorStateToIniStringS(ImNodesEditorContext* editor, nuint* dataSize)
-		{
-			string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniStringNative(editor, dataSize));
-			return ret;
-		}
-
-		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor)
+		public static byte* SaveEditorStateToIniString(ref ImNodesEditorContext editor, nuint* dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
-				string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)(default)));
-				return ret;
-			}
-		}
-
-		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor, nuint* dataSize)
-		{
-			fixed (ImNodesEditorContext* peditor = &editor)
-			{
-				string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, dataSize));
+				byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, dataSize);
 				return ret;
 			}
 		}
@@ -1776,42 +1734,12 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		public static byte* SaveEditorStateToIniString(ref ImNodesEditorContext editor, nuint* dataSize)
-		{
-			fixed (ImNodesEditorContext* peditor = &editor)
-			{
-				byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, dataSize);
-				return ret;
-			}
-		}
-
-		public static string SaveEditorStateToIniStringS(ImNodesEditorContext* editor, ref nuint dataSize)
-		{
-			fixed (nuint* pdataSize = &dataSize)
-			{
-				string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniStringNative(editor, (nuint*)pdataSize));
-				return ret;
-			}
-		}
-
 		public static byte* SaveEditorStateToIniString(ImNodesEditorContext* editor, ref nuint dataSize)
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
 				byte* ret = SaveEditorStateToIniStringNative(editor, (nuint*)pdataSize);
 				return ret;
-			}
-		}
-
-		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor, ref nuint dataSize)
-		{
-			fixed (ImNodesEditorContext* peditor = &editor)
-			{
-				fixed (nuint* pdataSize = &dataSize)
-				{
-					string ret = Marshal.PtrToStringAnsi((nint)SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)pdataSize));
-					return ret;
-				}
 			}
 		}
 
@@ -1828,7 +1756,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_LoadCurrentEditorStateFromIniString")]
-		public static extern void LoadCurrentEditorStateFromIniStringNative(byte* data, nuint dataSize);
+		internal static extern void LoadCurrentEditorStateFromIniStringNative(byte* data, nuint dataSize);
 
 		public static void LoadCurrentEditorStateFromIniString(byte* data, nuint dataSize)
 		{
@@ -1870,7 +1798,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_LoadEditorStateFromIniString")]
-		public static extern void LoadEditorStateFromIniStringNative(ImNodesEditorContext* editor, byte* data, nuint dataSize);
+		internal static extern void LoadEditorStateFromIniStringNative(ImNodesEditorContext* editor, byte* data, nuint dataSize);
 
 		public static void LoadEditorStateFromIniString(ImNodesEditorContext* editor, byte* data, nuint dataSize)
 		{
@@ -1960,7 +1888,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SaveCurrentEditorStateToIniFile")]
-		public static extern void SaveCurrentEditorStateToIniFileNative(byte* fileName);
+		internal static extern void SaveCurrentEditorStateToIniFileNative(byte* fileName);
 
 		public static void SaveCurrentEditorStateToIniFile(byte* fileName)
 		{
@@ -2002,7 +1930,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SaveEditorStateToIniFile")]
-		public static extern void SaveEditorStateToIniFileNative(ImNodesEditorContext* editor, byte* fileName);
+		internal static extern void SaveEditorStateToIniFileNative(ImNodesEditorContext* editor, byte* fileName);
 
 		public static void SaveEditorStateToIniFile(ImNodesEditorContext* editor, byte* fileName)
 		{
@@ -2092,7 +2020,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_LoadCurrentEditorStateFromIniFile")]
-		public static extern void LoadCurrentEditorStateFromIniFileNative(byte* fileName);
+		internal static extern void LoadCurrentEditorStateFromIniFileNative(byte* fileName);
 
 		public static void LoadCurrentEditorStateFromIniFile(byte* fileName)
 		{
@@ -2134,7 +2062,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_LoadEditorStateFromIniFile")]
-		public static extern void LoadEditorStateFromIniFileNative(ImNodesEditorContext* editor, byte* fileName);
+		internal static extern void LoadEditorStateFromIniFileNative(ImNodesEditorContext* editor, byte* fileName);
 
 		public static void LoadEditorStateFromIniFile(ImNodesEditorContext* editor, byte* fileName)
 		{
@@ -2229,14 +2157,14 @@ namespace HexaEngine.ImNodesNET
 		/// ::GetIO().KeyCtrl
 		/// </summary>
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "getIOKeyCtrlPtr")]
-		public static extern bool* GetIOKeyCtrlPtrNative();
+		internal static extern bool* GetIOKeyCtrlPtrNative();
 
 		/// <summary>
-		/// needed for io.link_detach_with_modifier_click.modifier = 
-		/// &ImGui
-		/// ::GetIO().KeyCtrl
-		/// </summary>
-		public static bool* GetIOKeyCtrlPtr()
+/// needed for io.link_detach_with_modifier_click.modifier = 
+/// &ImGui
+/// ::GetIO().KeyCtrl
+/// </summary>
+public static bool* GetIOKeyCtrlPtr()
 		{
 			bool* ret = GetIOKeyCtrlPtrNative();
 			return ret;
