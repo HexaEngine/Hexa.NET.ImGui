@@ -2535,7 +2535,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PushClipRectNative(@this, clipRectMin, clipRectMax, intersectWithCurrentClipRect);
+				ImGui.PushClipRectNative(@this, clipRectMin, clipRectMax, intersectWithCurrentClipRect ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -2543,7 +2543,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* @this = &this)
 			{
-				ImGui.PushClipRectNative(@this, clipRectMin, clipRectMax, (bool)(false));
+				ImGui.PushClipRectNative(@this, clipRectMin, clipRectMax, (byte)(0));
 			}
 		}
 
@@ -4494,12 +4494,12 @@ namespace HexaEngine.ImGuiNET
 
 		public unsafe void PushClipRect(Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
 		{
-			ImGui.PushClipRectNative(Handle, clipRectMin, clipRectMax, intersectWithCurrentClipRect);
+			ImGui.PushClipRectNative(Handle, clipRectMin, clipRectMax, intersectWithCurrentClipRect ? (byte)1 : (byte)0);
 		}
 
 		public unsafe void PushClipRect(Vector2 clipRectMin, Vector2 clipRectMax)
 		{
-			ImGui.PushClipRectNative(Handle, clipRectMin, clipRectMax, (bool)(false));
+			ImGui.PushClipRectNative(Handle, clipRectMin, clipRectMax, (byte)(0));
 		}
 
 		public unsafe void PushClipRectFullScreen()
@@ -4832,7 +4832,7 @@ namespace HexaEngine.ImGuiNET
 		public short EllipsisCharCount;
 		public float EllipsisWidth;
 		public float EllipsisCharStep;
-		public bool DirtyLookupTables;
+		public byte DirtyLookupTables;
 		public float Scale;
 		public float Ascent;
 		public float Descent;
@@ -4864,7 +4864,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.AddRemapCharNative(@this, dst, src, overwriteDst);
+				ImGui.AddRemapCharNative(@this, dst, src, overwriteDst ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -4872,7 +4872,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.AddRemapCharNative(@this, dst, src, (bool)(true));
+				ImGui.AddRemapCharNative(@this, dst, src, (byte)(1));
 			}
 		}
 
@@ -5312,7 +5312,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -5320,7 +5320,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (bool)(false));
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (byte)(0));
 			}
 		}
 
@@ -5328,7 +5328,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (bool)(false));
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (byte)(0));
 			}
 		}
 
@@ -5338,7 +5338,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -5349,7 +5349,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (bool)(false));
+					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (byte)(0));
 				}
 			}
 		}
@@ -5360,7 +5360,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (bool)(false));
+					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (byte)(0));
 				}
 			}
 		}
@@ -5371,7 +5371,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -5382,7 +5382,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (bool)(false));
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (byte)(0));
 				}
 			}
 		}
@@ -5393,7 +5393,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (bool)(false));
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (byte)(0));
 				}
 			}
 		}
@@ -5419,7 +5419,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip);
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5448,7 +5448,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (bool)(false));
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5477,7 +5477,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (bool)(false));
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5493,7 +5493,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextBegin = &textBegin)
 					{
-						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip);
+						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 					}
 				}
 			}
@@ -5507,7 +5507,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextBegin = &textBegin)
 					{
-						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (bool)(false));
+						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (byte)(0));
 					}
 				}
 			}
@@ -5521,7 +5521,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextBegin = &textBegin)
 					{
-						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (bool)(false));
+						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (byte)(0));
 					}
 				}
 			}
@@ -5550,7 +5550,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -5582,7 +5582,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (bool)(false));
+					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (byte)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -5614,7 +5614,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (bool)(false));
+					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (byte)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -5629,7 +5629,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -5640,7 +5640,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 				}
 			}
 		}
@@ -5651,7 +5651,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 				}
 			}
 		}
@@ -5677,7 +5677,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip);
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5706,7 +5706,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (bool)(false));
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5735,7 +5735,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (bool)(false));
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5751,7 +5751,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 					}
 				}
 			}
@@ -5765,7 +5765,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 					}
 				}
 			}
@@ -5779,7 +5779,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 					}
 				}
 			}
@@ -5808,7 +5808,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -5840,7 +5840,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (bool)(false));
+					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (byte)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -5872,7 +5872,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (bool)(false));
+					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (byte)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -5889,7 +5889,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 					}
 				}
 			}
@@ -5903,7 +5903,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 					}
 				}
 			}
@@ -5917,7 +5917,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 					}
 				}
 			}
@@ -5961,7 +5961,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip);
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -6011,7 +6011,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (bool)(false));
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (byte)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -6061,7 +6061,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (bool)(false));
+				ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (byte)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -6083,7 +6083,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (byte* ptextEnd = &textEnd)
 						{
-							ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+							ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 						}
 					}
 				}
@@ -6100,7 +6100,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (byte* ptextEnd = &textEnd)
 						{
-							ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+							ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 						}
 					}
 				}
@@ -6117,7 +6117,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (byte* ptextEnd = &textEnd)
 						{
-							ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+							ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 						}
 					}
 				}
@@ -6164,7 +6164,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 						pStr1[pStrOffset1] = 0;
 					}
-					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 					if (pStrSize1 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr1);
@@ -6217,7 +6217,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 						pStr1[pStrOffset1] = 0;
 					}
-					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (bool)(false));
+					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (byte)(0));
 					if (pStrSize1 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr1);
@@ -6270,7 +6270,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 						pStr1[pStrOffset1] = 0;
 					}
-					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (bool)(false));
+					ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (byte)(0));
 					if (pStrSize1 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr1);
@@ -6287,7 +6287,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				ImGui.SetGlyphVisibleNative(@this, c, visible);
+				ImGui.SetGlyphVisibleNative(@this, c, visible ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -6368,12 +6368,12 @@ namespace HexaEngine.ImGuiNET
 
 		public unsafe void AddRemapChar(char dst, char src, bool overwriteDst)
 		{
-			ImGui.AddRemapCharNative(Handle, dst, src, overwriteDst);
+			ImGui.AddRemapCharNative(Handle, dst, src, overwriteDst ? (byte)1 : (byte)0);
 		}
 
 		public unsafe void AddRemapChar(char dst, char src)
 		{
-			ImGui.AddRemapCharNative(Handle, dst, src, (bool)(true));
+			ImGui.AddRemapCharNative(Handle, dst, src, (byte)(1));
 		}
 
 		public unsafe void BuildLookupTable()
@@ -6729,24 +6729,24 @@ namespace HexaEngine.ImGuiNET
 
 		public unsafe void RenderText(ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
 		{
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
+			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 		}
 
 		public unsafe void RenderText(ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth)
 		{
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (bool)(false));
+			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (byte)(0));
 		}
 
 		public unsafe void RenderText(ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd)
 		{
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (bool)(false));
+			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (byte)(0));
 		}
 
 		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
-				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -6754,7 +6754,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
-				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (bool)(false));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (byte)(0));
 			}
 		}
 
@@ -6762,7 +6762,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
-				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (bool)(false));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (byte)(0));
 			}
 		}
 
@@ -6770,7 +6770,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip);
+				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -6778,7 +6778,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (bool)(false));
+				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (byte)(0));
 			}
 		}
 
@@ -6786,7 +6786,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (bool)(false));
+				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (byte)(0));
 			}
 		}
 
@@ -6809,7 +6809,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip);
+			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -6835,7 +6835,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (bool)(false));
+			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (byte)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -6861,7 +6861,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (bool)(false));
+			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (byte)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -6874,7 +6874,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -6885,7 +6885,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (bool)(false));
+					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (byte)(0));
 				}
 			}
 		}
@@ -6896,7 +6896,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (bool)(false));
+					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (byte)(0));
 				}
 			}
 		}
@@ -6922,7 +6922,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -6951,7 +6951,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (bool)(false));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -6980,7 +6980,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (bool)(false));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -6992,7 +6992,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -7000,7 +7000,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 			}
 		}
 
@@ -7008,7 +7008,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 			}
 		}
 
@@ -7031,7 +7031,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip);
+			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -7057,7 +7057,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (bool)(false));
+			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (byte)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -7083,7 +7083,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (bool)(false));
+			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (byte)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -7096,7 +7096,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -7107,7 +7107,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 				}
 			}
 		}
@@ -7118,7 +7118,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 				}
 			}
 		}
@@ -7144,7 +7144,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7173,7 +7173,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (bool)(false));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7202,7 +7202,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (bool)(false));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -7216,7 +7216,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -7227,7 +7227,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 				}
 			}
 		}
@@ -7238,7 +7238,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 				}
 			}
 		}
@@ -7279,7 +7279,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip);
+			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -7326,7 +7326,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (bool)(false));
+			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (byte)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -7373,7 +7373,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (bool)(false));
+			ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (byte)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -7392,7 +7392,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+						ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 					}
 				}
 			}
@@ -7406,7 +7406,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+						ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 					}
 				}
 			}
@@ -7420,7 +7420,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+						ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 					}
 				}
 			}
@@ -7464,7 +7464,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip);
+				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -7514,7 +7514,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (bool)(false));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (byte)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -7564,7 +7564,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (bool)(false));
+				ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (byte)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -7578,7 +7578,7 @@ namespace HexaEngine.ImGuiNET
 
 		public unsafe void SetGlyphVisible(char c, bool visible)
 		{
-			ImGui.SetGlyphVisibleNative(Handle, c, visible);
+			ImGui.SetGlyphVisibleNative(Handle, c, visible ? (byte)1 : (byte)0);
 		}
 
 	}
@@ -7756,10 +7756,10 @@ namespace HexaEngine.ImGuiNET
 		public ImTextureID TexID;
 		public int TexDesiredWidth;
 		public int TexGlyphPadding;
-		public bool Locked;
+		public byte Locked;
 		public unsafe void* UserData;
-		public bool TexReady;
-		public bool TexPixelsUseColors;
+		public byte TexReady;
+		public byte TexPixelsUseColors;
 		public unsafe byte* TexPixelsAlpha8;
 		public unsafe uint* TexPixelsRGBA32;
 		public int TexWidth;
@@ -11978,18 +11978,18 @@ namespace HexaEngine.ImGuiNET
 	{
 		public unsafe void* FontData;
 		public int FontDataSize;
-		public bool FontDataOwnedByAtlas;
+		public byte FontDataOwnedByAtlas;
 		public int FontNo;
 		public float SizePixels;
 		public int OversampleH;
 		public int OversampleV;
-		public bool PixelSnapH;
+		public byte PixelSnapH;
 		public Vector2 GlyphExtraSpacing;
 		public Vector2 GlyphOffset;
 		public unsafe char* GlyphRanges;
 		public float GlyphMinAdvanceX;
 		public float GlyphMaxAdvanceX;
-		public bool MergeMode;
+		public byte MergeMode;
 		public uint FontBuilderFlags;
 		public float RasterizerMultiply;
 		public char EllipsisChar;
@@ -12385,7 +12385,7 @@ namespace HexaEngine.ImGuiNET
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawData
 	{
-		public bool Valid;
+		public byte Valid;
 		public int CmdListsCount;
 		public int TotalIdxCount;
 		public int TotalVtxCount;
@@ -12510,10 +12510,10 @@ namespace HexaEngine.ImGuiNET
 		public unsafe void* PlatformUserData;
 		public unsafe void* PlatformHandle;
 		public unsafe void* PlatformHandleRaw;
-		public bool PlatformWindowCreated;
-		public bool PlatformRequestMove;
-		public bool PlatformRequestResize;
-		public bool PlatformRequestClose;
+		public byte PlatformWindowCreated;
+		public byte PlatformRequestMove;
+		public byte PlatformRequestResize;
+		public byte PlatformRequestClose;
 
 
 		public unsafe void Destroy()
@@ -13287,8 +13287,8 @@ namespace HexaEngine.ImGuiNET
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiContext
 	{
-		public bool Initialized;
-		public bool FontAtlasOwnedByContext;
+		public byte Initialized;
+		public byte FontAtlasOwnedByContext;
 		public ImGuiIO IO;
 		public ImGuiPlatformIO PlatformIO;
 		public ImGuiStyle Style;
@@ -13303,11 +13303,11 @@ namespace HexaEngine.ImGuiNET
 		public int FrameCountEnded;
 		public int FrameCountPlatformEnded;
 		public int FrameCountRendered;
-		public bool WithinFrameScope;
-		public bool WithinFrameScopeWithImplicitWindow;
-		public bool WithinEndChild;
-		public bool GcCompactAll;
-		public bool TestEngineHookItems;
+		public byte WithinFrameScope;
+		public byte WithinFrameScopeWithImplicitWindow;
+		public byte WithinEndChild;
+		public byte GcCompactAll;
+		public byte TestEngineHookItems;
 		public unsafe void* TestEngine;
 		public ImVectorImGuiInputEvent InputEventsQueue;
 		public ImVectorImGuiInputEvent InputEventsTrail;
@@ -13333,26 +13333,26 @@ namespace HexaEngine.ImGuiNET
 		public int DebugHookIdInfo;
 		public int HoveredId;
 		public int HoveredIdPreviousFrame;
-		public bool HoveredIdAllowOverlap;
-		public bool HoveredIdDisabled;
+		public byte HoveredIdAllowOverlap;
+		public byte HoveredIdDisabled;
 		public float HoveredIdTimer;
 		public float HoveredIdNotActiveTimer;
 		public int ActiveId;
 		public int ActiveIdIsAlive;
 		public float ActiveIdTimer;
-		public bool ActiveIdIsJustActivated;
-		public bool ActiveIdAllowOverlap;
-		public bool ActiveIdNoClearOnFocusLoss;
-		public bool ActiveIdHasBeenPressedBefore;
-		public bool ActiveIdHasBeenEditedBefore;
-		public bool ActiveIdHasBeenEditedThisFrame;
+		public byte ActiveIdIsJustActivated;
+		public byte ActiveIdAllowOverlap;
+		public byte ActiveIdNoClearOnFocusLoss;
+		public byte ActiveIdHasBeenPressedBefore;
+		public byte ActiveIdHasBeenEditedBefore;
+		public byte ActiveIdHasBeenEditedThisFrame;
 		public Vector2 ActiveIdClickOffset;
 		public unsafe ImGuiWindow* ActiveIdWindow;
 		public ImGuiInputSource ActiveIdSource;
 		public int ActiveIdMouseButton;
 		public int ActiveIdPreviousFrame;
-		public bool ActiveIdPreviousFrameIsAlive;
-		public bool ActiveIdPreviousFrameHasBeenEditedBefore;
+		public byte ActiveIdPreviousFrameIsAlive;
+		public byte ActiveIdPreviousFrameHasBeenEditedBefore;
 		public unsafe ImGuiWindow* ActiveIdPreviousFrameWindow;
 		public int LastActiveId;
 		public float LastActiveIdTimer;
@@ -13498,7 +13498,7 @@ namespace HexaEngine.ImGuiNET
 		public ImGuiKeyOwnerData KeysOwnerData_139;
 		public ImGuiKeyRoutingTable KeysRoutingTable;
 		public uint ActiveIdUsingNavDirMask;
-		public bool ActiveIdUsingAllKeyboardKeys;
+		public byte ActiveIdUsingAllKeyboardKeys;
 		public uint ActiveIdUsingNavInputMask;
 		public int CurrentFocusScopeId;
 		public ImGuiItemFlags CurrentItemFlags;
@@ -13537,18 +13537,18 @@ namespace HexaEngine.ImGuiNET
 		public ImGuiActivateFlags NavNextActivateFlags;
 		public ImGuiInputSource NavInputSource;
 		public ImGuiNavLayer NavLayer;
-		public bool NavIdIsAlive;
-		public bool NavMousePosDirty;
-		public bool NavDisableHighlight;
-		public bool NavDisableMouseHover;
-		public bool NavAnyRequest;
-		public bool NavInitRequest;
-		public bool NavInitRequestFromMove;
+		public byte NavIdIsAlive;
+		public byte NavMousePosDirty;
+		public byte NavDisableHighlight;
+		public byte NavDisableMouseHover;
+		public byte NavAnyRequest;
+		public byte NavInitRequest;
+		public byte NavInitRequestFromMove;
 		public int NavInitResultId;
 		public ImRect NavInitResultRectRel;
-		public bool NavMoveSubmitted;
-		public bool NavMoveScoringItems;
-		public bool NavMoveForwardToNextFrame;
+		public byte NavMoveSubmitted;
+		public byte NavMoveScoringItems;
+		public byte NavMoveForwardToNextFrame;
 		public ImGuiNavMoveFlags NavMoveFlags;
 		public ImGuiScrollFlags NavMoveScrollFlags;
 		public int NavMoveKeyMods;
@@ -13571,14 +13571,14 @@ namespace HexaEngine.ImGuiNET
 		public unsafe ImGuiWindow* NavWindowingListWindow;
 		public float NavWindowingTimer;
 		public float NavWindowingHighlightAlpha;
-		public bool NavWindowingToggleLayer;
+		public byte NavWindowingToggleLayer;
 		public Vector2 NavWindowingAccumDeltaPos;
 		public Vector2 NavWindowingAccumDeltaSize;
 		public float DimBgRatio;
 		public ImGuiMouseCursor MouseCursor;
-		public bool DragDropActive;
-		public bool DragDropWithinSource;
-		public bool DragDropWithinTarget;
+		public byte DragDropActive;
+		public byte DragDropWithinSource;
+		public byte DragDropWithinTarget;
 		public ImGuiDragDropFlags DragDropSourceFlags;
 		public int DragDropSourceFrameCount;
 		public int DragDropMouseButton;
@@ -13639,8 +13639,8 @@ namespace HexaEngine.ImGuiNET
 		public ImGuiComboPreviewData ComboPreviewData;
 		public float SliderGrabClickOffset;
 		public float SliderCurrentAccum;
-		public bool SliderCurrentAccumDirty;
-		public bool DragCurrentAccumDirty;
+		public byte SliderCurrentAccumDirty;
+		public byte DragCurrentAccumDirty;
 		public float DragCurrentAccum;
 		public float DragSpeedDefaultRatio;
 		public float ScrollbarClickDeltaToGrabCenter;
@@ -13655,7 +13655,7 @@ namespace HexaEngine.ImGuiNET
 		public byte PlatformLocaleDecimalPoint;
 		public ImGuiDockContext DockContext;
 		public unsafe delegate*<ImGuiContext*, ImGuiDockNode*, ImGuiTabBar*, void>* DockNodeWindowMenuHandler;
-		public bool SettingsLoaded;
+		public byte SettingsLoaded;
 		public float SettingsDirtyTimer;
 		public ImGuiTextBuffer SettingsIniData;
 		public ImVectorImGuiSettingsHandler SettingsHandlers;
@@ -13671,14 +13671,14 @@ namespace HexaEngine.ImGuiNET
 		public unsafe byte* LocalizationTable_5;
 		public unsafe byte* LocalizationTable_6;
 		public unsafe byte* LocalizationTable_7;
-		public bool LogEnabled;
+		public byte LogEnabled;
 		public ImGuiLogType LogType;
 		public ImFileHandle LogFile;
 		public ImGuiTextBuffer LogBuffer;
 		public unsafe byte* LogNextPrefix;
 		public unsafe byte* LogNextSuffix;
 		public float LogLinePosY;
-		public bool LogLineFirstItem;
+		public byte LogLineFirstItem;
 		public int LogDepthRef;
 		public int LogDepthToExpand;
 		public int LogDepthToExpandDefault;
@@ -13688,7 +13688,7 @@ namespace HexaEngine.ImGuiNET
 		public byte DebugLogClipperAutoDisableFrames;
 		public byte DebugLocateFrames;
 		public sbyte DebugBeginReturnValueCullDepth;
-		public bool DebugItemPickerActive;
+		public byte DebugItemPickerActive;
 		public byte DebugItemPickerMouseButton;
 		public int DebugItemPickerBreakId;
 		public ImGuiMetricsConfig DebugMetricsConfig;
@@ -14103,29 +14103,29 @@ namespace HexaEngine.ImGuiNET
 		public unsafe void* UserData;
 		public unsafe ImFontAtlas* Fonts;
 		public float FontGlobalScale;
-		public bool FontAllowUserScaling;
+		public byte FontAllowUserScaling;
 		public unsafe ImFont* FontDefault;
 		public Vector2 DisplayFramebufferScale;
-		public bool ConfigDockingNoSplit;
-		public bool ConfigDockingWithShift;
-		public bool ConfigDockingAlwaysTabBar;
-		public bool ConfigDockingTransparentPayload;
-		public bool ConfigViewportsNoAutoMerge;
-		public bool ConfigViewportsNoTaskBarIcon;
-		public bool ConfigViewportsNoDecoration;
-		public bool ConfigViewportsNoDefaultParent;
-		public bool MouseDrawCursor;
-		public bool ConfigMacOSXBehaviors;
-		public bool ConfigInputTrickleEventQueue;
-		public bool ConfigInputTextCursorBlink;
-		public bool ConfigInputTextEnterKeepActive;
-		public bool ConfigDragClickToInputText;
-		public bool ConfigWindowsResizeFromEdges;
-		public bool ConfigWindowsMoveFromTitleBarOnly;
+		public byte ConfigDockingNoSplit;
+		public byte ConfigDockingWithShift;
+		public byte ConfigDockingAlwaysTabBar;
+		public byte ConfigDockingTransparentPayload;
+		public byte ConfigViewportsNoAutoMerge;
+		public byte ConfigViewportsNoTaskBarIcon;
+		public byte ConfigViewportsNoDecoration;
+		public byte ConfigViewportsNoDefaultParent;
+		public byte MouseDrawCursor;
+		public byte ConfigMacOSXBehaviors;
+		public byte ConfigInputTrickleEventQueue;
+		public byte ConfigInputTextCursorBlink;
+		public byte ConfigInputTextEnterKeepActive;
+		public byte ConfigDragClickToInputText;
+		public byte ConfigWindowsResizeFromEdges;
+		public byte ConfigWindowsMoveFromTitleBarOnly;
 		public float ConfigMemoryCompactTimer;
-		public bool ConfigDebugBeginReturnValueOnce;
-		public bool ConfigDebugBeginReturnValueLoop;
-		public bool ConfigDebugIgnoreFocusLoss;
+		public byte ConfigDebugBeginReturnValueOnce;
+		public byte ConfigDebugBeginReturnValueLoop;
+		public byte ConfigDebugIgnoreFocusLoss;
 		public unsafe byte* BackendPlatformName;
 		public unsafe byte* BackendRendererName;
 		public unsafe void* BackendPlatformUserData;
@@ -14136,13 +14136,13 @@ namespace HexaEngine.ImGuiNET
 		public unsafe void* ClipboardUserData;
 		public unsafe delegate*<ImGuiViewport*, ImGuiPlatformImeData*, void>* SetPlatformImeDataFn;
 		public unsafe void* UnusedPadding;
-		public bool WantCaptureMouse;
-		public bool WantCaptureKeyboard;
-		public bool WantTextInput;
-		public bool WantSetMousePos;
-		public bool WantSaveIniSettings;
-		public bool NavActive;
-		public bool NavVisible;
+		public byte WantCaptureMouse;
+		public byte WantCaptureKeyboard;
+		public byte WantTextInput;
+		public byte WantSetMousePos;
+		public byte WantSaveIniSettings;
+		public byte NavActive;
+		public byte NavVisible;
 		public float Framerate;
 		public int MetricsRenderVertices;
 		public int MetricsRenderIndices;
@@ -15481,10 +15481,10 @@ namespace HexaEngine.ImGuiNET
 		public float MouseWheelH;
 		public ImGuiMouseSource MouseSource;
 		public int MouseHoveredViewport;
-		public bool KeyCtrl;
-		public bool KeyShift;
-		public bool KeyAlt;
-		public bool KeySuper;
+		public byte KeyCtrl;
+		public byte KeyShift;
+		public byte KeyAlt;
+		public byte KeySuper;
 		public int KeyMods;
 		public ImGuiKeyData KeysData_0;
 		public ImGuiKeyData KeysData_1;
@@ -16138,7 +16138,7 @@ namespace HexaEngine.ImGuiNET
 		public ImGuiKeyData KeysData_649;
 		public ImGuiKeyData KeysData_650;
 		public ImGuiKeyData KeysData_651;
-		public bool WantCaptureMouseUnlessPopupClose;
+		public byte WantCaptureMouseUnlessPopupClose;
 		public Vector2 MousePosPrev;
 		public Vector2 MouseClickedPos_0;
 		public Vector2 MouseClickedPos_1;
@@ -16185,7 +16185,7 @@ namespace HexaEngine.ImGuiNET
 		public bool MouseDownOwnedUnlessPopupClose_2;
 		public bool MouseDownOwnedUnlessPopupClose_3;
 		public bool MouseDownOwnedUnlessPopupClose_4;
-		public bool MouseWheelRequestAxisSwap;
+		public byte MouseWheelRequestAxisSwap;
 		public float MouseDownDuration_0;
 		public float MouseDownDuration_1;
 		public float MouseDownDuration_2;
@@ -16207,10 +16207,10 @@ namespace HexaEngine.ImGuiNET
 		public float MouseDragMaxDistanceSqr_3;
 		public float MouseDragMaxDistanceSqr_4;
 		public float PenPressure;
-		public bool AppFocusLost;
-		public bool AppAcceptingEvents;
+		public byte AppFocusLost;
+		public byte AppAcceptingEvents;
 		public sbyte BackendUsingLegacyKeyArrays;
-		public bool BackendUsingLegacyNavInputArray;
+		public byte BackendUsingLegacyNavInputArray;
 		public char InputQueueSurrogate;
 		public ImVectorImWchar InputQueueCharacters;
 
@@ -16252,7 +16252,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddFocusEventNative(@this, focused);
+				ImGui.AddFocusEventNative(@this, focused ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -16324,7 +16324,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddKeyAnalogEventNative(@this, key, down, v);
+				ImGui.AddKeyAnalogEventNative(@this, key, down ? (byte)1 : (byte)0, v);
 			}
 		}
 
@@ -16332,7 +16332,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddKeyEventNative(@this, key, down);
+				ImGui.AddKeyEventNative(@this, key, down ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -16340,7 +16340,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.AddMouseButtonEventNative(@this, button, down);
+				ImGui.AddMouseButtonEventNative(@this, button, down ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -16404,7 +16404,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.SetAppAcceptingEventsNative(@this, acceptingEvents);
+				ImGui.SetAppAcceptingEventsNative(@this, acceptingEvents ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -16690,7 +16690,7 @@ namespace HexaEngine.ImGuiNET
 
 		public unsafe void AddFocusEvent(bool focused)
 		{
-			ImGui.AddFocusEventNative(Handle, focused);
+			ImGui.AddFocusEventNative(Handle, focused ? (byte)1 : (byte)0);
 		}
 
 		public unsafe void AddInputCharacter(uint c)
@@ -16744,17 +16744,17 @@ namespace HexaEngine.ImGuiNET
 
 		public unsafe void AddKeyAnalogEvent(ImGuiKey key, bool down, float v)
 		{
-			ImGui.AddKeyAnalogEventNative(Handle, key, down, v);
+			ImGui.AddKeyAnalogEventNative(Handle, key, down ? (byte)1 : (byte)0, v);
 		}
 
 		public unsafe void AddKeyEvent(ImGuiKey key, bool down)
 		{
-			ImGui.AddKeyEventNative(Handle, key, down);
+			ImGui.AddKeyEventNative(Handle, key, down ? (byte)1 : (byte)0);
 		}
 
 		public unsafe void AddMouseButtonEvent(int button, bool down)
 		{
-			ImGui.AddMouseButtonEventNative(Handle, button, down);
+			ImGui.AddMouseButtonEventNative(Handle, button, down ? (byte)1 : (byte)0);
 		}
 
 		public unsafe void AddMousePosEvent(float x, float y)
@@ -16794,7 +16794,7 @@ namespace HexaEngine.ImGuiNET
 
 		public unsafe void SetAppAcceptingEvents(bool acceptingEvents)
 		{
-			ImGui.SetAppAcceptingEventsNative(Handle, acceptingEvents);
+			ImGui.SetAppAcceptingEventsNative(Handle, acceptingEvents ? (byte)1 : (byte)0);
 		}
 
 		public unsafe void SetKeyEventNativeData(ImGuiKey key, int nativeKeycode, int nativeScancode, int nativeLegacyIndex)
@@ -16812,7 +16812,7 @@ namespace HexaEngine.ImGuiNET
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiPlatformImeData
 	{
-		public bool WantVisible;
+		public byte WantVisible;
 		public Vector2 InputPos;
 		public float InputLineHeight;
 
@@ -16873,7 +16873,7 @@ namespace HexaEngine.ImGuiNET
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiKeyData
 	{
-		public bool Down;
+		public byte Down;
 		public float DownDuration;
 		public float DownDurationPrev;
 		public float AnalogValue;
@@ -17149,9 +17149,9 @@ namespace HexaEngine.ImGuiNET
 		public Vector2 DisplayWindowPadding;
 		public Vector2 DisplaySafeAreaPadding;
 		public float MouseCursorScale;
-		public bool AntiAliasedLines;
-		public bool AntiAliasedLinesUseTex;
-		public bool AntiAliasedFill;
+		public byte AntiAliasedLines;
+		public byte AntiAliasedLinesUseTex;
+		public byte AntiAliasedFill;
 		public float CurveTessellationTol;
 		public float CircleTessellationMaxError;
 		public Vector4 Colors_0;
@@ -17372,7 +17372,7 @@ namespace HexaEngine.ImGuiNET
 		public ImGuiInputSource Source;
 		public uint EventId;
 		public ImGuiInputEventUnion ImGuiInputEventUnion;
-		public bool AddedByTestEngine;
+		public byte AddedByTestEngine;
 
 	}
 
@@ -17437,7 +17437,7 @@ namespace HexaEngine.ImGuiNET
 	public partial struct ImGuiInputEventMouseButton
 	{
 		public int Button;
-		public bool Down;
+		public byte Down;
 		public ImGuiMouseSource MouseSource;
 
 	}
@@ -17453,7 +17453,7 @@ namespace HexaEngine.ImGuiNET
 	public partial struct ImGuiInputEventKey
 	{
 		public ImGuiKey Key;
-		public bool Down;
+		public byte Down;
 		public float AnalogValue;
 
 	}
@@ -17468,7 +17468,7 @@ namespace HexaEngine.ImGuiNET
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiInputEventAppFocused
 	{
-		public bool Focused;
+		public byte Focused;
 
 	}
 
@@ -17556,20 +17556,20 @@ namespace HexaEngine.ImGuiNET
 		public Vector2 ScrollTargetCenterRatio;
 		public Vector2 ScrollTargetEdgeSnapDist;
 		public Vector2 ScrollbarSizes;
-		public bool ScrollbarX;
-		public bool ScrollbarY;
-		public bool ViewportOwned;
-		public bool Active;
-		public bool WasActive;
-		public bool WriteAccessed;
-		public bool Collapsed;
-		public bool WantCollapseToggle;
-		public bool SkipItems;
-		public bool Appearing;
-		public bool Hidden;
-		public bool IsFallbackWindow;
-		public bool IsExplicitChild;
-		public bool HasCloseButton;
+		public byte ScrollbarX;
+		public byte ScrollbarY;
+		public byte ViewportOwned;
+		public byte Active;
+		public byte WasActive;
+		public byte WriteAccessed;
+		public byte Collapsed;
+		public byte WantCollapseToggle;
+		public byte SkipItems;
+		public byte Appearing;
+		public byte Hidden;
+		public byte IsFallbackWindow;
+		public byte IsExplicitChild;
+		public byte HasCloseButton;
 		public byte ResizeBorderHeld;
 		public short BeginCount;
 		public short BeginCountPreviousFrame;
@@ -17580,7 +17580,7 @@ namespace HexaEngine.ImGuiNET
 		public sbyte AutoFitFramesX;
 		public sbyte AutoFitFramesY;
 		public sbyte AutoFitChildAxises;
-		public bool AutoFitOnlyGrows;
+		public byte AutoFitOnlyGrows;
 		public ImGuiDir AutoPosLastDirection;
 		public sbyte HiddenFramesCanSkipItems;
 		public sbyte HiddenFramesCannotSkipItems;
@@ -17631,11 +17631,11 @@ namespace HexaEngine.ImGuiNET
 		public int NavRootFocusScopeId;
 		public int MemoryDrawListIdxCapacity;
 		public int MemoryDrawListVtxCapacity;
-		public bool MemoryCompacted;
-		public bool DockIsActive;
-		public bool DockNodeIsVisible;
-		public bool DockTabIsVisible;
-		public bool DockTabWantClose;
+		public byte MemoryCompacted;
+		public byte DockIsActive;
+		public byte DockNodeIsVisible;
+		public byte DockTabIsVisible;
+		public byte DockTabWantClose;
 		public short DockOrder;
 		public ImGuiWindowDockStyle DockStyle;
 		public unsafe ImGuiDockNode* DockNode;
@@ -17889,8 +17889,8 @@ namespace HexaEngine.ImGuiNET
 		public ImGuiViewportFlags ViewportFlagsOverrideClear;
 		public ImGuiTabItemFlags TabItemFlagsOverrideSet;
 		public ImGuiDockNodeFlags DockNodeFlagsOverrideSet;
-		public bool DockingAlwaysTabBar;
-		public bool DockingAllowUnclassed;
+		public byte DockingAlwaysTabBar;
+		public byte DockingAllowUnclassed;
 
 
 		public unsafe void Destroy()
@@ -17963,7 +17963,7 @@ namespace HexaEngine.ImGuiNET
 		public Vector2 LastPos;
 		public float Alpha;
 		public float LastAlpha;
-		public bool LastFocusedHadNavWindow;
+		public byte LastFocusedHadNavWindow;
 		public short PlatformMonitor;
 		public int DrawListsLastFrame_0;
 		public int DrawListsLastFrame_1;
@@ -18209,8 +18209,8 @@ namespace HexaEngine.ImGuiNET
 		public Vector2 PrevLineSize;
 		public float CurrLineTextBaseOffset;
 		public float PrevLineTextBaseOffset;
-		public bool IsSameLine;
-		public bool IsSetPos;
+		public byte IsSameLine;
+		public byte IsSetPos;
 		public ImVec1 Indent;
 		public ImVec1 ColumnsOffset;
 		public ImVec1 GroupOffset;
@@ -18218,10 +18218,10 @@ namespace HexaEngine.ImGuiNET
 		public ImGuiNavLayer NavLayerCurrent;
 		public short NavLayersActiveMask;
 		public short NavLayersActiveMaskNext;
-		public bool NavIsScrollPushableX;
-		public bool NavHideHighlightOneFrame;
-		public bool NavWindowHasScrollY;
-		public bool MenuBarAppending;
+		public byte NavIsScrollPushableX;
+		public byte NavHideHighlightOneFrame;
+		public byte NavWindowHasScrollY;
+		public byte MenuBarAppending;
 		public Vector2 MenuBarOffset;
 		public ImGuiMenuColumns MenuColumns;
 		public int TreeDepth;
@@ -18373,7 +18373,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				byte ret = ImGui.GetBoolNative(@this, key, defaultVal);
+				byte ret = ImGui.GetBoolNative(@this, key, defaultVal ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -18382,7 +18382,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				byte ret = ImGui.GetBoolNative(@this, key, (bool)(false));
+				byte ret = ImGui.GetBoolNative(@this, key, (byte)(0));
 				return ret != 0;
 			}
 		}
@@ -18391,7 +18391,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				bool* ret = ImGui.GetBoolRefNative(@this, key, defaultVal);
+				bool* ret = ImGui.GetBoolRefNative(@this, key, defaultVal ? (byte)1 : (byte)0);
 				return ret;
 			}
 		}
@@ -18400,7 +18400,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				bool* ret = ImGui.GetBoolRefNative(@this, key, (bool)(false));
+				bool* ret = ImGui.GetBoolRefNative(@this, key, (byte)(0));
 				return ret;
 			}
 		}
@@ -18516,7 +18516,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				ImGui.SetBoolNative(@this, key, val);
+				ImGui.SetBoolNative(@this, key, val ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -18592,25 +18592,25 @@ namespace HexaEngine.ImGuiNET
 
 		public unsafe bool GetBool(int key, bool defaultVal)
 		{
-			byte ret = ImGui.GetBoolNative(Handle, key, defaultVal);
+			byte ret = ImGui.GetBoolNative(Handle, key, defaultVal ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
 		public unsafe bool GetBool(int key)
 		{
-			byte ret = ImGui.GetBoolNative(Handle, key, (bool)(false));
+			byte ret = ImGui.GetBoolNative(Handle, key, (byte)(0));
 			return ret != 0;
 		}
 
 		public unsafe bool* GetBoolRef(int key, bool defaultVal)
 		{
-			bool* ret = ImGui.GetBoolRefNative(Handle, key, defaultVal);
+			bool* ret = ImGui.GetBoolRefNative(Handle, key, defaultVal ? (byte)1 : (byte)0);
 			return ret;
 		}
 
 		public unsafe bool* GetBoolRef(int key)
 		{
-			bool* ret = ImGui.GetBoolRefNative(Handle, key, (bool)(false));
+			bool* ret = ImGui.GetBoolRefNative(Handle, key, (byte)(0));
 			return ret;
 		}
 
@@ -18687,7 +18687,7 @@ namespace HexaEngine.ImGuiNET
 
 		public unsafe void SetBool(int key, bool val)
 		{
-			ImGui.SetBoolNative(Handle, key, val);
+			ImGui.SetBoolNative(Handle, key, val ? (byte)1 : (byte)0);
 		}
 
 		public unsafe void SetFloat(int key, float val)
@@ -18792,8 +18792,8 @@ namespace HexaEngine.ImGuiNET
 	{
 		public int ID;
 		public ImGuiOldColumnFlags Flags;
-		public bool IsFirstFrame;
-		public bool IsBeingResized;
+		public byte IsFirstFrame;
+		public byte IsBeingResized;
 		public int Current;
 		public int Count;
 		public float OffMinX;
@@ -19061,17 +19061,17 @@ namespace HexaEngine.ImGuiNET
 		public ImGuiDataAuthority AuthorityForPos;
 		public ImGuiDataAuthority AuthorityForSize;
 		public ImGuiDataAuthority AuthorityForViewport;
-		public bool IsVisible;
-		public bool IsFocused;
-		public bool IsBgDrawnThisFrame;
-		public bool HasCloseButton;
-		public bool HasWindowMenuButton;
-		public bool HasCentralNodeChild;
-		public bool WantCloseAll;
-		public bool WantLockSizeOnce;
-		public bool WantMouseMove;
-		public bool WantHiddenTabBarUpdate;
-		public bool WantHiddenTabBarToggle;
+		public byte IsVisible;
+		public byte IsFocused;
+		public byte IsBgDrawnThisFrame;
+		public byte HasCloseButton;
+		public byte HasWindowMenuButton;
+		public byte HasCentralNodeChild;
+		public byte WantCloseAll;
+		public byte WantLockSizeOnce;
+		public byte WantMouseMove;
+		public byte WantHiddenTabBarUpdate;
+		public byte WantHiddenTabBarToggle;
 
 	}
 
@@ -19174,9 +19174,9 @@ namespace HexaEngine.ImGuiNET
 		public int ReorderRequestTabId;
 		public short ReorderRequestOffset;
 		public sbyte BeginCount;
-		public bool WantLayout;
-		public bool VisibleTabWasSubmitted;
-		public bool TabsAddedNew;
+		public byte WantLayout;
+		public byte VisibleTabWasSubmitted;
+		public byte TabsAddedNew;
 		public short TabsActiveCount;
 		public short LastTabItemIdx;
 		public float ItemSpacingY;
@@ -19275,7 +19275,7 @@ namespace HexaEngine.ImGuiNET
 		public int NameOffset;
 		public short BeginOrder;
 		public short IndexDuringLayout;
-		public bool WantClose;
+		public byte WantClose;
 
 	}
 
@@ -20270,8 +20270,8 @@ public unsafe void appendf(string fmt)
 	{
 		public int OwnerCurr;
 		public int OwnerNext;
-		public bool LockThisFrame;
-		public bool LockUntilRelease;
+		public byte LockThisFrame;
+		public byte LockUntilRelease;
 
 	}
 
@@ -20571,7 +20571,7 @@ public unsafe void appendf(string fmt)
 		public float Width;
 		public int FocusScopeId;
 		public ImGuiCond OpenCond;
-		public bool OpenVal;
+		public byte OpenVal;
 
 	}
 
@@ -20627,8 +20627,8 @@ public unsafe void appendf(string fmt)
 		public Vector2 SizeVal;
 		public Vector2 ContentSizeVal;
 		public Vector2 ScrollVal;
-		public bool PosUndock;
-		public bool CollapsedVal;
+		public byte PosUndock;
+		public byte CollapsedVal;
 		public ImRect SizeConstraintRect;
 		public unsafe delegate*<ImGuiSizeCallbackData*, void>* SizeCallback;
 		public unsafe void* SizeCallbackUserData;
@@ -20853,9 +20853,9 @@ public unsafe void appendf(string fmt)
 		public Vector2 BackupCurrLineSize;
 		public float BackupCurrLineTextBaseOffset;
 		public int BackupActiveIdIsAlive;
-		public bool BackupActiveIdPreviousFrameIsAlive;
-		public bool BackupHoveredIdIsAlive;
-		public bool EmitItem;
+		public byte BackupActiveIdPreviousFrameIsAlive;
+		public byte BackupHoveredIdIsAlive;
+		public byte EmitItem;
 
 	}
 
@@ -21075,8 +21075,8 @@ public unsafe void appendf(string fmt)
 		public byte DataType_30;
 		public byte DataType_31;
 		public byte DataType_32;
-		public bool Preview;
-		public bool Delivery;
+		public byte Preview;
+		public byte Delivery;
 
 
 		public unsafe void Clear()
@@ -21498,7 +21498,7 @@ public unsafe void appendf(string fmt)
 	{
 		public int Min;
 		public int Max;
-		public bool PosToIndexConvert;
+		public byte PosToIndexConvert;
 		public sbyte PosToIndexOffsetMin;
 		public sbyte PosToIndexOffsetMax;
 
@@ -21635,23 +21635,23 @@ public unsafe void appendf(string fmt)
 		public byte DummyDrawChannel;
 		public byte Bg2DrawChannelCurrent;
 		public byte Bg2DrawChannelUnfrozen;
-		public bool IsLayoutLocked;
-		public bool IsInsideRow;
-		public bool IsInitializing;
-		public bool IsSortSpecsDirty;
-		public bool IsUsingHeaders;
-		public bool IsContextPopupOpen;
-		public bool IsSettingsRequestLoad;
-		public bool IsSettingsDirty;
-		public bool IsDefaultDisplayOrder;
-		public bool IsResetAllRequest;
-		public bool IsResetDisplayOrderRequest;
-		public bool IsUnfrozenRows;
-		public bool IsDefaultSizingPolicy;
-		public bool HasScrollbarYCurr;
-		public bool HasScrollbarYPrev;
-		public bool MemoryCompacted;
-		public bool HostSkipItems;
+		public byte IsLayoutLocked;
+		public byte IsInsideRow;
+		public byte IsInitializing;
+		public byte IsSortSpecsDirty;
+		public byte IsUsingHeaders;
+		public byte IsContextPopupOpen;
+		public byte IsSettingsRequestLoad;
+		public byte IsSettingsDirty;
+		public byte IsDefaultDisplayOrder;
+		public byte IsResetAllRequest;
+		public byte IsResetDisplayOrderRequest;
+		public byte IsUnfrozenRows;
+		public byte IsDefaultSizingPolicy;
+		public byte HasScrollbarYCurr;
+		public byte HasScrollbarYPrev;
+		public byte MemoryCompacted;
+		public byte HostSkipItems;
 
 	}
 
@@ -21902,14 +21902,14 @@ public unsafe void appendf(string fmt)
 		public byte DrawChannelCurrent;
 		public byte DrawChannelFrozen;
 		public byte DrawChannelUnfrozen;
-		public bool IsEnabled;
-		public bool IsUserEnabled;
-		public bool IsUserEnabledNextFrame;
-		public bool IsVisibleX;
-		public bool IsVisibleY;
-		public bool IsRequestOutput;
-		public bool IsSkipItems;
-		public bool IsPreserveWidthAuto;
+		public byte IsEnabled;
+		public byte IsUserEnabled;
+		public byte IsUserEnabledNextFrame;
+		public byte IsVisibleX;
+		public byte IsVisibleY;
+		public byte IsRequestOutput;
+		public byte IsSkipItems;
+		public byte IsPreserveWidthAuto;
 		public sbyte NavLayerCurrent;
 		public byte AutoFitQueue;
 		public byte CannotSkipItemsQueue;
@@ -22189,7 +22189,7 @@ public unsafe void appendf(string fmt)
 	{
 		public unsafe ImGuiTableColumnSortSpecs* Specs;
 		public int SpecsCount;
-		public bool SpecsDirty;
+		public byte SpecsDirty;
 
 
 		public unsafe void Destroy()
@@ -22410,14 +22410,14 @@ public unsafe void appendf(string fmt)
 		public ImVectorImWchar TextW;
 		public ImVectorChar TextA;
 		public ImVectorChar InitialTextA;
-		public bool TextAIsValid;
+		public byte TextAIsValid;
 		public int BufCapacityA;
 		public float ScrollX;
 		public STBTexteditState Stb;
 		public float CursorAnim;
-		public bool CursorFollow;
-		public bool SelectedAllMouseLock;
-		public bool Edited;
+		public byte CursorFollow;
+		public byte SelectedAllMouseLock;
+		public byte Edited;
 		public ImGuiInputTextFlags Flags;
 
 	}
@@ -23723,7 +23723,7 @@ public unsafe void appendf(string fmt)
 		public ImGuiStorage Nodes;
 		public ImVectorImGuiDockRequest Requests;
 		public ImVectorImGuiDockNodeSettings NodesSettings;
-		public bool WantFullRebuild;
+		public byte WantFullRebuild;
 
 	}
 
@@ -24059,15 +24059,15 @@ public unsafe void appendf(string fmt)
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiMetricsConfig
 	{
-		public bool ShowDebugLog;
-		public bool ShowStackTool;
-		public bool ShowWindowsRects;
-		public bool ShowWindowsBeginOrder;
-		public bool ShowTablesRects;
-		public bool ShowDrawCmdMesh;
-		public bool ShowDrawCmdBoundingBoxes;
-		public bool ShowAtlasTintedWithTextColor;
-		public bool ShowDockingNodes;
+		public byte ShowDebugLog;
+		public byte ShowStackTool;
+		public byte ShowWindowsRects;
+		public byte ShowWindowsBeginOrder;
+		public byte ShowTablesRects;
+		public byte ShowDrawCmdMesh;
+		public byte ShowDrawCmdBoundingBoxes;
+		public byte ShowAtlasTintedWithTextColor;
+		public byte ShowDockingNodes;
 		public int ShowWindowsRectsType;
 		public int ShowTablesRectsType;
 
@@ -24080,7 +24080,7 @@ public unsafe void appendf(string fmt)
 		public int StackLevel;
 		public int QueryId;
 		public ImVectorImGuiStackLevelInfo Results;
-		public bool CopyToClipboardOnCtrlC;
+		public byte CopyToClipboardOnCtrlC;
 		public float CopyToClipboardLastTime;
 
 	}
@@ -24139,7 +24139,7 @@ public unsafe void appendf(string fmt)
 	{
 		public int ID;
 		public sbyte QueryFrameCount;
-		public bool QuerySuccess;
+		public byte QuerySuccess;
 		public ImGuiDataType DataType;
 		public byte Desc_0;
 		public byte Desc_1;
@@ -24259,7 +24259,7 @@ public unsafe void appendf(string fmt)
 		public unsafe byte* Buf;
 		public int BufTextLen;
 		public int BufSize;
-		public bool BufDirty;
+		public byte BufDirty;
 		public int CursorPos;
 		public int SelectionStart;
 		public int SelectionEnd;
@@ -26110,7 +26110,7 @@ public unsafe void appendf(string fmt)
 		public float RefScale;
 		public sbyte ColumnsCount;
 		public sbyte ColumnsCountMax;
-		public bool WantApply;
+		public byte WantApply;
 
 	}
 
@@ -26171,9 +26171,9 @@ public unsafe void appendf(string fmt)
 		public int DockId;
 		public int ClassId;
 		public short DockOrder;
-		public bool Collapsed;
-		public bool WantApply;
-		public bool WantDelete;
+		public byte Collapsed;
+		public byte WantApply;
+		public byte WantDelete;
 
 	}
 

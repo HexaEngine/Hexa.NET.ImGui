@@ -442,6 +442,9 @@
                 string csFieldType = GetCsTypeName(field.Type, false);
                 string fieldPrefix = isReadOnly ? "readonly " : string.Empty;
 
+                if (csFieldType == "bool")
+                    csFieldType = "byte";
+
                 if (field.Type is CppTypedef typedef &&
                     typedef.ElementType is CppPointerType pointerType &&
                     pointerType.ElementType is CppFunctionType functionType)

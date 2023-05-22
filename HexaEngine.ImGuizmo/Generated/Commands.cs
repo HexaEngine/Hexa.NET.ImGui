@@ -83,11 +83,11 @@ namespace HexaEngine.ImGuizmoNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_Enable")]
-		internal static extern void EnableNative(bool enable);
+		internal static extern void EnableNative(byte enable);
 
 		public static void Enable(bool enable)
 		{
-			EnableNative(enable);
+			EnableNative(enable ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_DecomposeMatrixToComponents")]
@@ -457,11 +457,11 @@ namespace HexaEngine.ImGuizmoNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_SetOrthographic")]
-		internal static extern void SetOrthographicNative(bool isOrthographic);
+		internal static extern void SetOrthographicNative(byte isOrthographic);
 
 		public static void SetOrthographic(bool isOrthographic)
 		{
-			SetOrthographicNative(isOrthographic);
+			SetOrthographicNative(isOrthographic ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_DrawCubes")]
@@ -4526,11 +4526,11 @@ namespace HexaEngine.ImGuizmoNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_AllowAxisFlip")]
-		internal static extern void AllowAxisFlipNative(bool value);
+		internal static extern void AllowAxisFlipNative(byte value);
 
 		public static void AllowAxisFlip(bool value)
 		{
-			AllowAxisFlipNative(value);
+			AllowAxisFlipNative(value ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_SetAxisLimit")]

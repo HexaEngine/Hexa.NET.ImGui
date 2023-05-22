@@ -29,7 +29,7 @@ namespace HexaEngine.ImPlotNET
 		public ImPlotTicker CTicker;
 		public ImPlotAnnotationCollection Annotations;
 		public ImPlotTagCollection Tags;
-		public bool ChildWindowMade;
+		public byte ChildWindowMade;
 		public ImPlotStyle Style;
 		public ImVectorImGuiColorMod ColorModifiers;
 		public ImVectorImGuiStyleMod StyleModifiers;
@@ -44,7 +44,7 @@ namespace HexaEngine.ImPlotNET
 		public ImPlotNextPlotData NextPlotData;
 		public ImPlotNextItemData NextItemData;
 		public ImPlotInputMap InputMap;
-		public bool OpenContextThisFrame;
+		public byte OpenContextThisFrame;
 		public ImGuiTextBuffer MousePosStringBuilder;
 		public unsafe ImPlotItemGroup* SortItems;
 		public ImPoolImPlotAlignmentData AlignmentData;
@@ -162,15 +162,15 @@ namespace HexaEngine.ImPlotNET
 		public ImRect SelectRect;
 		public Vector2 SelectStart;
 		public int TitleOffset;
-		public bool JustCreated;
-		public bool Initialized;
-		public bool SetupLocked;
-		public bool FitThisFrame;
-		public bool Hovered;
-		public bool Held;
-		public bool Selecting;
-		public bool Selected;
-		public bool ContextLocked;
+		public byte JustCreated;
+		public byte Initialized;
+		public byte SetupLocked;
+		public byte FitThisFrame;
+		public byte Hovered;
+		public byte Held;
+		public byte Selecting;
+		public byte Selected;
+		public byte ContextLocked;
 
 		public unsafe Span<ImPlotAxis> Axes
 		
@@ -310,14 +310,14 @@ namespace HexaEngine.ImPlotNET
 		public uint ColorHov;
 		public uint ColorAct;
 		public uint ColorHiLi;
-		public bool Enabled;
-		public bool Vertical;
-		public bool FitThisFrame;
-		public bool HasRange;
-		public bool HasFormatSpec;
-		public bool ShowDefaultTicks;
-		public bool Hovered;
-		public bool Held;
+		public byte Enabled;
+		public byte Vertical;
+		public byte FitThisFrame;
+		public byte HasRange;
+		public byte HasFormatSpec;
+		public byte ShowDefaultTicks;
+		public byte Hovered;
+		public byte Held;
 
 	}
 
@@ -580,8 +580,8 @@ namespace HexaEngine.ImPlotNET
 		public float PixelPos;
 		public Vector2 LabelSize;
 		public int TextOffset;
-		public bool Major;
-		public bool ShowLabel;
+		public byte Major;
+		public byte ShowLabel;
 		public int Level;
 		public int Idx;
 
@@ -731,9 +731,9 @@ namespace HexaEngine.ImPlotNET
 		public ImVectorInt Indices;
 		public ImGuiTextBuffer Labels;
 		public ImRect Rect;
-		public bool Hovered;
-		public bool Held;
-		public bool CanGoInside;
+		public byte Hovered;
+		public byte Held;
+		public byte CanGoInside;
 
 	}
 
@@ -807,9 +807,9 @@ namespace HexaEngine.ImPlotNET
 		public uint Color;
 		public ImRect LegendHoverRect;
 		public int NameOffset;
-		public bool Show;
-		public bool LegendHovered;
-		public bool SeenThisFrame;
+		public byte Show;
+		public byte LegendHovered;
+		public byte SeenThisFrame;
 
 	}
 
@@ -894,8 +894,8 @@ namespace HexaEngine.ImPlotNET
 		public ImVectorImPlotRange ColLinkData;
 		public float TempSizes_0;
 		public float TempSizes_1;
-		public bool FrameHovered;
-		public bool HasTitle;
+		public byte FrameHovered;
+		public byte HasTitle;
 
 	}
 
@@ -971,7 +971,7 @@ namespace HexaEngine.ImPlotNET
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImPlotAlignmentData
 	{
-		public bool Vertical;
+		public byte Vertical;
 		public float PadA;
 		public float PadB;
 		public float PadAMax;
@@ -1090,7 +1090,7 @@ namespace HexaEngine.ImPlotNET
 		public uint ColorBg;
 		public uint ColorFg;
 		public int TextOffset;
-		public bool Clamp;
+		public byte Clamp;
 
 	}
 
@@ -1291,9 +1291,9 @@ namespace HexaEngine.ImPlotNET
 		public Vector4 Colors_19;
 		public Vector4 Colors_20;
 		public ImPlotColormap Colormap;
-		public bool UseLocalTime;
-		public bool UseISO8601;
-		public bool Use24HourClock;
+		public byte UseLocalTime;
+		public byte UseISO8601;
+		public byte Use24HourClock;
 
 		public unsafe Span<Vector4> Colors
 		
@@ -1658,12 +1658,12 @@ namespace HexaEngine.ImPlotNET
 		public float ErrorBarWeight;
 		public float DigitalBitHeight;
 		public float DigitalBitGap;
-		public bool RenderLine;
-		public bool RenderFill;
-		public bool RenderMarkerLine;
-		public bool RenderMarkerFill;
-		public bool HasHidden;
-		public bool Hidden;
+		public byte RenderLine;
+		public byte RenderFill;
+		public byte RenderMarkerLine;
+		public byte RenderMarkerFill;
+		public byte HasHidden;
+		public byte Hidden;
 		public ImPlotCond HiddenCond;
 
 		public unsafe Span<Vector4> Colors
@@ -2307,8 +2307,8 @@ namespace HexaEngine.ImPlotNET
 	{
 		public ImPlotDateFmt Date;
 		public ImPlotTimeFmt Time;
-		public bool UseISO8601;
-		public bool Use24HourClock;
+		public byte UseISO8601;
+		public byte Use24HourClock;
 
 	}
 

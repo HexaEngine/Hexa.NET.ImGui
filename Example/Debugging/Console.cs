@@ -637,7 +637,7 @@
                                 data->Buf = (byte*)Marshal.StringToCoTaskMemUTF8(ne).ToPointer();
                                 data->BufTextLen = ne.Length;
                                 data->CursorPos = ne.Length;
-                                data->BufDirty = true;
+                                data->BufDirty = 1;
                             }
                             else
                             {
@@ -647,7 +647,7 @@
                                     int newLen = data->BufTextLen - startSubtrPos;
                                     buffer[startSubtrPos..data->BufTextLen].Fill((char)0);
                                     partial.CopyTo(buffer[startSubtrPos..]);
-                                    data->BufDirty = true;
+                                    data->BufDirty = 1;
                                 }
                             }
                         }

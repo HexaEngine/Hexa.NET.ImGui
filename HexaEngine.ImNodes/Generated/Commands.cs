@@ -593,11 +593,11 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SetNodeDraggable")]
-		internal static extern void SetNodeDraggableNative(int nodeId, bool draggable);
+		internal static extern void SetNodeDraggableNative(int nodeId, byte draggable);
 
 		public static void SetNodeDraggable(int nodeId, bool draggable)
 		{
-			SetNodeDraggableNative(nodeId, draggable);
+			SetNodeDraggableNative(nodeId, draggable ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SetNodeScreenSpacePos")]
@@ -917,23 +917,23 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkDropped")]
-		internal static extern byte IsLinkDroppedNative(int* startedAtAttributeId, bool includingDetachedLinks);
+		internal static extern byte IsLinkDroppedNative(int* startedAtAttributeId, byte includingDetachedLinks);
 
 		public static bool IsLinkDropped(int* startedAtAttributeId, bool includingDetachedLinks)
 		{
-			byte ret = IsLinkDroppedNative(startedAtAttributeId, includingDetachedLinks);
+			byte ret = IsLinkDroppedNative(startedAtAttributeId, includingDetachedLinks ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
 		public static bool IsLinkDropped(int* startedAtAttributeId)
 		{
-			byte ret = IsLinkDroppedNative(startedAtAttributeId, (bool)(true));
+			byte ret = IsLinkDroppedNative(startedAtAttributeId, (byte)(1));
 			return ret != 0;
 		}
 
 		public static bool IsLinkDropped()
 		{
-			byte ret = IsLinkDroppedNative((int*)(default), (bool)(true));
+			byte ret = IsLinkDroppedNative((int*)(default), (byte)(1));
 			return ret != 0;
 		}
 
@@ -941,7 +941,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				byte ret = IsLinkDroppedNative((int*)pstartedAtAttributeId, includingDetachedLinks);
+				byte ret = IsLinkDroppedNative((int*)pstartedAtAttributeId, includingDetachedLinks ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -950,7 +950,7 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				byte ret = IsLinkDroppedNative((int*)pstartedAtAttributeId, (bool)(true));
+				byte ret = IsLinkDroppedNative((int*)pstartedAtAttributeId, (byte)(1));
 				return ret != 0;
 			}
 		}

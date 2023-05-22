@@ -202,26 +202,33 @@
                 {
                     var cppParameter = overload.Parameters[j + offset];
                     var isRef = false;
+                    var isPointer = false;
                     var isStr = false;
                     var isArray = false;
+                    var isBool = false;
                     var isConst = true;
 
                     if (j < variation.Parameters.Count)
                     {
                         cppParameter = variation.Parameters[j];
                         isRef = variation.Parameters[j].Type.IsRef;
+                        isPointer = variation.Parameters[j].Type.IsPointer;
                         isStr = variation.Parameters[j].Type.IsString;
                         isArray = variation.Parameters[j].Type.IsArray;
+                        isBool = variation.Parameters[j].Type.IsBool;
                         isConst = false;
                     }
 
                     if (isConst)
                     {
+                        var rootParam = overload.Parameters[j + offset];
                         var paramCsDefault = variation.DefaultValues[cppParameter.Name];
                         if (cppParameter.Type.IsString || paramCsDefault.StartsWith("\"") && paramCsDefault.EndsWith("\""))
                             sb.Append($"(string){paramCsDefault}");
+                        else if (cppParameter.Type.IsBool && !cppParameter.Type.IsPointer && !cppParameter.Type.IsArray)
+                            sb.Append($"(byte)({paramCsDefault})");
                         else if (cppParameter.Type.IsPrimitive || cppParameter.Type.IsPointer || cppParameter.Type.IsArray)
-                            sb.Append($"({overload.Parameters[j + offset].Type.Name})({paramCsDefault})");
+                            sb.Append($"({rootParam.Type.Name})({paramCsDefault})");
                         else
                             sb.Append($"{paramCsDefault}");
                     }
@@ -264,6 +271,10 @@
                         writer.BeginBlock($"fixed ({variation.Parameters[j].Type.CleanName}* p{cppParameter.Name} = &{cppParameter.Name})");
                         sb.Append($"({overload.Parameters[j + offset].Type.Name})p{cppParameter.Name}");
                         stacks++;
+                    }
+                    else if (isBool && !isRef && !isPointer)
+                    {
+                        sb.Append($"{cppParameter.Name} ? (byte)1 : (byte)0");
                     }
                     else
                     {
@@ -598,6 +609,9 @@
                 CppParameter cppParameter = parameters[i];
                 var paramCsTypeName = GetCsTypeName(cppParameter.Type, false);
                 var paramCsName = GetParameterName(cppParameter.Type, cppParameter.Name);
+
+                if (paramCsTypeName == "bool")
+                    paramCsTypeName = "byte";
 
                 if (canUseOut && CanBeUsedAsOutput(cppParameter.Type, out CppTypeDeclaration? cppTypeDeclaration))
                 {
@@ -956,6 +970,10 @@
                 return "-float.MinValue";
             if (value == "nullptr")
                 return "default";
+            if (value == "false")
+                return "0";
+            if (value == "true")
+                return "1";
 
             if (value.StartsWith("ImVec") && sanitize)
                 return null;

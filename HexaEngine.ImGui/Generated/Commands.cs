@@ -746,29 +746,29 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igBeginChild_Str")]
-		internal static extern byte BeginChildNative(byte* strId, Vector2 size, bool border, ImGuiWindowFlags flags);
+		internal static extern byte BeginChildNative(byte* strId, Vector2 size, byte border, ImGuiWindowFlags flags);
 
 		public static bool BeginChild(byte* strId, Vector2 size, bool border, ImGuiWindowFlags flags)
 		{
-			byte ret = BeginChildNative(strId, size, border, flags);
+			byte ret = BeginChildNative(strId, size, border ? (byte)1 : (byte)0, flags);
 			return ret != 0;
 		}
 
 		public static bool BeginChild(byte* strId, Vector2 size, bool border)
 		{
-			byte ret = BeginChildNative(strId, size, border, (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(strId, size, border ? (byte)1 : (byte)0, (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
 		public static bool BeginChild(byte* strId, Vector2 size)
 		{
-			byte ret = BeginChildNative(strId, size, (bool)(false), (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(strId, size, (byte)(0), (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
 		public static bool BeginChild(byte* strId)
 		{
-			byte ret = BeginChildNative(strId, (Vector2)(new Vector2(0,0)), (bool)(false), (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(strId, (Vector2)(new Vector2(0,0)), (byte)(0), (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
@@ -776,7 +776,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginChildNative((byte*)pstrId, size, border, flags);
+				byte ret = BeginChildNative((byte*)pstrId, size, border ? (byte)1 : (byte)0, flags);
 				return ret != 0;
 			}
 		}
@@ -785,7 +785,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginChildNative((byte*)pstrId, size, border, (ImGuiWindowFlags)(0));
+				byte ret = BeginChildNative((byte*)pstrId, size, border ? (byte)1 : (byte)0, (ImGuiWindowFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -794,7 +794,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginChildNative((byte*)pstrId, size, (bool)(false), (ImGuiWindowFlags)(0));
+				byte ret = BeginChildNative((byte*)pstrId, size, (byte)(0), (ImGuiWindowFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -803,7 +803,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), (bool)(false), (ImGuiWindowFlags)(0));
+				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), (byte)(0), (ImGuiWindowFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -827,7 +827,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginChildNative(pStr0, size, border, flags);
+			byte ret = BeginChildNative(pStr0, size, border ? (byte)1 : (byte)0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -854,7 +854,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginChildNative(pStr0, size, border, (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(pStr0, size, border ? (byte)1 : (byte)0, (ImGuiWindowFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -881,7 +881,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginChildNative(pStr0, size, (bool)(false), (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(pStr0, size, (byte)(0), (ImGuiWindowFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -908,7 +908,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginChildNative(pStr0, (Vector2)(new Vector2(0,0)), (bool)(false), (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(pStr0, (Vector2)(new Vector2(0,0)), (byte)(0), (ImGuiWindowFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -917,29 +917,29 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igBeginChild_ID")]
-		internal static extern byte BeginChildNative(int id, Vector2 size, bool border, ImGuiWindowFlags flags);
+		internal static extern byte BeginChildNative(int id, Vector2 size, byte border, ImGuiWindowFlags flags);
 
 		public static bool BeginChild(int id, Vector2 size, bool border, ImGuiWindowFlags flags)
 		{
-			byte ret = BeginChildNative(id, size, border, flags);
+			byte ret = BeginChildNative(id, size, border ? (byte)1 : (byte)0, flags);
 			return ret != 0;
 		}
 
 		public static bool BeginChild(int id, Vector2 size, bool border)
 		{
-			byte ret = BeginChildNative(id, size, border, (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(id, size, border ? (byte)1 : (byte)0, (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
 		public static bool BeginChild(int id, Vector2 size)
 		{
-			byte ret = BeginChildNative(id, size, (bool)(false), (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(id, size, (byte)(0), (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
 		public static bool BeginChild(int id)
 		{
-			byte ret = BeginChildNative(id, (Vector2)(new Vector2(0,0)), (bool)(false), (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(id, (Vector2)(new Vector2(0,0)), (byte)(0), (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
@@ -1138,16 +1138,16 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igSetNextWindowCollapsed")]
-		internal static extern void SetNextWindowCollapsedNative(bool collapsed, ImGuiCond cond);
+		internal static extern void SetNextWindowCollapsedNative(byte collapsed, ImGuiCond cond);
 
 		public static void SetNextWindowCollapsed(bool collapsed, ImGuiCond cond)
 		{
-			SetNextWindowCollapsedNative(collapsed, cond);
+			SetNextWindowCollapsedNative(collapsed ? (byte)1 : (byte)0, cond);
 		}
 
 		public static void SetNextWindowCollapsed(bool collapsed)
 		{
-			SetNextWindowCollapsedNative(collapsed, (ImGuiCond)(0));
+			SetNextWindowCollapsedNative(collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igSetNextWindowFocus")]
@@ -1209,16 +1209,16 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igSetWindowCollapsed_Bool")]
-		internal static extern void SetWindowCollapsedNative(bool collapsed, ImGuiCond cond);
+		internal static extern void SetWindowCollapsedNative(byte collapsed, ImGuiCond cond);
 
 		public static void SetWindowCollapsed(bool collapsed, ImGuiCond cond)
 		{
-			SetWindowCollapsedNative(collapsed, cond);
+			SetWindowCollapsedNative(collapsed ? (byte)1 : (byte)0, cond);
 		}
 
 		public static void SetWindowCollapsed(bool collapsed)
 		{
-			SetWindowCollapsedNative(collapsed, (ImGuiCond)(0));
+			SetWindowCollapsedNative(collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igSetWindowFocus_Nil")]
@@ -1400,23 +1400,23 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igSetWindowCollapsed_Str")]
-		internal static extern void SetWindowCollapsedNative(byte* name, bool collapsed, ImGuiCond cond);
+		internal static extern void SetWindowCollapsedNative(byte* name, byte collapsed, ImGuiCond cond);
 
 		public static void SetWindowCollapsed(byte* name, bool collapsed, ImGuiCond cond)
 		{
-			SetWindowCollapsedNative(name, collapsed, cond);
+			SetWindowCollapsedNative(name, collapsed ? (byte)1 : (byte)0, cond);
 		}
 
 		public static void SetWindowCollapsed(byte* name, bool collapsed)
 		{
-			SetWindowCollapsedNative(name, collapsed, (ImGuiCond)(0));
+			SetWindowCollapsedNative(name, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
 		}
 
 		public static void SetWindowCollapsed(ref byte name, bool collapsed, ImGuiCond cond)
 		{
 			fixed (byte* pname = &name)
 			{
-				SetWindowCollapsedNative((byte*)pname, collapsed, cond);
+				SetWindowCollapsedNative((byte*)pname, collapsed ? (byte)1 : (byte)0, cond);
 			}
 		}
 
@@ -1424,7 +1424,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* pname = &name)
 			{
-				SetWindowCollapsedNative((byte*)pname, collapsed, (ImGuiCond)(0));
+				SetWindowCollapsedNative((byte*)pname, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
 			}
 		}
 
@@ -1447,7 +1447,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			SetWindowCollapsedNative(pStr0, collapsed, cond);
+			SetWindowCollapsedNative(pStr0, collapsed ? (byte)1 : (byte)0, cond);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1473,7 +1473,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			SetWindowCollapsedNative(pStr0, collapsed, (ImGuiCond)(0));
+			SetWindowCollapsedNative(pStr0, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1781,11 +1781,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igPushTabStop")]
-		internal static extern void PushTabStopNative(bool tabStop);
+		internal static extern void PushTabStopNative(byte tabStop);
 
 		public static void PushTabStop(bool tabStop)
 		{
-			PushTabStopNative(tabStop);
+			PushTabStopNative(tabStop ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igPopTabStop")]
@@ -1797,11 +1797,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igPushButtonRepeat")]
-		internal static extern void PushButtonRepeatNative(bool repeat);
+		internal static extern void PushButtonRepeatNative(byte repeat);
 
 		public static void PushButtonRepeat(bool repeat)
 		{
-			PushButtonRepeatNative(repeat);
+			PushButtonRepeatNative(repeat ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igPopButtonRepeat")]
@@ -4035,11 +4035,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igRadioButton_Bool")]
-		internal static extern byte RadioButtonNative(byte* label, bool active);
+		internal static extern byte RadioButtonNative(byte* label, byte active);
 
 		public static bool RadioButton(byte* label, bool active)
 		{
-			byte ret = RadioButtonNative(label, active);
+			byte ret = RadioButtonNative(label, active ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
@@ -4047,7 +4047,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = RadioButtonNative((byte*)plabel, active);
+				byte ret = RadioButtonNative((byte*)plabel, active ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -4071,7 +4071,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = RadioButtonNative(pStr0, active);
+			byte ret = RadioButtonNative(pStr0, active ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -44258,42 +44258,42 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igSetNextItemOpen")]
-		internal static extern void SetNextItemOpenNative(bool isOpen, ImGuiCond cond);
+		internal static extern void SetNextItemOpenNative(byte isOpen, ImGuiCond cond);
 
 		public static void SetNextItemOpen(bool isOpen, ImGuiCond cond)
 		{
-			SetNextItemOpenNative(isOpen, cond);
+			SetNextItemOpenNative(isOpen ? (byte)1 : (byte)0, cond);
 		}
 
 		public static void SetNextItemOpen(bool isOpen)
 		{
-			SetNextItemOpenNative(isOpen, (ImGuiCond)(0));
+			SetNextItemOpenNative(isOpen ? (byte)1 : (byte)0, (ImGuiCond)(0));
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igSelectable_Bool")]
-		internal static extern byte SelectableNative(byte* label, bool selected, ImGuiSelectableFlags flags, Vector2 size);
+		internal static extern byte SelectableNative(byte* label, byte selected, ImGuiSelectableFlags flags, Vector2 size);
 
 		public static bool Selectable(byte* label, bool selected, ImGuiSelectableFlags flags, Vector2 size)
 		{
-			byte ret = SelectableNative(label, selected, flags, size);
+			byte ret = SelectableNative(label, selected ? (byte)1 : (byte)0, flags, size);
 			return ret != 0;
 		}
 
 		public static bool Selectable(byte* label, bool selected, ImGuiSelectableFlags flags)
 		{
-			byte ret = SelectableNative(label, selected, flags, (Vector2)(new Vector2(0,0)));
+			byte ret = SelectableNative(label, selected ? (byte)1 : (byte)0, flags, (Vector2)(new Vector2(0,0)));
 			return ret != 0;
 		}
 
 		public static bool Selectable(byte* label, bool selected)
 		{
-			byte ret = SelectableNative(label, selected, (ImGuiSelectableFlags)(0), (Vector2)(new Vector2(0,0)));
+			byte ret = SelectableNative(label, selected ? (byte)1 : (byte)0, (ImGuiSelectableFlags)(0), (Vector2)(new Vector2(0,0)));
 			return ret != 0;
 		}
 
 		public static bool Selectable(byte* label)
 		{
-			byte ret = SelectableNative(label, (bool)(false), (ImGuiSelectableFlags)(0), (Vector2)(new Vector2(0,0)));
+			byte ret = SelectableNative(label, (byte)(0), (ImGuiSelectableFlags)(0), (Vector2)(new Vector2(0,0)));
 			return ret != 0;
 		}
 
@@ -44301,7 +44301,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = SelectableNative((byte*)plabel, selected, flags, size);
+				byte ret = SelectableNative((byte*)plabel, selected ? (byte)1 : (byte)0, flags, size);
 				return ret != 0;
 			}
 		}
@@ -44310,7 +44310,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = SelectableNative((byte*)plabel, selected, flags, (Vector2)(new Vector2(0,0)));
+				byte ret = SelectableNative((byte*)plabel, selected ? (byte)1 : (byte)0, flags, (Vector2)(new Vector2(0,0)));
 				return ret != 0;
 			}
 		}
@@ -44319,7 +44319,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = SelectableNative((byte*)plabel, selected, (ImGuiSelectableFlags)(0), (Vector2)(new Vector2(0,0)));
+				byte ret = SelectableNative((byte*)plabel, selected ? (byte)1 : (byte)0, (ImGuiSelectableFlags)(0), (Vector2)(new Vector2(0,0)));
 				return ret != 0;
 			}
 		}
@@ -44328,7 +44328,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = SelectableNative((byte*)plabel, (bool)(false), (ImGuiSelectableFlags)(0), (Vector2)(new Vector2(0,0)));
+				byte ret = SelectableNative((byte*)plabel, (byte)(0), (ImGuiSelectableFlags)(0), (Vector2)(new Vector2(0,0)));
 				return ret != 0;
 			}
 		}
@@ -44352,7 +44352,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SelectableNative(pStr0, selected, flags, size);
+			byte ret = SelectableNative(pStr0, selected ? (byte)1 : (byte)0, flags, size);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -44379,7 +44379,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SelectableNative(pStr0, selected, flags, (Vector2)(new Vector2(0,0)));
+			byte ret = SelectableNative(pStr0, selected ? (byte)1 : (byte)0, flags, (Vector2)(new Vector2(0,0)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -44406,7 +44406,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SelectableNative(pStr0, selected, (ImGuiSelectableFlags)(0), (Vector2)(new Vector2(0,0)));
+			byte ret = SelectableNative(pStr0, selected ? (byte)1 : (byte)0, (ImGuiSelectableFlags)(0), (Vector2)(new Vector2(0,0)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -44433,7 +44433,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = SelectableNative(pStr0, (bool)(false), (ImGuiSelectableFlags)(0), (Vector2)(new Vector2(0,0)));
+			byte ret = SelectableNative(pStr0, (byte)(0), (ImGuiSelectableFlags)(0), (Vector2)(new Vector2(0,0)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -49943,18 +49943,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igValue_Bool")]
-		internal static extern void ValueNative(byte* prefix, bool b);
+		internal static extern void ValueNative(byte* prefix, byte b);
 
 		public static void Value(byte* prefix, bool b)
 		{
-			ValueNative(prefix, b);
+			ValueNative(prefix, b ? (byte)1 : (byte)0);
 		}
 
 		public static void Value(ref byte prefix, bool b)
 		{
 			fixed (byte* pprefix = &prefix)
 			{
-				ValueNative((byte*)pprefix, b);
+				ValueNative((byte*)pprefix, b ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -49977,7 +49977,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ValueNative(pStr0, b);
+			ValueNative(pStr0, b ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -50276,17 +50276,17 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igBeginMenu")]
-		internal static extern byte BeginMenuNative(byte* label, bool enabled);
+		internal static extern byte BeginMenuNative(byte* label, byte enabled);
 
 		public static bool BeginMenu(byte* label, bool enabled)
 		{
-			byte ret = BeginMenuNative(label, enabled);
+			byte ret = BeginMenuNative(label, enabled ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
 		public static bool BeginMenu(byte* label)
 		{
-			byte ret = BeginMenuNative(label, (bool)(true));
+			byte ret = BeginMenuNative(label, (byte)(1));
 			return ret != 0;
 		}
 
@@ -50294,7 +50294,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = BeginMenuNative((byte*)plabel, enabled);
+				byte ret = BeginMenuNative((byte*)plabel, enabled ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -50303,7 +50303,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = BeginMenuNative((byte*)plabel, (bool)(true));
+				byte ret = BeginMenuNative((byte*)plabel, (byte)(1));
 				return ret != 0;
 			}
 		}
@@ -50327,7 +50327,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginMenuNative(pStr0, enabled);
+			byte ret = BeginMenuNative(pStr0, enabled ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -50354,7 +50354,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginMenuNative(pStr0, (bool)(true));
+			byte ret = BeginMenuNative(pStr0, (byte)(1));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -50371,29 +50371,29 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igMenuItem_Bool")]
-		internal static extern byte MenuItemNative(byte* label, byte* shortcut, bool selected, bool enabled);
+		internal static extern byte MenuItemNative(byte* label, byte* shortcut, byte selected, byte enabled);
 
 		public static bool MenuItem(byte* label, byte* shortcut, bool selected, bool enabled)
 		{
-			byte ret = MenuItemNative(label, shortcut, selected, enabled);
+			byte ret = MenuItemNative(label, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
 		public static bool MenuItem(byte* label, byte* shortcut, bool selected)
 		{
-			byte ret = MenuItemNative(label, shortcut, selected, (bool)(true));
+			byte ret = MenuItemNative(label, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
 			return ret != 0;
 		}
 
 		public static bool MenuItem(byte* label, byte* shortcut)
 		{
-			byte ret = MenuItemNative(label, shortcut, (bool)(false), (bool)(true));
+			byte ret = MenuItemNative(label, shortcut, (byte)(0), (byte)(1));
 			return ret != 0;
 		}
 
 		public static bool MenuItem(byte* label)
 		{
-			byte ret = MenuItemNative(label, (byte*)(default), (bool)(false), (bool)(true));
+			byte ret = MenuItemNative(label, (byte*)(default), (byte)(0), (byte)(1));
 			return ret != 0;
 		}
 
@@ -50401,7 +50401,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = MenuItemNative((byte*)plabel, shortcut, selected, enabled);
+				byte ret = MenuItemNative((byte*)plabel, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -50410,7 +50410,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = MenuItemNative((byte*)plabel, shortcut, selected, (bool)(true));
+				byte ret = MenuItemNative((byte*)plabel, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
 				return ret != 0;
 			}
 		}
@@ -50419,7 +50419,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = MenuItemNative((byte*)plabel, shortcut, (bool)(false), (bool)(true));
+				byte ret = MenuItemNative((byte*)plabel, shortcut, (byte)(0), (byte)(1));
 				return ret != 0;
 			}
 		}
@@ -50428,7 +50428,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = MenuItemNative((byte*)plabel, (byte*)(default), (bool)(false), (bool)(true));
+				byte ret = MenuItemNative((byte*)plabel, (byte*)(default), (byte)(0), (byte)(1));
 				return ret != 0;
 			}
 		}
@@ -50452,7 +50452,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = MenuItemNative(pStr0, shortcut, selected, enabled);
+			byte ret = MenuItemNative(pStr0, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -50479,7 +50479,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = MenuItemNative(pStr0, shortcut, selected, (bool)(true));
+			byte ret = MenuItemNative(pStr0, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -50506,7 +50506,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = MenuItemNative(pStr0, shortcut, (bool)(false), (bool)(true));
+			byte ret = MenuItemNative(pStr0, shortcut, (byte)(0), (byte)(1));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -50533,7 +50533,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = MenuItemNative(pStr0, (byte*)(default), (bool)(false), (bool)(true));
+			byte ret = MenuItemNative(pStr0, (byte*)(default), (byte)(0), (byte)(1));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -50545,7 +50545,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* pshortcut = &shortcut)
 			{
-				byte ret = MenuItemNative(label, (byte*)pshortcut, selected, enabled);
+				byte ret = MenuItemNative(label, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -50554,7 +50554,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* pshortcut = &shortcut)
 			{
-				byte ret = MenuItemNative(label, (byte*)pshortcut, selected, (bool)(true));
+				byte ret = MenuItemNative(label, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
 				return ret != 0;
 			}
 		}
@@ -50563,7 +50563,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* pshortcut = &shortcut)
 			{
-				byte ret = MenuItemNative(label, (byte*)pshortcut, (bool)(false), (bool)(true));
+				byte ret = MenuItemNative(label, (byte*)pshortcut, (byte)(0), (byte)(1));
 				return ret != 0;
 			}
 		}
@@ -50587,7 +50587,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = MenuItemNative(label, pStr0, selected, enabled);
+			byte ret = MenuItemNative(label, pStr0, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -50614,7 +50614,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = MenuItemNative(label, pStr0, selected, (bool)(true));
+			byte ret = MenuItemNative(label, pStr0, selected ? (byte)1 : (byte)0, (byte)(1));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -50641,7 +50641,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = MenuItemNative(label, pStr0, (bool)(false), (bool)(true));
+			byte ret = MenuItemNative(label, pStr0, (byte)(0), (byte)(1));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -50655,7 +50655,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* pshortcut = &shortcut)
 				{
-					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, selected, enabled);
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 					return ret != 0;
 				}
 			}
@@ -50667,7 +50667,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* pshortcut = &shortcut)
 				{
-					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, selected, (bool)(true));
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
 					return ret != 0;
 				}
 			}
@@ -50679,7 +50679,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* pshortcut = &shortcut)
 				{
-					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool)(false), (bool)(true));
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (byte)(0), (byte)(1));
 					return ret != 0;
 				}
 			}
@@ -50721,7 +50721,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = MenuItemNative(pStr0, pStr1, selected, enabled);
+			byte ret = MenuItemNative(pStr0, pStr1, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -50769,7 +50769,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = MenuItemNative(pStr0, pStr1, selected, (bool)(true));
+			byte ret = MenuItemNative(pStr0, pStr1, selected ? (byte)1 : (byte)0, (byte)(1));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -50817,7 +50817,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = MenuItemNative(pStr0, pStr1, (bool)(false), (bool)(true));
+			byte ret = MenuItemNative(pStr0, pStr1, (byte)(0), (byte)(1));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -50830,17 +50830,17 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igMenuItem_BoolPtr")]
-		internal static extern byte MenuItemNative(byte* label, byte* shortcut, bool* pSelected, bool enabled);
+		internal static extern byte MenuItemNative(byte* label, byte* shortcut, bool* pSelected, byte enabled);
 
 		public static bool MenuItem(byte* label, byte* shortcut, bool* pSelected, bool enabled)
 		{
-			byte ret = MenuItemNative(label, shortcut, pSelected, enabled);
+			byte ret = MenuItemNative(label, shortcut, pSelected, enabled ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
 		public static bool MenuItem(byte* label, byte* shortcut, bool* pSelected)
 		{
-			byte ret = MenuItemNative(label, shortcut, pSelected, (bool)(true));
+			byte ret = MenuItemNative(label, shortcut, pSelected, (byte)(1));
 			return ret != 0;
 		}
 
@@ -50848,7 +50848,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = MenuItemNative((byte*)plabel, shortcut, pSelected, enabled);
+				byte ret = MenuItemNative((byte*)plabel, shortcut, pSelected, enabled ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -50857,7 +50857,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = MenuItemNative((byte*)plabel, shortcut, pSelected, (bool)(true));
+				byte ret = MenuItemNative((byte*)plabel, shortcut, pSelected, (byte)(1));
 				return ret != 0;
 			}
 		}
@@ -50881,7 +50881,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = MenuItemNative(pStr0, shortcut, pSelected, enabled);
+			byte ret = MenuItemNative(pStr0, shortcut, pSelected, enabled ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -50908,7 +50908,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = MenuItemNative(pStr0, shortcut, pSelected, (bool)(true));
+			byte ret = MenuItemNative(pStr0, shortcut, pSelected, (byte)(1));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -50920,7 +50920,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* pshortcut = &shortcut)
 			{
-				byte ret = MenuItemNative(label, (byte*)pshortcut, pSelected, enabled);
+				byte ret = MenuItemNative(label, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -50929,7 +50929,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* pshortcut = &shortcut)
 			{
-				byte ret = MenuItemNative(label, (byte*)pshortcut, pSelected, (bool)(true));
+				byte ret = MenuItemNative(label, (byte*)pshortcut, pSelected, (byte)(1));
 				return ret != 0;
 			}
 		}
@@ -50953,7 +50953,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = MenuItemNative(label, pStr0, pSelected, enabled);
+			byte ret = MenuItemNative(label, pStr0, pSelected, enabled ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -50980,7 +50980,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = MenuItemNative(label, pStr0, pSelected, (bool)(true));
+			byte ret = MenuItemNative(label, pStr0, pSelected, (byte)(1));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -50994,7 +50994,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* pshortcut = &shortcut)
 				{
-					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, enabled);
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
 					return ret != 0;
 				}
 			}
@@ -51006,7 +51006,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* pshortcut = &shortcut)
 				{
-					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, (bool)(true));
+					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, (byte)(1));
 					return ret != 0;
 				}
 			}
@@ -51048,7 +51048,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = MenuItemNative(pStr0, pStr1, pSelected, enabled);
+			byte ret = MenuItemNative(pStr0, pStr1, pSelected, enabled ? (byte)1 : (byte)0);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -51096,7 +51096,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = MenuItemNative(pStr0, pStr1, pSelected, (bool)(true));
+			byte ret = MenuItemNative(pStr0, pStr1, pSelected, (byte)(1));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -51112,7 +51112,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (bool* ppSelected = &pSelected)
 			{
-				byte ret = MenuItemNative(label, shortcut, (bool*)ppSelected, enabled);
+				byte ret = MenuItemNative(label, shortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -51121,7 +51121,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (bool* ppSelected = &pSelected)
 			{
-				byte ret = MenuItemNative(label, shortcut, (bool*)ppSelected, (bool)(true));
+				byte ret = MenuItemNative(label, shortcut, (bool*)ppSelected, (byte)(1));
 				return ret != 0;
 			}
 		}
@@ -51132,7 +51132,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (bool* ppSelected = &pSelected)
 				{
-					byte ret = MenuItemNative((byte*)plabel, shortcut, (bool*)ppSelected, enabled);
+					byte ret = MenuItemNative((byte*)plabel, shortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
 					return ret != 0;
 				}
 			}
@@ -51144,7 +51144,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (bool* ppSelected = &pSelected)
 				{
-					byte ret = MenuItemNative((byte*)plabel, shortcut, (bool*)ppSelected, (bool)(true));
+					byte ret = MenuItemNative((byte*)plabel, shortcut, (bool*)ppSelected, (byte)(1));
 					return ret != 0;
 				}
 			}
@@ -51171,7 +51171,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (bool* ppSelected = &pSelected)
 			{
-				byte ret = MenuItemNative(pStr0, shortcut, (bool*)ppSelected, enabled);
+				byte ret = MenuItemNative(pStr0, shortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -51201,7 +51201,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (bool* ppSelected = &pSelected)
 			{
-				byte ret = MenuItemNative(pStr0, shortcut, (bool*)ppSelected, (bool)(true));
+				byte ret = MenuItemNative(pStr0, shortcut, (bool*)ppSelected, (byte)(1));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -51216,7 +51216,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (bool* ppSelected = &pSelected)
 				{
-					byte ret = MenuItemNative(label, (byte*)pshortcut, (bool*)ppSelected, enabled);
+					byte ret = MenuItemNative(label, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
 					return ret != 0;
 				}
 			}
@@ -51228,7 +51228,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (bool* ppSelected = &pSelected)
 				{
-					byte ret = MenuItemNative(label, (byte*)pshortcut, (bool*)ppSelected, (bool)(true));
+					byte ret = MenuItemNative(label, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
 					return ret != 0;
 				}
 			}
@@ -51255,7 +51255,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (bool* ppSelected = &pSelected)
 			{
-				byte ret = MenuItemNative(label, pStr0, (bool*)ppSelected, enabled);
+				byte ret = MenuItemNative(label, pStr0, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -51285,7 +51285,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (bool* ppSelected = &pSelected)
 			{
-				byte ret = MenuItemNative(label, pStr0, (bool*)ppSelected, (bool)(true));
+				byte ret = MenuItemNative(label, pStr0, (bool*)ppSelected, (byte)(1));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -51302,7 +51302,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (bool* ppSelected = &pSelected)
 					{
-						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, enabled);
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
 						return ret != 0;
 					}
 				}
@@ -51317,7 +51317,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (bool* ppSelected = &pSelected)
 					{
-						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, (bool)(true));
+						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
 						return ret != 0;
 					}
 				}
@@ -51362,7 +51362,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (bool* ppSelected = &pSelected)
 			{
-				byte ret = MenuItemNative(pStr0, pStr1, (bool*)ppSelected, enabled);
+				byte ret = MenuItemNative(pStr0, pStr1, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -51413,7 +51413,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (bool* ppSelected = &pSelected)
 			{
-				byte ret = MenuItemNative(pStr0, pStr1, (bool*)ppSelected, (bool)(true));
+				byte ret = MenuItemNative(pStr0, pStr1, (bool*)ppSelected, (byte)(1));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -52918,11 +52918,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTableSetColumnEnabled")]
-		internal static extern void TableSetColumnEnabledNative(int columnN, bool v);
+		internal static extern void TableSetColumnEnabledNative(int columnN, byte v);
 
 		public static void TableSetColumnEnabled(int columnN, bool v)
 		{
-			TableSetColumnEnabledNative(columnN, v);
+			TableSetColumnEnabledNative(columnN, v ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTableSetBgColor")]
@@ -52939,33 +52939,33 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igColumns")]
-		internal static extern void ColumnsNative(int count, byte* id, bool border);
+		internal static extern void ColumnsNative(int count, byte* id, byte border);
 
 		public static void Columns(int count, byte* id, bool border)
 		{
-			ColumnsNative(count, id, border);
+			ColumnsNative(count, id, border ? (byte)1 : (byte)0);
 		}
 
 		public static void Columns(int count, byte* id)
 		{
-			ColumnsNative(count, id, (bool)(true));
+			ColumnsNative(count, id, (byte)(1));
 		}
 
 		public static void Columns(int count)
 		{
-			ColumnsNative(count, (byte*)(default), (bool)(true));
+			ColumnsNative(count, (byte*)(default), (byte)(1));
 		}
 
 		public static void Columns()
 		{
-			ColumnsNative((int)(1), (byte*)(default), (bool)(true));
+			ColumnsNative((int)(1), (byte*)(default), (byte)(1));
 		}
 
 		public static void Columns(int count, ref byte id, bool border)
 		{
 			fixed (byte* pid = &id)
 			{
-				ColumnsNative(count, (byte*)pid, border);
+				ColumnsNative(count, (byte*)pid, border ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -52973,7 +52973,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* pid = &id)
 			{
-				ColumnsNative(count, (byte*)pid, (bool)(true));
+				ColumnsNative(count, (byte*)pid, (byte)(1));
 			}
 		}
 
@@ -52996,7 +52996,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ColumnsNative(count, pStr0, border);
+			ColumnsNative(count, pStr0, border ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -53022,7 +53022,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ColumnsNative(count, pStr0, (bool)(true));
+			ColumnsNative(count, pStr0, (byte)(1));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -54082,16 +54082,16 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igBeginDisabled")]
-		internal static extern void BeginDisabledNative(bool disabled);
+		internal static extern void BeginDisabledNative(byte disabled);
 
 		public static void BeginDisabled(bool disabled)
 		{
-			BeginDisabledNative(disabled);
+			BeginDisabledNative(disabled ? (byte)1 : (byte)0);
 		}
 
 		public static void BeginDisabled()
 		{
-			BeginDisabledNative((bool)(true));
+			BeginDisabledNative((byte)(1));
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igEndDisabled")]
@@ -54103,11 +54103,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igPushClipRect")]
-		internal static extern void PushClipRectNative(Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect);
+		internal static extern void PushClipRectNative(Vector2 clipRectMin, Vector2 clipRectMax, byte intersectWithCurrentClipRect);
 
 		public static void PushClipRect(Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
 		{
-			PushClipRectNative(clipRectMin, clipRectMax, intersectWithCurrentClipRect);
+			PushClipRectNative(clipRectMin, clipRectMax, intersectWithCurrentClipRect ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igPopClipRect")]
@@ -54511,33 +54511,33 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igCalcTextSize")]
-		internal static extern void CalcTextSizeNative(Vector2* output, byte* text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth);
+		internal static extern void CalcTextSizeNative(Vector2* output, byte* text, byte* textEnd, byte hideTextAfterDoubleHash, float wrapWidth);
 
 		public static Vector2 CalcTextSize(byte* text)
 		{
 			Vector2 ret;
-			CalcTextSizeNative(&ret, text, (byte*)(default), (bool)(false), (float)(-1.0f));
+			CalcTextSizeNative(&ret, text, (byte*)(default), (byte)(0), (float)(-1.0f));
 			return ret;
 		}
 
 		public static Vector2 CalcTextSize(byte* text, byte* textEnd)
 		{
 			Vector2 ret;
-			CalcTextSizeNative(&ret, text, textEnd, (bool)(false), (float)(-1.0f));
+			CalcTextSizeNative(&ret, text, textEnd, (byte)(0), (float)(-1.0f));
 			return ret;
 		}
 
 		public static Vector2 CalcTextSize(byte* text, byte* textEnd, bool hideTextAfterDoubleHash)
 		{
 			Vector2 ret;
-			CalcTextSizeNative(&ret, text, textEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+			CalcTextSizeNative(&ret, text, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 			return ret;
 		}
 
 		public static Vector2 CalcTextSize(byte* text, byte* textEnd, bool hideTextAfterDoubleHash, float wrapWidth)
 		{
 			Vector2 ret;
-			CalcTextSizeNative(&ret, text, textEnd, hideTextAfterDoubleHash, wrapWidth);
+			CalcTextSizeNative(&ret, text, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 			return ret;
 		}
 
@@ -54545,7 +54545,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				CalcTextSizeNative((Vector2*)poutput, text, textEnd, hideTextAfterDoubleHash, wrapWidth);
+				CalcTextSizeNative((Vector2*)poutput, text, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 			}
 		}
 
@@ -54553,7 +54553,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				CalcTextSizeNative((Vector2*)poutput, text, textEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+				CalcTextSizeNative((Vector2*)poutput, text, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 			}
 		}
 
@@ -54561,7 +54561,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				CalcTextSizeNative((Vector2*)poutput, text, textEnd, (bool)(false), (float)(-1.0f));
+				CalcTextSizeNative((Vector2*)poutput, text, textEnd, (byte)(0), (float)(-1.0f));
 			}
 		}
 
@@ -54569,7 +54569,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				CalcTextSizeNative((Vector2*)poutput, text, (byte*)(default), (bool)(false), (float)(-1.0f));
+				CalcTextSizeNative((Vector2*)poutput, text, (byte*)(default), (byte)(0), (float)(-1.0f));
 			}
 		}
 
@@ -54578,7 +54578,7 @@ namespace HexaEngine.ImGuiNET
 			fixed (byte* ptext = &text)
 			{
 				Vector2 ret;
-				CalcTextSizeNative(&ret, (byte*)ptext, (byte*)(default), (bool)(false), (float)(-1.0f));
+				CalcTextSizeNative(&ret, (byte*)ptext, (byte*)(default), (byte)(0), (float)(-1.0f));
 				return ret;
 			}
 		}
@@ -54588,7 +54588,7 @@ namespace HexaEngine.ImGuiNET
 			fixed (byte* ptext = &text)
 			{
 				Vector2 ret;
-				CalcTextSizeNative(&ret, (byte*)ptext, textEnd, (bool)(false), (float)(-1.0f));
+				CalcTextSizeNative(&ret, (byte*)ptext, textEnd, (byte)(0), (float)(-1.0f));
 				return ret;
 			}
 		}
@@ -54598,7 +54598,7 @@ namespace HexaEngine.ImGuiNET
 			fixed (byte* ptext = &text)
 			{
 				Vector2 ret;
-				CalcTextSizeNative(&ret, (byte*)ptext, textEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+				CalcTextSizeNative(&ret, (byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 				return ret;
 			}
 		}
@@ -54608,7 +54608,7 @@ namespace HexaEngine.ImGuiNET
 			fixed (byte* ptext = &text)
 			{
 				Vector2 ret;
-				CalcTextSizeNative(&ret, (byte*)ptext, textEnd, hideTextAfterDoubleHash, wrapWidth);
+				CalcTextSizeNative(&ret, (byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 				return ret;
 			}
 		}
@@ -54633,7 +54633,7 @@ namespace HexaEngine.ImGuiNET
 				pStr0[pStrOffset0] = 0;
 			}
 			Vector2 ret;
-			CalcTextSizeNative(&ret, pStr0, (byte*)(default), (bool)(false), (float)(-1.0f));
+			CalcTextSizeNative(&ret, pStr0, (byte*)(default), (byte)(0), (float)(-1.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -54661,7 +54661,7 @@ namespace HexaEngine.ImGuiNET
 				pStr0[pStrOffset0] = 0;
 			}
 			Vector2 ret;
-			CalcTextSizeNative(&ret, pStr0, textEnd, (bool)(false), (float)(-1.0f));
+			CalcTextSizeNative(&ret, pStr0, textEnd, (byte)(0), (float)(-1.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -54689,7 +54689,7 @@ namespace HexaEngine.ImGuiNET
 				pStr0[pStrOffset0] = 0;
 			}
 			Vector2 ret;
-			CalcTextSizeNative(&ret, pStr0, textEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+			CalcTextSizeNative(&ret, pStr0, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -54717,7 +54717,7 @@ namespace HexaEngine.ImGuiNET
 				pStr0[pStrOffset0] = 0;
 			}
 			Vector2 ret;
-			CalcTextSizeNative(&ret, pStr0, textEnd, hideTextAfterDoubleHash, wrapWidth);
+			CalcTextSizeNative(&ret, pStr0, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -54731,7 +54731,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptext = &text)
 				{
-					CalcTextSizeNative((Vector2*)poutput, (byte*)ptext, textEnd, hideTextAfterDoubleHash, wrapWidth);
+					CalcTextSizeNative((Vector2*)poutput, (byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 				}
 			}
 		}
@@ -54742,7 +54742,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptext = &text)
 				{
-					CalcTextSizeNative((Vector2*)poutput, (byte*)ptext, textEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+					CalcTextSizeNative((Vector2*)poutput, (byte*)ptext, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 				}
 			}
 		}
@@ -54753,7 +54753,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptext = &text)
 				{
-					CalcTextSizeNative((Vector2*)poutput, (byte*)ptext, textEnd, (bool)(false), (float)(-1.0f));
+					CalcTextSizeNative((Vector2*)poutput, (byte*)ptext, textEnd, (byte)(0), (float)(-1.0f));
 				}
 			}
 		}
@@ -54764,7 +54764,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptext = &text)
 				{
-					CalcTextSizeNative((Vector2*)poutput, (byte*)ptext, (byte*)(default), (bool)(false), (float)(-1.0f));
+					CalcTextSizeNative((Vector2*)poutput, (byte*)ptext, (byte*)(default), (byte)(0), (float)(-1.0f));
 				}
 			}
 		}
@@ -54790,7 +54790,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				CalcTextSizeNative((Vector2*)poutput, pStr0, textEnd, hideTextAfterDoubleHash, wrapWidth);
+				CalcTextSizeNative((Vector2*)poutput, pStr0, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -54819,7 +54819,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				CalcTextSizeNative((Vector2*)poutput, pStr0, textEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+				CalcTextSizeNative((Vector2*)poutput, pStr0, textEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -54848,7 +54848,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				CalcTextSizeNative((Vector2*)poutput, pStr0, textEnd, (bool)(false), (float)(-1.0f));
+				CalcTextSizeNative((Vector2*)poutput, pStr0, textEnd, (byte)(0), (float)(-1.0f));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -54877,7 +54877,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				CalcTextSizeNative((Vector2*)poutput, pStr0, (byte*)(default), (bool)(false), (float)(-1.0f));
+				CalcTextSizeNative((Vector2*)poutput, pStr0, (byte*)(default), (byte)(0), (float)(-1.0f));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -54890,7 +54890,7 @@ namespace HexaEngine.ImGuiNET
 			fixed (byte* ptextEnd = &textEnd)
 			{
 				Vector2 ret;
-				CalcTextSizeNative(&ret, text, (byte*)ptextEnd, (bool)(false), (float)(-1.0f));
+				CalcTextSizeNative(&ret, text, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
 				return ret;
 			}
 		}
@@ -54900,7 +54900,7 @@ namespace HexaEngine.ImGuiNET
 			fixed (byte* ptextEnd = &textEnd)
 			{
 				Vector2 ret;
-				CalcTextSizeNative(&ret, text, (byte*)ptextEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+				CalcTextSizeNative(&ret, text, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 				return ret;
 			}
 		}
@@ -54910,7 +54910,7 @@ namespace HexaEngine.ImGuiNET
 			fixed (byte* ptextEnd = &textEnd)
 			{
 				Vector2 ret;
-				CalcTextSizeNative(&ret, text, (byte*)ptextEnd, hideTextAfterDoubleHash, wrapWidth);
+				CalcTextSizeNative(&ret, text, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 				return ret;
 			}
 		}
@@ -54935,7 +54935,7 @@ namespace HexaEngine.ImGuiNET
 				pStr0[pStrOffset0] = 0;
 			}
 			Vector2 ret;
-			CalcTextSizeNative(&ret, text, pStr0, (bool)(false), (float)(-1.0f));
+			CalcTextSizeNative(&ret, text, pStr0, (byte)(0), (float)(-1.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -54963,7 +54963,7 @@ namespace HexaEngine.ImGuiNET
 				pStr0[pStrOffset0] = 0;
 			}
 			Vector2 ret;
-			CalcTextSizeNative(&ret, text, pStr0, hideTextAfterDoubleHash, (float)(-1.0f));
+			CalcTextSizeNative(&ret, text, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -54991,7 +54991,7 @@ namespace HexaEngine.ImGuiNET
 				pStr0[pStrOffset0] = 0;
 			}
 			Vector2 ret;
-			CalcTextSizeNative(&ret, text, pStr0, hideTextAfterDoubleHash, wrapWidth);
+			CalcTextSizeNative(&ret, text, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -55005,7 +55005,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					CalcTextSizeNative((Vector2*)poutput, text, (byte*)ptextEnd, hideTextAfterDoubleHash, wrapWidth);
+					CalcTextSizeNative((Vector2*)poutput, text, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 				}
 			}
 		}
@@ -55016,7 +55016,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					CalcTextSizeNative((Vector2*)poutput, text, (byte*)ptextEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+					CalcTextSizeNative((Vector2*)poutput, text, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 				}
 			}
 		}
@@ -55027,7 +55027,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					CalcTextSizeNative((Vector2*)poutput, text, (byte*)ptextEnd, (bool)(false), (float)(-1.0f));
+					CalcTextSizeNative((Vector2*)poutput, text, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
 				}
 			}
 		}
@@ -55053,7 +55053,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				CalcTextSizeNative((Vector2*)poutput, text, pStr0, hideTextAfterDoubleHash, wrapWidth);
+				CalcTextSizeNative((Vector2*)poutput, text, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -55082,7 +55082,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				CalcTextSizeNative((Vector2*)poutput, text, pStr0, hideTextAfterDoubleHash, (float)(-1.0f));
+				CalcTextSizeNative((Vector2*)poutput, text, pStr0, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -55111,7 +55111,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				CalcTextSizeNative((Vector2*)poutput, text, pStr0, (bool)(false), (float)(-1.0f));
+				CalcTextSizeNative((Vector2*)poutput, text, pStr0, (byte)(0), (float)(-1.0f));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -55126,7 +55126,7 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* ptextEnd = &textEnd)
 				{
 					Vector2 ret;
-					CalcTextSizeNative(&ret, (byte*)ptext, (byte*)ptextEnd, (bool)(false), (float)(-1.0f));
+					CalcTextSizeNative(&ret, (byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
 					return ret;
 				}
 			}
@@ -55139,7 +55139,7 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* ptextEnd = &textEnd)
 				{
 					Vector2 ret;
-					CalcTextSizeNative(&ret, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+					CalcTextSizeNative(&ret, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 					return ret;
 				}
 			}
@@ -55152,7 +55152,7 @@ namespace HexaEngine.ImGuiNET
 				fixed (byte* ptextEnd = &textEnd)
 				{
 					Vector2 ret;
-					CalcTextSizeNative(&ret, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash, wrapWidth);
+					CalcTextSizeNative(&ret, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 					return ret;
 				}
 			}
@@ -55195,7 +55195,7 @@ namespace HexaEngine.ImGuiNET
 				pStr1[pStrOffset1] = 0;
 			}
 			Vector2 ret;
-			CalcTextSizeNative(&ret, pStr0, pStr1, (bool)(false), (float)(-1.0f));
+			CalcTextSizeNative(&ret, pStr0, pStr1, (byte)(0), (float)(-1.0f));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -55244,7 +55244,7 @@ namespace HexaEngine.ImGuiNET
 				pStr1[pStrOffset1] = 0;
 			}
 			Vector2 ret;
-			CalcTextSizeNative(&ret, pStr0, pStr1, hideTextAfterDoubleHash, (float)(-1.0f));
+			CalcTextSizeNative(&ret, pStr0, pStr1, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -55293,7 +55293,7 @@ namespace HexaEngine.ImGuiNET
 				pStr1[pStrOffset1] = 0;
 			}
 			Vector2 ret;
-			CalcTextSizeNative(&ret, pStr0, pStr1, hideTextAfterDoubleHash, wrapWidth);
+			CalcTextSizeNative(&ret, pStr0, pStr1, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -55313,7 +55313,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						CalcTextSizeNative((Vector2*)poutput, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash, wrapWidth);
+						CalcTextSizeNative((Vector2*)poutput, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 					}
 				}
 			}
@@ -55327,7 +55327,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						CalcTextSizeNative((Vector2*)poutput, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash, (float)(-1.0f));
+						CalcTextSizeNative((Vector2*)poutput, (byte*)ptext, (byte*)ptextEnd, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 					}
 				}
 			}
@@ -55341,7 +55341,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						CalcTextSizeNative((Vector2*)poutput, (byte*)ptext, (byte*)ptextEnd, (bool)(false), (float)(-1.0f));
+						CalcTextSizeNative((Vector2*)poutput, (byte*)ptext, (byte*)ptextEnd, (byte)(0), (float)(-1.0f));
 					}
 				}
 			}
@@ -55385,7 +55385,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				CalcTextSizeNative((Vector2*)poutput, pStr0, pStr1, hideTextAfterDoubleHash, wrapWidth);
+				CalcTextSizeNative((Vector2*)poutput, pStr0, pStr1, hideTextAfterDoubleHash ? (byte)1 : (byte)0, wrapWidth);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -55435,7 +55435,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				CalcTextSizeNative((Vector2*)poutput, pStr0, pStr1, hideTextAfterDoubleHash, (float)(-1.0f));
+				CalcTextSizeNative((Vector2*)poutput, pStr0, pStr1, hideTextAfterDoubleHash ? (byte)1 : (byte)0, (float)(-1.0f));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -55485,7 +55485,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				CalcTextSizeNative((Vector2*)poutput, pStr0, pStr1, (bool)(false), (float)(-1.0f));
+				CalcTextSizeNative((Vector2*)poutput, pStr0, pStr1, (byte)(0), (float)(-1.0f));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -55692,17 +55692,17 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igIsKeyPressed_Bool")]
-		internal static extern byte IsKeyPressedNative(ImGuiKey key, bool repeat);
+		internal static extern byte IsKeyPressedNative(ImGuiKey key, byte repeat);
 
 		public static bool IsKeyPressed(ImGuiKey key, bool repeat)
 		{
-			byte ret = IsKeyPressedNative(key, repeat);
+			byte ret = IsKeyPressedNative(key, repeat ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
 		public static bool IsKeyPressed(ImGuiKey key)
 		{
-			byte ret = IsKeyPressedNative(key, (bool)(true));
+			byte ret = IsKeyPressedNative(key, (byte)(1));
 			return ret != 0;
 		}
 
@@ -55740,11 +55740,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igSetNextFrameWantCaptureKeyboard")]
-		internal static extern void SetNextFrameWantCaptureKeyboardNative(bool wantCaptureKeyboard);
+		internal static extern void SetNextFrameWantCaptureKeyboardNative(byte wantCaptureKeyboard);
 
 		public static void SetNextFrameWantCaptureKeyboard(bool wantCaptureKeyboard)
 		{
-			SetNextFrameWantCaptureKeyboardNative(wantCaptureKeyboard);
+			SetNextFrameWantCaptureKeyboardNative(wantCaptureKeyboard ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igIsMouseDown_Nil")]
@@ -55757,17 +55757,17 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igIsMouseClicked_Bool")]
-		internal static extern byte IsMouseClickedNative(ImGuiMouseButton button, bool repeat);
+		internal static extern byte IsMouseClickedNative(ImGuiMouseButton button, byte repeat);
 
 		public static bool IsMouseClicked(ImGuiMouseButton button, bool repeat)
 		{
-			byte ret = IsMouseClickedNative(button, repeat);
+			byte ret = IsMouseClickedNative(button, repeat ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
 		public static bool IsMouseClicked(ImGuiMouseButton button)
 		{
-			byte ret = IsMouseClickedNative(button, (bool)(false));
+			byte ret = IsMouseClickedNative(button, (byte)(0));
 			return ret != 0;
 		}
 
@@ -55799,17 +55799,17 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igIsMouseHoveringRect")]
-		internal static extern byte IsMouseHoveringRectNative(Vector2 rMin, Vector2 rMax, bool clip);
+		internal static extern byte IsMouseHoveringRectNative(Vector2 rMin, Vector2 rMax, byte clip);
 
 		public static bool IsMouseHoveringRect(Vector2 rMin, Vector2 rMax, bool clip)
 		{
-			byte ret = IsMouseHoveringRectNative(rMin, rMax, clip);
+			byte ret = IsMouseHoveringRectNative(rMin, rMax, clip ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
 		public static bool IsMouseHoveringRect(Vector2 rMin, Vector2 rMax)
 		{
-			byte ret = IsMouseHoveringRectNative(rMin, rMax, (bool)(true));
+			byte ret = IsMouseHoveringRectNative(rMin, rMax, (byte)(1));
 			return ret != 0;
 		}
 
@@ -55976,11 +55976,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igSetNextFrameWantCaptureMouse")]
-		internal static extern void SetNextFrameWantCaptureMouseNative(bool wantCaptureMouse);
+		internal static extern void SetNextFrameWantCaptureMouseNative(byte wantCaptureMouse);
 
 		public static void SetNextFrameWantCaptureMouse(bool wantCaptureMouse)
 		{
-			SetNextFrameWantCaptureMouseNative(wantCaptureMouse);
+			SetNextFrameWantCaptureMouseNative(wantCaptureMouse ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetClipboardText")]
@@ -56478,34 +56478,34 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiIO_AddKeyEvent")]
-		internal static extern void AddKeyEventNative(ImGuiIO* self, ImGuiKey key, bool down);
+		internal static extern void AddKeyEventNative(ImGuiIO* self, ImGuiKey key, byte down);
 
 		public static void AddKeyEvent(ImGuiIO* self, ImGuiKey key, bool down)
 		{
-			AddKeyEventNative(self, key, down);
+			AddKeyEventNative(self, key, down ? (byte)1 : (byte)0);
 		}
 
 		public static void AddKeyEvent(ref ImGuiIO self, ImGuiKey key, bool down)
 		{
 			fixed (ImGuiIO* pself = &self)
 			{
-				AddKeyEventNative((ImGuiIO*)pself, key, down);
+				AddKeyEventNative((ImGuiIO*)pself, key, down ? (byte)1 : (byte)0);
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiIO_AddKeyAnalogEvent")]
-		internal static extern void AddKeyAnalogEventNative(ImGuiIO* self, ImGuiKey key, bool down, float v);
+		internal static extern void AddKeyAnalogEventNative(ImGuiIO* self, ImGuiKey key, byte down, float v);
 
 		public static void AddKeyAnalogEvent(ImGuiIO* self, ImGuiKey key, bool down, float v)
 		{
-			AddKeyAnalogEventNative(self, key, down, v);
+			AddKeyAnalogEventNative(self, key, down ? (byte)1 : (byte)0, v);
 		}
 
 		public static void AddKeyAnalogEvent(ref ImGuiIO self, ImGuiKey key, bool down, float v)
 		{
 			fixed (ImGuiIO* pself = &self)
 			{
-				AddKeyAnalogEventNative((ImGuiIO*)pself, key, down, v);
+				AddKeyAnalogEventNative((ImGuiIO*)pself, key, down ? (byte)1 : (byte)0, v);
 			}
 		}
 
@@ -56526,18 +56526,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiIO_AddMouseButtonEvent")]
-		internal static extern void AddMouseButtonEventNative(ImGuiIO* self, int button, bool down);
+		internal static extern void AddMouseButtonEventNative(ImGuiIO* self, int button, byte down);
 
 		public static void AddMouseButtonEvent(ImGuiIO* self, int button, bool down)
 		{
-			AddMouseButtonEventNative(self, button, down);
+			AddMouseButtonEventNative(self, button, down ? (byte)1 : (byte)0);
 		}
 
 		public static void AddMouseButtonEvent(ref ImGuiIO self, int button, bool down)
 		{
 			fixed (ImGuiIO* pself = &self)
 			{
-				AddMouseButtonEventNative((ImGuiIO*)pself, button, down);
+				AddMouseButtonEventNative((ImGuiIO*)pself, button, down ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -56590,18 +56590,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiIO_AddFocusEvent")]
-		internal static extern void AddFocusEventNative(ImGuiIO* self, bool focused);
+		internal static extern void AddFocusEventNative(ImGuiIO* self, byte focused);
 
 		public static void AddFocusEvent(ImGuiIO* self, bool focused)
 		{
-			AddFocusEventNative(self, focused);
+			AddFocusEventNative(self, focused ? (byte)1 : (byte)0);
 		}
 
 		public static void AddFocusEvent(ref ImGuiIO self, bool focused)
 		{
 			fixed (ImGuiIO* pself = &self)
 			{
-				AddFocusEventNative((ImGuiIO*)pself, focused);
+				AddFocusEventNative((ImGuiIO*)pself, focused ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -56757,18 +56757,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiIO_SetAppAcceptingEvents")]
-		internal static extern void SetAppAcceptingEventsNative(ImGuiIO* self, bool acceptingEvents);
+		internal static extern void SetAppAcceptingEventsNative(ImGuiIO* self, byte acceptingEvents);
 
 		public static void SetAppAcceptingEvents(ImGuiIO* self, bool acceptingEvents)
 		{
-			SetAppAcceptingEventsNative(self, acceptingEvents);
+			SetAppAcceptingEventsNative(self, acceptingEvents ? (byte)1 : (byte)0);
 		}
 
 		public static void SetAppAcceptingEvents(ref ImGuiIO self, bool acceptingEvents)
 		{
 			fixed (ImGuiIO* pself = &self)
 			{
-				SetAppAcceptingEventsNative((ImGuiIO*)pself, acceptingEvents);
+				SetAppAcceptingEventsNative((ImGuiIO*)pself, acceptingEvents ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -59263,17 +59263,17 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiStorage_GetBool")]
-		internal static extern byte GetBoolNative(ImGuiStorage* self, int key, bool defaultVal);
+		internal static extern byte GetBoolNative(ImGuiStorage* self, int key, byte defaultVal);
 
 		public static bool GetBool(ImGuiStorage* self, int key, bool defaultVal)
 		{
-			byte ret = GetBoolNative(self, key, defaultVal);
+			byte ret = GetBoolNative(self, key, defaultVal ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
 		public static bool GetBool(ImGuiStorage* self, int key)
 		{
-			byte ret = GetBoolNative(self, key, (bool)(false));
+			byte ret = GetBoolNative(self, key, (byte)(0));
 			return ret != 0;
 		}
 
@@ -59281,7 +59281,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* pself = &self)
 			{
-				byte ret = GetBoolNative((ImGuiStorage*)pself, key, defaultVal);
+				byte ret = GetBoolNative((ImGuiStorage*)pself, key, defaultVal ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -59290,24 +59290,24 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* pself = &self)
 			{
-				byte ret = GetBoolNative((ImGuiStorage*)pself, key, (bool)(false));
+				byte ret = GetBoolNative((ImGuiStorage*)pself, key, (byte)(0));
 				return ret != 0;
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiStorage_SetBool")]
-		internal static extern void SetBoolNative(ImGuiStorage* self, int key, bool val);
+		internal static extern void SetBoolNative(ImGuiStorage* self, int key, byte val);
 
 		public static void SetBool(ImGuiStorage* self, int key, bool val)
 		{
-			SetBoolNative(self, key, val);
+			SetBoolNative(self, key, val ? (byte)1 : (byte)0);
 		}
 
 		public static void SetBool(ref ImGuiStorage self, int key, bool val)
 		{
 			fixed (ImGuiStorage* pself = &self)
 			{
-				SetBoolNative((ImGuiStorage*)pself, key, val);
+				SetBoolNative((ImGuiStorage*)pself, key, val ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -59428,17 +59428,17 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiStorage_GetBoolRef")]
-		internal static extern bool* GetBoolRefNative(ImGuiStorage* self, int key, bool defaultVal);
+		internal static extern bool* GetBoolRefNative(ImGuiStorage* self, int key, byte defaultVal);
 
 		public static bool* GetBoolRef(ImGuiStorage* self, int key, bool defaultVal)
 		{
-			bool* ret = GetBoolRefNative(self, key, defaultVal);
+			bool* ret = GetBoolRefNative(self, key, defaultVal ? (byte)1 : (byte)0);
 			return ret;
 		}
 
 		public static bool* GetBoolRef(ImGuiStorage* self, int key)
 		{
-			bool* ret = GetBoolRefNative(self, key, (bool)(false));
+			bool* ret = GetBoolRefNative(self, key, (byte)(0));
 			return ret;
 		}
 
@@ -59446,7 +59446,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* pself = &self)
 			{
-				bool* ret = GetBoolRefNative((ImGuiStorage*)pself, key, defaultVal);
+				bool* ret = GetBoolRefNative((ImGuiStorage*)pself, key, defaultVal ? (byte)1 : (byte)0);
 				return ret;
 			}
 		}
@@ -59455,7 +59455,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* pself = &self)
 			{
-				bool* ret = GetBoolRefNative((ImGuiStorage*)pself, key, (bool)(false));
+				bool* ret = GetBoolRefNative((ImGuiStorage*)pself, key, (byte)(0));
 				return ret;
 			}
 		}
@@ -60037,23 +60037,23 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImDrawList_PushClipRect")]
-		internal static extern void PushClipRectNative(ImDrawList* self, Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect);
+		internal static extern void PushClipRectNative(ImDrawList* self, Vector2 clipRectMin, Vector2 clipRectMax, byte intersectWithCurrentClipRect);
 
 		public static void PushClipRect(ImDrawList* self, Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
 		{
-			PushClipRectNative(self, clipRectMin, clipRectMax, intersectWithCurrentClipRect);
+			PushClipRectNative(self, clipRectMin, clipRectMax, intersectWithCurrentClipRect ? (byte)1 : (byte)0);
 		}
 
 		public static void PushClipRect(ImDrawList* self, Vector2 clipRectMin, Vector2 clipRectMax)
 		{
-			PushClipRectNative(self, clipRectMin, clipRectMax, (bool)(false));
+			PushClipRectNative(self, clipRectMin, clipRectMax, (byte)(0));
 		}
 
 		public static void PushClipRect(ref ImDrawList self, Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
 		{
 			fixed (ImDrawList* pself = &self)
 			{
-				PushClipRectNative((ImDrawList*)pself, clipRectMin, clipRectMax, intersectWithCurrentClipRect);
+				PushClipRectNative((ImDrawList*)pself, clipRectMin, clipRectMax, intersectWithCurrentClipRect ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -60061,7 +60061,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* pself = &self)
 			{
-				PushClipRectNative((ImDrawList*)pself, clipRectMin, clipRectMax, (bool)(false));
+				PushClipRectNative((ImDrawList*)pself, clipRectMin, clipRectMax, (byte)(0));
 			}
 		}
 
@@ -72251,28 +72251,28 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFont_RenderText")]
-		internal static extern void RenderTextNative(ImFont* self, ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip);
+		internal static extern void RenderTextNative(ImFont* self, ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth, byte cpuFineClip);
 
 		public static void RenderText(ImFont* self, ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
 		{
-			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
+			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 		}
 
 		public static void RenderText(ImFont* self, ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth)
 		{
-			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (bool)(false));
+			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (byte)(0));
 		}
 
 		public static void RenderText(ImFont* self, ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd)
 		{
-			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (bool)(false));
+			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (byte)(0));
 		}
 
 		public static void RenderText(ref ImFont self, ImDrawList* drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
 		{
 			fixed (ImFont* pself = &self)
 			{
-				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -72280,7 +72280,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* pself = &self)
 			{
-				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (bool)(false));
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (byte)(0));
 			}
 		}
 
@@ -72288,7 +72288,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* pself = &self)
 			{
-				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (bool)(false));
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (byte)(0));
 			}
 		}
 
@@ -72296,7 +72296,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
-				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -72304,7 +72304,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
-				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (bool)(false));
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (byte)(0));
 			}
 		}
 
@@ -72312,7 +72312,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
-				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (bool)(false));
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (byte)(0));
 			}
 		}
 
@@ -72322,7 +72322,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip);
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -72333,7 +72333,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (bool)(false));
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, wrapWidth, (byte)(0));
 				}
 			}
 		}
@@ -72344,7 +72344,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (bool)(false));
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, textEnd, (float)(0.0f), (byte)(0));
 				}
 			}
 		}
@@ -72353,7 +72353,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				RenderTextNative(self, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip);
+				RenderTextNative(self, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -72361,7 +72361,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				RenderTextNative(self, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (bool)(false));
+				RenderTextNative(self, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (byte)(0));
 			}
 		}
 
@@ -72369,7 +72369,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
-				RenderTextNative(self, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (bool)(false));
+				RenderTextNative(self, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (byte)(0));
 			}
 		}
 
@@ -72392,7 +72392,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			RenderTextNative(self, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip);
+			RenderTextNative(self, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -72418,7 +72418,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			RenderTextNative(self, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (bool)(false));
+			RenderTextNative(self, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (byte)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -72444,7 +72444,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			RenderTextNative(self, drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (bool)(false));
+			RenderTextNative(self, drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (byte)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -72457,7 +72457,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip);
+					RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -72468,7 +72468,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (bool)(false));
+					RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (byte)(0));
 				}
 			}
 		}
@@ -72479,7 +72479,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (bool)(false));
+					RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (byte)(0));
 				}
 			}
 		}
@@ -72505,7 +72505,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip);
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -72534,7 +72534,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (bool)(false));
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -72563,7 +72563,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (bool)(false));
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -72577,7 +72577,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip);
+					RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -72588,7 +72588,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (bool)(false));
+					RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (byte)(0));
 				}
 			}
 		}
@@ -72599,7 +72599,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextBegin = &textBegin)
 				{
-					RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (bool)(false));
+					RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (byte)(0));
 				}
 			}
 		}
@@ -72625,7 +72625,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip);
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -72654,7 +72654,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (bool)(false));
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -72683,7 +72683,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (bool)(false));
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -72699,7 +72699,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextBegin = &textBegin)
 					{
-						RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip);
+						RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 					}
 				}
 			}
@@ -72713,7 +72713,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextBegin = &textBegin)
 					{
-						RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (bool)(false));
+						RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (byte)(0));
 					}
 				}
 			}
@@ -72727,7 +72727,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextBegin = &textBegin)
 					{
-						RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (bool)(false));
+						RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (byte)(0));
 					}
 				}
 			}
@@ -72756,7 +72756,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip);
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -72788,7 +72788,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (bool)(false));
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, wrapWidth, (byte)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -72820,7 +72820,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (bool)(false));
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, textEnd, (float)(0.0f), (byte)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -72833,7 +72833,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+				RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -72841,7 +72841,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+				RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 			}
 		}
 
@@ -72849,7 +72849,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+				RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 			}
 		}
 
@@ -72872,7 +72872,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip);
+			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -72898,7 +72898,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (bool)(false));
+			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (byte)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -72924,7 +72924,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (bool)(false));
+			RenderTextNative(self, drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (byte)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -72937,7 +72937,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+					RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -72948,7 +72948,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+					RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 				}
 			}
 		}
@@ -72959,7 +72959,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+					RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 				}
 			}
 		}
@@ -72985,7 +72985,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip);
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -73014,7 +73014,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (bool)(false));
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -73043,7 +73043,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (bool)(false));
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -73057,7 +73057,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+					RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -73068,7 +73068,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+					RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 				}
 			}
 		}
@@ -73079,7 +73079,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+					RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 				}
 			}
 		}
@@ -73105,7 +73105,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip);
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -73134,7 +73134,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (bool)(false));
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -73163,7 +73163,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (bool)(false));
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (byte)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -73179,7 +73179,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+						RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 					}
 				}
 			}
@@ -73193,7 +73193,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+						RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 					}
 				}
 			}
@@ -73207,7 +73207,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+						RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 					}
 				}
 			}
@@ -73236,7 +73236,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip);
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -73268,7 +73268,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (bool)(false));
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, wrapWidth, (byte)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -73300,7 +73300,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 						pStr0[pStrOffset0] = 0;
 					}
-					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (bool)(false));
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, pStr0, (float)(0.0f), (byte)(0));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -73315,7 +73315,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					RenderTextNative(self, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+					RenderTextNative(self, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -73326,7 +73326,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					RenderTextNative(self, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+					RenderTextNative(self, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 				}
 			}
 		}
@@ -73337,7 +73337,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					RenderTextNative(self, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+					RenderTextNative(self, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 				}
 			}
 		}
@@ -73378,7 +73378,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			RenderTextNative(self, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip);
+			RenderTextNative(self, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -73425,7 +73425,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			RenderTextNative(self, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (bool)(false));
+			RenderTextNative(self, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (byte)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -73472,7 +73472,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			RenderTextNative(self, drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (bool)(false));
+			RenderTextNative(self, drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (byte)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -73491,7 +73491,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+						RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 					}
 				}
 			}
@@ -73505,7 +73505,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+						RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 					}
 				}
 			}
@@ -73519,7 +73519,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+						RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 					}
 				}
 			}
@@ -73563,7 +73563,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip);
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -73613,7 +73613,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (bool)(false));
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (byte)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -73663,7 +73663,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (bool)(false));
+				RenderTextNative((ImFont*)pself, drawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (byte)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -73683,7 +73683,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+						RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 					}
 				}
 			}
@@ -73697,7 +73697,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+						RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 					}
 				}
 			}
@@ -73711,7 +73711,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+						RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 					}
 				}
 			}
@@ -73755,7 +73755,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip);
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -73805,7 +73805,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (bool)(false));
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (byte)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -73855,7 +73855,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (bool)(false));
+				RenderTextNative(self, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (byte)(0));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -73877,7 +73877,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (byte* ptextEnd = &textEnd)
 						{
-							RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip);
+							RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 						}
 					}
 				}
@@ -73894,7 +73894,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (byte* ptextEnd = &textEnd)
 						{
-							RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (bool)(false));
+							RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
 						}
 					}
 				}
@@ -73911,7 +73911,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (byte* ptextEnd = &textEnd)
 						{
-							RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (bool)(false));
+							RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
 						}
 					}
 				}
@@ -73958,7 +73958,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 						pStr1[pStrOffset1] = 0;
 					}
-					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip);
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
 					if (pStrSize1 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr1);
@@ -74011,7 +74011,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 						pStr1[pStrOffset1] = 0;
 					}
-					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (bool)(false));
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, wrapWidth, (byte)(0));
 					if (pStrSize1 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr1);
@@ -74064,7 +74064,7 @@ namespace HexaEngine.ImGuiNET
 						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 						pStr1[pStrOffset1] = 0;
 					}
-					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (bool)(false));
+					RenderTextNative((ImFont*)pself, (ImDrawList*)pdrawList, size, pos, col, clipRect, pStr0, pStr1, (float)(0.0f), (byte)(0));
 					if (pStrSize1 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr1);
@@ -74161,23 +74161,23 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFont_AddRemapChar")]
-		internal static extern void AddRemapCharNative(ImFont* self, char dst, char src, bool overwriteDst);
+		internal static extern void AddRemapCharNative(ImFont* self, char dst, char src, byte overwriteDst);
 
 		public static void AddRemapChar(ImFont* self, char dst, char src, bool overwriteDst)
 		{
-			AddRemapCharNative(self, dst, src, overwriteDst);
+			AddRemapCharNative(self, dst, src, overwriteDst ? (byte)1 : (byte)0);
 		}
 
 		public static void AddRemapChar(ImFont* self, char dst, char src)
 		{
-			AddRemapCharNative(self, dst, src, (bool)(true));
+			AddRemapCharNative(self, dst, src, (byte)(1));
 		}
 
 		public static void AddRemapChar(ref ImFont self, char dst, char src, bool overwriteDst)
 		{
 			fixed (ImFont* pself = &self)
 			{
-				AddRemapCharNative((ImFont*)pself, dst, src, overwriteDst);
+				AddRemapCharNative((ImFont*)pself, dst, src, overwriteDst ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -74185,23 +74185,23 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* pself = &self)
 			{
-				AddRemapCharNative((ImFont*)pself, dst, src, (bool)(true));
+				AddRemapCharNative((ImFont*)pself, dst, src, (byte)(1));
 			}
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFont_SetGlyphVisible")]
-		internal static extern void SetGlyphVisibleNative(ImFont* self, char c, bool visible);
+		internal static extern void SetGlyphVisibleNative(ImFont* self, char c, byte visible);
 
 		public static void SetGlyphVisible(ImFont* self, char c, bool visible)
 		{
-			SetGlyphVisibleNative(self, c, visible);
+			SetGlyphVisibleNative(self, c, visible ? (byte)1 : (byte)0);
 		}
 
 		public static void SetGlyphVisible(ref ImFont self, char c, bool visible)
 		{
 			fixed (ImFont* pself = &self)
 			{
-				SetGlyphVisibleNative((ImFont*)pself, c, visible);
+				SetGlyphVisibleNative((ImFont*)pself, c, visible ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -84053,18 +84053,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiMenuColumns_Update")]
-		internal static extern void ImGuiMenuColumnsUpdateNative(ImGuiMenuColumns* self, float spacing, bool windowReappearing);
+		internal static extern void ImGuiMenuColumnsUpdateNative(ImGuiMenuColumns* self, float spacing, byte windowReappearing);
 
 		public static void ImGuiMenuColumnsUpdate(ImGuiMenuColumns* self, float spacing, bool windowReappearing)
 		{
-			ImGuiMenuColumnsUpdateNative(self, spacing, windowReappearing);
+			ImGuiMenuColumnsUpdateNative(self, spacing, windowReappearing ? (byte)1 : (byte)0);
 		}
 
 		public static void ImGuiMenuColumnsUpdate(ref ImGuiMenuColumns self, float spacing, bool windowReappearing)
 		{
 			fixed (ImGuiMenuColumns* pself = &self)
 			{
-				ImGuiMenuColumnsUpdateNative((ImGuiMenuColumns*)pself, spacing, windowReappearing);
+				ImGuiMenuColumnsUpdateNative((ImGuiMenuColumns*)pself, spacing, windowReappearing ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -84087,18 +84087,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiMenuColumns_CalcNextTotalWidth")]
-		internal static extern void ImGuiMenuColumnsCalcNextTotalWidthNative(ImGuiMenuColumns* self, bool updateOffsets);
+		internal static extern void ImGuiMenuColumnsCalcNextTotalWidthNative(ImGuiMenuColumns* self, byte updateOffsets);
 
 		public static void ImGuiMenuColumnsCalcNextTotalWidth(ImGuiMenuColumns* self, bool updateOffsets)
 		{
-			ImGuiMenuColumnsCalcNextTotalWidthNative(self, updateOffsets);
+			ImGuiMenuColumnsCalcNextTotalWidthNative(self, updateOffsets ? (byte)1 : (byte)0);
 		}
 
 		public static void ImGuiMenuColumnsCalcNextTotalWidth(ref ImGuiMenuColumns self, bool updateOffsets)
 		{
 			fixed (ImGuiMenuColumns* pself = &self)
 			{
-				ImGuiMenuColumnsCalcNextTotalWidthNative((ImGuiMenuColumns*)pself, updateOffsets);
+				ImGuiMenuColumnsCalcNextTotalWidthNative((ImGuiMenuColumns*)pself, updateOffsets ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -86663,11 +86663,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igIsWindowChildOf")]
-		internal static extern byte IsWindowChildOfNative(ImGuiWindow* window, ImGuiWindow* potentialParent, bool popupHierarchy, bool dockHierarchy);
+		internal static extern byte IsWindowChildOfNative(ImGuiWindow* window, ImGuiWindow* potentialParent, byte popupHierarchy, byte dockHierarchy);
 
 		public static bool IsWindowChildOf(ImGuiWindow* window, ImGuiWindow* potentialParent, bool popupHierarchy, bool dockHierarchy)
 		{
-			byte ret = IsWindowChildOfNative(window, potentialParent, popupHierarchy, dockHierarchy);
+			byte ret = IsWindowChildOfNative(window, potentialParent, popupHierarchy ? (byte)1 : (byte)0, dockHierarchy ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
@@ -86675,7 +86675,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				byte ret = IsWindowChildOfNative((ImGuiWindow*)pwindow, potentialParent, popupHierarchy, dockHierarchy);
+				byte ret = IsWindowChildOfNative((ImGuiWindow*)pwindow, potentialParent, popupHierarchy ? (byte)1 : (byte)0, dockHierarchy ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -86684,7 +86684,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiWindow* ppotentialParent = &potentialParent)
 			{
-				byte ret = IsWindowChildOfNative(window, (ImGuiWindow*)ppotentialParent, popupHierarchy, dockHierarchy);
+				byte ret = IsWindowChildOfNative(window, (ImGuiWindow*)ppotentialParent, popupHierarchy ? (byte)1 : (byte)0, dockHierarchy ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -86695,7 +86695,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiWindow* ppotentialParent = &potentialParent)
 				{
-					byte ret = IsWindowChildOfNative((ImGuiWindow*)pwindow, (ImGuiWindow*)ppotentialParent, popupHierarchy, dockHierarchy);
+					byte ret = IsWindowChildOfNative((ImGuiWindow*)pwindow, (ImGuiWindow*)ppotentialParent, popupHierarchy ? (byte)1 : (byte)0, dockHierarchy ? (byte)1 : (byte)0);
 					return ret != 0;
 				}
 			}
@@ -86830,18 +86830,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igSetWindowCollapsed_WindowPtr")]
-		internal static extern void SetWindowCollapsedWindowPtrNative(ImGuiWindow* window, bool collapsed, ImGuiCond cond);
+		internal static extern void SetWindowCollapsedWindowPtrNative(ImGuiWindow* window, byte collapsed, ImGuiCond cond);
 
 		public static void SetWindowCollapsedWindowPtr(ImGuiWindow* window, bool collapsed, ImGuiCond cond)
 		{
-			SetWindowCollapsedWindowPtrNative(window, collapsed, cond);
+			SetWindowCollapsedWindowPtrNative(window, collapsed ? (byte)1 : (byte)0, cond);
 		}
 
 		public static void SetWindowCollapsedWindowPtr(ref ImGuiWindow window, bool collapsed, ImGuiCond cond)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				SetWindowCollapsedWindowPtrNative((ImGuiWindow*)pwindow, collapsed, cond);
+				SetWindowCollapsedWindowPtrNative((ImGuiWindow*)pwindow, collapsed ? (byte)1 : (byte)0, cond);
 			}
 		}
 
@@ -87268,11 +87268,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igUpdateInputEvents")]
-		internal static extern void UpdateInputEventsNative(bool trickleFastInputs);
+		internal static extern void UpdateInputEventsNative(byte trickleFastInputs);
 
 		public static void UpdateInputEvents(bool trickleFastInputs)
 		{
-			UpdateInputEventsNative(trickleFastInputs);
+			UpdateInputEventsNative(trickleFastInputs ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igUpdateHoveredWindowAndCaptureFlags")]
@@ -87300,18 +87300,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igStartMouseMovingWindowOrNode")]
-		internal static extern void StartMouseMovingWindowOrNodeNative(ImGuiWindow* window, ImGuiDockNode* node, bool undockFloatingNode);
+		internal static extern void StartMouseMovingWindowOrNodeNative(ImGuiWindow* window, ImGuiDockNode* node, byte undockFloatingNode);
 
 		public static void StartMouseMovingWindowOrNode(ImGuiWindow* window, ImGuiDockNode* node, bool undockFloatingNode)
 		{
-			StartMouseMovingWindowOrNodeNative(window, node, undockFloatingNode);
+			StartMouseMovingWindowOrNodeNative(window, node, undockFloatingNode ? (byte)1 : (byte)0);
 		}
 
 		public static void StartMouseMovingWindowOrNode(ref ImGuiWindow window, ImGuiDockNode* node, bool undockFloatingNode)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				StartMouseMovingWindowOrNodeNative((ImGuiWindow*)pwindow, node, undockFloatingNode);
+				StartMouseMovingWindowOrNodeNative((ImGuiWindow*)pwindow, node, undockFloatingNode ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -87319,7 +87319,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiDockNode* pnode = &node)
 			{
-				StartMouseMovingWindowOrNodeNative(window, (ImGuiDockNode*)pnode, undockFloatingNode);
+				StartMouseMovingWindowOrNodeNative(window, (ImGuiDockNode*)pnode, undockFloatingNode ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -87329,7 +87329,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiDockNode* pnode = &node)
 				{
-					StartMouseMovingWindowOrNodeNative((ImGuiWindow*)pwindow, (ImGuiDockNode*)pnode, undockFloatingNode);
+					StartMouseMovingWindowOrNodeNative((ImGuiWindow*)pwindow, (ImGuiDockNode*)pnode, undockFloatingNode ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -88413,11 +88413,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igPushItemFlag")]
-		internal static extern void PushItemFlagNative(ImGuiItemFlags option, bool enabled);
+		internal static extern void PushItemFlagNative(ImGuiItemFlags option, byte enabled);
 
 		public static void PushItemFlag(ImGuiItemFlags option, bool enabled)
 		{
-			PushItemFlagNative(option, enabled);
+			PushItemFlagNative(option, enabled ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igPopItemFlag")]
@@ -88874,11 +88874,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igBeginChildEx")]
-		internal static extern byte BeginChildExNative(byte* name, int id, Vector2 sizeArg, bool border, ImGuiWindowFlags flags);
+		internal static extern byte BeginChildExNative(byte* name, int id, Vector2 sizeArg, byte border, ImGuiWindowFlags flags);
 
 		public static bool BeginChildEx(byte* name, int id, Vector2 sizeArg, bool border, ImGuiWindowFlags flags)
 		{
-			byte ret = BeginChildExNative(name, id, sizeArg, border, flags);
+			byte ret = BeginChildExNative(name, id, sizeArg, border ? (byte)1 : (byte)0, flags);
 			return ret != 0;
 		}
 
@@ -88886,7 +88886,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* pname = &name)
 			{
-				byte ret = BeginChildExNative((byte*)pname, id, sizeArg, border, flags);
+				byte ret = BeginChildExNative((byte*)pname, id, sizeArg, border ? (byte)1 : (byte)0, flags);
 				return ret != 0;
 			}
 		}
@@ -88910,7 +88910,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginChildExNative(pStr0, id, sizeArg, border, flags);
+			byte ret = BeginChildExNative(pStr0, id, sizeArg, border ? (byte)1 : (byte)0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -88927,26 +88927,26 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igClosePopupToLevel")]
-		internal static extern void ClosePopupToLevelNative(int remaining, bool restoreFocusToWindowUnderPopup);
+		internal static extern void ClosePopupToLevelNative(int remaining, byte restoreFocusToWindowUnderPopup);
 
 		public static void ClosePopupToLevel(int remaining, bool restoreFocusToWindowUnderPopup)
 		{
-			ClosePopupToLevelNative(remaining, restoreFocusToWindowUnderPopup);
+			ClosePopupToLevelNative(remaining, restoreFocusToWindowUnderPopup ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igClosePopupsOverWindow")]
-		internal static extern void ClosePopupsOverWindowNative(ImGuiWindow* refWindow, bool restoreFocusToWindowUnderPopup);
+		internal static extern void ClosePopupsOverWindowNative(ImGuiWindow* refWindow, byte restoreFocusToWindowUnderPopup);
 
 		public static void ClosePopupsOverWindow(ImGuiWindow* refWindow, bool restoreFocusToWindowUnderPopup)
 		{
-			ClosePopupsOverWindowNative(refWindow, restoreFocusToWindowUnderPopup);
+			ClosePopupsOverWindowNative(refWindow, restoreFocusToWindowUnderPopup ? (byte)1 : (byte)0);
 		}
 
 		public static void ClosePopupsOverWindow(ref ImGuiWindow refWindow, bool restoreFocusToWindowUnderPopup)
 		{
 			fixed (ImGuiWindow* prefWindow = &refWindow)
 			{
-				ClosePopupsOverWindowNative((ImGuiWindow*)prefWindow, restoreFocusToWindowUnderPopup);
+				ClosePopupsOverWindowNative((ImGuiWindow*)prefWindow, restoreFocusToWindowUnderPopup ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -89235,11 +89235,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igBeginMenuEx")]
-		internal static extern byte BeginMenuExNative(byte* label, byte* icon, bool enabled);
+		internal static extern byte BeginMenuExNative(byte* label, byte* icon, byte enabled);
 
 		public static bool BeginMenuEx(byte* label, byte* icon, bool enabled)
 		{
-			byte ret = BeginMenuExNative(label, icon, enabled);
+			byte ret = BeginMenuExNative(label, icon, enabled ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
@@ -89247,7 +89247,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = BeginMenuExNative((byte*)plabel, icon, enabled);
+				byte ret = BeginMenuExNative((byte*)plabel, icon, enabled ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -89271,7 +89271,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginMenuExNative(pStr0, icon, enabled);
+			byte ret = BeginMenuExNative(pStr0, icon, enabled ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -89283,7 +89283,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* picon = &icon)
 			{
-				byte ret = BeginMenuExNative(label, (byte*)picon, enabled);
+				byte ret = BeginMenuExNative(label, (byte*)picon, enabled ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -89307,7 +89307,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginMenuExNative(label, pStr0, enabled);
+			byte ret = BeginMenuExNative(label, pStr0, enabled ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -89321,7 +89321,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* picon = &icon)
 				{
-					byte ret = BeginMenuExNative((byte*)plabel, (byte*)picon, enabled);
+					byte ret = BeginMenuExNative((byte*)plabel, (byte*)picon, enabled ? (byte)1 : (byte)0);
 					return ret != 0;
 				}
 			}
@@ -89363,7 +89363,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = BeginMenuExNative(pStr0, pStr1, enabled);
+			byte ret = BeginMenuExNative(pStr0, pStr1, enabled ? (byte)1 : (byte)0);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -89376,11 +89376,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igMenuItemEx")]
-		internal static extern byte MenuItemExNative(byte* label, byte* icon, byte* shortcut, bool selected, bool enabled);
+		internal static extern byte MenuItemExNative(byte* label, byte* icon, byte* shortcut, byte selected, byte enabled);
 
 		public static bool MenuItemEx(byte* label, byte* icon, byte* shortcut, bool selected, bool enabled)
 		{
-			byte ret = MenuItemExNative(label, icon, shortcut, selected, enabled);
+			byte ret = MenuItemExNative(label, icon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
@@ -89388,7 +89388,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = MenuItemExNative((byte*)plabel, icon, shortcut, selected, enabled);
+				byte ret = MenuItemExNative((byte*)plabel, icon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -89412,7 +89412,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = MenuItemExNative(pStr0, icon, shortcut, selected, enabled);
+			byte ret = MenuItemExNative(pStr0, icon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -89424,7 +89424,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* picon = &icon)
 			{
-				byte ret = MenuItemExNative(label, (byte*)picon, shortcut, selected, enabled);
+				byte ret = MenuItemExNative(label, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -89448,7 +89448,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = MenuItemExNative(label, pStr0, shortcut, selected, enabled);
+			byte ret = MenuItemExNative(label, pStr0, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -89462,7 +89462,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* picon = &icon)
 				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, selected, enabled);
+					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 					return ret != 0;
 				}
 			}
@@ -89504,7 +89504,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = MenuItemExNative(pStr0, pStr1, shortcut, selected, enabled);
+			byte ret = MenuItemExNative(pStr0, pStr1, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -89520,7 +89520,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* pshortcut = &shortcut)
 			{
-				byte ret = MenuItemExNative(label, icon, (byte*)pshortcut, selected, enabled);
+				byte ret = MenuItemExNative(label, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
@@ -89544,7 +89544,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = MenuItemExNative(label, icon, pStr0, selected, enabled);
+			byte ret = MenuItemExNative(label, icon, pStr0, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -89558,7 +89558,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* pshortcut = &shortcut)
 				{
-					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, selected, enabled);
+					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 					return ret != 0;
 				}
 			}
@@ -89600,7 +89600,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = MenuItemExNative(pStr0, icon, pStr1, selected, enabled);
+			byte ret = MenuItemExNative(pStr0, icon, pStr1, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -89618,7 +89618,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* pshortcut = &shortcut)
 				{
-					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, selected, enabled);
+					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 					return ret != 0;
 				}
 			}
@@ -89660,7 +89660,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = MenuItemExNative(label, pStr0, pStr1, selected, enabled);
+			byte ret = MenuItemExNative(label, pStr0, pStr1, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -89680,7 +89680,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (byte* pshortcut = &shortcut)
 					{
-						byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)pshortcut, selected, enabled);
+						byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 						return ret != 0;
 					}
 				}
@@ -89740,7 +89740,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset2 = Utils.EncodeStringUTF8(shortcut, pStr2, pStrSize2);
 				pStr2[pStrOffset2] = 0;
 			}
-			byte ret = MenuItemExNative(pStr0, pStr1, pStr2, selected, enabled);
+			byte ret = MenuItemExNative(pStr0, pStr1, pStr2, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
 			if (pStrSize2 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr2);
@@ -89783,18 +89783,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igNavInitWindow")]
-		internal static extern void NavInitWindowNative(ImGuiWindow* window, bool forceReinit);
+		internal static extern void NavInitWindowNative(ImGuiWindow* window, byte forceReinit);
 
 		public static void NavInitWindow(ImGuiWindow* window, bool forceReinit)
 		{
-			NavInitWindowNative(window, forceReinit);
+			NavInitWindowNative(window, forceReinit ? (byte)1 : (byte)0);
 		}
 
 		public static void NavInitWindow(ref ImGuiWindow window, bool forceReinit)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				NavInitWindowNative((ImGuiWindow*)pwindow, forceReinit);
+				NavInitWindowNative((ImGuiWindow*)pwindow, forceReinit ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -90376,18 +90376,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igDockContextClearNodes")]
-		internal static extern void DockContextClearNodesNative(ImGuiContext* ctx, int rootId, bool clearSettingsRefs);
+		internal static extern void DockContextClearNodesNative(ImGuiContext* ctx, int rootId, byte clearSettingsRefs);
 
 		public static void DockContextClearNodes(ImGuiContext* ctx, int rootId, bool clearSettingsRefs)
 		{
-			DockContextClearNodesNative(ctx, rootId, clearSettingsRefs);
+			DockContextClearNodesNative(ctx, rootId, clearSettingsRefs ? (byte)1 : (byte)0);
 		}
 
 		public static void DockContextClearNodes(ref ImGuiContext ctx, int rootId, bool clearSettingsRefs)
 		{
 			fixed (ImGuiContext* pctx = &ctx)
 			{
-				DockContextClearNodesNative((ImGuiContext*)pctx, rootId, clearSettingsRefs);
+				DockContextClearNodesNative((ImGuiContext*)pctx, rootId, clearSettingsRefs ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -90474,18 +90474,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igDockContextQueueDock")]
-		internal static extern void DockContextQueueDockNative(ImGuiContext* ctx, ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payload, ImGuiDir splitDir, float splitRatio, bool splitOuter);
+		internal static extern void DockContextQueueDockNative(ImGuiContext* ctx, ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payload, ImGuiDir splitDir, float splitRatio, byte splitOuter);
 
 		public static void DockContextQueueDock(ImGuiContext* ctx, ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
 		{
-			DockContextQueueDockNative(ctx, target, targetNode, payload, splitDir, splitRatio, splitOuter);
+			DockContextQueueDockNative(ctx, target, targetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 		}
 
 		public static void DockContextQueueDock(ref ImGuiContext ctx, ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
 		{
 			fixed (ImGuiContext* pctx = &ctx)
 			{
-				DockContextQueueDockNative((ImGuiContext*)pctx, target, targetNode, payload, splitDir, splitRatio, splitOuter);
+				DockContextQueueDockNative((ImGuiContext*)pctx, target, targetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -90493,7 +90493,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiWindow* ptarget = &target)
 			{
-				DockContextQueueDockNative(ctx, (ImGuiWindow*)ptarget, targetNode, payload, splitDir, splitRatio, splitOuter);
+				DockContextQueueDockNative(ctx, (ImGuiWindow*)ptarget, targetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -90503,7 +90503,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiWindow* ptarget = &target)
 				{
-					DockContextQueueDockNative((ImGuiContext*)pctx, (ImGuiWindow*)ptarget, targetNode, payload, splitDir, splitRatio, splitOuter);
+					DockContextQueueDockNative((ImGuiContext*)pctx, (ImGuiWindow*)ptarget, targetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -90512,7 +90512,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiDockNode* ptargetNode = &targetNode)
 			{
-				DockContextQueueDockNative(ctx, target, (ImGuiDockNode*)ptargetNode, payload, splitDir, splitRatio, splitOuter);
+				DockContextQueueDockNative(ctx, target, (ImGuiDockNode*)ptargetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -90522,7 +90522,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiDockNode* ptargetNode = &targetNode)
 				{
-					DockContextQueueDockNative((ImGuiContext*)pctx, target, (ImGuiDockNode*)ptargetNode, payload, splitDir, splitRatio, splitOuter);
+					DockContextQueueDockNative((ImGuiContext*)pctx, target, (ImGuiDockNode*)ptargetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -90533,7 +90533,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiDockNode* ptargetNode = &targetNode)
 				{
-					DockContextQueueDockNative(ctx, (ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payload, splitDir, splitRatio, splitOuter);
+					DockContextQueueDockNative(ctx, (ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -90546,7 +90546,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImGuiDockNode* ptargetNode = &targetNode)
 					{
-						DockContextQueueDockNative((ImGuiContext*)pctx, (ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payload, splitDir, splitRatio, splitOuter);
+						DockContextQueueDockNative((ImGuiContext*)pctx, (ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 					}
 				}
 			}
@@ -90556,7 +90556,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiWindow* ppayload = &payload)
 			{
-				DockContextQueueDockNative(ctx, target, targetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter);
+				DockContextQueueDockNative(ctx, target, targetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -90566,7 +90566,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiWindow* ppayload = &payload)
 				{
-					DockContextQueueDockNative((ImGuiContext*)pctx, target, targetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter);
+					DockContextQueueDockNative((ImGuiContext*)pctx, target, targetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -90577,7 +90577,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiWindow* ppayload = &payload)
 				{
-					DockContextQueueDockNative(ctx, (ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter);
+					DockContextQueueDockNative(ctx, (ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -90590,7 +90590,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImGuiWindow* ppayload = &payload)
 					{
-						DockContextQueueDockNative((ImGuiContext*)pctx, (ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter);
+						DockContextQueueDockNative((ImGuiContext*)pctx, (ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 					}
 				}
 			}
@@ -90602,7 +90602,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiWindow* ppayload = &payload)
 				{
-					DockContextQueueDockNative(ctx, target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter);
+					DockContextQueueDockNative(ctx, target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -90615,7 +90615,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImGuiWindow* ppayload = &payload)
 					{
-						DockContextQueueDockNative((ImGuiContext*)pctx, target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter);
+						DockContextQueueDockNative((ImGuiContext*)pctx, target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 					}
 				}
 			}
@@ -90629,7 +90629,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImGuiWindow* ppayload = &payload)
 					{
-						DockContextQueueDockNative(ctx, (ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter);
+						DockContextQueueDockNative(ctx, (ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 					}
 				}
 			}
@@ -90645,7 +90645,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (ImGuiWindow* ppayload = &payload)
 						{
-							DockContextQueueDockNative((ImGuiContext*)pctx, (ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter);
+							DockContextQueueDockNative((ImGuiContext*)pctx, (ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
 						}
 					}
 				}
@@ -90723,18 +90723,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igDockContextProcessUndockWindow")]
-		internal static extern void DockContextProcessUndockWindowNative(ImGuiContext* ctx, ImGuiWindow* window, bool clearPersistentDockingRef);
+		internal static extern void DockContextProcessUndockWindowNative(ImGuiContext* ctx, ImGuiWindow* window, byte clearPersistentDockingRef);
 
 		public static void DockContextProcessUndockWindow(ImGuiContext* ctx, ImGuiWindow* window, bool clearPersistentDockingRef)
 		{
-			DockContextProcessUndockWindowNative(ctx, window, clearPersistentDockingRef);
+			DockContextProcessUndockWindowNative(ctx, window, clearPersistentDockingRef ? (byte)1 : (byte)0);
 		}
 
 		public static void DockContextProcessUndockWindow(ref ImGuiContext ctx, ImGuiWindow* window, bool clearPersistentDockingRef)
 		{
 			fixed (ImGuiContext* pctx = &ctx)
 			{
-				DockContextProcessUndockWindowNative((ImGuiContext*)pctx, window, clearPersistentDockingRef);
+				DockContextProcessUndockWindowNative((ImGuiContext*)pctx, window, clearPersistentDockingRef ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -90742,7 +90742,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				DockContextProcessUndockWindowNative(ctx, (ImGuiWindow*)pwindow, clearPersistentDockingRef);
+				DockContextProcessUndockWindowNative(ctx, (ImGuiWindow*)pwindow, clearPersistentDockingRef ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -90752,7 +90752,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiWindow* pwindow = &window)
 				{
-					DockContextProcessUndockWindowNative((ImGuiContext*)pctx, (ImGuiWindow*)pwindow, clearPersistentDockingRef);
+					DockContextProcessUndockWindowNative((ImGuiContext*)pctx, (ImGuiWindow*)pwindow, clearPersistentDockingRef ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -90793,11 +90793,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igDockContextCalcDropPosForDocking")]
-		internal static extern byte DockContextCalcDropPosForDockingNative(ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payloadWindow, ImGuiDockNode* payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos);
+		internal static extern byte DockContextCalcDropPosForDockingNative(ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payloadWindow, ImGuiDockNode* payloadNode, ImGuiDir splitDir, byte splitOuter, Vector2* outPos);
 
 		public static bool DockContextCalcDropPosForDocking(ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payloadWindow, ImGuiDockNode* payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
 		{
-			byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, payloadNode, splitDir, splitOuter, outPos);
+			byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 			return ret != 0;
 		}
 
@@ -90805,7 +90805,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiWindow* ptarget = &target)
 			{
-				byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, payloadNode, splitDir, splitOuter, outPos);
+				byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 				return ret != 0;
 			}
 		}
@@ -90814,7 +90814,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiDockNode* ptargetNode = &targetNode)
 			{
-				byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter, outPos);
+				byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 				return ret != 0;
 			}
 		}
@@ -90825,7 +90825,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiDockNode* ptargetNode = &targetNode)
 				{
-					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter, outPos);
+					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 					return ret != 0;
 				}
 			}
@@ -90835,7 +90835,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
 			{
-				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter, outPos);
+				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 				return ret != 0;
 			}
 		}
@@ -90846,7 +90846,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
 				{
-					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter, outPos);
+					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 					return ret != 0;
 				}
 			}
@@ -90858,7 +90858,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
 				{
-					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter, outPos);
+					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 					return ret != 0;
 				}
 			}
@@ -90872,7 +90872,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
 					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter, outPos);
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 						return ret != 0;
 					}
 				}
@@ -90883,7 +90883,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
 			{
-				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, outPos);
+				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 				return ret != 0;
 			}
 		}
@@ -90894,7 +90894,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
 				{
-					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, outPos);
+					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 					return ret != 0;
 				}
 			}
@@ -90906,7 +90906,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
 				{
-					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, outPos);
+					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 					return ret != 0;
 				}
 			}
@@ -90920,7 +90920,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
 					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, outPos);
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 						return ret != 0;
 					}
 				}
@@ -90933,7 +90933,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
 				{
-					byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, outPos);
+					byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 					return ret != 0;
 				}
 			}
@@ -90947,7 +90947,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
 					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, outPos);
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 						return ret != 0;
 					}
 				}
@@ -90962,7 +90962,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
 					{
-						byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, outPos);
+						byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 						return ret != 0;
 					}
 				}
@@ -90979,7 +90979,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
 						{
-							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, outPos);
+							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
 							return ret != 0;
 						}
 					}
@@ -90991,7 +90991,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (Vector2* poutPos = &outPos)
 			{
-				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, payloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 				return ret != 0;
 			}
 		}
@@ -91002,7 +91002,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* poutPos = &outPos)
 				{
-					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, payloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 					return ret != 0;
 				}
 			}
@@ -91014,7 +91014,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* poutPos = &outPos)
 				{
-					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 					return ret != 0;
 				}
 			}
@@ -91028,7 +91028,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutPos = &outPos)
 					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 						return ret != 0;
 					}
 				}
@@ -91041,7 +91041,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* poutPos = &outPos)
 				{
-					byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+					byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 					return ret != 0;
 				}
 			}
@@ -91055,7 +91055,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutPos = &outPos)
 					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 						return ret != 0;
 					}
 				}
@@ -91070,7 +91070,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutPos = &outPos)
 					{
-						byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+						byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 						return ret != 0;
 					}
 				}
@@ -91087,7 +91087,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector2* poutPos = &outPos)
 						{
-							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 							return ret != 0;
 						}
 					}
@@ -91101,7 +91101,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* poutPos = &outPos)
 				{
-					byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+					byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 					return ret != 0;
 				}
 			}
@@ -91115,7 +91115,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutPos = &outPos)
 					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 						return ret != 0;
 					}
 				}
@@ -91130,7 +91130,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutPos = &outPos)
 					{
-						byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+						byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 						return ret != 0;
 					}
 				}
@@ -91147,7 +91147,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector2* poutPos = &outPos)
 						{
-							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 							return ret != 0;
 						}
 					}
@@ -91163,7 +91163,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutPos = &outPos)
 					{
-						byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+						byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 						return ret != 0;
 					}
 				}
@@ -91180,7 +91180,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector2* poutPos = &outPos)
 						{
-							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 							return ret != 0;
 						}
 					}
@@ -91198,7 +91198,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector2* poutPos = &outPos)
 						{
-							byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+							byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 							return ret != 0;
 						}
 					}
@@ -91218,7 +91218,7 @@ namespace HexaEngine.ImGuiNET
 						{
 							fixed (Vector2* poutPos = &outPos)
 							{
-								byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter, (Vector2*)poutPos);
+								byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
 								return ret != 0;
 							}
 						}
@@ -91631,11 +91631,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igDockBuilderRemoveNodeDockedWindows")]
-		internal static extern void DockBuilderRemoveNodeDockedWindowsNative(int nodeId, bool clearSettingsRefs);
+		internal static extern void DockBuilderRemoveNodeDockedWindowsNative(int nodeId, byte clearSettingsRefs);
 
 		public static void DockBuilderRemoveNodeDockedWindows(int nodeId, bool clearSettingsRefs)
 		{
-			DockBuilderRemoveNodeDockedWindowsNative(nodeId, clearSettingsRefs);
+			DockBuilderRemoveNodeDockedWindowsNative(nodeId, clearSettingsRefs ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igDockBuilderRemoveNodeChildNodes")]
@@ -92149,11 +92149,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTableSetColumnSortDirection")]
-		internal static extern void TableSetColumnSortDirectionNative(int columnN, ImGuiSortDirection sortDirection, bool appendToSortSpecs);
+		internal static extern void TableSetColumnSortDirectionNative(int columnN, ImGuiSortDirection sortDirection, byte appendToSortSpecs);
 
 		public static void TableSetColumnSortDirection(int columnN, ImGuiSortDirection sortDirection, bool appendToSortSpecs)
 		{
-			TableSetColumnSortDirectionNative(columnN, sortDirection, appendToSortSpecs);
+			TableSetColumnSortDirectionNative(columnN, sortDirection, appendToSortSpecs ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTableGetHoveredColumn")]
@@ -93818,12 +93818,12 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTabItemCalcSize_Str")]
-		internal static extern void TabItemCalcSizeNative(Vector2* output, byte* label, bool hasCloseButtonOrUnsavedMarker);
+		internal static extern void TabItemCalcSizeNative(Vector2* output, byte* label, byte hasCloseButtonOrUnsavedMarker);
 
 		public static Vector2 TabItemCalcSize(byte* label, bool hasCloseButtonOrUnsavedMarker)
 		{
 			Vector2 ret;
-			TabItemCalcSizeNative(&ret, label, hasCloseButtonOrUnsavedMarker);
+			TabItemCalcSizeNative(&ret, label, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
 			return ret;
 		}
 
@@ -93831,7 +93831,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				TabItemCalcSizeNative((Vector2*)poutput, label, hasCloseButtonOrUnsavedMarker);
+				TabItemCalcSizeNative((Vector2*)poutput, label, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -93840,7 +93840,7 @@ namespace HexaEngine.ImGuiNET
 			fixed (byte* plabel = &label)
 			{
 				Vector2 ret;
-				TabItemCalcSizeNative(&ret, (byte*)plabel, hasCloseButtonOrUnsavedMarker);
+				TabItemCalcSizeNative(&ret, (byte*)plabel, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
 				return ret;
 			}
 		}
@@ -93865,7 +93865,7 @@ namespace HexaEngine.ImGuiNET
 				pStr0[pStrOffset0] = 0;
 			}
 			Vector2 ret;
-			TabItemCalcSizeNative(&ret, pStr0, hasCloseButtonOrUnsavedMarker);
+			TabItemCalcSizeNative(&ret, pStr0, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -93879,7 +93879,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* plabel = &label)
 				{
-					TabItemCalcSizeNative((Vector2*)poutput, (byte*)plabel, hasCloseButtonOrUnsavedMarker);
+					TabItemCalcSizeNative((Vector2*)poutput, (byte*)plabel, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -93905,7 +93905,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				TabItemCalcSizeNative((Vector2*)poutput, pStr0, hasCloseButtonOrUnsavedMarker);
+				TabItemCalcSizeNative((Vector2*)poutput, pStr0, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -93969,18 +93969,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTabItemLabelAndCloseButton")]
-		internal static extern void TabItemLabelAndCloseButtonNative(ImDrawList* drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped);
+		internal static extern void TabItemLabelAndCloseButtonNative(ImDrawList* drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, byte isContentsVisible, bool* outJustClosed, bool* outTextClipped);
 
 		public static void TabItemLabelAndCloseButton(ImDrawList* drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped)
 		{
-			TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible, outJustClosed, outTextClipped);
+			TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
 		}
 
 		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
-				TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible, outJustClosed, outTextClipped);
+				TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
 			}
 		}
 
@@ -93988,7 +93988,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* plabel = &label)
 			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible, outJustClosed, outTextClipped);
+				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
 			}
 		}
 
@@ -94011,7 +94011,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible, outJustClosed, outTextClipped);
+			TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -94024,7 +94024,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* plabel = &label)
 				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible, outJustClosed, outTextClipped);
+					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
 				}
 			}
 		}
@@ -94050,7 +94050,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible, outJustClosed, outTextClipped);
+				TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -94062,7 +94062,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (bool* poutJustClosed = &outJustClosed)
 			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible, (bool*)poutJustClosed, outTextClipped);
+				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
 			}
 		}
 
@@ -94072,7 +94072,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (bool* poutJustClosed = &outJustClosed)
 				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible, (bool*)poutJustClosed, outTextClipped);
+					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
 				}
 			}
 		}
@@ -94083,7 +94083,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (bool* poutJustClosed = &outJustClosed)
 				{
-					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible, (bool*)poutJustClosed, outTextClipped);
+					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
 				}
 			}
 		}
@@ -94109,7 +94109,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (bool* poutJustClosed = &outJustClosed)
 			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible, (bool*)poutJustClosed, outTextClipped);
+				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -94125,7 +94125,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (bool* poutJustClosed = &outJustClosed)
 					{
-						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible, (bool*)poutJustClosed, outTextClipped);
+						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
 					}
 				}
 			}
@@ -94154,7 +94154,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (bool* poutJustClosed = &outJustClosed)
 				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible, (bool*)poutJustClosed, outTextClipped);
+					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -94167,7 +94167,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (bool* poutTextClipped = &outTextClipped)
 			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible, outJustClosed, (bool*)poutTextClipped);
+				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
 			}
 		}
 
@@ -94177,7 +94177,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (bool* poutTextClipped = &outTextClipped)
 				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible, outJustClosed, (bool*)poutTextClipped);
+					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
 				}
 			}
 		}
@@ -94188,7 +94188,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (bool* poutTextClipped = &outTextClipped)
 				{
-					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible, outJustClosed, (bool*)poutTextClipped);
+					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
 				}
 			}
 		}
@@ -94214,7 +94214,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (bool* poutTextClipped = &outTextClipped)
 			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible, outJustClosed, (bool*)poutTextClipped);
+				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -94230,7 +94230,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (bool* poutTextClipped = &outTextClipped)
 					{
-						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible, outJustClosed, (bool*)poutTextClipped);
+						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
 					}
 				}
 			}
@@ -94259,7 +94259,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (bool* poutTextClipped = &outTextClipped)
 				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible, outJustClosed, (bool*)poutTextClipped);
+					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -94274,7 +94274,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (bool* poutTextClipped = &outTextClipped)
 				{
-					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible, (bool*)poutJustClosed, (bool*)poutTextClipped);
+					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
 				}
 			}
 		}
@@ -94287,7 +94287,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (bool* poutTextClipped = &outTextClipped)
 					{
-						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible, (bool*)poutJustClosed, (bool*)poutTextClipped);
+						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
 					}
 				}
 			}
@@ -94301,7 +94301,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (bool* poutTextClipped = &outTextClipped)
 					{
-						TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible, (bool*)poutJustClosed, (bool*)poutTextClipped);
+						TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
 					}
 				}
 			}
@@ -94330,7 +94330,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (bool* poutTextClipped = &outTextClipped)
 				{
-					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible, (bool*)poutJustClosed, (bool*)poutTextClipped);
+					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -94349,7 +94349,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (bool* poutTextClipped = &outTextClipped)
 						{
-							TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible, (bool*)poutJustClosed, (bool*)poutTextClipped);
+							TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
 						}
 					}
 				}
@@ -94381,7 +94381,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (bool* poutTextClipped = &outTextClipped)
 					{
-						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible, (bool*)poutJustClosed, (bool*)poutTextClipped);
+						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
 							Utils.Free(pStr0);
@@ -94392,18 +94392,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igRenderText")]
-		internal static extern void RenderTextNative(Vector2 pos, byte* text, byte* textEnd, bool hideTextAfterHash);
+		internal static extern void RenderTextNative(Vector2 pos, byte* text, byte* textEnd, byte hideTextAfterHash);
 
 		public static void RenderText(Vector2 pos, byte* text, byte* textEnd, bool hideTextAfterHash)
 		{
-			RenderTextNative(pos, text, textEnd, hideTextAfterHash);
+			RenderTextNative(pos, text, textEnd, hideTextAfterHash ? (byte)1 : (byte)0);
 		}
 
 		public static void RenderText(Vector2 pos, ref byte text, byte* textEnd, bool hideTextAfterHash)
 		{
 			fixed (byte* ptext = &text)
 			{
-				RenderTextNative(pos, (byte*)ptext, textEnd, hideTextAfterHash);
+				RenderTextNative(pos, (byte*)ptext, textEnd, hideTextAfterHash ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -94426,7 +94426,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			RenderTextNative(pos, pStr0, textEnd, hideTextAfterHash);
+			RenderTextNative(pos, pStr0, textEnd, hideTextAfterHash ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -94437,7 +94437,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
-				RenderTextNative(pos, text, (byte*)ptextEnd, hideTextAfterHash);
+				RenderTextNative(pos, text, (byte*)ptextEnd, hideTextAfterHash ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -94460,7 +94460,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			RenderTextNative(pos, text, pStr0, hideTextAfterHash);
+			RenderTextNative(pos, text, pStr0, hideTextAfterHash ? (byte)1 : (byte)0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -94473,7 +94473,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					RenderTextNative(pos, (byte*)ptext, (byte*)ptextEnd, hideTextAfterHash);
+					RenderTextNative(pos, (byte*)ptext, (byte*)ptextEnd, hideTextAfterHash ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -94514,7 +94514,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			RenderTextNative(pos, pStr0, pStr1, hideTextAfterHash);
+			RenderTextNative(pos, pStr0, pStr1, hideTextAfterHash ? (byte)1 : (byte)0);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -97185,11 +97185,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igRenderFrame")]
-		internal static extern void RenderFrameNative(Vector2 pMin, Vector2 pMax, uint fillCol, bool border, float rounding);
+		internal static extern void RenderFrameNative(Vector2 pMin, Vector2 pMax, uint fillCol, byte border, float rounding);
 
 		public static void RenderFrame(Vector2 pMin, Vector2 pMax, uint fillCol, bool border, float rounding)
 		{
-			RenderFrameNative(pMin, pMax, fillCol, border, rounding);
+			RenderFrameNative(pMin, pMax, fillCol, border ? (byte)1 : (byte)0, rounding);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igRenderFrameBorder")]
@@ -98714,11 +98714,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTreeNodeSetOpen")]
-		internal static extern void TreeNodeSetOpenNative(int id, bool open);
+		internal static extern void TreeNodeSetOpenNative(int id, byte open);
 
 		public static void TreeNodeSetOpen(int id, bool open)
 		{
-			TreeNodeSetOpenNative(id, open);
+			TreeNodeSetOpenNative(id, open ? (byte)1 : (byte)0);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTreeNodeUpdateNextOpen")]
@@ -100024,18 +100024,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igShadeVertsLinearUV")]
-		internal static extern void ShadeVertsLinearUVNative(ImDrawList* drawList, int vertStartIdx, int vertEndIdx, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, bool clamp);
+		internal static extern void ShadeVertsLinearUVNative(ImDrawList* drawList, int vertStartIdx, int vertEndIdx, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, byte clamp);
 
 		public static void ShadeVertsLinearUV(ImDrawList* drawList, int vertStartIdx, int vertEndIdx, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, bool clamp)
 		{
-			ShadeVertsLinearUVNative(drawList, vertStartIdx, vertEndIdx, a, b, uvA, uvB, clamp);
+			ShadeVertsLinearUVNative(drawList, vertStartIdx, vertEndIdx, a, b, uvA, uvB, clamp ? (byte)1 : (byte)0);
 		}
 
 		public static void ShadeVertsLinearUV(ref ImDrawList drawList, int vertStartIdx, int vertEndIdx, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, bool clamp)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
-				ShadeVertsLinearUVNative((ImDrawList*)pdrawList, vertStartIdx, vertEndIdx, a, b, uvA, uvB, clamp);
+				ShadeVertsLinearUVNative((ImDrawList*)pdrawList, vertStartIdx, vertEndIdx, a, b, uvA, uvB, clamp ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -100781,18 +100781,18 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igDebugNodeDrawCmdShowMeshAndBoundingBox")]
-		internal static extern void DebugNodeDrawCmdShowMeshAndBoundingBoxNative(ImDrawList* outDrawList, ImDrawList* drawList, ImDrawCmd* drawCmd, bool showMesh, bool showAabb);
+		internal static extern void DebugNodeDrawCmdShowMeshAndBoundingBoxNative(ImDrawList* outDrawList, ImDrawList* drawList, ImDrawCmd* drawCmd, byte showMesh, byte showAabb);
 
 		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ImDrawList* outDrawList, ImDrawList* drawList, ImDrawCmd* drawCmd, bool showMesh, bool showAabb)
 		{
-			DebugNodeDrawCmdShowMeshAndBoundingBoxNative(outDrawList, drawList, drawCmd, showMesh, showAabb);
+			DebugNodeDrawCmdShowMeshAndBoundingBoxNative(outDrawList, drawList, drawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
 		}
 
 		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ref ImDrawList outDrawList, ImDrawList* drawList, ImDrawCmd* drawCmd, bool showMesh, bool showAabb)
 		{
 			fixed (ImDrawList* poutDrawList = &outDrawList)
 			{
-				DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, drawList, drawCmd, showMesh, showAabb);
+				DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, drawList, drawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -100800,7 +100800,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
-				DebugNodeDrawCmdShowMeshAndBoundingBoxNative(outDrawList, (ImDrawList*)pdrawList, drawCmd, showMesh, showAabb);
+				DebugNodeDrawCmdShowMeshAndBoundingBoxNative(outDrawList, (ImDrawList*)pdrawList, drawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -100810,7 +100810,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, (ImDrawList*)pdrawList, drawCmd, showMesh, showAabb);
+					DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, (ImDrawList*)pdrawList, drawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -100819,7 +100819,7 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImDrawCmd* pdrawCmd = &drawCmd)
 			{
-				DebugNodeDrawCmdShowMeshAndBoundingBoxNative(outDrawList, drawList, (ImDrawCmd*)pdrawCmd, showMesh, showAabb);
+				DebugNodeDrawCmdShowMeshAndBoundingBoxNative(outDrawList, drawList, (ImDrawCmd*)pdrawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -100829,7 +100829,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawCmd* pdrawCmd = &drawCmd)
 				{
-					DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, drawList, (ImDrawCmd*)pdrawCmd, showMesh, showAabb);
+					DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, drawList, (ImDrawCmd*)pdrawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -100840,7 +100840,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (ImDrawCmd* pdrawCmd = &drawCmd)
 				{
-					DebugNodeDrawCmdShowMeshAndBoundingBoxNative(outDrawList, (ImDrawList*)pdrawList, (ImDrawCmd*)pdrawCmd, showMesh, showAabb);
+					DebugNodeDrawCmdShowMeshAndBoundingBoxNative(outDrawList, (ImDrawList*)pdrawList, (ImDrawCmd*)pdrawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -100853,7 +100853,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImDrawCmd* pdrawCmd = &drawCmd)
 					{
-						DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, (ImDrawList*)pdrawList, (ImDrawCmd*)pdrawCmd, showMesh, showAabb);
+						DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, (ImDrawList*)pdrawList, (ImDrawCmd*)pdrawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
 					}
 				}
 			}
@@ -101437,11 +101437,11 @@ namespace HexaEngine.ImGuiNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igIsKeyPressedMap")]
-		internal static extern byte IsKeyPressedMapNative(ImGuiKey key, bool repeat);
+		internal static extern byte IsKeyPressedMapNative(ImGuiKey key, byte repeat);
 
 		public static bool IsKeyPressedMap(ImGuiKey key, bool repeat)
 		{
-			byte ret = IsKeyPressedMapNative(key, repeat);
+			byte ret = IsKeyPressedMapNative(key, repeat ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
