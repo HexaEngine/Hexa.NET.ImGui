@@ -10,6 +10,9 @@ namespace HexaEngine.Rendering
     using System.Numerics;
     using System.Runtime.InteropServices;
     using ImDrawIdx = System.UInt16;
+    using HexaEngine.ImGuizmoNET;
+    using HexaEngine.ImNodesNET;
+    using HexaEngine.ImPlotNET;
 
     public unsafe class ImGuiRenderer
     {
@@ -27,12 +30,27 @@ namespace HexaEngine.Rendering
         private IShaderResourceView fontTextureView;
         private int vertexBufferSize = 5000, indexBufferSize = 10000;
         private ImGuiContext* guiContext;
+        private ImNodesContext* nodesContext;
+        private ImPlotContext* plotContext;
         public static readonly Dictionary<nint, ISamplerState> Samplers = new();
 
         public ImGuiRenderer(SdlWindow window, IGraphicsDevice device, ISwapChain swapChain)
         {
             guiContext = ImGui.CreateContext(null);
             ImGui.SetCurrentContext(guiContext);
+
+            ImGui.SetCurrentContext(guiContext);
+            ImGuizmo.SetImGuiContext(guiContext);
+            ImPlot.SetImGuiContext(guiContext);
+            ImNodes.SetImGuiContext(guiContext);
+
+            nodesContext = ImNodes.CreateContext();
+            ImNodes.SetCurrentContext(nodesContext);
+            ImNodes.StyleColorsDark(ImNodes.GetStyle());
+
+            plotContext = ImPlot.CreateContext();
+            ImPlot.SetCurrentContext(plotContext);
+            ImPlot.StyleColorsDark(ImPlot.GetStyle());
 
             this.device = device;
             this.swapChain = swapChain;
@@ -150,6 +168,12 @@ namespace HexaEngine.Rendering
         public void BeginDraw()
         {
             ImGui.SetCurrentContext(guiContext);
+            ImGuizmo.SetImGuiContext(guiContext);
+            ImPlot.SetImGuiContext(guiContext);
+            ImNodes.SetImGuiContext(guiContext);
+
+            ImNodes.SetCurrentContext(nodesContext);
+            ImPlot.SetCurrentContext(plotContext);
 
             inputHandler.Update();
             ImGui.NewFrame();

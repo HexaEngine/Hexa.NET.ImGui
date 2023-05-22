@@ -20,7 +20,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\HexaEngine.ImGuizmo\HexaEngine.ImGuizmo.csproj" />
 	  <ProjectReference Include="..\HexaEngine.ImGui\HexaEngine.ImGui.csproj" />
+	  <ProjectReference Include="..\HexaEngine.ImNodes\HexaEngine.ImNodes.csproj" />
+	  <ProjectReference Include="..\HexaEngine.ImPlot\HexaEngine.ImPlot.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

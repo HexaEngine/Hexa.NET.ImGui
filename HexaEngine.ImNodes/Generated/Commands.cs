@@ -144,7 +144,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetImGuiContext")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SetImGuiContext")]
 		internal static extern void SetImGuiContextNative(ImGuiContext* ctx);
 
 		public static void SetImGuiContext(ImGuiContext* ctx)
@@ -160,7 +160,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_CreateContext")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_CreateContext")]
 		internal static extern ImNodesContext* CreateContextNative();
 
 		public static ImNodesContext* CreateContext()
@@ -169,7 +169,7 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_DestroyContext")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_DestroyContext")]
 		internal static extern void DestroyContextNative(ImNodesContext* ctx);
 
 		public static void DestroyContext(ImNodesContext* ctx)
@@ -190,7 +190,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetCurrentContext")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_GetCurrentContext")]
 		internal static extern ImNodesContext* GetCurrentContextNative();
 
 		public static ImNodesContext* GetCurrentContext()
@@ -199,7 +199,7 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetCurrentContext")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SetCurrentContext")]
 		internal static extern void SetCurrentContextNative(ImNodesContext* ctx);
 
 		public static void SetCurrentContext(ImNodesContext* ctx)
@@ -215,7 +215,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextCreate")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_EditorContextCreate")]
 		internal static extern ImNodesEditorContext* EditorContextCreateNative();
 
 		public static ImNodesEditorContext* EditorContextCreate()
@@ -224,7 +224,7 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextFree")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_EditorContextFree")]
 		internal static extern void EditorContextFreeNative(ImNodesEditorContext* noname1);
 
 		public static void EditorContextFree(ImNodesEditorContext* noname1)
@@ -240,7 +240,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextSet")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_EditorContextSet")]
 		internal static extern void EditorContextSetNative(ImNodesEditorContext* noname1);
 
 		public static void EditorContextSet(ImNodesEditorContext* noname1)
@@ -256,7 +256,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextGetPanning")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_EditorContextGetPanning")]
 		internal static extern void EditorContextGetPanningNative(Vector2* output);
 
 		public static Vector2 EditorContextGetPanning()
@@ -274,7 +274,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextResetPanning")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_EditorContextResetPanning")]
 		internal static extern void EditorContextResetPanningNative(Vector2 pos);
 
 		public static void EditorContextResetPanning(Vector2 pos)
@@ -282,7 +282,7 @@ namespace HexaEngine.ImNodesNET
 			EditorContextResetPanningNative(pos);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EditorContextMoveToNode")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_EditorContextMoveToNode")]
 		internal static extern void EditorContextMoveToNodeNative(int nodeId);
 
 		public static void EditorContextMoveToNode(int nodeId)
@@ -290,7 +290,7 @@ namespace HexaEngine.ImNodesNET
 			EditorContextMoveToNodeNative(nodeId);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetIO")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_GetIO")]
 		internal static extern ImNodesIO* GetIONative();
 
 		public static ImNodesIO* GetIO()
@@ -299,7 +299,7 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetStyle")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_GetStyle")]
 		internal static extern ImNodesStyle* GetStyleNative();
 
 		public static ImNodesStyle* GetStyle()
@@ -308,7 +308,7 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_StyleColorsDark")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_StyleColorsDark")]
 		internal static extern void StyleColorsDarkNative(ImNodesStyle* dest);
 
 		public static void StyleColorsDark(ImNodesStyle* dest)
@@ -329,7 +329,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_StyleColorsClassic")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_StyleColorsClassic")]
 		internal static extern void StyleColorsClassicNative(ImNodesStyle* dest);
 
 		public static void StyleColorsClassic(ImNodesStyle* dest)
@@ -350,7 +350,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_StyleColorsLight")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_StyleColorsLight")]
 		internal static extern void StyleColorsLightNative(ImNodesStyle* dest);
 
 		public static void StyleColorsLight(ImNodesStyle* dest)
@@ -371,7 +371,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginNodeEditor")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_BeginNodeEditor")]
 		internal static extern void BeginNodeEditorNative();
 
 		public static void BeginNodeEditor()
@@ -379,7 +379,7 @@ namespace HexaEngine.ImNodesNET
 			BeginNodeEditorNative();
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndNodeEditor")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_EndNodeEditor")]
 		internal static extern void EndNodeEditorNative();
 
 		public static void EndNodeEditor()
@@ -387,7 +387,7 @@ namespace HexaEngine.ImNodesNET
 			EndNodeEditorNative();
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_MiniMap")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_MiniMap")]
 		internal static extern void MiniMapNative(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*> nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData);
 
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*> nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
@@ -415,7 +415,7 @@ namespace HexaEngine.ImNodesNET
 			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*>)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PushColorStyle")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_PushColorStyle")]
 		internal static extern void PushColorStyleNative(ImNodesCol item, uint color);
 
 		public static void PushColorStyle(ImNodesCol item, uint color)
@@ -423,7 +423,7 @@ namespace HexaEngine.ImNodesNET
 			PushColorStyleNative(item, color);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PopColorStyle")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_PopColorStyle")]
 		internal static extern void PopColorStyleNative();
 
 		public static void PopColorStyle()
@@ -431,7 +431,7 @@ namespace HexaEngine.ImNodesNET
 			PopColorStyleNative();
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PushStyleVar_Float")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_PushStyleVar_Float")]
 		internal static extern void PushStyleVarNative(ImNodesStyleVar styleItem, float value);
 
 		public static void PushStyleVar(ImNodesStyleVar styleItem, float value)
@@ -439,7 +439,7 @@ namespace HexaEngine.ImNodesNET
 			PushStyleVarNative(styleItem, value);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PushStyleVar_Vec2")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_PushStyleVar_Vec2")]
 		internal static extern void PushStyleVarNative(ImNodesStyleVar styleItem, Vector2 value);
 
 		public static void PushStyleVar(ImNodesStyleVar styleItem, Vector2 value)
@@ -447,7 +447,7 @@ namespace HexaEngine.ImNodesNET
 			PushStyleVarNative(styleItem, value);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PopStyleVar")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_PopStyleVar")]
 		internal static extern void PopStyleVarNative(int count);
 
 		public static void PopStyleVar(int count)
@@ -460,7 +460,7 @@ namespace HexaEngine.ImNodesNET
 			PopStyleVarNative((int)(1));
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginNode")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_BeginNode")]
 		internal static extern void BeginNodeNative(int id);
 
 		public static void BeginNode(int id)
@@ -468,7 +468,7 @@ namespace HexaEngine.ImNodesNET
 			BeginNodeNative(id);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndNode")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_EndNode")]
 		internal static extern void EndNodeNative();
 
 		public static void EndNode()
@@ -476,7 +476,7 @@ namespace HexaEngine.ImNodesNET
 			EndNodeNative();
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeDimensions")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_GetNodeDimensions")]
 		internal static extern void GetNodeDimensionsNative(Vector2* output, int id);
 
 		public static Vector2 GetNodeDimensions(int id)
@@ -494,7 +494,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginNodeTitleBar")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_BeginNodeTitleBar")]
 		internal static extern void BeginNodeTitleBarNative();
 
 		public static void BeginNodeTitleBar()
@@ -502,7 +502,7 @@ namespace HexaEngine.ImNodesNET
 			BeginNodeTitleBarNative();
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndNodeTitleBar")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_EndNodeTitleBar")]
 		internal static extern void EndNodeTitleBarNative();
 
 		public static void EndNodeTitleBar()
@@ -510,7 +510,7 @@ namespace HexaEngine.ImNodesNET
 			EndNodeTitleBarNative();
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginInputAttribute")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_BeginInputAttribute")]
 		internal static extern void BeginInputAttributeNative(int id, ImNodesPinShape shape);
 
 		public static void BeginInputAttribute(int id, ImNodesPinShape shape)
@@ -523,7 +523,7 @@ namespace HexaEngine.ImNodesNET
 			BeginInputAttributeNative(id, (ImNodesPinShape)(ImNodesPinShape.CircleFilled));
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndInputAttribute")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_EndInputAttribute")]
 		internal static extern void EndInputAttributeNative();
 
 		public static void EndInputAttribute()
@@ -531,7 +531,7 @@ namespace HexaEngine.ImNodesNET
 			EndInputAttributeNative();
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginOutputAttribute")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_BeginOutputAttribute")]
 		internal static extern void BeginOutputAttributeNative(int id, ImNodesPinShape shape);
 
 		public static void BeginOutputAttribute(int id, ImNodesPinShape shape)
@@ -544,7 +544,7 @@ namespace HexaEngine.ImNodesNET
 			BeginOutputAttributeNative(id, (ImNodesPinShape)(ImNodesPinShape.CircleFilled));
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndOutputAttribute")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_EndOutputAttribute")]
 		internal static extern void EndOutputAttributeNative();
 
 		public static void EndOutputAttribute()
@@ -552,7 +552,7 @@ namespace HexaEngine.ImNodesNET
 			EndOutputAttributeNative();
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_BeginStaticAttribute")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_BeginStaticAttribute")]
 		internal static extern void BeginStaticAttributeNative(int id);
 
 		public static void BeginStaticAttribute(int id)
@@ -560,7 +560,7 @@ namespace HexaEngine.ImNodesNET
 			BeginStaticAttributeNative(id);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_EndStaticAttribute")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_EndStaticAttribute")]
 		internal static extern void EndStaticAttributeNative();
 
 		public static void EndStaticAttribute()
@@ -568,7 +568,7 @@ namespace HexaEngine.ImNodesNET
 			EndStaticAttributeNative();
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PushAttributeFlag")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_PushAttributeFlag")]
 		internal static extern void PushAttributeFlagNative(ImNodesAttributeFlags flag);
 
 		public static void PushAttributeFlag(ImNodesAttributeFlags flag)
@@ -576,7 +576,7 @@ namespace HexaEngine.ImNodesNET
 			PushAttributeFlagNative(flag);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_PopAttributeFlag")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_PopAttributeFlag")]
 		internal static extern void PopAttributeFlagNative();
 
 		public static void PopAttributeFlag()
@@ -584,7 +584,7 @@ namespace HexaEngine.ImNodesNET
 			PopAttributeFlagNative();
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_Link")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_Link")]
 		internal static extern void LinkNative(int id, int startAttributeId, int endAttributeId);
 
 		public static void Link(int id, int startAttributeId, int endAttributeId)
@@ -592,7 +592,7 @@ namespace HexaEngine.ImNodesNET
 			LinkNative(id, startAttributeId, endAttributeId);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetNodeDraggable")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SetNodeDraggable")]
 		internal static extern void SetNodeDraggableNative(int nodeId, bool draggable);
 
 		public static void SetNodeDraggable(int nodeId, bool draggable)
@@ -600,7 +600,7 @@ namespace HexaEngine.ImNodesNET
 			SetNodeDraggableNative(nodeId, draggable);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetNodeScreenSpacePos")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SetNodeScreenSpacePos")]
 		internal static extern void SetNodeScreenSpacePosNative(int nodeId, Vector2 screenSpacePos);
 
 		public static void SetNodeScreenSpacePos(int nodeId, Vector2 screenSpacePos)
@@ -608,7 +608,7 @@ namespace HexaEngine.ImNodesNET
 			SetNodeScreenSpacePosNative(nodeId, screenSpacePos);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetNodeEditorSpacePos")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SetNodeEditorSpacePos")]
 		internal static extern void SetNodeEditorSpacePosNative(int nodeId, Vector2 editorSpacePos);
 
 		public static void SetNodeEditorSpacePos(int nodeId, Vector2 editorSpacePos)
@@ -616,7 +616,7 @@ namespace HexaEngine.ImNodesNET
 			SetNodeEditorSpacePosNative(nodeId, editorSpacePos);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SetNodeGridSpacePos")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SetNodeGridSpacePos")]
 		internal static extern void SetNodeGridSpacePosNative(int nodeId, Vector2 gridPos);
 
 		public static void SetNodeGridSpacePos(int nodeId, Vector2 gridPos)
@@ -624,7 +624,7 @@ namespace HexaEngine.ImNodesNET
 			SetNodeGridSpacePosNative(nodeId, gridPos);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeScreenSpacePos")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_GetNodeScreenSpacePos")]
 		internal static extern void GetNodeScreenSpacePosNative(Vector2* output, int nodeId);
 
 		public static Vector2 GetNodeScreenSpacePos(int nodeId)
@@ -642,7 +642,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeEditorSpacePos")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_GetNodeEditorSpacePos")]
 		internal static extern void GetNodeEditorSpacePosNative(Vector2* output, int nodeId);
 
 		public static Vector2 GetNodeEditorSpacePos(int nodeId)
@@ -660,7 +660,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetNodeGridSpacePos")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_GetNodeGridSpacePos")]
 		internal static extern void GetNodeGridSpacePosNative(Vector2* output, int nodeId);
 
 		public static Vector2 GetNodeGridSpacePos(int nodeId)
@@ -678,7 +678,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SnapNodeToGrid")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SnapNodeToGrid")]
 		internal static extern void SnapNodeToGridNative(int nodeId);
 
 		public static void SnapNodeToGrid(int nodeId)
@@ -687,7 +687,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsEditorHovered")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsEditorHovered")]
 		internal static extern bool IsEditorHoveredNative();
 
 		public static bool IsEditorHovered()
@@ -697,7 +697,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsNodeHovered")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsNodeHovered")]
 		internal static extern bool IsNodeHoveredNative(int* nodeId);
 
 		public static bool IsNodeHovered(int* nodeId)
@@ -716,7 +716,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkHovered")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkHovered")]
 		internal static extern bool IsLinkHoveredNative(int* linkId);
 
 		public static bool IsLinkHovered(int* linkId)
@@ -735,7 +735,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsPinHovered")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsPinHovered")]
 		internal static extern bool IsPinHoveredNative(int* attributeId);
 
 		public static bool IsPinHovered(int* attributeId)
@@ -753,7 +753,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_NumSelectedNodes")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_NumSelectedNodes")]
 		internal static extern int NumSelectedNodesNative();
 
 		public static int NumSelectedNodes()
@@ -762,7 +762,7 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_NumSelectedLinks")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_NumSelectedLinks")]
 		internal static extern int NumSelectedLinksNative();
 
 		public static int NumSelectedLinks()
@@ -771,7 +771,7 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetSelectedNodes")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_GetSelectedNodes")]
 		internal static extern void GetSelectedNodesNative(int* nodeIds);
 
 		public static void GetSelectedNodes(int* nodeIds)
@@ -787,7 +787,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_GetSelectedLinks")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_GetSelectedLinks")]
 		internal static extern void GetSelectedLinksNative(int* linkIds);
 
 		public static void GetSelectedLinks(int* linkIds)
@@ -803,7 +803,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_ClearNodeSelection_Nil")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_ClearNodeSelection_Nil")]
 		internal static extern void ClearNodeSelectionNative();
 
 		public static void ClearNodeSelection()
@@ -811,7 +811,7 @@ namespace HexaEngine.ImNodesNET
 			ClearNodeSelectionNative();
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_ClearLinkSelection_Nil")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_ClearLinkSelection_Nil")]
 		internal static extern void ClearLinkSelectionNative();
 
 		public static void ClearLinkSelection()
@@ -819,7 +819,7 @@ namespace HexaEngine.ImNodesNET
 			ClearLinkSelectionNative();
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SelectNode")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SelectNode")]
 		internal static extern void SelectNodeNative(int nodeId);
 
 		public static void SelectNode(int nodeId)
@@ -827,7 +827,7 @@ namespace HexaEngine.ImNodesNET
 			SelectNodeNative(nodeId);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_ClearNodeSelection_Int")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_ClearNodeSelection_Int")]
 		internal static extern void ClearNodeSelectionNative(int nodeId);
 
 		public static void ClearNodeSelection(int nodeId)
@@ -836,7 +836,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsNodeSelected")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsNodeSelected")]
 		internal static extern bool IsNodeSelectedNative(int nodeId);
 
 		public static bool IsNodeSelected(int nodeId)
@@ -845,7 +845,7 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SelectLink")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SelectLink")]
 		internal static extern void SelectLinkNative(int linkId);
 
 		public static void SelectLink(int linkId)
@@ -853,7 +853,7 @@ namespace HexaEngine.ImNodesNET
 			SelectLinkNative(linkId);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_ClearLinkSelection_Int")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_ClearLinkSelection_Int")]
 		internal static extern void ClearLinkSelectionNative(int linkId);
 
 		public static void ClearLinkSelection(int linkId)
@@ -862,7 +862,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkSelected")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkSelected")]
 		internal static extern bool IsLinkSelectedNative(int linkId);
 
 		public static bool IsLinkSelected(int linkId)
@@ -872,7 +872,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsAttributeActive")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsAttributeActive")]
 		internal static extern bool IsAttributeActiveNative();
 
 		public static bool IsAttributeActive()
@@ -882,7 +882,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsAnyAttributeActive")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsAnyAttributeActive")]
 		internal static extern bool IsAnyAttributeActiveNative(int* attributeId);
 
 		public static bool IsAnyAttributeActive(int* attributeId)
@@ -907,7 +907,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkStarted")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkStarted")]
 		internal static extern bool IsLinkStartedNative(int* startedAtAttributeId);
 
 		public static bool IsLinkStarted(int* startedAtAttributeId)
@@ -926,7 +926,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkDropped")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkDropped")]
 		internal static extern bool IsLinkDroppedNative(int* startedAtAttributeId, bool includingDetachedLinks);
 
 		public static bool IsLinkDropped(int* startedAtAttributeId, bool includingDetachedLinks)
@@ -966,7 +966,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkCreated_BoolPtr")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkCreated_BoolPtr")]
 		internal static extern bool IsLinkCreatedNative(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap);
 
 		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
@@ -1090,7 +1090,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkCreated_IntPtr")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkCreated_IntPtr")]
 		internal static extern bool IsLinkCreatedNative(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap);
 
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
@@ -1718,7 +1718,7 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[return: MarshalAs(UnmanagedType.Bool)]
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_IsLinkDestroyed")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkDestroyed")]
 		internal static extern bool IsLinkDestroyedNative(int* linkId);
 
 		public static bool IsLinkDestroyed(int* linkId)
@@ -1736,7 +1736,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SaveCurrentEditorStateToIniString")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SaveCurrentEditorStateToIniString")]
 		internal static extern byte* SaveCurrentEditorStateToIniStringNative(nuint* dataSize);
 
 		public static byte* SaveCurrentEditorStateToIniString(nuint* dataSize)
@@ -1781,7 +1781,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SaveEditorStateToIniString")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SaveEditorStateToIniString")]
 		internal static extern byte* SaveEditorStateToIniStringNative(ImNodesEditorContext* editor, nuint* dataSize);
 
 		public static byte* SaveEditorStateToIniString(ImNodesEditorContext* editor, nuint* dataSize)
@@ -1886,7 +1886,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_LoadCurrentEditorStateFromIniString")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_LoadCurrentEditorStateFromIniString")]
 		internal static extern void LoadCurrentEditorStateFromIniStringNative(byte* data, nuint dataSize);
 
 		public static void LoadCurrentEditorStateFromIniString(byte* data, nuint dataSize)
@@ -1928,7 +1928,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_LoadEditorStateFromIniString")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_LoadEditorStateFromIniString")]
 		internal static extern void LoadEditorStateFromIniStringNative(ImNodesEditorContext* editor, byte* data, nuint dataSize);
 
 		public static void LoadEditorStateFromIniString(ImNodesEditorContext* editor, byte* data, nuint dataSize)
@@ -2018,7 +2018,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SaveCurrentEditorStateToIniFile")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SaveCurrentEditorStateToIniFile")]
 		internal static extern void SaveCurrentEditorStateToIniFileNative(byte* fileName);
 
 		public static void SaveCurrentEditorStateToIniFile(byte* fileName)
@@ -2060,7 +2060,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_SaveEditorStateToIniFile")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SaveEditorStateToIniFile")]
 		internal static extern void SaveEditorStateToIniFileNative(ImNodesEditorContext* editor, byte* fileName);
 
 		public static void SaveEditorStateToIniFile(ImNodesEditorContext* editor, byte* fileName)
@@ -2150,7 +2150,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_LoadCurrentEditorStateFromIniFile")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_LoadCurrentEditorStateFromIniFile")]
 		internal static extern void LoadCurrentEditorStateFromIniFileNative(byte* fileName);
 
 		public static void LoadCurrentEditorStateFromIniFile(byte* fileName)
@@ -2192,7 +2192,7 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "imnodes_LoadEditorStateFromIniFile")]
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_LoadEditorStateFromIniFile")]
 		internal static extern void LoadEditorStateFromIniFileNative(ImNodesEditorContext* editor, byte* fileName);
 
 		public static void LoadEditorStateFromIniFile(ImNodesEditorContext* editor, byte* fileName)
