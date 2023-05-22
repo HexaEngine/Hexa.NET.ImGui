@@ -33,19 +33,19 @@
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                return LoadLocalLibrary("cimgui");
+                return LoadLocalLibrary("cimnodes");
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                return LoadLocalLibrary("cimgui");
+                return LoadLocalLibrary("cimnodes");
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                return LoadLocalLibrary("cimgui");
+                return LoadLocalLibrary("cimnodes");
             }
             else
             {
-                return LoadLocalLibrary("cimgui");
+                return LoadLocalLibrary("cimnodes");
             }
         }
 
