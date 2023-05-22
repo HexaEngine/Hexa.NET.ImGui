@@ -9,6 +9,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Numerics;
 
 namespace HexaEngine.ImGuiNET
@@ -33,8 +34,10 @@ namespace HexaEngine.ImGuiNET
 		private string DebuggerDisplay => string.Format("ImTextureID [0x{0}]", Handle.ToString("X"));
 	}
 
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImDrawCallback(ImDrawList* parentList, ImDrawCmd* cmd);
 
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImGuiSizeCallback(ImGuiSizeCallbackData* data);
 
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
@@ -57,6 +60,7 @@ namespace HexaEngine.ImGuiNET
 		private string DebuggerDisplay => string.Format("ImBitArrayPtr [0x{0}]", Handle.ToString("X"));
 	}
 
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImGuiContextHookCallback(ImGuiContext* ctx, ImGuiContextHook* hook);
 
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
@@ -79,12 +83,16 @@ namespace HexaEngine.ImGuiNET
 		private string DebuggerDisplay => string.Format("ImFileHandle [0x{0}]", Handle.ToString("X"));
 	}
 
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate int ImGuiInputTextCallback(ImGuiInputTextCallbackData* data);
 
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void* ImGuiMemAllocFunc(nuint sz, void* userData);
 
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImGuiMemFreeFunc(void* ptr, void* userData);
 
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImGuiErrorLogCallback(void* userData, byte* fmt);
 
 }

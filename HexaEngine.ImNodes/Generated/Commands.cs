@@ -388,31 +388,31 @@ namespace HexaEngine.ImNodesNET
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_MiniMap")]
-		internal static extern void MiniMapNative(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*> nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData);
+		internal static extern void MiniMapNative(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData);
 
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*> nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
 		{
 			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, nodeHoveringCallbackData);
 		}
 
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, delegate*<int, void*> nodeHoveringCallback)
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
 		{
 			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location)
 		{
-			MiniMapNative(minimapSizeFraction, location, (delegate*<int, void*>)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+			MiniMapNative(minimapSizeFraction, location, (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
 		public static void MiniMap(float minimapSizeFraction)
 		{
-			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*>)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
 		public static void MiniMap()
 		{
-			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (delegate*<int, void*>)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_PushColorStyle")]
@@ -686,70 +686,66 @@ namespace HexaEngine.ImNodesNET
 			SnapNodeToGridNative(nodeId);
 		}
 
-		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsEditorHovered")]
-		internal static extern bool IsEditorHoveredNative();
+		internal static extern byte IsEditorHoveredNative();
 
 		public static bool IsEditorHovered()
 		{
-			bool ret = IsEditorHoveredNative();
-			return ret;
+			byte ret = IsEditorHoveredNative();
+			return ret != 0;
 		}
 
-		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsNodeHovered")]
-		internal static extern bool IsNodeHoveredNative(int* nodeId);
+		internal static extern byte IsNodeHoveredNative(int* nodeId);
 
 		public static bool IsNodeHovered(int* nodeId)
 		{
-			bool ret = IsNodeHoveredNative(nodeId);
-			return ret;
+			byte ret = IsNodeHoveredNative(nodeId);
+			return ret != 0;
 		}
 
 		public static bool IsNodeHovered(ref int nodeId)
 		{
 			fixed (int* pnodeId = &nodeId)
 			{
-				bool ret = IsNodeHoveredNative((int*)pnodeId);
-				return ret;
+				byte ret = IsNodeHoveredNative((int*)pnodeId);
+				return ret != 0;
 			}
 		}
 
-		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkHovered")]
-		internal static extern bool IsLinkHoveredNative(int* linkId);
+		internal static extern byte IsLinkHoveredNative(int* linkId);
 
 		public static bool IsLinkHovered(int* linkId)
 		{
-			bool ret = IsLinkHoveredNative(linkId);
-			return ret;
+			byte ret = IsLinkHoveredNative(linkId);
+			return ret != 0;
 		}
 
 		public static bool IsLinkHovered(ref int linkId)
 		{
 			fixed (int* plinkId = &linkId)
 			{
-				bool ret = IsLinkHoveredNative((int*)plinkId);
-				return ret;
+				byte ret = IsLinkHoveredNative((int*)plinkId);
+				return ret != 0;
 			}
 		}
 
-		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsPinHovered")]
-		internal static extern bool IsPinHoveredNative(int* attributeId);
+		internal static extern byte IsPinHoveredNative(int* attributeId);
 
 		public static bool IsPinHovered(int* attributeId)
 		{
-			bool ret = IsPinHoveredNative(attributeId);
-			return ret;
+			byte ret = IsPinHoveredNative(attributeId);
+			return ret != 0;
 		}
 
 		public static bool IsPinHovered(ref int attributeId)
 		{
 			fixed (int* pattributeId = &attributeId)
 			{
-				bool ret = IsPinHoveredNative((int*)pattributeId);
-				return ret;
+				byte ret = IsPinHoveredNative((int*)pattributeId);
+				return ret != 0;
 			}
 		}
 
@@ -835,14 +831,13 @@ namespace HexaEngine.ImNodesNET
 			ClearNodeSelectionNative(nodeId);
 		}
 
-		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsNodeSelected")]
-		internal static extern bool IsNodeSelectedNative(int nodeId);
+		internal static extern byte IsNodeSelectedNative(int nodeId);
 
 		public static bool IsNodeSelected(int nodeId)
 		{
-			bool ret = IsNodeSelectedNative(nodeId);
-			return ret;
+			byte ret = IsNodeSelectedNative(nodeId);
+			return ret != 0;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_SelectLink")]
@@ -861,98 +856,93 @@ namespace HexaEngine.ImNodesNET
 			ClearLinkSelectionNative(linkId);
 		}
 
-		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkSelected")]
-		internal static extern bool IsLinkSelectedNative(int linkId);
+		internal static extern byte IsLinkSelectedNative(int linkId);
 
 		public static bool IsLinkSelected(int linkId)
 		{
-			bool ret = IsLinkSelectedNative(linkId);
-			return ret;
+			byte ret = IsLinkSelectedNative(linkId);
+			return ret != 0;
 		}
 
-		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsAttributeActive")]
-		internal static extern bool IsAttributeActiveNative();
+		internal static extern byte IsAttributeActiveNative();
 
 		public static bool IsAttributeActive()
 		{
-			bool ret = IsAttributeActiveNative();
-			return ret;
+			byte ret = IsAttributeActiveNative();
+			return ret != 0;
 		}
 
-		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsAnyAttributeActive")]
-		internal static extern bool IsAnyAttributeActiveNative(int* attributeId);
+		internal static extern byte IsAnyAttributeActiveNative(int* attributeId);
 
 		public static bool IsAnyAttributeActive(int* attributeId)
 		{
-			bool ret = IsAnyAttributeActiveNative(attributeId);
-			return ret;
+			byte ret = IsAnyAttributeActiveNative(attributeId);
+			return ret != 0;
 		}
 
 		public static bool IsAnyAttributeActive()
 		{
-			bool ret = IsAnyAttributeActiveNative((int*)(default));
-			return ret;
+			byte ret = IsAnyAttributeActiveNative((int*)(default));
+			return ret != 0;
 		}
 
 		public static bool IsAnyAttributeActive(ref int attributeId)
 		{
 			fixed (int* pattributeId = &attributeId)
 			{
-				bool ret = IsAnyAttributeActiveNative((int*)pattributeId);
-				return ret;
+				byte ret = IsAnyAttributeActiveNative((int*)pattributeId);
+				return ret != 0;
 			}
 		}
 
-		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkStarted")]
-		internal static extern bool IsLinkStartedNative(int* startedAtAttributeId);
+		internal static extern byte IsLinkStartedNative(int* startedAtAttributeId);
 
 		public static bool IsLinkStarted(int* startedAtAttributeId)
 		{
-			bool ret = IsLinkStartedNative(startedAtAttributeId);
-			return ret;
+			byte ret = IsLinkStartedNative(startedAtAttributeId);
+			return ret != 0;
 		}
 
 		public static bool IsLinkStarted(ref int startedAtAttributeId)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkStartedNative((int*)pstartedAtAttributeId);
-				return ret;
+				byte ret = IsLinkStartedNative((int*)pstartedAtAttributeId);
+				return ret != 0;
 			}
 		}
 
-		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkDropped")]
-		internal static extern bool IsLinkDroppedNative(int* startedAtAttributeId, bool includingDetachedLinks);
+		internal static extern byte IsLinkDroppedNative(int* startedAtAttributeId, bool includingDetachedLinks);
 
 		public static bool IsLinkDropped(int* startedAtAttributeId, bool includingDetachedLinks)
 		{
-			bool ret = IsLinkDroppedNative(startedAtAttributeId, includingDetachedLinks);
-			return ret;
+			byte ret = IsLinkDroppedNative(startedAtAttributeId, includingDetachedLinks);
+			return ret != 0;
 		}
 
 		public static bool IsLinkDropped(int* startedAtAttributeId)
 		{
-			bool ret = IsLinkDroppedNative(startedAtAttributeId, (bool)(true));
-			return ret;
+			byte ret = IsLinkDroppedNative(startedAtAttributeId, (bool)(true));
+			return ret != 0;
 		}
 
 		public static bool IsLinkDropped()
 		{
-			bool ret = IsLinkDroppedNative((int*)(default), (bool)(true));
-			return ret;
+			byte ret = IsLinkDroppedNative((int*)(default), (bool)(true));
+			return ret != 0;
 		}
 
 		public static bool IsLinkDropped(ref int startedAtAttributeId, bool includingDetachedLinks)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkDroppedNative((int*)pstartedAtAttributeId, includingDetachedLinks);
-				return ret;
+				byte ret = IsLinkDroppedNative((int*)pstartedAtAttributeId, includingDetachedLinks);
+				return ret != 0;
 			}
 		}
 
@@ -960,33 +950,32 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkDroppedNative((int*)pstartedAtAttributeId, (bool)(true));
-				return ret;
+				byte ret = IsLinkDroppedNative((int*)pstartedAtAttributeId, (bool)(true));
+				return ret != 0;
 			}
 		}
 
-		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkCreated_BoolPtr")]
-		internal static extern bool IsLinkCreatedNative(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap);
+		internal static extern byte IsLinkCreatedNative(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap);
 
 		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
-			bool ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, createdFromSnap);
-			return ret;
+			byte ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, createdFromSnap);
+			return ret != 0;
 		}
 
 		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId)
 		{
-			bool ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, (bool*)(default));
-			return ret;
+			byte ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, (bool*)(default));
+			return ret != 0;
 		}
 
 		public static bool IsLinkCreated(ref int startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, endedAtAttributeId, createdFromSnap);
-				return ret;
+				byte ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, endedAtAttributeId, createdFromSnap);
+				return ret != 0;
 			}
 		}
 
@@ -994,8 +983,8 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, endedAtAttributeId, (bool*)(default));
-				return ret;
+				byte ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, endedAtAttributeId, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
@@ -1003,8 +992,8 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 			{
-				bool ret = IsLinkCreatedNative(startedAtAttributeId, (int*)pendedAtAttributeId, createdFromSnap);
-				return ret;
+				byte ret = IsLinkCreatedNative(startedAtAttributeId, (int*)pendedAtAttributeId, createdFromSnap);
+				return ret != 0;
 			}
 		}
 
@@ -1012,8 +1001,8 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 			{
-				bool ret = IsLinkCreatedNative(startedAtAttributeId, (int*)pendedAtAttributeId, (bool*)(default));
-				return ret;
+				byte ret = IsLinkCreatedNative(startedAtAttributeId, (int*)pendedAtAttributeId, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
@@ -1023,8 +1012,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, createdFromSnap);
-					return ret;
+					byte ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, createdFromSnap);
+					return ret != 0;
 				}
 			}
 		}
@@ -1035,8 +1024,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, (bool*)(default));
-					return ret;
+					byte ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -1045,8 +1034,8 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (bool* pcreatedFromSnap = &createdFromSnap)
 			{
-				bool ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
-				return ret;
+				byte ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+				return ret != 0;
 			}
 		}
 
@@ -1056,8 +1045,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
-					return ret;
+					byte ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+					return ret != 0;
 				}
 			}
 		}
@@ -1068,8 +1057,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					bool ret = IsLinkCreatedNative(startedAtAttributeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
-					return ret;
+					byte ret = IsLinkCreatedNative(startedAtAttributeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+					return ret != 0;
 				}
 			}
 		}
@@ -1082,35 +1071,34 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						bool ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
-						return ret;
+						byte ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+						return ret != 0;
 					}
 				}
 			}
 		}
 
-		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkCreated_IntPtr")]
-		internal static extern bool IsLinkCreatedNative(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap);
+		internal static extern byte IsLinkCreatedNative(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap);
 
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
-			bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
-			return ret;
+			byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
+			return ret != 0;
 		}
 
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
 		{
-			bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
-			return ret;
+			byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
+			return ret != 0;
 		}
 
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
-				bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
-				return ret;
+				byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
+				return ret != 0;
 			}
 		}
 
@@ -1118,8 +1106,8 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
-				bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
-				return ret;
+				byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
@@ -1127,8 +1115,8 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
-				return ret;
+				byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
+				return ret != 0;
 			}
 		}
 
@@ -1136,8 +1124,8 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
-				return ret;
+				byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
@@ -1147,8 +1135,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 				{
-					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
-					return ret;
+					byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
+					return ret != 0;
 				}
 			}
 		}
@@ -1159,8 +1147,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 				{
-					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
-					return ret;
+					byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -1169,8 +1157,8 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pendedAtNodeId = &endedAtNodeId)
 			{
-				bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
-				return ret;
+				byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
+				return ret != 0;
 			}
 		}
 
@@ -1178,8 +1166,8 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pendedAtNodeId = &endedAtNodeId)
 			{
-				bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
-				return ret;
+				byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
@@ -1189,8 +1177,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtNodeId = &endedAtNodeId)
 				{
-					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
-					return ret;
+					byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
+					return ret != 0;
 				}
 			}
 		}
@@ -1201,8 +1189,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtNodeId = &endedAtNodeId)
 				{
-					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
-					return ret;
+					byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -1213,8 +1201,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtNodeId = &endedAtNodeId)
 				{
-					bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
-					return ret;
+					byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
+					return ret != 0;
 				}
 			}
 		}
@@ -1225,8 +1213,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtNodeId = &endedAtNodeId)
 				{
-					bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
-					return ret;
+					byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -1239,8 +1227,8 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtNodeId = &endedAtNodeId)
 					{
-						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
-						return ret;
+						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
+						return ret != 0;
 					}
 				}
 			}
@@ -1254,8 +1242,8 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtNodeId = &endedAtNodeId)
 					{
-						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
-						return ret;
+						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
+						return ret != 0;
 					}
 				}
 			}
@@ -1265,8 +1253,8 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 			{
-				bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
-				return ret;
+				byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+				return ret != 0;
 			}
 		}
 
@@ -1274,8 +1262,8 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 			{
-				bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-				return ret;
+				byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+				return ret != 0;
 			}
 		}
 
@@ -1285,8 +1273,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
-					return ret;
+					byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+					return ret != 0;
 				}
 			}
 		}
@@ -1297,8 +1285,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-					return ret;
+					byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -1309,8 +1297,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
-					return ret;
+					byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+					return ret != 0;
 				}
 			}
 		}
@@ -1321,8 +1309,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-					return ret;
+					byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -1335,8 +1323,8 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
-						return ret;
+						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+						return ret != 0;
 					}
 				}
 			}
@@ -1350,8 +1338,8 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-						return ret;
+						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+						return ret != 0;
 					}
 				}
 			}
@@ -1363,8 +1351,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
-					return ret;
+					byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+					return ret != 0;
 				}
 			}
 		}
@@ -1375,8 +1363,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-					return ret;
+					byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -1389,8 +1377,8 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
-						return ret;
+						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+						return ret != 0;
 					}
 				}
 			}
@@ -1404,8 +1392,8 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-						return ret;
+						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+						return ret != 0;
 					}
 				}
 			}
@@ -1419,8 +1407,8 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
-						return ret;
+						byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+						return ret != 0;
 					}
 				}
 			}
@@ -1434,8 +1422,8 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-						return ret;
+						byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+						return ret != 0;
 					}
 				}
 			}
@@ -1451,8 +1439,8 @@ namespace HexaEngine.ImNodesNET
 					{
 						fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 						{
-							bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
-							return ret;
+							byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+							return ret != 0;
 						}
 					}
 				}
@@ -1469,8 +1457,8 @@ namespace HexaEngine.ImNodesNET
 					{
 						fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 						{
-							bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-							return ret;
+							byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
+							return ret != 0;
 						}
 					}
 				}
@@ -1481,8 +1469,8 @@ namespace HexaEngine.ImNodesNET
 		{
 			fixed (bool* pcreatedFromSnap = &createdFromSnap)
 			{
-				bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
-				return ret;
+				byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+				return ret != 0;
 			}
 		}
 
@@ -1492,8 +1480,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
-					return ret;
+					byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+					return ret != 0;
 				}
 			}
 		}
@@ -1504,8 +1492,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
-					return ret;
+					byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+					return ret != 0;
 				}
 			}
 		}
@@ -1518,8 +1506,8 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
-						return ret;
+						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+						return ret != 0;
 					}
 				}
 			}
@@ -1531,8 +1519,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
-					return ret;
+					byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+					return ret != 0;
 				}
 			}
 		}
@@ -1545,8 +1533,8 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
-						return ret;
+						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+						return ret != 0;
 					}
 				}
 			}
@@ -1560,8 +1548,8 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
-						return ret;
+						byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+						return ret != 0;
 					}
 				}
 			}
@@ -1577,8 +1565,8 @@ namespace HexaEngine.ImNodesNET
 					{
 						fixed (bool* pcreatedFromSnap = &createdFromSnap)
 						{
-							bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
-							return ret;
+							byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+							return ret != 0;
 						}
 					}
 				}
@@ -1591,8 +1579,8 @@ namespace HexaEngine.ImNodesNET
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
-					return ret;
+					byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+					return ret != 0;
 				}
 			}
 		}
@@ -1605,8 +1593,8 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
-						return ret;
+						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+						return ret != 0;
 					}
 				}
 			}
@@ -1620,8 +1608,8 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
-						return ret;
+						byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+						return ret != 0;
 					}
 				}
 			}
@@ -1637,8 +1625,8 @@ namespace HexaEngine.ImNodesNET
 					{
 						fixed (bool* pcreatedFromSnap = &createdFromSnap)
 						{
-							bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
-							return ret;
+							byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+							return ret != 0;
 						}
 					}
 				}
@@ -1653,8 +1641,8 @@ namespace HexaEngine.ImNodesNET
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						bool ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
-						return ret;
+						byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+						return ret != 0;
 					}
 				}
 			}
@@ -1670,8 +1658,8 @@ namespace HexaEngine.ImNodesNET
 					{
 						fixed (bool* pcreatedFromSnap = &createdFromSnap)
 						{
-							bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
-							return ret;
+							byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+							return ret != 0;
 						}
 					}
 				}
@@ -1688,8 +1676,8 @@ namespace HexaEngine.ImNodesNET
 					{
 						fixed (bool* pcreatedFromSnap = &createdFromSnap)
 						{
-							bool ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
-							return ret;
+							byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+							return ret != 0;
 						}
 					}
 				}
@@ -1708,8 +1696,8 @@ namespace HexaEngine.ImNodesNET
 						{
 							fixed (bool* pcreatedFromSnap = &createdFromSnap)
 							{
-								bool ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
-								return ret;
+								byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+								return ret != 0;
 							}
 						}
 					}
@@ -1717,22 +1705,21 @@ namespace HexaEngine.ImNodesNET
 			}
 		}
 
-		[return: MarshalAs(UnmanagedType.Bool)]
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_IsLinkDestroyed")]
-		internal static extern bool IsLinkDestroyedNative(int* linkId);
+		internal static extern byte IsLinkDestroyedNative(int* linkId);
 
 		public static bool IsLinkDestroyed(int* linkId)
 		{
-			bool ret = IsLinkDestroyedNative(linkId);
-			return ret;
+			byte ret = IsLinkDestroyedNative(linkId);
+			return ret != 0;
 		}
 
 		public static bool IsLinkDestroyed(ref int linkId)
 		{
 			fixed (int* plinkId = &linkId)
 			{
-				bool ret = IsLinkDestroyedNative((int*)plinkId);
-				return ret;
+				byte ret = IsLinkDestroyedNative((int*)plinkId);
+				return ret != 0;
 			}
 		}
 

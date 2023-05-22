@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<AssemblyVersion>0.15.0</AssemblyVersion>
-		<PackageVersion>2.0.7</PackageVersion>
+		<PackageVersion>2.0.8</PackageVersion>
 		<Description>A .NET wrapper for the ImPlot library. (0.15.0 WIP)</Description>
 		<Authors>Juna Meinhold</Authors>
 		<PackageProjectUrl>https://github.com/JunaMeinhold/HexaEngine.ImGui</PackageProjectUrl>

@@ -136,7 +136,7 @@ namespace HexaEngine.ImPlotNET
 		public unsafe delegate*<double, byte*, int, void*, int> Formatter;
 		public unsafe void* FormatterData;
 		public unsafe fixed byte FormatSpec[16];
-		public unsafe delegate*<ImPlotTicker*, ImPlotRange, float, bool, delegate*<double, byte*, int, void*>, void*, void> Locator;
+		public unsafe delegate*<ImPlotTicker*, ImPlotRange, float, bool, ImPlotFormatter, void*, void> Locator;
 		public unsafe double* LinkedMin;
 		public unsafe double* LinkedMax;
 		public int PickerLevel;
@@ -193,8 +193,8 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotRange* @this = &this)
 			{
-				bool ret = ImPlot.ContainsNative(@this, value);
-				return ret;
+				byte ret = ImPlot.ContainsNative(@this, value);
+				return ret != 0;
 			}
 		}
 
@@ -781,8 +781,8 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotRect* @this = &this)
 			{
-				bool ret = ImPlot.ContainsNative(@this, p);
-				return ret;
+				byte ret = ImPlot.ContainsNative(@this, p);
+				return ret != 0;
 			}
 		}
 
@@ -790,8 +790,8 @@ namespace HexaEngine.ImPlotNET
 		{
 			fixed (ImPlotRect* @this = &this)
 			{
-				bool ret = ImPlot.ContainsNative(@this, x, y);
-				return ret;
+				byte ret = ImPlot.ContainsNative(@this, x, y);
+				return ret != 0;
 			}
 		}
 

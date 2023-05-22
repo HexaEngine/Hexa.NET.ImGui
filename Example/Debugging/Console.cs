@@ -441,7 +441,7 @@
 
             // Input widget. (Width an always fixed width)
             ImGui.PushItemWidth(-ImGui.GetStyle()->ItemSpacing.X * 7);
-            if (ImGui.InputText("Input", ref m_Buffer, m_Buffer_size, inputTextFlags, default))
+            if (ImGui.InputText("Input", ref m_Buffer, m_Buffer_size, inputTextFlags, InputCallback))
             {
                 // Validate.
                 if (!string.IsNullOrWhiteSpace(m_Buffer))

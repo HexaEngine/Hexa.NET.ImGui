@@ -69,6 +69,8 @@
 
         public bool IsVoid { get; set; }
 
+        public bool IsBool { get; set; }
+
         public bool IsArray { get; set; }
 
         public CsStringType StringType { get; set; }
@@ -80,6 +82,7 @@
             IsRef = Name.StartsWith("ref");
             IsArray = Name.Contains("[]");
             IsPointer = Name.Contains('*');
+            IsBool = Name.Contains("bool");
             IsString = Name.Contains("string");
             IsVoid = Name.StartsWith("void");
 

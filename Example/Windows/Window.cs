@@ -6,10 +6,10 @@
     using HexaEngine.Core.Windows;
     using HexaEngine.Core.Windows.Events;
     using HexaEngine.Mathematics;
-    using HexaEngine.Rendering;
     using System;
     using System.Numerics;
     using HexaEngine.ImGuiNET;
+    using Example.ImGuiDemo;
 
     public class Window : SdlWindow, IRenderWindow
     {
@@ -76,7 +76,7 @@
             OnRenderBegin(context);
 
             ImGuiConsole.Draw();
-
+            ImGuiDemo.Draw();
             ImGui.ShowAboutWindow(null);
 
             OnRender(context);

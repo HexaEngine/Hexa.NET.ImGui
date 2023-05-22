@@ -135,9 +135,9 @@
             if (type is CppTypedef typedef)
             {
                 var typeDefCsName = GetCsCleanName(typedef.Name);
-                if (IsDelegate(typedef, out var functionType))
+                if (IsDelegate(typedef, out var _))
                 {
-                    typeDefCsName = $"delegate*<{GetNamelessParameterSignature(functionType.Parameters, false)}>";
+                    return typeDefCsName;
                 }
 
                 if (isPointer)
@@ -306,11 +306,9 @@
             if (type is CppTypedef typedef)
             {
                 var typeDefCsName = GetCsCleanName(typedef.Name);
-                if (IsDelegate(typedef, out var functionType))
+                if (IsDelegate(typedef, out var _))
                 {
-                    typeDefCsName = $"delegate*<{GetNamelessParameterSignature(functionType.Parameters, false)}>";
-                    if (isPointer)
-                        return typeDefCsName + "*";
+                    return typeDefCsName;
                 }
                 if (isPointer)
                     return "ref " + typeDefCsName;

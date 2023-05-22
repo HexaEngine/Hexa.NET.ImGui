@@ -9,11 +9,13 @@
 
 using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Numerics;
 using HexaEngine.ImGuiNET;
 
 namespace HexaEngine.ImNodesNET
 {
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImNodesMiniMapNodeHoveringCallback(int intValue, void* voidValue);
 
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]

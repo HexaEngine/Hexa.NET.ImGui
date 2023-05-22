@@ -57,12 +57,16 @@
                     WriteCsSummary(cppFunction.Comment, writer);
                     if (boolReturn)
                     {
-                        writer.WriteLine("[return: MarshalAs(UnmanagedType.Bool)]");
+                        writer.WriteLine($"[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = \"{cppFunction.Name}\")]");
+                        writer.WriteLine($"internal static extern byte {csName}Native({argumentsString});");
+                        writer.WriteLine();
                     }
-
-                    writer.WriteLine($"[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = \"{cppFunction.Name}\")]");
-                    writer.WriteLine($"internal static extern {header};");
-                    writer.WriteLine();
+                    else
+                    {
+                        writer.WriteLine($"[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = \"{cppFunction.Name}\")]");
+                        writer.WriteLine($"internal static extern {header};");
+                        writer.WriteLine();
+                    }
 
                     CsFunction? function = null;
                     for (int j = 0; j < commands.Count; j++)
@@ -149,16 +153,6 @@
                     firstParamReturn = true;
                 }
 
-                if (!firstParamReturn && (!csReturnType.IsVoid || csReturnType.IsVoid && csReturnType.IsPointer))
-                {
-                    sb.Append($"{csReturnType.Name} ret = ");
-                }
-
-                if (csReturnType.IsString)
-                {
-                    WriteStringConvertToManaged(sb, variation.ReturnType);
-                }
-
                 int offset = firstParamReturn ? 1 : 0;
 
                 bool hasManaged = false;
@@ -169,6 +163,24 @@
                     if (cppParameter.Type.IsString || paramCsDefault.StartsWith("\"") && paramCsDefault.EndsWith("\""))
                         hasManaged = true;
                 }
+
+                if (!firstParamReturn && (!csReturnType.IsVoid || csReturnType.IsVoid && csReturnType.IsPointer))
+                {
+                    if (csReturnType.IsBool && !csReturnType.IsPointer && !hasManaged)
+                    {
+                        sb.Append($"byte ret = ");
+                    }
+                    else
+                    {
+                        sb.Append($"{csReturnType.Name} ret = ");
+                    }
+                }
+
+                if (csReturnType.IsString)
+                {
+                    WriteStringConvertToManaged(sb, variation.ReturnType);
+                }
+
                 if (useThis)
                     sb.Append($"{CsCodeGeneratorSettings.Default.ApiName}.");
                 if (hasManaged)
@@ -289,7 +301,14 @@
 
                 if (firstParamReturn || !csReturnType.IsVoid || csReturnType.IsVoid && csReturnType.IsPointer)
                 {
-                    writer.WriteLine("return ret;");
+                    if (csReturnType.IsBool && !csReturnType.IsPointer && !hasManaged)
+                    {
+                        writer.WriteLine("return ret != 0;");
+                    }
+                    else
+                    {
+                        writer.WriteLine("return ret;");
+                    }
                 }
 
                 while (stacks > 0)
@@ -555,7 +574,10 @@
             {
                 writer.WriteLine($"Utils.Free(pStrArray{i}[i]);");
             }
-            writer.WriteLine($"Utils.Free(pStrArray{i});");
+            using (writer.PushBlock($"if (pStrArraySize{i} >= Utils.MaxStackallocSize)"))
+            {
+                writer.WriteLine($"Utils.Free(pStrArray{i});");
+            }
         }
 
         private static string GetParameterSignature(IList<CppParameter> parameters, bool canUseOut)

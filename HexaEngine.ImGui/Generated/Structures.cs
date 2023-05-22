@@ -195,7 +195,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public unsafe void AddCallback(delegate*<ImDrawList*, ImDrawCmd*> callback, void* callbackData)
+		public unsafe void AddCallback(ImDrawCallback callback, void* callbackData)
 		{
 			fixed (ImDrawList* @this = &this)
 			{
@@ -3037,8 +3037,8 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				bool ret = ImGui.IsGlyphRangeUnusedNative(@this, cBegin, cLast);
-				return ret;
+				byte ret = ImGui.IsGlyphRangeUnusedNative(@this, cBegin, cLast);
+				return ret != 0;
 			}
 		}
 
@@ -3046,8 +3046,8 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFont* @this = &this)
 			{
-				bool ret = ImGui.IsLoadedNative(@this);
-				return ret;
+				byte ret = ImGui.IsLoadedNative(@this);
+				return ret != 0;
 			}
 		}
 
@@ -5267,8 +5267,8 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				bool ret = ImGui.BuildNative(@this);
-				return ret;
+				byte ret = ImGui.BuildNative(@this);
+				return ret != 0;
 			}
 		}
 
@@ -5506,8 +5506,8 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, outUvBorder, outUvFill);
-				return ret;
+				byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, outUvBorder, outUvFill);
+				return ret != 0;
 			}
 		}
 
@@ -5517,8 +5517,8 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* poutOffset = &outOffset)
 				{
-					bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, outSize, outUvBorder, outUvFill);
-					return ret;
+					byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, outSize, outUvBorder, outUvFill);
+					return ret != 0;
 				}
 			}
 		}
@@ -5529,8 +5529,8 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* poutSize = &outSize)
 				{
-					bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, (Vector2*)poutSize, outUvBorder, outUvFill);
-					return ret;
+					byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, (Vector2*)poutSize, outUvBorder, outUvFill);
+					return ret != 0;
 				}
 			}
 		}
@@ -5543,8 +5543,8 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutSize = &outSize)
 					{
-						bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, outUvFill);
-						return ret;
+						byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, outUvFill);
+						return ret != 0;
 					}
 				}
 			}
@@ -5556,8 +5556,8 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* poutUvBorder = &outUvBorder)
 				{
-					bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-					return ret;
+					byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
+					return ret != 0;
 				}
 			}
 		}
@@ -5570,8 +5570,8 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutUvBorder = &outUvBorder)
 					{
-						bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
-						return ret;
+						byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
+						return ret != 0;
 					}
 				}
 			}
@@ -5585,8 +5585,8 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutUvBorder = &outUvBorder)
 					{
-						bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-						return ret;
+						byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
+						return ret != 0;
 					}
 				}
 			}
@@ -5602,8 +5602,8 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector2* poutUvBorder = &outUvBorder)
 						{
-							bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
-							return ret;
+							byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
+							return ret != 0;
 						}
 					}
 				}
@@ -5616,8 +5616,8 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (Vector2* poutUvFill = &outUvFill)
 				{
-					bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
-					return ret;
+					byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
+					return ret != 0;
 				}
 			}
 		}
@@ -5630,8 +5630,8 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutUvFill = &outUvFill)
 					{
-						bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
-						return ret;
+						byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
+						return ret != 0;
 					}
 				}
 			}
@@ -5645,8 +5645,8 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutUvFill = &outUvFill)
 					{
-						bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
-						return ret;
+						byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
+						return ret != 0;
 					}
 				}
 			}
@@ -5662,8 +5662,8 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector2* poutUvFill = &outUvFill)
 						{
-							bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
-							return ret;
+							byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
+							return ret != 0;
 						}
 					}
 				}
@@ -5678,8 +5678,8 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (Vector2* poutUvFill = &outUvFill)
 					{
-						bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-						return ret;
+						byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
+						return ret != 0;
 					}
 				}
 			}
@@ -5695,8 +5695,8 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector2* poutUvFill = &outUvFill)
 						{
-							bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-							return ret;
+							byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
+							return ret != 0;
 						}
 					}
 				}
@@ -5713,8 +5713,8 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (Vector2* poutUvFill = &outUvFill)
 						{
-							bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-							return ret;
+							byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
+							return ret != 0;
 						}
 					}
 				}
@@ -5733,8 +5733,8 @@ namespace HexaEngine.ImGuiNET
 						{
 							fixed (Vector2* poutUvFill = &outUvFill)
 							{
-								bool ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
-								return ret;
+								byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
+								return ret != 0;
 							}
 						}
 					}
@@ -6394,8 +6394,8 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				bool ret = ImGui.IsBuiltNative(@this);
-				return ret;
+				byte ret = ImGui.IsBuiltNative(@this);
+				return ret != 0;
 			}
 		}
 
@@ -6452,8 +6452,8 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontAtlasCustomRect* @this = &this)
 			{
-				bool ret = ImGui.IsPackedNative(@this);
-				return ret;
+				byte ret = ImGui.IsPackedNative(@this);
+				return ret != 0;
 			}
 		}
 
@@ -6997,8 +6997,8 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
-				bool ret = ImGui.GetBitNative(@this, n);
-				return ret;
+				byte ret = ImGui.GetBitNative(@this, n);
+				return ret != 0;
 			}
 		}
 
@@ -9136,8 +9136,8 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				bool ret = ImGui.GetBoolNative(@this, key, defaultVal);
-				return ret;
+				byte ret = ImGui.GetBoolNative(@this, key, defaultVal);
+				return ret != 0;
 			}
 		}
 
@@ -9145,8 +9145,8 @@ namespace HexaEngine.ImGuiNET
 		{
 			fixed (ImGuiStorage* @this = &this)
 			{
-				bool ret = ImGui.GetBoolNative(@this, key, (bool)(false));
-				return ret;
+				byte ret = ImGui.GetBoolNative(@this, key, (bool)(false));
+				return ret != 0;
 			}
 		}
 
@@ -9901,8 +9901,8 @@ public unsafe void appendf(string fmt)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
 			{
-				bool ret = ImGui.emptyNative(@this);
-				return ret;
+				byte ret = ImGui.emptyNative(@this);
+				return ret != 0;
 			}
 		}
 
@@ -10241,8 +10241,8 @@ public unsafe void appendf(string fmt)
 		{
 			fixed (ImGuiPayload* @this = &this)
 			{
-				bool ret = ImGui.IsDataTypeNative(@this, type);
-				return ret;
+				byte ret = ImGui.IsDataTypeNative(@this, type);
+				return ret != 0;
 			}
 		}
 
@@ -10252,8 +10252,8 @@ public unsafe void appendf(string fmt)
 			{
 				fixed (byte* ptype = &type)
 				{
-					bool ret = ImGui.IsDataTypeNative(@this, (byte*)ptype);
-					return ret;
+					byte ret = ImGui.IsDataTypeNative(@this, (byte*)ptype);
+					return ret != 0;
 				}
 			}
 		}
@@ -10279,12 +10279,12 @@ public unsafe void appendf(string fmt)
 					int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				bool ret = ImGui.IsDataTypeNative(@this, pStr0);
+				byte ret = ImGui.IsDataTypeNative(@this, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
+				return ret != 0;
 			}
 		}
 
@@ -10292,8 +10292,8 @@ public unsafe void appendf(string fmt)
 		{
 			fixed (ImGuiPayload* @this = &this)
 			{
-				bool ret = ImGui.IsDeliveryNative(@this);
-				return ret;
+				byte ret = ImGui.IsDeliveryNative(@this);
+				return ret != 0;
 			}
 		}
 
@@ -10301,8 +10301,8 @@ public unsafe void appendf(string fmt)
 		{
 			fixed (ImGuiPayload* @this = &this)
 			{
-				bool ret = ImGui.IsPreviewNative(@this);
-				return ret;
+				byte ret = ImGui.IsPreviewNative(@this);
+				return ret != 0;
 			}
 		}
 
@@ -10393,8 +10393,8 @@ public unsafe void appendf(string fmt)
 		{
 			fixed (ImGuiListClipper* @this = &this)
 			{
-				bool ret = ImGui.StepNative(@this);
-				return ret;
+				byte ret = ImGui.StepNative(@this);
+				return ret != 0;
 			}
 		}
 
@@ -11178,8 +11178,8 @@ public unsafe void appendf(string fmt)
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
 			{
-				bool ret = ImGui.HasSelectionNative(@this);
-				return ret;
+				byte ret = ImGui.HasSelectionNative(@this);
+				return ret != 0;
 			}
 		}
 
@@ -11445,8 +11445,8 @@ public unsafe void appendf(string fmt)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
-				bool ret = ImGui.DrawNative(@this, label, width);
-				return ret;
+				byte ret = ImGui.DrawNative(@this, label, width);
+				return ret != 0;
 			}
 		}
 
@@ -11454,8 +11454,8 @@ public unsafe void appendf(string fmt)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
-				bool ret = ImGui.DrawNative(@this, label, (float)(0.0f));
-				return ret;
+				byte ret = ImGui.DrawNative(@this, label, (float)(0.0f));
+				return ret != 0;
 			}
 		}
 
@@ -11474,8 +11474,8 @@ public unsafe void appendf(string fmt)
 			{
 				fixed (byte* plabel = &label)
 				{
-					bool ret = ImGui.DrawNative(@this, (byte*)plabel, width);
-					return ret;
+					byte ret = ImGui.DrawNative(@this, (byte*)plabel, width);
+					return ret != 0;
 				}
 			}
 		}
@@ -11486,8 +11486,8 @@ public unsafe void appendf(string fmt)
 			{
 				fixed (byte* plabel = &label)
 				{
-					bool ret = ImGui.DrawNative(@this, (byte*)plabel, (float)(0.0f));
-					return ret;
+					byte ret = ImGui.DrawNative(@this, (byte*)plabel, (float)(0.0f));
+					return ret != 0;
 				}
 			}
 		}
@@ -11513,12 +11513,12 @@ public unsafe void appendf(string fmt)
 					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				bool ret = ImGui.DrawNative(@this, pStr0, width);
+				byte ret = ImGui.DrawNative(@this, pStr0, width);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
+				return ret != 0;
 			}
 		}
 
@@ -11543,12 +11543,12 @@ public unsafe void appendf(string fmt)
 					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				bool ret = ImGui.DrawNative(@this, pStr0, (float)(0.0f));
+				byte ret = ImGui.DrawNative(@this, pStr0, (float)(0.0f));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
+				return ret != 0;
 			}
 		}
 
@@ -11556,8 +11556,8 @@ public unsafe void appendf(string fmt)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
-				bool ret = ImGui.IsActiveNative(@this);
-				return ret;
+				byte ret = ImGui.IsActiveNative(@this);
+				return ret != 0;
 			}
 		}
 
@@ -11565,8 +11565,8 @@ public unsafe void appendf(string fmt)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
-				bool ret = ImGui.PassFilterNative(@this, text, textEnd);
-				return ret;
+				byte ret = ImGui.PassFilterNative(@this, text, textEnd);
+				return ret != 0;
 			}
 		}
 
@@ -11574,8 +11574,8 @@ public unsafe void appendf(string fmt)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
 			{
-				bool ret = ImGui.PassFilterNative(@this, text, (byte*)(default));
-				return ret;
+				byte ret = ImGui.PassFilterNative(@this, text, (byte*)(default));
+				return ret != 0;
 			}
 		}
 
@@ -11585,8 +11585,8 @@ public unsafe void appendf(string fmt)
 			{
 				fixed (byte* ptext = &text)
 				{
-					bool ret = ImGui.PassFilterNative(@this, (byte*)ptext, textEnd);
-					return ret;
+					byte ret = ImGui.PassFilterNative(@this, (byte*)ptext, textEnd);
+					return ret != 0;
 				}
 			}
 		}
@@ -11597,8 +11597,8 @@ public unsafe void appendf(string fmt)
 			{
 				fixed (byte* ptext = &text)
 				{
-					bool ret = ImGui.PassFilterNative(@this, (byte*)ptext, (byte*)(default));
-					return ret;
+					byte ret = ImGui.PassFilterNative(@this, (byte*)ptext, (byte*)(default));
+					return ret != 0;
 				}
 			}
 		}
@@ -11624,12 +11624,12 @@ public unsafe void appendf(string fmt)
 					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				bool ret = ImGui.PassFilterNative(@this, pStr0, textEnd);
+				byte ret = ImGui.PassFilterNative(@this, pStr0, textEnd);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
+				return ret != 0;
 			}
 		}
 
@@ -11654,12 +11654,12 @@ public unsafe void appendf(string fmt)
 					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				bool ret = ImGui.PassFilterNative(@this, pStr0, (byte*)(default));
+				byte ret = ImGui.PassFilterNative(@this, pStr0, (byte*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
+				return ret != 0;
 			}
 		}
 
@@ -11669,8 +11669,8 @@ public unsafe void appendf(string fmt)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					bool ret = ImGui.PassFilterNative(@this, text, (byte*)ptextEnd);
-					return ret;
+					byte ret = ImGui.PassFilterNative(@this, text, (byte*)ptextEnd);
+					return ret != 0;
 				}
 			}
 		}
@@ -11696,12 +11696,12 @@ public unsafe void appendf(string fmt)
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				bool ret = ImGui.PassFilterNative(@this, text, pStr0);
+				byte ret = ImGui.PassFilterNative(@this, text, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
+				return ret != 0;
 			}
 		}
 
@@ -11713,8 +11713,8 @@ public unsafe void appendf(string fmt)
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						bool ret = ImGui.PassFilterNative(@this, (byte*)ptext, (byte*)ptextEnd);
-						return ret;
+						byte ret = ImGui.PassFilterNative(@this, (byte*)ptext, (byte*)ptextEnd);
+						return ret != 0;
 					}
 				}
 			}
@@ -11758,7 +11758,7 @@ public unsafe void appendf(string fmt)
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				bool ret = ImGui.PassFilterNative(@this, pStr0, pStr1);
+				byte ret = ImGui.PassFilterNative(@this, pStr0, pStr1);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -11767,7 +11767,7 @@ public unsafe void appendf(string fmt)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
+				return ret != 0;
 			}
 		}
 
@@ -11801,8 +11801,8 @@ public unsafe void appendf(string fmt)
 		{
 			fixed (ImGuiTextRange* @this = &this)
 			{
-				bool ret = ImGui.emptyNative(@this);
-				return ret;
+				byte ret = ImGui.emptyNative(@this);
+				return ret != 0;
 			}
 		}
 

@@ -9,22 +9,28 @@
 
 using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Numerics;
 using HexaEngine.ImGuiNET;
 
 namespace HexaEngine.ImPlotNET
 {
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate int ImPlotFormatter(double value, byte* buff, int size, void* userData);
 
-	public unsafe delegate void ImPlotLocator(ImPlotTicker* ticker, ImPlotRange range, float pixels, bool vertical, delegate*<double, byte*, int, void*> formatter, void* formatterData);
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImPlotLocator(ImPlotTicker* ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData);
 
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate double ImPlotTransform(double value, void* userData);
 
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate ImPlotPoint ImPlotGetter(int idx, void* userData);
 
 	/// <summary>
 	/// ImPlotPoint getters manually wrapped use this
 	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void* ImPlotPointGetter(void* data, int idx, ImPlotPoint* point);
 
 }
