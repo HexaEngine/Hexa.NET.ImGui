@@ -26,30 +26,30 @@
 
             //io->SetClipboardTextFn = (delegate*<void*, byte*, void>*)(delegate*<void*, byte*, void>)&SetClipboardText;
             //io->GetClipboardTextFn = (delegate*<void*, byte*>*)(delegate*<void*, byte*>)&GetClipboardText;
-            io->ClipboardUserData = null;
+            io.ClipboardUserData = null;
 
-            io->KeyMap[(int)ImGuiKey.Tab] = (int)Scancode.ScancodeTab;
-            io->KeyMap[(int)ImGuiKey.LeftArrow] = (int)Scancode.ScancodeLeft;
-            io->KeyMap[(int)ImGuiKey.RightArrow] = (int)Scancode.ScancodeRight;
-            io->KeyMap[(int)ImGuiKey.UpArrow] = (int)Scancode.ScancodeUp;
-            io->KeyMap[(int)ImGuiKey.DownArrow] = (int)Scancode.ScancodeDown;
-            io->KeyMap[(int)ImGuiKey.PageUp] = (int)Scancode.ScancodePageup;
-            io->KeyMap[(int)ImGuiKey.PageDown] = (int)Scancode.ScancodePagedown;
-            io->KeyMap[(int)ImGuiKey.Home] = (int)Scancode.ScancodeHome;
-            io->KeyMap[(int)ImGuiKey.End] = (int)Scancode.ScancodeEnd;
-            io->KeyMap[(int)ImGuiKey.Insert] = (int)Scancode.ScancodeInsert;
-            io->KeyMap[(int)ImGuiKey.Delete] = (int)Scancode.ScancodeDelete;
-            io->KeyMap[(int)ImGuiKey.Backspace] = (int)Scancode.ScancodeBackspace;
-            io->KeyMap[(int)ImGuiKey.Space] = (int)Scancode.ScancodeSpace;
-            io->KeyMap[(int)ImGuiKey.Enter] = (int)Scancode.ScancodeReturn;
-            io->KeyMap[(int)ImGuiKey.Escape] = (int)Scancode.ScancodeEscape;
-            io->KeyMap[(int)ImGuiKey.KeypadEnter] = (int)Scancode.ScancodeKPEnter;
-            io->KeyMap[(int)ImGuiKey.A] = (int)Scancode.ScancodeA;
-            io->KeyMap[(int)ImGuiKey.C] = (int)Scancode.ScancodeC;
-            io->KeyMap[(int)ImGuiKey.V] = (int)Scancode.ScancodeV;
-            io->KeyMap[(int)ImGuiKey.X] = (int)Scancode.ScancodeX;
-            io->KeyMap[(int)ImGuiKey.Y] = (int)Scancode.ScancodeY;
-            io->KeyMap[(int)ImGuiKey.Z] = (int)Scancode.ScancodeZ;
+            io.KeyMap[(int)ImGuiKey.Tab] = (int)Scancode.ScancodeTab;
+            io.KeyMap[(int)ImGuiKey.LeftArrow] = (int)Scancode.ScancodeLeft;
+            io.KeyMap[(int)ImGuiKey.RightArrow] = (int)Scancode.ScancodeRight;
+            io.KeyMap[(int)ImGuiKey.UpArrow] = (int)Scancode.ScancodeUp;
+            io.KeyMap[(int)ImGuiKey.DownArrow] = (int)Scancode.ScancodeDown;
+            io.KeyMap[(int)ImGuiKey.PageUp] = (int)Scancode.ScancodePageup;
+            io.KeyMap[(int)ImGuiKey.PageDown] = (int)Scancode.ScancodePagedown;
+            io.KeyMap[(int)ImGuiKey.Home] = (int)Scancode.ScancodeHome;
+            io.KeyMap[(int)ImGuiKey.End] = (int)Scancode.ScancodeEnd;
+            io.KeyMap[(int)ImGuiKey.Insert] = (int)Scancode.ScancodeInsert;
+            io.KeyMap[(int)ImGuiKey.Delete] = (int)Scancode.ScancodeDelete;
+            io.KeyMap[(int)ImGuiKey.Backspace] = (int)Scancode.ScancodeBackspace;
+            io.KeyMap[(int)ImGuiKey.Space] = (int)Scancode.ScancodeSpace;
+            io.KeyMap[(int)ImGuiKey.Enter] = (int)Scancode.ScancodeReturn;
+            io.KeyMap[(int)ImGuiKey.Escape] = (int)Scancode.ScancodeEscape;
+            io.KeyMap[(int)ImGuiKey.KeypadEnter] = (int)Scancode.ScancodeKPEnter;
+            io.KeyMap[(int)ImGuiKey.A] = (int)Scancode.ScancodeA;
+            io.KeyMap[(int)ImGuiKey.C] = (int)Scancode.ScancodeC;
+            io.KeyMap[(int)ImGuiKey.V] = (int)Scancode.ScancodeV;
+            io.KeyMap[(int)ImGuiKey.X] = (int)Scancode.ScancodeX;
+            io.KeyMap[(int)ImGuiKey.Y] = (int)Scancode.ScancodeY;
+            io.KeyMap[(int)ImGuiKey.Z] = (int)Scancode.ScancodeZ;
         }
 
         private bool disposedValue;
@@ -83,16 +83,16 @@
             var io = ImGui.GetIO();
             int key = (int)e.Scancode;
 
-            io->KeysDown[key] = e.KeyState == KeyState.Down;
+            io.KeysDown[key] = e.KeyState == KeyState.Down;
 
-            io->KeyShift = (Keyboard.GetModState() & Keymod.Shift) != 0;
+            io.KeyShift = (Keyboard.GetModState() & Keymod.Shift) != 0;
 
-            io->KeyCtrl = (Keyboard.GetModState() & Keymod.Ctrl) != 0;
-            io->KeyAlt = (Keyboard.GetModState() & Keymod.Alt) != 0;
+            io.KeyCtrl = (Keyboard.GetModState() & Keymod.Ctrl) != 0;
+            io.KeyAlt = (Keyboard.GetModState() & Keymod.Alt) != 0;
 #if WINDOWS
-            io->KeySuper = false;
+            io.KeySuper = false;
 #else
-            io->KeySuper = (Keyboard.GetModState() & Keymod.Gui) != 0;
+            io.KeySuper = (Keyboard.GetModState() & Keymod.Gui) != 0;
 #endif
         }
 
@@ -109,7 +109,7 @@
                 MouseButton.X2 => 4,
                 _ => -1,
             };
-            io->MouseDown[index] = e.State == MouseButtonState.Down;
+            io.MouseDown[index] = e.State == MouseButtonState.Down;
 
             if (e.State == MouseButtonState.Down)
             {
@@ -124,20 +124,20 @@
         public unsafe void Update()
         {
             var io = ImGui.GetIO();
-            io->DisplaySize = new(window.Width, window.Height);
-            io->DeltaTime = Time.Delta;
+            io.DisplaySize = new(window.Width, window.Height);
+            io.DeltaTime = Time.Delta;
 
             UpdateMousePosition();
 
-            var mouseCursor = ImGui.GetIO()->MouseDrawCursor ? ImGuiMouseCursor.None : ImGui.GetMouseCursor();
+            var mouseCursor = ImGui.GetIO().MouseDrawCursor ? ImGuiMouseCursor.None : ImGui.GetMouseCursor();
             if (mouseCursor != lastCursor)
             {
                 lastCursor = mouseCursor;
                 UpdateMouseCursor();
             }
 
-            io->MouseWheel = Mouse.DeltaWheel.Y;
-            io->MouseWheelH = Mouse.DeltaWheel.X;
+            io.MouseWheel = Mouse.DeltaWheel.Y;
+            io.MouseWheelH = Mouse.DeltaWheel.X;
 
             UpdateGamepads();
         }
@@ -145,13 +145,13 @@
         public static unsafe bool UpdateMouseCursor()
         {
             var io = ImGui.GetIO();
-            if ((io->ConfigFlags & ImGuiConfigFlags.NoMouseCursorChange) != 0)
+            if ((io.ConfigFlags & ImGuiConfigFlags.NoMouseCursorChange) != 0)
             {
                 return false;
             }
 
             var requestedcursor = ImGui.GetMouseCursor();
-            if (requestedcursor == ImGuiMouseCursor.None || io->MouseDrawCursor)
+            if (requestedcursor == ImGuiMouseCursor.None || io.MouseDrawCursor)
             {
                 CursorHelper.SetCursor(nint.Zero);
             }
@@ -181,8 +181,8 @@
         public static unsafe void UpdateGamepads()
         {
             var io = ImGui.GetIO();
-            Memset(io->NavInputs, 0, 16 * sizeof(float));
-            if ((io->ConfigFlags & ImGuiConfigFlags.NavEnableGamepad) == 0)
+            io.NavInputs.Clear();
+            if ((io.ConfigFlags & ImGuiConfigFlags.NavEnableGamepad) == 0)
             {
                 return;
             }
@@ -191,14 +191,14 @@
             GameController* game_controller = Sdl.GameControllerOpen(0);
             if (game_controller == null)
             {
-                io->BackendFlags &= ~ImGuiBackendFlags.HasGamepad;
+                io.BackendFlags &= ~ImGuiBackendFlags.HasGamepad;
                 return;
             }
 
             // Update gamepad inputs
             void MAP_BUTTON(ImGuiNavInput NAV_NO, GameControllerButton BUTTON_NO)
             {
-                io->NavInputs[(int)NAV_NO] = Sdl.GameControllerGetButton(game_controller, BUTTON_NO) != 0 ? 1.0f : 0.0f;
+                io.NavInputs[(int)NAV_NO] = Sdl.GameControllerGetButton(game_controller, BUTTON_NO) != 0 ? 1.0f : 0.0f;
             }
             void MAP_ANALOG(ImGuiNavInput NAV_NO, GameControllerAxis AXIS_NO, int V0, int V1)
             {
@@ -208,13 +208,13 @@
                     vn = 1.0f;
                 }
 
-                if (vn > 0.0f && io->NavInputs[(int)NAV_NO] < vn)
+                if (vn > 0.0f && io.NavInputs[(int)NAV_NO] < vn)
                 {
-                    io->NavInputs[(int)NAV_NO] = vn;
+                    io.NavInputs[(int)NAV_NO] = vn;
                 }
                 else
                 {
-                    io->NavInputs[(int)NAV_NO] = 0;
+                    io.NavInputs[(int)NAV_NO] = 0;
                 }
             }
 
@@ -236,13 +236,13 @@
             MAP_ANALOG(ImGuiNavInput.LStickUp, GameControllerAxis.Lefty, -thumb_dead_zone, -32767);
             MAP_ANALOG(ImGuiNavInput.LStickDown, GameControllerAxis.Lefty, +thumb_dead_zone, +32767);
 
-            io->BackendFlags |= ImGuiBackendFlags.HasGamepad;
+            io.BackendFlags |= ImGuiBackendFlags.HasGamepad;
         }
 
         private static unsafe void UpdateMousePosition()
         {
             var io = ImGui.GetIO();
-            io->MousePos = Mouse.Position;
+            io.MousePos = Mouse.Position;
         }
 
         protected virtual unsafe void Dispose(bool disposing)

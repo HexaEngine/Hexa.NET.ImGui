@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Numerics;
@@ -21,10 +22,78 @@ namespace HexaEngine.ImNodesNET
 
 	}
 
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImNodesContextPtr : IEquatable<ImNodesContextPtr>
+	{
+		public ImNodesContextPtr(ImNodesContext* handle) { Handle = handle; }
+
+		public ImNodesContext* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImNodesContextPtr Null => new ImNodesContextPtr(null);
+
+		public static implicit operator ImNodesContextPtr(ImNodesContext* handle) => new ImNodesContextPtr(handle);
+
+		public static implicit operator ImNodesContext*(ImNodesContextPtr handle) => handle.Handle;
+
+		public static bool operator ==(ImNodesContextPtr left, ImNodesContextPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImNodesContextPtr left, ImNodesContextPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImNodesContextPtr left, ImNodesContext* right) => left.Handle == right;
+
+		public static bool operator !=(ImNodesContextPtr left, ImNodesContext* right) => left.Handle != right;
+
+		public bool Equals(ImNodesContextPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImNodesContextPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImNodesContextPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+	}
+
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImNodesEditorContext
 	{
 
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImNodesEditorContextPtr : IEquatable<ImNodesEditorContextPtr>
+	{
+		public ImNodesEditorContextPtr(ImNodesEditorContext* handle) { Handle = handle; }
+
+		public ImNodesEditorContext* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImNodesEditorContextPtr Null => new ImNodesEditorContextPtr(null);
+
+		public static implicit operator ImNodesEditorContextPtr(ImNodesEditorContext* handle) => new ImNodesEditorContextPtr(handle);
+
+		public static implicit operator ImNodesEditorContext*(ImNodesEditorContextPtr handle) => handle.Handle;
+
+		public static bool operator ==(ImNodesEditorContextPtr left, ImNodesEditorContextPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImNodesEditorContextPtr left, ImNodesEditorContextPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImNodesEditorContextPtr left, ImNodesEditorContext* right) => left.Handle == right;
+
+		public static bool operator !=(ImNodesEditorContextPtr left, ImNodesEditorContext* right) => left.Handle != right;
+
+		public bool Equals(ImNodesEditorContextPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImNodesEditorContextPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImNodesEditorContextPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -47,6 +116,51 @@ namespace HexaEngine.ImNodesNET
 
 	}
 
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImNodesIOPtr : IEquatable<ImNodesIOPtr>
+	{
+		public ImNodesIOPtr(ImNodesIO* handle) { Handle = handle; }
+
+		public ImNodesIO* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImNodesIOPtr Null => new ImNodesIOPtr(null);
+
+		public static implicit operator ImNodesIOPtr(ImNodesIO* handle) => new ImNodesIOPtr(handle);
+
+		public static implicit operator ImNodesIO*(ImNodesIOPtr handle) => handle.Handle;
+
+		public static bool operator ==(ImNodesIOPtr left, ImNodesIOPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImNodesIOPtr left, ImNodesIOPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImNodesIOPtr left, ImNodesIO* right) => left.Handle == right;
+
+		public static bool operator !=(ImNodesIOPtr left, ImNodesIO* right) => left.Handle != right;
+
+		public bool Equals(ImNodesIOPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImNodesIOPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImNodesIOPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref EmulateThreeButtonMouse EmulateThreeButtonMouse => ref Unsafe.AsRef<EmulateThreeButtonMouse>(&Handle->EmulateThreeButtonMouse);
+		public ref LinkDetachWithModifierClick LinkDetachWithModifierClick => ref Unsafe.AsRef<LinkDetachWithModifierClick>(&Handle->LinkDetachWithModifierClick);
+		public ref MultipleSelectModifier MultipleSelectModifier => ref Unsafe.AsRef<MultipleSelectModifier>(&Handle->MultipleSelectModifier);
+		public ref int AltMouseButton => ref Unsafe.AsRef<int>(&Handle->AltMouseButton);
+		public ref float AutoPanningSpeed => ref Unsafe.AsRef<float>(&Handle->AutoPanningSpeed);
+
+		public unsafe void Destroy()
+		{
+			ImNodes.DestroyNative(Handle);
+		}
+
+	}
+
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct EmulateThreeButtonMouse
 	{
@@ -59,6 +173,47 @@ namespace HexaEngine.ImNodesNET
 			{
 				ImNodes.DestroyNative(@this);
 			}
+		}
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct EmulateThreeButtonMousePtr : IEquatable<EmulateThreeButtonMousePtr>
+	{
+		public EmulateThreeButtonMousePtr(EmulateThreeButtonMouse* handle) { Handle = handle; }
+
+		public EmulateThreeButtonMouse* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static EmulateThreeButtonMousePtr Null => new EmulateThreeButtonMousePtr(null);
+
+		public static implicit operator EmulateThreeButtonMousePtr(EmulateThreeButtonMouse* handle) => new EmulateThreeButtonMousePtr(handle);
+
+		public static implicit operator EmulateThreeButtonMouse*(EmulateThreeButtonMousePtr handle) => handle.Handle;
+
+		public static bool operator ==(EmulateThreeButtonMousePtr left, EmulateThreeButtonMousePtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(EmulateThreeButtonMousePtr left, EmulateThreeButtonMousePtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(EmulateThreeButtonMousePtr left, EmulateThreeButtonMouse* right) => left.Handle == right;
+
+		public static bool operator !=(EmulateThreeButtonMousePtr left, EmulateThreeButtonMouse* right) => left.Handle != right;
+
+		public bool Equals(EmulateThreeButtonMousePtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is EmulateThreeButtonMousePtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("EmulateThreeButtonMousePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public bool* Modifier { get => Handle->Modifier; set => Handle->Modifier = value; }
+
+		public unsafe void Destroy()
+		{
+			ImNodes.DestroyNative(Handle);
 		}
 
 	}
@@ -79,6 +234,47 @@ namespace HexaEngine.ImNodesNET
 
 	}
 
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct LinkDetachWithModifierClickPtr : IEquatable<LinkDetachWithModifierClickPtr>
+	{
+		public LinkDetachWithModifierClickPtr(LinkDetachWithModifierClick* handle) { Handle = handle; }
+
+		public LinkDetachWithModifierClick* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static LinkDetachWithModifierClickPtr Null => new LinkDetachWithModifierClickPtr(null);
+
+		public static implicit operator LinkDetachWithModifierClickPtr(LinkDetachWithModifierClick* handle) => new LinkDetachWithModifierClickPtr(handle);
+
+		public static implicit operator LinkDetachWithModifierClick*(LinkDetachWithModifierClickPtr handle) => handle.Handle;
+
+		public static bool operator ==(LinkDetachWithModifierClickPtr left, LinkDetachWithModifierClickPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(LinkDetachWithModifierClickPtr left, LinkDetachWithModifierClickPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(LinkDetachWithModifierClickPtr left, LinkDetachWithModifierClick* right) => left.Handle == right;
+
+		public static bool operator !=(LinkDetachWithModifierClickPtr left, LinkDetachWithModifierClick* right) => left.Handle != right;
+
+		public bool Equals(LinkDetachWithModifierClickPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is LinkDetachWithModifierClickPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("LinkDetachWithModifierClickPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public bool* Modifier { get => Handle->Modifier; set => Handle->Modifier = value; }
+
+		public unsafe void Destroy()
+		{
+			ImNodes.DestroyNative(Handle);
+		}
+
+	}
+
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct MultipleSelectModifier
 	{
@@ -91,6 +287,47 @@ namespace HexaEngine.ImNodesNET
 			{
 				ImNodes.DestroyNative(@this);
 			}
+		}
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct MultipleSelectModifierPtr : IEquatable<MultipleSelectModifierPtr>
+	{
+		public MultipleSelectModifierPtr(MultipleSelectModifier* handle) { Handle = handle; }
+
+		public MultipleSelectModifier* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static MultipleSelectModifierPtr Null => new MultipleSelectModifierPtr(null);
+
+		public static implicit operator MultipleSelectModifierPtr(MultipleSelectModifier* handle) => new MultipleSelectModifierPtr(handle);
+
+		public static implicit operator MultipleSelectModifier*(MultipleSelectModifierPtr handle) => handle.Handle;
+
+		public static bool operator ==(MultipleSelectModifierPtr left, MultipleSelectModifierPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(MultipleSelectModifierPtr left, MultipleSelectModifierPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(MultipleSelectModifierPtr left, MultipleSelectModifier* right) => left.Handle == right;
+
+		public static bool operator !=(MultipleSelectModifierPtr left, MultipleSelectModifier* right) => left.Handle != right;
+
+		public bool Equals(MultipleSelectModifierPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is MultipleSelectModifierPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("MultipleSelectModifierPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public bool* Modifier { get => Handle->Modifier; set => Handle->Modifier = value; }
+
+		public unsafe void Destroy()
+		{
+			ImNodes.DestroyNative(Handle);
 		}
 
 	}
@@ -114,7 +351,35 @@ namespace HexaEngine.ImNodesNET
 		public Vector2 MiniMapPadding;
 		public Vector2 MiniMapOffset;
 		public ImNodesStyleFlags Flags;
-		public unsafe fixed uint Colors[29];
+		public uint Colors_0;
+		public uint Colors_1;
+		public uint Colors_2;
+		public uint Colors_3;
+		public uint Colors_4;
+		public uint Colors_5;
+		public uint Colors_6;
+		public uint Colors_7;
+		public uint Colors_8;
+		public uint Colors_9;
+		public uint Colors_10;
+		public uint Colors_11;
+		public uint Colors_12;
+		public uint Colors_13;
+		public uint Colors_14;
+		public uint Colors_15;
+		public uint Colors_16;
+		public uint Colors_17;
+		public uint Colors_18;
+		public uint Colors_19;
+		public uint Colors_20;
+		public uint Colors_21;
+		public uint Colors_22;
+		public uint Colors_23;
+		public uint Colors_24;
+		public uint Colors_25;
+		public uint Colors_26;
+		public uint Colors_27;
+		public uint Colors_28;
 
 
 		public unsafe void Destroy()
@@ -123,6 +388,70 @@ namespace HexaEngine.ImNodesNET
 			{
 				ImNodes.DestroyNative(@this);
 			}
+		}
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImNodesStylePtr : IEquatable<ImNodesStylePtr>
+	{
+		public ImNodesStylePtr(ImNodesStyle* handle) { Handle = handle; }
+
+		public ImNodesStyle* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImNodesStylePtr Null => new ImNodesStylePtr(null);
+
+		public static implicit operator ImNodesStylePtr(ImNodesStyle* handle) => new ImNodesStylePtr(handle);
+
+		public static implicit operator ImNodesStyle*(ImNodesStylePtr handle) => handle.Handle;
+
+		public static bool operator ==(ImNodesStylePtr left, ImNodesStylePtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImNodesStylePtr left, ImNodesStylePtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImNodesStylePtr left, ImNodesStyle* right) => left.Handle == right;
+
+		public static bool operator !=(ImNodesStylePtr left, ImNodesStyle* right) => left.Handle != right;
+
+		public bool Equals(ImNodesStylePtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImNodesStylePtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImNodesStylePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref float GridSpacing => ref Unsafe.AsRef<float>(&Handle->GridSpacing);
+		public ref float NodeCornerRounding => ref Unsafe.AsRef<float>(&Handle->NodeCornerRounding);
+		public ref Vector2 NodePadding => ref Unsafe.AsRef<Vector2>(&Handle->NodePadding);
+		public ref float NodeBorderThickness => ref Unsafe.AsRef<float>(&Handle->NodeBorderThickness);
+		public ref float LinkThickness => ref Unsafe.AsRef<float>(&Handle->LinkThickness);
+		public ref float LinkLineSegmentsPerLength => ref Unsafe.AsRef<float>(&Handle->LinkLineSegmentsPerLength);
+		public ref float LinkHoverDistance => ref Unsafe.AsRef<float>(&Handle->LinkHoverDistance);
+		public ref float PinCircleRadius => ref Unsafe.AsRef<float>(&Handle->PinCircleRadius);
+		public ref float PinQuadSideLength => ref Unsafe.AsRef<float>(&Handle->PinQuadSideLength);
+		public ref float PinTriangleSideLength => ref Unsafe.AsRef<float>(&Handle->PinTriangleSideLength);
+		public ref float PinLineThickness => ref Unsafe.AsRef<float>(&Handle->PinLineThickness);
+		public ref float PinHoverRadius => ref Unsafe.AsRef<float>(&Handle->PinHoverRadius);
+		public ref float PinOffset => ref Unsafe.AsRef<float>(&Handle->PinOffset);
+		public ref Vector2 MiniMapPadding => ref Unsafe.AsRef<Vector2>(&Handle->MiniMapPadding);
+		public ref Vector2 MiniMapOffset => ref Unsafe.AsRef<Vector2>(&Handle->MiniMapOffset);
+		public ref ImNodesStyleFlags Flags => ref Unsafe.AsRef<ImNodesStyleFlags>(&Handle->Flags);
+		public unsafe Span<uint> Colors
+		
+		{
+			get
+			{
+				return new Span<uint>(&Handle->Colors_0, 29);
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			ImNodes.DestroyNative(Handle);
 		}
 
 	}

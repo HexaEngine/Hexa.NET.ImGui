@@ -15,6 +15,7 @@ namespace Example.ImGuiDemo
     using HexaEngine.ImGuizmoNET;
     using HexaEngine.ImNodesNET;
     using HexaEngine.ImPlotNET;
+    using Silk.NET.Core.Win32Extras;
 
     public unsafe class ImGuiRenderer
     {
@@ -31,9 +32,9 @@ namespace Example.ImGuiDemo
         private ISamplerState fontSampler;
         private IShaderResourceView fontTextureView;
         private int vertexBufferSize = 5000, indexBufferSize = 10000;
-        private ImGuiContext* guiContext;
-        private ImNodesContext* nodesContext;
-        private ImPlotContext* plotContext;
+        private ImGuiContextPtr guiContext;
+        private ImNodesContextPtr nodesContext;
+        private ImPlotContextPtr plotContext;
         public static readonly Dictionary<nint, ISamplerState> Samplers = new();
 
         public ImGuiRenderer(SdlWindow window, IGraphicsDevice device, ISwapChain swapChain)
@@ -61,29 +62,29 @@ namespace Example.ImGuiDemo
             var io = ImGui.GetIO();
 
             var config = ImGui.ImFontConfig();
-            io->Fonts->AddFontDefault(config);
+            io.Fonts.AddFontDefault(config);
 
-            config->MergeMode = true;
-            config->GlyphMinAdvanceX = 18;
-            config->GlyphOffset = new(0, 4);
+            config.MergeMode = true;
+            config.GlyphMinAdvanceX = 18;
+            config.GlyphOffset = new(0, 4);
             var range = new char[] { (char)0xE700, (char)0xF800, (char)0 };
             fixed (char* buffer = range)
             {
                 var bytes = File.ReadAllBytes("assets/fonts/SEGMDL2.TTF");
                 fixed (byte* buffer2 = bytes)
                 {
-                    io->Fonts->AddFontFromMemoryTTF(buffer2, bytes.Length, 14, config, buffer);
+                    io.Fonts.AddFontFromMemoryTTF(buffer2, bytes.Length, 14, config, buffer);
                 }
             }
 
-            io->ConfigFlags |= ImGuiConfigFlags.DockingEnable | ImGuiConfigFlags.NavEnableGamepad;
-            io->BackendFlags |= ImGuiBackendFlags.RendererHasVtxOffset | ImGuiBackendFlags.HasMouseCursors;
+            io.ConfigFlags |= ImGuiConfigFlags.DockingEnable | ImGuiConfigFlags.NavEnableGamepad;
+            io.BackendFlags |= ImGuiBackendFlags.RendererHasVtxOffset | ImGuiBackendFlags.HasMouseCursors;
             ImGui.StyleColorsDark(ImGui.GetStyle());
 
             CreateDeviceObjects();
 
             var style = ImGui.GetStyle();
-            var colors = style->Colors;
+            var colors = style.Colors;
 
             colors[(int)ImGuiCol.Text] = new Vector4(1.00f, 1.00f, 1.00f, 1.00f);
             colors[(int)ImGuiCol.TextDisabled] = new Vector4(0.50f, 0.50f, 0.50f, 1.00f);
@@ -141,28 +142,28 @@ namespace Example.ImGuiDemo
             colors[(int)ImGuiCol.NavWindowingDimBg] = new Vector4(1.00f, 0.00f, 0.00f, 0.20f);
             colors[(int)ImGuiCol.ModalWindowDimBg] = new Vector4(0.10f, 0.10f, 0.10f, 0.00f);
 
-            style->WindowPadding = new Vector2(8.00f, 8.00f);
-            style->FramePadding = new Vector2(5.00f, 2.00f);
-            style->CellPadding = new Vector2(6.00f, 6.00f);
-            style->ItemSpacing = new Vector2(6.00f, 6.00f);
-            style->ItemInnerSpacing = new Vector2(6.00f, 6.00f);
-            style->TouchExtraPadding = new Vector2(0.00f, 0.00f);
-            style->IndentSpacing = 25;
-            style->ScrollbarSize = 15;
-            style->GrabMinSize = 10;
-            style->WindowBorderSize = 1;
-            style->ChildBorderSize = 1;
-            style->PopupBorderSize = 1;
-            style->FrameBorderSize = 1;
-            style->TabBorderSize = 1;
-            style->WindowRounding = 7;
-            style->ChildRounding = 4;
-            style->FrameRounding = 3;
-            style->PopupRounding = 4;
-            style->ScrollbarRounding = 9;
-            style->GrabRounding = 3;
-            style->LogSliderDeadzone = 4;
-            style->TabRounding = 4;
+            style.WindowPadding = new Vector2(8.00f, 8.00f);
+            style.FramePadding = new Vector2(5.00f, 2.00f);
+            style.CellPadding = new Vector2(6.00f, 6.00f);
+            style.ItemSpacing = new Vector2(6.00f, 6.00f);
+            style.ItemInnerSpacing = new Vector2(6.00f, 6.00f);
+            style.TouchExtraPadding = new Vector2(0.00f, 0.00f);
+            style.IndentSpacing = 25;
+            style.ScrollbarSize = 15;
+            style.GrabMinSize = 10;
+            style.WindowBorderSize = 1;
+            style.ChildBorderSize = 1;
+            style.PopupBorderSize = 1;
+            style.FrameBorderSize = 1;
+            style.TabBorderSize = 1;
+            style.WindowRounding = 7;
+            style.ChildRounding = 4;
+            style.FrameRounding = 3;
+            style.PopupRounding = 4;
+            style.ScrollbarRounding = 9;
+            style.GrabRounding = 3;
+            style.LogSliderDeadzone = 4;
+            style.TabRounding = 4;
 
             inputHandler = new(window);
         }
@@ -261,14 +262,14 @@ namespace Example.ImGuiDemo
 
             var constResource = ctx.Map(constantBuffer, 0, MapMode.WriteDiscard, MapFlags.None);
             var span = constResource.AsSpan<byte>(VertexConstantBufferSize);
-            ImGuiIO* io = ImGui.GetIO();
-            Matrix4x4 mvp = MathUtil.OrthoOffCenterLH(0f, io->DisplaySize.X, io->DisplaySize.Y, 0, -1, 1);
+            ImGuiIOPtr io = ImGui.GetIO();
+            Matrix4x4 mvp = MathUtil.OrthoOffCenterLH(0f, io.DisplaySize.X, io.DisplaySize.Y, 0, -1, 1);
             MemoryMarshal.Write(span, ref mvp);
             ctx.Unmap(constantBuffer, 0);
 
             SetupRenderState(data, ctx);
 
-            data->ScaleClipRects(io->DisplayFramebufferScale);
+            data->ScaleClipRects(io.DisplayFramebufferScale);
 
             // Render command lists
             // (Because we merged all buffers into a single one, we maintain our own offset into them)
@@ -284,7 +285,7 @@ namespace Example.ImGuiDemo
                     var cmd = cmdList->CmdBuffer.Data[i];
                     if (cmd.UserCallback != null)
                     {
-                        cmd.UserCallback(cmdList, &cmd);
+                        (*cmd.UserCallback)(cmdList, &cmd);
                     }
                     else
                     {
@@ -342,7 +343,7 @@ namespace Example.ImGuiDemo
             byte* pixels;
             int width;
             int height;
-            ImGui.GetTexDataAsRGBA32(io->Fonts, &pixels, &width, &height, null);
+            ImGui.GetTexDataAsRGBA32(io.Fonts, &pixels, &width, &height, null);
 
             var texDesc = new Texture2DDescription
             {
@@ -375,7 +376,7 @@ namespace Example.ImGuiDemo
             fontTextureView = device.CreateShaderResourceView(texture, resViewDesc);
             texture.Dispose();
 
-            io->Fonts->TexID = fontTextureView.NativePointer;
+            io.Fonts.TexID = fontTextureView.NativePointer;
 
             var samplerDesc = new SamplerDescription
             {

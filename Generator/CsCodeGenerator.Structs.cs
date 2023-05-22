@@ -4,15 +4,18 @@
     using CppAst;
     using System.IO;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Text;
 
     public static partial class CsCodeGenerator
     {
         public static readonly HashSet<string> DefinedTypes = new();
 
+        private static readonly Dictionary<string, string> WrappedPointers = new();
+
         private static void GenerateStructAndUnions(CppCompilation compilation, string outputPath)
         {
-            string[] usings = { "System", "System.Runtime.CompilerServices", "System.Runtime.InteropServices" };
+            string[] usings = { "System", "System.Diagnostics", "System.Runtime.CompilerServices", "System.Runtime.InteropServices" };
 
             // Generate Structures
             using var writer = new CodeWriter(Path.Combine(outputPath, "Structures.cs"), usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
@@ -22,16 +25,218 @@
             {
                 CppClass? cppClass = compilation.Classes[i];
                 if (CsCodeGeneratorSettings.Default.AllowedTypes.Count != 0 && !CsCodeGeneratorSettings.Default.AllowedTypes.Contains(cppClass.Name))
+                {
                     continue;
+                }
+
                 if (CsCodeGeneratorSettings.Default.IgnoredTypes.Contains(cppClass.Name))
+                {
                     continue;
+                }
+
                 if (DefinedTypes.Contains(cppClass.Name))
+                {
                     continue;
+                }
+
                 DefinedTypes.Add(cppClass.Name);
 
                 string csName = GetCsCleanName(cppClass.Name);
                 WriteClass(writer, compilation, cppClass, csName);
+                if (IsUsedAsPointer(cppClass, compilation, out var depths))
+                {
+                    for (int j = 0; j < depths.Count; j++)
+                    {
+                        int depth = depths[j];
+                        Console.WriteLine(cppClass.Name + " : " + depth);
+                        StringBuilder sb1 = new();
+                        StringBuilder sb2 = new();
+                        sb1.Append(csName);
+                        sb2.Append(csName);
+                        for (int jj = 0; jj < depth; jj++)
+                        {
+                            sb1.Append("Ptr");
+                            sb2.Append('*');
+                        }
+
+                        WriteStructHandle(writer, compilation, cppClass, sb1.ToString(), sb2.ToString());
+                        WrappedPointers.Add(sb2.ToString(), sb1.ToString());
+                    }
+                }
             }
+        }
+
+        private static void WriteStructHandle(CodeWriter writer, CppCompilation compilation, CppClass cppClass, string csName, string handleType)
+        {
+            WriteCsSummary(cppClass.Comment, writer);
+            writer.WriteLine($"[DebuggerDisplay(\"{{DebuggerDisplay,nq}}\")]");
+            using (writer.PushBlock($"public unsafe struct {csName} : IEquatable<{csName}>"))
+            {
+                string nullValue = "null";
+
+                writer.WriteLine($"public {csName}({handleType} handle) {{ Handle = handle; }}");
+                writer.WriteLine();
+                writer.WriteLine($"public {handleType} Handle;");
+                writer.WriteLine();
+                writer.WriteLine($"public bool IsNull => Handle == null;");
+                writer.WriteLine();
+                writer.WriteLine($"public static {csName} Null => new {csName}({nullValue});");
+                writer.WriteLine();
+                writer.WriteLine($"public static implicit operator {csName}({handleType} handle) => new {csName}(handle);");
+                writer.WriteLine();
+                writer.WriteLine($"public static implicit operator {handleType}({csName} handle) => handle.Handle;");
+                writer.WriteLine();
+                writer.WriteLine($"public static bool operator ==({csName} left, {csName} right) => left.Handle == right.Handle;");
+                writer.WriteLine();
+                writer.WriteLine($"public static bool operator !=({csName} left, {csName} right) => left.Handle != right.Handle;");
+                writer.WriteLine();
+                writer.WriteLine($"public static bool operator ==({csName} left, {handleType} right) => left.Handle == right;");
+                writer.WriteLine();
+                writer.WriteLine($"public static bool operator !=({csName} left, {handleType} right) => left.Handle != right;");
+                writer.WriteLine();
+                writer.WriteLine($"public bool Equals({csName} other) => Handle == other.Handle;");
+                writer.WriteLine();
+                writer.WriteLine("/// <inheritdoc/>");
+                writer.WriteLine($"public override bool Equals(object obj) => obj is {csName} handle && Equals(handle);");
+                writer.WriteLine();
+                writer.WriteLine("/// <inheritdoc/>");
+                writer.WriteLine($"public override int GetHashCode() => ((nuint)Handle).GetHashCode();");
+                writer.WriteLine();
+                writer.WriteLine($"private string DebuggerDisplay => string.Format(\"{csName} [0x{{0}}]\", ((nuint)Handle).ToString(\"X\"));");
+                var pCount = handleType.Count(x => x == '*');
+                if (pCount == 1)
+                {
+                    for (int j = 0; j < cppClass.Fields.Count; j++)
+                    {
+                        CppField cppField = cppClass.Fields[j];
+
+                        WriteProperty(writer, cppClass, cppField, false);
+                    }
+
+                    if (CsCodeGeneratorSettings.Default.KnownMemberFunctions.TryGetValue(cppClass.Name, out var functions))
+                    {
+                        HashSet<string> definedFunctions = new();
+                        writer.WriteLine();
+                        List<CsFunction> commands = new();
+                        for (int i = 0; i < functions.Count; i++)
+                        {
+                            CppFunction cppFunction = FindFunction(compilation, functions[i]);
+                            var csFunctionName = GetPrettyCommandName(cppFunction.Name);
+                            string returnCsName = GetCsTypeName(cppFunction.ReturnType, false);
+                            CppPrimitiveKind returnKind = GetPrimitiveKind(cppFunction.ReturnType, false);
+
+                            CsFunction? function = null;
+                            for (int j = 0; j < commands.Count; j++)
+                            {
+                                if (commands[j].Name == csFunctionName)
+                                {
+                                    function = commands[j];
+                                    break;
+                                }
+                            }
+
+                            if (function == null)
+                            {
+                                WriteCsSummary(cppFunction.Comment, out string? comment);
+                                function = new(csFunctionName, comment);
+                                commands.Add(function);
+                            }
+
+                            CsFunctionOverload overload = new(cppFunction.Name, csFunctionName, "", false, false, false, new(returnCsName, returnKind));
+                            for (int j = 0; j < cppFunction.Parameters.Count; j++)
+                            {
+                                var cppParameter = cppFunction.Parameters[j];
+                                var paramCsTypeName = GetCsTypeName(cppParameter.Type, false);
+                                var paramCsName = GetParameterName(cppParameter.Type, cppParameter.Name);
+                                var direction = GetDirection(cppParameter.Type);
+                                var kind = GetPrimitiveKind(cppParameter.Type, false);
+
+                                CsType csType = new(paramCsTypeName, kind);
+
+                                CsParameterInfo csParameter = new(paramCsName, csType, direction);
+
+                                overload.Parameters.Add(csParameter);
+                                if (TryGetDefaultValue(cppFunction.Name, cppParameter, false, out var defaultValue))
+                                {
+                                    overload.DefaultValues.Add(paramCsName, defaultValue);
+                                }
+                            }
+
+                            function.Overloads.Add(overload);
+                            GenerateVariations(cppFunction.Parameters, overload, true);
+
+                            bool useThisRef = false;
+                            if (cppFunction.Parameters.Count > 0 && IsPointerOf(cppClass, cppFunction.Parameters[0].Type))
+                            {
+                                useThisRef = true;
+                            }
+
+                            bool useThis = false;
+                            if (cppFunction.Parameters.Count > 0 && IsType(cppClass, cppFunction.Parameters[0].Type))
+                            {
+                                useThis = true;
+                            }
+
+                            if (useThis || useThisRef)
+                            {
+                                WriteMethods(writer, definedFunctions, function, overload, false, true, "public unsafe");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    using (writer.PushBlock($"public {csName[..^3]} this[int index]"))
+                    {
+                        writer.WriteLine($"get => Handle[index]; set => Handle[index] = value;");
+                    }
+                }
+            }
+            writer.WriteLine();
+        }
+
+        public static bool IsUsedAsPointer(CppClass cppClass, CppCompilation compilation, out List<int> depths)
+        {
+            depths = new List<int>();
+            int depth = 0;
+            for (int i = 0; i < compilation.Functions.Count; i++)
+            {
+                depth = 0;
+                var func = compilation.Functions[i];
+                if (IsPointerOf(cppClass, func.ReturnType, ref depth))
+                {
+                    if (!depths.Contains(depth))
+                        depths.Add(depth);
+                }
+
+                for (int j = 0; j < func.Parameters.Count; j++)
+                {
+                    depth = 0;
+                    var param = func.Parameters[j];
+                    if (IsPointerOf(cppClass, param.Type, ref depth))
+                    {
+                        if (!depths.Contains(depth))
+                            depths.Add(depth);
+                    }
+                }
+            }
+
+            for (int i = 0; i < compilation.Classes.Count; i++)
+            {
+                var cl = compilation.Classes[i];
+                for (int j = 0; j < cl.Fields.Count; j++)
+                {
+                    depth = 0;
+                    var field = cl.Fields[j];
+                    if (IsPointerOf(cppClass, field.Type, ref depth))
+                    {
+                        if (!depths.Contains(depth))
+                            depths.Add(depth);
+                    }
+                }
+            }
+
+            return depths.Count > 0;
         }
 
         public static void WriteClass(CodeWriter writer, CppCompilation compilation, CppClass cppClass, string csName)
@@ -119,7 +324,7 @@
                     CppField cppField = cppClass.Fields[j];
                     if (cppField.Type.TypeKind == CppTypeKind.Array)
                     {
-                        WriteProperty(writer, cppField, isReadOnly);
+                        WriteProperty(writer, cppField);
                     }
                 }
 
@@ -188,7 +393,9 @@
                         }
 
                         if (useThis || useThisRef)
-                            WriteMethods(writer, definedFunctions, function, overload, useThis || useThisRef, "public unsafe");
+                        {
+                            WriteMethods(writer, definedFunctions, function, overload, useThis || useThisRef, false, "public unsafe");
+                        }
                     }
                 }
             }
@@ -208,34 +415,26 @@
             if (field.Type is CppArrayType arrayType)
             {
                 string csFieldType = GetCsTypeName(arrayType.ElementType, false);
-                bool canUseFixed = false;
-                if (arrayType.ElementType is CppPrimitiveType)
-                {
-                    canUseFixed = true;
-                }
-                else if (arrayType.ElementType is CppTypedef typedef && IsPrimitive(typedef, out var primitive))
+
+                if (arrayType.ElementType is CppTypedef typedef && IsPrimitive(typedef, out var primitive))
                 {
                     csFieldType = GetCsTypeName(primitive, false);
-                    canUseFixed = true;
                 }
 
-                if (canUseFixed)
+                string unsafePrefix = string.Empty;
+
+                if (csFieldType.EndsWith('*'))
                 {
-                    writer.WriteLine($"public unsafe fixed {csFieldType} {csFieldName}[{arrayType.Size}];");
+                    unsafePrefix = "unsafe ";
                 }
-                else
+
+                for (int i = 0; i < arrayType.Size; i++)
                 {
-                    string unsafePrefix = string.Empty;
-
-                    if (csFieldType.EndsWith('*'))
+                    if (isUnion && i != 0)
                     {
-                        unsafePrefix = "unsafe ";
+                        writer.WriteLine($"[FieldOffset({arrayType.SizeOf * i})]");
                     }
-
-                    for (int i = 0; i < arrayType.Size; i++)
-                    {
-                        writer.WriteLine($"public {unsafePrefix}{csFieldType} {csFieldName}_{i};");
-                    }
+                    writer.WriteLine($"public {unsafePrefix}{csFieldType} {csFieldName}_{i};");
                 }
             }
             else
@@ -263,7 +462,7 @@
 
                     builder.Append(returnCsName);
 
-                    writer.WriteLine($"public {fieldPrefix}unsafe delegate*<{builder}> {csFieldName};");
+                    writer.WriteLine($"public {fieldPrefix}unsafe delegate*<{builder}>* {csFieldName};");
 
                     return;
                 }
@@ -277,7 +476,129 @@
             }
         }
 
-        private static void WriteProperty(CodeWriter writer, CppField field, bool isReadOnly = false)
+        private static void WriteProperty(CodeWriter writer, CppClass cppClass, CppField field, bool isReadOnly = false)
+        {
+            string csFieldName = NormalizeFieldName(field.Name);
+            WriteCsSummary(field.Comment, writer);
+
+            if (field.Type is CppArrayType arrayType)
+            {
+                string csFieldType = GetCsTypeName(arrayType.ElementType, false);
+
+                if (arrayType.ElementType is CppTypedef typedef && IsPrimitive(typedef, out var primitive))
+                {
+                    csFieldType = GetCsTypeName(primitive, false);
+                }
+
+                if (csFieldType.EndsWith('*'))
+                {
+                    return;
+                }
+
+                writer.WriteLine($"public unsafe Span<{csFieldType}> {csFieldName}");
+                using (writer.PushBlock(""))
+                {
+                    using (writer.PushBlock("get"))
+                    {
+                        writer.WriteLine($"return new Span<{csFieldType}>(&Handle->{csFieldName}_0, {arrayType.Size});");
+                    }
+                }
+            }
+            else
+            {
+                string csFieldType;
+
+                if (field.Type is CppClass subClass)
+                {
+                    if (string.IsNullOrEmpty(subClass.Name))
+                    {
+                        string csName = GetCsCleanName(cppClass.Name);
+                        csFieldType = csName + "Union";
+                        csFieldName = csFieldType;
+                    }
+                    else
+                    {
+                        csFieldType = GetCsCleanName(subClass.Name);
+                    }
+                }
+                else
+                {
+                    csFieldType = GetCsTypeName(field.Type, false);
+                }
+
+                if (IsDelegate(field.Type, out var functionType))
+                {
+                    StringBuilder builder = new();
+                    for (int i = 0; i < functionType.Parameters.Count; i++)
+                    {
+                        CppParameter parameter = functionType.Parameters[i];
+                        string paramCsType = GetCsTypeName(parameter.Type, false);
+                        // Otherwise we get interop issues with non blittable types
+
+                        builder.Append(paramCsType);
+
+                        builder.Append(", ");
+                    }
+
+                    string returnCsName = GetCsTypeName(functionType.ReturnType, false);
+
+                    builder.Append(returnCsName);
+
+                    if (isReadOnly)
+                    {
+                        writer.WriteLine($"public delegate*<{builder}>* {csFieldName} {{ get => Handle->{csFieldName}; }}");
+                    }
+                    else
+                    {
+                        writer.WriteLine($"public delegate*<{builder}>* {csFieldName} {{ get => Handle->{csFieldName}; set => Handle->{csFieldName} = value; }}");
+                    }
+
+                    return;
+                }
+
+                if (csFieldType.EndsWith('*') && !CsType.IsKnownPrimitive(csFieldType))
+                {
+                    StringBuilder sb = new();
+                    int x = 0;
+                    while (csFieldType.EndsWith('*'))
+                    {
+                        csFieldType = csFieldType[..^1];
+                        x++;
+                    }
+                    sb.Append(csFieldType);
+                    for (int j = 0; j < x; j++)
+                    {
+                        sb.Append("Ptr");
+                    }
+                    csFieldType = sb.ToString();
+                }
+
+                if (csFieldType.EndsWith('*'))
+                {
+                    if (isReadOnly)
+                    {
+                        writer.WriteLine($"public {csFieldType} {csFieldName} => Handle->{csFieldName};");
+                    }
+                    else
+                    {
+                        writer.WriteLine($"public {csFieldType} {csFieldName} {{ get => Handle->{csFieldName}; set => Handle->{csFieldName} = value; }}");
+                    }
+                }
+                else
+                {
+                    if (isReadOnly)
+                    {
+                        writer.WriteLine($"public {csFieldType} {csFieldName} => Handle->{csFieldName};");
+                    }
+                    else
+                    {
+                        writer.WriteLine($"public ref {csFieldType} {csFieldName} => ref Unsafe.AsRef<{csFieldType}>(&Handle->{csFieldName});");
+                    }
+                }
+            }
+        }
+
+        private static void WriteProperty(CodeWriter writer, CppField field)
         {
             string csFieldName = NormalizeFieldName(field.Name);
             WriteCsSummary(field.Comment, writer);
@@ -344,22 +665,45 @@
             return false;
         }
 
+        public static bool IsPointerOf(CppType type, CppType pointer, ref int depth)
+        {
+            if (pointer is CppPointerType pointerType)
+            {
+                if (pointerType.ElementType is CppPointerType cppPointer)
+                {
+                    depth++;
+                    return IsPointerOf(type, cppPointer, ref depth);
+                }
+                depth++;
+                if (pointerType.ElementType is CppQualifiedType qualifiedType && qualifiedType.Qualifier == CppTypeQualifier.Const)
+                    return qualifiedType.ElementType.GetDisplayName() == type.GetDisplayName();
+                else
+                    return pointerType.ElementType.GetDisplayName() == type.GetDisplayName();
+            }
+            return false;
+        }
+
         public static bool IsType(CppType a, CppType b)
         {
             return a.GetDisplayName() == b.GetDisplayName();
         }
 
-        public static bool IsPrimitive(CppTypedef cppTypedef, out CppPrimitiveType primitive)
+        public static bool IsPrimitive(CppType cppType, out CppPrimitiveType primitive)
         {
-            if (cppTypedef.ElementType is CppPrimitiveType cppPrimitive)
+            if (cppType is CppPrimitiveType cppPrimitive)
             {
                 primitive = cppPrimitive;
                 return true;
             }
 
-            if (cppTypedef.ElementType is CppTypedef cppSubTypedef)
+            if (cppType is CppTypedef cppTypedef)
             {
-                return IsPrimitive(cppSubTypedef, out primitive);
+                return IsPrimitive(cppTypedef.ElementType, out primitive);
+            }
+
+            if (cppType is CppPointerType cppPointerType)
+            {
+                return IsPrimitive(cppPointerType.ElementType, out primitive);
             }
 
             primitive = null;
@@ -453,7 +797,9 @@
             }
             name = sb.ToString();
             if (CsCodeGeneratorSettings.Default.Keywords.Contains(name))
+            {
                 return "@" + name;
+            }
 
             return name;
         }

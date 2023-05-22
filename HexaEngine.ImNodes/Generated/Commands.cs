@@ -22,9 +22,9 @@ namespace HexaEngine.ImNodesNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "EmulateThreeButtonMouse_EmulateThreeButtonMouse")]
 		internal static extern EmulateThreeButtonMouse* EmulateThreeButtonMouseNative();
 
-		public static EmulateThreeButtonMouse* EmulateThreeButtonMouse()
+		public static EmulateThreeButtonMousePtr EmulateThreeButtonMouse()
 		{
-			EmulateThreeButtonMouse* ret = EmulateThreeButtonMouseNative();
+			EmulateThreeButtonMousePtr ret = EmulateThreeButtonMouseNative();
 			return ret;
 		}
 
@@ -47,9 +47,9 @@ namespace HexaEngine.ImNodesNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "LinkDetachWithModifierClick_LinkDetachWithModifierClick")]
 		internal static extern LinkDetachWithModifierClick* LinkDetachWithModifierClickNative();
 
-		public static LinkDetachWithModifierClick* LinkDetachWithModifierClick()
+		public static LinkDetachWithModifierClickPtr LinkDetachWithModifierClick()
 		{
-			LinkDetachWithModifierClick* ret = LinkDetachWithModifierClickNative();
+			LinkDetachWithModifierClickPtr ret = LinkDetachWithModifierClickNative();
 			return ret;
 		}
 
@@ -72,9 +72,9 @@ namespace HexaEngine.ImNodesNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MultipleSelectModifier_MultipleSelectModifier")]
 		internal static extern MultipleSelectModifier* MultipleSelectModifierNative();
 
-		public static MultipleSelectModifier* MultipleSelectModifier()
+		public static MultipleSelectModifierPtr MultipleSelectModifier()
 		{
-			MultipleSelectModifier* ret = MultipleSelectModifierNative();
+			MultipleSelectModifierPtr ret = MultipleSelectModifierNative();
 			return ret;
 		}
 
@@ -97,9 +97,9 @@ namespace HexaEngine.ImNodesNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodesIO_ImNodesIO")]
 		internal static extern ImNodesIO* ImNodesIONative();
 
-		public static ImNodesIO* ImNodesIO()
+		public static ImNodesIOPtr ImNodesIO()
 		{
-			ImNodesIO* ret = ImNodesIONative();
+			ImNodesIOPtr ret = ImNodesIONative();
 			return ret;
 		}
 
@@ -122,9 +122,9 @@ namespace HexaEngine.ImNodesNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodesStyle_ImNodesStyle")]
 		internal static extern ImNodesStyle* ImNodesStyleNative();
 
-		public static ImNodesStyle* ImNodesStyle()
+		public static ImNodesStylePtr ImNodesStyle()
 		{
-			ImNodesStyle* ret = ImNodesStyleNative();
+			ImNodesStylePtr ret = ImNodesStyleNative();
 			return ret;
 		}
 
@@ -163,9 +163,9 @@ namespace HexaEngine.ImNodesNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_CreateContext")]
 		internal static extern ImNodesContext* CreateContextNative();
 
-		public static ImNodesContext* CreateContext()
+		public static ImNodesContextPtr CreateContext()
 		{
-			ImNodesContext* ret = CreateContextNative();
+			ImNodesContextPtr ret = CreateContextNative();
 			return ret;
 		}
 
@@ -193,9 +193,9 @@ namespace HexaEngine.ImNodesNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_GetCurrentContext")]
 		internal static extern ImNodesContext* GetCurrentContextNative();
 
-		public static ImNodesContext* GetCurrentContext()
+		public static ImNodesContextPtr GetCurrentContext()
 		{
-			ImNodesContext* ret = GetCurrentContextNative();
+			ImNodesContextPtr ret = GetCurrentContextNative();
 			return ret;
 		}
 
@@ -218,9 +218,9 @@ namespace HexaEngine.ImNodesNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_EditorContextCreate")]
 		internal static extern ImNodesEditorContext* EditorContextCreateNative();
 
-		public static ImNodesEditorContext* EditorContextCreate()
+		public static ImNodesEditorContextPtr EditorContextCreate()
 		{
-			ImNodesEditorContext* ret = EditorContextCreateNative();
+			ImNodesEditorContextPtr ret = EditorContextCreateNative();
 			return ret;
 		}
 
@@ -293,18 +293,18 @@ namespace HexaEngine.ImNodesNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_GetIO")]
 		internal static extern ImNodesIO* GetIONative();
 
-		public static ImNodesIO* GetIO()
+		public static ImNodesIOPtr GetIO()
 		{
-			ImNodesIO* ret = GetIONative();
+			ImNodesIOPtr ret = GetIONative();
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_GetStyle")]
 		internal static extern ImNodesStyle* GetStyleNative();
 
-		public static ImNodesStyle* GetStyle()
+		public static ImNodesStylePtr GetStyle()
 		{
-			ImNodesStyle* ret = GetStyleNative();
+			ImNodesStylePtr ret = GetStyleNative();
 			return ret;
 		}
 

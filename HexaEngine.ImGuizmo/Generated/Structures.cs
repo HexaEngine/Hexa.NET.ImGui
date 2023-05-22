@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Numerics;
@@ -60,6 +61,62 @@ namespace HexaEngine.ImGuizmoNET
 			{
 				ImGuizmo.DestroyNative(@this);
 			}
+		}
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct StylePtr : IEquatable<StylePtr>
+	{
+		public StylePtr(Style* handle) { Handle = handle; }
+
+		public Style* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static StylePtr Null => new StylePtr(null);
+
+		public static implicit operator StylePtr(Style* handle) => new StylePtr(handle);
+
+		public static implicit operator Style*(StylePtr handle) => handle.Handle;
+
+		public static bool operator ==(StylePtr left, StylePtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(StylePtr left, StylePtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(StylePtr left, Style* right) => left.Handle == right;
+
+		public static bool operator !=(StylePtr left, Style* right) => left.Handle != right;
+
+		public bool Equals(StylePtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is StylePtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("StylePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref float TranslationLineThickness => ref Unsafe.AsRef<float>(&Handle->TranslationLineThickness);
+		public ref float TranslationLineArrowSize => ref Unsafe.AsRef<float>(&Handle->TranslationLineArrowSize);
+		public ref float RotationLineThickness => ref Unsafe.AsRef<float>(&Handle->RotationLineThickness);
+		public ref float RotationOuterLineThickness => ref Unsafe.AsRef<float>(&Handle->RotationOuterLineThickness);
+		public ref float ScaleLineThickness => ref Unsafe.AsRef<float>(&Handle->ScaleLineThickness);
+		public ref float ScaleLineCircleSize => ref Unsafe.AsRef<float>(&Handle->ScaleLineCircleSize);
+		public ref float HatchedAxisLineThickness => ref Unsafe.AsRef<float>(&Handle->HatchedAxisLineThickness);
+		public ref float CenterCircleSize => ref Unsafe.AsRef<float>(&Handle->CenterCircleSize);
+		public unsafe Span<Vector4> Colors
+		
+		{
+			get
+			{
+				return new Span<Vector4>(&Handle->Colors_0, 15);
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			ImGuizmo.DestroyNative(Handle);
 		}
 
 	}

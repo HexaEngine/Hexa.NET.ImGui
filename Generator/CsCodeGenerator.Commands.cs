@@ -107,25 +107,29 @@
 
                     function.Overloads.Add(overload);
                     GenerateVariations(cppFunction.Parameters, overload, false);
-                    WriteMethods(writer, DefinedVariationsFunctions, function, overload, false, "public static");
+                    WriteMethods(writer, DefinedVariationsFunctions, function, overload, false, false, "public static");
                 }
             }
         }
 
-        public static void WriteMethods(CodeWriter writer, HashSet<string> definedFunctions, CsFunction csFunction, CsFunctionOverload overload, bool useThis, params string[] modifiers)
+        public static void WriteMethods(CodeWriter writer, HashSet<string> definedFunctions, CsFunction csFunction, CsFunctionOverload overload, bool useThis, bool useHandle, params string[] modifiers)
         {
             for (int j = 0; j < overload.Variations.Count; j++)
             {
-                WriteMethod(writer, definedFunctions, csFunction, overload, overload.Variations[j], useThis, modifiers);
+                WriteMethod(writer, definedFunctions, csFunction, overload, overload.Variations[j], useThis, useHandle, modifiers);
             }
         }
 
-        private static void WriteMethod(CodeWriter writer, HashSet<string> definedFunctions, CsFunction function, CsFunctionOverload overload, CsFunctionVariation variation, bool useThis, params string[] modifiers)
+        private static void WriteMethod(CodeWriter writer, HashSet<string> definedFunctions, CsFunction function, CsFunctionOverload overload, CsFunctionVariation variation, bool useThis, bool useHandle, params string[] modifiers)
         {
             CsType csReturnType = variation.ReturnType;
+            if (WrappedPointers.TryGetValue(csReturnType.Name, out string? value))
+            {
+                csReturnType.Name = value;
+            }
             string modifierString = string.Join(" ", modifiers);
             string signature;
-            if (useThis)
+            if (useThis || useHandle)
             {
                 signature = string.Join(", ", variation.Parameters.Skip(1).Select(x => $"{x.Type} {x.Name}"));
             }
@@ -181,7 +185,7 @@
                     WriteStringConvertToManaged(sb, variation.ReturnType);
                 }
 
-                if (useThis)
+                if (useThis || useHandle)
                     sb.Append($"{CsCodeGeneratorSettings.Default.ApiName}.");
                 if (hasManaged)
                     sb.Append($"{overload.Name}(");
@@ -220,6 +224,10 @@
                             sb.Append($"({overload.Parameters[j + offset].Type.Name})({paramCsDefault})");
                         else
                             sb.Append($"{paramCsDefault}");
+                    }
+                    else if (useHandle && j == 0)
+                    {
+                        sb.Append("Handle");
                     }
                     else if (useThis && j == 0 && overload.Parameters[j].Type.IsPointer)
                     {

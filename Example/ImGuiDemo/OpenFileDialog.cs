@@ -187,10 +187,10 @@ namespace Example.ImGuiDemo
                 ImGui.SameLine();
                 ImGui.InputText("Path", ref currentFolder, 1024);
 
-                float footerHeightToReserve = ImGui.GetStyle()->ItemSpacing.Y + ImGui.GetFrameHeightWithSpacing();
+                float footerHeightToReserve = ImGui.GetStyle().ItemSpacing.Y + ImGui.GetFrameHeightWithSpacing();
 
-                float widthDrives = 100 + ImGui.GetStyle()->ItemSpacing.X * 2;
-                float width = ImGui.GetContentRegionAvail().X - ImGui.GetStyle()->ItemSpacing.X - widthDrives;
+                float widthDrives = 100 + ImGui.GetStyle().ItemSpacing.X * 2;
+                float width = ImGui.GetContentRegionAvail().X - ImGui.GetStyle().ItemSpacing.X - widthDrives;
                 if (ImGui.BeginChild(1, new Vector2(widthDrives, -footerHeightToReserve), false, ImGuiWindowFlags.HorizontalScrollbar))
                 {
                     void Display(string? rel, string str)

@@ -345,9 +345,9 @@
             ImGui.Separator();
         }
 
-        private static unsafe void LogWindow()
+        private static void LogWindow()
         {
-            float footerHeightToReserve = ImGui.GetStyle()->ItemSpacing.Y + ImGui.GetFrameHeightWithSpacing();
+            float footerHeightToReserve = ImGui.GetStyle().ItemSpacing.Y + ImGui.GetFrameHeightWithSpacing();
             if (ImGui.BeginChild("ScrollRegion##", new Vector2(0, -footerHeightToReserve)))
             {
                 // Display colored command output.
@@ -440,7 +440,7 @@
             bool reclaimFocus = false;
 
             // Input widget. (Width an always fixed width)
-            ImGui.PushItemWidth(-ImGui.GetStyle()->ItemSpacing.X * 7);
+            ImGui.PushItemWidth(-ImGui.GetStyle().ItemSpacing.X * 7);
             if (ImGui.InputText("Input", ref m_Buffer, m_Buffer_size, inputTextFlags, InputCallback))
             {
                 // Validate.

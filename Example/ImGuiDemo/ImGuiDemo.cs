@@ -199,7 +199,7 @@
                 {
                     // Update selection state
                     // (process outside of tree loop to avoid visual inconsistencies during the clicking frame)
-                    if (ImGui.GetIO()->KeyCtrl)
+                    if (ImGui.GetIO().KeyCtrl)
                         selection_mask ^= (1 << node_clicked);          // CTRL+click to toggle
                     else //if (!(selection_mask & (1 << node_clicked))) // Depending on selection behavior you want, may want to preserve selection when clicking on item that is part of the selection
                         selection_mask = (1 << node_clicked);           // Click to single-select

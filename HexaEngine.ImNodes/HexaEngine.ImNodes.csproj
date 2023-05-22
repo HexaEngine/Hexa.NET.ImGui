@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<AssemblyVersion>0.6.0</AssemblyVersion>
-		<PackageVersion>2.0.8</PackageVersion>
+		<PackageVersion>2.0.9</PackageVersion>
 		<Description>A .NET wrapper for the ImNodes library. (0.6.0 WIP)</Description>
 		<Authors>Juna Meinhold</Authors>
 		<PackageProjectUrl>https://github.com/JunaMeinhold/HexaEngine.ImGui</PackageProjectUrl>

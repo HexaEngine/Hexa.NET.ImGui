@@ -89,23 +89,23 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igCreateContext")]
 		internal static extern ImGuiContext* CreateContextNative(ImFontAtlas* sharedFontAtlas);
 
-		public static ImGuiContext* CreateContext(ImFontAtlas* sharedFontAtlas)
+		public static ImGuiContextPtr CreateContext(ImFontAtlas* sharedFontAtlas)
 		{
-			ImGuiContext* ret = CreateContextNative(sharedFontAtlas);
+			ImGuiContextPtr ret = CreateContextNative(sharedFontAtlas);
 			return ret;
 		}
 
-		public static ImGuiContext* CreateContext()
+		public static ImGuiContextPtr CreateContext()
 		{
-			ImGuiContext* ret = CreateContextNative((ImFontAtlas*)(default));
+			ImGuiContextPtr ret = CreateContextNative((ImFontAtlas*)(default));
 			return ret;
 		}
 
-		public static ImGuiContext* CreateContext(ref ImFontAtlas sharedFontAtlas)
+		public static ImGuiContextPtr CreateContext(ref ImFontAtlas sharedFontAtlas)
 		{
 			fixed (ImFontAtlas* psharedFontAtlas = &sharedFontAtlas)
 			{
-				ImGuiContext* ret = CreateContextNative((ImFontAtlas*)psharedFontAtlas);
+				ImGuiContextPtr ret = CreateContextNative((ImFontAtlas*)psharedFontAtlas);
 				return ret;
 			}
 		}
@@ -134,9 +134,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetCurrentContext")]
 		internal static extern ImGuiContext* GetCurrentContextNative();
 
-		public static ImGuiContext* GetCurrentContext()
+		public static ImGuiContextPtr GetCurrentContext()
 		{
-			ImGuiContext* ret = GetCurrentContextNative();
+			ImGuiContextPtr ret = GetCurrentContextNative();
 			return ret;
 		}
 
@@ -159,18 +159,18 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetIO")]
 		internal static extern ImGuiIO* GetIONative();
 
-		public static ImGuiIO* GetIO()
+		public static ImGuiIOPtr GetIO()
 		{
-			ImGuiIO* ret = GetIONative();
+			ImGuiIOPtr ret = GetIONative();
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetStyle")]
 		internal static extern ImGuiStyle* GetStyleNative();
 
-		public static ImGuiStyle* GetStyle()
+		public static ImGuiStylePtr GetStyle()
 		{
-			ImGuiStyle* ret = GetStyleNative();
+			ImGuiStylePtr ret = GetStyleNative();
 			return ret;
 		}
 
@@ -201,9 +201,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetDrawData")]
 		internal static extern ImDrawData* GetDrawDataNative();
 
-		public static ImDrawData* GetDrawData()
+		public static ImDrawDataPtr GetDrawData()
 		{
-			ImDrawData* ret = GetDrawDataNative();
+			ImDrawDataPtr ret = GetDrawDataNative();
 			return ret;
 		}
 
@@ -1002,9 +1002,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetWindowDrawList")]
 		internal static extern ImDrawList* GetWindowDrawListNative();
 
-		public static ImDrawList* GetWindowDrawList()
+		public static ImDrawListPtr GetWindowDrawList()
 		{
-			ImDrawList* ret = GetWindowDrawListNative();
+			ImDrawListPtr ret = GetWindowDrawListNative();
 			return ret;
 		}
 
@@ -1074,9 +1074,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetWindowViewport")]
 		internal static extern ImGuiViewport* GetWindowViewportNative();
 
-		public static ImGuiViewport* GetWindowViewport()
+		public static ImGuiViewportPtr GetWindowViewport()
 		{
-			ImGuiViewport* ret = GetWindowViewportNative();
+			ImGuiViewportPtr ret = GetWindowViewportNative();
 			return ret;
 		}
 
@@ -1869,9 +1869,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetFont")]
 		internal static extern ImFont* GetFontNative();
 
-		public static ImFont* GetFont()
+		public static ImFontPtr GetFont()
 		{
-			ImFont* ret = GetFontNative();
+			ImFontPtr ret = GetFontNative();
 			return ret;
 		}
 
@@ -52842,9 +52842,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTableGetSortSpecs")]
 		internal static extern ImGuiTableSortSpecs* TableGetSortSpecsNative();
 
-		public static ImGuiTableSortSpecs* TableGetSortSpecs()
+		public static ImGuiTableSortSpecsPtr TableGetSortSpecs()
 		{
-			ImGuiTableSortSpecs* ret = TableGetSortSpecsNative();
+			ImGuiTableSortSpecsPtr ret = TableGetSortSpecsNative();
 			return ret;
 		}
 
@@ -53980,37 +53980,37 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igAcceptDragDropPayload")]
 		internal static extern ImGuiPayload* AcceptDragDropPayloadNative(byte* type, ImGuiDragDropFlags flags);
 
-		public static ImGuiPayload* AcceptDragDropPayload(byte* type, ImGuiDragDropFlags flags)
+		public static ImGuiPayloadPtr AcceptDragDropPayload(byte* type, ImGuiDragDropFlags flags)
 		{
-			ImGuiPayload* ret = AcceptDragDropPayloadNative(type, flags);
+			ImGuiPayloadPtr ret = AcceptDragDropPayloadNative(type, flags);
 			return ret;
 		}
 
-		public static ImGuiPayload* AcceptDragDropPayload(byte* type)
+		public static ImGuiPayloadPtr AcceptDragDropPayload(byte* type)
 		{
-			ImGuiPayload* ret = AcceptDragDropPayloadNative(type, (ImGuiDragDropFlags)(0));
+			ImGuiPayloadPtr ret = AcceptDragDropPayloadNative(type, (ImGuiDragDropFlags)(0));
 			return ret;
 		}
 
-		public static ImGuiPayload* AcceptDragDropPayload(ref byte type, ImGuiDragDropFlags flags)
+		public static ImGuiPayloadPtr AcceptDragDropPayload(ref byte type, ImGuiDragDropFlags flags)
 		{
 			fixed (byte* ptype = &type)
 			{
-				ImGuiPayload* ret = AcceptDragDropPayloadNative((byte*)ptype, flags);
+				ImGuiPayloadPtr ret = AcceptDragDropPayloadNative((byte*)ptype, flags);
 				return ret;
 			}
 		}
 
-		public static ImGuiPayload* AcceptDragDropPayload(ref byte type)
+		public static ImGuiPayloadPtr AcceptDragDropPayload(ref byte type)
 		{
 			fixed (byte* ptype = &type)
 			{
-				ImGuiPayload* ret = AcceptDragDropPayloadNative((byte*)ptype, (ImGuiDragDropFlags)(0));
+				ImGuiPayloadPtr ret = AcceptDragDropPayloadNative((byte*)ptype, (ImGuiDragDropFlags)(0));
 				return ret;
 			}
 		}
 
-		public static ImGuiPayload* AcceptDragDropPayload(string type, ImGuiDragDropFlags flags)
+		public static ImGuiPayloadPtr AcceptDragDropPayload(string type, ImGuiDragDropFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -54029,7 +54029,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGuiPayload* ret = AcceptDragDropPayloadNative(pStr0, flags);
+			ImGuiPayloadPtr ret = AcceptDragDropPayloadNative(pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -54037,7 +54037,7 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
-		public static ImGuiPayload* AcceptDragDropPayload(string type)
+		public static ImGuiPayloadPtr AcceptDragDropPayload(string type)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -54056,7 +54056,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(type, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGuiPayload* ret = AcceptDragDropPayloadNative(pStr0, (ImGuiDragDropFlags)(0));
+			ImGuiPayloadPtr ret = AcceptDragDropPayloadNative(pStr0, (ImGuiDragDropFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -54075,9 +54075,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetDragDropPayload")]
 		internal static extern ImGuiPayload* GetDragDropPayloadNative();
 
-		public static ImGuiPayload* GetDragDropPayload()
+		public static ImGuiPayloadPtr GetDragDropPayload()
 		{
-			ImGuiPayload* ret = GetDragDropPayloadNative();
+			ImGuiPayloadPtr ret = GetDragDropPayloadNative();
 			return ret;
 		}
 
@@ -54342,44 +54342,44 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetMainViewport")]
 		internal static extern ImGuiViewport* GetMainViewportNative();
 
-		public static ImGuiViewport* GetMainViewport()
+		public static ImGuiViewportPtr GetMainViewport()
 		{
-			ImGuiViewport* ret = GetMainViewportNative();
+			ImGuiViewportPtr ret = GetMainViewportNative();
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetBackgroundDrawList_Nil")]
 		internal static extern ImDrawList* GetBackgroundDrawListNative();
 
-		public static ImDrawList* GetBackgroundDrawList()
+		public static ImDrawListPtr GetBackgroundDrawList()
 		{
-			ImDrawList* ret = GetBackgroundDrawListNative();
+			ImDrawListPtr ret = GetBackgroundDrawListNative();
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetForegroundDrawList_Nil")]
 		internal static extern ImDrawList* GetForegroundDrawListNative();
 
-		public static ImDrawList* GetForegroundDrawList()
+		public static ImDrawListPtr GetForegroundDrawList()
 		{
-			ImDrawList* ret = GetForegroundDrawListNative();
+			ImDrawListPtr ret = GetForegroundDrawListNative();
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetBackgroundDrawList_ViewportPtr")]
 		internal static extern ImDrawList* GetBackgroundDrawListNative(ImGuiViewport* viewport);
 
-		public static ImDrawList* GetBackgroundDrawList(ImGuiViewport* viewport)
+		public static ImDrawListPtr GetBackgroundDrawList(ImGuiViewport* viewport)
 		{
-			ImDrawList* ret = GetBackgroundDrawListNative(viewport);
+			ImDrawListPtr ret = GetBackgroundDrawListNative(viewport);
 			return ret;
 		}
 
-		public static ImDrawList* GetBackgroundDrawList(ref ImGuiViewport viewport)
+		public static ImDrawListPtr GetBackgroundDrawList(ref ImGuiViewport viewport)
 		{
 			fixed (ImGuiViewport* pviewport = &viewport)
 			{
-				ImDrawList* ret = GetBackgroundDrawListNative((ImGuiViewport*)pviewport);
+				ImDrawListPtr ret = GetBackgroundDrawListNative((ImGuiViewport*)pviewport);
 				return ret;
 			}
 		}
@@ -54387,17 +54387,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetForegroundDrawList_ViewportPtr")]
 		internal static extern ImDrawList* GetForegroundDrawListNative(ImGuiViewport* viewport);
 
-		public static ImDrawList* GetForegroundDrawList(ImGuiViewport* viewport)
+		public static ImDrawListPtr GetForegroundDrawList(ImGuiViewport* viewport)
 		{
-			ImDrawList* ret = GetForegroundDrawListNative(viewport);
+			ImDrawListPtr ret = GetForegroundDrawListNative(viewport);
 			return ret;
 		}
 
-		public static ImDrawList* GetForegroundDrawList(ref ImGuiViewport viewport)
+		public static ImDrawListPtr GetForegroundDrawList(ref ImGuiViewport viewport)
 		{
 			fixed (ImGuiViewport* pviewport = &viewport)
 			{
-				ImDrawList* ret = GetForegroundDrawListNative((ImGuiViewport*)pviewport);
+				ImDrawListPtr ret = GetForegroundDrawListNative((ImGuiViewport*)pviewport);
 				return ret;
 			}
 		}
@@ -54441,9 +54441,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetDrawListSharedData")]
 		internal static extern ImDrawListSharedData* GetDrawListSharedDataNative();
 
-		public static ImDrawListSharedData* GetDrawListSharedData()
+		public static ImDrawListSharedDataPtr GetDrawListSharedData()
 		{
-			ImDrawListSharedData* ret = GetDrawListSharedDataNative();
+			ImDrawListSharedDataPtr ret = GetDrawListSharedDataNative();
 			return ret;
 		}
 
@@ -54481,9 +54481,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetStateStorage")]
 		internal static extern ImGuiStorage* GetStateStorageNative();
 
-		public static ImGuiStorage* GetStateStorage()
+		public static ImGuiStoragePtr GetStateStorage()
 		{
-			ImGuiStorage* ret = GetStateStorageNative();
+			ImGuiStoragePtr ret = GetStateStorageNative();
 			return ret;
 		}
 
@@ -56378,9 +56378,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetPlatformIO")]
 		internal static extern ImGuiPlatformIO* GetPlatformIONative();
 
-		public static ImGuiPlatformIO* GetPlatformIO()
+		public static ImGuiPlatformIOPtr GetPlatformIO()
 		{
-			ImGuiPlatformIO* ret = GetPlatformIONative();
+			ImGuiPlatformIOPtr ret = GetPlatformIONative();
 			return ret;
 		}
 
@@ -56421,27 +56421,27 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igFindViewportByID")]
 		internal static extern ImGuiViewport* FindViewportByIDNative(int id);
 
-		public static ImGuiViewport* FindViewportByID(int id)
+		public static ImGuiViewportPtr FindViewportByID(int id)
 		{
-			ImGuiViewport* ret = FindViewportByIDNative(id);
+			ImGuiViewportPtr ret = FindViewportByIDNative(id);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igFindViewportByPlatformHandle")]
 		internal static extern ImGuiViewport* FindViewportByPlatformHandleNative(void* platformHandle);
 
-		public static ImGuiViewport* FindViewportByPlatformHandle(void* platformHandle)
+		public static ImGuiViewportPtr FindViewportByPlatformHandle(void* platformHandle)
 		{
-			ImGuiViewport* ret = FindViewportByPlatformHandleNative(platformHandle);
+			ImGuiViewportPtr ret = FindViewportByPlatformHandleNative(platformHandle);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiStyle_ImGuiStyle")]
 		internal static extern ImGuiStyle* ImGuiStyleNative();
 
-		public static ImGuiStyle* ImGuiStyle()
+		public static ImGuiStylePtr ImGuiStyle()
 		{
-			ImGuiStyle* ret = ImGuiStyleNative();
+			ImGuiStylePtr ret = ImGuiStyleNative();
 			return ret;
 		}
 
@@ -56807,9 +56807,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiIO_ImGuiIO")]
 		internal static extern ImGuiIO* ImGuiIONative();
 
-		public static ImGuiIO* ImGuiIO()
+		public static ImGuiIOPtr ImGuiIO()
 		{
-			ImGuiIO* ret = ImGuiIONative();
+			ImGuiIOPtr ret = ImGuiIONative();
 			return ret;
 		}
 
@@ -56832,9 +56832,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiInputTextCallbackData_ImGuiInputTextCallbackData")]
 		internal static extern ImGuiInputTextCallbackData* ImGuiInputTextCallbackDataNative();
 
-		public static ImGuiInputTextCallbackData* ImGuiInputTextCallbackData()
+		public static ImGuiInputTextCallbackDataPtr ImGuiInputTextCallbackData()
 		{
-			ImGuiInputTextCallbackData* ret = ImGuiInputTextCallbackDataNative();
+			ImGuiInputTextCallbackDataPtr ret = ImGuiInputTextCallbackDataNative();
 			return ret;
 		}
 
@@ -57296,9 +57296,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiWindowClass_ImGuiWindowClass")]
 		internal static extern ImGuiWindowClass* ImGuiWindowClassNative();
 
-		public static ImGuiWindowClass* ImGuiWindowClass()
+		public static ImGuiWindowClassPtr ImGuiWindowClass()
 		{
-			ImGuiWindowClass* ret = ImGuiWindowClassNative();
+			ImGuiWindowClassPtr ret = ImGuiWindowClassNative();
 			return ret;
 		}
 
@@ -57321,9 +57321,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiPayload_ImGuiPayload")]
 		internal static extern ImGuiPayload* ImGuiPayloadNative();
 
-		public static ImGuiPayload* ImGuiPayload()
+		public static ImGuiPayloadPtr ImGuiPayload()
 		{
-			ImGuiPayload* ret = ImGuiPayloadNative();
+			ImGuiPayloadPtr ret = ImGuiPayloadNative();
 			return ret;
 		}
 
@@ -57494,9 +57494,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTableColumnSortSpecs_ImGuiTableColumnSortSpecs")]
 		internal static extern ImGuiTableColumnSortSpecs* ImGuiTableColumnSortSpecsNative();
 
-		public static ImGuiTableColumnSortSpecs* ImGuiTableColumnSortSpecs()
+		public static ImGuiTableColumnSortSpecsPtr ImGuiTableColumnSortSpecs()
 		{
-			ImGuiTableColumnSortSpecs* ret = ImGuiTableColumnSortSpecsNative();
+			ImGuiTableColumnSortSpecsPtr ret = ImGuiTableColumnSortSpecsNative();
 			return ret;
 		}
 
@@ -57519,9 +57519,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTableSortSpecs_ImGuiTableSortSpecs")]
 		internal static extern ImGuiTableSortSpecs* ImGuiTableSortSpecsNative();
 
-		public static ImGuiTableSortSpecs* ImGuiTableSortSpecs()
+		public static ImGuiTableSortSpecsPtr ImGuiTableSortSpecs()
 		{
-			ImGuiTableSortSpecs* ret = ImGuiTableSortSpecsNative();
+			ImGuiTableSortSpecsPtr ret = ImGuiTableSortSpecsNative();
 			return ret;
 		}
 
@@ -57544,9 +57544,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiOnceUponAFrame_ImGuiOnceUponAFrame")]
 		internal static extern ImGuiOnceUponAFrame* ImGuiOnceUponAFrameNative();
 
-		public static ImGuiOnceUponAFrame* ImGuiOnceUponAFrame()
+		public static ImGuiOnceUponAFramePtr ImGuiOnceUponAFrame()
 		{
-			ImGuiOnceUponAFrame* ret = ImGuiOnceUponAFrameNative();
+			ImGuiOnceUponAFramePtr ret = ImGuiOnceUponAFrameNative();
 			return ret;
 		}
 
@@ -57569,28 +57569,28 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTextFilter_ImGuiTextFilter")]
 		internal static extern ImGuiTextFilter* ImGuiTextFilterNative(byte* defaultFilter);
 
-		public static ImGuiTextFilter* ImGuiTextFilter(byte* defaultFilter)
+		public static ImGuiTextFilterPtr ImGuiTextFilter(byte* defaultFilter)
 		{
-			ImGuiTextFilter* ret = ImGuiTextFilterNative(defaultFilter);
+			ImGuiTextFilterPtr ret = ImGuiTextFilterNative(defaultFilter);
 			return ret;
 		}
 
-		public static ImGuiTextFilter* ImGuiTextFilter()
+		public static ImGuiTextFilterPtr ImGuiTextFilter()
 		{
-			ImGuiTextFilter* ret = ImGuiTextFilter((string)"");
+			ImGuiTextFilterPtr ret = ImGuiTextFilter((string)"");
 			return ret;
 		}
 
-		public static ImGuiTextFilter* ImGuiTextFilter(ref byte defaultFilter)
+		public static ImGuiTextFilterPtr ImGuiTextFilter(ref byte defaultFilter)
 		{
 			fixed (byte* pdefaultFilter = &defaultFilter)
 			{
-				ImGuiTextFilter* ret = ImGuiTextFilterNative((byte*)pdefaultFilter);
+				ImGuiTextFilterPtr ret = ImGuiTextFilterNative((byte*)pdefaultFilter);
 				return ret;
 			}
 		}
 
-		public static ImGuiTextFilter* ImGuiTextFilter(string defaultFilter)
+		public static ImGuiTextFilterPtr ImGuiTextFilter(string defaultFilter)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -57609,7 +57609,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(defaultFilter, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGuiTextFilter* ret = ImGuiTextFilterNative(pStr0);
+			ImGuiTextFilterPtr ret = ImGuiTextFilterNative(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -58283,9 +58283,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTextRange_ImGuiTextRange_Nil")]
 		internal static extern ImGuiTextRange* ImGuiTextRangeNative();
 
-		public static ImGuiTextRange* ImGuiTextRange()
+		public static ImGuiTextRangePtr ImGuiTextRange()
 		{
-			ImGuiTextRange* ret = ImGuiTextRangeNative();
+			ImGuiTextRangePtr ret = ImGuiTextRangeNative();
 			return ret;
 		}
 
@@ -58308,22 +58308,22 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTextRange_ImGuiTextRange_Str")]
 		internal static extern ImGuiTextRange* ImGuiTextRangeNative(byte* b, byte* e);
 
-		public static ImGuiTextRange* ImGuiTextRange(byte* b, byte* e)
+		public static ImGuiTextRangePtr ImGuiTextRange(byte* b, byte* e)
 		{
-			ImGuiTextRange* ret = ImGuiTextRangeNative(b, e);
+			ImGuiTextRangePtr ret = ImGuiTextRangeNative(b, e);
 			return ret;
 		}
 
-		public static ImGuiTextRange* ImGuiTextRange(ref byte b, byte* e)
+		public static ImGuiTextRangePtr ImGuiTextRange(ref byte b, byte* e)
 		{
 			fixed (byte* pb = &b)
 			{
-				ImGuiTextRange* ret = ImGuiTextRangeNative((byte*)pb, e);
+				ImGuiTextRangePtr ret = ImGuiTextRangeNative((byte*)pb, e);
 				return ret;
 			}
 		}
 
-		public static ImGuiTextRange* ImGuiTextRange(string b, byte* e)
+		public static ImGuiTextRangePtr ImGuiTextRange(string b, byte* e)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -58342,7 +58342,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(b, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGuiTextRange* ret = ImGuiTextRangeNative(pStr0, e);
+			ImGuiTextRangePtr ret = ImGuiTextRangeNative(pStr0, e);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -58350,16 +58350,16 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
-		public static ImGuiTextRange* ImGuiTextRange(byte* b, ref byte e)
+		public static ImGuiTextRangePtr ImGuiTextRange(byte* b, ref byte e)
 		{
 			fixed (byte* pe = &e)
 			{
-				ImGuiTextRange* ret = ImGuiTextRangeNative(b, (byte*)pe);
+				ImGuiTextRangePtr ret = ImGuiTextRangeNative(b, (byte*)pe);
 				return ret;
 			}
 		}
 
-		public static ImGuiTextRange* ImGuiTextRange(byte* b, string e)
+		public static ImGuiTextRangePtr ImGuiTextRange(byte* b, string e)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -58378,7 +58378,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(e, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGuiTextRange* ret = ImGuiTextRangeNative(b, pStr0);
+			ImGuiTextRangePtr ret = ImGuiTextRangeNative(b, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -58386,19 +58386,19 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
-		public static ImGuiTextRange* ImGuiTextRange(ref byte b, ref byte e)
+		public static ImGuiTextRangePtr ImGuiTextRange(ref byte b, ref byte e)
 		{
 			fixed (byte* pb = &b)
 			{
 				fixed (byte* pe = &e)
 				{
-					ImGuiTextRange* ret = ImGuiTextRangeNative((byte*)pb, (byte*)pe);
+					ImGuiTextRangePtr ret = ImGuiTextRangeNative((byte*)pb, (byte*)pe);
 					return ret;
 				}
 			}
 		}
 
-		public static ImGuiTextRange* ImGuiTextRange(string b, string e)
+		public static ImGuiTextRangePtr ImGuiTextRange(string b, string e)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -58434,7 +58434,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset1 = Utils.EncodeStringUTF8(e, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			ImGuiTextRange* ret = ImGuiTextRangeNative(pStr0, pStr1);
+			ImGuiTextRangePtr ret = ImGuiTextRangeNative(pStr0, pStr1);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -58502,9 +58502,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTextBuffer_ImGuiTextBuffer")]
 		internal static extern ImGuiTextBuffer* ImGuiTextBufferNative();
 
-		public static ImGuiTextBuffer* ImGuiTextBuffer()
+		public static ImGuiTextBufferPtr ImGuiTextBuffer()
 		{
-			ImGuiTextBuffer* ret = ImGuiTextBufferNative();
+			ImGuiTextBufferPtr ret = ImGuiTextBufferNative();
 			return ret;
 		}
 
@@ -59157,9 +59157,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiStoragePair_ImGuiStoragePair_Int")]
 		internal static extern ImGuiStoragePair* ImGuiStoragePairNative(int key, int valI);
 
-		public static ImGuiStoragePair* ImGuiStoragePair(int key, int valI)
+		public static ImGuiStoragePairPtr ImGuiStoragePair(int key, int valI)
 		{
-			ImGuiStoragePair* ret = ImGuiStoragePairNative(key, valI);
+			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, valI);
 			return ret;
 		}
 
@@ -59182,18 +59182,18 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiStoragePair_ImGuiStoragePair_Float")]
 		internal static extern ImGuiStoragePair* ImGuiStoragePairNative(int key, float valF);
 
-		public static ImGuiStoragePair* ImGuiStoragePair(int key, float valF)
+		public static ImGuiStoragePairPtr ImGuiStoragePair(int key, float valF)
 		{
-			ImGuiStoragePair* ret = ImGuiStoragePairNative(key, valF);
+			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, valF);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiStoragePair_ImGuiStoragePair_Ptr")]
 		internal static extern ImGuiStoragePair* ImGuiStoragePairNative(int key, void* valP);
 
-		public static ImGuiStoragePair* ImGuiStoragePair(int key, void* valP)
+		public static ImGuiStoragePairPtr ImGuiStoragePair(int key, void* valP)
 		{
-			ImGuiStoragePair* ret = ImGuiStoragePairNative(key, valP);
+			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, valP);
 			return ret;
 		}
 
@@ -59561,9 +59561,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiListClipper_ImGuiListClipper")]
 		internal static extern ImGuiListClipper* ImGuiListClipperNative();
 
-		public static ImGuiListClipper* ImGuiListClipper()
+		public static ImGuiListClipperPtr ImGuiListClipper()
 		{
-			ImGuiListClipper* ret = ImGuiListClipperNative();
+			ImGuiListClipperPtr ret = ImGuiListClipperNative();
 			return ret;
 		}
 
@@ -59665,9 +59665,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImColor_ImColor_Nil")]
 		internal static extern ImColor* ImColorNative();
 
-		public static ImColor* ImColor()
+		public static ImColorPtr ImColor()
 		{
-			ImColor* ret = ImColorNative();
+			ImColorPtr ret = ImColorNative();
 			return ret;
 		}
 
@@ -59690,48 +59690,48 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImColor_ImColor_Float")]
 		internal static extern ImColor* ImColorNative(float r, float g, float b, float a);
 
-		public static ImColor* ImColor(float r, float g, float b, float a)
+		public static ImColorPtr ImColor(float r, float g, float b, float a)
 		{
-			ImColor* ret = ImColorNative(r, g, b, a);
+			ImColorPtr ret = ImColorNative(r, g, b, a);
 			return ret;
 		}
 
-		public static ImColor* ImColor(float r, float g, float b)
+		public static ImColorPtr ImColor(float r, float g, float b)
 		{
-			ImColor* ret = ImColorNative(r, g, b, (float)(1.0f));
+			ImColorPtr ret = ImColorNative(r, g, b, (float)(1.0f));
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImColor_ImColor_Vec4")]
 		internal static extern ImColor* ImColorNative(Vector4 col);
 
-		public static ImColor* ImColor(Vector4 col)
+		public static ImColorPtr ImColor(Vector4 col)
 		{
-			ImColor* ret = ImColorNative(col);
+			ImColorPtr ret = ImColorNative(col);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImColor_ImColor_Int")]
 		internal static extern ImColor* ImColorNative(int r, int g, int b, int a);
 
-		public static ImColor* ImColor(int r, int g, int b, int a)
+		public static ImColorPtr ImColor(int r, int g, int b, int a)
 		{
-			ImColor* ret = ImColorNative(r, g, b, a);
+			ImColorPtr ret = ImColorNative(r, g, b, a);
 			return ret;
 		}
 
-		public static ImColor* ImColor(int r, int g, int b)
+		public static ImColorPtr ImColor(int r, int g, int b)
 		{
-			ImColor* ret = ImColorNative(r, g, b, (int)(255));
+			ImColorPtr ret = ImColorNative(r, g, b, (int)(255));
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImColor_ImColor_U32")]
 		internal static extern ImColor* ImColorNative(uint rgba);
 
-		public static ImColor* ImColor(uint rgba)
+		public static ImColorPtr ImColor(uint rgba)
 		{
-			ImColor* ret = ImColorNative(rgba);
+			ImColorPtr ret = ImColorNative(rgba);
 			return ret;
 		}
 
@@ -59800,9 +59800,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImDrawCmd_ImDrawCmd")]
 		internal static extern ImDrawCmd* ImDrawCmdNative();
 
-		public static ImDrawCmd* ImDrawCmd()
+		public static ImDrawCmdPtr ImDrawCmd()
 		{
-			ImDrawCmd* ret = ImDrawCmdNative();
+			ImDrawCmdPtr ret = ImDrawCmdNative();
 			return ret;
 		}
 
@@ -59843,9 +59843,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImDrawListSplitter_ImDrawListSplitter")]
 		internal static extern ImDrawListSplitter* ImDrawListSplitterNative();
 
-		public static ImDrawListSplitter* ImDrawListSplitter()
+		public static ImDrawListSplitterPtr ImDrawListSplitter()
 		{
-			ImDrawListSplitter* ret = ImDrawListSplitterNative();
+			ImDrawListSplitterPtr ret = ImDrawListSplitterNative();
 			return ret;
 		}
 
@@ -60005,17 +60005,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImDrawList_ImDrawList")]
 		internal static extern ImDrawList* ImDrawListNative(ImDrawListSharedData* sharedData);
 
-		public static ImDrawList* ImDrawList(ImDrawListSharedData* sharedData)
+		public static ImDrawListPtr ImDrawList(ImDrawListSharedData* sharedData)
 		{
-			ImDrawList* ret = ImDrawListNative(sharedData);
+			ImDrawListPtr ret = ImDrawListNative(sharedData);
 			return ret;
 		}
 
-		public static ImDrawList* ImDrawList(ref ImDrawListSharedData sharedData)
+		public static ImDrawListPtr ImDrawList(ref ImDrawListSharedData sharedData)
 		{
 			fixed (ImDrawListSharedData* psharedData = &sharedData)
 			{
-				ImDrawList* ret = ImDrawListNative((ImDrawListSharedData*)psharedData);
+				ImDrawListPtr ret = ImDrawListNative((ImDrawListSharedData*)psharedData);
 				return ret;
 			}
 		}
@@ -64218,17 +64218,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImDrawList_CloneOutput")]
 		internal static extern ImDrawList* CloneOutputNative(ImDrawList* self);
 
-		public static ImDrawList* CloneOutput(ImDrawList* self)
+		public static ImDrawListPtr CloneOutput(ImDrawList* self)
 		{
-			ImDrawList* ret = CloneOutputNative(self);
+			ImDrawListPtr ret = CloneOutputNative(self);
 			return ret;
 		}
 
-		public static ImDrawList* CloneOutput(ref ImDrawList self)
+		public static ImDrawListPtr CloneOutput(ref ImDrawList self)
 		{
 			fixed (ImDrawList* pself = &self)
 			{
-				ImDrawList* ret = CloneOutputNative((ImDrawList*)pself);
+				ImDrawListPtr ret = CloneOutputNative((ImDrawList*)pself);
 				return ret;
 			}
 		}
@@ -64574,9 +64574,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImDrawData_ImDrawData")]
 		internal static extern ImDrawData* ImDrawDataNative();
 
-		public static ImDrawData* ImDrawData()
+		public static ImDrawDataPtr ImDrawData()
 		{
-			ImDrawData* ret = ImDrawDataNative();
+			ImDrawDataPtr ret = ImDrawDataNative();
 			return ret;
 		}
 
@@ -64647,9 +64647,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFontConfig_ImFontConfig")]
 		internal static extern ImFontConfig* ImFontConfigNative();
 
-		public static ImFontConfig* ImFontConfig()
+		public static ImFontConfigPtr ImFontConfig()
 		{
-			ImFontConfig* ret = ImFontConfigNative();
+			ImFontConfigPtr ret = ImFontConfigNative();
 			return ret;
 		}
 
@@ -64672,9 +64672,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFontGlyphRangesBuilder_ImFontGlyphRangesBuilder")]
 		internal static extern ImFontGlyphRangesBuilder* ImFontGlyphRangesBuilderNative();
 
-		public static ImFontGlyphRangesBuilder* ImFontGlyphRangesBuilder()
+		public static ImFontGlyphRangesBuilderPtr ImFontGlyphRangesBuilder()
 		{
-			ImFontGlyphRangesBuilder* ret = ImFontGlyphRangesBuilderNative();
+			ImFontGlyphRangesBuilderPtr ret = ImFontGlyphRangesBuilderNative();
 			return ret;
 		}
 
@@ -65206,9 +65206,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFontAtlasCustomRect_ImFontAtlasCustomRect")]
 		internal static extern ImFontAtlasCustomRect* ImFontAtlasCustomRectNative();
 
-		public static ImFontAtlasCustomRect* ImFontAtlasCustomRect()
+		public static ImFontAtlasCustomRectPtr ImFontAtlasCustomRect()
 		{
-			ImFontAtlasCustomRect* ret = ImFontAtlasCustomRectNative();
+			ImFontAtlasCustomRectPtr ret = ImFontAtlasCustomRectNative();
 			return ret;
 		}
 
@@ -65249,9 +65249,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFontAtlas_ImFontAtlas")]
 		internal static extern ImFontAtlas* ImFontAtlasNative();
 
-		public static ImFontAtlas* ImFontAtlas()
+		public static ImFontAtlasPtr ImFontAtlas()
 		{
-			ImFontAtlas* ret = ImFontAtlasNative();
+			ImFontAtlasPtr ret = ImFontAtlasNative();
 			return ret;
 		}
 
@@ -65274,37 +65274,37 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFontAtlas_AddFont")]
 		internal static extern ImFont* AddFontNative(ImFontAtlas* self, ImFontConfig* fontCfg);
 
-		public static ImFont* AddFont(ImFontAtlas* self, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFont(ImFontAtlas* self, ImFontConfig* fontCfg)
 		{
-			ImFont* ret = AddFontNative(self, fontCfg);
+			ImFontPtr ret = AddFontNative(self, fontCfg);
 			return ret;
 		}
 
-		public static ImFont* AddFont(ref ImFontAtlas self, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFont(ref ImFontAtlas self, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontNative((ImFontAtlas*)pself, fontCfg);
+				ImFontPtr ret = AddFontNative((ImFontAtlas*)pself, fontCfg);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFont(ImFontAtlas* self, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFont(ImFontAtlas* self, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = AddFontNative(self, (ImFontConfig*)pfontCfg);
+				ImFontPtr ret = AddFontNative(self, (ImFontConfig*)pfontCfg);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFont(ref ImFontAtlas self, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFont(ref ImFontAtlas self, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontNative((ImFontAtlas*)pself, (ImFontConfig*)pfontCfg);
+					ImFontPtr ret = AddFontNative((ImFontAtlas*)pself, (ImFontConfig*)pfontCfg);
 					return ret;
 				}
 			}
@@ -65313,52 +65313,52 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFontAtlas_AddFontDefault")]
 		internal static extern ImFont* AddFontDefaultNative(ImFontAtlas* self, ImFontConfig* fontCfg);
 
-		public static ImFont* AddFontDefault(ImFontAtlas* self, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontDefault(ImFontAtlas* self, ImFontConfig* fontCfg)
 		{
-			ImFont* ret = AddFontDefaultNative(self, fontCfg);
+			ImFontPtr ret = AddFontDefaultNative(self, fontCfg);
 			return ret;
 		}
 
-		public static ImFont* AddFontDefault(ImFontAtlas* self)
+		public static ImFontPtr AddFontDefault(ImFontAtlas* self)
 		{
-			ImFont* ret = AddFontDefaultNative(self, (ImFontConfig*)(default));
+			ImFontPtr ret = AddFontDefaultNative(self, (ImFontConfig*)(default));
 			return ret;
 		}
 
-		public static ImFont* AddFontDefault(ref ImFontAtlas self, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontDefault(ref ImFontAtlas self, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontDefaultNative((ImFontAtlas*)pself, fontCfg);
+				ImFontPtr ret = AddFontDefaultNative((ImFontAtlas*)pself, fontCfg);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontDefault(ref ImFontAtlas self)
+		public static ImFontPtr AddFontDefault(ref ImFontAtlas self)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontDefaultNative((ImFontAtlas*)pself, (ImFontConfig*)(default));
+				ImFontPtr ret = AddFontDefaultNative((ImFontAtlas*)pself, (ImFontConfig*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontDefault(ImFontAtlas* self, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontDefault(ImFontAtlas* self, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = AddFontDefaultNative(self, (ImFontConfig*)pfontCfg);
+				ImFontPtr ret = AddFontDefaultNative(self, (ImFontConfig*)pfontCfg);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontDefault(ref ImFontAtlas self, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontDefault(ref ImFontAtlas self, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontDefaultNative((ImFontAtlas*)pself, (ImFontConfig*)pfontCfg);
+					ImFontPtr ret = AddFontDefaultNative((ImFontAtlas*)pself, (ImFontConfig*)pfontCfg);
 					return ret;
 				}
 			}
@@ -65367,79 +65367,79 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFontAtlas_AddFontFromFileTTF")]
 		internal static extern ImFont* AddFontFromFileTTFNative(ImFontAtlas* self, byte* filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges);
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, byte* filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, byte* filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
-			ImFont* ret = AddFontFromFileTTFNative(self, filename, sizePixels, fontCfg, glyphRanges);
+			ImFontPtr ret = AddFontFromFileTTFNative(self, filename, sizePixels, fontCfg, glyphRanges);
 			return ret;
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, byte* filename, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, byte* filename, float sizePixels, ImFontConfig* fontCfg)
 		{
-			ImFont* ret = AddFontFromFileTTFNative(self, filename, sizePixels, fontCfg, (char*)(default));
+			ImFontPtr ret = AddFontFromFileTTFNative(self, filename, sizePixels, fontCfg, (char*)(default));
 			return ret;
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, byte* filename, float sizePixels)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, byte* filename, float sizePixels)
 		{
-			ImFont* ret = AddFontFromFileTTFNative(self, filename, sizePixels, (ImFontConfig*)(default), (char*)(default));
+			ImFontPtr ret = AddFontFromFileTTFNative(self, filename, sizePixels, (ImFontConfig*)(default), (char*)(default));
 			return ret;
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, byte* filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, byte* filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, filename, sizePixels, fontCfg, glyphRanges);
+				ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, filename, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, byte* filename, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, byte* filename, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, filename, sizePixels, fontCfg, (char*)(default));
+				ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, filename, sizePixels, fontCfg, (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, byte* filename, float sizePixels)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, byte* filename, float sizePixels)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, filename, sizePixels, (ImFontConfig*)(default), (char*)(default));
+				ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, filename, sizePixels, (ImFontConfig*)(default), (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, ref byte filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, ref byte filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			fixed (byte* pfilename = &filename)
 			{
-				ImFont* ret = AddFontFromFileTTFNative(self, (byte*)pfilename, sizePixels, fontCfg, glyphRanges);
+				ImFontPtr ret = AddFontFromFileTTFNative(self, (byte*)pfilename, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, ref byte filename, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, ref byte filename, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (byte* pfilename = &filename)
 			{
-				ImFont* ret = AddFontFromFileTTFNative(self, (byte*)pfilename, sizePixels, fontCfg, (char*)(default));
+				ImFontPtr ret = AddFontFromFileTTFNative(self, (byte*)pfilename, sizePixels, fontCfg, (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, ref byte filename, float sizePixels)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, ref byte filename, float sizePixels)
 		{
 			fixed (byte* pfilename = &filename)
 			{
-				ImFont* ret = AddFontFromFileTTFNative(self, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (char*)(default));
+				ImFontPtr ret = AddFontFromFileTTFNative(self, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, string filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, string filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -65458,7 +65458,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFont* ret = AddFontFromFileTTFNative(self, pStr0, sizePixels, fontCfg, glyphRanges);
+			ImFontPtr ret = AddFontFromFileTTFNative(self, pStr0, sizePixels, fontCfg, glyphRanges);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -65466,7 +65466,7 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, string filename, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, string filename, float sizePixels, ImFontConfig* fontCfg)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -65485,7 +65485,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFont* ret = AddFontFromFileTTFNative(self, pStr0, sizePixels, fontCfg, (char*)(default));
+			ImFontPtr ret = AddFontFromFileTTFNative(self, pStr0, sizePixels, fontCfg, (char*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -65493,7 +65493,7 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, string filename, float sizePixels)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, string filename, float sizePixels)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -65512,7 +65512,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFont* ret = AddFontFromFileTTFNative(self, pStr0, sizePixels, (ImFontConfig*)(default), (char*)(default));
+			ImFontPtr ret = AddFontFromFileTTFNative(self, pStr0, sizePixels, (ImFontConfig*)(default), (char*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -65520,43 +65520,43 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, ref byte filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, ref byte filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (byte* pfilename = &filename)
 				{
-					ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, (byte*)pfilename, sizePixels, fontCfg, glyphRanges);
+					ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, (byte*)pfilename, sizePixels, fontCfg, glyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, ref byte filename, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, ref byte filename, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (byte* pfilename = &filename)
 				{
-					ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, (byte*)pfilename, sizePixels, fontCfg, (char*)(default));
+					ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, (byte*)pfilename, sizePixels, fontCfg, (char*)(default));
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, ref byte filename, float sizePixels)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, ref byte filename, float sizePixels)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (byte* pfilename = &filename)
 				{
-					ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (char*)(default));
+					ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (char*)(default));
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, string filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, string filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -65577,7 +65577,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, glyphRanges);
+				ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, glyphRanges);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -65586,7 +65586,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, string filename, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, string filename, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -65607,7 +65607,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, (char*)(default));
+				ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, (char*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -65616,7 +65616,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, string filename, float sizePixels)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, string filename, float sizePixels)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -65637,7 +65637,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)(default), (char*)(default));
+				ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)(default), (char*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -65646,73 +65646,73 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, byte* filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, byte* filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = AddFontFromFileTTFNative(self, filename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = AddFontFromFileTTFNative(self, filename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, byte* filename, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, byte* filename, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = AddFontFromFileTTFNative(self, filename, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+				ImFontPtr ret = AddFontFromFileTTFNative(self, filename, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, byte* filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, byte* filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, filename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, filename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, byte* filename, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, byte* filename, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, filename, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+					ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, filename, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, ref byte filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, ref byte filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (byte* pfilename = &filename)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromFileTTFNative(self, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = AddFontFromFileTTFNative(self, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, ref byte filename, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, ref byte filename, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (byte* pfilename = &filename)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromFileTTFNative(self, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+					ImFontPtr ret = AddFontFromFileTTFNative(self, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, string filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, string filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -65733,7 +65733,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = AddFontFromFileTTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = AddFontFromFileTTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -65742,7 +65742,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, string filename, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, string filename, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -65763,7 +65763,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = AddFontFromFileTTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+				ImFontPtr ret = AddFontFromFileTTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -65772,7 +65772,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, ref byte filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, ref byte filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -65780,14 +65780,14 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImFontConfig* pfontCfg = &fontCfg)
 					{
-						ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+						ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 						return ret;
 					}
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, ref byte filename, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, ref byte filename, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -65795,14 +65795,14 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImFontConfig* pfontCfg = &fontCfg)
 					{
-						ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+						ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 						return ret;
 					}
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, string filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, string filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -65825,7 +65825,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -65835,7 +65835,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, string filename, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, string filename, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -65858,7 +65858,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+					ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -65868,40 +65868,40 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, byte* filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, byte* filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (char* pglyphRanges = &glyphRanges)
 			{
-				ImFont* ret = AddFontFromFileTTFNative(self, filename, sizePixels, fontCfg, (char*)pglyphRanges);
+				ImFontPtr ret = AddFontFromFileTTFNative(self, filename, sizePixels, fontCfg, (char*)pglyphRanges);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, byte* filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, byte* filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, filename, sizePixels, fontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, filename, sizePixels, fontCfg, (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, ref byte filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, ref byte filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (byte* pfilename = &filename)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = AddFontFromFileTTFNative(self, (byte*)pfilename, sizePixels, fontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = AddFontFromFileTTFNative(self, (byte*)pfilename, sizePixels, fontCfg, (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, string filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, string filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -65922,7 +65922,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (char* pglyphRanges = &glyphRanges)
 			{
-				ImFont* ret = AddFontFromFileTTFNative(self, pStr0, sizePixels, fontCfg, (char*)pglyphRanges);
+				ImFontPtr ret = AddFontFromFileTTFNative(self, pStr0, sizePixels, fontCfg, (char*)pglyphRanges);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -65931,7 +65931,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, ref byte filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, ref byte filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -65939,14 +65939,14 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, (byte*)pfilename, sizePixels, fontCfg, (char*)pglyphRanges);
+						ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, (byte*)pfilename, sizePixels, fontCfg, (char*)pglyphRanges);
 						return ret;
 					}
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, string filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, string filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -65969,7 +65969,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, (char*)pglyphRanges);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -65979,19 +65979,19 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, byte* filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, byte* filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = AddFontFromFileTTFNative(self, filename, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = AddFontFromFileTTFNative(self, filename, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, byte* filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, byte* filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -65999,14 +65999,14 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, filename, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+						ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, filename, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 						return ret;
 					}
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, ref byte filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, ref byte filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (byte* pfilename = &filename)
 			{
@@ -66014,14 +66014,14 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = AddFontFromFileTTFNative(self, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+						ImFontPtr ret = AddFontFromFileTTFNative(self, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 						return ret;
 					}
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ImFontAtlas* self, string filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ImFontAtlas* self, string filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -66044,7 +66044,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = AddFontFromFileTTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = AddFontFromFileTTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -66054,7 +66054,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, ref byte filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, ref byte filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -66064,7 +66064,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (char* pglyphRanges = &glyphRanges)
 						{
-							ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+							ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 							return ret;
 						}
 					}
@@ -66072,7 +66072,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromFileTTF(ref ImFontAtlas self, string filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromFileTTF(ref ImFontAtlas self, string filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -66097,7 +66097,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+						ImFontPtr ret = AddFontFromFileTTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
 							Utils.Free(pStr0);
@@ -66111,127 +66111,127 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFontAtlas_AddFontFromMemoryTTF")]
 		internal static extern ImFont* AddFontFromMemoryTTFNative(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges);
 
-		public static ImFont* AddFontFromMemoryTTF(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryTTF(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
-			ImFont* ret = AddFontFromMemoryTTFNative(self, fontData, fontSize, sizePixels, fontCfg, glyphRanges);
+			ImFontPtr ret = AddFontFromMemoryTTFNative(self, fontData, fontSize, sizePixels, fontCfg, glyphRanges);
 			return ret;
 		}
 
-		public static ImFont* AddFontFromMemoryTTF(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromMemoryTTF(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg)
 		{
-			ImFont* ret = AddFontFromMemoryTTFNative(self, fontData, fontSize, sizePixels, fontCfg, (char*)(default));
+			ImFontPtr ret = AddFontFromMemoryTTFNative(self, fontData, fontSize, sizePixels, fontCfg, (char*)(default));
 			return ret;
 		}
 
-		public static ImFont* AddFontFromMemoryTTF(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels)
+		public static ImFontPtr AddFontFromMemoryTTF(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels)
 		{
-			ImFont* ret = AddFontFromMemoryTTFNative(self, fontData, fontSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
+			ImFontPtr ret = AddFontFromMemoryTTFNative(self, fontData, fontSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
 			return ret;
 		}
 
-		public static ImFont* AddFontFromMemoryTTF(ref ImFontAtlas self, void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryTTF(ref ImFontAtlas self, void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontFromMemoryTTFNative((ImFontAtlas*)pself, fontData, fontSize, sizePixels, fontCfg, glyphRanges);
+				ImFontPtr ret = AddFontFromMemoryTTFNative((ImFontAtlas*)pself, fontData, fontSize, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryTTF(ref ImFontAtlas self, void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromMemoryTTF(ref ImFontAtlas self, void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontFromMemoryTTFNative((ImFontAtlas*)pself, fontData, fontSize, sizePixels, fontCfg, (char*)(default));
+				ImFontPtr ret = AddFontFromMemoryTTFNative((ImFontAtlas*)pself, fontData, fontSize, sizePixels, fontCfg, (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryTTF(ref ImFontAtlas self, void* fontData, int fontSize, float sizePixels)
+		public static ImFontPtr AddFontFromMemoryTTF(ref ImFontAtlas self, void* fontData, int fontSize, float sizePixels)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontFromMemoryTTFNative((ImFontAtlas*)pself, fontData, fontSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
+				ImFontPtr ret = AddFontFromMemoryTTFNative((ImFontAtlas*)pself, fontData, fontSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryTTF(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryTTF(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = AddFontFromMemoryTTFNative(self, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = AddFontFromMemoryTTFNative(self, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryTTF(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromMemoryTTF(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = AddFontFromMemoryTTFNative(self, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+				ImFontPtr ret = AddFontFromMemoryTTFNative(self, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryTTF(ref ImFontAtlas self, void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryTTF(ref ImFontAtlas self, void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromMemoryTTFNative((ImFontAtlas*)pself, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = AddFontFromMemoryTTFNative((ImFontAtlas*)pself, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryTTF(ref ImFontAtlas self, void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromMemoryTTF(ref ImFontAtlas self, void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromMemoryTTFNative((ImFontAtlas*)pself, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+					ImFontPtr ret = AddFontFromMemoryTTFNative((ImFontAtlas*)pself, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryTTF(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryTTF(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (char* pglyphRanges = &glyphRanges)
 			{
-				ImFont* ret = AddFontFromMemoryTTFNative(self, fontData, fontSize, sizePixels, fontCfg, (char*)pglyphRanges);
+				ImFontPtr ret = AddFontFromMemoryTTFNative(self, fontData, fontSize, sizePixels, fontCfg, (char*)pglyphRanges);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryTTF(ref ImFontAtlas self, void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryTTF(ref ImFontAtlas self, void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = AddFontFromMemoryTTFNative((ImFontAtlas*)pself, fontData, fontSize, sizePixels, fontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = AddFontFromMemoryTTFNative((ImFontAtlas*)pself, fontData, fontSize, sizePixels, fontCfg, (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryTTF(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryTTF(ImFontAtlas* self, void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = AddFontFromMemoryTTFNative(self, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = AddFontFromMemoryTTFNative(self, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryTTF(ref ImFontAtlas self, void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryTTF(ref ImFontAtlas self, void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -66239,7 +66239,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = AddFontFromMemoryTTFNative((ImFontAtlas*)pself, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+						ImFontPtr ret = AddFontFromMemoryTTFNative((ImFontAtlas*)pself, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 						return ret;
 					}
 				}
@@ -66249,127 +66249,127 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFontAtlas_AddFontFromMemoryCompressedTTF")]
 		internal static extern ImFont* AddFontFromMemoryCompressedTTFNative(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges);
 
-		public static ImFont* AddFontFromMemoryCompressedTTF(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedTTF(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
-			ImFont* ret = AddFontFromMemoryCompressedTTFNative(self, compressedFontData, compressedFontSize, sizePixels, fontCfg, glyphRanges);
+			ImFontPtr ret = AddFontFromMemoryCompressedTTFNative(self, compressedFontData, compressedFontSize, sizePixels, fontCfg, glyphRanges);
 			return ret;
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedTTF(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedTTF(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg)
 		{
-			ImFont* ret = AddFontFromMemoryCompressedTTFNative(self, compressedFontData, compressedFontSize, sizePixels, fontCfg, (char*)(default));
+			ImFontPtr ret = AddFontFromMemoryCompressedTTFNative(self, compressedFontData, compressedFontSize, sizePixels, fontCfg, (char*)(default));
 			return ret;
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedTTF(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels)
+		public static ImFontPtr AddFontFromMemoryCompressedTTF(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels)
 		{
-			ImFont* ret = AddFontFromMemoryCompressedTTFNative(self, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
+			ImFontPtr ret = AddFontFromMemoryCompressedTTFNative(self, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
 			return ret;
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedTTF(ref ImFontAtlas self, void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedTTF(ref ImFontAtlas self, void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedTTFNative((ImFontAtlas*)pself, compressedFontData, compressedFontSize, sizePixels, fontCfg, glyphRanges);
+				ImFontPtr ret = AddFontFromMemoryCompressedTTFNative((ImFontAtlas*)pself, compressedFontData, compressedFontSize, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedTTF(ref ImFontAtlas self, void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedTTF(ref ImFontAtlas self, void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedTTFNative((ImFontAtlas*)pself, compressedFontData, compressedFontSize, sizePixels, fontCfg, (char*)(default));
+				ImFontPtr ret = AddFontFromMemoryCompressedTTFNative((ImFontAtlas*)pself, compressedFontData, compressedFontSize, sizePixels, fontCfg, (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedTTF(ref ImFontAtlas self, void* compressedFontData, int compressedFontSize, float sizePixels)
+		public static ImFontPtr AddFontFromMemoryCompressedTTF(ref ImFontAtlas self, void* compressedFontData, int compressedFontSize, float sizePixels)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedTTFNative((ImFontAtlas*)pself, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
+				ImFontPtr ret = AddFontFromMemoryCompressedTTFNative((ImFontAtlas*)pself, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedTTF(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedTTF(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedTTFNative(self, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = AddFontFromMemoryCompressedTTFNative(self, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedTTF(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedTTF(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedTTFNative(self, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+				ImFontPtr ret = AddFontFromMemoryCompressedTTFNative(self, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedTTF(ref ImFontAtlas self, void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedTTF(ref ImFontAtlas self, void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedTTFNative((ImFontAtlas*)pself, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = AddFontFromMemoryCompressedTTFNative((ImFontAtlas*)pself, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedTTF(ref ImFontAtlas self, void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedTTF(ref ImFontAtlas self, void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedTTFNative((ImFontAtlas*)pself, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+					ImFontPtr ret = AddFontFromMemoryCompressedTTFNative((ImFontAtlas*)pself, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedTTF(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedTTF(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (char* pglyphRanges = &glyphRanges)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedTTFNative(self, compressedFontData, compressedFontSize, sizePixels, fontCfg, (char*)pglyphRanges);
+				ImFontPtr ret = AddFontFromMemoryCompressedTTFNative(self, compressedFontData, compressedFontSize, sizePixels, fontCfg, (char*)pglyphRanges);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedTTF(ref ImFontAtlas self, void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedTTF(ref ImFontAtlas self, void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedTTFNative((ImFontAtlas*)pself, compressedFontData, compressedFontSize, sizePixels, fontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = AddFontFromMemoryCompressedTTFNative((ImFontAtlas*)pself, compressedFontData, compressedFontSize, sizePixels, fontCfg, (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedTTF(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedTTF(ImFontAtlas* self, void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedTTFNative(self, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = AddFontFromMemoryCompressedTTFNative(self, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedTTF(ref ImFontAtlas self, void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedTTF(ref ImFontAtlas self, void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -66377,7 +66377,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = AddFontFromMemoryCompressedTTFNative((ImFontAtlas*)pself, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+						ImFontPtr ret = AddFontFromMemoryCompressedTTFNative((ImFontAtlas*)pself, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 						return ret;
 					}
 				}
@@ -66387,79 +66387,79 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFontAtlas_AddFontFromMemoryCompressedBase85TTF")]
 		internal static extern ImFont* AddFontFromMemoryCompressedBase85TTFNative(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges);
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
-			ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
+			ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
 			return ret;
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg)
 		{
-			ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, fontCfg, (char*)(default));
+			ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, fontCfg, (char*)(default));
 			return ret;
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels)
 		{
-			ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, (ImFontConfig*)(default), (char*)(default));
+			ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, (ImFontConfig*)(default), (char*)(default));
 			return ret;
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, fontCfg, (char*)(default));
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, fontCfg, (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, (ImFontConfig*)(default), (char*)(default));
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, (ImFontConfig*)(default), (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, ref byte compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, ref byte compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, ref byte compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, ref byte compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, (char*)(default));
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, ref byte compressedFontDataBase85, float sizePixels)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, ref byte compressedFontDataBase85, float sizePixels)
 		{
 			fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)(default), (char*)(default));
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)(default), (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, string compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, string compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -66478,7 +66478,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, fontCfg, glyphRanges);
+			ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, fontCfg, glyphRanges);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -66486,7 +66486,7 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, string compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, string compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -66505,7 +66505,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, fontCfg, (char*)(default));
+			ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, fontCfg, (char*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -66513,7 +66513,7 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, string compressedFontDataBase85, float sizePixels)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, string compressedFontDataBase85, float sizePixels)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -66532,7 +66532,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, (ImFontConfig*)(default), (char*)(default));
+			ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, (ImFontConfig*)(default), (char*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -66540,43 +66540,43 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
+					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, (char*)(default));
+					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, (char*)(default));
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)(default), (char*)(default));
+					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)(default), (char*)(default));
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -66597,7 +66597,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, glyphRanges);
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, glyphRanges);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -66606,7 +66606,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -66627,7 +66627,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, (char*)(default));
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, (char*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -66636,7 +66636,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -66657,7 +66657,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)(default), (char*)(default));
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)(default), (char*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -66666,73 +66666,73 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -66753,7 +66753,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -66762,7 +66762,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -66783,7 +66783,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -66792,7 +66792,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -66800,14 +66800,14 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImFontConfig* pfontCfg = &fontCfg)
 					{
-						ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 						return ret;
 					}
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -66815,14 +66815,14 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (ImFontConfig* pfontCfg = &fontCfg)
 					{
-						ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 						return ret;
 					}
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -66845,7 +66845,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -66855,7 +66855,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -66878,7 +66878,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -66888,40 +66888,40 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (char* pglyphRanges = &glyphRanges)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, fontCfg, (char*)pglyphRanges);
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, fontCfg, (char*)pglyphRanges);
 				return ret;
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, fontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, fontCfg, (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, ref byte compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, ref byte compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, string compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, string compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -66942,7 +66942,7 @@ namespace HexaEngine.ImGuiNET
 			}
 			fixed (char* pglyphRanges = &glyphRanges)
 			{
-				ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, fontCfg, (char*)pglyphRanges);
+				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, fontCfg, (char*)pglyphRanges);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -66951,7 +66951,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -66959,14 +66959,14 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, (char*)pglyphRanges);
+						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, (char*)pglyphRanges);
 						return ret;
 					}
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -66989,7 +66989,7 @@ namespace HexaEngine.ImGuiNET
 				}
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, (char*)pglyphRanges);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -66999,19 +66999,19 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -67019,14 +67019,14 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 						return ret;
 					}
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
 			{
@@ -67034,14 +67034,14 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 						return ret;
 					}
 				}
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlas* self, string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -67064,7 +67064,7 @@ namespace HexaEngine.ImGuiNET
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -67074,7 +67074,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -67084,7 +67084,7 @@ namespace HexaEngine.ImGuiNET
 					{
 						fixed (char* pglyphRanges = &glyphRanges)
 						{
-							ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+							ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 							return ret;
 						}
 					}
@@ -67092,7 +67092,7 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public static ImFont* AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
@@ -67117,7 +67117,7 @@ namespace HexaEngine.ImGuiNET
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFont* ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
 							Utils.Free(pStr0);
@@ -68660,17 +68660,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFontAtlas_GetCustomRectByIndex")]
 		internal static extern ImFontAtlasCustomRect* GetCustomRectByIndexNative(ImFontAtlas* self, int index);
 
-		public static ImFontAtlasCustomRect* GetCustomRectByIndex(ImFontAtlas* self, int index)
+		public static ImFontAtlasCustomRectPtr GetCustomRectByIndex(ImFontAtlas* self, int index)
 		{
-			ImFontAtlasCustomRect* ret = GetCustomRectByIndexNative(self, index);
+			ImFontAtlasCustomRectPtr ret = GetCustomRectByIndexNative(self, index);
 			return ret;
 		}
 
-		public static ImFontAtlasCustomRect* GetCustomRectByIndex(ref ImFontAtlas self, int index)
+		public static ImFontAtlasCustomRectPtr GetCustomRectByIndex(ref ImFontAtlas self, int index)
 		{
 			fixed (ImFontAtlas* pself = &self)
 			{
-				ImFontAtlasCustomRect* ret = GetCustomRectByIndexNative((ImFontAtlas*)pself, index);
+				ImFontAtlasCustomRectPtr ret = GetCustomRectByIndexNative((ImFontAtlas*)pself, index);
 				return ret;
 			}
 		}
@@ -69292,9 +69292,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFont_ImFont")]
 		internal static extern ImFont* ImFontNative();
 
-		public static ImFont* ImFont()
+		public static ImFontPtr ImFont()
 		{
-			ImFont* ret = ImFontNative();
+			ImFontPtr ret = ImFontNative();
 			return ret;
 		}
 
@@ -69317,17 +69317,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFont_FindGlyph")]
 		internal static extern ImFontGlyph* FindGlyphNative(ImFont* self, char c);
 
-		public static ImFontGlyph* FindGlyph(ImFont* self, char c)
+		public static ImFontGlyphPtr FindGlyph(ImFont* self, char c)
 		{
-			ImFontGlyph* ret = FindGlyphNative(self, c);
+			ImFontGlyphPtr ret = FindGlyphNative(self, c);
 			return ret;
 		}
 
-		public static ImFontGlyph* FindGlyph(ref ImFont self, char c)
+		public static ImFontGlyphPtr FindGlyph(ref ImFont self, char c)
 		{
 			fixed (ImFont* pself = &self)
 			{
-				ImFontGlyph* ret = FindGlyphNative((ImFont*)pself, c);
+				ImFontGlyphPtr ret = FindGlyphNative((ImFont*)pself, c);
 				return ret;
 			}
 		}
@@ -69335,17 +69335,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImFont_FindGlyphNoFallback")]
 		internal static extern ImFontGlyph* FindGlyphNoFallbackNative(ImFont* self, char c);
 
-		public static ImFontGlyph* FindGlyphNoFallback(ImFont* self, char c)
+		public static ImFontGlyphPtr FindGlyphNoFallback(ImFont* self, char c)
 		{
-			ImFontGlyph* ret = FindGlyphNoFallbackNative(self, c);
+			ImFontGlyphPtr ret = FindGlyphNoFallbackNative(self, c);
 			return ret;
 		}
 
-		public static ImFontGlyph* FindGlyphNoFallback(ref ImFont self, char c)
+		public static ImFontGlyphPtr FindGlyphNoFallback(ref ImFont self, char c)
 		{
 			fixed (ImFont* pself = &self)
 			{
-				ImFontGlyph* ret = FindGlyphNoFallbackNative((ImFont*)pself, c);
+				ImFontGlyphPtr ret = FindGlyphNoFallbackNative((ImFont*)pself, c);
 				return ret;
 			}
 		}
@@ -74226,9 +74226,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiViewport_ImGuiViewport")]
 		internal static extern ImGuiViewport* ImGuiViewportNative();
 
-		public static ImGuiViewport* ImGuiViewport()
+		public static ImGuiViewportPtr ImGuiViewport()
 		{
-			ImGuiViewport* ret = ImGuiViewportNative();
+			ImGuiViewportPtr ret = ImGuiViewportNative();
 			return ret;
 		}
 
@@ -74329,9 +74329,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiPlatformIO_ImGuiPlatformIO")]
 		internal static extern ImGuiPlatformIO* ImGuiPlatformIONative();
 
-		public static ImGuiPlatformIO* ImGuiPlatformIO()
+		public static ImGuiPlatformIOPtr ImGuiPlatformIO()
 		{
-			ImGuiPlatformIO* ret = ImGuiPlatformIONative();
+			ImGuiPlatformIOPtr ret = ImGuiPlatformIONative();
 			return ret;
 		}
 
@@ -74354,9 +74354,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiPlatformMonitor_ImGuiPlatformMonitor")]
 		internal static extern ImGuiPlatformMonitor* ImGuiPlatformMonitorNative();
 
-		public static ImGuiPlatformMonitor* ImGuiPlatformMonitor()
+		public static ImGuiPlatformMonitorPtr ImGuiPlatformMonitor()
 		{
-			ImGuiPlatformMonitor* ret = ImGuiPlatformMonitorNative();
+			ImGuiPlatformMonitorPtr ret = ImGuiPlatformMonitorNative();
 			return ret;
 		}
 
@@ -74379,9 +74379,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiPlatformImeData_ImGuiPlatformImeData")]
 		internal static extern ImGuiPlatformImeData* ImGuiPlatformImeDataNative();
 
-		public static ImGuiPlatformImeData* ImGuiPlatformImeData()
+		public static ImGuiPlatformImeDataPtr ImGuiPlatformImeData()
 		{
-			ImGuiPlatformImeData* ret = ImGuiPlatformImeDataNative();
+			ImGuiPlatformImeDataPtr ret = ImGuiPlatformImeDataNative();
 			return ret;
 		}
 
@@ -82474,9 +82474,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImVec1_ImVec1_Nil")]
 		internal static extern ImVec1* ImVec1ImVec1NilNative();
 
-		public static ImVec1* ImVec1ImVec1Nil()
+		public static ImVec1Ptr ImVec1ImVec1Nil()
 		{
-			ImVec1* ret = ImVec1ImVec1NilNative();
+			ImVec1Ptr ret = ImVec1ImVec1NilNative();
 			return ret;
 		}
 
@@ -82499,18 +82499,18 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImVec1_ImVec1_Float")]
 		internal static extern ImVec1* ImVec1ImVec1FloatNative(float x);
 
-		public static ImVec1* ImVec1ImVec1Float(float x)
+		public static ImVec1Ptr ImVec1ImVec1Float(float x)
 		{
-			ImVec1* ret = ImVec1ImVec1FloatNative(x);
+			ImVec1Ptr ret = ImVec1ImVec1FloatNative(x);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImVec2ih_ImVec2ih_Nil")]
 		internal static extern ImVec2ih* ImVec2ihImVec2ihNilNative();
 
-		public static ImVec2ih* ImVec2ihImVec2ihNil()
+		public static ImVec2ihPtr ImVec2ihImVec2ihNil()
 		{
-			ImVec2ih* ret = ImVec2ihImVec2ihNilNative();
+			ImVec2ihPtr ret = ImVec2ihImVec2ihNilNative();
 			return ret;
 		}
 
@@ -82533,27 +82533,27 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImVec2ih_ImVec2ih_short")]
 		internal static extern ImVec2ih* ImVec2ihImVec2ihShortNative(short x, short y);
 
-		public static ImVec2ih* ImVec2ihImVec2ihShort(short x, short y)
+		public static ImVec2ihPtr ImVec2ihImVec2ihShort(short x, short y)
 		{
-			ImVec2ih* ret = ImVec2ihImVec2ihShortNative(x, y);
+			ImVec2ihPtr ret = ImVec2ihImVec2ihShortNative(x, y);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImVec2ih_ImVec2ih_Vec2")]
 		internal static extern ImVec2ih* ImVec2ihImVec2ihVec2Native(Vector2 rhs);
 
-		public static ImVec2ih* ImVec2ihImVec2ihVec2(Vector2 rhs)
+		public static ImVec2ihPtr ImVec2ihImVec2ihVec2(Vector2 rhs)
 		{
-			ImVec2ih* ret = ImVec2ihImVec2ihVec2Native(rhs);
+			ImVec2ihPtr ret = ImVec2ihImVec2ihVec2Native(rhs);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImRect_ImRect_Nil")]
 		internal static extern ImRect* ImRectImRectNilNative();
 
-		public static ImRect* ImRectImRectNil()
+		public static ImRectPtr ImRectImRectNil()
 		{
-			ImRect* ret = ImRectImRectNilNative();
+			ImRectPtr ret = ImRectImRectNilNative();
 			return ret;
 		}
 
@@ -82576,27 +82576,27 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImRect_ImRect_Vec2")]
 		internal static extern ImRect* ImRectImRectVec2Native(Vector2 min, Vector2 max);
 
-		public static ImRect* ImRectImRectVec2(Vector2 min, Vector2 max)
+		public static ImRectPtr ImRectImRectVec2(Vector2 min, Vector2 max)
 		{
-			ImRect* ret = ImRectImRectVec2Native(min, max);
+			ImRectPtr ret = ImRectImRectVec2Native(min, max);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImRect_ImRect_Vec4")]
 		internal static extern ImRect* ImRectImRectVec4Native(Vector4 v);
 
-		public static ImRect* ImRectImRectVec4(Vector4 v)
+		public static ImRectPtr ImRectImRectVec4(Vector4 v)
 		{
-			ImRect* ret = ImRectImRectVec4Native(v);
+			ImRectPtr ret = ImRectImRectVec4Native(v);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImRect_ImRect_Float")]
 		internal static extern ImRect* ImRectImRectFloatNative(float x1, float y1, float x2, float y2);
 
-		public static ImRect* ImRectImRectFloat(float x1, float y1, float x2, float y2)
+		public static ImRectPtr ImRectImRectFloat(float x1, float y1, float x2, float y2)
 		{
-			ImRect* ret = ImRectImRectFloatNative(x1, y1, x2, y2);
+			ImRectPtr ret = ImRectImRectFloatNative(x1, y1, x2, y2);
 			return ret;
 		}
 
@@ -83837,9 +83837,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImDrawListSharedData_ImDrawListSharedData")]
 		internal static extern ImDrawListSharedData* ImDrawListSharedDataImDrawListSharedDataNative();
 
-		public static ImDrawListSharedData* ImDrawListSharedDataImDrawListSharedData()
+		public static ImDrawListSharedDataPtr ImDrawListSharedDataImDrawListSharedData()
 		{
-			ImDrawListSharedData* ret = ImDrawListSharedDataImDrawListSharedDataNative();
+			ImDrawListSharedDataPtr ret = ImDrawListSharedDataImDrawListSharedDataNative();
 			return ret;
 		}
 
@@ -83962,9 +83962,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiStyleMod_ImGuiStyleMod_Int")]
 		internal static extern ImGuiStyleMod* ImGuiStyleModImGuiStyleModIntNative(ImGuiStyleVar idx, int v);
 
-		public static ImGuiStyleMod* ImGuiStyleModImGuiStyleModInt(ImGuiStyleVar idx, int v)
+		public static ImGuiStyleModPtr ImGuiStyleModImGuiStyleModInt(ImGuiStyleVar idx, int v)
 		{
-			ImGuiStyleMod* ret = ImGuiStyleModImGuiStyleModIntNative(idx, v);
+			ImGuiStyleModPtr ret = ImGuiStyleModImGuiStyleModIntNative(idx, v);
 			return ret;
 		}
 
@@ -83987,27 +83987,27 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiStyleMod_ImGuiStyleMod_Float")]
 		internal static extern ImGuiStyleMod* ImGuiStyleModImGuiStyleModFloatNative(ImGuiStyleVar idx, float v);
 
-		public static ImGuiStyleMod* ImGuiStyleModImGuiStyleModFloat(ImGuiStyleVar idx, float v)
+		public static ImGuiStyleModPtr ImGuiStyleModImGuiStyleModFloat(ImGuiStyleVar idx, float v)
 		{
-			ImGuiStyleMod* ret = ImGuiStyleModImGuiStyleModFloatNative(idx, v);
+			ImGuiStyleModPtr ret = ImGuiStyleModImGuiStyleModFloatNative(idx, v);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiStyleMod_ImGuiStyleMod_Vec2")]
 		internal static extern ImGuiStyleMod* ImGuiStyleModImGuiStyleModVec2Native(ImGuiStyleVar idx, Vector2 v);
 
-		public static ImGuiStyleMod* ImGuiStyleModImGuiStyleModVec2(ImGuiStyleVar idx, Vector2 v)
+		public static ImGuiStyleModPtr ImGuiStyleModImGuiStyleModVec2(ImGuiStyleVar idx, Vector2 v)
 		{
-			ImGuiStyleMod* ret = ImGuiStyleModImGuiStyleModVec2Native(idx, v);
+			ImGuiStyleModPtr ret = ImGuiStyleModImGuiStyleModVec2Native(idx, v);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiComboPreviewData_ImGuiComboPreviewData")]
 		internal static extern ImGuiComboPreviewData* ImGuiComboPreviewDataImGuiComboPreviewDataNative();
 
-		public static ImGuiComboPreviewData* ImGuiComboPreviewDataImGuiComboPreviewData()
+		public static ImGuiComboPreviewDataPtr ImGuiComboPreviewDataImGuiComboPreviewData()
 		{
-			ImGuiComboPreviewData* ret = ImGuiComboPreviewDataImGuiComboPreviewDataNative();
+			ImGuiComboPreviewDataPtr ret = ImGuiComboPreviewDataImGuiComboPreviewDataNative();
 			return ret;
 		}
 
@@ -84030,9 +84030,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiMenuColumns_ImGuiMenuColumns")]
 		internal static extern ImGuiMenuColumns* ImGuiMenuColumnsImGuiMenuColumnsNative();
 
-		public static ImGuiMenuColumns* ImGuiMenuColumnsImGuiMenuColumns()
+		public static ImGuiMenuColumnsPtr ImGuiMenuColumnsImGuiMenuColumns()
 		{
-			ImGuiMenuColumns* ret = ImGuiMenuColumnsImGuiMenuColumnsNative();
+			ImGuiMenuColumnsPtr ret = ImGuiMenuColumnsImGuiMenuColumnsNative();
 			return ret;
 		}
 
@@ -84105,9 +84105,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiInputTextDeactivatedState_ImGuiInputTextDeactivatedState")]
 		internal static extern ImGuiInputTextDeactivatedState* ImGuiInputTextDeactivatedStateImGuiInputTextDeactivatedStateNative();
 
-		public static ImGuiInputTextDeactivatedState* ImGuiInputTextDeactivatedStateImGuiInputTextDeactivatedState()
+		public static ImGuiInputTextDeactivatedStatePtr ImGuiInputTextDeactivatedStateImGuiInputTextDeactivatedState()
 		{
-			ImGuiInputTextDeactivatedState* ret = ImGuiInputTextDeactivatedStateImGuiInputTextDeactivatedStateNative();
+			ImGuiInputTextDeactivatedStatePtr ret = ImGuiInputTextDeactivatedStateImGuiInputTextDeactivatedStateNative();
 			return ret;
 		}
 
@@ -84146,9 +84146,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiInputTextState_ImGuiInputTextState")]
 		internal static extern ImGuiInputTextState* ImGuiInputTextStateImGuiInputTextStateNative();
 
-		public static ImGuiInputTextState* ImGuiInputTextStateImGuiInputTextState()
+		public static ImGuiInputTextStatePtr ImGuiInputTextStateImGuiInputTextState()
 		{
-			ImGuiInputTextState* ret = ImGuiInputTextStateImGuiInputTextStateNative();
+			ImGuiInputTextStatePtr ret = ImGuiInputTextStateImGuiInputTextStateNative();
 			return ret;
 		}
 
@@ -84391,9 +84391,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiPopupData_ImGuiPopupData")]
 		internal static extern ImGuiPopupData* ImGuiPopupDataImGuiPopupDataNative();
 
-		public static ImGuiPopupData* ImGuiPopupDataImGuiPopupData()
+		public static ImGuiPopupDataPtr ImGuiPopupDataImGuiPopupData()
 		{
-			ImGuiPopupData* ret = ImGuiPopupDataImGuiPopupDataNative();
+			ImGuiPopupDataPtr ret = ImGuiPopupDataImGuiPopupDataNative();
 			return ret;
 		}
 
@@ -84416,9 +84416,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiNextWindowData_ImGuiNextWindowData")]
 		internal static extern ImGuiNextWindowData* ImGuiNextWindowDataImGuiNextWindowDataNative();
 
-		public static ImGuiNextWindowData* ImGuiNextWindowDataImGuiNextWindowData()
+		public static ImGuiNextWindowDataPtr ImGuiNextWindowDataImGuiNextWindowData()
 		{
-			ImGuiNextWindowData* ret = ImGuiNextWindowDataImGuiNextWindowDataNative();
+			ImGuiNextWindowDataPtr ret = ImGuiNextWindowDataImGuiNextWindowDataNative();
 			return ret;
 		}
 
@@ -84457,9 +84457,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiNextItemData_ImGuiNextItemData")]
 		internal static extern ImGuiNextItemData* ImGuiNextItemDataImGuiNextItemDataNative();
 
-		public static ImGuiNextItemData* ImGuiNextItemDataImGuiNextItemData()
+		public static ImGuiNextItemDataPtr ImGuiNextItemDataImGuiNextItemData()
 		{
-			ImGuiNextItemData* ret = ImGuiNextItemDataImGuiNextItemDataNative();
+			ImGuiNextItemDataPtr ret = ImGuiNextItemDataImGuiNextItemDataNative();
 			return ret;
 		}
 
@@ -84498,9 +84498,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiLastItemData_ImGuiLastItemData")]
 		internal static extern ImGuiLastItemData* ImGuiLastItemDataImGuiLastItemDataNative();
 
-		public static ImGuiLastItemData* ImGuiLastItemDataImGuiLastItemData()
+		public static ImGuiLastItemDataPtr ImGuiLastItemDataImGuiLastItemData()
 		{
-			ImGuiLastItemData* ret = ImGuiLastItemDataImGuiLastItemDataNative();
+			ImGuiLastItemDataPtr ret = ImGuiLastItemDataImGuiLastItemDataNative();
 			return ret;
 		}
 
@@ -84523,9 +84523,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiStackSizes_ImGuiStackSizes")]
 		internal static extern ImGuiStackSizes* ImGuiStackSizesImGuiStackSizesNative();
 
-		public static ImGuiStackSizes* ImGuiStackSizesImGuiStackSizes()
+		public static ImGuiStackSizesPtr ImGuiStackSizesImGuiStackSizes()
 		{
-			ImGuiStackSizes* ret = ImGuiStackSizesImGuiStackSizesNative();
+			ImGuiStackSizesPtr ret = ImGuiStackSizesImGuiStackSizesNative();
 			return ret;
 		}
 
@@ -84618,9 +84618,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiPtrOrIndex_ImGuiPtrOrIndex_Ptr")]
 		internal static extern ImGuiPtrOrIndex* ImGuiPtrOrIndexImGuiPtrOrIndexPtrNative(void* ptr);
 
-		public static ImGuiPtrOrIndex* ImGuiPtrOrIndexImGuiPtrOrIndexPtr(void* ptr)
+		public static ImGuiPtrOrIndexPtr ImGuiPtrOrIndexImGuiPtrOrIndexPtr(void* ptr)
 		{
-			ImGuiPtrOrIndex* ret = ImGuiPtrOrIndexImGuiPtrOrIndexPtrNative(ptr);
+			ImGuiPtrOrIndexPtr ret = ImGuiPtrOrIndexImGuiPtrOrIndexPtrNative(ptr);
 			return ret;
 		}
 
@@ -84643,18 +84643,18 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiPtrOrIndex_ImGuiPtrOrIndex_Int")]
 		internal static extern ImGuiPtrOrIndex* ImGuiPtrOrIndexImGuiPtrOrIndexIntNative(int index);
 
-		public static ImGuiPtrOrIndex* ImGuiPtrOrIndexImGuiPtrOrIndexInt(int index)
+		public static ImGuiPtrOrIndexPtr ImGuiPtrOrIndexImGuiPtrOrIndexInt(int index)
 		{
-			ImGuiPtrOrIndex* ret = ImGuiPtrOrIndexImGuiPtrOrIndexIntNative(index);
+			ImGuiPtrOrIndexPtr ret = ImGuiPtrOrIndexImGuiPtrOrIndexIntNative(index);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiInputEvent_ImGuiInputEvent")]
 		internal static extern ImGuiInputEvent* ImGuiInputEventImGuiInputEventNative();
 
-		public static ImGuiInputEvent* ImGuiInputEventImGuiInputEvent()
+		public static ImGuiInputEventPtr ImGuiInputEventImGuiInputEvent()
 		{
-			ImGuiInputEvent* ret = ImGuiInputEventImGuiInputEventNative();
+			ImGuiInputEventPtr ret = ImGuiInputEventImGuiInputEventNative();
 			return ret;
 		}
 
@@ -84677,9 +84677,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiKeyRoutingData_ImGuiKeyRoutingData")]
 		internal static extern ImGuiKeyRoutingData* ImGuiKeyRoutingDataImGuiKeyRoutingDataNative();
 
-		public static ImGuiKeyRoutingData* ImGuiKeyRoutingDataImGuiKeyRoutingData()
+		public static ImGuiKeyRoutingDataPtr ImGuiKeyRoutingDataImGuiKeyRoutingData()
 		{
-			ImGuiKeyRoutingData* ret = ImGuiKeyRoutingDataImGuiKeyRoutingDataNative();
+			ImGuiKeyRoutingDataPtr ret = ImGuiKeyRoutingDataImGuiKeyRoutingDataNative();
 			return ret;
 		}
 
@@ -84702,9 +84702,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiKeyRoutingTable_ImGuiKeyRoutingTable")]
 		internal static extern ImGuiKeyRoutingTable* ImGuiKeyRoutingTableImGuiKeyRoutingTableNative();
 
-		public static ImGuiKeyRoutingTable* ImGuiKeyRoutingTableImGuiKeyRoutingTable()
+		public static ImGuiKeyRoutingTablePtr ImGuiKeyRoutingTableImGuiKeyRoutingTable()
 		{
-			ImGuiKeyRoutingTable* ret = ImGuiKeyRoutingTableImGuiKeyRoutingTableNative();
+			ImGuiKeyRoutingTablePtr ret = ImGuiKeyRoutingTableImGuiKeyRoutingTableNative();
 			return ret;
 		}
 
@@ -84743,9 +84743,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiKeyOwnerData_ImGuiKeyOwnerData")]
 		internal static extern ImGuiKeyOwnerData* ImGuiKeyOwnerDataImGuiKeyOwnerDataNative();
 
-		public static ImGuiKeyOwnerData* ImGuiKeyOwnerDataImGuiKeyOwnerData()
+		public static ImGuiKeyOwnerDataPtr ImGuiKeyOwnerDataImGuiKeyOwnerData()
 		{
-			ImGuiKeyOwnerData* ret = ImGuiKeyOwnerDataImGuiKeyOwnerDataNative();
+			ImGuiKeyOwnerDataPtr ret = ImGuiKeyOwnerDataImGuiKeyOwnerDataNative();
 			return ret;
 		}
 
@@ -84786,9 +84786,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiListClipperData_ImGuiListClipperData")]
 		internal static extern ImGuiListClipperData* ImGuiListClipperDataImGuiListClipperDataNative();
 
-		public static ImGuiListClipperData* ImGuiListClipperDataImGuiListClipperData()
+		public static ImGuiListClipperDataPtr ImGuiListClipperDataImGuiListClipperData()
 		{
-			ImGuiListClipperData* ret = ImGuiListClipperDataImGuiListClipperDataNative();
+			ImGuiListClipperDataPtr ret = ImGuiListClipperDataImGuiListClipperDataNative();
 			return ret;
 		}
 
@@ -84846,9 +84846,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiNavItemData_ImGuiNavItemData")]
 		internal static extern ImGuiNavItemData* ImGuiNavItemDataImGuiNavItemDataNative();
 
-		public static ImGuiNavItemData* ImGuiNavItemDataImGuiNavItemData()
+		public static ImGuiNavItemDataPtr ImGuiNavItemDataImGuiNavItemData()
 		{
-			ImGuiNavItemData* ret = ImGuiNavItemDataImGuiNavItemDataNative();
+			ImGuiNavItemDataPtr ret = ImGuiNavItemDataImGuiNavItemDataNative();
 			return ret;
 		}
 
@@ -84887,9 +84887,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiOldColumnData_ImGuiOldColumnData")]
 		internal static extern ImGuiOldColumnData* ImGuiOldColumnDataImGuiOldColumnDataNative();
 
-		public static ImGuiOldColumnData* ImGuiOldColumnDataImGuiOldColumnData()
+		public static ImGuiOldColumnDataPtr ImGuiOldColumnDataImGuiOldColumnData()
 		{
-			ImGuiOldColumnData* ret = ImGuiOldColumnDataImGuiOldColumnDataNative();
+			ImGuiOldColumnDataPtr ret = ImGuiOldColumnDataImGuiOldColumnDataNative();
 			return ret;
 		}
 
@@ -84912,9 +84912,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiOldColumns_ImGuiOldColumns")]
 		internal static extern ImGuiOldColumns* ImGuiOldColumnsImGuiOldColumnsNative();
 
-		public static ImGuiOldColumns* ImGuiOldColumnsImGuiOldColumns()
+		public static ImGuiOldColumnsPtr ImGuiOldColumnsImGuiOldColumns()
 		{
-			ImGuiOldColumns* ret = ImGuiOldColumnsImGuiOldColumnsNative();
+			ImGuiOldColumnsPtr ret = ImGuiOldColumnsImGuiOldColumnsNative();
 			return ret;
 		}
 
@@ -84937,9 +84937,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiDockNode_ImGuiDockNode")]
 		internal static extern ImGuiDockNode* ImGuiDockNodeImGuiDockNodeNative(int id);
 
-		public static ImGuiDockNode* ImGuiDockNodeImGuiDockNode(int id)
+		public static ImGuiDockNodePtr ImGuiDockNodeImGuiDockNode(int id)
 		{
-			ImGuiDockNode* ret = ImGuiDockNodeImGuiDockNodeNative(id);
+			ImGuiDockNodePtr ret = ImGuiDockNodeImGuiDockNodeNative(id);
 			return ret;
 		}
 
@@ -85195,9 +85195,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiDockContext_ImGuiDockContext")]
 		internal static extern ImGuiDockContext* ImGuiDockContextImGuiDockContextNative();
 
-		public static ImGuiDockContext* ImGuiDockContextImGuiDockContext()
+		public static ImGuiDockContextPtr ImGuiDockContextImGuiDockContext()
 		{
-			ImGuiDockContext* ret = ImGuiDockContextImGuiDockContextNative();
+			ImGuiDockContextPtr ret = ImGuiDockContextImGuiDockContextNative();
 			return ret;
 		}
 
@@ -85220,9 +85220,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiViewportP_ImGuiViewportP")]
 		internal static extern ImGuiViewportP* ImGuiViewportPImGuiViewportPNative();
 
-		public static ImGuiViewportP* ImGuiViewportPImGuiViewportP()
+		public static ImGuiViewportPPtr ImGuiViewportPImGuiViewportP()
 		{
-			ImGuiViewportP* ret = ImGuiViewportPImGuiViewportPNative();
+			ImGuiViewportPPtr ret = ImGuiViewportPImGuiViewportPNative();
 			return ret;
 		}
 
@@ -85472,9 +85472,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiWindowSettings_ImGuiWindowSettings")]
 		internal static extern ImGuiWindowSettings* ImGuiWindowSettingsImGuiWindowSettingsNative();
 
-		public static ImGuiWindowSettings* ImGuiWindowSettingsImGuiWindowSettings()
+		public static ImGuiWindowSettingsPtr ImGuiWindowSettingsImGuiWindowSettings()
 		{
-			ImGuiWindowSettings* ret = ImGuiWindowSettingsImGuiWindowSettingsNative();
+			ImGuiWindowSettingsPtr ret = ImGuiWindowSettingsImGuiWindowSettingsNative();
 			return ret;
 		}
 
@@ -85530,9 +85530,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiSettingsHandler_ImGuiSettingsHandler")]
 		internal static extern ImGuiSettingsHandler* ImGuiSettingsHandlerImGuiSettingsHandlerNative();
 
-		public static ImGuiSettingsHandler* ImGuiSettingsHandlerImGuiSettingsHandler()
+		public static ImGuiSettingsHandlerPtr ImGuiSettingsHandlerImGuiSettingsHandler()
 		{
-			ImGuiSettingsHandler* ret = ImGuiSettingsHandlerImGuiSettingsHandlerNative();
+			ImGuiSettingsHandlerPtr ret = ImGuiSettingsHandlerImGuiSettingsHandlerNative();
 			return ret;
 		}
 
@@ -85555,9 +85555,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiStackLevelInfo_ImGuiStackLevelInfo")]
 		internal static extern ImGuiStackLevelInfo* ImGuiStackLevelInfoImGuiStackLevelInfoNative();
 
-		public static ImGuiStackLevelInfo* ImGuiStackLevelInfoImGuiStackLevelInfo()
+		public static ImGuiStackLevelInfoPtr ImGuiStackLevelInfoImGuiStackLevelInfo()
 		{
-			ImGuiStackLevelInfo* ret = ImGuiStackLevelInfoImGuiStackLevelInfoNative();
+			ImGuiStackLevelInfoPtr ret = ImGuiStackLevelInfoImGuiStackLevelInfoNative();
 			return ret;
 		}
 
@@ -85580,9 +85580,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiStackTool_ImGuiStackTool")]
 		internal static extern ImGuiStackTool* ImGuiStackToolImGuiStackToolNative();
 
-		public static ImGuiStackTool* ImGuiStackToolImGuiStackTool()
+		public static ImGuiStackToolPtr ImGuiStackToolImGuiStackTool()
 		{
-			ImGuiStackTool* ret = ImGuiStackToolImGuiStackToolNative();
+			ImGuiStackToolPtr ret = ImGuiStackToolImGuiStackToolNative();
 			return ret;
 		}
 
@@ -85605,9 +85605,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiContextHook_ImGuiContextHook")]
 		internal static extern ImGuiContextHook* ImGuiContextHookImGuiContextHookNative();
 
-		public static ImGuiContextHook* ImGuiContextHookImGuiContextHook()
+		public static ImGuiContextHookPtr ImGuiContextHookImGuiContextHook()
 		{
-			ImGuiContextHook* ret = ImGuiContextHookImGuiContextHookNative();
+			ImGuiContextHookPtr ret = ImGuiContextHookImGuiContextHookNative();
 			return ret;
 		}
 
@@ -85630,17 +85630,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiContext_ImGuiContext")]
 		internal static extern ImGuiContext* ImGuiContextImGuiContextNative(ImFontAtlas* sharedFontAtlas);
 
-		public static ImGuiContext* ImGuiContextImGuiContext(ImFontAtlas* sharedFontAtlas)
+		public static ImGuiContextPtr ImGuiContextImGuiContext(ImFontAtlas* sharedFontAtlas)
 		{
-			ImGuiContext* ret = ImGuiContextImGuiContextNative(sharedFontAtlas);
+			ImGuiContextPtr ret = ImGuiContextImGuiContextNative(sharedFontAtlas);
 			return ret;
 		}
 
-		public static ImGuiContext* ImGuiContextImGuiContext(ref ImFontAtlas sharedFontAtlas)
+		public static ImGuiContextPtr ImGuiContextImGuiContext(ref ImFontAtlas sharedFontAtlas)
 		{
 			fixed (ImFontAtlas* psharedFontAtlas = &sharedFontAtlas)
 			{
-				ImGuiContext* ret = ImGuiContextImGuiContextNative((ImFontAtlas*)psharedFontAtlas);
+				ImGuiContextPtr ret = ImGuiContextImGuiContextNative((ImFontAtlas*)psharedFontAtlas);
 				return ret;
 			}
 		}
@@ -85664,31 +85664,31 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiWindow_ImGuiWindow")]
 		internal static extern ImGuiWindow* ImGuiWindowImGuiWindowNative(ImGuiContext* context, byte* name);
 
-		public static ImGuiWindow* ImGuiWindowImGuiWindow(ImGuiContext* context, byte* name)
+		public static ImGuiWindowPtr ImGuiWindowImGuiWindow(ImGuiContext* context, byte* name)
 		{
-			ImGuiWindow* ret = ImGuiWindowImGuiWindowNative(context, name);
+			ImGuiWindowPtr ret = ImGuiWindowImGuiWindowNative(context, name);
 			return ret;
 		}
 
-		public static ImGuiWindow* ImGuiWindowImGuiWindow(ref ImGuiContext context, byte* name)
+		public static ImGuiWindowPtr ImGuiWindowImGuiWindow(ref ImGuiContext context, byte* name)
 		{
 			fixed (ImGuiContext* pcontext = &context)
 			{
-				ImGuiWindow* ret = ImGuiWindowImGuiWindowNative((ImGuiContext*)pcontext, name);
+				ImGuiWindowPtr ret = ImGuiWindowImGuiWindowNative((ImGuiContext*)pcontext, name);
 				return ret;
 			}
 		}
 
-		public static ImGuiWindow* ImGuiWindowImGuiWindow(ImGuiContext* context, ref byte name)
+		public static ImGuiWindowPtr ImGuiWindowImGuiWindow(ImGuiContext* context, ref byte name)
 		{
 			fixed (byte* pname = &name)
 			{
-				ImGuiWindow* ret = ImGuiWindowImGuiWindowNative(context, (byte*)pname);
+				ImGuiWindowPtr ret = ImGuiWindowImGuiWindowNative(context, (byte*)pname);
 				return ret;
 			}
 		}
 
-		public static ImGuiWindow* ImGuiWindowImGuiWindow(ImGuiContext* context, string name)
+		public static ImGuiWindowPtr ImGuiWindowImGuiWindow(ImGuiContext* context, string name)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -85707,7 +85707,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGuiWindow* ret = ImGuiWindowImGuiWindowNative(context, pStr0);
+			ImGuiWindowPtr ret = ImGuiWindowImGuiWindowNative(context, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -85715,19 +85715,19 @@ namespace HexaEngine.ImGuiNET
 			return ret;
 		}
 
-		public static ImGuiWindow* ImGuiWindowImGuiWindow(ref ImGuiContext context, ref byte name)
+		public static ImGuiWindowPtr ImGuiWindowImGuiWindow(ref ImGuiContext context, ref byte name)
 		{
 			fixed (ImGuiContext* pcontext = &context)
 			{
 				fixed (byte* pname = &name)
 				{
-					ImGuiWindow* ret = ImGuiWindowImGuiWindowNative((ImGuiContext*)pcontext, (byte*)pname);
+					ImGuiWindowPtr ret = ImGuiWindowImGuiWindowNative((ImGuiContext*)pcontext, (byte*)pname);
 					return ret;
 				}
 			}
 		}
 
-		public static ImGuiWindow* ImGuiWindowImGuiWindow(ref ImGuiContext context, string name)
+		public static ImGuiWindowPtr ImGuiWindowImGuiWindow(ref ImGuiContext context, string name)
 		{
 			fixed (ImGuiContext* pcontext = &context)
 			{
@@ -85748,7 +85748,7 @@ namespace HexaEngine.ImGuiNET
 					int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGuiWindow* ret = ImGuiWindowImGuiWindowNative((ImGuiContext*)pcontext, pStr0);
+				ImGuiWindowPtr ret = ImGuiWindowImGuiWindowNative((ImGuiContext*)pcontext, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -86301,9 +86301,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTabItem_ImGuiTabItem")]
 		internal static extern ImGuiTabItem* ImGuiTabItemImGuiTabItemNative();
 
-		public static ImGuiTabItem* ImGuiTabItemImGuiTabItem()
+		public static ImGuiTabItemPtr ImGuiTabItemImGuiTabItem()
 		{
-			ImGuiTabItem* ret = ImGuiTabItemImGuiTabItemNative();
+			ImGuiTabItemPtr ret = ImGuiTabItemImGuiTabItemNative();
 			return ret;
 		}
 
@@ -86326,9 +86326,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTabBar_ImGuiTabBar")]
 		internal static extern ImGuiTabBar* ImGuiTabBarImGuiTabBarNative();
 
-		public static ImGuiTabBar* ImGuiTabBarImGuiTabBar()
+		public static ImGuiTabBarPtr ImGuiTabBarImGuiTabBar()
 		{
-			ImGuiTabBar* ret = ImGuiTabBarImGuiTabBarNative();
+			ImGuiTabBarPtr ret = ImGuiTabBarImGuiTabBarNative();
 			return ret;
 		}
 
@@ -86351,9 +86351,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTableColumn_ImGuiTableColumn")]
 		internal static extern ImGuiTableColumn* ImGuiTableColumnImGuiTableColumnNative();
 
-		public static ImGuiTableColumn* ImGuiTableColumnImGuiTableColumn()
+		public static ImGuiTableColumnPtr ImGuiTableColumnImGuiTableColumn()
 		{
-			ImGuiTableColumn* ret = ImGuiTableColumnImGuiTableColumnNative();
+			ImGuiTableColumnPtr ret = ImGuiTableColumnImGuiTableColumnNative();
 			return ret;
 		}
 
@@ -86376,9 +86376,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTableInstanceData_ImGuiTableInstanceData")]
 		internal static extern ImGuiTableInstanceData* ImGuiTableInstanceDataImGuiTableInstanceDataNative();
 
-		public static ImGuiTableInstanceData* ImGuiTableInstanceDataImGuiTableInstanceData()
+		public static ImGuiTableInstanceDataPtr ImGuiTableInstanceDataImGuiTableInstanceData()
 		{
-			ImGuiTableInstanceData* ret = ImGuiTableInstanceDataImGuiTableInstanceDataNative();
+			ImGuiTableInstanceDataPtr ret = ImGuiTableInstanceDataImGuiTableInstanceDataNative();
 			return ret;
 		}
 
@@ -86401,9 +86401,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTable_ImGuiTable")]
 		internal static extern ImGuiTable* ImGuiTableImGuiTableNative();
 
-		public static ImGuiTable* ImGuiTableImGuiTable()
+		public static ImGuiTablePtr ImGuiTableImGuiTable()
 		{
-			ImGuiTable* ret = ImGuiTableImGuiTableNative();
+			ImGuiTablePtr ret = ImGuiTableImGuiTableNative();
 			return ret;
 		}
 
@@ -86426,9 +86426,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTableTempData_ImGuiTableTempData")]
 		internal static extern ImGuiTableTempData* ImGuiTableTempDataImGuiTableTempDataNative();
 
-		public static ImGuiTableTempData* ImGuiTableTempDataImGuiTableTempData()
+		public static ImGuiTableTempDataPtr ImGuiTableTempDataImGuiTableTempData()
 		{
-			ImGuiTableTempData* ret = ImGuiTableTempDataImGuiTableTempDataNative();
+			ImGuiTableTempDataPtr ret = ImGuiTableTempDataImGuiTableTempDataNative();
 			return ret;
 		}
 
@@ -86451,9 +86451,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTableColumnSettings_ImGuiTableColumnSettings")]
 		internal static extern ImGuiTableColumnSettings* ImGuiTableColumnSettingsImGuiTableColumnSettingsNative();
 
-		public static ImGuiTableColumnSettings* ImGuiTableColumnSettingsImGuiTableColumnSettings()
+		public static ImGuiTableColumnSettingsPtr ImGuiTableColumnSettingsImGuiTableColumnSettings()
 		{
-			ImGuiTableColumnSettings* ret = ImGuiTableColumnSettingsImGuiTableColumnSettingsNative();
+			ImGuiTableColumnSettingsPtr ret = ImGuiTableColumnSettingsImGuiTableColumnSettingsNative();
 			return ret;
 		}
 
@@ -86476,9 +86476,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTableSettings_ImGuiTableSettings")]
 		internal static extern ImGuiTableSettings* ImGuiTableSettingsImGuiTableSettingsNative();
 
-		public static ImGuiTableSettings* ImGuiTableSettingsImGuiTableSettings()
+		public static ImGuiTableSettingsPtr ImGuiTableSettingsImGuiTableSettings()
 		{
-			ImGuiTableSettings* ret = ImGuiTableSettingsImGuiTableSettingsNative();
+			ImGuiTableSettingsPtr ret = ImGuiTableSettingsImGuiTableSettingsNative();
 			return ret;
 		}
 
@@ -86501,17 +86501,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuiTableSettings_GetColumnSettings")]
 		internal static extern ImGuiTableColumnSettings* ImGuiTableSettingsGetColumnSettingsNative(ImGuiTableSettings* self);
 
-		public static ImGuiTableColumnSettings* ImGuiTableSettingsGetColumnSettings(ImGuiTableSettings* self)
+		public static ImGuiTableColumnSettingsPtr ImGuiTableSettingsGetColumnSettings(ImGuiTableSettings* self)
 		{
-			ImGuiTableColumnSettings* ret = ImGuiTableSettingsGetColumnSettingsNative(self);
+			ImGuiTableColumnSettingsPtr ret = ImGuiTableSettingsGetColumnSettingsNative(self);
 			return ret;
 		}
 
-		public static ImGuiTableColumnSettings* ImGuiTableSettingsGetColumnSettings(ref ImGuiTableSettings self)
+		public static ImGuiTableColumnSettingsPtr ImGuiTableSettingsGetColumnSettings(ref ImGuiTableSettings self)
 		{
 			fixed (ImGuiTableSettings* pself = &self)
 			{
-				ImGuiTableColumnSettings* ret = ImGuiTableSettingsGetColumnSettingsNative((ImGuiTableSettings*)pself);
+				ImGuiTableColumnSettingsPtr ret = ImGuiTableSettingsGetColumnSettingsNative((ImGuiTableSettings*)pself);
 				return ret;
 			}
 		}
@@ -86519,49 +86519,49 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetCurrentWindowRead")]
 		internal static extern ImGuiWindow* GetCurrentWindowReadNative();
 
-		public static ImGuiWindow* GetCurrentWindowRead()
+		public static ImGuiWindowPtr GetCurrentWindowRead()
 		{
-			ImGuiWindow* ret = GetCurrentWindowReadNative();
+			ImGuiWindowPtr ret = GetCurrentWindowReadNative();
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetCurrentWindow")]
 		internal static extern ImGuiWindow* GetCurrentWindowNative();
 
-		public static ImGuiWindow* GetCurrentWindow()
+		public static ImGuiWindowPtr GetCurrentWindow()
 		{
-			ImGuiWindow* ret = GetCurrentWindowNative();
+			ImGuiWindowPtr ret = GetCurrentWindowNative();
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igFindWindowByID")]
 		internal static extern ImGuiWindow* FindWindowByIDNative(int id);
 
-		public static ImGuiWindow* FindWindowByID(int id)
+		public static ImGuiWindowPtr FindWindowByID(int id)
 		{
-			ImGuiWindow* ret = FindWindowByIDNative(id);
+			ImGuiWindowPtr ret = FindWindowByIDNative(id);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igFindWindowByName")]
 		internal static extern ImGuiWindow* FindWindowByNameNative(byte* name);
 
-		public static ImGuiWindow* FindWindowByName(byte* name)
+		public static ImGuiWindowPtr FindWindowByName(byte* name)
 		{
-			ImGuiWindow* ret = FindWindowByNameNative(name);
+			ImGuiWindowPtr ret = FindWindowByNameNative(name);
 			return ret;
 		}
 
-		public static ImGuiWindow* FindWindowByName(ref byte name)
+		public static ImGuiWindowPtr FindWindowByName(ref byte name)
 		{
 			fixed (byte* pname = &name)
 			{
-				ImGuiWindow* ret = FindWindowByNameNative((byte*)pname);
+				ImGuiWindowPtr ret = FindWindowByNameNative((byte*)pname);
 				return ret;
 			}
 		}
 
-		public static ImGuiWindow* FindWindowByName(string name)
+		public static ImGuiWindowPtr FindWindowByName(string name)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -86580,7 +86580,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGuiWindow* ret = FindWindowByNameNative(pStr0);
+			ImGuiWindowPtr ret = FindWindowByNameNative(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -87193,17 +87193,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igFindBottomMostVisibleWindowWithinBeginStack")]
 		internal static extern ImGuiWindow* FindBottomMostVisibleWindowWithinBeginStackNative(ImGuiWindow* window);
 
-		public static ImGuiWindow* FindBottomMostVisibleWindowWithinBeginStack(ImGuiWindow* window)
+		public static ImGuiWindowPtr FindBottomMostVisibleWindowWithinBeginStack(ImGuiWindow* window)
 		{
-			ImGuiWindow* ret = FindBottomMostVisibleWindowWithinBeginStackNative(window);
+			ImGuiWindowPtr ret = FindBottomMostVisibleWindowWithinBeginStackNative(window);
 			return ret;
 		}
 
-		public static ImGuiWindow* FindBottomMostVisibleWindowWithinBeginStack(ref ImGuiWindow window)
+		public static ImGuiWindowPtr FindBottomMostVisibleWindowWithinBeginStack(ref ImGuiWindow window)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				ImGuiWindow* ret = FindBottomMostVisibleWindowWithinBeginStackNative((ImGuiWindow*)pwindow);
+				ImGuiWindowPtr ret = FindBottomMostVisibleWindowWithinBeginStackNative((ImGuiWindow*)pwindow);
 				return ret;
 			}
 		}
@@ -87227,26 +87227,26 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetDefaultFont")]
 		internal static extern ImFont* GetDefaultFontNative();
 
-		public static ImFont* GetDefaultFont()
+		public static ImFontPtr GetDefaultFont()
 		{
-			ImFont* ret = GetDefaultFontNative();
+			ImFontPtr ret = GetDefaultFontNative();
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetForegroundDrawList_WindowPtr")]
 		internal static extern ImDrawList* GetForegroundDrawListWindowPtrNative(ImGuiWindow* window);
 
-		public static ImDrawList* GetForegroundDrawListWindowPtr(ImGuiWindow* window)
+		public static ImDrawListPtr GetForegroundDrawListWindowPtr(ImGuiWindow* window)
 		{
-			ImDrawList* ret = GetForegroundDrawListWindowPtrNative(window);
+			ImDrawListPtr ret = GetForegroundDrawListWindowPtrNative(window);
 			return ret;
 		}
 
-		public static ImDrawList* GetForegroundDrawListWindowPtr(ref ImGuiWindow window)
+		public static ImDrawListPtr GetForegroundDrawListWindowPtr(ref ImGuiWindow window)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				ImDrawList* ret = GetForegroundDrawListWindowPtrNative((ImGuiWindow*)pwindow);
+				ImDrawListPtr ret = GetForegroundDrawListWindowPtrNative((ImGuiWindow*)pwindow);
 				return ret;
 			}
 		}
@@ -87542,17 +87542,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetViewportPlatformMonitor")]
 		internal static extern ImGuiPlatformMonitor* GetViewportPlatformMonitorNative(ImGuiViewport* viewport);
 
-		public static ImGuiPlatformMonitor* GetViewportPlatformMonitor(ImGuiViewport* viewport)
+		public static ImGuiPlatformMonitorPtr GetViewportPlatformMonitor(ImGuiViewport* viewport)
 		{
-			ImGuiPlatformMonitor* ret = GetViewportPlatformMonitorNative(viewport);
+			ImGuiPlatformMonitorPtr ret = GetViewportPlatformMonitorNative(viewport);
 			return ret;
 		}
 
-		public static ImGuiPlatformMonitor* GetViewportPlatformMonitor(ref ImGuiViewport viewport)
+		public static ImGuiPlatformMonitorPtr GetViewportPlatformMonitor(ref ImGuiViewport viewport)
 		{
 			fixed (ImGuiViewport* pviewport = &viewport)
 			{
-				ImGuiPlatformMonitor* ret = GetViewportPlatformMonitorNative((ImGuiViewport*)pviewport);
+				ImGuiPlatformMonitorPtr ret = GetViewportPlatformMonitorNative((ImGuiViewport*)pviewport);
 				return ret;
 			}
 		}
@@ -87560,9 +87560,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igFindHoveredViewportFromPlatformWindowStack")]
 		internal static extern ImGuiViewportP* FindHoveredViewportFromPlatformWindowStackNative(Vector2 mousePlatformPos);
 
-		public static ImGuiViewportP* FindHoveredViewportFromPlatformWindowStack(Vector2 mousePlatformPos)
+		public static ImGuiViewportPPtr FindHoveredViewportFromPlatformWindowStack(Vector2 mousePlatformPos)
 		{
-			ImGuiViewportP* ret = FindHoveredViewportFromPlatformWindowStackNative(mousePlatformPos);
+			ImGuiViewportPPtr ret = FindHoveredViewportFromPlatformWindowStackNative(mousePlatformPos);
 			return ret;
 		}
 
@@ -87659,22 +87659,22 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igFindSettingsHandler")]
 		internal static extern ImGuiSettingsHandler* FindSettingsHandlerNative(byte* typeName);
 
-		public static ImGuiSettingsHandler* FindSettingsHandler(byte* typeName)
+		public static ImGuiSettingsHandlerPtr FindSettingsHandler(byte* typeName)
 		{
-			ImGuiSettingsHandler* ret = FindSettingsHandlerNative(typeName);
+			ImGuiSettingsHandlerPtr ret = FindSettingsHandlerNative(typeName);
 			return ret;
 		}
 
-		public static ImGuiSettingsHandler* FindSettingsHandler(ref byte typeName)
+		public static ImGuiSettingsHandlerPtr FindSettingsHandler(ref byte typeName)
 		{
 			fixed (byte* ptypeName = &typeName)
 			{
-				ImGuiSettingsHandler* ret = FindSettingsHandlerNative((byte*)ptypeName);
+				ImGuiSettingsHandlerPtr ret = FindSettingsHandlerNative((byte*)ptypeName);
 				return ret;
 			}
 		}
 
-		public static ImGuiSettingsHandler* FindSettingsHandler(string typeName)
+		public static ImGuiSettingsHandlerPtr FindSettingsHandler(string typeName)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -87693,7 +87693,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(typeName, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGuiSettingsHandler* ret = FindSettingsHandlerNative(pStr0);
+			ImGuiSettingsHandlerPtr ret = FindSettingsHandlerNative(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -87704,22 +87704,22 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igCreateNewWindowSettings")]
 		internal static extern ImGuiWindowSettings* CreateNewWindowSettingsNative(byte* name);
 
-		public static ImGuiWindowSettings* CreateNewWindowSettings(byte* name)
+		public static ImGuiWindowSettingsPtr CreateNewWindowSettings(byte* name)
 		{
-			ImGuiWindowSettings* ret = CreateNewWindowSettingsNative(name);
+			ImGuiWindowSettingsPtr ret = CreateNewWindowSettingsNative(name);
 			return ret;
 		}
 
-		public static ImGuiWindowSettings* CreateNewWindowSettings(ref byte name)
+		public static ImGuiWindowSettingsPtr CreateNewWindowSettings(ref byte name)
 		{
 			fixed (byte* pname = &name)
 			{
-				ImGuiWindowSettings* ret = CreateNewWindowSettingsNative((byte*)pname);
+				ImGuiWindowSettingsPtr ret = CreateNewWindowSettingsNative((byte*)pname);
 				return ret;
 			}
 		}
 
-		public static ImGuiWindowSettings* CreateNewWindowSettings(string name)
+		public static ImGuiWindowSettingsPtr CreateNewWindowSettings(string name)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -87738,7 +87738,7 @@ namespace HexaEngine.ImGuiNET
 				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGuiWindowSettings* ret = CreateNewWindowSettingsNative(pStr0);
+			ImGuiWindowSettingsPtr ret = CreateNewWindowSettingsNative(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -87749,26 +87749,26 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igFindWindowSettingsByID")]
 		internal static extern ImGuiWindowSettings* FindWindowSettingsByIDNative(int id);
 
-		public static ImGuiWindowSettings* FindWindowSettingsByID(int id)
+		public static ImGuiWindowSettingsPtr FindWindowSettingsByID(int id)
 		{
-			ImGuiWindowSettings* ret = FindWindowSettingsByIDNative(id);
+			ImGuiWindowSettingsPtr ret = FindWindowSettingsByIDNative(id);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igFindWindowSettingsByWindow")]
 		internal static extern ImGuiWindowSettings* FindWindowSettingsByWindowNative(ImGuiWindow* window);
 
-		public static ImGuiWindowSettings* FindWindowSettingsByWindow(ImGuiWindow* window)
+		public static ImGuiWindowSettingsPtr FindWindowSettingsByWindow(ImGuiWindow* window)
 		{
-			ImGuiWindowSettings* ret = FindWindowSettingsByWindowNative(window);
+			ImGuiWindowSettingsPtr ret = FindWindowSettingsByWindowNative(window);
 			return ret;
 		}
 
-		public static ImGuiWindowSettings* FindWindowSettingsByWindow(ref ImGuiWindow window)
+		public static ImGuiWindowSettingsPtr FindWindowSettingsByWindow(ref ImGuiWindow window)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				ImGuiWindowSettings* ret = FindWindowSettingsByWindowNative((ImGuiWindow*)pwindow);
+				ImGuiWindowSettingsPtr ret = FindWindowSettingsByWindowNative((ImGuiWindow*)pwindow);
 				return ret;
 			}
 		}
@@ -88431,9 +88431,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetStyleVarInfo")]
 		internal static extern ImGuiDataVarInfo* GetStyleVarInfoNative(ImGuiStyleVar idx);
 
-		public static ImGuiDataVarInfo* GetStyleVarInfo(ImGuiStyleVar idx)
+		public static ImGuiDataVarInfoPtr GetStyleVarInfo(ImGuiStyleVar idx)
 		{
-			ImGuiDataVarInfo* ret = GetStyleVarInfoNative(idx);
+			ImGuiDataVarInfoPtr ret = GetStyleVarInfoNative(idx);
 			return ret;
 		}
 
@@ -89027,35 +89027,35 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetTopMostPopupModal")]
 		internal static extern ImGuiWindow* GetTopMostPopupModalNative();
 
-		public static ImGuiWindow* GetTopMostPopupModal()
+		public static ImGuiWindowPtr GetTopMostPopupModal()
 		{
-			ImGuiWindow* ret = GetTopMostPopupModalNative();
+			ImGuiWindowPtr ret = GetTopMostPopupModalNative();
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetTopMostAndVisiblePopupModal")]
 		internal static extern ImGuiWindow* GetTopMostAndVisiblePopupModalNative();
 
-		public static ImGuiWindow* GetTopMostAndVisiblePopupModal()
+		public static ImGuiWindowPtr GetTopMostAndVisiblePopupModal()
 		{
-			ImGuiWindow* ret = GetTopMostAndVisiblePopupModalNative();
+			ImGuiWindowPtr ret = GetTopMostAndVisiblePopupModalNative();
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igFindBlockingModal")]
 		internal static extern ImGuiWindow* FindBlockingModalNative(ImGuiWindow* window);
 
-		public static ImGuiWindow* FindBlockingModal(ImGuiWindow* window)
+		public static ImGuiWindowPtr FindBlockingModal(ImGuiWindow* window)
 		{
-			ImGuiWindow* ret = FindBlockingModalNative(window);
+			ImGuiWindowPtr ret = FindBlockingModalNative(window);
 			return ret;
 		}
 
-		public static ImGuiWindow* FindBlockingModal(ref ImGuiWindow window)
+		public static ImGuiWindowPtr FindBlockingModal(ref ImGuiWindow window)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				ImGuiWindow* ret = FindBlockingModalNative((ImGuiWindow*)pwindow);
+				ImGuiWindowPtr ret = FindBlockingModalNative((ImGuiWindow*)pwindow);
 				return ret;
 			}
 		}
@@ -90020,17 +90020,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetKeyData_ContextPtr")]
 		internal static extern ImGuiKeyData* GetKeyDataContextPtrNative(ImGuiContext* ctx, ImGuiKey key);
 
-		public static ImGuiKeyData* GetKeyDataContextPtr(ImGuiContext* ctx, ImGuiKey key)
+		public static ImGuiKeyDataPtr GetKeyDataContextPtr(ImGuiContext* ctx, ImGuiKey key)
 		{
-			ImGuiKeyData* ret = GetKeyDataContextPtrNative(ctx, key);
+			ImGuiKeyDataPtr ret = GetKeyDataContextPtrNative(ctx, key);
 			return ret;
 		}
 
-		public static ImGuiKeyData* GetKeyDataContextPtr(ref ImGuiContext ctx, ImGuiKey key)
+		public static ImGuiKeyDataPtr GetKeyDataContextPtr(ref ImGuiContext ctx, ImGuiKey key)
 		{
 			fixed (ImGuiContext* pctx = &ctx)
 			{
-				ImGuiKeyData* ret = GetKeyDataContextPtrNative((ImGuiContext*)pctx, key);
+				ImGuiKeyDataPtr ret = GetKeyDataContextPtrNative((ImGuiContext*)pctx, key);
 				return ret;
 			}
 		}
@@ -90038,9 +90038,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetKeyData_Key")]
 		internal static extern ImGuiKeyData* GetKeyDataKeyNative(ImGuiKey key);
 
-		public static ImGuiKeyData* GetKeyDataKey(ImGuiKey key)
+		public static ImGuiKeyDataPtr GetKeyDataKey(ImGuiKey key)
 		{
-			ImGuiKeyData* ret = GetKeyDataKeyNative(key);
+			ImGuiKeyDataPtr ret = GetKeyDataKeyNative(key);
 			return ret;
 		}
 
@@ -90238,17 +90238,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetKeyOwnerData")]
 		internal static extern ImGuiKeyOwnerData* GetKeyOwnerDataNative(ImGuiContext* ctx, ImGuiKey key);
 
-		public static ImGuiKeyOwnerData* GetKeyOwnerData(ImGuiContext* ctx, ImGuiKey key)
+		public static ImGuiKeyOwnerDataPtr GetKeyOwnerData(ImGuiContext* ctx, ImGuiKey key)
 		{
-			ImGuiKeyOwnerData* ret = GetKeyOwnerDataNative(ctx, key);
+			ImGuiKeyOwnerDataPtr ret = GetKeyOwnerDataNative(ctx, key);
 			return ret;
 		}
 
-		public static ImGuiKeyOwnerData* GetKeyOwnerData(ref ImGuiContext ctx, ImGuiKey key)
+		public static ImGuiKeyOwnerDataPtr GetKeyOwnerData(ref ImGuiContext ctx, ImGuiKey key)
 		{
 			fixed (ImGuiContext* pctx = &ctx)
 			{
-				ImGuiKeyOwnerData* ret = GetKeyOwnerDataNative((ImGuiContext*)pctx, key);
+				ImGuiKeyOwnerDataPtr ret = GetKeyOwnerDataNative((ImGuiContext*)pctx, key);
 				return ret;
 			}
 		}
@@ -90337,9 +90337,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetShortcutRoutingData")]
 		internal static extern ImGuiKeyRoutingData* GetShortcutRoutingDataNative(int keyChord);
 
-		public static ImGuiKeyRoutingData* GetShortcutRoutingData(int keyChord)
+		public static ImGuiKeyRoutingDataPtr GetShortcutRoutingData(int keyChord)
 		{
-			ImGuiKeyRoutingData* ret = GetShortcutRoutingDataNative(keyChord);
+			ImGuiKeyRoutingDataPtr ret = GetShortcutRoutingDataNative(keyChord);
 			return ret;
 		}
 
@@ -91230,17 +91230,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igDockContextFindNodeByID")]
 		internal static extern ImGuiDockNode* DockContextFindNodeByIDNative(ImGuiContext* ctx, int id);
 
-		public static ImGuiDockNode* DockContextFindNodeByID(ImGuiContext* ctx, int id)
+		public static ImGuiDockNodePtr DockContextFindNodeByID(ImGuiContext* ctx, int id)
 		{
-			ImGuiDockNode* ret = DockContextFindNodeByIDNative(ctx, id);
+			ImGuiDockNodePtr ret = DockContextFindNodeByIDNative(ctx, id);
 			return ret;
 		}
 
-		public static ImGuiDockNode* DockContextFindNodeByID(ref ImGuiContext ctx, int id)
+		public static ImGuiDockNodePtr DockContextFindNodeByID(ref ImGuiContext ctx, int id)
 		{
 			fixed (ImGuiContext* pctx = &ctx)
 			{
-				ImGuiDockNode* ret = DockContextFindNodeByIDNative((ImGuiContext*)pctx, id);
+				ImGuiDockNodePtr ret = DockContextFindNodeByIDNative((ImGuiContext*)pctx, id);
 				return ret;
 			}
 		}
@@ -91353,17 +91353,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igDockNodeGetRootNode")]
 		internal static extern ImGuiDockNode* DockNodeGetRootNodeNative(ImGuiDockNode* node);
 
-		public static ImGuiDockNode* DockNodeGetRootNode(ImGuiDockNode* node)
+		public static ImGuiDockNodePtr DockNodeGetRootNode(ImGuiDockNode* node)
 		{
-			ImGuiDockNode* ret = DockNodeGetRootNodeNative(node);
+			ImGuiDockNodePtr ret = DockNodeGetRootNodeNative(node);
 			return ret;
 		}
 
-		public static ImGuiDockNode* DockNodeGetRootNode(ref ImGuiDockNode node)
+		public static ImGuiDockNodePtr DockNodeGetRootNode(ref ImGuiDockNode node)
 		{
 			fixed (ImGuiDockNode* pnode = &node)
 			{
-				ImGuiDockNode* ret = DockNodeGetRootNodeNative((ImGuiDockNode*)pnode);
+				ImGuiDockNodePtr ret = DockNodeGetRootNodeNative((ImGuiDockNode*)pnode);
 				return ret;
 			}
 		}
@@ -91446,9 +91446,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetWindowDockNode")]
 		internal static extern ImGuiDockNode* GetWindowDockNodeNative();
 
-		public static ImGuiDockNode* GetWindowDockNode()
+		public static ImGuiDockNodePtr GetWindowDockNode()
 		{
-			ImGuiDockNode* ret = GetWindowDockNodeNative();
+			ImGuiDockNodePtr ret = GetWindowDockNodeNative();
 			return ret;
 		}
 
@@ -91598,18 +91598,18 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igDockBuilderGetNode")]
 		internal static extern ImGuiDockNode* DockBuilderGetNodeNative(int nodeId);
 
-		public static ImGuiDockNode* DockBuilderGetNode(int nodeId)
+		public static ImGuiDockNodePtr DockBuilderGetNode(int nodeId)
 		{
-			ImGuiDockNode* ret = DockBuilderGetNodeNative(nodeId);
+			ImGuiDockNodePtr ret = DockBuilderGetNodeNative(nodeId);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igDockBuilderGetCentralNode")]
 		internal static extern ImGuiDockNode* DockBuilderGetCentralNodeNative(int nodeId);
 
-		public static ImGuiDockNode* DockBuilderGetCentralNode(int nodeId)
+		public static ImGuiDockNodePtr DockBuilderGetCentralNode(int nodeId)
 		{
-			ImGuiDockNode* ret = DockBuilderGetCentralNodeNative(nodeId);
+			ImGuiDockNodePtr ret = DockBuilderGetCentralNodeNative(nodeId);
 			return ret;
 		}
 
@@ -92081,17 +92081,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igFindOrCreateColumns")]
 		internal static extern ImGuiOldColumns* FindOrCreateColumnsNative(ImGuiWindow* window, int id);
 
-		public static ImGuiOldColumns* FindOrCreateColumns(ImGuiWindow* window, int id)
+		public static ImGuiOldColumnsPtr FindOrCreateColumns(ImGuiWindow* window, int id)
 		{
-			ImGuiOldColumns* ret = FindOrCreateColumnsNative(window, id);
+			ImGuiOldColumnsPtr ret = FindOrCreateColumnsNative(window, id);
 			return ret;
 		}
 
-		public static ImGuiOldColumns* FindOrCreateColumns(ref ImGuiWindow window, int id)
+		public static ImGuiOldColumnsPtr FindOrCreateColumns(ref ImGuiWindow window, int id)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
 			{
-				ImGuiOldColumns* ret = FindOrCreateColumnsNative((ImGuiWindow*)pwindow, id);
+				ImGuiOldColumnsPtr ret = FindOrCreateColumnsNative((ImGuiWindow*)pwindow, id);
 				return ret;
 			}
 		}
@@ -92193,18 +92193,18 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetCurrentTable")]
 		internal static extern ImGuiTable* GetCurrentTableNative();
 
-		public static ImGuiTable* GetCurrentTable()
+		public static ImGuiTablePtr GetCurrentTable()
 		{
-			ImGuiTable* ret = GetCurrentTableNative();
+			ImGuiTablePtr ret = GetCurrentTableNative();
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTableFindByID")]
 		internal static extern ImGuiTable* TableFindByIDNative(int id);
 
-		public static ImGuiTable* TableFindByID(int id)
+		public static ImGuiTablePtr TableFindByID(int id)
 		{
-			ImGuiTable* ret = TableFindByIDNative(id);
+			ImGuiTablePtr ret = TableFindByIDNative(id);
 			return ret;
 		}
 
@@ -92418,17 +92418,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTableGetInstanceData")]
 		internal static extern ImGuiTableInstanceData* TableGetInstanceDataNative(ImGuiTable* table, int instanceNo);
 
-		public static ImGuiTableInstanceData* TableGetInstanceData(ImGuiTable* table, int instanceNo)
+		public static ImGuiTableInstanceDataPtr TableGetInstanceData(ImGuiTable* table, int instanceNo)
 		{
-			ImGuiTableInstanceData* ret = TableGetInstanceDataNative(table, instanceNo);
+			ImGuiTableInstanceDataPtr ret = TableGetInstanceDataNative(table, instanceNo);
 			return ret;
 		}
 
-		public static ImGuiTableInstanceData* TableGetInstanceData(ref ImGuiTable table, int instanceNo)
+		public static ImGuiTableInstanceDataPtr TableGetInstanceData(ref ImGuiTable table, int instanceNo)
 		{
 			fixed (ImGuiTable* ptable = &table)
 			{
-				ImGuiTableInstanceData* ret = TableGetInstanceDataNative((ImGuiTable*)ptable, instanceNo);
+				ImGuiTableInstanceDataPtr ret = TableGetInstanceDataNative((ImGuiTable*)ptable, instanceNo);
 				return ret;
 			}
 		}
@@ -92886,17 +92886,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTableGetBoundSettings")]
 		internal static extern ImGuiTableSettings* TableGetBoundSettingsNative(ImGuiTable* table);
 
-		public static ImGuiTableSettings* TableGetBoundSettings(ImGuiTable* table)
+		public static ImGuiTableSettingsPtr TableGetBoundSettings(ImGuiTable* table)
 		{
-			ImGuiTableSettings* ret = TableGetBoundSettingsNative(table);
+			ImGuiTableSettingsPtr ret = TableGetBoundSettingsNative(table);
 			return ret;
 		}
 
-		public static ImGuiTableSettings* TableGetBoundSettings(ref ImGuiTable table)
+		public static ImGuiTableSettingsPtr TableGetBoundSettings(ref ImGuiTable table)
 		{
 			fixed (ImGuiTable* ptable = &table)
 			{
-				ImGuiTableSettings* ret = TableGetBoundSettingsNative((ImGuiTable*)ptable);
+				ImGuiTableSettingsPtr ret = TableGetBoundSettingsNative((ImGuiTable*)ptable);
 				return ret;
 			}
 		}
@@ -92912,27 +92912,27 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTableSettingsCreate")]
 		internal static extern ImGuiTableSettings* TableSettingsCreateNative(int id, int columnsCount);
 
-		public static ImGuiTableSettings* TableSettingsCreate(int id, int columnsCount)
+		public static ImGuiTableSettingsPtr TableSettingsCreate(int id, int columnsCount)
 		{
-			ImGuiTableSettings* ret = TableSettingsCreateNative(id, columnsCount);
+			ImGuiTableSettingsPtr ret = TableSettingsCreateNative(id, columnsCount);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTableSettingsFindByID")]
 		internal static extern ImGuiTableSettings* TableSettingsFindByIDNative(int id);
 
-		public static ImGuiTableSettings* TableSettingsFindByID(int id)
+		public static ImGuiTableSettingsPtr TableSettingsFindByID(int id)
 		{
-			ImGuiTableSettings* ret = TableSettingsFindByIDNative(id);
+			ImGuiTableSettingsPtr ret = TableSettingsFindByIDNative(id);
 			return ret;
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetCurrentTabBar")]
 		internal static extern ImGuiTabBar* GetCurrentTabBarNative();
 
-		public static ImGuiTabBar* GetCurrentTabBar()
+		public static ImGuiTabBarPtr GetCurrentTabBar()
 		{
-			ImGuiTabBar* ret = GetCurrentTabBarNative();
+			ImGuiTabBarPtr ret = GetCurrentTabBarNative();
 			return ret;
 		}
 
@@ -92978,17 +92978,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTabBarFindTabByID")]
 		internal static extern ImGuiTabItem* TabBarFindTabByIDNative(ImGuiTabBar* tabBar, int tabId);
 
-		public static ImGuiTabItem* TabBarFindTabByID(ImGuiTabBar* tabBar, int tabId)
+		public static ImGuiTabItemPtr TabBarFindTabByID(ImGuiTabBar* tabBar, int tabId)
 		{
-			ImGuiTabItem* ret = TabBarFindTabByIDNative(tabBar, tabId);
+			ImGuiTabItemPtr ret = TabBarFindTabByIDNative(tabBar, tabId);
 			return ret;
 		}
 
-		public static ImGuiTabItem* TabBarFindTabByID(ref ImGuiTabBar tabBar, int tabId)
+		public static ImGuiTabItemPtr TabBarFindTabByID(ref ImGuiTabBar tabBar, int tabId)
 		{
 			fixed (ImGuiTabBar* ptabBar = &tabBar)
 			{
-				ImGuiTabItem* ret = TabBarFindTabByIDNative((ImGuiTabBar*)ptabBar, tabId);
+				ImGuiTabItemPtr ret = TabBarFindTabByIDNative((ImGuiTabBar*)ptabBar, tabId);
 				return ret;
 			}
 		}
@@ -92996,17 +92996,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTabBarFindTabByOrder")]
 		internal static extern ImGuiTabItem* TabBarFindTabByOrderNative(ImGuiTabBar* tabBar, int order);
 
-		public static ImGuiTabItem* TabBarFindTabByOrder(ImGuiTabBar* tabBar, int order)
+		public static ImGuiTabItemPtr TabBarFindTabByOrder(ImGuiTabBar* tabBar, int order)
 		{
-			ImGuiTabItem* ret = TabBarFindTabByOrderNative(tabBar, order);
+			ImGuiTabItemPtr ret = TabBarFindTabByOrderNative(tabBar, order);
 			return ret;
 		}
 
-		public static ImGuiTabItem* TabBarFindTabByOrder(ref ImGuiTabBar tabBar, int order)
+		public static ImGuiTabItemPtr TabBarFindTabByOrder(ref ImGuiTabBar tabBar, int order)
 		{
 			fixed (ImGuiTabBar* ptabBar = &tabBar)
 			{
-				ImGuiTabItem* ret = TabBarFindTabByOrderNative((ImGuiTabBar*)ptabBar, order);
+				ImGuiTabItemPtr ret = TabBarFindTabByOrderNative((ImGuiTabBar*)ptabBar, order);
 				return ret;
 			}
 		}
@@ -93014,17 +93014,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTabBarFindMostRecentlySelectedTabForActiveWindow")]
 		internal static extern ImGuiTabItem* TabBarFindMostRecentlySelectedTabForActiveWindowNative(ImGuiTabBar* tabBar);
 
-		public static ImGuiTabItem* TabBarFindMostRecentlySelectedTabForActiveWindow(ImGuiTabBar* tabBar)
+		public static ImGuiTabItemPtr TabBarFindMostRecentlySelectedTabForActiveWindow(ImGuiTabBar* tabBar)
 		{
-			ImGuiTabItem* ret = TabBarFindMostRecentlySelectedTabForActiveWindowNative(tabBar);
+			ImGuiTabItemPtr ret = TabBarFindMostRecentlySelectedTabForActiveWindowNative(tabBar);
 			return ret;
 		}
 
-		public static ImGuiTabItem* TabBarFindMostRecentlySelectedTabForActiveWindow(ref ImGuiTabBar tabBar)
+		public static ImGuiTabItemPtr TabBarFindMostRecentlySelectedTabForActiveWindow(ref ImGuiTabBar tabBar)
 		{
 			fixed (ImGuiTabBar* ptabBar = &tabBar)
 			{
-				ImGuiTabItem* ret = TabBarFindMostRecentlySelectedTabForActiveWindowNative((ImGuiTabBar*)ptabBar);
+				ImGuiTabItemPtr ret = TabBarFindMostRecentlySelectedTabForActiveWindowNative((ImGuiTabBar*)ptabBar);
 				return ret;
 			}
 		}
@@ -93032,17 +93032,17 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igTabBarGetCurrentTab")]
 		internal static extern ImGuiTabItem* TabBarGetCurrentTabNative(ImGuiTabBar* tabBar);
 
-		public static ImGuiTabItem* TabBarGetCurrentTab(ImGuiTabBar* tabBar)
+		public static ImGuiTabItemPtr TabBarGetCurrentTab(ImGuiTabBar* tabBar)
 		{
-			ImGuiTabItem* ret = TabBarGetCurrentTabNative(tabBar);
+			ImGuiTabItemPtr ret = TabBarGetCurrentTabNative(tabBar);
 			return ret;
 		}
 
-		public static ImGuiTabItem* TabBarGetCurrentTab(ref ImGuiTabBar tabBar)
+		public static ImGuiTabItemPtr TabBarGetCurrentTab(ref ImGuiTabBar tabBar)
 		{
 			fixed (ImGuiTabBar* ptabBar = &tabBar)
 			{
-				ImGuiTabItem* ret = TabBarGetCurrentTabNative((ImGuiTabBar*)ptabBar);
+				ImGuiTabItemPtr ret = TabBarGetCurrentTabNative((ImGuiTabBar*)ptabBar);
 				return ret;
 			}
 		}
@@ -98733,9 +98733,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igDataTypeGetInfo")]
 		internal static extern ImGuiDataTypeInfo* DataTypeGetInfoNative(ImGuiDataType dataType);
 
-		public static ImGuiDataTypeInfo* DataTypeGetInfo(ImGuiDataType dataType)
+		public static ImGuiDataTypeInfoPtr DataTypeGetInfo(ImGuiDataType dataType)
 		{
-			ImGuiDataTypeInfo* ret = DataTypeGetInfoNative(dataType);
+			ImGuiDataTypeInfoPtr ret = DataTypeGetInfoNative(dataType);
 			return ret;
 		}
 
@@ -99738,9 +99738,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igGetInputTextState")]
 		internal static extern ImGuiInputTextState* GetInputTextStateNative(int id);
 
-		public static ImGuiInputTextState* GetInputTextState(int id)
+		public static ImGuiInputTextStatePtr GetInputTextState(int id)
 		{
-			ImGuiInputTextState* ret = GetInputTextStateNative(id);
+			ImGuiInputTextStatePtr ret = GetInputTextStateNative(id);
 			return ret;
 		}
 
@@ -101448,9 +101448,9 @@ namespace HexaEngine.ImGuiNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igImFontAtlasGetBuilderForStbTruetype")]
 		internal static extern ImFontBuilderIO* ImFontAtlasGetBuilderForStbTruetypeNative();
 
-		public static ImFontBuilderIO* ImFontAtlasGetBuilderForStbTruetype()
+		public static ImFontBuilderIOPtr ImFontAtlasGetBuilderForStbTruetype()
 		{
-			ImFontBuilderIO* ret = ImFontAtlasGetBuilderForStbTruetypeNative();
+			ImFontBuilderIOPtr ret = ImFontAtlasGetBuilderForStbTruetypeNative();
 			return ret;
 		}
 
@@ -102014,9 +102014,9 @@ public static float GETFLTMIN()
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImVector_ImWchar_create")]
 		internal static extern ImVectorImWchar* ImVectorImWcharCreateNative();
 
-		public static ImVectorImWchar* ImVectorImWcharCreate()
+		public static ImVectorImWcharPtr ImVectorImWcharCreate()
 		{
-			ImVectorImWchar* ret = ImVectorImWcharCreateNative();
+			ImVectorImWcharPtr ret = ImVectorImWcharCreateNative();
 			return ret;
 		}
 

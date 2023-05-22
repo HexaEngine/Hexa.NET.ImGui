@@ -4552,9 +4552,9 @@ namespace HexaEngine.ImGuizmoNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Style_Style")]
 		internal static extern Style* StyleNative();
 
-		public static Style* Style()
+		public static StylePtr Style()
 		{
-			Style* ret = StyleNative();
+			StylePtr ret = StyleNative();
 			return ret;
 		}
 
@@ -4577,9 +4577,9 @@ namespace HexaEngine.ImGuizmoNET
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_GetStyle")]
 		internal static extern Style* GetStyleNative();
 
-		public static Style* GetStyle()
+		public static StylePtr GetStyle()
 		{
-			Style* ret = GetStyleNative();
+			StylePtr ret = GetStyleNative();
 			return ret;
 		}
 

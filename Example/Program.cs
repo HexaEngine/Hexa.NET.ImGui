@@ -11,6 +11,7 @@
         {
             Platform.Init();
             Application.Run(new Window());
+            ImGuiIOPtr io = ImGui.GetIO();
         }
     }
 }

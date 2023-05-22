@@ -15,8 +15,9 @@
             // Generate Functions
             using var writer = new CodeWriter(Path.Combine(outputPath, "Handles.cs"), usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
 
-            foreach (CppTypedef typedef in compilation.Typedefs)
+            for (int i = 0; i < compilation.Typedefs.Count; i++)
             {
+                CppTypedef typedef = compilation.Typedefs[i];
                 if (CsCodeGeneratorSettings.Default.AllowedTypedefs.Count != 0 && !CsCodeGeneratorSettings.Default.AllowedTypedefs.Contains(typedef.Name))
                     continue;
                 if (CsCodeGeneratorSettings.Default.IgnoredTypedefs.Contains(typedef.Name))
