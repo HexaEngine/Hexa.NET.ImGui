@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Security.Cryptography;
     using System.Text;
 
     public static partial class CsCodeGenerator
@@ -127,8 +128,20 @@
             {
                 csReturnType.Name = value;
             }
+
+            for (int i = 0; i < variation.Parameters.Count; i++)
+            {
+                var cppParameter = variation.Parameters[i];
+                if (WrappedPointers.TryGetValue(cppParameter.Type.Name, out string? v))
+                {
+                    cppParameter.Type.Name = v;
+                    cppParameter.Type.Classify();
+                }
+            }
+
             string modifierString = string.Join(" ", modifiers);
             string signature;
+
             if (useThis || useHandle)
             {
                 signature = string.Join(", ", variation.Parameters.Skip(1).Select(x => $"{x.Type} {x.Name}"));
@@ -145,6 +158,8 @@
                 return;
             }
             definedFunctions.Add(header);
+
+            Console.WriteLine(header);
 
             if (function.Comment != null)
                 writer.Write(function.Comment);
@@ -784,7 +799,8 @@
 
         private static void GenerateDefaultValueVariations(IList<CppParameter> parameters, CsFunctionOverload function, CsFunctionVariation variation, bool isMember)
         {
-            for (int j = variation.Parameters.Count - 1; j >= 0; j--)
+            var defaults = function.DefaultValues.ToList();
+            for (int j = 0; j < variation.Parameters.Count; j++)
             {
                 var param = variation.Parameters[j];
                 var isRef = param.Type.IsRef;
@@ -802,10 +818,9 @@
                 CsFunctionVariation defaultVariation = new(variation.ExportedName, variation.Name, variation.StructName, variation.IsMember, variation.IsConstructor, variation.IsDestructor, variation.ReturnType);
                 defaultVariation.Parameters = variation.Parameters.Take(j).ToList();
                 function.Variations.Add(defaultVariation);
-                var defaults = function.DefaultValues.ToList();
-                for (int i = 0; i < defaults.Count; i++)
+                for (int jj = 0; jj < defaults.Count; jj++)
                 {
-                    defaultVariation.DefaultValues.Add(defaults[i].Key, defaults[i].Value);
+                    defaultVariation.DefaultValues.Add(defaults[jj].Key, defaults[jj].Value);
                 }
                 GenerateDefaultValueVariations(parameters, function, defaultVariation, isMember);
                 GenerateReturnVariations(parameters, function, defaultVariation, isMember);

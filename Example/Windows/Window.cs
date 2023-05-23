@@ -8,8 +8,9 @@
     using HexaEngine.Mathematics;
     using System;
     using System.Numerics;
-    using HexaEngine.ImGuiNET;
     using Example.ImGuiDemo;
+    using Example.ImNodesDemo;
+    using Example.ImPlotDemo;
 
     public class Window : SdlWindow, IRenderWindow
     {
@@ -43,6 +44,7 @@
             graphicsContext = graphicsDevice.Context;
             swapChain = graphicsDevice.CreateSwapChain(this) ?? throw new PlatformNotSupportedException();
             swapChain.Active = true;
+            swapChain.LimitFPS = true;
 
             if (Application.MainWindow == this)
             {
@@ -77,7 +79,8 @@
 
             ImGuiConsole.Draw();
             ImGuiDemo.Draw();
-            ImGui.ShowAboutWindow(null);
+            ImNodesDemo.Draw();
+            ImPlotDemo.Draw();
 
             OnRender(context);
 

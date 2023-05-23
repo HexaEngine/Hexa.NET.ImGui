@@ -9,6 +9,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Rendering\**" />
+	  <EmbeddedResource Remove="Rendering\**" />
+	  <None Remove="Rendering\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Silk.NET.GLFW" Version="2.17.1" />
 		<PackageReference Include="Silk.NET.SDL" Version="2.17.1" />
 		<PackageReference Include="HexaEngine.DirectXTex" Version="2.0.0" />
@@ -39,6 +45,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Rendering\" />
+	  <Folder Include="ImGuizmoDemo\" />
 	</ItemGroup>
 </Project>

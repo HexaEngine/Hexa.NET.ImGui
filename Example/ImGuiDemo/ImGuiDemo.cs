@@ -9,11 +9,6 @@
 
     public static class ImGuiDemo
     {
-        private static readonly OpenFileDialog openFileDialog = new();
-
-        private static readonly string[] comboItems = { "Hello", "World", "Foo", "Baa" };
-        private static int comboCurrent = -1;
-
         private static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags.OpenOnArrow | ImGuiTreeNodeFlags.OpenOnDoubleClick | ImGuiTreeNodeFlags.SpanAvailWidth;
         private static bool align_label_with_current_x_position = false;
         private static bool test_drag_and_drop = false;
@@ -34,18 +29,10 @@
 
         public static unsafe void Draw()
         {
-            openFileDialog.Draw();
-
-            if (!ImGui.Begin("Demo Window"))
+            if (!ImGui.Begin("Demo ImGui"))
             {
                 ImGui.End();
             }
-            ImGui.Combo("Combo Test", ref comboCurrent, comboItems, comboItems.Length);
-            if (ImGui.Button("Open File"))
-            {
-                openFileDialog.Show();
-            }
-
             if (ImGui.TreeNode("Basic"))
             {
                 // Here we will showcase three different ways to output a table.
