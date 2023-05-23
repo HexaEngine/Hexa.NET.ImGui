@@ -1,7 +1,6 @@
 ﻿namespace HexaEngine.Core.Graphics
 {
     using HexaEngine.Core.IO;
-    using HexaEngine.Mathematics;
     using System.Runtime.CompilerServices;
     using System.Text;
 
@@ -127,30 +126,6 @@
                 hashCode = (hashCode * 397) ^ InstanceDataStepRate.GetHashCode();
                 return hashCode;
             }
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Write(Stream stream, Encoding encoding, Endianness endianness)
-        {
-            stream.WriteString(SemanticName, encoding, endianness);
-            stream.WriteInt(SemanticIndex, endianness);
-            stream.WriteInt((int)Format, endianness);
-            stream.WriteInt(Slot, endianness);
-            stream.WriteInt(AlignedByteOffset, endianness);
-            stream.WriteInt((int)Classification, endianness);
-            stream.WriteInt(InstanceDataStepRate, endianness);
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Read(Stream stream, Encoding encoding, Endianness endianness)
-        {
-            SemanticName = stream.ReadString(encoding, endianness);
-            SemanticIndex = stream.ReadInt(endianness);
-            Format = (Format)stream.ReadInt(endianness);
-            Slot = stream.ReadInt(endianness);
-            AlignedByteOffset = stream.ReadInt(endianness);
-            Classification = (InputClassification)stream.ReadInt(endianness);
-            InstanceDataStepRate = stream.ReadInt(endianness);
         }
     }
 }

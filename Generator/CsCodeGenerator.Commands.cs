@@ -1,5 +1,6 @@
 ﻿namespace Generator
 {
+    using ClangSharp;
     using CppAst;
     using System;
     using System.Collections.Generic;
@@ -213,9 +214,9 @@
                 Stack<string> arrays = new();
                 int stacks = 0;
 
-                for (int j = 0; j < overload.Parameters.Count - offset; j++)
+                for (int i = 0; i < overload.Parameters.Count - offset; i++)
                 {
-                    var cppParameter = overload.Parameters[j + offset];
+                    var cppParameter = overload.Parameters[i + offset];
                     var isRef = false;
                     var isPointer = false;
                     var isStr = false;
@@ -223,21 +224,38 @@
                     var isBool = false;
                     var isConst = true;
 
-                    if (j < variation.Parameters.Count)
+                    for (int j = 0; j < variation.Parameters.Count; j++)
                     {
-                        cppParameter = variation.Parameters[j];
-                        isRef = variation.Parameters[j].Type.IsRef;
-                        isPointer = variation.Parameters[j].Type.IsPointer;
-                        isStr = variation.Parameters[j].Type.IsString;
-                        isArray = variation.Parameters[j].Type.IsArray;
-                        isBool = variation.Parameters[j].Type.IsBool;
-                        isConst = false;
+                        var param = variation.Parameters[j];
+                        if (param.Name == cppParameter.Name)
+                        {
+                            cppParameter = param;
+                            isRef = param.Type.IsRef;
+                            isPointer = param.Type.IsPointer;
+                            isStr = param.Type.IsString;
+                            isArray = param.Type.IsArray;
+                            isBool = param.Type.IsBool;
+                            isConst = false;
+                        }
                     }
-
-                    if (isConst)
+                    if (useHandle && i == 0)
                     {
-                        var rootParam = overload.Parameters[j + offset];
-                        var paramCsDefault = variation.DefaultValues[cppParameter.Name];
+                        sb.Append("Handle");
+                    }
+                    else if (useThis && i == 0 && overload.Parameters[i].Type.IsPointer)
+                    {
+                        writer.BeginBlock($"fixed ({overload.Parameters[i].Type.Name} @this = &this)");
+                        sb.Append("@this");
+                        stacks++;
+                    }
+                    else if (useThis && i == 0)
+                    {
+                        sb.Append("this");
+                    }
+                    else if (isConst)
+                    {
+                        var rootParam = overload.Parameters[i + offset];
+                        var paramCsDefault = overload.DefaultValues[cppParameter.Name];
                         if (cppParameter.Type.IsString || paramCsDefault.StartsWith("\"") && paramCsDefault.EndsWith("\""))
                             sb.Append($"(string){paramCsDefault}");
                         else if (cppParameter.Type.IsBool && !cppParameter.Type.IsPointer && !cppParameter.Type.IsArray)
@@ -246,20 +264,6 @@
                             sb.Append($"({rootParam.Type.Name})({paramCsDefault})");
                         else
                             sb.Append($"{paramCsDefault}");
-                    }
-                    else if (useHandle && j == 0)
-                    {
-                        sb.Append("Handle");
-                    }
-                    else if (useThis && j == 0 && overload.Parameters[j].Type.IsPointer)
-                    {
-                        writer.BeginBlock($"fixed ({overload.Parameters[j].Type.Name} @this = &this)");
-                        sb.Append("@this");
-                        stacks++;
-                    }
-                    else if (useThis && j == 0)
-                    {
-                        sb.Append("this");
                     }
                     else if (isStr)
                     {
@@ -283,8 +287,8 @@
                     }
                     else if (isRef)
                     {
-                        writer.BeginBlock($"fixed ({variation.Parameters[j].Type.CleanName}* p{cppParameter.Name} = &{cppParameter.Name})");
-                        sb.Append($"({overload.Parameters[j + offset].Type.Name})p{cppParameter.Name}");
+                        writer.BeginBlock($"fixed ({cppParameter.Type.CleanName}* p{cppParameter.Name} = &{cppParameter.Name})");
+                        sb.Append($"({overload.Parameters[i + offset].Type.Name})p{cppParameter.Name}");
                         stacks++;
                     }
                     else if (isBool && !isRef && !isPointer)
@@ -296,7 +300,7 @@
                         sb.Append(cppParameter.Name);
                     }
 
-                    if (j != overload.Parameters.Count - 1 - offset)
+                    if (i != overload.Parameters.Count - 1 - offset)
                     {
                         sb.Append(", ");
                     }
@@ -718,6 +722,7 @@
 
                     CsFunctionVariation variation = new(function.ExportedName, function.Name, function.StructName, function.IsMember, function.IsConstructor, function.IsDestructor, function.ReturnType);
                     variation.Parameters.AddRange(parameterList);
+                    var defaults = function.DefaultValues.ToList();
 
                     string sig = variation.BuildSignature();
                     if (!definedSignatures.Contains(sig))
@@ -779,10 +784,6 @@
                     CsFunctionVariation variation = new(function.ExportedName, function.Name, function.StructName, function.IsMember, function.IsConstructor, function.IsDestructor, function.ReturnType);
                     variation.Parameters.AddRange(parameterList);
                     var defaults = function.DefaultValues.ToList();
-                    for (int i = 0; i < defaults.Count; i++)
-                    {
-                        variation.DefaultValues.Add(defaults[i].Key, defaults[i].Value);
-                    }
 
                     string sig = variation.BuildSignature();
 
@@ -799,6 +800,8 @@
 
         private static void GenerateDefaultValueVariations(IList<CppParameter> parameters, CsFunctionOverload function, CsFunctionVariation variation, bool isMember)
         {
+            if (function.DefaultValues.Count == 0)
+                return;
             var defaults = function.DefaultValues.ToList();
             for (int j = 0; j < variation.Parameters.Count; j++)
             {
@@ -809,8 +812,7 @@
                 if (isArray || isRef)
                     continue;
 
-                var cppParameter = parameters[j];
-                if (!TryGetDefaultValue(function.ExportedName, cppParameter, true, out _))
+                if (!function.DefaultValues.TryGetValue(param.Name, out _))
                 {
                     continue;
                 }
@@ -818,10 +820,7 @@
                 CsFunctionVariation defaultVariation = new(variation.ExportedName, variation.Name, variation.StructName, variation.IsMember, variation.IsConstructor, variation.IsDestructor, variation.ReturnType);
                 defaultVariation.Parameters = variation.Parameters.Take(j).ToList();
                 function.Variations.Add(defaultVariation);
-                for (int jj = 0; jj < defaults.Count; jj++)
-                {
-                    defaultVariation.DefaultValues.Add(defaults[jj].Key, defaults[jj].Value);
-                }
+
                 GenerateDefaultValueVariations(parameters, function, defaultVariation, isMember);
                 GenerateReturnVariations(parameters, function, defaultVariation, isMember);
             }
@@ -837,11 +836,6 @@
                     returnVariation.Parameters = variation.Parameters.Skip(1).ToList();
                     function.Variations.Add(returnVariation);
                     function.Variations.Remove(variation);
-                    var defaults = function.DefaultValues.ToList();
-                    for (int i = 0; i < defaults.Count; i++)
-                    {
-                        returnVariation.DefaultValues.Add(defaults[i].Key, defaults[i].Value);
-                    }
                     returnVariation.ReturnType = new(variation.Parameters[0].Type.Name[..^1], variation.Parameters[0].Type.PrimitiveType);
                 }
             }
@@ -850,11 +844,6 @@
                 CsFunctionVariation returnVariation = new(variation.ExportedName, variation.Name + "S", variation.StructName, variation.IsMember, variation.IsConstructor, variation.IsDestructor, variation.ReturnType);
                 returnVariation.Parameters = variation.Parameters.ToList();
                 function.Variations.Add(returnVariation);
-                var defaults = function.DefaultValues.ToList();
-                for (int i = 0; i < defaults.Count; i++)
-                {
-                    returnVariation.DefaultValues.Add(defaults[i].Key, defaults[i].Value);
-                }
                 returnVariation.ReturnType = new("string", variation.ReturnType.PrimitiveType);
             }
         }

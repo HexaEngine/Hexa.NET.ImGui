@@ -14,11 +14,11 @@
 
     public class ImPlotDemo
     {
-        public static RingBuffer Frame = new(512);
-        private static float[] values = new float[1024];
-        private static int index;
+        public RingBuffer Frame = new(512);
+        private float[] values = new float[1024];
+        private int index;
 
-        public static unsafe void Draw()
+        public unsafe void Draw()
         {
             const int shade_mode = 2;
             const float fill_ref = 0;

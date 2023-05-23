@@ -51,5 +51,24 @@
         public List<CsParameterInfo> Parameters { get; set; }
 
         public List<CsFunctionVariation> Variations { get; set; }
+
+        public bool HasVariation(CsFunctionVariation variation)
+        {
+            for (int i = 0; i < Variations.Count; i++)
+            {
+                var iation = Variations[i];
+                if (variation.Parameters.Count != iation.Parameters.Count)
+                    continue;
+                if (variation.Name != iation.Name)
+                    continue;
+                for (int j = 0; j < iation.Parameters.Count; j++)
+                {
+                    if (variation.Parameters[j].Type.Name == iation.Parameters[j].Type.Name)
+                        return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

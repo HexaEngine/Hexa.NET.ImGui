@@ -11,6 +11,7 @@
     using Example.ImGuiDemo;
     using Example.ImNodesDemo;
     using Example.ImPlotDemo;
+    using Example.ImGuizmoDemo;
 
     public class Window : SdlWindow, IRenderWindow
     {
@@ -31,6 +32,10 @@
 
         public string? StartupScene;
         private Viewport renderViewport;
+        private ImGuiDemo imGuiDemo;
+        private ImGuizmoDemo imGuizmoDemo;
+        private ImNodesDemo imNodesDemo;
+        private ImPlotDemo imPlotDemo;
 
         public Viewport RenderViewport => renderViewport;
 
@@ -54,6 +59,11 @@
             imGuiRenderer = new(this, graphicsDevice, swapChain);
 
             OnRendererInitialize(graphicsDevice);
+
+            imGuiDemo = new ImGuiDemo();
+            imGuizmoDemo = new ImGuizmoDemo();
+            imNodesDemo = new ImNodesDemo();
+            imPlotDemo = new ImPlotDemo();
         }
 
         public unsafe void Render(IGraphicsContext context)
@@ -78,9 +88,10 @@
             OnRenderBegin(context);
 
             ImGuiConsole.Draw();
-            ImGuiDemo.Draw();
-            ImNodesDemo.Draw();
-            ImPlotDemo.Draw();
+            imGuiDemo.Draw();
+            imGuizmoDemo.Draw();
+            imNodesDemo.Draw();
+            imPlotDemo.Draw();
 
             OnRender(context);
 

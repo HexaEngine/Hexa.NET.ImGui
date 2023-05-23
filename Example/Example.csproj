@@ -43,8 +43,4 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="ImGuizmoDemo\" />
-	</ItemGroup>
 </Project>

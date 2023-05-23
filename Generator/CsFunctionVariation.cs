@@ -4,11 +4,11 @@
 
     public class CsFunctionVariation
     {
-        public CsFunctionVariation(string exportedName, string name, Dictionary<string, string> defaultValues, string structName, bool isMember, bool isConstructor, bool isDestructor, CsType returnType, List<CsParameterInfo> parameters)
+        public CsFunctionVariation(string exportedName, string name, string structName, bool isMember, bool isConstructor, bool isDestructor, CsType returnType, List<CsParameterInfo> parameters)
         {
             ExportedName = exportedName;
             Name = name;
-            DefaultValues = defaultValues;
+
             StructName = structName;
             IsMember = isMember;
             IsConstructor = isConstructor;
@@ -21,7 +21,6 @@
         {
             ExportedName = exportedName;
             Name = name;
-            DefaultValues = new();
             StructName = structName;
             IsMember = isMember;
             IsConstructor = isConstructor;
@@ -33,8 +32,6 @@
         public string ExportedName { get; set; }
 
         public string Name { get; set; }
-
-        public Dictionary<string, string> DefaultValues { get; set; }
 
         public string StructName { get; set; }
 

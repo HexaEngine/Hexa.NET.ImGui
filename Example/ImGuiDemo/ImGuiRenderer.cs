@@ -180,6 +180,7 @@ namespace Example.ImGuiDemo
 
             inputHandler.Update();
             ImGui.NewFrame();
+            ImGuizmo.BeginFrame();
 
             ImGui.PushStyleColor(ImGuiCol.WindowBg, Vector4.Zero);
             ImGui.DockSpaceOverViewport(null, ImGuiDockNodeFlags.PassthruCentralNode, null);

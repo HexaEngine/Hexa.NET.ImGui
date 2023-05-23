@@ -6,9 +6,9 @@
 
     public class ImNodesDemo
     {
-        private static NodeEditor editor = new();
+        private NodeEditor editor = new();
 
-        static ImNodesDemo()
+        public ImNodesDemo()
         {
             editor.Initialize();
             var node1 = editor.CreateNode("Node");
@@ -25,7 +25,7 @@
             editor.CreateLink(out2, in3);
         }
 
-        public static unsafe void Draw()
+        public unsafe void Draw()
         {
             if (!ImGui.Begin("Demo ImNodes", null, ImGuiWindowFlags.MenuBar))
             {
