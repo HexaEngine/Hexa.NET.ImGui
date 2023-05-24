@@ -183,9 +183,11 @@ namespace Example.ImGuiDemo
             ImGuizmo.BeginFrame();
 
             ImGui.PushStyleColor(ImGuiCol.WindowBg, Vector4.Zero);
-            ImGui.DockSpaceOverViewport(null, ImGuiDockNodeFlags.PassthruCentralNode, null);
+            DockSpaceId = ImGui.DockSpaceOverViewport(null, ImGuiDockNodeFlags.PassthruCentralNode, null);
             ImGui.PopStyleColor(1);
         }
+
+        public static int DockSpaceId { get; private set; }
 
         public void EndDraw()
         {

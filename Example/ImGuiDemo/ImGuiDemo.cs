@@ -74,7 +74,7 @@
 
         public unsafe void Draw()
         {
-            if (!ImGui.Begin("Demo ImGui"))
+            if (!ImGui.Begin("Demo ImGui", null))
             {
                 ImGui.End();
                 return;

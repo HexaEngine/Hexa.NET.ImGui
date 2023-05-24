@@ -1,5 +1,6 @@
 ﻿namespace Example.ImPlotDemo
 {
+    using Example.ImGuiDemo;
     using Example.NodeEditor;
     using HexaEngine.Core;
     using HexaEngine.ImGuiNET;

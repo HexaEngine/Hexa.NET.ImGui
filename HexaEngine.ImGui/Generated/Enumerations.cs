@@ -14,7 +14,7 @@ namespace HexaEngine.ImGuiNET
 {
 	public enum ImGuiMouseSource
 	{
-		ImGuiMouseSource_Mouse = unchecked(0),
+		Source = unchecked(0),
 		TouchScreen = unchecked(1),
 		Pen = unchecked(2),
 		Count = unchecked(3),
@@ -583,7 +583,7 @@ namespace HexaEngine.ImGuiNET
 	{
 		Activate = unchecked(0),
 		Cancel = unchecked(1),
-		ImGuiNavInput_Input = unchecked(2),
+		Input = unchecked(2),
 		Menu = unchecked(3),
 		DpadLeft = unchecked(4),
 		DpadRight = unchecked(5),

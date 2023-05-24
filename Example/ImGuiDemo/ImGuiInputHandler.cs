@@ -222,7 +222,7 @@
             MAP_BUTTON(ImGuiNavInput.Activate, GameControllerButton.A);               // Cross / A
             MAP_BUTTON(ImGuiNavInput.Cancel, GameControllerButton.B);               // Circle / B
             MAP_BUTTON(ImGuiNavInput.Menu, GameControllerButton.X);               // Square / X
-            MAP_BUTTON(ImGuiNavInput.ImGuiNavInput_Input, GameControllerButton.Y);               // Triangle / Y
+            MAP_BUTTON(ImGuiNavInput.Input, GameControllerButton.Y);               // Triangle / Y
             MAP_BUTTON(ImGuiNavInput.DpadLeft, GameControllerButton.DpadLeft);       // D-Pad Left
             MAP_BUTTON(ImGuiNavInput.DpadRight, GameControllerButton.DpadRight);      // D-Pad Right
             MAP_BUTTON(ImGuiNavInput.DpadUp, GameControllerButton.DpadUp);         // D-Pad Up

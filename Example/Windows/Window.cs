@@ -87,7 +87,7 @@
 
             OnRenderBegin(context);
 
-            ImGuiConsole.Draw();
+            //ImGuiConsole.Draw();
             imGuiDemo.Draw();
             imGuizmoDemo.Draw();
             imNodesDemo.Draw();

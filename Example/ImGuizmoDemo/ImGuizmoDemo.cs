@@ -1,5 +1,6 @@
 ﻿namespace Example.ImGuizmoDemo
 {
+    using Example.ImGuiDemo;
     using HexaEngine.Core;
     using HexaEngine.Core.Graphics;
     using HexaEngine.Core.Graphics.Buffers;
@@ -22,11 +23,17 @@
 
         private CameraTransform camera = new();
         private ConstantBuffer<Matrix4x4> cameraBuffer;
-        private Vector3 sc = new(2, 0, 0);
+        private Vector3 sc = new(10, 0.5f, 0.5f);
         private const float speed = 2;
         private bool first = true;
 
-        private ImGuizmoOperation operation = ImGuizmoOperation.Translate;
+        private string[] operationNames = Enum.GetNames<ImGuizmoOperation>();
+        private ImGuizmoOperation[] operations = Enum.GetValues<ImGuizmoOperation>();
+
+        private string[] modeNames = Enum.GetNames<ImGuizmoMode>();
+        private ImGuizmoMode[] modes = Enum.GetValues<ImGuizmoMode>();
+
+        private ImGuizmoOperation operation = ImGuizmoOperation.Universal;
         private ImGuizmoMode mode = ImGuizmoMode.Local;
 
         private Viewport SourceViewport = new(1920, 1080);
@@ -52,13 +59,19 @@
         public unsafe void Draw()
         {
             ImGui.PushStyleColor(ImGuiCol.WindowBg, Vector4.Zero);
-            if (!ImGui.Begin("Demo ImGuizmo", null, ImGuiWindowFlags.MenuBar))
+            if (!ImGui.Begin("Demo ImGuizmo", null, ImGuiWindowFlags.MenuBar | ImGuiWindowFlags.NoMove))
             {
                 ImGui.PopStyleColor(1);
                 ImGui.End();
                 return;
             }
             ImGui.PopStyleColor(1);
+
+            if (!ImGui.IsWindowDocked())
+            {
+                var node = ImGui.DockBuilderGetCentralNode(ImGuiRenderer.DockSpaceId);
+                ImGui.DockBuilderDockWindow("Demo ImGuizmo", node.ID);
+            }
 
             var io = ImGui.GetIO();
 
@@ -85,6 +98,10 @@
 
             var transform = cube;
 
+            Matrix4x4 matrix = Matrix4x4.Identity;
+            ImGuizmo.DrawGrid((float*)&view, (float*)&proj, (float*)&matrix, 10);
+            ImGuizmo.DrawCubes((float*)&view, (float*)&proj, (float*)&transform, 1);
+
             ImGuizmo.SetID(0);
 
             if (ImGuizmo.Manipulate((float*)&view, (float*)&proj, operation, mode, (float*)&transform))
@@ -99,11 +116,21 @@
             }
             overGimbal = ImGuizmo.IsOver();
 
-            ImGui.Text($"IsOver: {overGimbal}");
+            int opIndex = Array.IndexOf(operations, operation);
+            ImGui.PushItemWidth(100);
+            if (ImGui.Combo("##Operation", ref opIndex, operationNames, operationNames.Length))
+            {
+                operation = operations[opIndex];
+            }
+            int modeIndex = Array.IndexOf(modes, mode);
+            if (ImGui.Combo("##Mode", ref modeIndex, modeNames, modeNames.Length))
+            {
+                mode = modes[modeIndex];
+            }
+            ImGui.PopItemWidth();
 
-            Matrix4x4 matrix = Matrix4x4.Identity;
-            ImGuizmo.DrawGrid((float*)&view, (float*)&proj, (float*)&matrix, 10);
-            ImGuizmo.DrawCubes((float*)&view, (float*)&proj, (float*)&transform, 1);
+            ImGui.Text($"IsOver: {overGimbal}");
+            ImGui.Text($"IsUsed: {gimbalGrabbed}");
 
             ImGui.End();
         }
@@ -156,37 +183,6 @@
             {
                 ImGui.EndMenuBar();
                 return;
-            }
-
-            if (ImGui.BeginMenu("options"))
-            {
-                if (ImGui.RadioButton("Translate", operation == ImGuizmoOperation.Translate))
-                {
-                    operation = ImGuizmoOperation.Translate;
-                }
-
-                if (ImGui.RadioButton("Rotate", operation == ImGuizmoOperation.Rotate))
-                {
-                    operation = ImGuizmoOperation.Rotate;
-                }
-
-                if (ImGui.RadioButton("Scale", operation == ImGuizmoOperation.Scale))
-                {
-                    operation = ImGuizmoOperation.Scale;
-                }
-
-                if (ImGui.RadioButton("Local", mode == ImGuizmoMode.Local))
-                {
-                    mode = ImGuizmoMode.Local;
-                }
-
-                ImGui.SameLine();
-                if (ImGui.RadioButton("World", mode == ImGuizmoMode.World))
-                {
-                    mode = ImGuizmoMode.World;
-                }
-
-                ImGui.EndMenu();
             }
 
             ImGui.EndMenuBar();

@@ -182,7 +182,7 @@
             }
 
             if (sb.Length == 0)
-                sb.Append(value);
+                sb.Append(prefixParts[^1].ToCamelCase());
 
             string prettyName = sb.ToString();
             return (char.IsNumber(prettyName[0])) ? prefixParts[^1].ToCamelCase() + prettyName : prettyName;
