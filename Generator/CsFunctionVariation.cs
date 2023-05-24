@@ -1,5 +1,6 @@
 ﻿namespace Generator
 {
+    using System;
     using System.Collections.Generic;
 
     public class CsFunctionVariation
@@ -53,6 +54,16 @@
         public override string ToString()
         {
             return BuildSignature();
+        }
+
+        public bool HasParameter(CsParameterInfo cppParameter)
+        {
+            for (int i = 0; i < Parameters.Count; i++)
+            {
+                if (Parameters[i].Name == cppParameter.Name)
+                    return true;
+            }
+            return false;
         }
     }
 }

@@ -136,7 +136,7 @@
                 }
             }
 
-            CleanName = Name.Replace("ref ", string.Empty);
+            CleanName = Name.Replace("ref ", string.Empty).Replace("[]", string.Empty);
         }
 
         public static CsPrimitiveType Map(CppPrimitiveKind kind)

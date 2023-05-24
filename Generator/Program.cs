@@ -22,8 +22,6 @@
             CsCodeGenerator.Reset();
             CsCodeGenerator.CopyFrom(constants, enums, extensions, functions, typedefs, types);
             GenerateImPlot();
-            CsCodeGenerator.Reset();
-            CsCodeGenerator.CopyFrom(constants, enums, extensions, functions, typedefs, types);
         }
 
         private static int GenerateImPlot()
@@ -69,7 +67,7 @@
                 for (int j = 0; j < functionDefinition.Overloads.Length; j++)
                 {
                     var overload = functionDefinition.Overloads[j];
-                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(overload.ExportedName, overload.FriendlyName, overload.DefaultValues));
+                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(overload.ExportedName, overload.FriendlyName, overload.DefaultValues, new()));
 
                     if (overload.IsMemberFunction && !overload.IsConstructor)
                     {
@@ -161,7 +159,7 @@
                 for (int j = 0; j < functionDefinition.Overloads.Length; j++)
                 {
                     var overload = functionDefinition.Overloads[j];
-                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(overload.ExportedName, overload.FriendlyName, overload.DefaultValues));
+                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(overload.ExportedName, overload.FriendlyName, overload.DefaultValues, new()));
 
                     if (overload.IsMemberFunction && !overload.IsConstructor)
                     {
@@ -253,7 +251,7 @@
                 for (int j = 0; j < functionDefinition.Overloads.Length; j++)
                 {
                     var overload = functionDefinition.Overloads[j];
-                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(overload.ExportedName, overload.FriendlyName, overload.DefaultValues));
+                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(overload.ExportedName, overload.FriendlyName, overload.DefaultValues, new()));
 
                     if (overload.IsMemberFunction && !overload.IsConstructor)
                     {
@@ -269,6 +267,69 @@
                     }
                 }
             }
+
+            CsCodeGeneratorSettings.Default.TryGetFunctionMapping("ImGuizmo_Manipulate", out FunctionMapping manipulateMapping);
+            manipulateMapping.CustomVariations.Add(new()
+            {
+                { "view", "ref Matrix4x4" },
+                { "projection", "ref Matrix4x4" },
+                { "matrix", "ref Matrix4x4" },
+                { "deltaMatrix", "ref Matrix4x4" }
+            });
+
+            CsCodeGeneratorSettings.Default.TryGetFunctionMapping("ImGuizmo_DecomposeMatrixToComponents", out FunctionMapping decomposeMatrixToComponentsMapping);
+            decomposeMatrixToComponentsMapping.CustomVariations.Add(new()
+            {
+                { "matrix", "ref Matrix4x4" },
+                { "translation", "ref Matrix4x4" },
+                { "rotation", "ref Matrix4x4" },
+                { "scale", "ref Matrix4x4" },
+            });
+
+            CsCodeGeneratorSettings.Default.TryGetFunctionMapping("ImGuizmo_RecomposeMatrixFromComponents", out FunctionMapping recomposeMatrixToComponentsMapping);
+            recomposeMatrixToComponentsMapping.CustomVariations.Add(new()
+            {
+                { "translation", "ref Matrix4x4" },
+                { "rotation", "ref Matrix4x4" },
+                { "scale", "ref Matrix4x4" },
+                { "matrix", "ref Matrix4x4" },
+            });
+
+            CsCodeGeneratorSettings.Default.TryGetFunctionMapping("ImGuizmo_DrawCubes", out FunctionMapping drawCubesMapping);
+            drawCubesMapping.CustomVariations.Add(new()
+            {
+                { "view", "ref Matrix4x4" },
+                { "projection", "ref Matrix4x4" },
+                { "matrices", "Matrix4x4[]" },
+            });
+            drawCubesMapping.CustomVariations.Add(new()
+            {
+                { "view", "ref Matrix4x4" },
+                { "projection", "ref Matrix4x4" },
+                { "matrices", "ref Matrix4x4" },
+            });
+
+            CsCodeGeneratorSettings.Default.TryGetFunctionMapping("ImGuizmo_DrawGrid", out FunctionMapping drawGridMapping);
+            drawGridMapping.CustomVariations.Add(new()
+            {
+                { "view", "ref Matrix4x4" },
+                { "projection", "ref Matrix4x4" },
+                { "matrix", "ref Matrix4x4" },
+            });
+
+            CsCodeGeneratorSettings.Default.TryGetFunctionMapping("ImGuizmo_ViewManipulate_Float", out FunctionMapping viewManipulateFloatMapping);
+            viewManipulateFloatMapping.CustomVariations.Add(new()
+            {
+                { "view", "ref Matrix4x4" },
+            });
+
+            CsCodeGeneratorSettings.Default.TryGetFunctionMapping("ImGuizmo_ViewManipulate_FloatPtr", out FunctionMapping viewManipulateFloatPtrMapping);
+            viewManipulateFloatPtrMapping.CustomVariations.Add(new()
+            {
+                { "view", "ref Matrix4x4" },
+                { "projection", "ref Matrix4x4" },
+                { "matrix", "ref Matrix4x4" },
+            });
 
             string headerFile = "cimguizmo/cimguizmo.h";
 
@@ -314,7 +375,7 @@
                 for (int j = 0; j < functionDefinition.Overloads.Length; j++)
                 {
                     var overload = functionDefinition.Overloads[j];
-                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(overload.ExportedName, overload.FriendlyName, overload.DefaultValues));
+                    CsCodeGeneratorSettings.Default.FunctionMappings.Add(new(overload.ExportedName, overload.FriendlyName, overload.DefaultValues, new()));
 
                     if (overload.IsMemberFunction && !overload.IsConstructor)
                     {

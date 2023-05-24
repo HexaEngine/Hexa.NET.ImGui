@@ -61,11 +61,21 @@
                     continue;
                 if (variation.Name != iation.Name)
                     continue;
+
+                bool skip = false;
                 for (int j = 0; j < iation.Parameters.Count; j++)
                 {
-                    if (variation.Parameters[j].Type.Name == iation.Parameters[j].Type.Name)
-                        return true;
+                    if (variation.Parameters[j].Type.Name != iation.Parameters[j].Type.Name)
+                    {
+                        skip = true;
+                        break;
+                    }
                 }
+
+                if (skip)
+                    continue;
+
+                return true;
             }
 
             return false;

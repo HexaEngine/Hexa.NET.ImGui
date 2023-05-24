@@ -176,9 +176,11 @@
                 int offset = firstParamReturn ? 1 : 0;
 
                 bool hasManaged = false;
-                for (int j = variation.Parameters.Count + offset; j < overload.Parameters.Count; j++)
+                for (int j = 0; j < overload.Parameters.Count - offset; j++)
                 {
-                    var cppParameter = overload.Parameters[j];
+                    var cppParameter = overload.Parameters[j + offset];
+                    if (variation.HasParameter(cppParameter))
+                        continue;
                     var paramCsDefault = overload.DefaultValues[cppParameter.Name];
                     if (cppParameter.Type.IsString || paramCsDefault.StartsWith("\"") && paramCsDefault.EndsWith("\""))
                         hasManaged = true;
@@ -288,6 +290,12 @@
                     else if (isRef)
                     {
                         writer.BeginBlock($"fixed ({cppParameter.Type.CleanName}* p{cppParameter.Name} = &{cppParameter.Name})");
+                        sb.Append($"({overload.Parameters[i + offset].Type.Name})p{cppParameter.Name}");
+                        stacks++;
+                    }
+                    else if (isArray)
+                    {
+                        writer.BeginBlock($"fixed ({cppParameter.Type.CleanName}* p{cppParameter.Name} = {cppParameter.Name})");
                         sb.Append($"({overload.Parameters[i + offset].Type.Name})p{cppParameter.Name}");
                         stacks++;
                     }
@@ -682,6 +690,49 @@
         private static void GenerateVariations(IList<CppParameter> parameters, CsFunctionOverload function, bool isMember)
         {
             HashSet<string> definedSignatures = new();
+
+            if (CsCodeGeneratorSettings.Default.TryGetFunctionMapping(function.ExportedName, out var mapping))
+            {
+                for (int i = 0; i < mapping.CustomVariations.Count; i++)
+                {
+                    CsParameterInfo[] parameterList = new CsParameterInfo[parameters.Count];
+                    var custom = mapping.CustomVariations[i];
+                    for (int j = 0; j < parameters.Count; j++)
+                    {
+                        CppParameter cppParameter = parameters[j];
+                        CppPrimitiveKind kind = GetPrimitiveKind(cppParameter.Type, false);
+                        CsType type;
+                        if (custom.TryGetValue(cppParameter.Name, out string? name))
+                        {
+                            type = new(name, kind);
+                        }
+                        else
+                        {
+                            type = new(GetCsTypeName(cppParameter.Type, false), kind);
+                        }
+
+                        var paramCsName = GetParameterName(cppParameter.Type, cppParameter.Name);
+                        var direction = GetDirection(cppParameter.Type);
+
+                        CsParameterInfo parameterInfo = new(paramCsName, type, direction);
+
+                        parameterList[j] = parameterInfo;
+                    }
+
+                    CsFunctionVariation variation = new(function.ExportedName, function.Name, function.StructName, function.IsMember, function.IsConstructor, function.IsDestructor, function.ReturnType);
+                    variation.Parameters.AddRange(parameterList);
+
+                    string sig = variation.BuildSignature();
+                    if (!definedSignatures.Contains(sig))
+                    {
+                        function.Variations.Add(variation);
+                        GenerateDefaultValueVariations(parameters, function, variation, isMember);
+                        GenerateReturnVariations(function, variation, isMember);
+                        definedSignatures.Add(sig);
+                    }
+                }
+            }
+
             for (long ix = 0; ix < Math.Pow(2, parameters.Count); ix++)
             {
                 {
@@ -722,14 +773,13 @@
 
                     CsFunctionVariation variation = new(function.ExportedName, function.Name, function.StructName, function.IsMember, function.IsConstructor, function.IsDestructor, function.ReturnType);
                     variation.Parameters.AddRange(parameterList);
-                    var defaults = function.DefaultValues.ToList();
 
                     string sig = variation.BuildSignature();
                     if (!definedSignatures.Contains(sig))
                     {
                         function.Variations.Add(variation);
                         GenerateDefaultValueVariations(parameters, function, variation, isMember);
-                        GenerateReturnVariations(parameters, function, variation, isMember);
+                        GenerateReturnVariations(function, variation, isMember);
                         definedSignatures.Add(sig);
                     }
                 }
@@ -791,7 +841,7 @@
                     {
                         function.Variations.Add(variation);
                         GenerateDefaultValueVariations(parameters, function, variation, isMember);
-                        GenerateReturnVariations(parameters, function, variation, isMember);
+                        GenerateReturnVariations(function, variation, isMember);
                         definedSignatures.Add(sig);
                     }
                 }
@@ -802,15 +852,10 @@
         {
             if (function.DefaultValues.Count == 0)
                 return;
-            var defaults = function.DefaultValues.ToList();
-            for (int j = 0; j < variation.Parameters.Count; j++)
-            {
-                var param = variation.Parameters[j];
-                var isRef = param.Type.IsRef;
-                var isArray = param.Type.IsArray;
 
-                if (isArray || isRef)
-                    continue;
+            for (int i = variation.Parameters.Count - 1; i >= 0; i--)
+            {
+                var param = variation.Parameters[i];
 
                 if (!function.DefaultValues.TryGetValue(param.Name, out _))
                 {
@@ -818,15 +863,25 @@
                 }
 
                 CsFunctionVariation defaultVariation = new(variation.ExportedName, variation.Name, variation.StructName, variation.IsMember, variation.IsConstructor, variation.IsDestructor, variation.ReturnType);
-                defaultVariation.Parameters = variation.Parameters.Take(j).ToList();
+                for (int j = 0; j < variation.Parameters.Count; j++)
+                {
+                    var iationParameter = variation.Parameters[j];
+                    if (param != iationParameter)
+                        defaultVariation.Parameters.Add(iationParameter);
+                }
+
+                if (function.HasVariation(defaultVariation))
+
+                    continue;
+
                 function.Variations.Add(defaultVariation);
 
                 GenerateDefaultValueVariations(parameters, function, defaultVariation, isMember);
-                GenerateReturnVariations(parameters, function, defaultVariation, isMember);
+                GenerateReturnVariations(function, defaultVariation, isMember);
             }
         }
 
-        private static void GenerateReturnVariations(IList<CppParameter> parameters, CsFunctionOverload function, CsFunctionVariation variation, bool isMember)
+        private static void GenerateReturnVariations(CsFunctionOverload function, CsFunctionVariation variation, bool isMember)
         {
             if (!isMember && variation.ReturnType.IsVoid && !variation.ReturnType.IsPointer && variation.Parameters.Count > 0)
             {
@@ -834,9 +889,12 @@
                 {
                     CsFunctionVariation returnVariation = new(variation.ExportedName, variation.Name, variation.StructName, variation.IsMember, variation.IsConstructor, variation.IsDestructor, variation.ReturnType);
                     returnVariation.Parameters = variation.Parameters.Skip(1).ToList();
-                    function.Variations.Add(returnVariation);
-                    function.Variations.Remove(variation);
-                    returnVariation.ReturnType = new(variation.Parameters[0].Type.Name[..^1], variation.Parameters[0].Type.PrimitiveType);
+                    if (!function.HasVariation(returnVariation))
+                    {
+                        function.Variations.Add(returnVariation);
+                        function.Variations.Remove(variation);
+                        returnVariation.ReturnType = new(variation.Parameters[0].Type.Name[..^1], variation.Parameters[0].Type.PrimitiveType);
+                    }
                 }
             }
             if (variation.ReturnType.IsPointer && variation.ReturnType.PrimitiveType == CsPrimitiveType.Byte || variation.ReturnType.PrimitiveType == CsPrimitiveType.Char)

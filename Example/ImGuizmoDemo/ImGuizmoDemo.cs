@@ -10,7 +10,6 @@
     using HexaEngine.ImGuizmoNET;
     using HexaEngine.Mathematics;
     using System;
-    using System.Collections.Generic;
     using System.Numerics;
 
     public class ImGuizmoDemo
@@ -56,10 +55,10 @@
             SourceViewport = new(e.NewWidth, e.NewHeight);
         }
 
-        public unsafe void Draw()
+        public void Draw()
         {
             ImGui.PushStyleColor(ImGuiCol.WindowBg, Vector4.Zero);
-            if (!ImGui.Begin("Demo ImGuizmo", null, ImGuiWindowFlags.MenuBar | ImGuiWindowFlags.NoMove))
+            if (!ImGui.Begin("Demo ImGuizmo", ImGuiWindowFlags.MenuBar | ImGuiWindowFlags.NoMove))
             {
                 ImGui.PopStyleColor(1);
                 ImGui.End();
@@ -72,8 +71,6 @@
                 var node = ImGui.DockBuilderGetCentralNode(ImGuiRenderer.DockSpaceId);
                 ImGui.DockBuilderDockWindow("Demo ImGuizmo", node.ID);
             }
-
-            var io = ImGui.GetIO();
 
             HandleInput();
             DrawMenuBar();
@@ -99,12 +96,12 @@
             var transform = cube;
 
             Matrix4x4 matrix = Matrix4x4.Identity;
-            ImGuizmo.DrawGrid((float*)&view, (float*)&proj, (float*)&matrix, 10);
-            ImGuizmo.DrawCubes((float*)&view, (float*)&proj, (float*)&transform, 1);
+            ImGuizmo.DrawGrid(ref view, ref proj, ref matrix, 10);
+            ImGuizmo.DrawCubes(ref view, ref proj, ref transform, 1);
 
             ImGuizmo.SetID(0);
 
-            if (ImGuizmo.Manipulate((float*)&view, (float*)&proj, operation, mode, (float*)&transform))
+            if (ImGuizmo.Manipulate(ref view, ref proj, operation, mode, ref transform))
             {
                 gimbalGrabbed = true;
                 cube = transform;

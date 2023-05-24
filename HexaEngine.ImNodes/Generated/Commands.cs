@@ -395,14 +395,9 @@ namespace HexaEngine.ImNodesNET
 			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, nodeHoveringCallbackData);
 		}
 
-		public static void MiniMap()
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
 		{
-			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
-		}
-
-		public static void MiniMap(float minimapSizeFraction)
-		{
-			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location)
@@ -410,9 +405,69 @@ namespace HexaEngine.ImNodesNET
 			MiniMapNative(minimapSizeFraction, location, (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
+		public static void MiniMap(float minimapSizeFraction)
 		{
-			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+		}
+
+		public static void MiniMap()
+		{
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+		}
+
+		public static void MiniMap(ImNodesMiniMapLocation location)
+		{
+			MiniMapNative((float)(0.2f), location, (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+		}
+
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
+		{
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+		}
+
+		public static void MiniMap(ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
+		{
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+		}
+
+		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
+		{
+			MiniMapNative((float)(0.2f), location, nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
+		}
+
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		{
+			MiniMapNative(minimapSizeFraction, location, (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
+		}
+
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		{
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
+		}
+
+		public static void MiniMap(ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		{
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
+		}
+
+		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		{
+			MiniMapNative((float)(0.2f), location, (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
+		}
+
+		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		{
+			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, nodeHoveringCallbackData);
+		}
+
+		public static void MiniMap(ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		{
+			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, nodeHoveringCallbackData);
+		}
+
+		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		{
+			MiniMapNative((float)(0.2f), location, nodeHoveringCallback, nodeHoveringCallbackData);
 		}
 
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImNodes_PushColorStyle")]
@@ -925,15 +980,21 @@ namespace HexaEngine.ImNodesNET
 			return ret != 0;
 		}
 
+		public static bool IsLinkDropped(int* startedAtAttributeId)
+		{
+			byte ret = IsLinkDroppedNative(startedAtAttributeId, (byte)(1));
+			return ret != 0;
+		}
+
 		public static bool IsLinkDropped()
 		{
 			byte ret = IsLinkDroppedNative((int*)(default), (byte)(1));
 			return ret != 0;
 		}
 
-		public static bool IsLinkDropped(int* startedAtAttributeId)
+		public static bool IsLinkDropped(bool includingDetachedLinks)
 		{
-			byte ret = IsLinkDroppedNative(startedAtAttributeId, (byte)(1));
+			byte ret = IsLinkDroppedNative((int*)(default), includingDetachedLinks ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 

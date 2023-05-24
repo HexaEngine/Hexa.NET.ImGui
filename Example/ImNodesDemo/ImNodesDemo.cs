@@ -26,9 +26,9 @@
             editor.CreateLink(out2, in3);
         }
 
-        public unsafe void Draw()
+        public void Draw()
         {
-            if (!ImGui.Begin("Demo ImNodes", null, ImGuiWindowFlags.MenuBar))
+            if (!ImGui.Begin("Demo ImNodes", ImGuiWindowFlags.MenuBar))
             {
                 ImGui.End();
                 return;

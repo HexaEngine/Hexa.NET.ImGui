@@ -16,10 +16,8 @@
     public class ImPlotDemo
     {
         public RingBuffer Frame = new(512);
-        private float[] values = new float[1024];
-        private int index;
 
-        public unsafe void Draw()
+        public void Draw()
         {
             const int shade_mode = 2;
             const float fill_ref = 0;

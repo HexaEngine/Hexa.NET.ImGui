@@ -72,9 +72,9 @@
 
         private static float[] arr = { 0.6f, 0.1f, 1.0f, 0.5f, 0.92f, 0.1f, 0.2f };
 
-        public unsafe void Draw()
+        public void Draw()
         {
-            if (!ImGui.Begin("Demo ImGui", null))
+            if (!ImGui.Begin("Demo ImGui"))
             {
                 ImGui.End();
                 return;
