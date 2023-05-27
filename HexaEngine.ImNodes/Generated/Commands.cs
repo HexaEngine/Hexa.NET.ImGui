@@ -266,6 +266,11 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
+		public static void EditorContextGetPanning(Vector2* output)
+		{
+			EditorContextGetPanningNative(output);
+		}
+
 		public static void EditorContextGetPanning(ref Vector2 output)
 		{
 			fixed (Vector2* poutput = &output)
@@ -541,6 +546,11 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
+		public static void GetNodeDimensions(Vector2* output, int id)
+		{
+			GetNodeDimensionsNative(output, id);
+		}
+
 		public static void GetNodeDimensions(ref Vector2 output, int id)
 		{
 			fixed (Vector2* poutput = &output)
@@ -689,6 +699,11 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
+		public static void GetNodeScreenSpacePos(Vector2* output, int nodeId)
+		{
+			GetNodeScreenSpacePosNative(output, nodeId);
+		}
+
 		public static void GetNodeScreenSpacePos(ref Vector2 output, int nodeId)
 		{
 			fixed (Vector2* poutput = &output)
@@ -707,6 +722,11 @@ namespace HexaEngine.ImNodesNET
 			return ret;
 		}
 
+		public static void GetNodeEditorSpacePos(Vector2* output, int nodeId)
+		{
+			GetNodeEditorSpacePosNative(output, nodeId);
+		}
+
 		public static void GetNodeEditorSpacePos(ref Vector2 output, int nodeId)
 		{
 			fixed (Vector2* poutput = &output)
@@ -723,6 +743,11 @@ namespace HexaEngine.ImNodesNET
 			Vector2 ret;
 			GetNodeGridSpacePosNative(&ret, nodeId);
 			return ret;
+		}
+
+		public static void GetNodeGridSpacePos(Vector2* output, int nodeId)
+		{
+			GetNodeGridSpacePosNative(output, nodeId);
 		}
 
 		public static void GetNodeGridSpacePos(ref Vector2 output, int nodeId)

@@ -266,7 +266,7 @@ namespace HexaEngine.ImPlotNET
 		public ImPlotRange ConstraintRange;
 		public ImPlotRange ConstraintZoom;
 		public ImPlotTicker Ticker;
-		public unsafe delegate*<double, byte*, int, void*, int>* Formatter;
+		public unsafe delegate*<double, byte*, int, void*, int> Formatter;
 		public unsafe void* FormatterData;
 		public byte FormatSpec_0;
 		public byte FormatSpec_1;
@@ -284,14 +284,14 @@ namespace HexaEngine.ImPlotNET
 		public byte FormatSpec_13;
 		public byte FormatSpec_14;
 		public byte FormatSpec_15;
-		public unsafe delegate*<ImPlotTicker*, ImPlotRange, float, bool, ImPlotFormatter, void*, void>* Locator;
+		public unsafe delegate*<ImPlotTicker*, ImPlotRange, float, bool, ImPlotFormatter, void*, void> Locator;
 		public unsafe double* LinkedMin;
 		public unsafe double* LinkedMax;
 		public int PickerLevel;
 		public ImPlotTime PickerTimeMin;
 		public ImPlotTime PickerTimeMax;
-		public unsafe delegate*<double, void*, double>* TransformForward;
-		public unsafe delegate*<double, void*, double>* TransformInverse;
+		public unsafe delegate*<double, void*, double> TransformForward;
+		public unsafe delegate*<double, void*, double> TransformInverse;
 		public unsafe void* TransformData;
 		public float PixelMin;
 		public float PixelMax;
@@ -364,7 +364,7 @@ namespace HexaEngine.ImPlotNET
 		public ref ImPlotRange ConstraintRange => ref Unsafe.AsRef<ImPlotRange>(&Handle->ConstraintRange);
 		public ref ImPlotRange ConstraintZoom => ref Unsafe.AsRef<ImPlotRange>(&Handle->ConstraintZoom);
 		public ref ImPlotTicker Ticker => ref Unsafe.AsRef<ImPlotTicker>(&Handle->Ticker);
-		public delegate*<double, byte*, int, void*, int>* Formatter { get => Handle->Formatter; set => Handle->Formatter = value; }
+		public delegate*<double, byte*, int, void*, int> Formatter { get => Handle->Formatter; set => Handle->Formatter = value; }
 		public void* FormatterData { get => Handle->FormatterData; set => Handle->FormatterData = value; }
 		public unsafe Span<byte> FormatSpec
 		
@@ -374,14 +374,14 @@ namespace HexaEngine.ImPlotNET
 				return new Span<byte>(&Handle->FormatSpec_0, 16);
 			}
 		}
-		public delegate*<ImPlotTicker*, ImPlotRange, float, bool, ImPlotFormatter, void*, void>* Locator { get => Handle->Locator; set => Handle->Locator = value; }
+		public delegate*<ImPlotTicker*, ImPlotRange, float, bool, ImPlotFormatter, void*, void> Locator { get => Handle->Locator; set => Handle->Locator = value; }
 		public double* LinkedMin { get => Handle->LinkedMin; set => Handle->LinkedMin = value; }
 		public double* LinkedMax { get => Handle->LinkedMax; set => Handle->LinkedMax = value; }
 		public ref int PickerLevel => ref Unsafe.AsRef<int>(&Handle->PickerLevel);
 		public ref ImPlotTime PickerTimeMin => ref Unsafe.AsRef<ImPlotTime>(&Handle->PickerTimeMin);
 		public ref ImPlotTime PickerTimeMax => ref Unsafe.AsRef<ImPlotTime>(&Handle->PickerTimeMax);
-		public delegate*<double, void*, double>* TransformForward { get => Handle->TransformForward; set => Handle->TransformForward = value; }
-		public delegate*<double, void*, double>* TransformInverse { get => Handle->TransformInverse; set => Handle->TransformInverse = value; }
+		public delegate*<double, void*, double> TransformForward { get => Handle->TransformForward; set => Handle->TransformForward = value; }
+		public delegate*<double, void*, double> TransformInverse { get => Handle->TransformInverse; set => Handle->TransformInverse = value; }
 		public void* TransformData { get => Handle->TransformData; set => Handle->TransformData = value; }
 		public ref float PixelMin => ref Unsafe.AsRef<float>(&Handle->PixelMin);
 		public ref float PixelMax => ref Unsafe.AsRef<float>(&Handle->PixelMax);
@@ -2403,7 +2403,7 @@ namespace HexaEngine.ImPlotNET
 	{
 		public ImPlotTime Time;
 		public ImPlotDateTimeSpec Spec;
-		public unsafe delegate*<double, byte*, int, void*, int>* UserFormatter;
+		public unsafe delegate*<double, byte*, int, void*, int> UserFormatter;
 		public unsafe void* UserFormatterData;
 
 	}

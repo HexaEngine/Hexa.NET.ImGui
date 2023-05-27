@@ -136,7 +136,22 @@
                 }
             }
 
-            CleanName = Name.Replace("ref ", string.Empty).Replace("[]", string.Empty);
+            if (IsRef)
+            {
+                CleanName = Name.Replace("ref ", string.Empty);
+            }
+            else if (IsArray)
+            {
+                CleanName = Name.Replace("[]", string.Empty);
+            }
+            else if (IsPointer)
+            {
+                CleanName = Name.Replace("*", string.Empty);
+            }
+            else
+            {
+                CleanName = Name;
+            }
         }
 
         public static CsPrimitiveType Map(CppPrimitiveKind kind)

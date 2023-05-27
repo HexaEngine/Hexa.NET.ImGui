@@ -288,7 +288,7 @@ namespace Example.ImGuiDemo
                     var cmd = cmdList->CmdBuffer.Data[i];
                     if (cmd.UserCallback != null)
                     {
-                        (*cmd.UserCallback)(cmdList, &cmd);
+                        cmd.UserCallback(cmdList, &cmd);
                     }
                     else
                     {

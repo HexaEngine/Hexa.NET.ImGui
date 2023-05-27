@@ -21,7 +21,6 @@
         }
 
         private CameraTransform camera = new();
-        private ConstantBuffer<Matrix4x4> cameraBuffer;
         private Vector3 sc = new(10, 0.5f, 0.5f);
         private const float speed = 2;
         private bool first = true;
@@ -45,7 +44,6 @@
         {
             var sw = Application.MainWindow.SwapChain;
             this.device = device;
-            cameraBuffer = new(device, CpuAccessFlags.Write);
             Application.MainWindow.SwapChain.Resized += Resized;
             SourceViewport = new(sw.Width, sw.Height);
         }
@@ -113,8 +111,8 @@
             }
             overGimbal = ImGuizmo.IsOver();
 
-            int opIndex = Array.IndexOf(operations, operation);
             ImGui.PushItemWidth(100);
+            int opIndex = Array.IndexOf(operations, operation);
             if (ImGui.Combo("##Operation", ref opIndex, operationNames, operationNames.Length))
             {
                 operation = operations[opIndex];

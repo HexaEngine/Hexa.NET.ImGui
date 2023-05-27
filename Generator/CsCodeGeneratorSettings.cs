@@ -110,5 +110,21 @@
             mapping = null;
             return false;
         }
+
+        public bool TryGetFunctionParamMapping(string functionName, string param, [NotNullWhen(true)] out string? mapping)
+        {
+            if (!TryGetFunctionMapping(functionName, out var function))
+            {
+                mapping = null;
+                return false;
+            }
+
+            if (!function.CustomParamType.TryGetValue(param, out mapping))
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

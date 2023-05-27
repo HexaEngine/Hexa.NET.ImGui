@@ -1,8 +1,9 @@
 ﻿namespace Generator
 {
     using System.Collections.Generic;
+    using static System.Runtime.InteropServices.JavaScript.JSType;
 
-    public class CsFunctionOverload
+    public class CsFunctionOverload : ICsFunction
     {
         public CsFunctionOverload(string exportedName, string name, Dictionary<string, string> defaultValues, string structName, bool isMember, bool isConstructor, bool isDestructor, CsType returnType, List<CsParameterInfo> parameters, List<CsFunctionVariation> variations)
         {
@@ -79,6 +80,31 @@
             }
 
             return false;
+        }
+
+        public string BuildSignature()
+        {
+            return string.Join(", ", Parameters.Select(p => $"{p.Type.Name} {p.Name}"));
+        }
+
+        public override string ToString()
+        {
+            return BuildSignature();
+        }
+
+        public bool HasParameter(CsParameterInfo cppParameter)
+        {
+            for (int i = 0; i < Parameters.Count; i++)
+            {
+                if (Parameters[i].Name == cppParameter.Name)
+                    return true;
+            }
+            return false;
+        }
+
+        public CsFunctionVariation CreateVariationWith()
+        {
+            return new(ExportedName, Name, StructName, IsMember, IsConstructor, IsDestructor, ReturnType);
         }
     }
 }

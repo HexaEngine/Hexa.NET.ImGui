@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class CsFunctionVariation
+    public class CsFunctionVariation : ICsFunction
     {
         public CsFunctionVariation(string exportedName, string name, string structName, bool isMember, bool isConstructor, bool isDestructor, CsType returnType, List<CsParameterInfo> parameters)
         {
