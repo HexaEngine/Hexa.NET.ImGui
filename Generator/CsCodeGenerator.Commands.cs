@@ -1093,5 +1093,30 @@
 
             return sb.ToString();
         }
+
+        public static CallingConvention GetCallingConvention(CppCallingConvention convention)
+        {
+            return convention switch
+            {
+                CppCallingConvention.C => CallingConvention.Cdecl,
+                CppCallingConvention.Win64 => CallingConvention.Winapi,
+                CppCallingConvention.X86FastCall => CallingConvention.FastCall,
+                CppCallingConvention.X86StdCall => CallingConvention.StdCall,
+                CppCallingConvention.X86ThisCall => CallingConvention.ThisCall,
+                _ => throw new NotSupportedException(),
+            };
+        }
+
+        public static string GetCallingConventionDelegate(CppCallingConvention convention)
+        {
+            return convention switch
+            {
+                CppCallingConvention.C => "Cdecl",
+                CppCallingConvention.X86FastCall => "Fastcall",
+                CppCallingConvention.X86StdCall => "Stdcall",
+                CppCallingConvention.X86ThisCall => "Thiscall",
+                _ => throw new NotSupportedException(),
+            };
+        }
     }
 }

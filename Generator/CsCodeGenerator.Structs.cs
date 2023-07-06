@@ -309,7 +309,7 @@
                         string returnCsName = GetCsTypeName(cppFunctionType.ReturnType, false);
                         string signature = GetNamelessParameterSignature(cppFunctionType.Parameters, false);
 
-                        writer.WriteLine($"public unsafe delegate*<{signature}, {returnCsName}> {csFieldName};");
+                        writer.WriteLine($"public unsafe delegate* unmanaged[{GetCallingConventionDelegate(cppFunctionType.CallingConvention)}]<{signature}, {returnCsName}> {csFieldName};");
                     }
                     else
                     {
@@ -465,7 +465,7 @@
 
                     builder.Append(returnCsName);
 
-                    writer.WriteLine($"public {fieldPrefix}unsafe delegate*<{builder}> {csFieldName};");
+                    writer.WriteLine($"public {fieldPrefix}unsafe delegate* unmanaged[{GetCallingConventionDelegate(functionType.CallingConvention)}]<{builder}> {csFieldName};");
 
                     return;
                 }
@@ -549,11 +549,11 @@
 
                     if (isReadOnly)
                     {
-                        writer.WriteLine($"public delegate*<{builder}> {csFieldName} {{ get => Handle->{csFieldName}; }}");
+                        writer.WriteLine($"public delegate* unmanaged[{GetCallingConventionDelegate(functionType.CallingConvention)}]<{builder}> {csFieldName} {{ get => Handle->{csFieldName}; }}");
                     }
                     else
                     {
-                        writer.WriteLine($"public delegate*<{builder}> {csFieldName} {{ get => Handle->{csFieldName}; set => Handle->{csFieldName} = value; }}");
+                        writer.WriteLine($"public delegate* unmanaged[{GetCallingConventionDelegate(functionType.CallingConvention)}]<{builder}> {csFieldName} {{ get => Handle->{csFieldName}; set => Handle->{csFieldName} = value; }}");
                     }
 
                     return;
