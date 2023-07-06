@@ -246,15 +246,16 @@ namespace HexaEngine.ImGuiNET
 
 	public enum ImGuiLocKey
 	{
-		TableSizeOne = unchecked(0),
-		TableSizeAllFit = unchecked(1),
-		TableSizeAllDefault = unchecked(2),
-		TableResetOrder = unchecked(3),
-		WindowingMainMenuBar = unchecked(4),
-		WindowingPopup = unchecked(5),
-		WindowingUntitled = unchecked(6),
-		DockingHideTabBar = unchecked(7),
-		Count = unchecked(8),
+		Version = unchecked(0),
+		TableSizeOne = unchecked(1),
+		TableSizeAllFit = unchecked(2),
+		TableSizeAllDefault = unchecked(3),
+		TableResetOrder = unchecked(4),
+		WindowingMainMenuBar = unchecked(5),
+		WindowingPopup = unchecked(6),
+		WindowingUntitled = unchecked(7),
+		DockingHideTabBar = unchecked(8),
+		Count = unchecked(9),
 	}
 
 	public enum ImGuiWindowFlags
@@ -324,7 +325,7 @@ namespace HexaEngine.ImGuiNET
 		None = unchecked(0),
 		Selected = unchecked(1),
 		Framed = unchecked(2),
-		AllowItemOverlap = unchecked(4),
+		AllowOverlap = unchecked(4),
 		NoTreePushOnOpen = unchecked(8),
 		NoAutoOpenOnLog = unchecked(16),
 		DefaultOpen = unchecked(32),
@@ -361,7 +362,7 @@ namespace HexaEngine.ImGuiNET
 		SpanAllColumns = unchecked(2),
 		AllowDoubleClick = unchecked(4),
 		Disabled = unchecked(8),
-		AllowItemOverlap = unchecked(16),
+		AllowOverlap = unchecked(16),
 	}
 
 	public enum ImGuiComboFlags
@@ -511,14 +512,19 @@ namespace HexaEngine.ImGuiNET
 		DockHierarchy = unchecked(16),
 		AllowWhenBlockedByPopup = unchecked(32),
 		AllowWhenBlockedByActiveItem = unchecked(128),
-		AllowWhenOverlapped = unchecked(256),
-		AllowWhenDisabled = unchecked(512),
-		NoNavOverride = unchecked(1024),
-		RectOnly = unchecked(416),
+		AllowWhenOverlappedByItem = unchecked(256),
+		AllowWhenOverlappedByWindow = unchecked(512),
+		AllowWhenDisabled = unchecked(1024),
+		NoNavOverride = unchecked(2048),
+		AllowWhenOverlapped = unchecked(768),
+		RectOnly = unchecked(928),
 		RootAndChildWindows = unchecked(3),
-		DelayNormal = unchecked(2048),
-		DelayShort = unchecked(4096),
-		NoSharedDelay = unchecked(8192),
+		ForTooltip = unchecked(2048),
+		Stationary = unchecked(4096),
+		DelayNone = unchecked(8192),
+		DelayShort = unchecked(16384),
+		DelayNormal = unchecked(32768),
+		NoSharedDelay = unchecked(65536),
 	}
 
 	public enum ImGuiDockNodeFlags
@@ -873,6 +879,7 @@ namespace HexaEngine.ImGuiNET
 		MixedValue = unchecked(64),
 		ReadOnly = unchecked(128),
 		NoWindowHoverableCheck = unchecked(256),
+		ItemflagsAllowOverlap = unchecked(512),
 		Inputable = unchecked(1024),
 	}
 
@@ -889,6 +896,13 @@ namespace HexaEngine.ImGuiNET
 		HoveredWindow = unchecked(128),
 		FocusedByTabbing = unchecked(256),
 		Visible = unchecked(512),
+	}
+
+	public enum ImGuiHoveredFlagsPrivate
+	{
+		DelayMask = unchecked(122880),
+		AllowedMaskForIsWindowHovered = unchecked(6335),
+		AllowedMaskForIsItemHovered = unchecked(130976),
 	}
 
 	public enum ImGuiInputTextFlagsPrivate
@@ -908,7 +922,7 @@ namespace HexaEngine.ImGuiNET
 		PressedOnDragDropHold = unchecked(512),
 		Repeat = unchecked(1024),
 		FlattenChildren = unchecked(2048),
-		AllowItemOverlap = unchecked(4096),
+		AllowOverlap = unchecked(4096),
 		DontClosePopups = unchecked(8192),
 		AlignTextBaseLine = unchecked(32768),
 		NoKeyModifiers = unchecked(65536),
@@ -947,6 +961,7 @@ namespace HexaEngine.ImGuiNET
 	public enum ImGuiTreeNodeFlagsPrivate
 	{
 		ClipLabelForTrailingButton = unchecked(1048576),
+		UpsideDownArrow = unchecked(2097152),
 	}
 
 	public enum ImGuiSeparatorFlags
@@ -973,7 +988,7 @@ namespace HexaEngine.ImGuiNET
 	public enum ImGuiTooltipFlags
 	{
 		None = unchecked(0),
-		OverridePreviousTooltip = unchecked(1),
+		OverridePrevious = unchecked(2),
 	}
 
 	public enum ImGuiLayoutType
@@ -1100,7 +1115,8 @@ namespace HexaEngine.ImGuiNET
 		FocusApi = unchecked(512),
 		Tabbing = unchecked(1024),
 		Activate = unchecked(2048),
-		DontSetNavHighlight = unchecked(4096),
+		NoSelect = unchecked(4096),
+		NoSetNavHighlight = unchecked(8192),
 	}
 
 	public enum ImGuiOldColumnFlags

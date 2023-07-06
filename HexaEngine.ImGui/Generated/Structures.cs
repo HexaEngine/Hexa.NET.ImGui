@@ -17111,6 +17111,8 @@ namespace HexaEngine.ImGuiNET
 		public unsafe ImGuiViewportP* MouseLastHoveredViewport;
 		public int PlatformLastFocusedViewportId;
 		public ImGuiPlatformMonitor FallbackMonitor;
+		public int ViewportCreatedCount;
+		public int PlatformWindowsCreatedCount;
 		public int ViewportFocusedStampCount;
 		public unsafe ImGuiWindow* NavWindow;
 		public int NavId;
@@ -17133,8 +17135,7 @@ namespace HexaEngine.ImGuiNET
 		public byte NavAnyRequest;
 		public byte NavInitRequest;
 		public byte NavInitRequestFromMove;
-		public int NavInitResultId;
-		public ImRect NavInitResultRectRel;
+		public ImGuiNavItemData NavInitResult;
 		public byte NavMoveSubmitted;
 		public byte NavMoveScoringItems;
 		public byte NavMoveForwardToNextFrame;
@@ -17164,7 +17165,6 @@ namespace HexaEngine.ImGuiNET
 		public Vector2 NavWindowingAccumDeltaPos;
 		public Vector2 NavWindowingAccumDeltaSize;
 		public float DimBgRatio;
-		public ImGuiMouseCursor MouseCursor;
 		public byte DragDropActive;
 		public byte DragDropWithinSource;
 		public byte DragDropWithinTarget;
@@ -17209,10 +17209,14 @@ namespace HexaEngine.ImGuiNET
 		public ImPoolImGuiTabBar TabBars;
 		public ImVectorImGuiPtrOrIndex CurrentTabBarStack;
 		public ImVectorImGuiShrinkWidthItem ShrinkWidthBuffer;
-		public int HoverDelayId;
-		public int HoverDelayIdPreviousFrame;
-		public float HoverDelayTimer;
-		public float HoverDelayClearTimer;
+		public int HoverItemDelayId;
+		public int HoverItemDelayIdPreviousFrame;
+		public float HoverItemDelayTimer;
+		public float HoverItemDelayClearTimer;
+		public int HoverItemUnlockedStationaryId;
+		public int HoverWindowUnlockedStationaryId;
+		public ImGuiMouseCursor MouseCursor;
+		public float MouseStationaryTimer;
 		public Vector2 MouseLastValidPos;
 		public ImGuiInputTextState InputTextState;
 		public ImGuiInputTextDeactivatedState InputTextDeactivatedState;
@@ -17260,6 +17264,7 @@ namespace HexaEngine.ImGuiNET
 		public unsafe byte* LocalizationTable_5;
 		public unsafe byte* LocalizationTable_6;
 		public unsafe byte* LocalizationTable_7;
+		public unsafe byte* LocalizationTable_8;
 		public byte LogEnabled;
 		public ImGuiLogType LogType;
 		public ImFileHandle LogFile;
@@ -17499,6 +17504,8 @@ namespace HexaEngine.ImGuiNET
 		public ref ImGuiViewportPPtr MouseLastHoveredViewport => ref Unsafe.AsRef<ImGuiViewportPPtr>(&Handle->MouseLastHoveredViewport);
 		public ref int PlatformLastFocusedViewportId => ref Unsafe.AsRef<int>(&Handle->PlatformLastFocusedViewportId);
 		public ref ImGuiPlatformMonitor FallbackMonitor => ref Unsafe.AsRef<ImGuiPlatformMonitor>(&Handle->FallbackMonitor);
+		public ref int ViewportCreatedCount => ref Unsafe.AsRef<int>(&Handle->ViewportCreatedCount);
+		public ref int PlatformWindowsCreatedCount => ref Unsafe.AsRef<int>(&Handle->PlatformWindowsCreatedCount);
 		public ref int ViewportFocusedStampCount => ref Unsafe.AsRef<int>(&Handle->ViewportFocusedStampCount);
 		public ref ImGuiWindowPtr NavWindow => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->NavWindow);
 		public ref int NavId => ref Unsafe.AsRef<int>(&Handle->NavId);
@@ -17521,8 +17528,7 @@ namespace HexaEngine.ImGuiNET
 		public ref bool NavAnyRequest => ref Unsafe.AsRef<bool>(&Handle->NavAnyRequest);
 		public ref bool NavInitRequest => ref Unsafe.AsRef<bool>(&Handle->NavInitRequest);
 		public ref bool NavInitRequestFromMove => ref Unsafe.AsRef<bool>(&Handle->NavInitRequestFromMove);
-		public ref int NavInitResultId => ref Unsafe.AsRef<int>(&Handle->NavInitResultId);
-		public ref ImRect NavInitResultRectRel => ref Unsafe.AsRef<ImRect>(&Handle->NavInitResultRectRel);
+		public ref ImGuiNavItemData NavInitResult => ref Unsafe.AsRef<ImGuiNavItemData>(&Handle->NavInitResult);
 		public ref bool NavMoveSubmitted => ref Unsafe.AsRef<bool>(&Handle->NavMoveSubmitted);
 		public ref bool NavMoveScoringItems => ref Unsafe.AsRef<bool>(&Handle->NavMoveScoringItems);
 		public ref bool NavMoveForwardToNextFrame => ref Unsafe.AsRef<bool>(&Handle->NavMoveForwardToNextFrame);
@@ -17552,7 +17558,6 @@ namespace HexaEngine.ImGuiNET
 		public ref Vector2 NavWindowingAccumDeltaPos => ref Unsafe.AsRef<Vector2>(&Handle->NavWindowingAccumDeltaPos);
 		public ref Vector2 NavWindowingAccumDeltaSize => ref Unsafe.AsRef<Vector2>(&Handle->NavWindowingAccumDeltaSize);
 		public ref float DimBgRatio => ref Unsafe.AsRef<float>(&Handle->DimBgRatio);
-		public ref ImGuiMouseCursor MouseCursor => ref Unsafe.AsRef<ImGuiMouseCursor>(&Handle->MouseCursor);
 		public ref bool DragDropActive => ref Unsafe.AsRef<bool>(&Handle->DragDropActive);
 		public ref bool DragDropWithinSource => ref Unsafe.AsRef<bool>(&Handle->DragDropWithinSource);
 		public ref bool DragDropWithinTarget => ref Unsafe.AsRef<bool>(&Handle->DragDropWithinTarget);
@@ -17589,10 +17594,14 @@ namespace HexaEngine.ImGuiNET
 		public ref ImPoolImGuiTabBar TabBars => ref Unsafe.AsRef<ImPoolImGuiTabBar>(&Handle->TabBars);
 		public ref ImVectorImGuiPtrOrIndex CurrentTabBarStack => ref Unsafe.AsRef<ImVectorImGuiPtrOrIndex>(&Handle->CurrentTabBarStack);
 		public ref ImVectorImGuiShrinkWidthItem ShrinkWidthBuffer => ref Unsafe.AsRef<ImVectorImGuiShrinkWidthItem>(&Handle->ShrinkWidthBuffer);
-		public ref int HoverDelayId => ref Unsafe.AsRef<int>(&Handle->HoverDelayId);
-		public ref int HoverDelayIdPreviousFrame => ref Unsafe.AsRef<int>(&Handle->HoverDelayIdPreviousFrame);
-		public ref float HoverDelayTimer => ref Unsafe.AsRef<float>(&Handle->HoverDelayTimer);
-		public ref float HoverDelayClearTimer => ref Unsafe.AsRef<float>(&Handle->HoverDelayClearTimer);
+		public ref int HoverItemDelayId => ref Unsafe.AsRef<int>(&Handle->HoverItemDelayId);
+		public ref int HoverItemDelayIdPreviousFrame => ref Unsafe.AsRef<int>(&Handle->HoverItemDelayIdPreviousFrame);
+		public ref float HoverItemDelayTimer => ref Unsafe.AsRef<float>(&Handle->HoverItemDelayTimer);
+		public ref float HoverItemDelayClearTimer => ref Unsafe.AsRef<float>(&Handle->HoverItemDelayClearTimer);
+		public ref int HoverItemUnlockedStationaryId => ref Unsafe.AsRef<int>(&Handle->HoverItemUnlockedStationaryId);
+		public ref int HoverWindowUnlockedStationaryId => ref Unsafe.AsRef<int>(&Handle->HoverWindowUnlockedStationaryId);
+		public ref ImGuiMouseCursor MouseCursor => ref Unsafe.AsRef<ImGuiMouseCursor>(&Handle->MouseCursor);
+		public ref float MouseStationaryTimer => ref Unsafe.AsRef<float>(&Handle->MouseStationaryTimer);
 		public ref Vector2 MouseLastValidPos => ref Unsafe.AsRef<Vector2>(&Handle->MouseLastValidPos);
 		public ref ImGuiInputTextState InputTextState => ref Unsafe.AsRef<ImGuiInputTextState>(&Handle->InputTextState);
 		public ref ImGuiInputTextDeactivatedState InputTextDeactivatedState => ref Unsafe.AsRef<ImGuiInputTextDeactivatedState>(&Handle->InputTextDeactivatedState);
@@ -17682,13 +17691,6 @@ namespace HexaEngine.ImGuiNET
 		public float IniSavingRate;
 		public unsafe byte* IniFilename;
 		public unsafe byte* LogFilename;
-		public float MouseDoubleClickTime;
-		public float MouseDoubleClickMaxDist;
-		public float MouseDragThreshold;
-		public float KeyRepeatDelay;
-		public float KeyRepeatRate;
-		public float HoverDelayNormal;
-		public float HoverDelayShort;
 		public unsafe void* UserData;
 		public unsafe ImFontAtlas* Fonts;
 		public float FontGlobalScale;
@@ -17712,9 +17714,15 @@ namespace HexaEngine.ImGuiNET
 		public byte ConfigWindowsResizeFromEdges;
 		public byte ConfigWindowsMoveFromTitleBarOnly;
 		public float ConfigMemoryCompactTimer;
+		public float MouseDoubleClickTime;
+		public float MouseDoubleClickMaxDist;
+		public float MouseDragThreshold;
+		public float KeyRepeatDelay;
+		public float KeyRepeatRate;
 		public byte ConfigDebugBeginReturnValueOnce;
 		public byte ConfigDebugBeginReturnValueLoop;
 		public byte ConfigDebugIgnoreFocusLoss;
+		public byte ConfigDebugIniSettings;
 		public unsafe byte* BackendPlatformName;
 		public unsafe byte* BackendRendererName;
 		public unsafe void* BackendPlatformUserData;
@@ -20054,13 +20062,6 @@ namespace HexaEngine.ImGuiNET
 		public ref float IniSavingRate => ref Unsafe.AsRef<float>(&Handle->IniSavingRate);
 		public byte* IniFilename { get => Handle->IniFilename; set => Handle->IniFilename = value; }
 		public byte* LogFilename { get => Handle->LogFilename; set => Handle->LogFilename = value; }
-		public ref float MouseDoubleClickTime => ref Unsafe.AsRef<float>(&Handle->MouseDoubleClickTime);
-		public ref float MouseDoubleClickMaxDist => ref Unsafe.AsRef<float>(&Handle->MouseDoubleClickMaxDist);
-		public ref float MouseDragThreshold => ref Unsafe.AsRef<float>(&Handle->MouseDragThreshold);
-		public ref float KeyRepeatDelay => ref Unsafe.AsRef<float>(&Handle->KeyRepeatDelay);
-		public ref float KeyRepeatRate => ref Unsafe.AsRef<float>(&Handle->KeyRepeatRate);
-		public ref float HoverDelayNormal => ref Unsafe.AsRef<float>(&Handle->HoverDelayNormal);
-		public ref float HoverDelayShort => ref Unsafe.AsRef<float>(&Handle->HoverDelayShort);
 		public void* UserData { get => Handle->UserData; set => Handle->UserData = value; }
 		public ref ImFontAtlasPtr Fonts => ref Unsafe.AsRef<ImFontAtlasPtr>(&Handle->Fonts);
 		public ref float FontGlobalScale => ref Unsafe.AsRef<float>(&Handle->FontGlobalScale);
@@ -20084,9 +20085,15 @@ namespace HexaEngine.ImGuiNET
 		public ref bool ConfigWindowsResizeFromEdges => ref Unsafe.AsRef<bool>(&Handle->ConfigWindowsResizeFromEdges);
 		public ref bool ConfigWindowsMoveFromTitleBarOnly => ref Unsafe.AsRef<bool>(&Handle->ConfigWindowsMoveFromTitleBarOnly);
 		public ref float ConfigMemoryCompactTimer => ref Unsafe.AsRef<float>(&Handle->ConfigMemoryCompactTimer);
+		public ref float MouseDoubleClickTime => ref Unsafe.AsRef<float>(&Handle->MouseDoubleClickTime);
+		public ref float MouseDoubleClickMaxDist => ref Unsafe.AsRef<float>(&Handle->MouseDoubleClickMaxDist);
+		public ref float MouseDragThreshold => ref Unsafe.AsRef<float>(&Handle->MouseDragThreshold);
+		public ref float KeyRepeatDelay => ref Unsafe.AsRef<float>(&Handle->KeyRepeatDelay);
+		public ref float KeyRepeatRate => ref Unsafe.AsRef<float>(&Handle->KeyRepeatRate);
 		public ref bool ConfigDebugBeginReturnValueOnce => ref Unsafe.AsRef<bool>(&Handle->ConfigDebugBeginReturnValueOnce);
 		public ref bool ConfigDebugBeginReturnValueLoop => ref Unsafe.AsRef<bool>(&Handle->ConfigDebugBeginReturnValueLoop);
 		public ref bool ConfigDebugIgnoreFocusLoss => ref Unsafe.AsRef<bool>(&Handle->ConfigDebugIgnoreFocusLoss);
+		public ref bool ConfigDebugIniSettings => ref Unsafe.AsRef<bool>(&Handle->ConfigDebugIniSettings);
 		public byte* BackendPlatformName { get => Handle->BackendPlatformName; set => Handle->BackendPlatformName = value; }
 		public byte* BackendRendererName { get => Handle->BackendRendererName; set => Handle->BackendRendererName = value; }
 		public void* BackendPlatformUserData { get => Handle->BackendPlatformUserData; set => Handle->BackendPlatformUserData = value; }
@@ -20798,6 +20805,11 @@ namespace HexaEngine.ImGuiNET
 		public Vector4 Colors_52;
 		public Vector4 Colors_53;
 		public Vector4 Colors_54;
+		public float HoverStationaryDelay;
+		public float HoverDelayShort;
+		public float HoverDelayNormal;
+		public ImGuiHoveredFlags HoverFlagsForTooltipMouse;
+		public ImGuiHoveredFlags HoverFlagsForTooltipNav;
 
 		public unsafe Span<Vector4> Colors
 		
@@ -20912,6 +20924,11 @@ namespace HexaEngine.ImGuiNET
 				return new Span<Vector4>(&Handle->Colors_0, 55);
 			}
 		}
+		public ref float HoverStationaryDelay => ref Unsafe.AsRef<float>(&Handle->HoverStationaryDelay);
+		public ref float HoverDelayShort => ref Unsafe.AsRef<float>(&Handle->HoverDelayShort);
+		public ref float HoverDelayNormal => ref Unsafe.AsRef<float>(&Handle->HoverDelayNormal);
+		public ref ImGuiHoveredFlags HoverFlagsForTooltipMouse => ref Unsafe.AsRef<ImGuiHoveredFlags>(&Handle->HoverFlagsForTooltipMouse);
+		public ref ImGuiHoveredFlags HoverFlagsForTooltipNav => ref Unsafe.AsRef<ImGuiHoveredFlags>(&Handle->HoverFlagsForTooltipNav);
 
 		public unsafe void Destroy()
 		{
@@ -22647,6 +22664,7 @@ namespace HexaEngine.ImGuiNET
 		public int LastFocusedNodeId;
 		public int SelectedTabId;
 		public int WantCloseTabId;
+		public int RefViewportId;
 		public ImGuiDataAuthority AuthorityForPos;
 		public ImGuiDataAuthority AuthorityForSize;
 		public ImGuiDataAuthority AuthorityForViewport;
@@ -22722,6 +22740,7 @@ namespace HexaEngine.ImGuiNET
 		public ref int LastFocusedNodeId => ref Unsafe.AsRef<int>(&Handle->LastFocusedNodeId);
 		public ref int SelectedTabId => ref Unsafe.AsRef<int>(&Handle->SelectedTabId);
 		public ref int WantCloseTabId => ref Unsafe.AsRef<int>(&Handle->WantCloseTabId);
+		public ref int RefViewportId => ref Unsafe.AsRef<int>(&Handle->RefViewportId);
 		public ref ImGuiDataAuthority AuthorityForPos => ref Unsafe.AsRef<ImGuiDataAuthority>(&Handle->AuthorityForPos);
 		public ref ImGuiDataAuthority AuthorityForSize => ref Unsafe.AsRef<ImGuiDataAuthority>(&Handle->AuthorityForSize);
 		public ref ImGuiDataAuthority AuthorityForViewport => ref Unsafe.AsRef<ImGuiDataAuthority>(&Handle->AuthorityForViewport);
@@ -24157,6 +24176,7 @@ public unsafe void appendf(string fmt)
 	public partial struct ImGuiNextItemData
 	{
 		public ImGuiNextItemDataFlags Flags;
+		public ImGuiItemFlags ItemFlags;
 		public float Width;
 		public int FocusScopeId;
 		public ImGuiCond OpenCond;
@@ -24197,6 +24217,7 @@ public unsafe void appendf(string fmt)
 
 		private string DebuggerDisplay => string.Format("ImGuiNextItemDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		public ref ImGuiNextItemDataFlags Flags => ref Unsafe.AsRef<ImGuiNextItemDataFlags>(&Handle->Flags);
+		public ref ImGuiItemFlags ItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->ItemFlags);
 		public ref float Width => ref Unsafe.AsRef<float>(&Handle->Width);
 		public ref int FocusScopeId => ref Unsafe.AsRef<int>(&Handle->FocusScopeId);
 		public ref ImGuiCond OpenCond => ref Unsafe.AsRef<ImGuiCond>(&Handle->OpenCond);
@@ -24981,11 +25002,11 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
-		public unsafe void ForceDisplayRangeByIndices(int itemMin, int itemMax)
+		public unsafe void IncludeRangeByIndices(int itemBegin, int itemEnd)
 		{
 			fixed (ImGuiListClipper* @this = &this)
 			{
-				ImGui.ForceDisplayRangeByIndicesNative(@this, itemMin, itemMax);
+				ImGui.IncludeRangeByIndicesNative(@this, itemBegin, itemEnd);
 			}
 		}
 
@@ -25060,9 +25081,9 @@ public unsafe void appendf(string fmt)
 			ImGui.EndNative(Handle);
 		}
 
-		public unsafe void ForceDisplayRangeByIndices(int itemMin, int itemMax)
+		public unsafe void IncludeRangeByIndices(int itemBegin, int itemEnd)
 		{
-			ImGui.ForceDisplayRangeByIndicesNative(Handle, itemMin, itemMax);
+			ImGui.IncludeRangeByIndicesNative(Handle, itemBegin, itemEnd);
 		}
 
 		public unsafe bool Step()

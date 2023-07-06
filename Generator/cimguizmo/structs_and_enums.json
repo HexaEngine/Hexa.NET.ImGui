@@ -194,10 +194,10 @@
   },
   "enumtypes": [],
   "locations": {
-    "COLOR": "ImGuizmo:232",
-    "MODE": "ImGuizmo:199",
-    "OPERATION": "ImGuizmo:170",
-    "Style": "ImGuizmo:252"
+    "COLOR": "ImGuizmo:235",
+    "MODE": "ImGuizmo:202",
+    "OPERATION": "ImGuizmo:173",
+    "Style": "ImGuizmo:255"
   },
   "structs": {
     "Style": [

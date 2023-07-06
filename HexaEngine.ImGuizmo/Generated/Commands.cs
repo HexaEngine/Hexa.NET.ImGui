@@ -82,6 +82,15 @@ namespace HexaEngine.ImGuizmoNET
 			return ret != 0;
 		}
 
+		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_IsUsingAny")]
+		internal static extern byte IsUsingAnyNative();
+
+		public static bool IsUsingAny()
+		{
+			byte ret = IsUsingAnyNative();
+			return ret != 0;
+		}
+
 		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_Enable")]
 		internal static extern void EnableNative(byte enable);
 

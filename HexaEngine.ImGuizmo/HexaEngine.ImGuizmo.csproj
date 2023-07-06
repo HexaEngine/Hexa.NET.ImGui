@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<AssemblyVersion>1.84.0</AssemblyVersion>
-		<PackageVersion>2.0.11</PackageVersion>
-		<Description>A .NET wrapper for the ImGuizmo library. (1.84.0 WIP)</Description>
+		<AssemblyVersion>1.89.0</AssemblyVersion>
+		<PackageVersion>2.0.12</PackageVersion>
+		<Description>A .NET wrapper for the ImGuizmo library. (1.89.0 WIP)</Description>
 		<Authors>Juna Meinhold</Authors>
 		<PackageProjectUrl>https://github.com/JunaMeinhold/HexaEngine.ImGui</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/JunaMeinhold/HexaEngine.ImGui</RepositoryUrl>
@@ -21,6 +21,12 @@
 		<ProjectReference Include="..\HexaEngine.ImGui\HexaEngine.ImGui.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+		<None Include="..\native\android-x64\cimguizmo.so">
+			<Link>runtimes\android-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<PackagePath>runtimes/android-x64/native</PackagePath>
+			<Pack>true</Pack>
+		</None>
 		<None Include="..\native\android-arm64\cimguizmo.so">
 			<Link>runtimes\android-arm64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

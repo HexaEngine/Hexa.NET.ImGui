@@ -77,6 +77,7 @@ CIMGUI_API void ImGuizmo_BeginFrame(void);
 CIMGUI_API void ImGuizmo_SetImGuiContext(ImGuiContext* ctx);
 CIMGUI_API bool ImGuizmo_IsOver_Nil(void);
 CIMGUI_API bool ImGuizmo_IsUsing(void);
+CIMGUI_API bool ImGuizmo_IsUsingAny(void);
 CIMGUI_API void ImGuizmo_Enable(bool enable);
 CIMGUI_API void ImGuizmo_DecomposeMatrixToComponents(const float* matrix,float* translation,float* rotation,float* scale);
 CIMGUI_API void ImGuizmo_RecomposeMatrixFromComponents(const float* translation,const float* rotation,const float* scale,float* matrix);
