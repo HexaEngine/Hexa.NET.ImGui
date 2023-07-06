@@ -6,14 +6,51 @@
     using HexaEngine.Core.Windows;
     using HexaEngine.ImGuiNET;
     using Silk.NET.SDL;
+    using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
 
     internal class ImGuiInputHandler : IDisposable
     {
+        private static readonly Sdl sdl = Sdl.GetApi();
         private readonly SdlWindow window;
 
         private ImGuiMouseCursor lastCursor;
 
-        private static unsafe char* g_ClipboardTextData = null;
+        private static unsafe BackendData* GetBackendData()
+        {
+            return !ImGui.GetCurrentContext().IsNull ? (BackendData*)ImGui.GetIO().BackendPlatformUserData : null;
+        }
+
+        private unsafe struct BackendData
+        {
+            public Window* Window;
+            public Renderer* Renderer;
+            public ulong Time;
+            public uint MouseWindowID;
+            public int MouseButtonsDown;
+            public int PendingMouseLeaveFrame;
+            public byte* ClipboardTextData;
+            public bool MouseCanUseGlobalState;
+            public bool MouseCanReportHoveredViewport;  // This is hard to use/unreliable on SDL so we'll set ImGuiBackendFlags_HasMouseHoveredViewport dynamically based on state.
+            public bool UseVulkan;
+            public bool WantUpdateMonitors;
+        }
+
+        [UnmanagedCallersOnly(CallConvs = new Type[] { typeof(CallConvCdecl) })]
+        private static unsafe byte* GetClipboardText(void* data)
+        {
+            BackendData* bd = GetBackendData();
+            if (bd->ClipboardTextData != null)
+                sdl.Free(bd->ClipboardTextData);
+            bd->ClipboardTextData = sdl.GetClipboardText();
+            return bd->ClipboardTextData;
+        }
+
+        [UnmanagedCallersOnly(CallConvs = new Type[] { typeof(CallConvCdecl) })]
+        private static unsafe void SetClipboardText(void* data, byte* text)
+        {
+            sdl.SetClipboardText(text);
+        }
 
         public unsafe ImGuiInputHandler(SdlWindow window)
         {
@@ -24,9 +61,13 @@
 
             var io = ImGui.GetIO();
 
-            //io->SetClipboardTextFn = (delegate*<void*, byte*, void>*)(delegate*<void*, byte*, void>)&SetClipboardText;
-            //io->GetClipboardTextFn = (delegate*<void*, byte*>*)(delegate*<void*, byte*>)&GetClipboardText;
+            io.SetClipboardTextFn = &SetClipboardText;
+            io.GetClipboardTextFn = &GetClipboardText;
             io.ClipboardUserData = null;
+
+            BackendData* bd = Alloc<BackendData>();
+            Zero(bd);
+            io.BackendPlatformUserData = bd;
 
             io.KeyMap[(int)ImGuiKey.Tab] = (int)Scancode.ScancodeTab;
             io.KeyMap[(int)ImGuiKey.LeftArrow] = (int)Scancode.ScancodeLeft;
@@ -252,10 +293,6 @@
                 window.MouseButtonInput -= MouseButtonInput;
                 window.KeyboardInput -= KeyboardInput;
                 window.KeyboardCharInput -= KeyboardCharInput;
-                if (g_ClipboardTextData != null)
-                {
-                    Clipboard.Free(g_ClipboardTextData);
-                }
 
                 disposedValue = true;
             }

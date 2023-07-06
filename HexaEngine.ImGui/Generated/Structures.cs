@@ -15704,7 +15704,7 @@ namespace HexaEngine.ImGuiNET
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontBuilderIO
 	{
-		public unsafe delegate* unmanaged[Cdecl]<ImFontAtlas*, bool> FontBuilderBuild;
+		public unsafe delegate* unmanaged[Cdecl]<ImFontAtlas*, byte> FontBuilderBuild;
 
 	}
 
@@ -15740,7 +15740,7 @@ namespace HexaEngine.ImGuiNET
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
 		private string DebuggerDisplay => string.Format("ImFontBuilderIOPtr [0x{0}]", ((nuint)Handle).ToString("X"));
-		public delegate* unmanaged[Cdecl]<ImFontAtlas*, bool> FontBuilderBuild { get => Handle->FontBuilderBuild; set => Handle->FontBuilderBuild = value; }
+		public delegate* unmanaged[Cdecl]<ImFontAtlas*, byte> FontBuilderBuild { get => Handle->FontBuilderBuild; set => Handle->FontBuilderBuild = value; }
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -20525,8 +20525,8 @@ namespace HexaEngine.ImGuiNET
 		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, Vector2, void> PlatformSetWindowSize;
 		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, Vector2> PlatformGetWindowSize;
 		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformSetWindowFocus;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, bool> PlatformGetWindowFocus;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, bool> PlatformGetWindowMinimized;
+		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, byte> PlatformGetWindowFocus;
+		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, byte> PlatformGetWindowMinimized;
 		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, byte*, void> PlatformSetWindowTitle;
 		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, float, void> PlatformSetWindowAlpha;
 		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformUpdateWindow;
@@ -20594,8 +20594,8 @@ namespace HexaEngine.ImGuiNET
 		public delegate* unmanaged[Cdecl]<ImGuiViewport*, Vector2, void> PlatformSetWindowSize { get => Handle->PlatformSetWindowSize; set => Handle->PlatformSetWindowSize = value; }
 		public delegate* unmanaged[Cdecl]<ImGuiViewport*, Vector2> PlatformGetWindowSize { get => Handle->PlatformGetWindowSize; set => Handle->PlatformGetWindowSize = value; }
 		public delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformSetWindowFocus { get => Handle->PlatformSetWindowFocus; set => Handle->PlatformSetWindowFocus = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, bool> PlatformGetWindowFocus { get => Handle->PlatformGetWindowFocus; set => Handle->PlatformGetWindowFocus = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, bool> PlatformGetWindowMinimized { get => Handle->PlatformGetWindowMinimized; set => Handle->PlatformGetWindowMinimized = value; }
+		public delegate* unmanaged[Cdecl]<ImGuiViewport*, byte> PlatformGetWindowFocus { get => Handle->PlatformGetWindowFocus; set => Handle->PlatformGetWindowFocus = value; }
+		public delegate* unmanaged[Cdecl]<ImGuiViewport*, byte> PlatformGetWindowMinimized { get => Handle->PlatformGetWindowMinimized; set => Handle->PlatformGetWindowMinimized = value; }
 		public delegate* unmanaged[Cdecl]<ImGuiViewport*, byte*, void> PlatformSetWindowTitle { get => Handle->PlatformSetWindowTitle; set => Handle->PlatformSetWindowTitle = value; }
 		public delegate* unmanaged[Cdecl]<ImGuiViewport*, float, void> PlatformSetWindowAlpha { get => Handle->PlatformSetWindowAlpha; set => Handle->PlatformSetWindowAlpha = value; }
 		public delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformUpdateWindow { get => Handle->PlatformUpdateWindow; set => Handle->PlatformUpdateWindow = value; }

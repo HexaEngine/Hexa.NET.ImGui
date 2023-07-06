@@ -308,7 +308,7 @@
                         string csFieldName = NormalizeFieldName(cppField.Name);
                         string returnCsName = GetCsTypeName(cppFunctionType.ReturnType, false);
                         string signature = GetNamelessParameterSignature(cppFunctionType.Parameters, false);
-
+                        returnCsName = returnCsName.Replace("bool", "byte");
                         writer.WriteLine($"public unsafe delegate* unmanaged[{GetCallingConventionDelegate(cppFunctionType.CallingConvention)}]<{signature}, {returnCsName}> {csFieldName};");
                     }
                     else
@@ -462,7 +462,7 @@
                     }
 
                     string returnCsName = GetCsTypeName(functionType.ReturnType, false);
-
+                    returnCsName = returnCsName.Replace("bool", "byte");
                     builder.Append(returnCsName);
 
                     writer.WriteLine($"public {fieldPrefix}unsafe delegate* unmanaged[{GetCallingConventionDelegate(functionType.CallingConvention)}]<{builder}> {csFieldName};");
@@ -544,7 +544,7 @@
                     }
 
                     string returnCsName = GetCsTypeName(functionType.ReturnType, false);
-
+                    returnCsName = returnCsName.Replace("bool", "byte");
                     builder.Append(returnCsName);
 
                     if (isReadOnly)
