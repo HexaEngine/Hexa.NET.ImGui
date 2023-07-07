@@ -13,6 +13,7 @@
             GenerateHandles(compilation, outputPath);
             GenerateStructAndUnions(compilation, outputPath);
             GenerateCommands(compilation, outputPath);
+            GenerateDelegates(compilation, outputPath);
         }
 
         public static void Reset()
@@ -23,9 +24,10 @@
             DefinedFunctions.Clear();
             DefinedTypedefs.Clear();
             DefinedTypes.Clear();
+            DefinedDelegates.Clear();
         }
 
-        public static void CopyFrom(List<string> constants, List<string> enums, List<string> extensions, List<string> functions, List<string> typedefs, List<string> types)
+        public static void CopyFrom(List<string> constants, List<string> enums, List<string> extensions, List<string> functions, List<string> typedefs, List<string> types, List<string> delegates)
         {
             for (int i = 0; i < constants.Count; i++)
             {
@@ -50,6 +52,10 @@
             for (int i = 0; i < types.Count; i++)
             {
                 DefinedTypes.Add(types[i]);
+            }
+            for (int i = 0; i < delegates.Count; i++)
+            {
+                DefinedDelegates.Add(delegates[i]);
             }
         }
 

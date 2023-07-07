@@ -14,19 +14,21 @@
             var functions = CsCodeGenerator.DefinedFunctions.ToList();
             var typedefs = CsCodeGenerator.DefinedTypedefs.ToList();
             var types = CsCodeGenerator.DefinedTypes.ToList();
+            var delegates = CsCodeGenerator.DefinedDelegates.ToList();
 
             GenerateImGuizmo();
             CsCodeGenerator.Reset();
-            CsCodeGenerator.CopyFrom(constants, enums, extensions, functions, typedefs, types);
+            CsCodeGenerator.CopyFrom(constants, enums, extensions, functions, typedefs, types, delegates);
             GenerateImNodes();
             CsCodeGenerator.Reset();
-            CsCodeGenerator.CopyFrom(constants, enums, extensions, functions, typedefs, types);
+            CsCodeGenerator.CopyFrom(constants, enums, extensions, functions, typedefs, types, delegates);
             GenerateImPlot();
         }
 
         private static int GenerateImPlot()
         {
             CsCodeGeneratorSettings.Load("cimplot/generator.json");
+            CsCodeGeneratorSettings.Default.Save();
             ImguiDefinitions imguiDefinitions = new();
             imguiDefinitions.LoadFrom("cimgui");
 
@@ -119,6 +121,7 @@
         private static int GenerateImNodes()
         {
             CsCodeGeneratorSettings.Load("cimnodes/generator.json");
+            CsCodeGeneratorSettings.Default.Save();
             ImguiDefinitions imguiDefinitions = new();
             imguiDefinitions.LoadFrom("cimgui");
 
@@ -211,6 +214,7 @@
         private static int GenerateImGuizmo()
         {
             CsCodeGeneratorSettings.Load("cimguizmo/generator.json");
+            CsCodeGeneratorSettings.Default.Save();
             ImguiDefinitions imguiDefinitions = new();
             imguiDefinitions.LoadFrom("cimgui");
 
@@ -366,6 +370,7 @@
         private static int GenerateImGui()
         {
             CsCodeGeneratorSettings.Load("cimgui/generator.json");
+            CsCodeGeneratorSettings.Default.Save();
             ImguiDefinitions imguiDefinitions = new();
             imguiDefinitions.LoadFrom("cimgui");
 
@@ -418,6 +423,9 @@
 
                 return 0;
             }
+
+            CsCodeGeneratorSettings.Default.DelegateMappings.Add(new("PlatformGetWindowPos", "Vector2*", "Vector2* pos, ImGuiViewport* viewport"));
+            CsCodeGeneratorSettings.Default.DelegateMappings.Add(new("PlatformGetWindowSize", "Vector2*", "Vector2* size, ImGuiViewport* viewport"));
 
             CsCodeGenerator.Generate(compilation, "../../../../HexaEngine.ImGui/Generated");
 

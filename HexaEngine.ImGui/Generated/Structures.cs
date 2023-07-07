@@ -76,7 +76,7 @@ namespace HexaEngine.ImGuiNET
 		public uint VtxOffset;
 		public uint IdxOffset;
 		public uint ElemCount;
-		public unsafe delegate* unmanaged[Cdecl]<ImDrawList*, ImDrawCmd*, void> UserCallback;
+		public unsafe void* UserCallback;
 		public unsafe void* UserCallbackData;
 
 
@@ -136,7 +136,7 @@ namespace HexaEngine.ImGuiNET
 		public ref uint VtxOffset => ref Unsafe.AsRef<uint>(&Handle->VtxOffset);
 		public ref uint IdxOffset => ref Unsafe.AsRef<uint>(&Handle->IdxOffset);
 		public ref uint ElemCount => ref Unsafe.AsRef<uint>(&Handle->ElemCount);
-		public delegate* unmanaged[Cdecl]<ImDrawList*, ImDrawCmd*, void> UserCallback { get => Handle->UserCallback; set => Handle->UserCallback = value; }
+		public void* UserCallback { get => Handle->UserCallback; set => Handle->UserCallback = value; }
 		public void* UserCallbackData { get => Handle->UserCallbackData; set => Handle->UserCallbackData = value; }
 
 		public unsafe void Destroy()
@@ -15704,7 +15704,7 @@ namespace HexaEngine.ImGuiNET
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontBuilderIO
 	{
-		public unsafe delegate* unmanaged[Cdecl]<ImFontAtlas*, byte> FontBuilderBuild;
+		public unsafe void* FontBuilderBuild;
 
 	}
 
@@ -15740,7 +15740,7 @@ namespace HexaEngine.ImGuiNET
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
 		private string DebuggerDisplay => string.Format("ImFontBuilderIOPtr [0x{0}]", ((nuint)Handle).ToString("X"));
-		public delegate* unmanaged[Cdecl]<ImFontAtlas*, byte> FontBuilderBuild { get => Handle->FontBuilderBuild; set => Handle->FontBuilderBuild = value; }
+		public void* FontBuilderBuild { get => Handle->FontBuilderBuild; set => Handle->FontBuilderBuild = value; }
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -17247,7 +17247,7 @@ namespace HexaEngine.ImGuiNET
 		public int PlatformImeViewport;
 		public byte PlatformLocaleDecimalPoint;
 		public ImGuiDockContext DockContext;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiDockNode*, ImGuiTabBar*, void> DockNodeWindowMenuHandler;
+		public unsafe void* DockNodeWindowMenuHandler;
 		public byte SettingsLoaded;
 		public float SettingsDirtyTimer;
 		public ImGuiTextBuffer SettingsIniData;
@@ -17632,7 +17632,7 @@ namespace HexaEngine.ImGuiNET
 		public ref int PlatformImeViewport => ref Unsafe.AsRef<int>(&Handle->PlatformImeViewport);
 		public ref byte PlatformLocaleDecimalPoint => ref Unsafe.AsRef<byte>(&Handle->PlatformLocaleDecimalPoint);
 		public ref ImGuiDockContext DockContext => ref Unsafe.AsRef<ImGuiDockContext>(&Handle->DockContext);
-		public delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiDockNode*, ImGuiTabBar*, void> DockNodeWindowMenuHandler { get => Handle->DockNodeWindowMenuHandler; set => Handle->DockNodeWindowMenuHandler = value; }
+		public void* DockNodeWindowMenuHandler { get => Handle->DockNodeWindowMenuHandler; set => Handle->DockNodeWindowMenuHandler = value; }
 		public ref bool SettingsLoaded => ref Unsafe.AsRef<bool>(&Handle->SettingsLoaded);
 		public ref float SettingsDirtyTimer => ref Unsafe.AsRef<float>(&Handle->SettingsDirtyTimer);
 		public ref ImGuiTextBuffer SettingsIniData => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->SettingsIniData);
@@ -17728,10 +17728,10 @@ namespace HexaEngine.ImGuiNET
 		public unsafe void* BackendPlatformUserData;
 		public unsafe void* BackendRendererUserData;
 		public unsafe void* BackendLanguageUserData;
-		public unsafe delegate* unmanaged[Cdecl]<void*, byte*> GetClipboardTextFn;
-		public unsafe delegate* unmanaged[Cdecl]<void*, byte*, void> SetClipboardTextFn;
+		public unsafe void* GetClipboardTextFn;
+		public unsafe void* SetClipboardTextFn;
 		public unsafe void* ClipboardUserData;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, ImGuiPlatformImeData*, void> SetPlatformImeDataFn;
+		public unsafe void* SetPlatformImeDataFn;
 		public unsafe void* UnusedPadding;
 		public byte WantCaptureMouse;
 		public byte WantCaptureKeyboard;
@@ -20099,10 +20099,10 @@ namespace HexaEngine.ImGuiNET
 		public void* BackendPlatformUserData { get => Handle->BackendPlatformUserData; set => Handle->BackendPlatformUserData = value; }
 		public void* BackendRendererUserData { get => Handle->BackendRendererUserData; set => Handle->BackendRendererUserData = value; }
 		public void* BackendLanguageUserData { get => Handle->BackendLanguageUserData; set => Handle->BackendLanguageUserData = value; }
-		public delegate* unmanaged[Cdecl]<void*, byte*> GetClipboardTextFn { get => Handle->GetClipboardTextFn; set => Handle->GetClipboardTextFn = value; }
-		public delegate* unmanaged[Cdecl]<void*, byte*, void> SetClipboardTextFn { get => Handle->SetClipboardTextFn; set => Handle->SetClipboardTextFn = value; }
+		public void* GetClipboardTextFn { get => Handle->GetClipboardTextFn; set => Handle->GetClipboardTextFn = value; }
+		public void* SetClipboardTextFn { get => Handle->SetClipboardTextFn; set => Handle->SetClipboardTextFn = value; }
 		public void* ClipboardUserData { get => Handle->ClipboardUserData; set => Handle->ClipboardUserData = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, ImGuiPlatformImeData*, void> SetPlatformImeDataFn { get => Handle->SetPlatformImeDataFn; set => Handle->SetPlatformImeDataFn = value; }
+		public void* SetPlatformImeDataFn { get => Handle->SetPlatformImeDataFn; set => Handle->SetPlatformImeDataFn = value; }
 		public void* UnusedPadding { get => Handle->UnusedPadding; set => Handle->UnusedPadding = value; }
 		public ref bool WantCaptureMouse => ref Unsafe.AsRef<bool>(&Handle->WantCaptureMouse);
 		public ref bool WantCaptureKeyboard => ref Unsafe.AsRef<bool>(&Handle->WantCaptureKeyboard);
@@ -20517,29 +20517,29 @@ namespace HexaEngine.ImGuiNET
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiPlatformIO
 	{
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformCreateWindow;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformDestroyWindow;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformShowWindow;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, Vector2, void> PlatformSetWindowPos;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, Vector2> PlatformGetWindowPos;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, Vector2, void> PlatformSetWindowSize;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, Vector2> PlatformGetWindowSize;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformSetWindowFocus;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, byte> PlatformGetWindowFocus;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, byte> PlatformGetWindowMinimized;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, byte*, void> PlatformSetWindowTitle;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, float, void> PlatformSetWindowAlpha;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformUpdateWindow;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, void*, void> PlatformRenderWindow;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, void*, void> PlatformSwapBuffers;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, float> PlatformGetWindowDpiScale;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformOnChangedViewport;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, ulong, void*, ulong*, int> PlatformCreateVkSurface;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, void> RendererCreateWindow;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, void> RendererDestroyWindow;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, Vector2, void> RendererSetWindowSize;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, void*, void> RendererRenderWindow;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiViewport*, void*, void> RendererSwapBuffers;
+		public unsafe void* PlatformCreateWindow;
+		public unsafe void* PlatformDestroyWindow;
+		public unsafe void* PlatformShowWindow;
+		public unsafe void* PlatformSetWindowPos;
+		public unsafe void* PlatformGetWindowPos;
+		public unsafe void* PlatformSetWindowSize;
+		public unsafe void* PlatformGetWindowSize;
+		public unsafe void* PlatformSetWindowFocus;
+		public unsafe void* PlatformGetWindowFocus;
+		public unsafe void* PlatformGetWindowMinimized;
+		public unsafe void* PlatformSetWindowTitle;
+		public unsafe void* PlatformSetWindowAlpha;
+		public unsafe void* PlatformUpdateWindow;
+		public unsafe void* PlatformRenderWindow;
+		public unsafe void* PlatformSwapBuffers;
+		public unsafe void* PlatformGetWindowDpiScale;
+		public unsafe void* PlatformOnChangedViewport;
+		public unsafe void* PlatformCreateVkSurface;
+		public unsafe void* RendererCreateWindow;
+		public unsafe void* RendererDestroyWindow;
+		public unsafe void* RendererSetWindowSize;
+		public unsafe void* RendererRenderWindow;
+		public unsafe void* RendererSwapBuffers;
 		public ImVectorImGuiPlatformMonitor Monitors;
 		public ImVectorImGuiViewportPtr Viewports;
 
@@ -20586,29 +20586,29 @@ namespace HexaEngine.ImGuiNET
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
 		private string DebuggerDisplay => string.Format("ImGuiPlatformIOPtr [0x{0}]", ((nuint)Handle).ToString("X"));
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformCreateWindow { get => Handle->PlatformCreateWindow; set => Handle->PlatformCreateWindow = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformDestroyWindow { get => Handle->PlatformDestroyWindow; set => Handle->PlatformDestroyWindow = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformShowWindow { get => Handle->PlatformShowWindow; set => Handle->PlatformShowWindow = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, Vector2, void> PlatformSetWindowPos { get => Handle->PlatformSetWindowPos; set => Handle->PlatformSetWindowPos = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, Vector2> PlatformGetWindowPos { get => Handle->PlatformGetWindowPos; set => Handle->PlatformGetWindowPos = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, Vector2, void> PlatformSetWindowSize { get => Handle->PlatformSetWindowSize; set => Handle->PlatformSetWindowSize = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, Vector2> PlatformGetWindowSize { get => Handle->PlatformGetWindowSize; set => Handle->PlatformGetWindowSize = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformSetWindowFocus { get => Handle->PlatformSetWindowFocus; set => Handle->PlatformSetWindowFocus = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, byte> PlatformGetWindowFocus { get => Handle->PlatformGetWindowFocus; set => Handle->PlatformGetWindowFocus = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, byte> PlatformGetWindowMinimized { get => Handle->PlatformGetWindowMinimized; set => Handle->PlatformGetWindowMinimized = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, byte*, void> PlatformSetWindowTitle { get => Handle->PlatformSetWindowTitle; set => Handle->PlatformSetWindowTitle = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, float, void> PlatformSetWindowAlpha { get => Handle->PlatformSetWindowAlpha; set => Handle->PlatformSetWindowAlpha = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformUpdateWindow { get => Handle->PlatformUpdateWindow; set => Handle->PlatformUpdateWindow = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, void*, void> PlatformRenderWindow { get => Handle->PlatformRenderWindow; set => Handle->PlatformRenderWindow = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, void*, void> PlatformSwapBuffers { get => Handle->PlatformSwapBuffers; set => Handle->PlatformSwapBuffers = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, float> PlatformGetWindowDpiScale { get => Handle->PlatformGetWindowDpiScale; set => Handle->PlatformGetWindowDpiScale = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, void> PlatformOnChangedViewport { get => Handle->PlatformOnChangedViewport; set => Handle->PlatformOnChangedViewport = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, ulong, void*, ulong*, int> PlatformCreateVkSurface { get => Handle->PlatformCreateVkSurface; set => Handle->PlatformCreateVkSurface = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, void> RendererCreateWindow { get => Handle->RendererCreateWindow; set => Handle->RendererCreateWindow = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, void> RendererDestroyWindow { get => Handle->RendererDestroyWindow; set => Handle->RendererDestroyWindow = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, Vector2, void> RendererSetWindowSize { get => Handle->RendererSetWindowSize; set => Handle->RendererSetWindowSize = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, void*, void> RendererRenderWindow { get => Handle->RendererRenderWindow; set => Handle->RendererRenderWindow = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiViewport*, void*, void> RendererSwapBuffers { get => Handle->RendererSwapBuffers; set => Handle->RendererSwapBuffers = value; }
+		public void* PlatformCreateWindow { get => Handle->PlatformCreateWindow; set => Handle->PlatformCreateWindow = value; }
+		public void* PlatformDestroyWindow { get => Handle->PlatformDestroyWindow; set => Handle->PlatformDestroyWindow = value; }
+		public void* PlatformShowWindow { get => Handle->PlatformShowWindow; set => Handle->PlatformShowWindow = value; }
+		public void* PlatformSetWindowPos { get => Handle->PlatformSetWindowPos; set => Handle->PlatformSetWindowPos = value; }
+		public void* PlatformGetWindowPos { get => Handle->PlatformGetWindowPos; set => Handle->PlatformGetWindowPos = value; }
+		public void* PlatformSetWindowSize { get => Handle->PlatformSetWindowSize; set => Handle->PlatformSetWindowSize = value; }
+		public void* PlatformGetWindowSize { get => Handle->PlatformGetWindowSize; set => Handle->PlatformGetWindowSize = value; }
+		public void* PlatformSetWindowFocus { get => Handle->PlatformSetWindowFocus; set => Handle->PlatformSetWindowFocus = value; }
+		public void* PlatformGetWindowFocus { get => Handle->PlatformGetWindowFocus; set => Handle->PlatformGetWindowFocus = value; }
+		public void* PlatformGetWindowMinimized { get => Handle->PlatformGetWindowMinimized; set => Handle->PlatformGetWindowMinimized = value; }
+		public void* PlatformSetWindowTitle { get => Handle->PlatformSetWindowTitle; set => Handle->PlatformSetWindowTitle = value; }
+		public void* PlatformSetWindowAlpha { get => Handle->PlatformSetWindowAlpha; set => Handle->PlatformSetWindowAlpha = value; }
+		public void* PlatformUpdateWindow { get => Handle->PlatformUpdateWindow; set => Handle->PlatformUpdateWindow = value; }
+		public void* PlatformRenderWindow { get => Handle->PlatformRenderWindow; set => Handle->PlatformRenderWindow = value; }
+		public void* PlatformSwapBuffers { get => Handle->PlatformSwapBuffers; set => Handle->PlatformSwapBuffers = value; }
+		public void* PlatformGetWindowDpiScale { get => Handle->PlatformGetWindowDpiScale; set => Handle->PlatformGetWindowDpiScale = value; }
+		public void* PlatformOnChangedViewport { get => Handle->PlatformOnChangedViewport; set => Handle->PlatformOnChangedViewport = value; }
+		public void* PlatformCreateVkSurface { get => Handle->PlatformCreateVkSurface; set => Handle->PlatformCreateVkSurface = value; }
+		public void* RendererCreateWindow { get => Handle->RendererCreateWindow; set => Handle->RendererCreateWindow = value; }
+		public void* RendererDestroyWindow { get => Handle->RendererDestroyWindow; set => Handle->RendererDestroyWindow = value; }
+		public void* RendererSetWindowSize { get => Handle->RendererSetWindowSize; set => Handle->RendererSetWindowSize = value; }
+		public void* RendererRenderWindow { get => Handle->RendererRenderWindow; set => Handle->RendererRenderWindow = value; }
+		public void* RendererSwapBuffers { get => Handle->RendererSwapBuffers; set => Handle->RendererSwapBuffers = value; }
 		public ref ImVectorImGuiPlatformMonitor Monitors => ref Unsafe.AsRef<ImVectorImGuiPlatformMonitor>(&Handle->Monitors);
 		public ref ImVectorImGuiViewportPtr Viewports => ref Unsafe.AsRef<ImVectorImGuiViewportPtr>(&Handle->Viewports);
 
@@ -24240,7 +24240,7 @@ public unsafe void appendf(string fmt)
 		public byte PosUndock;
 		public byte CollapsedVal;
 		public ImRect SizeConstraintRect;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiSizeCallbackData*, void> SizeCallback;
+		public unsafe void* SizeCallback;
 		public unsafe void* SizeCallbackUserData;
 		public float BgAlphaVal;
 		public int ViewportId;
@@ -24295,7 +24295,7 @@ public unsafe void appendf(string fmt)
 		public ref bool PosUndock => ref Unsafe.AsRef<bool>(&Handle->PosUndock);
 		public ref bool CollapsedVal => ref Unsafe.AsRef<bool>(&Handle->CollapsedVal);
 		public ref ImRect SizeConstraintRect => ref Unsafe.AsRef<ImRect>(&Handle->SizeConstraintRect);
-		public delegate* unmanaged[Cdecl]<ImGuiSizeCallbackData*, void> SizeCallback { get => Handle->SizeCallback; set => Handle->SizeCallback = value; }
+		public void* SizeCallback { get => Handle->SizeCallback; set => Handle->SizeCallback = value; }
 		public void* SizeCallbackUserData { get => Handle->SizeCallbackUserData; set => Handle->SizeCallbackUserData = value; }
 		public ref float BgAlphaVal => ref Unsafe.AsRef<float>(&Handle->BgAlphaVal);
 		public ref int ViewportId => ref Unsafe.AsRef<int>(&Handle->ViewportId);
@@ -27487,12 +27487,12 @@ public unsafe void appendf(string fmt)
 	{
 		public unsafe byte* TypeName;
 		public int TypeHash;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiSettingsHandler*, void> ClearAllFn;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiSettingsHandler*, void> ReadInitFn;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiSettingsHandler*, byte*, void*> ReadOpenFn;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiSettingsHandler*, void*, byte*, void> ReadLineFn;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiSettingsHandler*, void> ApplyAllFn;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiSettingsHandler*, ImGuiTextBuffer*, void> WriteAllFn;
+		public unsafe void* ClearAllFn;
+		public unsafe void* ReadInitFn;
+		public unsafe void* ReadOpenFn;
+		public unsafe void* ReadLineFn;
+		public unsafe void* ApplyAllFn;
+		public unsafe void* WriteAllFn;
 		public unsafe void* UserData;
 
 	}
@@ -27531,12 +27531,12 @@ public unsafe void appendf(string fmt)
 		private string DebuggerDisplay => string.Format("ImGuiSettingsHandlerPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		public byte* TypeName { get => Handle->TypeName; set => Handle->TypeName = value; }
 		public ref int TypeHash => ref Unsafe.AsRef<int>(&Handle->TypeHash);
-		public delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiSettingsHandler*, void> ClearAllFn { get => Handle->ClearAllFn; set => Handle->ClearAllFn = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiSettingsHandler*, void> ReadInitFn { get => Handle->ReadInitFn; set => Handle->ReadInitFn = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiSettingsHandler*, byte*, void*> ReadOpenFn { get => Handle->ReadOpenFn; set => Handle->ReadOpenFn = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiSettingsHandler*, void*, byte*, void> ReadLineFn { get => Handle->ReadLineFn; set => Handle->ReadLineFn = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiSettingsHandler*, void> ApplyAllFn { get => Handle->ApplyAllFn; set => Handle->ApplyAllFn = value; }
-		public delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiSettingsHandler*, ImGuiTextBuffer*, void> WriteAllFn { get => Handle->WriteAllFn; set => Handle->WriteAllFn = value; }
+		public void* ClearAllFn { get => Handle->ClearAllFn; set => Handle->ClearAllFn = value; }
+		public void* ReadInitFn { get => Handle->ReadInitFn; set => Handle->ReadInitFn = value; }
+		public void* ReadOpenFn { get => Handle->ReadOpenFn; set => Handle->ReadOpenFn = value; }
+		public void* ReadLineFn { get => Handle->ReadLineFn; set => Handle->ReadLineFn = value; }
+		public void* ApplyAllFn { get => Handle->ApplyAllFn; set => Handle->ApplyAllFn = value; }
+		public void* WriteAllFn { get => Handle->WriteAllFn; set => Handle->WriteAllFn = value; }
 		public void* UserData { get => Handle->UserData; set => Handle->UserData = value; }
 	}
 
@@ -27569,7 +27569,7 @@ public unsafe void appendf(string fmt)
 		public int HookId;
 		public ImGuiContextHookType Type;
 		public int Owner;
-		public unsafe delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiContextHook*, void> Callback;
+		public unsafe void* Callback;
 		public unsafe void* UserData;
 
 	}
@@ -27609,7 +27609,7 @@ public unsafe void appendf(string fmt)
 		public ref int HookId => ref Unsafe.AsRef<int>(&Handle->HookId);
 		public ref ImGuiContextHookType Type => ref Unsafe.AsRef<ImGuiContextHookType>(&Handle->Type);
 		public ref int Owner => ref Unsafe.AsRef<int>(&Handle->Owner);
-		public delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiContextHook*, void> Callback { get => Handle->Callback; set => Handle->Callback = value; }
+		public void* Callback { get => Handle->Callback; set => Handle->Callback = value; }
 		public void* UserData { get => Handle->UserData; set => Handle->UserData = value; }
 	}
 

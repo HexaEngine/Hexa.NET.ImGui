@@ -65,7 +65,7 @@
             byte[] bytes = Encoding.UTF8.GetBytes(title);
             byte* ptr = (byte*)Unsafe.AsPointer(ref bytes[0]);
 
-            WindowFlags flags = WindowFlags.Resizable | WindowFlags.Hidden;
+            WindowFlags flags = WindowFlags.Resizable | WindowFlags.Hidden | WindowFlags.AllowHighdpi;
 
             window = Sdl.CreateWindow(ptr, x, y, width, height, (uint)flags);
             WindowID = Sdl.GetWindowID(window);

@@ -1,9 +1,7 @@
 ﻿namespace Generator
 {
-    using ClangSharp;
     using CppAst;
     using System.IO;
-    using System.Runtime.InteropServices;
 
     public static partial class CsCodeGenerator
     {
@@ -26,58 +24,13 @@
                     continue;
                 DefinedTypedefs.Add(typedef.Name);
 
-                if (typedef.ElementType is CppPointerType pointerType)
+                if (typedef.ElementType is CppPointerType pointerType && pointerType.ElementType is not CppFunctionType)
                 {
                     var isDispatchable = true;
                     var csName = GetCsCleanName(typedef.Name);
-
-                    if (IsDelegate(pointerType, out var delegateType))
-                    {
-                        WriteDelegate(writer, typedef, delegateType, csName);
-                        continue;
-                    }
-
                     WriteHandle(writer, typedef, csName, isDispatchable);
                 }
             }
-        }
-
-        public static void WriteDelegate(CodeWriter writer, CppTypedef typedef, CppFunctionType type, string csName)
-        {
-            string returnCsName = GetCsTypeName(type.ReturnType, false);
-            string signature = GetParameterSignature(type.Parameters, false);
-            WriteCsSummary(typedef.Comment, writer);
-
-            writer.WriteLine($"[UnmanagedFunctionPointer(CallingConvention.{Map(type.CallingConvention)})]");
-            writer.WriteLine($"public unsafe delegate {returnCsName} {csName}({signature});");
-            writer.WriteLine();
-        }
-
-        public static CallingConvention Map(CppCallingConvention convention)
-        {
-            return convention switch
-            {
-                CppCallingConvention.Default => throw new NotImplementedException(),
-                CppCallingConvention.C => CallingConvention.Cdecl,
-                CppCallingConvention.X86StdCall => CallingConvention.StdCall,
-                CppCallingConvention.X86FastCall => CallingConvention.FastCall,
-                CppCallingConvention.X86ThisCall => CallingConvention.ThisCall,
-                CppCallingConvention.X86Pascal => throw new NotImplementedException(),
-                CppCallingConvention.AAPCS => throw new NotImplementedException(),
-                CppCallingConvention.AAPCS_VFP => throw new NotImplementedException(),
-                CppCallingConvention.X86RegCall => throw new NotImplementedException(),
-                CppCallingConvention.IntelOclBicc => throw new NotImplementedException(),
-                CppCallingConvention.Win64 => CallingConvention.Winapi,
-                CppCallingConvention.X86_64SysV => throw new NotImplementedException(),
-                CppCallingConvention.X86VectorCall => throw new NotImplementedException(),
-                CppCallingConvention.Swift => throw new NotImplementedException(),
-                CppCallingConvention.PreserveMost => throw new NotImplementedException(),
-                CppCallingConvention.PreserveAll => throw new NotImplementedException(),
-                CppCallingConvention.AArch64VectorCall => throw new NotImplementedException(),
-                CppCallingConvention.Invalid => throw new NotImplementedException(),
-                CppCallingConvention.Unexposed => throw new NotImplementedException(),
-                _ => throw new NotImplementedException(),
-            };
         }
 
         private static void WriteHandle(CodeWriter writer, CppTypedef typedef, string csName, bool isDispatchable)

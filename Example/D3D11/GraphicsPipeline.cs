@@ -416,6 +416,22 @@
             context.IASetPrimitiveTopology(Helper.Convert(state.Topology));
         }
 
+        public static void UnsetGraphicsPipeline(ComPtr<ID3D11DeviceContext1> context)
+        {
+            context.VSSetShader((ID3D11VertexShader*)null, null, 0);
+            context.HSSetShader((ID3D11HullShader*)null, null, 0);
+            context.DSSetShader((ID3D11DomainShader*)null, null, 0);
+            context.GSSetShader((ID3D11GeometryShader*)null, null, 0);
+            context.PSSetShader((ID3D11PixelShader*)null, null, 0);
+
+            context.RSSetState((ID3D11RasterizerState*)null);
+
+            context.OMSetBlendState((ID3D11BlendState*)null, (float*)null, uint.MaxValue);
+            context.OMSetDepthStencilState((ID3D11DepthStencilState*)null, 0);
+            context.IASetInputLayout((ID3D11InputLayout*)null);
+            context.IASetPrimitiveTopology(default);
+        }
+
         public void EndDraw(IGraphicsContext context)
         {
         }

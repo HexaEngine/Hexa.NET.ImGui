@@ -5,6 +5,7 @@
     using HexaEngine.Core.Windows;
     using Silk.NET.Core.Native;
     using Silk.NET.DXGI;
+    using Silk.NET.SDL;
     using System.Diagnostics;
     using System.Runtime.Versioning;
 
@@ -77,7 +78,49 @@
             IDXGIFactory.CreateSwapChainForHwnd((IUnknown*)device.Device.Handle, hwnd, &desc, &fullscreenDesc, (IDXGIOutput*)null, &swapChain.Handle);
             IDXGIFactory.MakeWindowAssociation(hwnd, 1 << 0);
 
-            return new DXGISwapChain(device, swapChain, (SwapChainFlag)desc.Flags);
+            return new DXGISwapChain(device, swapChain, desc);
+        }
+
+        internal ISwapChain CreateSwapChainForWindow(D3D11GraphicsDevice device, Window* window)
+        {
+            Sdl sdl = Sdl.GetApi();
+            SysWMInfo info;
+            sdl.GetVersion(&info.Version);
+            sdl.GetWindowWMInfo(window, &info);
+
+            int width = 0;
+            int height = 0;
+
+            sdl.GetWindowSize(window, &width, &height);
+
+            var Hwnd = info.Info.Win.Hwnd;
+
+            SwapChainDesc1 desc = new()
+            {
+                Width = (uint)width,
+                Height = (uint)height,
+                Format = Silk.NET.DXGI.Format.FormatB8G8R8A8Unorm,
+                BufferCount = 3,
+                BufferUsage = DXGI.UsageRenderTargetOutput,
+                SampleDesc = new(1, 0),
+                Scaling = Scaling.Stretch,
+                SwapEffect = SwapEffect.FlipSequential,
+                Flags = (uint)(SwapChainFlag.AllowModeSwitch | SwapChainFlag.AllowTearing)
+            };
+
+            SwapChainFullscreenDesc fullscreenDesc = new()
+            {
+                Windowed = 1,
+                RefreshRate = new Rational(0, 1),
+                Scaling = ModeScaling.Unspecified,
+                ScanlineOrdering = ModeScanlineOrder.Unspecified,
+            };
+
+            ComPtr<IDXGISwapChain1> swapChain;
+            IDXGIFactory.CreateSwapChainForHwnd((IUnknown*)device.Device.Handle, Hwnd, &desc, &fullscreenDesc, (IDXGIOutput*)null, &swapChain.Handle);
+            // IDXGIFactory.MakeWindowAssociation(Hwnd, 1 << 0);
+
+            return new DXGISwapChain(device, swapChain, desc, false);
         }
 
         private IDXGIAdapter1* GetHardwareAdapter()

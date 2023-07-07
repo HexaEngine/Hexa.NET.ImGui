@@ -22,7 +22,7 @@
         private ISwapChain swapChain;
 
         private bool resize = false;
-        private ImGuiRenderer? imGuiRenderer;
+        private ImGuiManager? imGuiRenderer;
 
         public IGraphicsDevice Device => graphicsDevice;
 
@@ -50,13 +50,14 @@
             swapChain = graphicsDevice.CreateSwapChain(this) ?? throw new PlatformNotSupportedException();
             swapChain.Active = true;
             swapChain.LimitFPS = true;
+            swapChain.VSync = false;
 
             if (Application.MainWindow == this)
             {
                 PipelineManager.Initialize(graphicsDevice);
             }
 
-            imGuiRenderer = new(this, graphicsDevice, swapChain);
+            imGuiRenderer = new(this, graphicsDevice, graphicsContext);
 
             OnRendererInitialize(graphicsDevice);
 
@@ -82,12 +83,13 @@
 
             context.ClearDepthStencilView(swapChain.BackbufferDSV, DepthStencilClearFlags.Depth | DepthStencilClearFlags.Stencil, 1, 0);
             context.ClearRenderTargetView(swapChain.BackbufferRTV, Vector4.Zero);
+            context.SetRenderTarget(swapChain.BackbufferRTV, null);
 
-            imGuiRenderer?.BeginDraw();
+            imGuiRenderer?.NewFrame();
 
             OnRenderBegin(context);
 
-            //ImGuiConsole.Draw();
+            ImGuiConsole.Draw();
             imGuiDemo.Draw();
             imGuizmoDemo.Draw();
             imNodesDemo.Draw();
@@ -95,7 +97,7 @@
 
             OnRender(context);
 
-            imGuiRenderer?.EndDraw();
+            imGuiRenderer?.EndFrame();
 
             swapChain.Present();
 

@@ -5,6 +5,8 @@
 
     public interface ISwapChain : IDisposable
     {
+        void Present(uint sync, uint flags);
+
         void Present(bool sync);
 
         void Present();

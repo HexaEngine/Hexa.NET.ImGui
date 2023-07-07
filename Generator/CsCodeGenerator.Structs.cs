@@ -309,7 +309,14 @@
                         string returnCsName = GetCsTypeName(cppFunctionType.ReturnType, false);
                         string signature = GetNamelessParameterSignature(cppFunctionType.Parameters, false);
                         returnCsName = returnCsName.Replace("bool", "byte");
-                        writer.WriteLine($"public unsafe delegate* unmanaged[{GetCallingConventionDelegate(cppFunctionType.CallingConvention)}]<{signature}, {returnCsName}> {csFieldName};");
+                        if (CsCodeGeneratorSettings.Default.DelegatesAsVoidPointer)
+                        {
+                            writer.WriteLine($"public unsafe void* {csFieldName};");
+                        }
+                        else
+                        {
+                            writer.WriteLine($"public unsafe delegate* unmanaged[{GetCallingConventionDelegate(cppFunctionType.CallingConvention)}]<{signature}, {returnCsName}> {csFieldName};");
+                        }
                     }
                     else
                     {
@@ -465,7 +472,14 @@
                     returnCsName = returnCsName.Replace("bool", "byte");
                     builder.Append(returnCsName);
 
-                    writer.WriteLine($"public {fieldPrefix}unsafe delegate* unmanaged[{GetCallingConventionDelegate(functionType.CallingConvention)}]<{builder}> {csFieldName};");
+                    if (CsCodeGeneratorSettings.Default.DelegatesAsVoidPointer)
+                    {
+                        writer.WriteLine($"public {fieldPrefix}unsafe void* {csFieldName};");
+                    }
+                    else
+                    {
+                        writer.WriteLine($"public {fieldPrefix}unsafe delegate* unmanaged[{GetCallingConventionDelegate(functionType.CallingConvention)}]<{builder}> {csFieldName};");
+                    }
 
                     return;
                 }
@@ -547,13 +561,27 @@
                     returnCsName = returnCsName.Replace("bool", "byte");
                     builder.Append(returnCsName);
 
-                    if (isReadOnly)
+                    if (CsCodeGeneratorSettings.Default.DelegatesAsVoidPointer)
                     {
-                        writer.WriteLine($"public delegate* unmanaged[{GetCallingConventionDelegate(functionType.CallingConvention)}]<{builder}> {csFieldName} {{ get => Handle->{csFieldName}; }}");
+                        if (isReadOnly)
+                        {
+                            writer.WriteLine($"public void* {csFieldName} {{ get => Handle->{csFieldName}; }}");
+                        }
+                        else
+                        {
+                            writer.WriteLine($"public void* {csFieldName} {{ get => Handle->{csFieldName}; set => Handle->{csFieldName} = value; }}");
+                        }
                     }
                     else
                     {
-                        writer.WriteLine($"public delegate* unmanaged[{GetCallingConventionDelegate(functionType.CallingConvention)}]<{builder}> {csFieldName} {{ get => Handle->{csFieldName}; set => Handle->{csFieldName} = value; }}");
+                        if (isReadOnly)
+                        {
+                            writer.WriteLine($"public delegate* unmanaged[{GetCallingConventionDelegate(functionType.CallingConvention)}]<{builder}> {csFieldName} {{ get => Handle->{csFieldName}; }}");
+                        }
+                        else
+                        {
+                            writer.WriteLine($"public delegate* unmanaged[{GetCallingConventionDelegate(functionType.CallingConvention)}]<{builder}> {csFieldName} {{ get => Handle->{csFieldName}; set => Handle->{csFieldName} = value; }}");
+                        }
                     }
 
                     return;

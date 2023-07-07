@@ -35,7 +35,7 @@
             capacity = DefaultCapacity;
             this.device = device;
             items = Alloc<T>(DefaultCapacity);
-            Zero(items, (uint)(capacity * sizeof(T)));
+            ZeroMemory(items, (uint)(capacity * sizeof(T)));
             buffer = device.CreateBuffer(items, DefaultCapacity, description);
             buffer.DebugName = dbgName;
         }

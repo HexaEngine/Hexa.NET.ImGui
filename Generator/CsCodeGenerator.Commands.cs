@@ -61,13 +61,13 @@
                     WriteCsSummary(cppFunction.Comment, writer);
                     if (boolReturn)
                     {
-                        writer.WriteLine($"[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = \"{cppFunction.Name}\")]");
+                        writer.WriteLine($"[DllImport(LibName, CallingConvention = CallingConvention.{GetCallingConvention(cppFunction.CallingConvention)}, EntryPoint = \"{cppFunction.Name}\")]");
                         writer.WriteLine($"internal static extern byte {csName}Native({argumentsString});");
                         writer.WriteLine();
                     }
                     else
                     {
-                        writer.WriteLine($"[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = \"{cppFunction.Name}\")]");
+                        writer.WriteLine($"[DllImport(LibName, CallingConvention = CallingConvention.{GetCallingConvention(cppFunction.CallingConvention)}, EntryPoint = \"{cppFunction.Name}\")]");
                         writer.WriteLine($"internal static extern {header};");
                         writer.WriteLine();
                     }

@@ -34,12 +34,6 @@ namespace HexaEngine.ImGuiNET
 		private string DebuggerDisplay => string.Format("ImTextureID [0x{0}]", Handle.ToString("X"));
 	}
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImDrawCallback(ImDrawList* parentList, ImDrawCmd* cmd);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImGuiSizeCallback(ImGuiSizeCallbackData* data);
-
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	public readonly partial struct ImBitArrayPtr : IEquatable<ImBitArrayPtr>
 	{
@@ -60,9 +54,6 @@ namespace HexaEngine.ImGuiNET
 		private string DebuggerDisplay => string.Format("ImBitArrayPtr [0x{0}]", Handle.ToString("X"));
 	}
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImGuiContextHookCallback(ImGuiContext* ctx, ImGuiContextHook* hook);
-
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	public readonly partial struct ImFileHandle : IEquatable<ImFileHandle>
 	{
@@ -82,17 +73,5 @@ namespace HexaEngine.ImGuiNET
 		public override int GetHashCode() => Handle.GetHashCode();
 		private string DebuggerDisplay => string.Format("ImFileHandle [0x{0}]", Handle.ToString("X"));
 	}
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate int ImGuiInputTextCallback(ImGuiInputTextCallbackData* data);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void* ImGuiMemAllocFunc(nuint sz, void* userData);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImGuiMemFreeFunc(void* ptr, void* userData);
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImGuiErrorLogCallback(void* userData, byte* fmt);
 
 }

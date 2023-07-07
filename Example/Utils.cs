@@ -104,12 +104,23 @@
         /// Copies an pointer to another pointer with the specified lengthes.
         /// </summary>
         /// <param name="src">The source.</param>
-        /// <param name="dst">The DST.</param>
-        /// <param name="dstLength">Length of the DST.</param>
+        /// <param name="dst">The destination.</param>
+        /// <param name="dstLength">Length of the destination.</param>
         /// <param name="srcLength">Length of the source.</param>
         public static void Memcpy(void* src, void* dst, uint dstLength, uint srcLength)
         {
             Buffer.MemoryCopy(src, dst, dstLength, srcLength);
+        }
+
+        /// <summary>
+        /// Copies an pointer to another pointer with the specified lengthes.
+        /// </summary>
+        /// <param name="src">The source.</param>
+        /// <param name="dst">The destination.</param>
+        /// <param name="length">Length of the destination and source.</param>
+        public static void Memcpy(void* src, void* dst, uint length)
+        {
+            Buffer.MemoryCopy(src, dst, length, length);
         }
 
         /// <summary>
@@ -305,9 +316,9 @@
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="pointer">The pointer.</param>
-        public static void Zero<T>(T* pointer) where T : unmanaged
+        public static void ZeroMemory<T>(T* pointer) where T : unmanaged
         {
-            Zero(pointer, (uint)sizeof(T));
+            ZeroMemory(pointer, (uint)sizeof(T));
         }
 
         /// <summary>
@@ -318,7 +329,7 @@
         /// <param name="length">The length.</param>
         public static void ZeroRange<T>(T* pointer, uint length) where T : unmanaged
         {
-            Zero(pointer, (uint)sizeof(T) * length);
+            ZeroMemory(pointer, (uint)sizeof(T) * length);
         }
 
         /// <summary>
@@ -326,7 +337,7 @@
         /// </summary>
         /// <param name="pointer">The pointer.</param>
         /// <param name="size">The size.</param>
-        public static void Zero(void* pointer, uint size)
+        public static void ZeroMemory(void* pointer, uint size)
         {
             new Span<byte>(pointer, (int)size).Clear();
         }

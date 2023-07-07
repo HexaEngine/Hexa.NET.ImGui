@@ -50,6 +50,11 @@
 
         public void SetGraphicsPipeline(IGraphicsPipeline pipeline)
         {
+            if (pipeline == null)
+            {
+                GraphicsPipeline.UnsetGraphicsPipeline(DeviceContext);
+                return;
+            }
             ((GraphicsPipeline)pipeline).SetGraphicsPipeline(DeviceContext);
         }
 

@@ -12,7 +12,8 @@
     public unsafe class DXGISwapChain : DeviceChildBase, ISwapChain
     {
         private ComPtr<IDXGISwapChain1> swapChain;
-        private SwapChainFlag flags;
+        private readonly SwapChainDesc1 desc;
+        private readonly bool createDepthStencil;
         private ComPtr<ID3D11Texture2D> backbuffer;
         private ITexture2D depthStencil;
         private long fpsStartTime;
@@ -22,21 +23,25 @@
         private int targetFPS = 120;
         private bool active;
 
-        internal DXGISwapChain(D3D11GraphicsDevice device, ComPtr<IDXGISwapChain1> swapChain, SwapChainFlag flags)
+        internal DXGISwapChain(D3D11GraphicsDevice device, ComPtr<IDXGISwapChain1> swapChain, SwapChainDesc1 desc, bool createDepthStencil = true)
         {
             Device = device;
             this.swapChain = swapChain;
-            this.flags = flags;
-
+            this.desc = desc;
+            this.createDepthStencil = createDepthStencil;
             swapChain.GetBuffer(0, out backbuffer);
-            Texture2DDesc desc;
-            backbuffer.GetDesc(&desc);
-            Texture2DDescription description = Helper.ConvertBack(desc);
+            Texture2DDesc texDesc;
+            backbuffer.GetDesc(&texDesc);
+            Texture2DDescription description = Helper.ConvertBack(texDesc);
 
             Backbuffer = new D3D11Texture2D(backbuffer, description);
             BackbufferRTV = device.CreateRenderTargetView(Backbuffer, new(description.Width, description.Height));
-            depthStencil = device.CreateTexture2D(Core.Graphics.Format.D32FloatS8X24UInt, description.Width, description.Height, 1, 1, null, BindFlags.DepthStencil);
-            BackbufferDSV = device.CreateDepthStencilView(depthStencil);
+            if (createDepthStencil)
+            {
+                depthStencil = device.CreateTexture2D(Core.Graphics.Format.D32FloatS8X24UInt, description.Width, description.Height, 1, 1, null, BindFlags.DepthStencil);
+                BackbufferDSV = device.CreateDepthStencilView(depthStencil);
+            }
+
             Width = description.Width;
             Height = description.Height;
             Viewport = new(0, 0, Width, Height);
@@ -67,6 +72,11 @@
         public int TargetFPS { get => targetFPS; set => targetFPS = value; }
 
         public bool Active { get => active; set => active = value; }
+
+        public void Present(uint sync, uint flags)
+        {
+            swapChain.Present(sync, DXGI.PresentAllowTearing);
+        }
 
         public void Present(bool sync)
         {
@@ -135,10 +145,10 @@
 
             Backbuffer.Dispose();
             BackbufferRTV.Dispose();
-            BackbufferDSV.Dispose();
-            depthStencil.Dispose();
+            BackbufferDSV?.Dispose();
+            depthStencil?.Dispose();
 
-            swapChain.ResizeBuffers(2, (uint)width, (uint)height, Silk.NET.DXGI.Format.FormatB8G8R8A8Unorm, (uint)flags);
+            swapChain.ResizeBuffers(this.desc.BufferCount, (uint)width, (uint)height, this.desc.Format, this.desc.Flags);
             Width = width;
             Height = height;
             Viewport = new(0, 0, Width, Height);
@@ -150,8 +160,12 @@
 
             Backbuffer = new D3D11Texture2D(backbuffer, description);
             BackbufferRTV = Device.CreateRenderTargetView(Backbuffer, new(description.Width, description.Height));
-            depthStencil = Device.CreateTexture2D(Core.Graphics.Format.D32FloatS8X24UInt, description.Width, description.Height, 1, 1, null, BindFlags.DepthStencil);
-            BackbufferDSV = Device.CreateDepthStencilView(depthStencil);
+
+            if (createDepthStencil)
+            {
+                depthStencil = Device.CreateTexture2D(Core.Graphics.Format.D32FloatS8X24UInt, description.Width, description.Height, 1, 1, null, BindFlags.DepthStencil);
+                BackbufferDSV = Device.CreateDepthStencilView(depthStencil);
+            }
 
             Resized?.Invoke(this, new(oldWidth, oldHeight, width, height));
         }
@@ -160,8 +174,8 @@
         {
             Backbuffer.Dispose();
             BackbufferRTV.Dispose();
-            BackbufferDSV.Dispose();
-            depthStencil.Dispose();
+            BackbufferDSV?.Dispose();
+            depthStencil?.Dispose();
             swapChain.Release();
         }
     }

@@ -9,10 +9,14 @@
 
 using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Numerics;
 using HexaEngine.ImGuiNET;
 
-namespace HexaEngine.ImPlotNET
+namespace HexaEngine.ImNodesNET
 {
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImNodesMiniMapNodeHoveringCallback(int intValue, void* voidValue);
+
 }

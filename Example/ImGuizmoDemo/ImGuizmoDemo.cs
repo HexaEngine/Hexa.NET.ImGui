@@ -66,7 +66,7 @@
 
             if (!ImGui.IsWindowDocked())
             {
-                var node = ImGui.DockBuilderGetCentralNode(ImGuiRenderer.DockSpaceId);
+                var node = ImGui.DockBuilderGetCentralNode(ImGuiManager.DockSpaceId);
                 ImGui.DockBuilderDockWindow("Demo ImGuizmo", node.ID);
             }
 

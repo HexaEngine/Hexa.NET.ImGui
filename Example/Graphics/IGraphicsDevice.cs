@@ -2,6 +2,7 @@
 {
     using HexaEngine.Core.Windows;
     using HexaEngine.Mathematics;
+    using Silk.NET.SDL;
     using System;
     using System.Runtime.CompilerServices;
 
@@ -17,6 +18,8 @@
         ITextureLoader TextureLoader { get; }
 
         public ISwapChain CreateSwapChain(SdlWindow window);
+
+        unsafe ISwapChain CreateSwapChain(Window* window);
 
         /// <summary>
         /// Creates a <see cref="IBuffer"/> with the given <see cref="BufferDescription"/>

@@ -45,6 +45,16 @@
             states.Add(MouseButton.X2, (MouseButtonState)(state & maskX2));
         }
 
+        public static Vector2 Global
+        {
+            get
+            {
+                int x, y;
+                sdl.GetGlobalMouseState(&x, &y);
+                return new Vector2(x, y);
+            }
+        }
+
         public static Vector2 Position => pos;
 
         public static Vector2 Delta => delta;

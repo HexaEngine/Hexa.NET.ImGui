@@ -15,9 +15,6 @@ using HexaEngine.ImGuiNET;
 
 namespace HexaEngine.ImNodesNET
 {
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImNodesMiniMapNodeHoveringCallback(int intValue, void* voidValue);
-
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
 	public readonly partial struct ImNodesMiniMapNodeHoveringCallbackUserData : IEquatable<ImNodesMiniMapNodeHoveringCallbackUserData>
 	{

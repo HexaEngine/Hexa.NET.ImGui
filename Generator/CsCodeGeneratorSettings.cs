@@ -6,6 +6,22 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Text.Json;
 
+    public class DelegateMapping
+    {
+        public DelegateMapping(string name, string returnType, string signature)
+        {
+            Name = name;
+            ReturnType = returnType;
+            Signature = signature;
+        }
+
+        public string Name { get; set; }
+
+        public string ReturnType { get; set; }
+
+        public string Signature { get; set; }
+    }
+
     public class CsCodeGeneratorSettings
     {
         public static void Load(string file)
@@ -30,6 +46,10 @@
         public string LibName { get; set; } = string.Empty;
 
         public bool GenerateSizeOfStructs { get; set; } = false;
+
+        public bool DelegatesAsVoidPointer { get; set; } = true;
+
+        public bool GenerateDelegates { get; set; } = true;
 
         public Dictionary<string, string> KnownConstantNames { get; set; } = new();
 
@@ -59,9 +79,13 @@
 
         public HashSet<string> IgnoredTypedefs { get; set; } = new();
 
+        public HashSet<string> IgnoredDelegates { get; set; } = new();
+
         public List<FunctionMapping> FunctionMappings { get; set; } = new();
 
         public List<ArrayMapping> ArrayMappings { get; set; } = new();
+
+        public List<DelegateMapping> DelegateMappings { get; set; } = new();
 
         public Dictionary<string, string> NameMappings { get; set; } = new()
         {
@@ -88,6 +112,8 @@
 
         public List<string> AllowedTypedefs { get; set; } = new();
 
+        public List<string> AllowedDelegates { get; set; } = new();
+
         public List<string> Usings { get; set; } = new();
 
         public void Save()
@@ -103,6 +129,22 @@
                 if (functionMapping.ExportedName == functionName)
                 {
                     mapping = functionMapping;
+                    return true;
+                }
+            }
+
+            mapping = null;
+            return false;
+        }
+
+        public bool TryGetDelegateMapping(string delegateName, [NotNullWhen(true)] out DelegateMapping? mapping)
+        {
+            for (int i = 0; i < DelegateMappings.Count; i++)
+            {
+                var delegateMapping = DelegateMappings[i];
+                if (delegateMapping.Name == delegateName)
+                {
+                    mapping = delegateMapping;
                     return true;
                 }
             }

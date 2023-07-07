@@ -6,6 +6,7 @@
     using Silk.NET.Core.Native;
     using Silk.NET.Direct3D11;
     using Silk.NET.DXGI;
+    using Silk.NET.SDL;
     using System;
     using System.Globalization;
     using System.Runtime.CompilerServices;
@@ -109,6 +110,11 @@
         public D3DFeatureLevel Level { get; protected set; }
 
         public ISwapChain CreateSwapChain(SdlWindow window)
+        {
+            return adapter.CreateSwapChainForWindow(this, window);
+        }
+
+        public ISwapChain CreateSwapChain(Window* window)
         {
             return adapter.CreateSwapChainForWindow(this, window);
         }
