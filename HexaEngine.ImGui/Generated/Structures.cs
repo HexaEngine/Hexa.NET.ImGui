@@ -15978,12 +15978,31 @@ namespace HexaEngine.ImGuiNET
 		public int CmdListsCount;
 		public int TotalIdxCount;
 		public int TotalVtxCount;
-		public unsafe ImDrawList** CmdLists;
+		public ImVectorImDrawListPtr CmdLists;
 		public Vector2 DisplayPos;
 		public Vector2 DisplaySize;
 		public Vector2 FramebufferScale;
 		public unsafe ImGuiViewport* OwnerViewport;
 
+
+		public unsafe void AddDrawList(ImDrawListPtr drawList)
+		{
+			fixed (ImDrawData* @this = &this)
+			{
+				ImGui.AddDrawListNative(@this, drawList);
+			}
+		}
+
+		public unsafe void AddDrawList(ref ImDrawList drawList)
+		{
+			fixed (ImDrawData* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					ImGui.AddDrawListNative(@this, (ImDrawList*)pdrawList);
+				}
+			}
+		}
 
 		public unsafe void Clear()
 		{
@@ -16055,11 +16074,24 @@ namespace HexaEngine.ImGuiNET
 		public ref int CmdListsCount => ref Unsafe.AsRef<int>(&Handle->CmdListsCount);
 		public ref int TotalIdxCount => ref Unsafe.AsRef<int>(&Handle->TotalIdxCount);
 		public ref int TotalVtxCount => ref Unsafe.AsRef<int>(&Handle->TotalVtxCount);
-		public ref ImDrawListPtrPtr CmdLists => ref Unsafe.AsRef<ImDrawListPtrPtr>(&Handle->CmdLists);
+		public ref ImVectorImDrawListPtr CmdLists => ref Unsafe.AsRef<ImVectorImDrawListPtr>(&Handle->CmdLists);
 		public ref Vector2 DisplayPos => ref Unsafe.AsRef<Vector2>(&Handle->DisplayPos);
 		public ref Vector2 DisplaySize => ref Unsafe.AsRef<Vector2>(&Handle->DisplaySize);
 		public ref Vector2 FramebufferScale => ref Unsafe.AsRef<Vector2>(&Handle->FramebufferScale);
 		public ref ImGuiViewportPtr OwnerViewport => ref Unsafe.AsRef<ImGuiViewportPtr>(&Handle->OwnerViewport);
+
+		public unsafe void AddDrawList(ImDrawListPtr drawList)
+		{
+			ImGui.AddDrawListNative(Handle, drawList);
+		}
+
+		public unsafe void AddDrawList(ref ImDrawList drawList)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				ImGui.AddDrawListNative(Handle, (ImDrawList*)pdrawList);
+			}
+		}
 
 		public unsafe void Clear()
 		{
@@ -16081,6 +16113,52 @@ namespace HexaEngine.ImGuiNET
 			ImGui.ScaleClipRectsNative(Handle, fbScale);
 		}
 
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImVectorImDrawListPtr
+	{
+		public int Size;
+		public int Capacity;
+		public unsafe ImDrawList** Data;
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImVectorImDrawListPtrPtr : IEquatable<ImVectorImDrawListPtrPtr>
+	{
+		public ImVectorImDrawListPtrPtr(ImVectorImDrawListPtr* handle) { Handle = handle; }
+
+		public ImVectorImDrawListPtr* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImVectorImDrawListPtrPtr Null => new ImVectorImDrawListPtrPtr(null);
+
+		public static implicit operator ImVectorImDrawListPtrPtr(ImVectorImDrawListPtr* handle) => new ImVectorImDrawListPtrPtr(handle);
+
+		public static implicit operator ImVectorImDrawListPtr*(ImVectorImDrawListPtrPtr handle) => handle.Handle;
+
+		public static bool operator ==(ImVectorImDrawListPtrPtr left, ImVectorImDrawListPtrPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImVectorImDrawListPtrPtr left, ImVectorImDrawListPtrPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImVectorImDrawListPtrPtr left, ImVectorImDrawListPtr* right) => left.Handle == right;
+
+		public static bool operator !=(ImVectorImDrawListPtrPtr left, ImVectorImDrawListPtr* right) => left.Handle != right;
+
+		public bool Equals(ImVectorImDrawListPtrPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImVectorImDrawListPtrPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImVectorImDrawListPtrPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
+		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
+		public ref ImDrawListPtrPtr Data => ref Unsafe.AsRef<ImDrawListPtrPtr>(&Handle->Data);
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -17103,6 +17181,7 @@ namespace HexaEngine.ImGuiNET
 		public ImVectorImGuiGroupData GroupStack;
 		public ImVectorImGuiPopupData OpenPopupStack;
 		public ImVectorImGuiPopupData BeginPopupStack;
+		public ImVectorImGuiNavTreeNodeData NavTreeNodeStack;
 		public int BeginMenuCount;
 		public ImVectorImGuiViewportPPtr Viewports;
 		public float CurrentDpiScale;
@@ -17239,13 +17318,13 @@ namespace HexaEngine.ImGuiNET
 		public float ScrollbarClickDeltaToGrabCenter;
 		public float DisabledAlphaBackup;
 		public short DisabledStackSize;
+		public short LockMarkEdited;
 		public short TooltipOverrideCount;
 		public ImVectorChar ClipboardHandlerData;
 		public ImVectorImGuiID MenusIdSubmittedThisFrame;
 		public ImGuiPlatformImeData PlatformImeData;
 		public ImGuiPlatformImeData PlatformImeDataPrev;
 		public int PlatformImeViewport;
-		public byte PlatformLocaleDecimalPoint;
 		public ImGuiDockContext DockContext;
 		public unsafe void* DockNodeWindowMenuHandler;
 		public byte SettingsLoaded;
@@ -17265,6 +17344,7 @@ namespace HexaEngine.ImGuiNET
 		public unsafe byte* LocalizationTable_6;
 		public unsafe byte* LocalizationTable_7;
 		public unsafe byte* LocalizationTable_8;
+		public unsafe byte* LocalizationTable_9;
 		public byte LogEnabled;
 		public ImGuiLogType LogType;
 		public ImFileHandle LogFile;
@@ -17496,6 +17576,7 @@ namespace HexaEngine.ImGuiNET
 		public ref ImVectorImGuiGroupData GroupStack => ref Unsafe.AsRef<ImVectorImGuiGroupData>(&Handle->GroupStack);
 		public ref ImVectorImGuiPopupData OpenPopupStack => ref Unsafe.AsRef<ImVectorImGuiPopupData>(&Handle->OpenPopupStack);
 		public ref ImVectorImGuiPopupData BeginPopupStack => ref Unsafe.AsRef<ImVectorImGuiPopupData>(&Handle->BeginPopupStack);
+		public ref ImVectorImGuiNavTreeNodeData NavTreeNodeStack => ref Unsafe.AsRef<ImVectorImGuiNavTreeNodeData>(&Handle->NavTreeNodeStack);
 		public ref int BeginMenuCount => ref Unsafe.AsRef<int>(&Handle->BeginMenuCount);
 		public ref ImVectorImGuiViewportPPtr Viewports => ref Unsafe.AsRef<ImVectorImGuiViewportPPtr>(&Handle->Viewports);
 		public ref float CurrentDpiScale => ref Unsafe.AsRef<float>(&Handle->CurrentDpiScale);
@@ -17624,13 +17705,13 @@ namespace HexaEngine.ImGuiNET
 		public ref float ScrollbarClickDeltaToGrabCenter => ref Unsafe.AsRef<float>(&Handle->ScrollbarClickDeltaToGrabCenter);
 		public ref float DisabledAlphaBackup => ref Unsafe.AsRef<float>(&Handle->DisabledAlphaBackup);
 		public ref short DisabledStackSize => ref Unsafe.AsRef<short>(&Handle->DisabledStackSize);
+		public ref short LockMarkEdited => ref Unsafe.AsRef<short>(&Handle->LockMarkEdited);
 		public ref short TooltipOverrideCount => ref Unsafe.AsRef<short>(&Handle->TooltipOverrideCount);
 		public ref ImVectorChar ClipboardHandlerData => ref Unsafe.AsRef<ImVectorChar>(&Handle->ClipboardHandlerData);
 		public ref ImVectorImGuiID MenusIdSubmittedThisFrame => ref Unsafe.AsRef<ImVectorImGuiID>(&Handle->MenusIdSubmittedThisFrame);
 		public ref ImGuiPlatformImeData PlatformImeData => ref Unsafe.AsRef<ImGuiPlatformImeData>(&Handle->PlatformImeData);
 		public ref ImGuiPlatformImeData PlatformImeDataPrev => ref Unsafe.AsRef<ImGuiPlatformImeData>(&Handle->PlatformImeDataPrev);
 		public ref int PlatformImeViewport => ref Unsafe.AsRef<int>(&Handle->PlatformImeViewport);
-		public ref byte PlatformLocaleDecimalPoint => ref Unsafe.AsRef<byte>(&Handle->PlatformLocaleDecimalPoint);
 		public ref ImGuiDockContext DockContext => ref Unsafe.AsRef<ImGuiDockContext>(&Handle->DockContext);
 		public void* DockNodeWindowMenuHandler { get => Handle->DockNodeWindowMenuHandler; set => Handle->DockNodeWindowMenuHandler = value; }
 		public ref bool SettingsLoaded => ref Unsafe.AsRef<bool>(&Handle->SettingsLoaded);
@@ -17733,6 +17814,7 @@ namespace HexaEngine.ImGuiNET
 		public unsafe void* ClipboardUserData;
 		public unsafe void* SetPlatformImeDataFn;
 		public unsafe void* UnusedPadding;
+		public char PlatformLocaleDecimalPoint;
 		public byte WantCaptureMouse;
 		public byte WantCaptureKeyboard;
 		public byte WantTextInput;
@@ -19973,11 +20055,11 @@ namespace HexaEngine.ImGuiNET
 			}
 		}
 
-		public unsafe void ClearInputCharacters()
+		public unsafe void ClearEventsQueue()
 		{
 			fixed (ImGuiIO* @this = &this)
 			{
-				ImGui.ClearInputCharactersNative(@this);
+				ImGui.ClearEventsQueueNative(@this);
 			}
 		}
 
@@ -20104,6 +20186,7 @@ namespace HexaEngine.ImGuiNET
 		public void* ClipboardUserData { get => Handle->ClipboardUserData; set => Handle->ClipboardUserData = value; }
 		public void* SetPlatformImeDataFn { get => Handle->SetPlatformImeDataFn; set => Handle->SetPlatformImeDataFn = value; }
 		public void* UnusedPadding { get => Handle->UnusedPadding; set => Handle->UnusedPadding = value; }
+		public ref char PlatformLocaleDecimalPoint => ref Unsafe.AsRef<char>(&Handle->PlatformLocaleDecimalPoint);
 		public ref bool WantCaptureMouse => ref Unsafe.AsRef<bool>(&Handle->WantCaptureMouse);
 		public ref bool WantCaptureKeyboard => ref Unsafe.AsRef<bool>(&Handle->WantCaptureKeyboard);
 		public ref bool WantTextInput => ref Unsafe.AsRef<bool>(&Handle->WantTextInput);
@@ -20373,9 +20456,9 @@ namespace HexaEngine.ImGuiNET
 			ImGui.AddMouseWheelEventNative(Handle, wheelX, wheelY);
 		}
 
-		public unsafe void ClearInputCharacters()
+		public unsafe void ClearEventsQueue()
 		{
-			ImGui.ClearInputCharactersNative(Handle);
+			ImGui.ClearEventsQueueNative(Handle);
 		}
 
 		public unsafe void ClearInputKeys()
@@ -20744,6 +20827,7 @@ namespace HexaEngine.ImGuiNET
 		public Vector2 SeparatorTextPadding;
 		public Vector2 DisplayWindowPadding;
 		public Vector2 DisplaySafeAreaPadding;
+		public float DockingSeparatorSize;
 		public float MouseCursorScale;
 		public byte AntiAliasedLines;
 		public byte AntiAliasedLinesUseTex;
@@ -20910,6 +20994,7 @@ namespace HexaEngine.ImGuiNET
 		public ref Vector2 SeparatorTextPadding => ref Unsafe.AsRef<Vector2>(&Handle->SeparatorTextPadding);
 		public ref Vector2 DisplayWindowPadding => ref Unsafe.AsRef<Vector2>(&Handle->DisplayWindowPadding);
 		public ref Vector2 DisplaySafeAreaPadding => ref Unsafe.AsRef<Vector2>(&Handle->DisplaySafeAreaPadding);
+		public ref float DockingSeparatorSize => ref Unsafe.AsRef<float>(&Handle->DockingSeparatorSize);
 		public ref float MouseCursorScale => ref Unsafe.AsRef<float>(&Handle->MouseCursorScale);
 		public ref bool AntiAliasedLines => ref Unsafe.AsRef<bool>(&Handle->AntiAliasedLines);
 		public ref bool AntiAliasedLinesUseTex => ref Unsafe.AsRef<bool>(&Handle->AntiAliasedLinesUseTex);
@@ -21571,10 +21656,10 @@ namespace HexaEngine.ImGuiNET
 		public float LastAlpha;
 		public byte LastFocusedHadNavWindow;
 		public short PlatformMonitor;
-		public int DrawListsLastFrame_0;
-		public int DrawListsLastFrame_1;
-		public unsafe ImDrawList* DrawLists_0;
-		public unsafe ImDrawList* DrawLists_1;
+		public int BgFgDrawListsLastFrame_0;
+		public int BgFgDrawListsLastFrame_1;
+		public unsafe ImDrawList* BgFgDrawLists_0;
+		public unsafe ImDrawList* BgFgDrawLists_1;
 		public ImDrawData DrawDataP;
 		public ImDrawDataBuilder DrawDataBuilder;
 		public Vector2 LastPlatformPos;
@@ -21630,12 +21715,12 @@ namespace HexaEngine.ImGuiNET
 		public ref float LastAlpha => ref Unsafe.AsRef<float>(&Handle->LastAlpha);
 		public ref bool LastFocusedHadNavWindow => ref Unsafe.AsRef<bool>(&Handle->LastFocusedHadNavWindow);
 		public ref short PlatformMonitor => ref Unsafe.AsRef<short>(&Handle->PlatformMonitor);
-		public unsafe Span<int> DrawListsLastFrame
+		public unsafe Span<int> BgFgDrawListsLastFrame
 		
 		{
 			get
 			{
-				return new Span<int>(&Handle->DrawListsLastFrame_0, 2);
+				return new Span<int>(&Handle->BgFgDrawListsLastFrame_0, 2);
 			}
 		}
 		public ref ImDrawData DrawDataP => ref Unsafe.AsRef<ImDrawData>(&Handle->DrawDataP);
@@ -21690,20 +21775,10 @@ namespace HexaEngine.ImGuiNET
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawDataBuilder
 	{
-		public ImVectorImDrawListPtr Layers_0;
-		public ImVectorImDrawListPtr Layers_1;
+		public unsafe ImVectorImDrawListPtr* Layers_0;
+		public unsafe ImVectorImDrawListPtr* Layers_1;
+		public ImVectorImDrawListPtr LayerData1;
 
-		public unsafe Span<ImVectorImDrawListPtr> Layers
-		
-		{
-			get
-			{
-				fixed (ImVectorImDrawListPtr* p = &this.Layers_0)
-				{
-					return new Span<ImVectorImDrawListPtr>(p, 2);
-				}
-			}
-		}
 	}
 
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
@@ -21738,23 +21813,7 @@ namespace HexaEngine.ImGuiNET
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
 		private string DebuggerDisplay => string.Format("ImDrawDataBuilderPtr [0x{0}]", ((nuint)Handle).ToString("X"));
-		public unsafe Span<ImVectorImDrawListPtr> Layers
-		
-		{
-			get
-			{
-				return new Span<ImVectorImDrawListPtr>(&Handle->Layers_0, 2);
-			}
-		}
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImDrawListPtr
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImDrawList** Data;
-
+		public ref ImVectorImDrawListPtr LayerData1 => ref Unsafe.AsRef<ImVectorImDrawListPtr>(&Handle->LayerData1);
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -24580,6 +24639,61 @@ public unsafe void appendf(string fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImVectorImGuiNavTreeNodeData
+	{
+		public int Size;
+		public int Capacity;
+		public unsafe ImGuiNavTreeNodeData* Data;
+
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiNavTreeNodeData
+	{
+		public int ID;
+		public ImGuiItemFlags InFlags;
+		public ImRect NavRect;
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImGuiNavTreeNodeDataPtr : IEquatable<ImGuiNavTreeNodeDataPtr>
+	{
+		public ImGuiNavTreeNodeDataPtr(ImGuiNavTreeNodeData* handle) { Handle = handle; }
+
+		public ImGuiNavTreeNodeData* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImGuiNavTreeNodeDataPtr Null => new ImGuiNavTreeNodeDataPtr(null);
+
+		public static implicit operator ImGuiNavTreeNodeDataPtr(ImGuiNavTreeNodeData* handle) => new ImGuiNavTreeNodeDataPtr(handle);
+
+		public static implicit operator ImGuiNavTreeNodeData*(ImGuiNavTreeNodeDataPtr handle) => handle.Handle;
+
+		public static bool operator ==(ImGuiNavTreeNodeDataPtr left, ImGuiNavTreeNodeDataPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImGuiNavTreeNodeDataPtr left, ImGuiNavTreeNodeDataPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImGuiNavTreeNodeDataPtr left, ImGuiNavTreeNodeData* right) => left.Handle == right;
+
+		public static bool operator !=(ImGuiNavTreeNodeDataPtr left, ImGuiNavTreeNodeData* right) => left.Handle != right;
+
+		public bool Equals(ImGuiNavTreeNodeDataPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImGuiNavTreeNodeDataPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImGuiNavTreeNodeDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
+		public ref ImGuiItemFlags InFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->InFlags);
+		public ref ImRect NavRect => ref Unsafe.AsRef<ImRect>(&Handle->NavRect);
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImVectorImGuiViewportPPtr
 	{
 		public int Size;
@@ -25002,11 +25116,19 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
-		public unsafe void IncludeRangeByIndices(int itemBegin, int itemEnd)
+		public unsafe void IncludeItemByIndex(int itemIndex)
 		{
 			fixed (ImGuiListClipper* @this = &this)
 			{
-				ImGui.IncludeRangeByIndicesNative(@this, itemBegin, itemEnd);
+				ImGui.IncludeItemByIndexNative(@this, itemIndex);
+			}
+		}
+
+		public unsafe void IncludeItemsByIndex(int itemBegin, int itemEnd)
+		{
+			fixed (ImGuiListClipper* @this = &this)
+			{
+				ImGui.IncludeItemsByIndexNative(@this, itemBegin, itemEnd);
 			}
 		}
 
@@ -25081,9 +25203,14 @@ public unsafe void appendf(string fmt)
 			ImGui.EndNative(Handle);
 		}
 
-		public unsafe void IncludeRangeByIndices(int itemBegin, int itemEnd)
+		public unsafe void IncludeItemByIndex(int itemIndex)
 		{
-			ImGui.IncludeRangeByIndicesNative(Handle, itemBegin, itemEnd);
+			ImGui.IncludeItemByIndexNative(Handle, itemIndex);
+		}
+
+		public unsafe void IncludeItemsByIndex(int itemBegin, int itemEnd)
+		{
+			ImGui.IncludeItemsByIndexNative(Handle, itemBegin, itemEnd);
 		}
 
 		public unsafe bool Step()
@@ -25177,6 +25304,7 @@ public unsafe void appendf(string fmt)
 		public float RowPosY1;
 		public float RowPosY2;
 		public float RowMinHeight;
+		public float RowCellPaddingY;
 		public float RowTextBaseline;
 		public float RowIndentOffsetX;
 		public ImGuiTableRowFlags RowFlags;
@@ -25192,7 +25320,6 @@ public unsafe void appendf(string fmt)
 		public float MinColumnWidth;
 		public float OuterPaddingX;
 		public float CellPaddingX;
-		public float CellPaddingY;
 		public float CellSpacingX1;
 		public float CellSpacingX2;
 		public float InnerWidth;
@@ -25318,6 +25445,7 @@ public unsafe void appendf(string fmt)
 		public ref float RowPosY1 => ref Unsafe.AsRef<float>(&Handle->RowPosY1);
 		public ref float RowPosY2 => ref Unsafe.AsRef<float>(&Handle->RowPosY2);
 		public ref float RowMinHeight => ref Unsafe.AsRef<float>(&Handle->RowMinHeight);
+		public ref float RowCellPaddingY => ref Unsafe.AsRef<float>(&Handle->RowCellPaddingY);
 		public ref float RowTextBaseline => ref Unsafe.AsRef<float>(&Handle->RowTextBaseline);
 		public ref float RowIndentOffsetX => ref Unsafe.AsRef<float>(&Handle->RowIndentOffsetX);
 		public ref ImGuiTableRowFlags RowFlags => ref Unsafe.AsRef<ImGuiTableRowFlags>(&Handle->RowFlags);
@@ -25339,7 +25467,6 @@ public unsafe void appendf(string fmt)
 		public ref float MinColumnWidth => ref Unsafe.AsRef<float>(&Handle->MinColumnWidth);
 		public ref float OuterPaddingX => ref Unsafe.AsRef<float>(&Handle->OuterPaddingX);
 		public ref float CellPaddingX => ref Unsafe.AsRef<float>(&Handle->CellPaddingX);
-		public ref float CellPaddingY => ref Unsafe.AsRef<float>(&Handle->CellPaddingY);
 		public ref float CellSpacingX1 => ref Unsafe.AsRef<float>(&Handle->CellSpacingX1);
 		public ref float CellSpacingX2 => ref Unsafe.AsRef<float>(&Handle->CellSpacingX2);
 		public ref float InnerWidth => ref Unsafe.AsRef<float>(&Handle->InnerWidth);
@@ -25672,6 +25799,8 @@ public unsafe void appendf(string fmt)
 		public float LastOuterHeight;
 		public float LastFirstRowHeight;
 		public float LastFrozenHeight;
+		public int HoveredRowLast;
+		public int HoveredRowNext;
 
 	}
 
@@ -25711,6 +25840,8 @@ public unsafe void appendf(string fmt)
 		public ref float LastOuterHeight => ref Unsafe.AsRef<float>(&Handle->LastOuterHeight);
 		public ref float LastFirstRowHeight => ref Unsafe.AsRef<float>(&Handle->LastFirstRowHeight);
 		public ref float LastFrozenHeight => ref Unsafe.AsRef<float>(&Handle->LastFrozenHeight);
+		public ref int HoveredRowLast => ref Unsafe.AsRef<int>(&Handle->HoveredRowLast);
+		public ref int HoveredRowNext => ref Unsafe.AsRef<int>(&Handle->HoveredRowNext);
 	}
 
 	[StructLayout(LayoutKind.Sequential)]

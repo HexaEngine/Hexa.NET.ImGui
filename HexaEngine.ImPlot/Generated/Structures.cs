@@ -29,7 +29,6 @@ namespace HexaEngine.ImPlotNET
 		public ImPlotTicker CTicker;
 		public ImPlotAnnotationCollection Annotations;
 		public ImPlotTagCollection Tags;
-		public byte ChildWindowMade;
 		public ImPlotStyle Style;
 		public ImVectorImGuiColorMod ColorModifiers;
 		public ImVectorImGuiStyleMod StyleModifiers;
@@ -95,7 +94,6 @@ namespace HexaEngine.ImPlotNET
 		public ref ImPlotTicker CTicker => ref Unsafe.AsRef<ImPlotTicker>(&Handle->CTicker);
 		public ref ImPlotAnnotationCollection Annotations => ref Unsafe.AsRef<ImPlotAnnotationCollection>(&Handle->Annotations);
 		public ref ImPlotTagCollection Tags => ref Unsafe.AsRef<ImPlotTagCollection>(&Handle->Tags);
-		public ref bool ChildWindowMade => ref Unsafe.AsRef<bool>(&Handle->ChildWindowMade);
 		public ref ImPlotStyle Style => ref Unsafe.AsRef<ImPlotStyle>(&Handle->Style);
 		public ref ImVectorImGuiColorMod ColorModifiers => ref Unsafe.AsRef<ImVectorImGuiColorMod>(&Handle->ColorModifiers);
 		public ref ImVectorImGuiStyleMod StyleModifiers => ref Unsafe.AsRef<ImVectorImGuiStyleMod>(&Handle->StyleModifiers);
@@ -728,9 +726,11 @@ namespace HexaEngine.ImPlotNET
 		public ImPlotLegendFlags PreviousFlags;
 		public ImPlotLocation Location;
 		public ImPlotLocation PreviousLocation;
+		public Vector2 Scroll;
 		public ImVectorInt Indices;
 		public ImGuiTextBuffer Labels;
 		public ImRect Rect;
+		public ImRect RectClamped;
 		public byte Hovered;
 		public byte Held;
 		public byte CanGoInside;
@@ -773,9 +773,11 @@ namespace HexaEngine.ImPlotNET
 		public ref ImPlotLegendFlags PreviousFlags => ref Unsafe.AsRef<ImPlotLegendFlags>(&Handle->PreviousFlags);
 		public ref ImPlotLocation Location => ref Unsafe.AsRef<ImPlotLocation>(&Handle->Location);
 		public ref ImPlotLocation PreviousLocation => ref Unsafe.AsRef<ImPlotLocation>(&Handle->PreviousLocation);
+		public ref Vector2 Scroll => ref Unsafe.AsRef<Vector2>(&Handle->Scroll);
 		public ref ImVectorInt Indices => ref Unsafe.AsRef<ImVectorInt>(&Handle->Indices);
 		public ref ImGuiTextBuffer Labels => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->Labels);
 		public ref ImRect Rect => ref Unsafe.AsRef<ImRect>(&Handle->Rect);
+		public ref ImRect RectClamped => ref Unsafe.AsRef<ImRect>(&Handle->RectClamped);
 		public ref bool Hovered => ref Unsafe.AsRef<bool>(&Handle->Hovered);
 		public ref bool Held => ref Unsafe.AsRef<bool>(&Handle->Held);
 		public ref bool CanGoInside => ref Unsafe.AsRef<bool>(&Handle->CanGoInside);

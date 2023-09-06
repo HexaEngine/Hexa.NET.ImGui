@@ -255,7 +255,8 @@ namespace HexaEngine.ImGuiNET
 		WindowingPopup = unchecked(6),
 		WindowingUntitled = unchecked(7),
 		DockingHideTabBar = unchecked(8),
-		Count = unchecked(9),
+		DockingHoldShiftToDock = unchecked(9),
+		Count = unchecked(10),
 	}
 
 	public enum ImGuiWindowFlags
@@ -519,12 +520,12 @@ namespace HexaEngine.ImGuiNET
 		AllowWhenOverlapped = unchecked(768),
 		RectOnly = unchecked(928),
 		RootAndChildWindows = unchecked(3),
-		ForTooltip = unchecked(2048),
-		Stationary = unchecked(4096),
-		DelayNone = unchecked(8192),
-		DelayShort = unchecked(16384),
-		DelayNormal = unchecked(32768),
-		NoSharedDelay = unchecked(65536),
+		ForTooltip = unchecked(4096),
+		Stationary = unchecked(8192),
+		DelayNone = unchecked(16384),
+		DelayShort = unchecked(32768),
+		DelayNormal = unchecked(65536),
+		NoSharedDelay = unchecked(131072),
 	}
 
 	public enum ImGuiDockNodeFlags
@@ -725,7 +726,8 @@ namespace HexaEngine.ImGuiNET
 		SeparatorTextBorderSize = unchecked(25),
 		SeparatorTextAlign = unchecked(26),
 		SeparatorTextPadding = unchecked(27),
-		Count = unchecked(28),
+		DockingSeparatorSize = unchecked(28),
+		Count = unchecked(29),
 	}
 
 	public enum ImGuiButtonFlags
@@ -879,7 +881,7 @@ namespace HexaEngine.ImGuiNET
 		MixedValue = unchecked(64),
 		ReadOnly = unchecked(128),
 		NoWindowHoverableCheck = unchecked(256),
-		ItemflagsAllowOverlap = unchecked(512),
+		AllowOverlap = unchecked(512),
 		Inputable = unchecked(1024),
 	}
 
@@ -900,9 +902,9 @@ namespace HexaEngine.ImGuiNET
 
 	public enum ImGuiHoveredFlagsPrivate
 	{
-		DelayMask = unchecked(122880),
-		AllowedMaskForIsWindowHovered = unchecked(6335),
-		AllowedMaskForIsItemHovered = unchecked(130976),
+		DelayMask = unchecked(245760),
+		AllowedMaskForIsWindowHovered = unchecked(12479),
+		AllowedMaskForIsItemHovered = unchecked(262048),
 	}
 
 	public enum ImGuiInputTextFlagsPrivate
@@ -1113,10 +1115,11 @@ namespace HexaEngine.ImGuiNET
 		Forwarded = unchecked(128),
 		DebugNoResult = unchecked(256),
 		FocusApi = unchecked(512),
-		Tabbing = unchecked(1024),
-		Activate = unchecked(2048),
-		NoSelect = unchecked(4096),
-		NoSetNavHighlight = unchecked(8192),
+		IsTabbing = unchecked(1024),
+		IsPageMove = unchecked(2048),
+		Activate = unchecked(4096),
+		NoSelect = unchecked(8192),
+		NoSetNavHighlight = unchecked(16384),
 	}
 
 	public enum ImGuiOldColumnFlags

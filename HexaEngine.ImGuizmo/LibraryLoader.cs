@@ -6,28 +6,10 @@
 
     public static class LibraryLoader
     {
-        static LibraryLoader()
-        {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                Extension = ".dll";
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                Extension = ".dylib";
-            }
-            else
-            {
-                Extension = ".so";
-            }
-        }
-
         public static void SetImportResolver()
         {
             NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), DllImportResolver);
         }
-
-        public static string Extension { get; }
 
         private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
         {
@@ -49,11 +31,31 @@
             }
         }
 
+        public static string GetExtension()
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return ".dll";
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                return ".dylib";
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                return ".so";
+            }
+
+            return ".so";
+        }
+
         public static IntPtr LoadLocalLibrary(string libraryName)
         {
-            if (!libraryName.EndsWith(Extension, StringComparison.OrdinalIgnoreCase))
+            var extension = GetExtension();
+
+            if (!libraryName.EndsWith(extension, StringComparison.OrdinalIgnoreCase))
             {
-                libraryName += Extension;
+                libraryName += extension;
             }
 
             var osPlatform = GetOSPlatform();
@@ -81,25 +83,19 @@
 
             static string GetArchitecture()
             {
-                switch (RuntimeInformation.ProcessArchitecture)
+                return RuntimeInformation.ProcessArchitecture switch
                 {
-                    case Architecture.X86: return "x86";
-                    case Architecture.X64: return "x64";
-                    case Architecture.Arm: return "arm";
-                    case Architecture.Arm64: return "arm64";
-                }
-
-                throw new ArgumentException("Unsupported architecture.");
+                    Architecture.X86 => "x86",
+                    Architecture.X64 => "x64",
+                    Architecture.Arm => "arm",
+                    Architecture.Arm64 => "arm64",
+                    _ => throw new ArgumentException("Unsupported architecture."),
+                };
             }
 
             static string GetNativeAssemblyPath(string osPlatform, string architecture, string libraryName)
             {
-                var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-                if (assemblyLocation == null)
-                {
-                    throw new Exception();
-                }
+                var assemblyLocation = AppContext.BaseDirectory;
 
                 var paths = new[]
                 {

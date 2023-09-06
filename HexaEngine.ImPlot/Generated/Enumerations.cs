@@ -33,10 +33,9 @@ namespace HexaEngine.ImPlotNET
 		NoInputs = unchecked(8),
 		NoMenus = unchecked(16),
 		NoBoxSelect = unchecked(32),
-		NoChild = unchecked(64),
-		NoFrame = unchecked(128),
-		Equal = unchecked(256),
-		Crosshairs = unchecked(512),
+		NoFrame = unchecked(64),
+		Equal = unchecked(128),
+		Crosshairs = unchecked(256),
 		CanvasOnly = unchecked(55),
 	}
 

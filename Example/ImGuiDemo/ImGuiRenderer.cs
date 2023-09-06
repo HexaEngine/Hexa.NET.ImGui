@@ -106,7 +106,7 @@ namespace Example.ImGuiDemo
             var indexResourcePointer = (ImDrawIdx*)indexResource.PData;
             for (int n = 0; n < data->CmdListsCount; n++)
             {
-                var cmdlList = data->CmdLists[n];
+                var cmdlList = data->CmdLists.Data[n];
 
                 var vertBytes = cmdlList->VtxBuffer.Size * sizeof(ImDrawVert);
                 Buffer.MemoryCopy(cmdlList->VtxBuffer.Data, vertexResourcePointer, vertBytes, vertBytes);
@@ -151,7 +151,7 @@ namespace Example.ImGuiDemo
             Vector2 clip_off = data->DisplayPos;
             for (int n = 0; n < data->CmdListsCount; n++)
             {
-                var cmdList = data->CmdLists[n];
+                var cmdList = data->CmdLists.Data[n];
 
                 for (int i = 0; i < cmdList->CmdBuffer.Size; i++)
                 {
