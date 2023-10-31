@@ -1,10 +1,8 @@
 ﻿namespace Generator
 {
-    using ClangSharp;
     using CppAst;
     using System.IO;
     using System.Linq;
-    using System.Runtime.CompilerServices;
     using System.Text;
 
     public static partial class CsCodeGenerator
@@ -17,8 +15,15 @@
         {
             string[] usings = { "System", "System.Diagnostics", "System.Runtime.CompilerServices", "System.Runtime.InteropServices" };
 
+            string outDir = Path.Combine(outputPath, "Structs");
+            string fileName = Path.Combine(outDir, "Structs.cs");
+
+            if (Directory.Exists(outDir))
+                Directory.Delete(outDir, true);
+            Directory.CreateDirectory(outDir);
+
             // Generate Structures
-            using var writer = new CodeWriter(Path.Combine(outputPath, "Structures.cs"), usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
+            using var writer = new CodeWriter(fileName, CsCodeGeneratorSettings.Default.Namespace, usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
 
             // Print All classes, structs
             for (int i = 0; i < compilation.Classes.Count; i++)
@@ -66,7 +71,7 @@
             }
         }
 
-        private static void WriteStructHandle(CodeWriter writer, CppCompilation compilation, CppClass cppClass, string csName, string handleType)
+        private static void WriteStructHandle(ICodeWriter writer, CppCompilation compilation, CppClass cppClass, string csName, string handleType)
         {
             WriteCsSummary(cppClass.Comment, writer);
             writer.WriteLine($"[DebuggerDisplay(\"{{DebuggerDisplay,nq}}\")]");
@@ -239,7 +244,7 @@
             return depths.Count > 0;
         }
 
-        public static void WriteClass(CodeWriter writer, CppCompilation compilation, CppClass cppClass, string csName)
+        public static void WriteClass(ICodeWriter writer, CppCompilation compilation, CppClass cppClass, string csName)
         {
             if (cppClass.ClassKind == CppClassKind.Class || cppClass.Name.EndsWith("_T") || csName == "void")
             {
@@ -410,7 +415,7 @@
             writer.WriteLine();
         }
 
-        private static void WriteField(CodeWriter writer, CppField field, bool isUnion = false, bool isReadOnly = false)
+        private static void WriteField(ICodeWriter writer, CppField field, bool isUnion = false, bool isReadOnly = false)
         {
             string csFieldName = NormalizeFieldName(field.Name);
             WriteCsSummary(field.Comment, writer);
@@ -493,7 +498,7 @@
             }
         }
 
-        private static void WriteProperty(CodeWriter writer, CppClass cppClass, CppField field, bool isReadOnly = false)
+        private static void WriteProperty(ICodeWriter writer, CppClass cppClass, CppField field, bool isReadOnly = false)
         {
             string csFieldName = NormalizeFieldName(field.Name);
             WriteCsSummary(field.Comment, writer);
@@ -629,7 +634,7 @@
             }
         }
 
-        private static void WriteProperty(CodeWriter writer, CppField field)
+        private static void WriteProperty(ICodeWriter writer, CppField field)
         {
             string csFieldName = NormalizeFieldName(field.Name);
             WriteCsSummary(field.Comment, writer);

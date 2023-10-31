@@ -1,7 +1,7 @@
 ﻿namespace Example.NodeEditor
 {
-    using HexaEngine.ImGuiNET;
-    using HexaEngine.ImNodesNET;
+    using Hexa.NET.ImGui;
+    using Hexa.NET.ImNodes;
     using System.Collections.Generic;
 
     public class NodeEditor

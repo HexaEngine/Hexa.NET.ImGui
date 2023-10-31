@@ -1,12 +1,8 @@
 ﻿namespace Example.ImGuiDemo
 {
-    using HexaEngine.ImGuiNET;
+    using Hexa.NET.ImGui;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Numerics;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class ImGuiDemo
     {

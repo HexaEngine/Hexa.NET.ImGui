@@ -1,6 +1,6 @@
 ﻿namespace Generator
 {
-    public sealed class CodeWriter : IDisposable
+    public sealed class CodeWriter : ICodeWriter, IDisposable
     {
         private bool _shouldIndent = true;
         private readonly string[] _indentStrings;
@@ -9,7 +9,7 @@
 
         public int IndentLevel { get; private set; }
 
-        public CodeWriter(string fileName, params string[] namespaces)
+        public CodeWriter(string fileName, string @namespace, params string[] namespaces)
         {
             _indentStrings = new string[10];
             for (int i = 0; i < _indentStrings.Length; i++)
@@ -38,7 +38,7 @@
                 _writer.WriteLine();
             }
 
-            BeginBlock($"namespace {CsCodeGeneratorSettings.Default.Namespace}");
+            BeginBlock($"namespace {@namespace}");
         }
 
         public void Dispose()
@@ -139,9 +139,9 @@
 
         private class CodeBlock : IDisposable
         {
-            private readonly CodeWriter _writer;
+            private readonly ICodeWriter _writer;
 
-            public CodeBlock(CodeWriter writer, string content)
+            public CodeBlock(ICodeWriter writer, string content)
             {
                 _writer = writer;
                 _writer.BeginBlock(content);
@@ -152,6 +152,5 @@
                 _writer.EndBlock();
             }
         }
-
     }
 }

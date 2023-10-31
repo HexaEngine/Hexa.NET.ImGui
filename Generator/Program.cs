@@ -1,7 +1,6 @@
 ﻿namespace Generator
 {
     using CppAst;
-    using System.Reflection.Metadata;
 
     internal unsafe class Program
     {
@@ -113,7 +112,7 @@
                 return 0;
             }
 
-            CsCodeGenerator.Generate(compilation, "../../../../HexaEngine.ImPlot/Generated");
+            CsCodeGenerator.Generate(compilation, "../../../../Hexa.NET.ImPlot/Generated");
 
             return 0;
         }
@@ -206,7 +205,7 @@
                 return 0;
             }
 
-            CsCodeGenerator.Generate(compilation, "../../../../HexaEngine.ImNodes/Generated");
+            CsCodeGenerator.Generate(compilation, "../../../../Hexa.NET.ImNodes/Generated");
 
             return 0;
         }
@@ -362,7 +361,7 @@
                 return 0;
             }
 
-            CsCodeGenerator.Generate(compilation, "../../../../HexaEngine.ImGuizmo/Generated");
+            CsCodeGenerator.Generate(compilation, "../../../../Hexa.NET.ImGuizmo/Generated");
 
             return 0;
         }
@@ -427,7 +426,7 @@
             CsCodeGeneratorSettings.Default.DelegateMappings.Add(new("PlatformGetWindowPos", "Vector2*", "Vector2* pos, ImGuiViewport* viewport"));
             CsCodeGeneratorSettings.Default.DelegateMappings.Add(new("PlatformGetWindowSize", "Vector2*", "Vector2* size, ImGuiViewport* viewport"));
 
-            CsCodeGenerator.Generate(compilation, "../../../../HexaEngine.ImGui/Generated");
+            CsCodeGenerator.Generate(compilation, "../../../../Hexa.NET.ImGui/Generated");
 
             return 0;
         }

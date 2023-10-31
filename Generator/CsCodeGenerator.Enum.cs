@@ -15,7 +15,14 @@
         {
             string[] usings = { "System" };
 
-            using var writer = new CodeWriter(Path.Combine(outputPath, "Enumerations.cs"), usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
+            string outDir = Path.Combine(outputPath, "Enums");
+            string fileName = Path.Combine(outDir, "Enums.cs");
+
+            if (Directory.Exists(outDir))
+                Directory.Delete(outDir, true);
+            Directory.CreateDirectory(outDir);
+
+            using var writer = new SplitCodeWriter(fileName, CsCodeGeneratorSettings.Default.Namespace, 2, usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
             var createdEnums = new Dictionary<string, string>();
 
             foreach (CppEnum cppEnum in compilation.Enums)

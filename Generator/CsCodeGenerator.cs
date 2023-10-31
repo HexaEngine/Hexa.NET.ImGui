@@ -8,11 +8,14 @@
     {
         public static void Generate(CppCompilation compilation, string outputPath)
         {
+            if (Directory.Exists(outputPath))
+                Directory.Delete(outputPath, true);
+            Directory.CreateDirectory(outputPath);
             GenerateConstants(compilation, outputPath);
             GenerateEnums(compilation, outputPath);
             GenerateHandles(compilation, outputPath);
             GenerateStructAndUnions(compilation, outputPath);
-            GenerateCommands(compilation, outputPath);
+            GenerateFunctions(compilation, outputPath);
             GenerateDelegates(compilation, outputPath);
         }
 
@@ -448,7 +451,7 @@
             return GetCsWrapperTypeName(pointerType.ElementType, true);
         }
 
-        private static bool WriteCsSummary(CppComment? comment, CodeWriter writer)
+        private static bool WriteCsSummary(CppComment? comment, ICodeWriter writer)
         {
             if (comment is CppCommentFull full)
             {

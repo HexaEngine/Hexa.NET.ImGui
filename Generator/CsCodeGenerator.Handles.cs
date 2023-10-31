@@ -10,8 +10,16 @@
         private static void GenerateHandles(CppCompilation compilation, string outputPath)
         {
             string[] usings = { "System", "System.Diagnostics", "System.Runtime.InteropServices" };
+
+            string outDir = Path.Combine(outputPath, "Handles");
+            string fileName = Path.Combine(outDir, "Handles.cs");
+
+            if (Directory.Exists(outDir))
+                Directory.Delete(outDir, true);
+            Directory.CreateDirectory(outDir);
+
             // Generate Functions
-            using var writer = new CodeWriter(Path.Combine(outputPath, "Handles.cs"), usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
+            using var writer = new CodeWriter(fileName, CsCodeGeneratorSettings.Default.Namespace, usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
 
             for (int i = 0; i < compilation.Typedefs.Count; i++)
             {
@@ -33,7 +41,7 @@
             }
         }
 
-        private static void WriteHandle(CodeWriter writer, CppTypedef typedef, string csName, bool isDispatchable)
+        private static void WriteHandle(ICodeWriter writer, CppTypedef typedef, string csName, bool isDispatchable)
         {
             WriteCsSummary(typedef.Comment, writer);
             writer.WriteLine($"[DebuggerDisplay(\"{{DebuggerDisplay,nq}}\")]");

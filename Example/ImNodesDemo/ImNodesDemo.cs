@@ -2,8 +2,8 @@
 {
     using Example.ImGuiDemo;
     using Example.NodeEditor;
-    using HexaEngine.ImGuiNET;
-    using HexaEngine.ImNodesNET;
+    using Hexa.NET.ImGui;
+    using Hexa.NET.ImNodes;
 
     public class ImNodesDemo
     {

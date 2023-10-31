@@ -5,8 +5,8 @@
     using HexaEngine.Core.Graphics;
     using HexaEngine.Core.Input;
     using HexaEngine.Core.Windows.Events;
-    using HexaEngine.ImGuiNET;
-    using HexaEngine.ImGuizmoNET;
+    using Hexa.NET.ImGui;
+    using Hexa.NET.ImGuizmo;
     using HexaEngine.Mathematics;
     using System;
     using System.Numerics;

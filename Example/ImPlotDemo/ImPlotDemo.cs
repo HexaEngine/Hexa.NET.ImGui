@@ -3,9 +3,9 @@
     using Example.ImGuiDemo;
     using Example.NodeEditor;
     using HexaEngine.Core;
-    using HexaEngine.ImGuiNET;
-    using HexaEngine.ImNodesNET;
-    using HexaEngine.ImPlotNET;
+    using Hexa.NET.ImGui;
+    using Hexa.NET.ImNodes;
+    using Hexa.NET.ImPlot;
     using System;
     using System.Collections.Generic;
     using System.Linq;

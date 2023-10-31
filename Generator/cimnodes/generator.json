@@ -1,5 +1,5 @@
 {
-  "Namespace": "HexaEngine.ImNodesNET",
+  "Namespace": "Hexa.NET.ImNodes",
   "ApiName": "ImNodes",
   "LibName": "cimnodes",
   "UseLibraryImport": true,
@@ -95,5 +95,5 @@
   "AllowedFunctions": [],
   "AllowedTypes": [],
   "AllowedEnums": [],
-  "Usings": [ "System.Numerics", "HexaEngine.ImGuiNET" ]
+  "Usings": [ "System.Numerics", "Hexa.NET.ImGui" ]
 }

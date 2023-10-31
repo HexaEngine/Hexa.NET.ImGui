@@ -27,10 +27,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\HexaEngine.ImGuizmo\HexaEngine.ImGuizmo.csproj" />
-	  <ProjectReference Include="..\HexaEngine.ImGui\HexaEngine.ImGui.csproj" />
-	  <ProjectReference Include="..\HexaEngine.ImNodes\HexaEngine.ImNodes.csproj" />
-	  <ProjectReference Include="..\HexaEngine.ImPlot\HexaEngine.ImPlot.csproj" />
+	  <ProjectReference Include="..\Hexa.NET.ImGuizmo\Hexa.NET.ImGuizmo.csproj" />
+	  <ProjectReference Include="..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
+	  <ProjectReference Include="..\Hexa.NET.ImNodes\Hexa.NET.ImNodes.csproj" />
+	  <ProjectReference Include="..\Hexa.NET.ImPlot\Hexa.NET.ImPlot.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

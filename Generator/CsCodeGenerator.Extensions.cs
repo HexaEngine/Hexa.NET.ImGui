@@ -12,8 +12,16 @@
         private static void GenerateExtensions(CppCompilation compilation, string outputPath)
         {
             string[] usings = { "System", "System.Runtime.CompilerServices", "System.Runtime.InteropServices" };
+
+            string outDir = Path.Combine(outputPath, "Extensions");
+            string fileName = Path.Combine(outDir, "Extensions.cs");
+
+            if (Directory.Exists(outDir))
+                Directory.Delete(outDir, true);
+            Directory.CreateDirectory(outDir);
+
             // Generate Functions
-            using var writer = new CodeWriter(Path.Combine(outputPath, "Extensions.cs"), usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
+            using var writer = new SplitCodeWriter(fileName, CsCodeGeneratorSettings.Default.Namespace, 2, usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
             using (writer.PushBlock($"public static unsafe class Extensions"))
             {
                 for (int i = 0; i < compilation.Typedefs.Count; i++)
@@ -63,7 +71,7 @@
             }
         }
 
-        private static void WriteExtensions(CodeWriter writer, CppFunction cppFunction, string command, string extension, List<string> signatures)
+        private static void WriteExtensions(ICodeWriter writer, CppFunction cppFunction, string command, string extension, List<string> signatures)
         {
             bool voidReturn = IsVoid(cppFunction.ReturnType);
             bool stringReturn = IsString(cppFunction.ReturnType);
@@ -80,7 +88,7 @@
             }
         }
 
-        private static void WriteExtensionMethod(CodeWriter writer, CppFunction cppFunction, string command, string extension, bool voidReturn, bool stringReturn, string returnCsName, string signature)
+        private static void WriteExtensionMethod(ICodeWriter writer, CppFunction cppFunction, string command, string extension, bool voidReturn, bool stringReturn, string returnCsName, string signature)
         {
             string[] paramList = signature.Split(',', StringSplitOptions.RemoveEmptyEntries);
 

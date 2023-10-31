@@ -3,9 +3,9 @@
 
 namespace Example.ImGuiDemo
 {
+    using Hexa.NET.ImGui;
     using HexaEngine.Core.Graphics;
     using HexaEngine.Core.Unsafes;
-    using HexaEngine.ImGuiNET;
     using HexaEngine.Mathematics;
     using System.Collections.Generic;
     using System.Diagnostics;

@@ -1,11 +1,8 @@
 ﻿namespace Generator
 {
-    using ClangSharp;
     using CppAst;
     using System.IO;
     using System.Linq;
-    using System.Runtime.InteropServices;
-    using System.Text;
 
     public static partial class CsCodeGenerator
     {
@@ -20,8 +17,15 @@
                 return;
             }
 
+            string outDir = Path.Combine(outputPath, "Delegates");
+            string fileName = Path.Combine(outDir, "Delegates.cs");
+
+            if (Directory.Exists(outDir))
+                Directory.Delete(outDir, true);
+            Directory.CreateDirectory(outDir);
+
             // Generate Delegates
-            using var writer = new CodeWriter(Path.Combine(outputPath, "Delegates.cs"), usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
+            using var writer = new SplitCodeWriter(fileName, CsCodeGeneratorSettings.Default.Namespace, 2, usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
 
             // Print All classes, structs
             for (int i = 0; i < compilation.Classes.Count; i++)
@@ -60,7 +64,7 @@
             }
         }
 
-        public static void WriteDelegate(CodeWriter writer, CppTypedef typedef, CppFunctionType type, string csName)
+        public static void WriteDelegate(ICodeWriter writer, CppTypedef typedef, CppFunctionType type, string csName)
         {
             string returnCsName = GetCsTypeName(type.ReturnType, false);
             string signature = GetParameterSignature(type.Parameters, false);
@@ -77,7 +81,7 @@
             writer.WriteLine();
         }
 
-        public static void WriteClassDelegates(CodeWriter writer, CppCompilation compilation, CppClass cppClass, string csName)
+        public static void WriteClassDelegates(ICodeWriter writer, CppCompilation compilation, CppClass cppClass, string csName)
         {
             if (cppClass.ClassKind == CppClassKind.Class || cppClass.Name.EndsWith("_T") || csName == "void")
             {
@@ -138,7 +142,7 @@
             }
         }
 
-        private static void WriteDelegate(CodeWriter writer, CppField field, bool isReadOnly = false)
+        private static void WriteDelegate(ICodeWriter writer, CppField field, bool isReadOnly = false)
         {
             string csFieldName = NormalizeFieldName(field.Name);
 

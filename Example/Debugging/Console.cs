@@ -1,7 +1,7 @@
 ﻿namespace HexaEngine.Core.Debugging
 {
     using HexaEngine.Core.Collections;
-    using HexaEngine.ImGuiNET;
+    using Hexa.NET.ImGui;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;

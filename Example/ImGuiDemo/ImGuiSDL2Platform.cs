@@ -3,7 +3,7 @@
     using HexaEngine.Core;
     using HexaEngine.Core.Input;
     using HexaEngine.Core.Unsafes;
-    using HexaEngine.ImGuiNET;
+    using Hexa.NET.ImGui;
     using Silk.NET.Core.Native;
     using Silk.NET.Maths;
     using Silk.NET.SDL;

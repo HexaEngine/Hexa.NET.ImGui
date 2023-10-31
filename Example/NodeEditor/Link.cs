@@ -1,6 +1,6 @@
 ﻿namespace Example.NodeEditor
 {
-    using HexaEngine.ImNodesNET;
+    using Hexa.NET.ImNodes;
 
     public class Link
     {
