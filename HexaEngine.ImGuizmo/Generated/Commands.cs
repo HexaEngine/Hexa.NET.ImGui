@@ -19,8 +19,9 @@ namespace HexaEngine.ImGuizmoNET
 	{
 		internal const string LibName = "cimguizmo";
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_SetDrawlist")]
-		internal static extern void SetDrawlistNative(ImDrawList* drawlist);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_SetDrawlist")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetDrawlistNative(ImDrawList* drawlist);
 
 		public static void SetDrawlist(ImDrawListPtr drawlist)
 		{
@@ -40,16 +41,18 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_BeginFrame")]
-		internal static extern void BeginFrameNative();
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_BeginFrame")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void BeginFrameNative();
 
 		public static void BeginFrame()
 		{
 			BeginFrameNative();
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_SetImGuiContext")]
-		internal static extern void SetImGuiContextNative(ImGuiContext* ctx);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_SetImGuiContext")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetImGuiContextNative(ImGuiContext* ctx);
 
 		public static void SetImGuiContext(ImGuiContextPtr ctx)
 		{
@@ -64,8 +67,9 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_IsOver_Nil")]
-		internal static extern byte IsOverNative();
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_IsOver_Nil")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte IsOverNative();
 
 		public static bool IsOver()
 		{
@@ -73,8 +77,9 @@ namespace HexaEngine.ImGuizmoNET
 			return ret != 0;
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_IsUsing")]
-		internal static extern byte IsUsingNative();
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_IsUsing")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte IsUsingNative();
 
 		public static bool IsUsing()
 		{
@@ -82,8 +87,9 @@ namespace HexaEngine.ImGuizmoNET
 			return ret != 0;
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_IsUsingAny")]
-		internal static extern byte IsUsingAnyNative();
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_IsUsingAny")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte IsUsingAnyNative();
 
 		public static bool IsUsingAny()
 		{
@@ -91,16 +97,18 @@ namespace HexaEngine.ImGuizmoNET
 			return ret != 0;
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_Enable")]
-		internal static extern void EnableNative(byte enable);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_Enable")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void EnableNative(byte enable);
 
 		public static void Enable(bool enable)
 		{
 			EnableNative(enable ? (byte)1 : (byte)0);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_DecomposeMatrixToComponents")]
-		internal static extern void DecomposeMatrixToComponentsNative(float* matrix, float* translation, float* rotation, float* scale);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_DecomposeMatrixToComponents")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DecomposeMatrixToComponentsNative(float* matrix, float* translation, float* rotation, float* scale);
 
 		public static void DecomposeMatrixToComponents(float* matrix, float* translation, float* rotation, float* scale)
 		{
@@ -449,8 +457,9 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_RecomposeMatrixFromComponents")]
-		internal static extern void RecomposeMatrixFromComponentsNative(float* translation, float* rotation, float* scale, float* matrix);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_RecomposeMatrixFromComponents")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void RecomposeMatrixFromComponentsNative(float* translation, float* rotation, float* scale, float* matrix);
 
 		public static void RecomposeMatrixFromComponents(float* translation, float* rotation, float* scale, float* matrix)
 		{
@@ -799,24 +808,27 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_SetRect")]
-		internal static extern void SetRectNative(float x, float y, float width, float height);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_SetRect")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetRectNative(float x, float y, float width, float height);
 
 		public static void SetRect(float x, float y, float width, float height)
 		{
 			SetRectNative(x, y, width, height);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_SetOrthographic")]
-		internal static extern void SetOrthographicNative(byte isOrthographic);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_SetOrthographic")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetOrthographicNative(byte isOrthographic);
 
 		public static void SetOrthographic(bool isOrthographic)
 		{
 			SetOrthographicNative(isOrthographic ? (byte)1 : (byte)0);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_DrawCubes")]
-		internal static extern void DrawCubesNative(float* view, float* projection, float* matrices, int matrixCount);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_DrawCubes")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DrawCubesNative(float* view, float* projection, float* matrices, int matrixCount);
 
 		public static void DrawCubes(float* view, float* projection, float* matrices, int matrixCount)
 		{
@@ -1009,8 +1021,9 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_DrawGrid")]
-		internal static extern void DrawGridNative(float* view, float* projection, float* matrix, float gridSize);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_DrawGrid")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DrawGridNative(float* view, float* projection, float* matrix, float gridSize);
 
 		public static void DrawGrid(float* view, float* projection, float* matrix, float gridSize)
 		{
@@ -1159,8 +1172,9 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_Manipulate")]
-		internal static extern byte ManipulateNative(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_Manipulate")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ManipulateNative(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap);
 
 		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
@@ -9373,8 +9387,9 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_ViewManipulate_Float")]
-		internal static extern void ViewManipulateNative(float* view, float length, Vector2 position, Vector2 size, uint backgroundColor);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_ViewManipulate_Float")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ViewManipulateNative(float* view, float length, Vector2 position, Vector2 size, uint backgroundColor);
 
 		public static void ViewManipulate(float* view, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
@@ -9397,8 +9412,9 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_ViewManipulate_FloatPtr")]
-		internal static extern void ViewManipulateNative(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_ViewManipulate_FloatPtr")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ViewManipulateNative(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor);
 
 		public static void ViewManipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
@@ -9547,16 +9563,18 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_SetID")]
-		internal static extern void SetIDNative(int id);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_SetID")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetIDNative(int id);
 
 		public static void SetID(int id)
 		{
 			SetIDNative(id);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_IsOver_OPERATION")]
-		internal static extern byte IsOverNative(ImGuizmoOperation op);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_IsOver_OPERATION")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte IsOverNative(ImGuizmoOperation op);
 
 		public static bool IsOver(ImGuizmoOperation op)
 		{
@@ -9564,40 +9582,45 @@ namespace HexaEngine.ImGuizmoNET
 			return ret != 0;
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_SetGizmoSizeClipSpace")]
-		internal static extern void SetGizmoSizeClipSpaceNative(float value);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_SetGizmoSizeClipSpace")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetGizmoSizeClipSpaceNative(float value);
 
 		public static void SetGizmoSizeClipSpace(float value)
 		{
 			SetGizmoSizeClipSpaceNative(value);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_AllowAxisFlip")]
-		internal static extern void AllowAxisFlipNative(byte value);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_AllowAxisFlip")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void AllowAxisFlipNative(byte value);
 
 		public static void AllowAxisFlip(bool value)
 		{
 			AllowAxisFlipNative(value ? (byte)1 : (byte)0);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_SetAxisLimit")]
-		internal static extern void SetAxisLimitNative(float value);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_SetAxisLimit")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetAxisLimitNative(float value);
 
 		public static void SetAxisLimit(float value)
 		{
 			SetAxisLimitNative(value);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_SetPlaneLimit")]
-		internal static extern void SetPlaneLimitNative(float value);
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_SetPlaneLimit")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetPlaneLimitNative(float value);
 
 		public static void SetPlaneLimit(float value)
 		{
 			SetPlaneLimitNative(value);
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Style_Style")]
-		internal static extern Style* StyleNative();
+		[LibraryImport(LibName, EntryPoint = "Style_Style")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial Style* StyleNative();
 
 		public static StylePtr Style()
 		{
@@ -9605,8 +9628,9 @@ namespace HexaEngine.ImGuizmoNET
 			return ret;
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Style_destroy")]
-		internal static extern void DestroyNative(Style* self);
+		[LibraryImport(LibName, EntryPoint = "Style_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DestroyNative(Style* self);
 
 		public static void Destroy(StylePtr self)
 		{
@@ -9621,8 +9645,9 @@ namespace HexaEngine.ImGuizmoNET
 			}
 		}
 
-		[DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ImGuizmo_GetStyle")]
-		internal static extern Style* GetStyleNative();
+		[LibraryImport(LibName, EntryPoint = "ImGuizmo_GetStyle")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial Style* GetStyleNative();
 
 		public static StylePtr GetStyle()
 		{

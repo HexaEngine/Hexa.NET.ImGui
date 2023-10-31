@@ -59,17 +59,37 @@
                     var header = $"{returnCsName} {csName}Native({argumentsString})";
 
                     WriteCsSummary(cppFunction.Comment, writer);
-                    if (boolReturn)
+                    if (CsCodeGeneratorSettings.Default.UseLibraryImport)
                     {
-                        writer.WriteLine($"[DllImport(LibName, CallingConvention = CallingConvention.{GetCallingConvention(cppFunction.CallingConvention)}, EntryPoint = \"{cppFunction.Name}\")]");
-                        writer.WriteLine($"internal static extern byte {csName}Native({argumentsString});");
-                        writer.WriteLine();
+                        if (boolReturn)
+                        {
+                            writer.WriteLine($"[LibraryImport(LibName, EntryPoint = \"{cppFunction.Name}\")]");
+                            writer.WriteLine($"[UnmanagedCallConv(CallConvs = new Type[] {{typeof({GetCallingConventionLibrary(cppFunction.CallingConvention)})}})]");
+                            writer.WriteLine($"internal static partial byte {csName}Native({argumentsString});");
+                            writer.WriteLine();
+                        }
+                        else
+                        {
+                            writer.WriteLine($"[LibraryImport(LibName, EntryPoint = \"{cppFunction.Name}\")]");
+                            writer.WriteLine($"[UnmanagedCallConv(CallConvs = new Type[] {{typeof({GetCallingConventionLibrary(cppFunction.CallingConvention)})}})]");
+                            writer.WriteLine($"internal static partial {header};");
+                            writer.WriteLine();
+                        }
                     }
                     else
                     {
-                        writer.WriteLine($"[DllImport(LibName, CallingConvention = CallingConvention.{GetCallingConvention(cppFunction.CallingConvention)}, EntryPoint = \"{cppFunction.Name}\")]");
-                        writer.WriteLine($"internal static extern {header};");
-                        writer.WriteLine();
+                        if (boolReturn)
+                        {
+                            writer.WriteLine($"[DllImport(LibName, CallingConvention = CallingConvention.{GetCallingConvention(cppFunction.CallingConvention)}, EntryPoint = \"{cppFunction.Name}\")]");
+                            writer.WriteLine($"internal static extern byte {csName}Native({argumentsString});");
+                            writer.WriteLine();
+                        }
+                        else
+                        {
+                            writer.WriteLine($"[DllImport(LibName, CallingConvention = CallingConvention.{GetCallingConvention(cppFunction.CallingConvention)}, EntryPoint = \"{cppFunction.Name}\")]");
+                            writer.WriteLine($"internal static extern {header};");
+                            writer.WriteLine();
+                        }
                     }
 
                     CsFunction? function = null;
@@ -1115,6 +1135,18 @@
                 CppCallingConvention.X86FastCall => "Fastcall",
                 CppCallingConvention.X86StdCall => "Stdcall",
                 CppCallingConvention.X86ThisCall => "Thiscall",
+                _ => throw new NotSupportedException(),
+            };
+        }
+
+        public static string GetCallingConventionLibrary(CppCallingConvention convention)
+        {
+            return convention switch
+            {
+                CppCallingConvention.C => "System.Runtime.CompilerServices.CallConvCdecl",
+                CppCallingConvention.X86FastCall => " System.Runtime.CompilerServices.CallConvFastcall",
+                CppCallingConvention.X86StdCall => "System.Runtime.CompilerServices.CallConvStdcall",
+                CppCallingConvention.X86ThisCall => "System.Runtime.CompilerServices.CallConvThiscall",
                 _ => throw new NotSupportedException(),
             };
         }

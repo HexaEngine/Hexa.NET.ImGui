@@ -1,6 +1,5 @@
 ﻿namespace Generator
 {
-    using CppAst;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -50,6 +49,8 @@
         public bool DelegatesAsVoidPointer { get; set; } = true;
 
         public bool GenerateDelegates { get; set; } = true;
+
+        public bool UseLibraryImport { get; set; } = false;
 
         public Dictionary<string, string> KnownConstantNames { get; set; } = new();
 

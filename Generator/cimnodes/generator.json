@@ -2,6 +2,7 @@
   "Namespace": "HexaEngine.ImNodesNET",
   "ApiName": "ImNodes",
   "LibName": "cimnodes",
+  "UseLibraryImport": true,
   "GenerateSizeOfStructs": false,
   "KnownConstantNames": {},
   "KnownEnumValueNames": { "": "" },
@@ -17,6 +18,20 @@
   "PreserveCaps": [ "" ],
   "Keywords": [ "object", "event", "out", "base" ],
   "IgnoredTypes": [ "ImVec4", "ImVec3", "ImVec2" ],
+  "IgnoredFunctions": [
+    "igInputText",
+    "igInputTextMultiline",
+    "igInputTextWithHint",
+    "igImFormatString",
+    "igImFormatStringV",
+    "igImParseFormatTrimDecorations",
+    "igImTextStrToUtf8",
+    "igImTextStrFromUtf8",
+    "igGetKeyChordName",
+    "igDataTypeFormatString",
+    "igInputTextEx",
+    "igTempInputText"
+  ],
   "ArrayMappings": [
     {
       "Primitive": 11,

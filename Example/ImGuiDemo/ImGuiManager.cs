@@ -17,7 +17,6 @@
         public unsafe ImGuiManager(SdlWindow window, IGraphicsDevice device, IGraphicsContext context)
         {
             guiContext = ImGui.CreateContext(null);
-            ImGui.SetCurrentContext(guiContext);
 
             ImGui.SetCurrentContext(guiContext);
             ImGuizmo.SetImGuiContext(guiContext);

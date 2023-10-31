@@ -3,7 +3,6 @@
     using Example.ImGuiDemo;
     using HexaEngine.Core;
     using HexaEngine.Core.Graphics;
-    using HexaEngine.Core.Graphics.Buffers;
     using HexaEngine.Core.Input;
     using HexaEngine.Core.Windows.Events;
     using HexaEngine.ImGuiNET;
