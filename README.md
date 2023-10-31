@@ -1,5 +1,5 @@
 # HexaEngine.ImGui 
-Attention, the library is renamed Hexa.NET.ImGui (Hexa.NET.X) to better integrate it into the ecosystem.
+## Attention, the library is renamed Hexa.NET.ImGui (Hexa.NET.X) to better integrate it into the ecosystem.
 
 A WIP .NET wrapper for the Dear ImGui library + internal + addons (ImGuizmo, ImNodes, ImPlot).
 ### This library & the generator will be replaced by my new code generator https://github.com/JunaMeinhold/HexaGen
