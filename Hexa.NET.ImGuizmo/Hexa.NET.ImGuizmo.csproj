@@ -1,18 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+		<EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
+		<EnableAotAnalyzer>true</EnableAotAnalyzer>
+		<IsAotCompatible>true</IsAotCompatible>
+		
 		<AssemblyVersion>1.89.0</AssemblyVersion>
-		<PackageVersion>2.0.17</PackageVersion>
+		<PackageVersion>1.0.1</PackageVersion>
 		<Description>A .NET wrapper for the ImGuizmo library. (1.89.0 WIP)</Description>
+		<PackageTags>ImGuizmo UI Immidate GUI Guizmo Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
+		<Copyright>Copyright (c) 2023 Juna Meinhold</Copyright>
 		<PackageProjectUrl>https://github.com/JunaMeinhold/HexaEngine.ImGui</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/JunaMeinhold/HexaEngine.ImGui</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<TargetFramework>net7.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="..\native\android-x64\cimguizmo.so">
@@ -27,12 +35,12 @@
 			<PackagePath>runtimes/android-arm64/native</PackagePath>
 			<Pack>true</Pack>
 		</None>
-		<None Include="..\native\osx-arm64\cimguizmo.dylib">
+		<!--<None Include="..\native\osx-arm64\cimguizmo.dylib">
 			<Link>runtimes\osx-arm64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackagePath>runtimes/osx-arm64/native</PackagePath>
 			<Pack>true</Pack>
-		</None>
+		</None>-->
 		<None Include="..\native\osx-x64\cimguizmo.dylib">
 			<Link>runtimes\osx-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

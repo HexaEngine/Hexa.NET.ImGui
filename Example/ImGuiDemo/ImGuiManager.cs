@@ -6,6 +6,9 @@
     using Hexa.NET.ImPlot;
     using HexaEngine.Core.Graphics;
     using HexaEngine.Core.Windows;
+    using HexaEngine.D3D11;
+    using Silk.NET.Core.Native;
+    using Silk.NET.Direct3D11;
     using System.Numerics;
 
     public class ImGuiManager
@@ -144,7 +147,19 @@
             }
 
             ImGuiSDL2Platform.Init(window.GetWindow(), null, null);
-            ImGuiRenderer.Init(device, context);
+
+            D3D11GraphicsDevice dev = (D3D11GraphicsDevice)device;
+            D3D11GraphicsContext ctx = (D3D11GraphicsContext)context;
+
+            ComPtr<ID3D11Device> d = default;
+            d.Handle = (ID3D11Device*)dev.Device.Handle;
+
+            ComPtr<ID3D11DeviceContext> c = default;
+            c.Handle = (ID3D11DeviceContext*)dev.DeviceContext.Handle;
+
+            ImGuiD3D11Renderer.Init(d, c);
+
+            //ImGuiRenderer.Init(device, context);
         }
 
         public unsafe void NewFrame()
@@ -173,7 +188,7 @@
             var io = ImGui.GetIO();
             ImGui.Render();
             ImGui.EndFrame();
-            ImGuiRenderer.RenderDrawData(ImGui.GetDrawData());
+            ImGuiD3D11Renderer.RenderDrawData(ImGui.GetDrawData());
 
             if ((io.ConfigFlags & ImGuiConfigFlags.ViewportsEnable) != 0)
             {
@@ -184,7 +199,7 @@
 
         public void Dispose()
         {
-            ImGuiRenderer.Shutdown();
+            ImGuiD3D11Renderer.Shutdown();
             ImGuiSDL2Platform.Shutdown();
         }
     }

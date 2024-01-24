@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -16,14 +16,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Silk.NET.GLFW" Version="2.17.1" />
-		<PackageReference Include="Silk.NET.SDL" Version="2.17.1" />
+		<PackageReference Include="Silk.NET.GLFW" Version="2.20.0" />
+		<PackageReference Include="Silk.NET.OpenGL" Version="2.20.0" />
+		<PackageReference Include="Silk.NET.SDL" Version="2.20.0" />
 		<PackageReference Include="HexaEngine.DirectXTex" Version="2.0.0" />
-		<PackageReference Include="Silk.NET.Direct3D.Compilers" Version="2.17.1" />
-		<PackageReference Include="Silk.NET.Direct3D11" Version="2.17.1" />
-		<PackageReference Include="Silk.NET.Direct3D11.Extensions.D3D11On12" Version="2.17.1" />
-		<PackageReference Include="Silk.NET.Direct3D12" Version="2.17.1" />
-		<PackageReference Include="Silk.NET.DXGI" Version="2.17.1" />
+		<PackageReference Include="Silk.NET.Direct3D.Compilers" Version="2.20.0" />
+		<PackageReference Include="Silk.NET.Direct3D11" Version="2.20.0" />
+		<PackageReference Include="Silk.NET.Direct3D11.Extensions.D3D11On12" Version="2.20.0" />
+		<PackageReference Include="Silk.NET.Direct3D12" Version="2.20.0" />
+		<PackageReference Include="Silk.NET.DXGI" Version="2.20.0" />
 	</ItemGroup>
 
 	<ItemGroup>

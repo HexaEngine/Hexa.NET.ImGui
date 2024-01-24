@@ -1,9 +1,8 @@
 ﻿namespace Example.ImGuiDemo
 {
-    using HexaEngine.Core;
-    using HexaEngine.Core.Input;
-    using HexaEngine.Core.Unsafes;
     using Hexa.NET.ImGui;
+    using HexaEngine.Core;
+    using HexaEngine.Core.Unsafes;
     using Silk.NET.Core.Native;
     using Silk.NET.Maths;
     using Silk.NET.SDL;
@@ -500,7 +499,9 @@
                 {
                     // Single-viewport mode: mouse position in client window coordinates (io.MousePos is (0,0) when the mouse is on the upper-left corner of the app window)
                     // Multi-viewport mode: mouse position in OS absolute coordinates (io.MousePos is (0,0) when the mouse is on the upper-left of the primary monitor)
-                    var global = Mouse.Global;
+                    int gx, gy;
+                    sdl.GetGlobalMouseState(&gx, &gy);
+                    var global = new Vector2(gx, gy);
                     if ((io.ConfigFlags & ImGuiConfigFlags.ViewportsEnable) == 0)
                     {
                         int x, y;
@@ -768,11 +769,11 @@
             {
                 if (sdl_backend == "windows")
                 {
-                    main_viewport->PlatformHandleRaw = (void*)info.Info.Win.Hwnd;
+                    viewport->PlatformHandleRaw = (void*)info.Info.Win.Hwnd;
                 }
                 else if (sdl_backend == "cocoa")
                 {
-                    main_viewport->PlatformHandleRaw = info.Info.Cocoa.Window;
+                    viewport->PlatformHandleRaw = info.Info.Cocoa.Window;
                 }
             }
         }
