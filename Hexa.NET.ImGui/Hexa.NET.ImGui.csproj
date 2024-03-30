@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFrameworks>net7.0;net8.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -10,9 +10,9 @@
 		<EnableAotAnalyzer>true</EnableAotAnalyzer>
 		<IsAotCompatible>true</IsAotCompatible>
 
-		<AssemblyVersion>1.89.9</AssemblyVersion>
-		<PackageVersion>1.0.2</PackageVersion>
-		<Description>A .NET wrapper for the Dear ImGui library. (1.89.9)</Description>
+		<AssemblyVersion>1.90.4</AssemblyVersion>
+		<PackageVersion>1.0.3</PackageVersion>
+		<Description>A .NET wrapper for the Dear ImGui library. (1.90.4)</Description>
 		<PackageTags>ImGui UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
 		<Copyright>Copyright (c) 2023 Juna Meinhold</Copyright>
@@ -22,6 +22,14 @@
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="LICENSE.txt" />
+	  <None Remove="README.md" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="LICENSE.txt" Pack="true" PackagePath="\" />
+	  <Content Include="README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\native\android-x64\cimgui.so">
 			<Link>runtimes\android-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
@@ -89,9 +97,5 @@
 			<PackagePath>runtimes/win-x86/native</PackagePath>
 			<Pack>true</Pack>
 		</None>
-	</ItemGroup>
-	<ItemGroup>
-		<None Update="README.md" Pack="true" PackagePath="\" />
-		<None Update="LICENSE.txt" Pack="true" PackagePath="\" />
 	</ItemGroup>
 </Project>

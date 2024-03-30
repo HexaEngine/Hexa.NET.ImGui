@@ -289,25 +289,25 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igShowStackToolWindow")]
+		[LibraryImport(LibName, EntryPoint = "igShowIDStackToolWindow")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ShowStackToolWindowNative(bool* pOpen);
+		internal static partial void ShowIDStackToolWindowNative(bool* pOpen);
 
-		public static void ShowStackToolWindow(bool* pOpen)
+		public static void ShowIDStackToolWindow(bool* pOpen)
 		{
-			ShowStackToolWindowNative(pOpen);
+			ShowIDStackToolWindowNative(pOpen);
 		}
 
-		public static void ShowStackToolWindow()
+		public static void ShowIDStackToolWindow()
 		{
-			ShowStackToolWindowNative((bool*)(default));
+			ShowIDStackToolWindowNative((bool*)(default));
 		}
 
-		public static void ShowStackToolWindow(ref bool pOpen)
+		public static void ShowIDStackToolWindow(ref bool pOpen)
 		{
 			fixed (bool* ppOpen = &pOpen)
 			{
-				ShowStackToolWindowNative((bool*)ppOpen);
+				ShowIDStackToolWindowNative((bool*)ppOpen);
 			}
 		}
 
@@ -820,70 +820,70 @@ namespace Hexa.NET.ImGui
 
 		[LibraryImport(LibName, EntryPoint = "igBeginChild_Str")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginChildNative(byte* strId, Vector2 size, byte border, ImGuiWindowFlags flags);
+		internal static partial byte BeginChildNative(byte* strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags);
 
-		public static bool BeginChild(byte* strId, Vector2 size, bool border, ImGuiWindowFlags flags)
+		public static bool BeginChild(byte* strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
-			byte ret = BeginChildNative(strId, size, border ? (byte)1 : (byte)0, flags);
+			byte ret = BeginChildNative(strId, size, childFlags, windowFlags);
 			return ret != 0;
 		}
 
-		public static bool BeginChild(byte* strId, Vector2 size, bool border)
+		public static bool BeginChild(byte* strId, Vector2 size, ImGuiChildFlags childFlags)
 		{
-			byte ret = BeginChildNative(strId, size, border ? (byte)1 : (byte)0, (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(strId, size, childFlags, (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
 		public static bool BeginChild(byte* strId, Vector2 size)
 		{
-			byte ret = BeginChildNative(strId, size, (byte)(0), (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(strId, size, (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
 		public static bool BeginChild(byte* strId)
 		{
-			byte ret = BeginChildNative(strId, (Vector2)(new Vector2(0,0)), (byte)(0), (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(strId, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
-		public static bool BeginChild(byte* strId, bool border)
+		public static bool BeginChild(byte* strId, ImGuiChildFlags childFlags)
 		{
-			byte ret = BeginChildNative(strId, (Vector2)(new Vector2(0,0)), border ? (byte)1 : (byte)0, (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(strId, (Vector2)(new Vector2(0,0)), childFlags, (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
-		public static bool BeginChild(byte* strId, Vector2 size, ImGuiWindowFlags flags)
+		public static bool BeginChild(byte* strId, Vector2 size, ImGuiWindowFlags windowFlags)
 		{
-			byte ret = BeginChildNative(strId, size, (byte)(0), flags);
+			byte ret = BeginChildNative(strId, size, (ImGuiChildFlags)(0), windowFlags);
 			return ret != 0;
 		}
 
-		public static bool BeginChild(byte* strId, ImGuiWindowFlags flags)
+		public static bool BeginChild(byte* strId, ImGuiWindowFlags windowFlags)
 		{
-			byte ret = BeginChildNative(strId, (Vector2)(new Vector2(0,0)), (byte)(0), flags);
+			byte ret = BeginChildNative(strId, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), windowFlags);
 			return ret != 0;
 		}
 
-		public static bool BeginChild(byte* strId, bool border, ImGuiWindowFlags flags)
+		public static bool BeginChild(byte* strId, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
-			byte ret = BeginChildNative(strId, (Vector2)(new Vector2(0,0)), border ? (byte)1 : (byte)0, flags);
+			byte ret = BeginChildNative(strId, (Vector2)(new Vector2(0,0)), childFlags, windowFlags);
 			return ret != 0;
 		}
 
-		public static bool BeginChild(ref byte strId, Vector2 size, bool border, ImGuiWindowFlags flags)
+		public static bool BeginChild(ref byte strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginChildNative((byte*)pstrId, size, border ? (byte)1 : (byte)0, flags);
+				byte ret = BeginChildNative((byte*)pstrId, size, childFlags, windowFlags);
 				return ret != 0;
 			}
 		}
 
-		public static bool BeginChild(ref byte strId, Vector2 size, bool border)
+		public static bool BeginChild(ref byte strId, Vector2 size, ImGuiChildFlags childFlags)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginChildNative((byte*)pstrId, size, border ? (byte)1 : (byte)0, (ImGuiWindowFlags)(0));
+				byte ret = BeginChildNative((byte*)pstrId, size, childFlags, (ImGuiWindowFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -892,7 +892,7 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginChildNative((byte*)pstrId, size, (byte)(0), (ImGuiWindowFlags)(0));
+				byte ret = BeginChildNative((byte*)pstrId, size, (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
 				return ret != 0;
 			}
 		}
@@ -901,48 +901,48 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), (byte)(0), (ImGuiWindowFlags)(0));
+				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
 				return ret != 0;
 			}
 		}
 
-		public static bool BeginChild(ref byte strId, bool border)
+		public static bool BeginChild(ref byte strId, ImGuiChildFlags childFlags)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), border ? (byte)1 : (byte)0, (ImGuiWindowFlags)(0));
+				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), childFlags, (ImGuiWindowFlags)(0));
 				return ret != 0;
 			}
 		}
 
-		public static bool BeginChild(ref byte strId, Vector2 size, ImGuiWindowFlags flags)
+		public static bool BeginChild(ref byte strId, Vector2 size, ImGuiWindowFlags windowFlags)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginChildNative((byte*)pstrId, size, (byte)(0), flags);
+				byte ret = BeginChildNative((byte*)pstrId, size, (ImGuiChildFlags)(0), windowFlags);
 				return ret != 0;
 			}
 		}
 
-		public static bool BeginChild(ref byte strId, ImGuiWindowFlags flags)
+		public static bool BeginChild(ref byte strId, ImGuiWindowFlags windowFlags)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), (byte)(0), flags);
+				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), windowFlags);
 				return ret != 0;
 			}
 		}
 
-		public static bool BeginChild(ref byte strId, bool border, ImGuiWindowFlags flags)
+		public static bool BeginChild(ref byte strId, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), border ? (byte)1 : (byte)0, flags);
+				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), childFlags, windowFlags);
 				return ret != 0;
 			}
 		}
 
-		public static bool BeginChild(string strId, Vector2 size, bool border, ImGuiWindowFlags flags)
+		public static bool BeginChild(string strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -961,7 +961,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginChildNative(pStr0, size, border ? (byte)1 : (byte)0, flags);
+			byte ret = BeginChildNative(pStr0, size, childFlags, windowFlags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -969,7 +969,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool BeginChild(string strId, Vector2 size, bool border)
+		public static bool BeginChild(string strId, Vector2 size, ImGuiChildFlags childFlags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -988,7 +988,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginChildNative(pStr0, size, border ? (byte)1 : (byte)0, (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(pStr0, size, childFlags, (ImGuiWindowFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1015,7 +1015,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginChildNative(pStr0, size, (byte)(0), (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(pStr0, size, (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1042,7 +1042,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginChildNative(pStr0, (Vector2)(new Vector2(0,0)), (byte)(0), (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(pStr0, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1050,7 +1050,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool BeginChild(string strId, bool border)
+		public static bool BeginChild(string strId, ImGuiChildFlags childFlags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1069,7 +1069,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginChildNative(pStr0, (Vector2)(new Vector2(0,0)), border ? (byte)1 : (byte)0, (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(pStr0, (Vector2)(new Vector2(0,0)), childFlags, (ImGuiWindowFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1077,7 +1077,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool BeginChild(string strId, Vector2 size, ImGuiWindowFlags flags)
+		public static bool BeginChild(string strId, Vector2 size, ImGuiWindowFlags windowFlags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1096,7 +1096,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginChildNative(pStr0, size, (byte)(0), flags);
+			byte ret = BeginChildNative(pStr0, size, (ImGuiChildFlags)(0), windowFlags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1104,7 +1104,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool BeginChild(string strId, ImGuiWindowFlags flags)
+		public static bool BeginChild(string strId, ImGuiWindowFlags windowFlags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1123,7 +1123,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginChildNative(pStr0, (Vector2)(new Vector2(0,0)), (byte)(0), flags);
+			byte ret = BeginChildNative(pStr0, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), windowFlags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1131,7 +1131,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool BeginChild(string strId, bool border, ImGuiWindowFlags flags)
+		public static bool BeginChild(string strId, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1150,7 +1150,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginChildNative(pStr0, (Vector2)(new Vector2(0,0)), border ? (byte)1 : (byte)0, flags);
+			byte ret = BeginChildNative(pStr0, (Vector2)(new Vector2(0,0)), childFlags, windowFlags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1160,53 +1160,53 @@ namespace Hexa.NET.ImGui
 
 		[LibraryImport(LibName, EntryPoint = "igBeginChild_ID")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginChildNative(int id, Vector2 size, byte border, ImGuiWindowFlags flags);
+		internal static partial byte BeginChildNative(int id, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags);
 
-		public static bool BeginChild(int id, Vector2 size, bool border, ImGuiWindowFlags flags)
+		public static bool BeginChild(int id, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
-			byte ret = BeginChildNative(id, size, border ? (byte)1 : (byte)0, flags);
+			byte ret = BeginChildNative(id, size, childFlags, windowFlags);
 			return ret != 0;
 		}
 
-		public static bool BeginChild(int id, Vector2 size, bool border)
+		public static bool BeginChild(int id, Vector2 size, ImGuiChildFlags childFlags)
 		{
-			byte ret = BeginChildNative(id, size, border ? (byte)1 : (byte)0, (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(id, size, childFlags, (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
 		public static bool BeginChild(int id, Vector2 size)
 		{
-			byte ret = BeginChildNative(id, size, (byte)(0), (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(id, size, (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
 		public static bool BeginChild(int id)
 		{
-			byte ret = BeginChildNative(id, (Vector2)(new Vector2(0,0)), (byte)(0), (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(id, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
-		public static bool BeginChild(int id, bool border)
+		public static bool BeginChild(int id, ImGuiChildFlags childFlags)
 		{
-			byte ret = BeginChildNative(id, (Vector2)(new Vector2(0,0)), border ? (byte)1 : (byte)0, (ImGuiWindowFlags)(0));
+			byte ret = BeginChildNative(id, (Vector2)(new Vector2(0,0)), childFlags, (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
-		public static bool BeginChild(int id, Vector2 size, ImGuiWindowFlags flags)
+		public static bool BeginChild(int id, Vector2 size, ImGuiWindowFlags windowFlags)
 		{
-			byte ret = BeginChildNative(id, size, (byte)(0), flags);
+			byte ret = BeginChildNative(id, size, (ImGuiChildFlags)(0), windowFlags);
 			return ret != 0;
 		}
 
-		public static bool BeginChild(int id, ImGuiWindowFlags flags)
+		public static bool BeginChild(int id, ImGuiWindowFlags windowFlags)
 		{
-			byte ret = BeginChildNative(id, (Vector2)(new Vector2(0,0)), (byte)(0), flags);
+			byte ret = BeginChildNative(id, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), windowFlags);
 			return ret != 0;
 		}
 
-		public static bool BeginChild(int id, bool border, ImGuiWindowFlags flags)
+		public static bool BeginChild(int id, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
-			byte ret = BeginChildNative(id, (Vector2)(new Vector2(0,0)), border ? (byte)1 : (byte)0, flags);
+			byte ret = BeginChildNative(id, (Vector2)(new Vector2(0,0)), childFlags, windowFlags);
 			return ret != 0;
 		}
 
@@ -2307,11 +2307,17 @@ namespace Hexa.NET.ImGui
 
 		[LibraryImport(LibName, EntryPoint = "igGetColorU32_U32")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial uint GetColorU32Native(uint col);
+		internal static partial uint GetColorU32Native(uint col, float alphaMul);
+
+		public static uint GetColorU32(uint col, float alphaMul)
+		{
+			uint ret = GetColorU32Native(col, alphaMul);
+			return ret;
+		}
 
 		public static uint GetColorU32(uint col)
 		{
-			uint ret = GetColorU32Native(col);
+			uint ret = GetColorU32Native(col, (float)(1.0f));
 			return ret;
 		}
 
@@ -2323,6 +2329,134 @@ namespace Hexa.NET.ImGui
 		{
 			Vector4* ret = GetStyleColorVec4Native(idx);
 			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igGetCursorScreenPos")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void GetCursorScreenPosNative(Vector2* output);
+
+		public static Vector2 GetCursorScreenPos()
+		{
+			Vector2 ret;
+			GetCursorScreenPosNative(&ret);
+			return ret;
+		}
+
+		public static void GetCursorScreenPos(Vector2* output)
+		{
+			GetCursorScreenPosNative(output);
+		}
+
+		public static void GetCursorScreenPos(ref Vector2 output)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				GetCursorScreenPosNative((Vector2*)poutput);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igSetCursorScreenPos")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetCursorScreenPosNative(Vector2 pos);
+
+		public static void SetCursorScreenPos(Vector2 pos)
+		{
+			SetCursorScreenPosNative(pos);
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igGetCursorPos")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void GetCursorPosNative(Vector2* output);
+
+		public static Vector2 GetCursorPos()
+		{
+			Vector2 ret;
+			GetCursorPosNative(&ret);
+			return ret;
+		}
+
+		public static void GetCursorPos(Vector2* output)
+		{
+			GetCursorPosNative(output);
+		}
+
+		public static void GetCursorPos(ref Vector2 output)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				GetCursorPosNative((Vector2*)poutput);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igGetCursorPosX")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial float GetCursorPosXNative();
+
+		public static float GetCursorPosX()
+		{
+			float ret = GetCursorPosXNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igGetCursorPosY")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial float GetCursorPosYNative();
+
+		public static float GetCursorPosY()
+		{
+			float ret = GetCursorPosYNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igSetCursorPos")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetCursorPosNative(Vector2 localPos);
+
+		public static void SetCursorPos(Vector2 localPos)
+		{
+			SetCursorPosNative(localPos);
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igSetCursorPosX")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetCursorPosXNative(float localX);
+
+		public static void SetCursorPosX(float localX)
+		{
+			SetCursorPosXNative(localX);
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igSetCursorPosY")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetCursorPosYNative(float localY);
+
+		public static void SetCursorPosY(float localY)
+		{
+			SetCursorPosYNative(localY);
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igGetCursorStartPos")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void GetCursorStartPosNative(Vector2* output);
+
+		public static Vector2 GetCursorStartPos()
+		{
+			Vector2 ret;
+			GetCursorStartPosNative(&ret);
+			return ret;
+		}
+
+		public static void GetCursorStartPos(Vector2* output)
+		{
+			GetCursorStartPosNative(output);
+		}
+
+		public static void GetCursorStartPos(ref Vector2 output)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				GetCursorStartPosNative((Vector2*)poutput);
+			}
 		}
 
 		[LibraryImport(LibName, EntryPoint = "igSeparator")]
@@ -2424,134 +2558,6 @@ namespace Hexa.NET.ImGui
 		public static void EndGroup()
 		{
 			EndGroupNative();
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igGetCursorPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetCursorPosNative(Vector2* output);
-
-		public static Vector2 GetCursorPos()
-		{
-			Vector2 ret;
-			GetCursorPosNative(&ret);
-			return ret;
-		}
-
-		public static void GetCursorPos(Vector2* output)
-		{
-			GetCursorPosNative(output);
-		}
-
-		public static void GetCursorPos(ref Vector2 output)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				GetCursorPosNative((Vector2*)poutput);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igGetCursorPosX")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetCursorPosXNative();
-
-		public static float GetCursorPosX()
-		{
-			float ret = GetCursorPosXNative();
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igGetCursorPosY")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetCursorPosYNative();
-
-		public static float GetCursorPosY()
-		{
-			float ret = GetCursorPosYNative();
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igSetCursorPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetCursorPosNative(Vector2 localPos);
-
-		public static void SetCursorPos(Vector2 localPos)
-		{
-			SetCursorPosNative(localPos);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igSetCursorPosX")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetCursorPosXNative(float localX);
-
-		public static void SetCursorPosX(float localX)
-		{
-			SetCursorPosXNative(localX);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igSetCursorPosY")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetCursorPosYNative(float localY);
-
-		public static void SetCursorPosY(float localY)
-		{
-			SetCursorPosYNative(localY);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igGetCursorStartPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetCursorStartPosNative(Vector2* output);
-
-		public static Vector2 GetCursorStartPos()
-		{
-			Vector2 ret;
-			GetCursorStartPosNative(&ret);
-			return ret;
-		}
-
-		public static void GetCursorStartPos(Vector2* output)
-		{
-			GetCursorStartPosNative(output);
-		}
-
-		public static void GetCursorStartPos(ref Vector2 output)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				GetCursorStartPosNative((Vector2*)poutput);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igGetCursorScreenPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetCursorScreenPosNative(Vector2* output);
-
-		public static Vector2 GetCursorScreenPos()
-		{
-			Vector2 ret;
-			GetCursorScreenPosNative(&ret);
-			return ret;
-		}
-
-		public static void GetCursorScreenPos(Vector2* output)
-		{
-			GetCursorScreenPosNative(output);
-		}
-
-		public static void GetCursorScreenPos(ref Vector2 output)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				GetCursorScreenPosNative((Vector2*)poutput);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igSetCursorScreenPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetCursorScreenPosNative(Vector2 pos);
-
-		public static void SetCursorScreenPos(Vector2 pos)
-		{
-			SetCursorScreenPosNative(pos);
 		}
 
 		[LibraryImport(LibName, EntryPoint = "igAlignTextToFramePadding")]
@@ -4728,193 +4734,193 @@ namespace Hexa.NET.ImGui
 
 		[LibraryImport(LibName, EntryPoint = "igImage")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImageNative(ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1, Vector4 tintCol, Vector4 borderCol);
+		internal static partial void ImageNative(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 tintCol, Vector4 borderCol);
 
-		public static void Image(ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1, Vector4 tintCol, Vector4 borderCol)
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 tintCol, Vector4 borderCol)
 		{
-			ImageNative(userTextureId, size, uv0, uv1, tintCol, borderCol);
+			ImageNative(userTextureId, imageSize, uv0, uv1, tintCol, borderCol);
 		}
 
-		public static void Image(ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1, Vector4 tintCol)
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 tintCol)
 		{
-			ImageNative(userTextureId, size, uv0, uv1, tintCol, (Vector4)(new Vector4(0,0,0,0)));
+			ImageNative(userTextureId, imageSize, uv0, uv1, tintCol, (Vector4)(new Vector4(0,0,0,0)));
 		}
 
-		public static void Image(ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1)
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
 		{
-			ImageNative(userTextureId, size, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), (Vector4)(new Vector4(0,0,0,0)));
+			ImageNative(userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), (Vector4)(new Vector4(0,0,0,0)));
 		}
 
-		public static void Image(ImTextureID userTextureId, Vector2 size, Vector2 uv0)
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
 		{
-			ImageNative(userTextureId, size, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (Vector4)(new Vector4(0,0,0,0)));
+			ImageNative(userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (Vector4)(new Vector4(0,0,0,0)));
 		}
 
-		public static void Image(ImTextureID userTextureId, Vector2 size)
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize)
 		{
-			ImageNative(userTextureId, size, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (Vector4)(new Vector4(0,0,0,0)));
+			ImageNative(userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (Vector4)(new Vector4(0,0,0,0)));
 		}
 
-		public static void Image(ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector4 tintCol)
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 tintCol)
 		{
-			ImageNative(userTextureId, size, uv0, (Vector2)(new Vector2(1,1)), tintCol, (Vector4)(new Vector4(0,0,0,0)));
+			ImageNative(userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), tintCol, (Vector4)(new Vector4(0,0,0,0)));
 		}
 
-		public static void Image(ImTextureID userTextureId, Vector2 size, Vector4 tintCol)
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector4 tintCol)
 		{
-			ImageNative(userTextureId, size, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (Vector4)(new Vector4(0,0,0,0)));
+			ImageNative(userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (Vector4)(new Vector4(0,0,0,0)));
 		}
 
-		public static void Image(ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector4 tintCol, Vector4 borderCol)
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 tintCol, Vector4 borderCol)
 		{
-			ImageNative(userTextureId, size, uv0, (Vector2)(new Vector2(1,1)), tintCol, borderCol);
+			ImageNative(userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), tintCol, borderCol);
 		}
 
-		public static void Image(ImTextureID userTextureId, Vector2 size, Vector4 tintCol, Vector4 borderCol)
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector4 tintCol, Vector4 borderCol)
 		{
-			ImageNative(userTextureId, size, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, borderCol);
+			ImageNative(userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, borderCol);
 		}
 
 		[LibraryImport(LibName, EntryPoint = "igImageButton")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ImageButtonNative(byte* strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol);
+		internal static partial byte ImageButtonNative(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol);
 
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, size, uv0, uv1, bgCol, tintCol);
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
 			return ret != 0;
 		}
 
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, size, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
 			return ret != 0;
 		}
 
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1)
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, size, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 			return ret != 0;
 		}
 
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0)
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, size, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 			return ret != 0;
 		}
 
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 size)
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, size, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 			return ret != 0;
 		}
 
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector4 bgCol)
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, size, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 			return ret != 0;
 		}
 
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 size, Vector4 bgCol)
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, size, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 			return ret != 0;
 		}
 
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, size, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
 			return ret != 0;
 		}
 
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 size, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
 		{
-			byte ret = ImageButtonNative(strId, userTextureId, size, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
 			return ret != 0;
 		}
 
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, size, uv0, uv1, bgCol, tintCol);
+				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
 				return ret != 0;
 			}
 		}
 
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, size, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
 
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1)
+		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, size, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
 
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0)
+		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, size, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
 
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 size)
+		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, size, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
 
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector4 bgCol)
+		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, size, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
 
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 size, Vector4 bgCol)
+		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, size, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
 		}
 
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, size, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
 				return ret != 0;
 			}
 		}
 
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 size, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, size, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
 				return ret != 0;
 			}
 		}
 
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4933,7 +4939,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, size, uv0, uv1, bgCol, tintCol);
+			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4941,7 +4947,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4960,7 +4966,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, size, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4968,7 +4974,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector2 uv1)
+		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4987,7 +4993,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, size, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4995,7 +5001,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0)
+		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5014,7 +5020,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, size, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);

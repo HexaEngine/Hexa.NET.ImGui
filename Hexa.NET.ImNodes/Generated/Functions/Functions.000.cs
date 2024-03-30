@@ -154,7 +154,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SetImGuiContext")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_SetImGuiContext")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void SetImGuiContextNative(ImGuiContext* ctx);
 
@@ -171,7 +171,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_CreateContext")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_CreateContext")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial ImNodesContext* CreateContextNative();
 
@@ -181,18 +181,13 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_DestroyContext")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_DestroyContext")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void DestroyContextNative(ImNodesContext* ctx);
 
 		public static void DestroyContext(ImNodesContextPtr ctx)
 		{
 			DestroyContextNative(ctx);
-		}
-
-		public static void DestroyContext()
-		{
-			DestroyContextNative((ImNodesContext*)(default));
 		}
 
 		public static void DestroyContext(ref ImNodesContext ctx)
@@ -203,7 +198,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetCurrentContext")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_GetCurrentContext")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial ImNodesContext* GetCurrentContextNative();
 
@@ -213,7 +208,7 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SetCurrentContext")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_SetCurrentContext")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void SetCurrentContextNative(ImNodesContext* ctx);
 
@@ -230,7 +225,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EditorContextCreate")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_EditorContextCreate")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial ImNodesEditorContext* EditorContextCreateNative();
 
@@ -240,7 +235,7 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EditorContextFree")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_EditorContextFree")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void EditorContextFreeNative(ImNodesEditorContext* noname1);
 
@@ -257,7 +252,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EditorContextSet")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_EditorContextSet")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void EditorContextSetNative(ImNodesEditorContext* noname1);
 
@@ -274,7 +269,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EditorContextGetPanning")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_EditorContextGetPanning")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void EditorContextGetPanningNative(Vector2* output);
 
@@ -298,7 +293,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EditorContextResetPanning")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_EditorContextResetPanning")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void EditorContextResetPanningNative(Vector2 pos);
 
@@ -307,7 +302,7 @@ namespace Hexa.NET.ImNodes
 			EditorContextResetPanningNative(pos);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EditorContextMoveToNode")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_EditorContextMoveToNode")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void EditorContextMoveToNodeNative(int nodeId);
 
@@ -316,7 +311,7 @@ namespace Hexa.NET.ImNodes
 			EditorContextMoveToNodeNative(nodeId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetIO")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_GetIO")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial ImNodesIO* GetIONative();
 
@@ -326,7 +321,7 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetStyle")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_GetStyle")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial ImNodesStyle* GetStyleNative();
 
@@ -336,18 +331,13 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_StyleColorsDark")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_StyleColorsDark")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void StyleColorsDarkNative(ImNodesStyle* dest);
 
 		public static void StyleColorsDark(ImNodesStylePtr dest)
 		{
 			StyleColorsDarkNative(dest);
-		}
-
-		public static void StyleColorsDark()
-		{
-			StyleColorsDarkNative((ImNodesStyle*)(default));
 		}
 
 		public static void StyleColorsDark(ref ImNodesStyle dest)
@@ -358,18 +348,13 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_StyleColorsClassic")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_StyleColorsClassic")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void StyleColorsClassicNative(ImNodesStyle* dest);
 
 		public static void StyleColorsClassic(ImNodesStylePtr dest)
 		{
 			StyleColorsClassicNative(dest);
-		}
-
-		public static void StyleColorsClassic()
-		{
-			StyleColorsClassicNative((ImNodesStyle*)(default));
 		}
 
 		public static void StyleColorsClassic(ref ImNodesStyle dest)
@@ -380,18 +365,13 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_StyleColorsLight")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_StyleColorsLight")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void StyleColorsLightNative(ImNodesStyle* dest);
 
 		public static void StyleColorsLight(ImNodesStylePtr dest)
 		{
 			StyleColorsLightNative(dest);
-		}
-
-		public static void StyleColorsLight()
-		{
-			StyleColorsLightNative((ImNodesStyle*)(default));
 		}
 
 		public static void StyleColorsLight(ref ImNodesStyle dest)
@@ -402,7 +382,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_BeginNodeEditor")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_BeginNodeEditor")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void BeginNodeEditorNative();
 
@@ -411,7 +391,7 @@ namespace Hexa.NET.ImNodes
 			BeginNodeEditorNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EndNodeEditor")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_EndNodeEditor")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void EndNodeEditorNative();
 
@@ -420,7 +400,7 @@ namespace Hexa.NET.ImNodes
 			EndNodeEditorNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_MiniMap")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_MiniMap")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void MiniMapNative(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData);
 
@@ -429,82 +409,7 @@ namespace Hexa.NET.ImNodes
 			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, nodeHoveringCallbackData);
 		}
 
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
-		{
-			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
-		}
-
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location)
-		{
-			MiniMapNative(minimapSizeFraction, location, (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
-		}
-
-		public static void MiniMap(float minimapSizeFraction)
-		{
-			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
-		}
-
-		public static void MiniMap()
-		{
-			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
-		}
-
-		public static void MiniMap(ImNodesMiniMapLocation location)
-		{
-			MiniMapNative((float)(0.2f), location, (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
-		}
-
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
-		{
-			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
-		}
-
-		public static void MiniMap(ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
-		{
-			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
-		}
-
-		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
-		{
-			MiniMapNative((float)(0.2f), location, nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
-		}
-
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
-		{
-			MiniMapNative(minimapSizeFraction, location, (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
-		}
-
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
-		{
-			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
-		}
-
-		public static void MiniMap(ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
-		{
-			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
-		}
-
-		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
-		{
-			MiniMapNative((float)(0.2f), location, (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
-		}
-
-		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
-		{
-			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, nodeHoveringCallbackData);
-		}
-
-		public static void MiniMap(ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
-		{
-			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, nodeHoveringCallbackData);
-		}
-
-		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
-		{
-			MiniMapNative((float)(0.2f), location, nodeHoveringCallback, nodeHoveringCallbackData);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImNodes_PushColorStyle")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_PushColorStyle")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void PushColorStyleNative(ImNodesCol item, uint color);
 
@@ -513,7 +418,7 @@ namespace Hexa.NET.ImNodes
 			PushColorStyleNative(item, color);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_PopColorStyle")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_PopColorStyle")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void PopColorStyleNative();
 
@@ -522,25 +427,25 @@ namespace Hexa.NET.ImNodes
 			PopColorStyleNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_PushStyleVar_Float")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_PushStyleVar_Float")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleVarNative(ImNodesStyleVar styleItem, float value);
+		internal static partial void PushStyleVarFloatNative(ImNodesStyleVar styleItem, float value);
 
-		public static void PushStyleVar(ImNodesStyleVar styleItem, float value)
+		public static void PushStyleVarFloat(ImNodesStyleVar styleItem, float value)
 		{
-			PushStyleVarNative(styleItem, value);
+			PushStyleVarFloatNative(styleItem, value);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_PushStyleVar_Vec2")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_PushStyleVar_Vec2")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleVarNative(ImNodesStyleVar styleItem, Vector2 value);
+		internal static partial void PushStyleVarVec2Native(ImNodesStyleVar styleItem, Vector2 value);
 
-		public static void PushStyleVar(ImNodesStyleVar styleItem, Vector2 value)
+		public static void PushStyleVarVec2(ImNodesStyleVar styleItem, Vector2 value)
 		{
-			PushStyleVarNative(styleItem, value);
+			PushStyleVarVec2Native(styleItem, value);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_PopStyleVar")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_PopStyleVar")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void PopStyleVarNative(int count);
 
@@ -549,12 +454,7 @@ namespace Hexa.NET.ImNodes
 			PopStyleVarNative(count);
 		}
 
-		public static void PopStyleVar()
-		{
-			PopStyleVarNative((int)(1));
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImNodes_BeginNode")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_BeginNode")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void BeginNodeNative(int id);
 
@@ -563,7 +463,7 @@ namespace Hexa.NET.ImNodes
 			BeginNodeNative(id);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EndNode")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_EndNode")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void EndNodeNative();
 
@@ -572,7 +472,7 @@ namespace Hexa.NET.ImNodes
 			EndNodeNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetNodeDimensions")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_GetNodeDimensions")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void GetNodeDimensionsNative(Vector2* output, int id);
 
@@ -596,7 +496,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_BeginNodeTitleBar")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_BeginNodeTitleBar")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void BeginNodeTitleBarNative();
 
@@ -605,7 +505,7 @@ namespace Hexa.NET.ImNodes
 			BeginNodeTitleBarNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EndNodeTitleBar")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_EndNodeTitleBar")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void EndNodeTitleBarNative();
 
@@ -614,7 +514,7 @@ namespace Hexa.NET.ImNodes
 			EndNodeTitleBarNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_BeginInputAttribute")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_BeginInputAttribute")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void BeginInputAttributeNative(int id, ImNodesPinShape shape);
 
@@ -623,12 +523,7 @@ namespace Hexa.NET.ImNodes
 			BeginInputAttributeNative(id, shape);
 		}
 
-		public static void BeginInputAttribute(int id)
-		{
-			BeginInputAttributeNative(id, (ImNodesPinShape)(ImNodesPinShape.CircleFilled));
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EndInputAttribute")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_EndInputAttribute")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void EndInputAttributeNative();
 
@@ -637,7 +532,7 @@ namespace Hexa.NET.ImNodes
 			EndInputAttributeNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_BeginOutputAttribute")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_BeginOutputAttribute")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void BeginOutputAttributeNative(int id, ImNodesPinShape shape);
 
@@ -646,12 +541,7 @@ namespace Hexa.NET.ImNodes
 			BeginOutputAttributeNative(id, shape);
 		}
 
-		public static void BeginOutputAttribute(int id)
-		{
-			BeginOutputAttributeNative(id, (ImNodesPinShape)(ImNodesPinShape.CircleFilled));
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EndOutputAttribute")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_EndOutputAttribute")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void EndOutputAttributeNative();
 
@@ -660,7 +550,7 @@ namespace Hexa.NET.ImNodes
 			EndOutputAttributeNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_BeginStaticAttribute")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_BeginStaticAttribute")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void BeginStaticAttributeNative(int id);
 
@@ -669,7 +559,7 @@ namespace Hexa.NET.ImNodes
 			BeginStaticAttributeNative(id);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EndStaticAttribute")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_EndStaticAttribute")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void EndStaticAttributeNative();
 
@@ -678,7 +568,7 @@ namespace Hexa.NET.ImNodes
 			EndStaticAttributeNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_PushAttributeFlag")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_PushAttributeFlag")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void PushAttributeFlagNative(ImNodesAttributeFlags flag);
 
@@ -687,7 +577,7 @@ namespace Hexa.NET.ImNodes
 			PushAttributeFlagNative(flag);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_PopAttributeFlag")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_PopAttributeFlag")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void PopAttributeFlagNative();
 
@@ -696,7 +586,7 @@ namespace Hexa.NET.ImNodes
 			PopAttributeFlagNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_Link")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_Link")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void LinkNative(int id, int startAttributeId, int endAttributeId);
 
@@ -705,7 +595,7 @@ namespace Hexa.NET.ImNodes
 			LinkNative(id, startAttributeId, endAttributeId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SetNodeDraggable")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_SetNodeDraggable")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void SetNodeDraggableNative(int nodeId, byte draggable);
 
@@ -714,7 +604,7 @@ namespace Hexa.NET.ImNodes
 			SetNodeDraggableNative(nodeId, draggable ? (byte)1 : (byte)0);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SetNodeScreenSpacePos")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_SetNodeScreenSpacePos")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void SetNodeScreenSpacePosNative(int nodeId, Vector2 screenSpacePos);
 
@@ -723,7 +613,7 @@ namespace Hexa.NET.ImNodes
 			SetNodeScreenSpacePosNative(nodeId, screenSpacePos);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SetNodeEditorSpacePos")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_SetNodeEditorSpacePos")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void SetNodeEditorSpacePosNative(int nodeId, Vector2 editorSpacePos);
 
@@ -732,7 +622,7 @@ namespace Hexa.NET.ImNodes
 			SetNodeEditorSpacePosNative(nodeId, editorSpacePos);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SetNodeGridSpacePos")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_SetNodeGridSpacePos")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void SetNodeGridSpacePosNative(int nodeId, Vector2 gridPos);
 
@@ -741,7 +631,7 @@ namespace Hexa.NET.ImNodes
 			SetNodeGridSpacePosNative(nodeId, gridPos);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetNodeScreenSpacePos")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_GetNodeScreenSpacePos")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void GetNodeScreenSpacePosNative(Vector2* output, int nodeId);
 
@@ -765,7 +655,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetNodeEditorSpacePos")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_GetNodeEditorSpacePos")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void GetNodeEditorSpacePosNative(Vector2* output, int nodeId);
 
@@ -789,7 +679,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetNodeGridSpacePos")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_GetNodeGridSpacePos")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void GetNodeGridSpacePosNative(Vector2* output, int nodeId);
 
@@ -813,7 +703,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SnapNodeToGrid")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_SnapNodeToGrid")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void SnapNodeToGridNative(int nodeId);
 
@@ -822,7 +712,7 @@ namespace Hexa.NET.ImNodes
 			SnapNodeToGridNative(nodeId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsEditorHovered")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_IsEditorHovered")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte IsEditorHoveredNative();
 
@@ -832,7 +722,7 @@ namespace Hexa.NET.ImNodes
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsNodeHovered")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_IsNodeHovered")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte IsNodeHoveredNative(int* nodeId);
 
@@ -851,7 +741,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsLinkHovered")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_IsLinkHovered")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte IsLinkHoveredNative(int* linkId);
 
@@ -870,7 +760,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsPinHovered")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_IsPinHovered")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte IsPinHoveredNative(int* attributeId);
 
@@ -889,7 +779,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_NumSelectedNodes")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_NumSelectedNodes")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial int NumSelectedNodesNative();
 
@@ -899,7 +789,7 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_NumSelectedLinks")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_NumSelectedLinks")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial int NumSelectedLinksNative();
 
@@ -909,7 +799,7 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetSelectedNodes")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_GetSelectedNodes")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void GetSelectedNodesNative(int* nodeIds);
 
@@ -926,7 +816,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetSelectedLinks")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_GetSelectedLinks")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void GetSelectedLinksNative(int* linkIds);
 
@@ -943,25 +833,25 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_ClearNodeSelection_Nil")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_ClearNodeSelection_Nil")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearNodeSelectionNative();
+		internal static partial void ClearNodeSelectionNilNative();
 
-		public static void ClearNodeSelection()
+		public static void ClearNodeSelectionNil()
 		{
-			ClearNodeSelectionNative();
+			ClearNodeSelectionNilNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_ClearLinkSelection_Nil")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_ClearLinkSelection_Nil")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearLinkSelectionNative();
+		internal static partial void ClearLinkSelectionNilNative();
 
-		public static void ClearLinkSelection()
+		public static void ClearLinkSelectionNil()
 		{
-			ClearLinkSelectionNative();
+			ClearLinkSelectionNilNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SelectNode")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_SelectNode")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void SelectNodeNative(int nodeId);
 
@@ -970,16 +860,16 @@ namespace Hexa.NET.ImNodes
 			SelectNodeNative(nodeId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_ClearNodeSelection_Int")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_ClearNodeSelection_Int")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearNodeSelectionNative(int nodeId);
+		internal static partial void ClearNodeSelectionIntNative(int nodeId);
 
-		public static void ClearNodeSelection(int nodeId)
+		public static void ClearNodeSelectionInt(int nodeId)
 		{
-			ClearNodeSelectionNative(nodeId);
+			ClearNodeSelectionIntNative(nodeId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsNodeSelected")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_IsNodeSelected")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte IsNodeSelectedNative(int nodeId);
 
@@ -989,7 +879,7 @@ namespace Hexa.NET.ImNodes
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SelectLink")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_SelectLink")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void SelectLinkNative(int linkId);
 
@@ -998,16 +888,16 @@ namespace Hexa.NET.ImNodes
 			SelectLinkNative(linkId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_ClearLinkSelection_Int")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_ClearLinkSelection_Int")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearLinkSelectionNative(int linkId);
+		internal static partial void ClearLinkSelectionIntNative(int linkId);
 
-		public static void ClearLinkSelection(int linkId)
+		public static void ClearLinkSelectionInt(int linkId)
 		{
-			ClearLinkSelectionNative(linkId);
+			ClearLinkSelectionIntNative(linkId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsLinkSelected")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_IsLinkSelected")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte IsLinkSelectedNative(int linkId);
 
@@ -1017,7 +907,7 @@ namespace Hexa.NET.ImNodes
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsAttributeActive")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_IsAttributeActive")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte IsAttributeActiveNative();
 
@@ -1027,19 +917,13 @@ namespace Hexa.NET.ImNodes
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsAnyAttributeActive")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_IsAnyAttributeActive")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte IsAnyAttributeActiveNative(int* attributeId);
 
 		public static bool IsAnyAttributeActive(int* attributeId)
 		{
 			byte ret = IsAnyAttributeActiveNative(attributeId);
-			return ret != 0;
-		}
-
-		public static bool IsAnyAttributeActive()
-		{
-			byte ret = IsAnyAttributeActiveNative((int*)(default));
 			return ret != 0;
 		}
 
@@ -1052,7 +936,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsLinkStarted")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_IsLinkStarted")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte IsLinkStartedNative(int* startedAtAttributeId);
 
@@ -1071,31 +955,13 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsLinkDropped")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_IsLinkDropped")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte IsLinkDroppedNative(int* startedAtAttributeId, byte includingDetachedLinks);
 
 		public static bool IsLinkDropped(int* startedAtAttributeId, bool includingDetachedLinks)
 		{
 			byte ret = IsLinkDroppedNative(startedAtAttributeId, includingDetachedLinks ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		public static bool IsLinkDropped(int* startedAtAttributeId)
-		{
-			byte ret = IsLinkDroppedNative(startedAtAttributeId, (byte)(1));
-			return ret != 0;
-		}
-
-		public static bool IsLinkDropped()
-		{
-			byte ret = IsLinkDroppedNative((int*)(default), (byte)(1));
-			return ret != 0;
-		}
-
-		public static bool IsLinkDropped(bool includingDetachedLinks)
-		{
-			byte ret = IsLinkDroppedNative((int*)(default), includingDetachedLinks ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
@@ -1108,125 +974,80 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static bool IsLinkDropped(ref int startedAtAttributeId)
-		{
-			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
-			{
-				byte ret = IsLinkDroppedNative((int*)pstartedAtAttributeId, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsLinkCreated_BoolPtr")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_IsLinkCreated_BoolPtr")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsLinkCreatedNative(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap);
+		internal static partial byte IsLinkCreatedBoolPtrNative(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap);
 
-		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedBoolPtr(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
-			byte ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, createdFromSnap);
+			byte ret = IsLinkCreatedBoolPtrNative(startedAtAttributeId, endedAtAttributeId, createdFromSnap);
 			return ret != 0;
 		}
 
-		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId)
-		{
-			byte ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool IsLinkCreated(ref int startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedBoolPtr(ref int startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				byte ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, endedAtAttributeId, createdFromSnap);
+				byte ret = IsLinkCreatedBoolPtrNative((int*)pstartedAtAttributeId, endedAtAttributeId, createdFromSnap);
 				return ret != 0;
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtAttributeId, int* endedAtAttributeId)
-		{
-			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
-			{
-				byte ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, endedAtAttributeId, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool IsLinkCreated(int* startedAtAttributeId, ref int endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedBoolPtr(int* startedAtAttributeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 			{
-				byte ret = IsLinkCreatedNative(startedAtAttributeId, (int*)pendedAtAttributeId, createdFromSnap);
+				byte ret = IsLinkCreatedBoolPtrNative(startedAtAttributeId, (int*)pendedAtAttributeId, createdFromSnap);
 				return ret != 0;
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtAttributeId, ref int endedAtAttributeId)
-		{
-			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-			{
-				byte ret = IsLinkCreatedNative(startedAtAttributeId, (int*)pendedAtAttributeId, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool IsLinkCreated(ref int startedAtAttributeId, ref int endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedBoolPtr(ref int startedAtAttributeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					byte ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, createdFromSnap);
+					byte ret = IsLinkCreatedBoolPtrNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, createdFromSnap);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtAttributeId, ref int endedAtAttributeId)
-		{
-			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
-			{
-				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-				{
-					byte ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedBoolPtr(int* startedAtAttributeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (bool* pcreatedFromSnap = &createdFromSnap)
 			{
-				byte ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+				byte ret = IsLinkCreatedBoolPtrNative(startedAtAttributeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 				return ret != 0;
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtAttributeId, int* endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedBoolPtr(ref int startedAtAttributeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					byte ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+					byte ret = IsLinkCreatedBoolPtrNative((int*)pstartedAtAttributeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtAttributeId, ref int endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedBoolPtr(int* startedAtAttributeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					byte ret = IsLinkCreatedNative(startedAtAttributeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+					byte ret = IsLinkCreatedBoolPtrNative(startedAtAttributeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtAttributeId, ref int endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedBoolPtr(ref int startedAtAttributeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
@@ -1234,156 +1055,87 @@ namespace Hexa.NET.ImNodes
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						byte ret = IsLinkCreatedNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+						byte ret = IsLinkCreatedBoolPtrNative((int*)pstartedAtAttributeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsLinkCreated_IntPtr")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_IsLinkCreated_IntPtr")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsLinkCreatedNative(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap);
+		internal static partial byte IsLinkCreatedIntPtrNative(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap);
 
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
-			byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
+			byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
 			return ret != 0;
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
-		{
-			byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
-				byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
+				byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
 				return ret != 0;
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
-		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
-			{
-				byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
-				byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
+				byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
 				return ret != 0;
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
-		{
-			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
-			{
-				byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
 				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 				{
-					byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
+					byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
-		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
-			{
-				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
-				{
-					byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pendedAtNodeId = &endedAtNodeId)
 			{
-				byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
+				byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
 				return ret != 0;
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
-		{
-			fixed (int* pendedAtNodeId = &endedAtNodeId)
-			{
-				byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
 				fixed (int* pendedAtNodeId = &endedAtNodeId)
 				{
-					byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
+					byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
-		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
-			{
-				fixed (int* pendedAtNodeId = &endedAtNodeId)
-				{
-					byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
 				fixed (int* pendedAtNodeId = &endedAtNodeId)
 				{
-					byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
+					byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
-		{
-			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
-			{
-				fixed (int* pendedAtNodeId = &endedAtNodeId)
-				{
-					byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
@@ -1391,95 +1143,47 @@ namespace Hexa.NET.ImNodes
 				{
 					fixed (int* pendedAtNodeId = &endedAtNodeId)
 					{
-						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
+						byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, createdFromSnap);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
-		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
-			{
-				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
-				{
-					fixed (int* pendedAtNodeId = &endedAtNodeId)
-					{
-						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 			{
-				byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+				byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 				return ret != 0;
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
-		{
-			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-			{
-				byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+					byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
-		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
-			{
-				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-				{
-					byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+					byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
-		{
-			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
-			{
-				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-				{
-					byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
@@ -1487,53 +1191,26 @@ namespace Hexa.NET.ImNodes
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+						byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
-		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
-			{
-				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
-				{
-					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-					{
-						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pendedAtNodeId = &endedAtNodeId)
 			{
 				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 				{
-					byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+					byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
-		{
-			fixed (int* pendedAtNodeId = &endedAtNodeId)
-			{
-				fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-				{
-					byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
@@ -1541,29 +1218,14 @@ namespace Hexa.NET.ImNodes
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+						byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
-		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
-			{
-				fixed (int* pendedAtNodeId = &endedAtNodeId)
-				{
-					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-					{
-						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
@@ -1571,29 +1233,14 @@ namespace Hexa.NET.ImNodes
 				{
 					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 					{
-						byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+						byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
-		{
-			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
-			{
-				fixed (int* pendedAtNodeId = &endedAtNodeId)
-				{
-					fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-					{
-						byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
@@ -1603,7 +1250,7 @@ namespace Hexa.NET.ImNodes
 					{
 						fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 						{
-							byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
+							byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, createdFromSnap);
 							return ret != 0;
 						}
 					}
@@ -1611,58 +1258,40 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
-		{
-			fixed (int* pstartedAtNodeId = &startedAtNodeId)
-			{
-				fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
-				{
-					fixed (int* pendedAtNodeId = &endedAtNodeId)
-					{
-						fixed (int* pendedAtAttributeId = &endedAtAttributeId)
-						{
-							byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (bool* pcreatedFromSnap = &createdFromSnap)
 			{
-				byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+				byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 				return ret != 0;
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+					byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+					byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
@@ -1670,26 +1299,26 @@ namespace Hexa.NET.ImNodes
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+						byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pendedAtNodeId = &endedAtNodeId)
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+					byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
@@ -1697,14 +1326,14 @@ namespace Hexa.NET.ImNodes
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+						byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
@@ -1712,14 +1341,14 @@ namespace Hexa.NET.ImNodes
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+						byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
@@ -1729,7 +1358,7 @@ namespace Hexa.NET.ImNodes
 					{
 						fixed (bool* pcreatedFromSnap = &createdFromSnap)
 						{
-							byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
+							byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, endedAtAttributeId, (bool*)pcreatedFromSnap);
 							return ret != 0;
 						}
 					}
@@ -1737,19 +1366,19 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
 			{
 				fixed (bool* pcreatedFromSnap = &createdFromSnap)
 				{
-					byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+					byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
@@ -1757,14 +1386,14 @@ namespace Hexa.NET.ImNodes
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+						byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, startedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
@@ -1772,14 +1401,14 @@ namespace Hexa.NET.ImNodes
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+						byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
@@ -1789,7 +1418,7 @@ namespace Hexa.NET.ImNodes
 					{
 						fixed (bool* pcreatedFromSnap = &createdFromSnap)
 						{
-							byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+							byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, endedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 							return ret != 0;
 						}
 					}
@@ -1797,7 +1426,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pendedAtNodeId = &endedAtNodeId)
 			{
@@ -1805,14 +1434,14 @@ namespace Hexa.NET.ImNodes
 				{
 					fixed (bool* pcreatedFromSnap = &createdFromSnap)
 					{
-						byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+						byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
@@ -1822,7 +1451,7 @@ namespace Hexa.NET.ImNodes
 					{
 						fixed (bool* pcreatedFromSnap = &createdFromSnap)
 						{
-							byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+							byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, startedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 							return ret != 0;
 						}
 					}
@@ -1830,7 +1459,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
 			{
@@ -1840,7 +1469,7 @@ namespace Hexa.NET.ImNodes
 					{
 						fixed (bool* pcreatedFromSnap = &createdFromSnap)
 						{
-							byte ret = IsLinkCreatedNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+							byte ret = IsLinkCreatedIntPtrNative(startedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 							return ret != 0;
 						}
 					}
@@ -1848,7 +1477,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
+		public static bool IsLinkCreatedIntPtr(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
 			{
@@ -1860,7 +1489,7 @@ namespace Hexa.NET.ImNodes
 						{
 							fixed (bool* pcreatedFromSnap = &createdFromSnap)
 							{
-								byte ret = IsLinkCreatedNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
+								byte ret = IsLinkCreatedIntPtrNative((int*)pstartedAtNodeId, (int*)pstartedAtAttributeId, (int*)pendedAtNodeId, (int*)pendedAtAttributeId, (bool*)pcreatedFromSnap);
 								return ret != 0;
 							}
 						}
@@ -1869,7 +1498,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsLinkDestroyed")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_IsLinkDestroyed")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte IsLinkDestroyedNative(int* linkId);
 
@@ -1888,25 +1517,13 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SaveCurrentEditorStateToIniString")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_SaveCurrentEditorStateToIniString")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte* SaveCurrentEditorStateToIniStringNative(nuint* dataSize);
 
 		public static byte* SaveCurrentEditorStateToIniString(nuint* dataSize)
 		{
 			byte* ret = SaveCurrentEditorStateToIniStringNative(dataSize);
-			return ret;
-		}
-
-		public static byte* SaveCurrentEditorStateToIniString()
-		{
-			byte* ret = SaveCurrentEditorStateToIniStringNative((nuint*)(default));
-			return ret;
-		}
-
-		public static string SaveCurrentEditorStateToIniStringS()
-		{
-			string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative((nuint*)(default)));
 			return ret;
 		}
 
@@ -1934,25 +1551,13 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SaveEditorStateToIniString")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_SaveEditorStateToIniString")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte* SaveEditorStateToIniStringNative(ImNodesEditorContext* editor, nuint* dataSize);
 
 		public static byte* SaveEditorStateToIniString(ImNodesEditorContextPtr editor, nuint* dataSize)
 		{
 			byte* ret = SaveEditorStateToIniStringNative(editor, dataSize);
-			return ret;
-		}
-
-		public static byte* SaveEditorStateToIniString(ImNodesEditorContextPtr editor)
-		{
-			byte* ret = SaveEditorStateToIniStringNative(editor, (nuint*)(default));
-			return ret;
-		}
-
-		public static string SaveEditorStateToIniStringS(ImNodesEditorContextPtr editor)
-		{
-			string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, (nuint*)(default)));
 			return ret;
 		}
 
@@ -1967,24 +1572,6 @@ namespace Hexa.NET.ImNodes
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
 				byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, dataSize);
-				return ret;
-			}
-		}
-
-		public static byte* SaveEditorStateToIniString(ref ImNodesEditorContext editor)
-		{
-			fixed (ImNodesEditorContext* peditor = &editor)
-			{
-				byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)(default));
-				return ret;
-			}
-		}
-
-		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor)
-		{
-			fixed (ImNodesEditorContext* peditor = &editor)
-			{
-				string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)(default)));
 				return ret;
 			}
 		}
@@ -2040,7 +1627,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_LoadCurrentEditorStateFromIniString")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_LoadCurrentEditorStateFromIniString")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void LoadCurrentEditorStateFromIniStringNative(byte* data, nuint dataSize);
 
@@ -2083,7 +1670,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_LoadEditorStateFromIniString")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_LoadEditorStateFromIniString")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void LoadEditorStateFromIniStringNative(ImNodesEditorContext* editor, byte* data, nuint dataSize);
 
@@ -2174,7 +1761,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SaveCurrentEditorStateToIniFile")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_SaveCurrentEditorStateToIniFile")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void SaveCurrentEditorStateToIniFileNative(byte* fileName);
 
@@ -2217,7 +1804,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SaveEditorStateToIniFile")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_SaveEditorStateToIniFile")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void SaveEditorStateToIniFileNative(ImNodesEditorContext* editor, byte* fileName);
 
@@ -2308,7 +1895,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_LoadCurrentEditorStateFromIniFile")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_LoadCurrentEditorStateFromIniFile")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void LoadCurrentEditorStateFromIniFileNative(byte* fileName);
 
@@ -2351,7 +1938,7 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_LoadEditorStateFromIniFile")]
+		[LibraryImport(LibName, EntryPoint = "imnodes_LoadEditorStateFromIniFile")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void LoadEditorStateFromIniFileNative(ImNodesEditorContext* editor, byte* fileName);
 

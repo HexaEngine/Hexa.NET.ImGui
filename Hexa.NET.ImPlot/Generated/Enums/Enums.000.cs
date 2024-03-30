@@ -186,6 +186,7 @@ namespace Hexa.NET.ImPlot
 	{
 		None = unchecked(0),
 		Normalize = unchecked(1024),
+		IgnoreHidden = unchecked(2048),
 	}
 
 	public enum ImPlotHeatmapFlags

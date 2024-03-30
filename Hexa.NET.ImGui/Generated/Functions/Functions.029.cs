@@ -1343,31 +1343,6 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginChildFrame")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginChildFrameNative(int id, Vector2 size, ImGuiWindowFlags flags);
-
-		public static bool BeginChildFrame(int id, Vector2 size, ImGuiWindowFlags flags)
-		{
-			byte ret = BeginChildFrameNative(id, size, flags);
-			return ret != 0;
-		}
-
-		public static bool BeginChildFrame(int id, Vector2 size)
-		{
-			byte ret = BeginChildFrameNative(id, size, (ImGuiWindowFlags)(0));
-			return ret != 0;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igEndChildFrame")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndChildFrameNative();
-
-		public static void EndChildFrame()
-		{
-			EndChildFrameNative();
-		}
-
 		[LibraryImport(LibName, EntryPoint = "igCalcTextSize")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void CalcTextSizeNative(Vector2* output, byte* text, byte* textEnd, byte hideTextAfterDoubleHash, float wrapWidth);
@@ -3842,6 +3817,16 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
+		[LibraryImport(LibName, EntryPoint = "igIsKeyChordPressed_Nil")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte IsKeyChordPressedNative(int keyChord);
+
+		public static bool IsKeyChordPressed(int keyChord)
+		{
+			byte ret = IsKeyChordPressedNative(keyChord);
+			return ret != 0;
+		}
+
 		[LibraryImport(LibName, EntryPoint = "igGetKeyPressedAmount")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial int GetKeyPressedAmountNative(ImGuiKey key, float repeatDelay, float rate);
@@ -3913,7 +3898,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsMouseDoubleClicked")]
+		[LibraryImport(LibName, EntryPoint = "igIsMouseDoubleClicked_Nil")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte IsMouseDoubleClickedNative(ImGuiMouseButton button);
 
@@ -4490,6 +4475,24 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		[LibraryImport(LibName, EntryPoint = "igDebugFlashStyleColor")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DebugFlashStyleColorNative(ImGuiCol idx);
+
+		public static void DebugFlashStyleColor(ImGuiCol idx)
+		{
+			DebugFlashStyleColorNative(idx);
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDebugStartItemPicker")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DebugStartItemPickerNative();
+
+		public static void DebugStartItemPicker()
+		{
+			DebugStartItemPickerNative();
+		}
+
 		[LibraryImport(LibName, EntryPoint = "igDebugCheckVersionAndDataLayout")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte DebugCheckVersionAndDataLayoutNative(byte* versionStr, nuint szIo, nuint szStyle, nuint szVec2, nuint szVec4, nuint szDrawvert, nuint szDrawidx);
@@ -4643,6 +4646,60 @@ namespace Hexa.NET.ImGui
 		{
 			ImGuiViewportPtr ret = FindViewportByPlatformHandleNative(platformHandle);
 			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImGuiTableSortSpecs_ImGuiTableSortSpecs")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImGuiTableSortSpecs* ImGuiTableSortSpecsNative();
+
+		public static ImGuiTableSortSpecsPtr ImGuiTableSortSpecs()
+		{
+			ImGuiTableSortSpecsPtr ret = ImGuiTableSortSpecsNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImGuiTableSortSpecs_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DestroyNative(ImGuiTableSortSpecs* self);
+
+		public static void Destroy(ImGuiTableSortSpecsPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		public static void Destroy(ref ImGuiTableSortSpecs self)
+		{
+			fixed (ImGuiTableSortSpecs* pself = &self)
+			{
+				DestroyNative((ImGuiTableSortSpecs*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImGuiTableColumnSortSpecs_ImGuiTableColumnSortSpecs")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImGuiTableColumnSortSpecs* ImGuiTableColumnSortSpecsNative();
+
+		public static ImGuiTableColumnSortSpecsPtr ImGuiTableColumnSortSpecs()
+		{
+			ImGuiTableColumnSortSpecsPtr ret = ImGuiTableColumnSortSpecsNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImGuiTableColumnSortSpecs_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DestroyNative(ImGuiTableColumnSortSpecs* self);
+
+		public static void Destroy(ImGuiTableColumnSortSpecsPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		public static void Destroy(ref ImGuiTableColumnSortSpecs self)
+		{
+			fixed (ImGuiTableColumnSortSpecs* pself = &self)
+			{
+				DestroyNative((ImGuiTableColumnSortSpecs*)pself);
+			}
 		}
 
 		[LibraryImport(LibName, EntryPoint = "ImGuiStyle_ImGuiStyle")]
@@ -4962,65 +5019,6 @@ namespace Hexa.NET.ImGui
 		public static void SetKeyEventNativeData(ImGuiIOPtr self, ImGuiKey key, int nativeKeycode, int nativeScancode)
 		{
 			SetKeyEventNativeDataNative(self, key, nativeKeycode, nativeScancode, (int)(-1));
-		}
-
-		public static void SetKeyEventNativeData(ref ImGuiIO self, ImGuiKey key, int nativeKeycode, int nativeScancode, int nativeLegacyIndex)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				SetKeyEventNativeDataNative((ImGuiIO*)pself, key, nativeKeycode, nativeScancode, nativeLegacyIndex);
-			}
-		}
-
-		public static void SetKeyEventNativeData(ref ImGuiIO self, ImGuiKey key, int nativeKeycode, int nativeScancode)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				SetKeyEventNativeDataNative((ImGuiIO*)pself, key, nativeKeycode, nativeScancode, (int)(-1));
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_SetAppAcceptingEvents")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetAppAcceptingEventsNative(ImGuiIO* self, byte acceptingEvents);
-
-		public static void SetAppAcceptingEvents(ImGuiIOPtr self, bool acceptingEvents)
-		{
-			SetAppAcceptingEventsNative(self, acceptingEvents ? (byte)1 : (byte)0);
-		}
-
-		public static void SetAppAcceptingEvents(ref ImGuiIO self, bool acceptingEvents)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				SetAppAcceptingEventsNative((ImGuiIO*)pself, acceptingEvents ? (byte)1 : (byte)0);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_ClearEventsQueue")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearEventsQueueNative(ImGuiIO* self);
-
-		public static void ClearEventsQueue(ImGuiIOPtr self)
-		{
-			ClearEventsQueueNative(self);
-		}
-
-		public static void ClearEventsQueue(ref ImGuiIO self)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				ClearEventsQueueNative((ImGuiIO*)pself);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_ClearInputKeys")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearInputKeysNative(ImGuiIO* self);
-
-		public static void ClearInputKeys(ImGuiIOPtr self)
-		{
-			ClearInputKeysNative(self);
 		}
 	}
 }

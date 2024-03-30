@@ -17,6 +17,175 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, Vector4* cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, cpuFineClipRect);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
 		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth)
 		{
 			fixed (ImDrawList* pself = &self)
@@ -4848,177 +5017,6 @@ namespace Hexa.NET.ImGui
 		public static void PathFillConvex(ImDrawListPtr self, uint col)
 		{
 			PathFillConvexNative(self, col);
-		}
-
-		public static void PathFillConvex(ref ImDrawList self, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathFillConvexNative((ImDrawList*)pself, col);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathStroke")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathStrokeNative(ImDrawList* self, uint col, ImDrawFlags flags, float thickness);
-
-		public static void PathStroke(ImDrawListPtr self, uint col, ImDrawFlags flags, float thickness)
-		{
-			PathStrokeNative(self, col, flags, thickness);
-		}
-
-		public static void PathStroke(ImDrawListPtr self, uint col, ImDrawFlags flags)
-		{
-			PathStrokeNative(self, col, flags, (float)(1.0f));
-		}
-
-		public static void PathStroke(ImDrawListPtr self, uint col)
-		{
-			PathStrokeNative(self, col, (ImDrawFlags)(0), (float)(1.0f));
-		}
-
-		public static void PathStroke(ImDrawListPtr self, uint col, float thickness)
-		{
-			PathStrokeNative(self, col, (ImDrawFlags)(0), thickness);
-		}
-
-		public static void PathStroke(ref ImDrawList self, uint col, ImDrawFlags flags, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathStrokeNative((ImDrawList*)pself, col, flags, thickness);
-			}
-		}
-
-		public static void PathStroke(ref ImDrawList self, uint col, ImDrawFlags flags)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathStrokeNative((ImDrawList*)pself, col, flags, (float)(1.0f));
-			}
-		}
-
-		public static void PathStroke(ref ImDrawList self, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathStrokeNative((ImDrawList*)pself, col, (ImDrawFlags)(0), (float)(1.0f));
-			}
-		}
-
-		public static void PathStroke(ref ImDrawList self, uint col, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathStrokeNative((ImDrawList*)pself, col, (ImDrawFlags)(0), thickness);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathArcTo")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathArcToNative(ImDrawList* self, Vector2 center, float radius, float aMin, float aMax, int numSegments);
-
-		public static void PathArcTo(ImDrawListPtr self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
-		{
-			PathArcToNative(self, center, radius, aMin, aMax, numSegments);
-		}
-
-		public static void PathArcTo(ImDrawListPtr self, Vector2 center, float radius, float aMin, float aMax)
-		{
-			PathArcToNative(self, center, radius, aMin, aMax, (int)(0));
-		}
-
-		public static void PathArcTo(ref ImDrawList self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathArcToNative((ImDrawList*)pself, center, radius, aMin, aMax, numSegments);
-			}
-		}
-
-		public static void PathArcTo(ref ImDrawList self, Vector2 center, float radius, float aMin, float aMax)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathArcToNative((ImDrawList*)pself, center, radius, aMin, aMax, (int)(0));
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathArcToFast")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathArcToFastNative(ImDrawList* self, Vector2 center, float radius, int aMinOf12, int aMaxOf12);
-
-		public static void PathArcToFast(ImDrawListPtr self, Vector2 center, float radius, int aMinOf12, int aMaxOf12)
-		{
-			PathArcToFastNative(self, center, radius, aMinOf12, aMaxOf12);
-		}
-
-		public static void PathArcToFast(ref ImDrawList self, Vector2 center, float radius, int aMinOf12, int aMaxOf12)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathArcToFastNative((ImDrawList*)pself, center, radius, aMinOf12, aMaxOf12);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathBezierCubicCurveTo")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathBezierCubicCurveToNative(ImDrawList* self, Vector2 p2, Vector2 p3, Vector2 p4, int numSegments);
-
-		public static void PathBezierCubicCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
-		{
-			PathBezierCubicCurveToNative(self, p2, p3, p4, numSegments);
-		}
-
-		public static void PathBezierCubicCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3, Vector2 p4)
-		{
-			PathBezierCubicCurveToNative(self, p2, p3, p4, (int)(0));
-		}
-
-		public static void PathBezierCubicCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathBezierCubicCurveToNative((ImDrawList*)pself, p2, p3, p4, numSegments);
-			}
-		}
-
-		public static void PathBezierCubicCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3, Vector2 p4)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathBezierCubicCurveToNative((ImDrawList*)pself, p2, p3, p4, (int)(0));
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathBezierQuadraticCurveTo")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathBezierQuadraticCurveToNative(ImDrawList* self, Vector2 p2, Vector2 p3, int numSegments);
-
-		public static void PathBezierQuadraticCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3, int numSegments)
-		{
-			PathBezierQuadraticCurveToNative(self, p2, p3, numSegments);
-		}
-
-		public static void PathBezierQuadraticCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3)
-		{
-			PathBezierQuadraticCurveToNative(self, p2, p3, (int)(0));
-		}
-
-		public static void PathBezierQuadraticCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathBezierQuadraticCurveToNative((ImDrawList*)pself, p2, p3, numSegments);
-			}
-		}
-
-		public static void PathBezierQuadraticCurveTo(ref ImDrawList self, Vector2 p2, Vector2 p3)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathBezierQuadraticCurveToNative((ImDrawList*)pself, p2, p3, (int)(0));
-			}
 		}
 	}
 }

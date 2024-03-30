@@ -50,7 +50,7 @@
 
         public bool GenerateDelegates { get; set; } = true;
 
-        public bool UseLibraryImport { get; set; } = false;
+        public bool UseLibraryImport { get; set; } = true;
 
         public Dictionary<string, string> KnownConstantNames { get; set; } = new();
 

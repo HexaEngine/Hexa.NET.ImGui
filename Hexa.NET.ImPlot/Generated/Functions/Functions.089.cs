@@ -18,124 +18,7 @@ namespace Hexa.NET.ImPlot
 	public unsafe partial class ImPlot
 	{
 
-		public static void PlotDigital(byte* labelId, ref ulong xs, ref ulong ys, int count)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref ulong xs, ref ulong ys, int count, int offset)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref ulong xs, ref ulong ys, int count, int offset, int stride)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ref ulong ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ref ulong ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ref ulong ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		public static void PlotDigital(string labelId, ref short xs, short* ys, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -154,11 +37,478 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (short* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				PlotDigitalNative(pStr0, (short*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					PlotDigitalNative(pStr0, (ulong*)pxs, (ulong*)pys, count, flags, offset, stride);
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, short* xs, ref short ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (short* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (short*)pys, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, short* xs, ref short ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (short* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, short* xs, ref short ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (short* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, short* xs, ref short ys, int count)
+		{
+			fixed (short* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (short*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(short)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, short* xs, ref short ys, int count, int offset)
+		{
+			fixed (short* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (short*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(short)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, short* xs, ref short ys, int count, int offset, int stride)
+		{
+			fixed (short* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (short*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, short* xs, ref short ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (short*)pys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, short* xs, ref short ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, short* xs, ref short ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, short* xs, ref short ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (short*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(short)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, short* xs, ref short ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (short*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(short)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, short* xs, ref short ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (short*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, short* xs, ref short ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (short*)pys, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, short* xs, ref short ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, short* xs, ref short ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, short* xs, ref short ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (short*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(short)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, short* xs, ref short ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (short*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(short)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, short* xs, ref short ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (short*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref short xs, ref short ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (short*)pxs, (short*)pys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref short xs, ref short ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (short*)pxs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref short xs, ref short ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (short*)pxs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref short xs, ref short ys, int count)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (short*)pxs, (short*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(short)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref short xs, ref short ys, int count, int offset)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (short*)pxs, (short*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(short)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref short xs, ref short ys, int count, int offset, int stride)
+		{
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (short*)pxs, (short*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref short xs, ref short ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (short*)pxs, (short*)pys, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref short xs, ref short ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (short*)pxs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref short xs, ref short ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (short*)pxs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref short xs, ref short ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref short xs, ref short ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(short)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref short xs, ref short ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					fixed (short* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (short*)pxs, (short*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref short xs, ref short ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				fixed (short* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (short*)pxs, (short*)pys, count, flags, offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -167,7 +517,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset)
+		public static void PlotDigital(string labelId, ref short xs, ref short ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -186,11 +536,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (short* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (short* pys = &ys)
 				{
-					PlotDigitalNative(pStr0, (ulong*)pxs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
+					PlotDigitalNative(pStr0, (short*)pxs, (short*)pys, count, flags, offset, (int)(sizeof(short)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -199,7 +549,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags)
+		public static void PlotDigital(string labelId, ref short xs, ref short ys, int count, ImPlotDigitalFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -218,11 +568,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (short* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (short* pys = &ys)
 				{
-					PlotDigitalNative(pStr0, (ulong*)pxs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
+					PlotDigitalNative(pStr0, (short*)pxs, (short*)pys, count, flags, (int)(0), (int)(sizeof(short)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -231,7 +581,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref ulong xs, ref ulong ys, int count)
+		public static void PlotDigital(string labelId, ref short xs, ref short ys, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -250,11 +600,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (short* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (short* pys = &ys)
 				{
-					PlotDigitalNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					PlotDigitalNative(pStr0, (short*)pxs, (short*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(short)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -263,7 +613,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref ulong xs, ref ulong ys, int count, int offset)
+		public static void PlotDigital(string labelId, ref short xs, ref short ys, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -282,11 +632,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (short* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (short* pys = &ys)
 				{
-					PlotDigitalNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
+					PlotDigitalNative(pStr0, (short*)pxs, (short*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(short)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -295,7 +645,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref ulong xs, ref ulong ys, int count, int offset, int stride)
+		public static void PlotDigital(string labelId, ref short xs, ref short ys, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -314,11 +664,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (short* pxs = &xs)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (short* pys = &ys)
 				{
-					PlotDigitalNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+					PlotDigitalNative(pStr0, (short*)pxs, (short*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -327,37 +677,89 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotDigitalG")]
+		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotDigital_U16Ptr")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotDigitalGNative(byte* labelId, ImPlotPointGetter getter, void* data, int count, ImPlotDigitalFlags flags);
+		internal static partial void PlotDigitalNative(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset, int stride);
 
-		public static void PlotDigitalG(byte* labelId, ImPlotPointGetter getter, void* data, int count, ImPlotDigitalFlags flags)
+		public static void PlotDigital(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
-			PlotDigitalGNative(labelId, getter, data, count, flags);
+			PlotDigitalNative(labelId, xs, ys, count, flags, offset, stride);
 		}
 
-		public static void PlotDigitalG(byte* labelId, ImPlotPointGetter getter, void* data, int count)
+		public static void PlotDigital(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
-			PlotDigitalGNative(labelId, getter, data, count, (ImPlotDigitalFlags)(0));
+			PlotDigitalNative(labelId, xs, ys, count, flags, offset, (int)(sizeof(ushort)));
 		}
 
-		public static void PlotDigitalG(ref byte labelId, ImPlotPointGetter getter, void* data, int count, ImPlotDigitalFlags flags)
+		public static void PlotDigital(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotDigitalFlags flags)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, flags, (int)(0), (int)(sizeof(ushort)));
+		}
+
+		public static void PlotDigital(byte* labelId, ushort* xs, ushort* ys, int count)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ushort)));
+		}
+
+		public static void PlotDigital(byte* labelId, ushort* xs, ushort* ys, int count, int offset)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ushort)));
+		}
+
+		public static void PlotDigital(byte* labelId, ushort* xs, ushort* ys, int count, int offset, int stride)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+		}
+
+		public static void PlotDigital(ref byte labelId, ushort* xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotDigitalGNative((byte*)plabelId, getter, data, count, flags);
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
 			}
 		}
 
-		public static void PlotDigitalG(ref byte labelId, ImPlotPointGetter getter, void* data, int count)
+		public static void PlotDigital(ref byte labelId, ushort* xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotDigitalGNative((byte*)plabelId, getter, data, count, (ImPlotDigitalFlags)(0));
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(ushort)));
 			}
 		}
 
-		public static void PlotDigitalG(string labelId, ImPlotPointGetter getter, void* data, int count, ImPlotDigitalFlags flags)
+		public static void PlotDigital(ref byte labelId, ushort* xs, ushort* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ushort* xs, ushort* ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ushort* xs, ushort* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ushort* xs, ushort* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotDigital(string labelId, ushort* xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -376,14 +778,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotDigitalGNative(pStr0, getter, data, count, flags);
+			PlotDigitalNative(pStr0, xs, ys, count, flags, offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotDigitalG(string labelId, ImPlotPointGetter getter, void* data, int count)
+		public static void PlotDigital(string labelId, ushort* xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -402,174 +804,1118 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotDigitalGNative(pStr0, getter, data, count, (ImPlotDigitalFlags)(0));
+			PlotDigitalNative(pStr0, xs, ys, count, flags, offset, (int)(sizeof(ushort)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotImage")]
+		public static void PlotDigital(string labelId, ushort* xs, ushort* ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, flags, (int)(0), (int)(sizeof(ushort)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotDigital(string labelId, ushort* xs, ushort* ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotDigital(string labelId, ushort* xs, ushort* ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ushort)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotDigital(string labelId, ushort* xs, ushort* ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref ushort xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (ushort*)pxs, ys, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref ushort xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (ushort*)pxs, ys, count, flags, offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref ushort xs, ushort* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (ushort*)pxs, ys, count, flags, (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref ushort xs, ushort* ys, int count)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (ushort*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref ushort xs, ushort* ys, int count, int offset)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (ushort*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref ushort xs, ushort* ys, int count, int offset, int stride)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (ushort*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref ushort xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (ushort*)pxs, ys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref ushort xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (ushort*)pxs, ys, count, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref ushort xs, ushort* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (ushort*)pxs, ys, count, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref ushort xs, ushort* ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (ushort*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref ushort xs, ushort* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (ushort*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref ushort xs, ushort* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (ushort*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref ushort xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (ushort*)pxs, ys, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref ushort xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (ushort*)pxs, ys, count, flags, offset, (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref ushort xs, ushort* ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (ushort*)pxs, ys, count, flags, (int)(0), (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref ushort xs, ushort* ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (ushort*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref ushort xs, ushort* ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (ushort*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref ushort xs, ushort* ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (ushort*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ushort* xs, ref ushort ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (ushort*)pys, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ushort* xs, ref ushort ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ushort* xs, ref ushort ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ushort* xs, ref ushort ys, int count)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ushort* xs, ref ushort ys, int count, int offset)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ushort* xs, ref ushort ys, int count, int offset, int stride)
+		{
+			fixed (ushort* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ushort* xs, ref ushort ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (ushort*)pys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ushort* xs, ref ushort ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ushort* xs, ref ushort ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ushort* xs, ref ushort ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ushort* xs, ref ushort ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ushort* xs, ref ushort ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ushort* xs, ref ushort ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (ushort*)pys, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ushort* xs, ref ushort ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ushort* xs, ref ushort ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ushort* xs, ref ushort ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ushort* xs, ref ushort ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ushort)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ushort* xs, ref ushort ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref ushort xs, ref ushort ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (ushort*)pxs, (ushort*)pys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref ushort xs, ref ushort ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (ushort*)pxs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref ushort xs, ref ushort ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (ushort*)pxs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref ushort xs, ref ushort ys, int count)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref ushort xs, ref ushort ys, int count, int offset)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref ushort xs, ref ushort ys, int count, int offset, int stride)
+		{
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref ushort xs, ref ushort ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref ushort xs, ref ushort ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref ushort xs, ref ushort ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref ushort xs, ref ushort ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref ushort xs, ref ushort ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ushort)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref ushort xs, ref ushort ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pxs = &xs)
+				{
+					fixed (ushort* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref ushort xs, ref ushort ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (ushort*)pxs, (ushort*)pys, count, flags, offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref ushort xs, ref ushort ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (ushort*)pxs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref ushort xs, ref ushort ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (ushort*)pxs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref ushort xs, ref ushort ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (ushort*)pxs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ushort)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref ushort xs, ref ushort ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (ushort*)pxs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ushort)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref ushort xs, ref ushort ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pxs = &xs)
+			{
+				fixed (ushort* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (ushort*)pxs, (ushort*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotDigital_S32Ptr")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotImageNative(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol, ImPlotImageFlags flags);
+		internal static partial void PlotDigitalNative(byte* labelId, int* xs, int* ys, int count, ImPlotDigitalFlags flags, int offset, int stride);
 
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol, ImPlotImageFlags flags)
+		public static void PlotDigital(byte* labelId, int* xs, int* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, flags);
+			PlotDigitalNative(labelId, xs, ys, count, flags, offset, stride);
 		}
 
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol)
+		public static void PlotDigital(byte* labelId, int* xs, int* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, (ImPlotImageFlags)(0));
+			PlotDigitalNative(labelId, xs, ys, count, flags, offset, (int)(sizeof(int)));
 		}
 
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1)
+		public static void PlotDigital(byte* labelId, int* xs, int* ys, int count, ImPlotDigitalFlags flags)
 		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
+			PlotDigitalNative(labelId, xs, ys, count, flags, (int)(0), (int)(sizeof(int)));
 		}
 
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0)
+		public static void PlotDigital(byte* labelId, int* xs, int* ys, int count)
 		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(int)));
 		}
 
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotDigital(byte* labelId, int* xs, int* ys, int count, int offset)
 		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(int)));
 		}
 
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol)
+		public static void PlotDigital(byte* labelId, int* xs, int* ys, int count, int offset, int stride)
 		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, (ImPlotImageFlags)(0));
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
 		}
 
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (ImPlotImageFlags)(0));
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, ImPlotImageFlags flags)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), flags);
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, ImPlotImageFlags flags)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotImageFlags flags)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol, ImPlotImageFlags flags)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, flags);
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol, ImPlotImageFlags flags)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, flags);
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol, ImPlotImageFlags flags)
+		public static void PlotDigital(ref byte labelId, int* xs, int* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, flags);
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
 			}
 		}
 
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol)
+		public static void PlotDigital(ref byte labelId, int* xs, int* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, (ImPlotImageFlags)(0));
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(int)));
 			}
 		}
 
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1)
+		public static void PlotDigital(ref byte labelId, int* xs, int* ys, int count, ImPlotDigitalFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(int)));
 			}
 		}
 
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0)
+		public static void PlotDigital(ref byte labelId, int* xs, int* ys, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(int)));
 			}
 		}
 
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotDigital(ref byte labelId, int* xs, int* ys, int count, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(int)));
 			}
 		}
 
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol)
+		public static void PlotDigital(ref byte labelId, int* xs, int* ys, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, (ImPlotImageFlags)(0));
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (ImPlotImageFlags)(0));
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, ImPlotImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, ImPlotImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol, ImPlotImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, flags);
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol, ImPlotImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, flags);
-			}
-		}
-
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol, ImPlotImageFlags flags)
+		public static void PlotDigital(string labelId, int* xs, int* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -588,14 +1934,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, flags);
+			PlotDigitalNative(pStr0, xs, ys, count, flags, offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol)
+		public static void PlotDigital(string labelId, int* xs, int* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -614,14 +1960,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, (ImPlotImageFlags)(0));
+			PlotDigitalNative(pStr0, xs, ys, count, flags, offset, (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1)
+		public static void PlotDigital(string labelId, int* xs, int* ys, int count, ImPlotDigitalFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -640,14 +1986,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
+			PlotDigitalNative(pStr0, xs, ys, count, flags, (int)(0), (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0)
+		public static void PlotDigital(string labelId, int* xs, int* ys, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -666,14 +2012,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotDigital(string labelId, int* xs, int* ys, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -692,14 +2038,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol)
+		public static void PlotDigital(string labelId, int* xs, int* ys, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -718,14 +2064,128 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, (ImPlotImageFlags)(0));
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol)
+		public static void PlotDigital(byte* labelId, ref int xs, int* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (int* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (int*)pxs, ys, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref int xs, int* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (int* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (int*)pxs, ys, count, flags, offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref int xs, int* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (int* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (int*)pxs, ys, count, flags, (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref int xs, int* ys, int count)
+		{
+			fixed (int* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (int*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref int xs, int* ys, int count, int offset)
+		{
+			fixed (int* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (int*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref int xs, int* ys, int count, int offset, int stride)
+		{
+			fixed (int* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (int*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref int xs, int* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (int*)pxs, ys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref int xs, int* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (int*)pxs, ys, count, flags, offset, (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref int xs, int* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (int*)pxs, ys, count, flags, (int)(0), (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref int xs, int* ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (int*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref int xs, int* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (int*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref int xs, int* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (int*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref int xs, int* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -744,14 +2204,17 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (ImPlotImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (int* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				PlotDigitalNative(pStr0, (int*)pxs, ys, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, ImPlotImageFlags flags)
+		public static void PlotDigital(string labelId, ref int xs, int* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -770,14 +2233,17 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (int* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				PlotDigitalNative(pStr0, (int*)pxs, ys, count, flags, offset, (int)(sizeof(int)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, ImPlotImageFlags flags)
+		public static void PlotDigital(string labelId, ref int xs, int* ys, int count, ImPlotDigitalFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -796,14 +2262,17 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (int* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				PlotDigitalNative(pStr0, (int*)pxs, ys, count, flags, (int)(0), (int)(sizeof(int)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotImageFlags flags)
+		public static void PlotDigital(string labelId, ref int xs, int* ys, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -822,14 +2291,17 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (int* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				PlotDigitalNative(pStr0, (int*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(int)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol, ImPlotImageFlags flags)
+		public static void PlotDigital(string labelId, ref int xs, int* ys, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -848,14 +2320,17 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (int* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				PlotDigitalNative(pStr0, (int*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(int)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol, ImPlotImageFlags flags)
+		public static void PlotDigital(string labelId, ref int xs, int* ys, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -874,204 +2349,729 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (int* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				PlotDigitalNative(pStr0, (int*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotText")]
+		public static void PlotDigital(byte* labelId, int* xs, ref int ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (int* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (int*)pys, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, int* xs, ref int ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (int* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, int* xs, ref int ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (int* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, int* xs, ref int ys, int count)
+		{
+			fixed (int* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (int*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, int* xs, ref int ys, int count, int offset)
+		{
+			fixed (int* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (int*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, int* xs, ref int ys, int count, int offset, int stride)
+		{
+			fixed (int* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (int*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, int* xs, ref int ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (int*)pys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, int* xs, ref int ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, int* xs, ref int ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, int* xs, ref int ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (int*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, int* xs, ref int ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (int*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, int* xs, ref int ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (int*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, int* xs, ref int ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (int*)pys, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, int* xs, ref int ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, int* xs, ref int ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, int* xs, ref int ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (int*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(int)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, int* xs, ref int ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (int*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(int)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, int* xs, ref int ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (int*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref int xs, ref int ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (int*)pxs, (int*)pys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref int xs, ref int ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (int*)pxs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref int xs, ref int ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (int*)pxs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref int xs, ref int ys, int count)
+		{
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (int*)pxs, (int*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref int xs, ref int ys, int count, int offset)
+		{
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (int*)pxs, (int*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref int xs, ref int ys, int count, int offset, int stride)
+		{
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (int*)pxs, (int*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref int xs, ref int ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (int*)pxs, (int*)pys, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref int xs, ref int ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (int*)pxs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref int xs, ref int ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (int*)pxs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref int xs, ref int ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(int)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref int xs, ref int ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(int)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref int xs, ref int ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (int*)pxs, (int*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref int xs, ref int ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (int*)pxs, (int*)pys, count, flags, offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref int xs, ref int ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (int*)pxs, (int*)pys, count, flags, offset, (int)(sizeof(int)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref int xs, ref int ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (int*)pxs, (int*)pys, count, flags, (int)(0), (int)(sizeof(int)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref int xs, ref int ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (int*)pxs, (int*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(int)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref int xs, ref int ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (int*)pxs, (int*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(int)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref int xs, ref int ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (int*)pxs, (int*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotDigital_U32Ptr")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotTextNative(byte* text, double x, double y, Vector2 pixOffset, ImPlotTextFlags flags);
+		internal static partial void PlotDigitalNative(byte* labelId, uint* xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset, int stride);
 
-		public static void PlotText(byte* text, double x, double y, Vector2 pixOffset, ImPlotTextFlags flags)
+		public static void PlotDigital(byte* labelId, uint* xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
-			PlotTextNative(text, x, y, pixOffset, flags);
+			PlotDigitalNative(labelId, xs, ys, count, flags, offset, stride);
 		}
 
-		public static void PlotText(byte* text, double x, double y, Vector2 pixOffset)
+		public static void PlotDigital(byte* labelId, uint* xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
-			PlotTextNative(text, x, y, pixOffset, (ImPlotTextFlags)(0));
+			PlotDigitalNative(labelId, xs, ys, count, flags, offset, (int)(sizeof(uint)));
 		}
 
-		public static void PlotText(byte* text, double x, double y)
+		public static void PlotDigital(byte* labelId, uint* xs, uint* ys, int count, ImPlotDigitalFlags flags)
 		{
-			PlotTextNative(text, x, y, (Vector2)(new Vector2(0,0)), (ImPlotTextFlags)(0));
+			PlotDigitalNative(labelId, xs, ys, count, flags, (int)(0), (int)(sizeof(uint)));
 		}
 
-		public static void PlotText(byte* text, double x, double y, ImPlotTextFlags flags)
+		public static void PlotDigital(byte* labelId, uint* xs, uint* ys, int count)
 		{
-			PlotTextNative(text, x, y, (Vector2)(new Vector2(0,0)), flags);
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(uint)));
 		}
 
-		public static void PlotText(ref byte text, double x, double y, Vector2 pixOffset, ImPlotTextFlags flags)
+		public static void PlotDigital(byte* labelId, uint* xs, uint* ys, int count, int offset)
 		{
-			fixed (byte* ptext = &text)
-			{
-				PlotTextNative((byte*)ptext, x, y, pixOffset, flags);
-			}
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(uint)));
 		}
 
-		public static void PlotText(ref byte text, double x, double y, Vector2 pixOffset)
+		public static void PlotDigital(byte* labelId, uint* xs, uint* ys, int count, int offset, int stride)
 		{
-			fixed (byte* ptext = &text)
-			{
-				PlotTextNative((byte*)ptext, x, y, pixOffset, (ImPlotTextFlags)(0));
-			}
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
 		}
 
-		public static void PlotText(ref byte text, double x, double y)
-		{
-			fixed (byte* ptext = &text)
-			{
-				PlotTextNative((byte*)ptext, x, y, (Vector2)(new Vector2(0,0)), (ImPlotTextFlags)(0));
-			}
-		}
-
-		public static void PlotText(ref byte text, double x, double y, ImPlotTextFlags flags)
-		{
-			fixed (byte* ptext = &text)
-			{
-				PlotTextNative((byte*)ptext, x, y, (Vector2)(new Vector2(0,0)), flags);
-			}
-		}
-
-		public static void PlotText(string text, double x, double y, Vector2 pixOffset, ImPlotTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotTextNative(pStr0, x, y, pixOffset, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotText(string text, double x, double y, Vector2 pixOffset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotTextNative(pStr0, x, y, pixOffset, (ImPlotTextFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotText(string text, double x, double y)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotTextNative(pStr0, x, y, (Vector2)(new Vector2(0,0)), (ImPlotTextFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotText(string text, double x, double y, ImPlotTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotTextNative(pStr0, x, y, (Vector2)(new Vector2(0,0)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotDummy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotDummyNative(byte* labelId, ImPlotDummyFlags flags);
-
-		public static void PlotDummy(byte* labelId, ImPlotDummyFlags flags)
-		{
-			PlotDummyNative(labelId, flags);
-		}
-
-		public static void PlotDummy(byte* labelId)
-		{
-			PlotDummyNative(labelId, (ImPlotDummyFlags)(0));
-		}
-
-		public static void PlotDummy(ref byte labelId, ImPlotDummyFlags flags)
+		public static void PlotDigital(ref byte labelId, uint* xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotDummyNative((byte*)plabelId, flags);
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
 			}
 		}
 
-		public static void PlotDummy(ref byte labelId)
+		public static void PlotDigital(ref byte labelId, uint* xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotDummyNative((byte*)plabelId, (ImPlotDummyFlags)(0));
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(uint)));
 			}
 		}
 
-		public static void PlotDummy(string labelId, ImPlotDummyFlags flags)
+		public static void PlotDigital(ref byte labelId, uint* xs, uint* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, uint* xs, uint* ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, uint* xs, uint* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, uint* xs, uint* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotDigital(string labelId, uint* xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1090,14 +3090,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotDummyNative(pStr0, flags);
+			PlotDigitalNative(pStr0, xs, ys, count, flags, offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotDummy(string labelId)
+		public static void PlotDigital(string labelId, uint* xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1116,3906 +3116,1912 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotDummyNative(pStr0, (ImPlotDummyFlags)(0));
+			PlotDigitalNative(pStr0, xs, ys, count, flags, offset, (int)(sizeof(uint)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_DragPoint")]
+		public static void PlotDigital(string labelId, uint* xs, uint* ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, flags, (int)(0), (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotDigital(string labelId, uint* xs, uint* ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotDigital(string labelId, uint* xs, uint* ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotDigital(string labelId, uint* xs, uint* ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref uint xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (uint*)pxs, ys, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref uint xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (uint*)pxs, ys, count, flags, offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref uint xs, uint* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (uint*)pxs, ys, count, flags, (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref uint xs, uint* ys, int count)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (uint*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref uint xs, uint* ys, int count, int offset)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (uint*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref uint xs, uint* ys, int count, int offset, int stride)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (uint*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref uint xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (uint*)pxs, ys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref uint xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (uint*)pxs, ys, count, flags, offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref uint xs, uint* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (uint*)pxs, ys, count, flags, (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref uint xs, uint* ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (uint*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref uint xs, uint* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (uint*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref uint xs, uint* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (uint*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref uint xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (uint*)pxs, ys, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref uint xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (uint*)pxs, ys, count, flags, offset, (int)(sizeof(uint)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref uint xs, uint* ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (uint*)pxs, ys, count, flags, (int)(0), (int)(sizeof(uint)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref uint xs, uint* ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (uint*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(uint)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref uint xs, uint* ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (uint*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(uint)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref uint xs, uint* ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (uint*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, uint* xs, ref uint ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (uint* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (uint*)pys, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, uint* xs, ref uint ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (uint* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (uint*)pys, count, flags, offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, uint* xs, ref uint ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (uint* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (uint*)pys, count, flags, (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, uint* xs, ref uint ys, int count)
+		{
+			fixed (uint* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (uint*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, uint* xs, ref uint ys, int count, int offset)
+		{
+			fixed (uint* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (uint*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, uint* xs, ref uint ys, int count, int offset, int stride)
+		{
+			fixed (uint* pys = &ys)
+			{
+				PlotDigitalNative(labelId, xs, (uint*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, uint* xs, ref uint ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (uint*)pys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, uint* xs, ref uint ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (uint*)pys, count, flags, offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, uint* xs, ref uint ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (uint*)pys, count, flags, (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, uint* xs, ref uint ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (uint*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, uint* xs, ref uint ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (uint*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, uint* xs, ref uint ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative((byte*)plabelId, xs, (uint*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, uint* xs, ref uint ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (uint*)pys, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, uint* xs, ref uint ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (uint*)pys, count, flags, offset, (int)(sizeof(uint)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, uint* xs, ref uint ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (uint*)pys, count, flags, (int)(0), (int)(sizeof(uint)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, uint* xs, ref uint ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (uint*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(uint)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, uint* xs, ref uint ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (uint*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(uint)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, uint* xs, ref uint ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pys = &ys)
+			{
+				PlotDigitalNative(pStr0, xs, (uint*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref uint xs, ref uint ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (uint*)pxs, (uint*)pys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref uint xs, ref uint ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (uint*)pxs, (uint*)pys, count, flags, offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref uint xs, ref uint ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (uint*)pxs, (uint*)pys, count, flags, (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref uint xs, ref uint ys, int count)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (uint*)pxs, (uint*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref uint xs, ref uint ys, int count, int offset)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (uint*)pxs, (uint*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref uint xs, ref uint ys, int count, int offset, int stride)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative(labelId, (uint*)pxs, (uint*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref uint xs, ref uint ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref uint xs, ref uint ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, flags, offset, (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref uint xs, ref uint ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, flags, (int)(0), (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref uint xs, ref uint ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref uint xs, ref uint ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref uint xs, ref uint ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						PlotDigitalNative((byte*)plabelId, (uint*)pxs, (uint*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref uint xs, ref uint ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (uint*)pxs, (uint*)pys, count, flags, offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref uint xs, ref uint ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (uint*)pxs, (uint*)pys, count, flags, offset, (int)(sizeof(uint)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref uint xs, ref uint ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (uint*)pxs, (uint*)pys, count, flags, (int)(0), (int)(sizeof(uint)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref uint xs, ref uint ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (uint*)pxs, (uint*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(uint)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref uint xs, ref uint ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (uint*)pxs, (uint*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(uint)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref uint xs, ref uint ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (uint*)pxs, (uint*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotDigital_S64Ptr")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte DragPointNative(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held);
+		internal static partial void PlotDigitalNative(byte* labelId, long* xs, long* ys, int count, ImPlotDigitalFlags flags, int offset, int stride);
 
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(byte* labelId, long* xs, long* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
-			byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, outHovered, held);
-			return ret != 0;
+			PlotDigitalNative(labelId, xs, ys, count, flags, offset, stride);
 		}
 
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		public static void PlotDigital(byte* labelId, long* xs, long* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
-			byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, outHovered, (bool*)(default));
-			return ret != 0;
+			PlotDigitalNative(labelId, xs, ys, count, flags, offset, (int)(sizeof(long)));
 		}
 
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked)
+		public static void PlotDigital(byte* labelId, long* xs, long* ys, int count, ImPlotDigitalFlags flags)
 		{
-			byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, (bool*)(default), (bool*)(default));
-			return ret != 0;
+			PlotDigitalNative(labelId, xs, ys, count, flags, (int)(0), (int)(sizeof(long)));
 		}
 
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags)
+		public static void PlotDigital(byte* labelId, long* xs, long* ys, int count)
 		{
-			byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)(default), (bool*)(default), (bool*)(default));
-			return ret != 0;
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
 		}
 
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size)
+		public static void PlotDigital(byte* labelId, long* xs, long* ys, int count, int offset)
 		{
-			byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-			return ret != 0;
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
 		}
 
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col)
+		public static void PlotDigital(byte* labelId, long* xs, long* ys, int count, int offset, int stride)
 		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-			return ret != 0;
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
 		}
 
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags)
+		public static void PlotDigital(ref byte labelId, long* xs, long* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)(default), (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked)
-		{
-			byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked)
-		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered)
-		{
-			byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, bool* outHovered)
-		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, outHovered, (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered, bool* held)
-		{
-			byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
-		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, outHovered, held);
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked)
-		{
-			fixed (double* px = &x)
+			fixed (byte* plabelId = &labelId)
 			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		public static void PlotDigital(ref byte labelId, long* xs, long* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
-			fixed (double* px = &x)
+			fixed (byte* plabelId = &labelId)
 			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(long)));
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered)
+		public static void PlotDigital(ref byte labelId, long* xs, long* ys, int count, ImPlotDigitalFlags flags)
 		{
-			fixed (double* px = &x)
+			fixed (byte* plabelId = &labelId)
 			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-				return ret != 0;
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(long)));
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, bool* outHovered)
+		public static void PlotDigital(ref byte labelId, long* xs, long* ys, int count)
 		{
-			fixed (double* px = &x)
+			fixed (byte* plabelId = &labelId)
 			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-				return ret != 0;
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		public static void PlotDigital(ref byte labelId, long* xs, long* ys, int count, int offset)
 		{
-			fixed (double* px = &x)
+			fixed (byte* plabelId = &labelId)
 			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, outHovered, (bool*)(default));
-				return ret != 0;
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(ref byte labelId, long* xs, long* ys, int count, int offset, int stride)
 		{
-			fixed (double* px = &x)
+			fixed (byte* plabelId = &labelId)
 			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-				return ret != 0;
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(string labelId, long* xs, long* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
-			fixed (double* px = &x)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-				return ret != 0;
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
+			PlotDigitalNative(pStr0, xs, ys, count, flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, outHovered, held);
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(string labelId, long* xs, long* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
-			fixed (double* py = &y)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, outHovered, held);
-				return ret != 0;
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* py = &y)
+			PlotDigitalNative(pStr0, xs, ys, count, flags, offset, (int)(sizeof(long)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, outHovered, (bool*)(default));
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked)
+		public static void PlotDigital(string labelId, long* xs, long* ys, int count, ImPlotDigitalFlags flags)
 		{
-			fixed (double* py = &y)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags)
-		{
-			fixed (double* py = &y)
+			PlotDigitalNative(pStr0, xs, ys, count, flags, (int)(0), (int)(sizeof(long)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size)
+		public static void PlotDigital(string labelId, long* xs, long* ys, int count)
 		{
-			fixed (double* py = &y)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col)
-		{
-			fixed (double* py = &y)
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags)
+		public static void PlotDigital(string labelId, long* xs, long* ys, int count, int offset)
 		{
-			fixed (double* py = &y)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked)
-		{
-			fixed (double* py = &y)
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked)
+		public static void PlotDigital(string labelId, long* xs, long* ys, int count, int offset, int stride)
 		{
-			fixed (double* py = &y)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			fixed (double* py = &y)
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
+				Utils.Free(pStr0);
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered)
+		public static void PlotDigital(byte* labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
-			fixed (double* py = &y)
+			fixed (long* pxs = &xs)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-				return ret != 0;
+				PlotDigitalNative(labelId, (long*)pxs, ys, count, flags, offset, stride);
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, bool* outHovered)
+		public static void PlotDigital(byte* labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
-			fixed (double* py = &y)
+			fixed (long* pxs = &xs)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-				return ret != 0;
+				PlotDigitalNative(labelId, (long*)pxs, ys, count, flags, offset, (int)(sizeof(long)));
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		public static void PlotDigital(byte* labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags)
 		{
-			fixed (double* py = &y)
+			fixed (long* pxs = &xs)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, outHovered, (bool*)(default));
-				return ret != 0;
+				PlotDigitalNative(labelId, (long*)pxs, ys, count, flags, (int)(0), (int)(sizeof(long)));
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(byte* labelId, ref long xs, long* ys, int count)
 		{
-			fixed (double* py = &y)
+			fixed (long* pxs = &xs)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-				return ret != 0;
+				PlotDigitalNative(labelId, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(byte* labelId, ref long xs, long* ys, int count, int offset)
 		{
-			fixed (double* py = &y)
+			fixed (long* pxs = &xs)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-				return ret != 0;
+				PlotDigitalNative(labelId, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(byte* labelId, ref long xs, long* ys, int count, int offset, int stride)
 		{
-			fixed (double* py = &y)
+			fixed (long* pxs = &xs)
 			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, outHovered, held);
-				return ret != 0;
+				PlotDigitalNative(labelId, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(ref byte labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
-			fixed (double* px = &x)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* py = &y)
+				fixed (long* pxs = &xs)
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, outHovered, held);
-					return ret != 0;
+					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, flags, offset, stride);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		public static void PlotDigital(ref byte labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
-			fixed (double* px = &x)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* py = &y)
+				fixed (long* pxs = &xs)
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, outHovered, (bool*)(default));
-					return ret != 0;
+					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, flags, offset, (int)(sizeof(long)));
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked)
+		public static void PlotDigital(ref byte labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags)
 		{
-			fixed (double* px = &x)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* py = &y)
+				fixed (long* pxs = &xs)
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
+					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, flags, (int)(0), (int)(sizeof(long)));
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags)
+		public static void PlotDigital(ref byte labelId, ref long xs, long* ys, int count)
 		{
-			fixed (double* px = &x)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* py = &y)
+				fixed (long* pxs = &xs)
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)(default), (bool*)(default), (bool*)(default));
-					return ret != 0;
+					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size)
+		public static void PlotDigital(ref byte labelId, ref long xs, long* ys, int count, int offset)
 		{
-			fixed (double* px = &x)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* py = &y)
+				fixed (long* pxs = &xs)
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-					return ret != 0;
+					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col)
+		public static void PlotDigital(ref byte labelId, ref long xs, long* ys, int count, int offset, int stride)
 		{
-			fixed (double* px = &x)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (double* py = &y)
+				fixed (long* pxs = &xs)
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-					return ret != 0;
+					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags)
+		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
-			fixed (double* px = &x)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (double* py = &y)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)(default), (bool*)(default), (bool*)(default));
-					return ret != 0;
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
+				else
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked)
-		{
-			fixed (double* px = &x)
+			fixed (long* pxs = &xs)
 			{
-				fixed (double* py = &y)
+				PlotDigitalNative(pStr0, (long*)pxs, ys, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
+		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
-			fixed (double* px = &x)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (double* py = &y)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
+				else
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-					return ret != 0;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
+			fixed (long* pxs = &xs)
 			{
-				fixed (double* py = &y)
+				PlotDigitalNative(pStr0, (long*)pxs, ys, count, flags, offset, (int)(sizeof(long)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-					return ret != 0;
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
+		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags)
 		{
-			fixed (double* px = &x)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (double* py = &y)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, outHovered, (bool*)(default));
-					return ret != 0;
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
+				else
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-					return ret != 0;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
+			fixed (long* pxs = &xs)
 			{
-				fixed (double* py = &y)
+				PlotDigitalNative(pStr0, (long*)pxs, ys, count, flags, (int)(0), (int)(sizeof(long)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-					return ret != 0;
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(string labelId, ref long xs, long* ys, int count)
 		{
-			fixed (double* px = &x)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (double* py = &y)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, outHovered, held);
-					return ret != 0;
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
+				else
 				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, outHovered, held);
-					return ret != 0;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
+			fixed (long* pxs = &xs)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				PlotDigitalNative(pStr0, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked)
+		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, int offset)
 		{
-			fixed (double* px = &x)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked)
-		{
-			fixed (double* px = &x)
+			fixed (long* pxs = &xs)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				PlotDigitalNative(pStr0, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked)
+		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, int offset, int stride)
 		{
-			fixed (double* px = &x)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
 				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* px = &x)
+			fixed (long* pxs = &xs)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				PlotDigitalNative(pStr0, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered)
+		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
-			fixed (double* px = &x)
+			fixed (long* pys = &ys)
 			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
+				PlotDigitalNative(labelId, xs, (long*)pys, count, flags, offset, stride);
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, bool* outHovered)
+		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
-			fixed (double* px = &x)
+			fixed (long* pys = &ys)
 			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
+				PlotDigitalNative(labelId, xs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags)
 		{
-			fixed (double* px = &x)
+			fixed (long* pys = &ys)
 			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
+				PlotDigitalNative(labelId, xs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count)
 		{
-			fixed (double* px = &x)
+			fixed (long* pys = &ys)
 			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
+				PlotDigitalNative(labelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, int offset)
 		{
-			fixed (double* px = &x)
+			fixed (long* pys = &ys)
 			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
+				PlotDigitalNative(labelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, int offset, int stride)
 		{
-			fixed (double* px = &x)
+			fixed (long* pys = &ys)
 			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
+				PlotDigitalNative(labelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
-			fixed (double* py = &y)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				fixed (long* pys = &ys)
 				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, held);
-					return ret != 0;
+					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, flags, offset, stride);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
-			fixed (double* py = &y)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				fixed (long* pys = &ys)
 				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
+					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked)
+		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags)
 		{
-			fixed (double* py = &y)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				fixed (long* pys = &ys)
 				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
+					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked)
+		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count)
 		{
-			fixed (double* py = &y)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				fixed (long* pys = &ys)
 				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
+					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked)
+		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, int offset)
 		{
-			fixed (double* py = &y)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				fixed (long* pys = &ys)
 				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
+					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, int offset, int stride)
 		{
-			fixed (double* py = &y)
+			fixed (byte* plabelId = &labelId)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				fixed (long* pys = &ys)
 				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
+					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered)
+		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
-			fixed (double* py = &y)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
 				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* py = &y)
+			fixed (long* pys = &ys)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				PlotDigitalNative(pStr0, xs, (long*)pys, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
-			fixed (double* py = &y)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
 				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* py = &y)
+			fixed (long* pys = &ys)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				PlotDigitalNative(pStr0, xs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-					return ret != 0;
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags)
 		{
-			fixed (double* py = &y)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-					return ret != 0;
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* py = &y)
+			fixed (long* pys = &ys)
 			{
-				fixed (bool* poutClicked = &outClicked)
+				PlotDigitalNative(pStr0, xs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, held);
-					return ret != 0;
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(string labelId, long* xs, ref long ys, int count)
 		{
-			fixed (double* px = &x)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (double* py = &y)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
 				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, held);
-						return ret != 0;
-					}
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
+			fixed (long* pys = &ys)
 			{
-				fixed (double* py = &y)
+				PlotDigitalNative(pStr0, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-						return ret != 0;
-					}
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked)
+		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, int offset)
 		{
-			fixed (double* px = &x)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (double* py = &y)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
 				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-						return ret != 0;
-					}
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked)
-		{
-			fixed (double* px = &x)
+			fixed (long* pys = &ys)
 			{
-				fixed (double* py = &y)
+				PlotDigitalNative(pStr0, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-						return ret != 0;
-					}
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked)
+		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, int offset, int stride)
 		{
-			fixed (double* px = &x)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (double* py = &y)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
 				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-						return ret != 0;
-					}
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* px = &x)
+			fixed (long* pys = &ys)
 			{
-				fixed (double* py = &y)
+				PlotDigitalNative(pStr0, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-						return ret != 0;
-					}
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered)
+		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
-			fixed (double* px = &x)
+			fixed (long* pxs = &xs)
 			{
-				fixed (double* py = &y)
+				fixed (long* pys = &ys)
 				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-						return ret != 0;
-					}
+					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, flags, offset, stride);
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered)
+		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset)
 		{
-			fixed (double* px = &x)
+			fixed (long* pxs = &xs)
 			{
-				fixed (double* py = &y)
+				fixed (long* pys = &ys)
 				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-						return ret != 0;
-					}
+					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags)
 		{
-			fixed (double* px = &x)
+			fixed (long* pxs = &xs)
 			{
-				fixed (double* py = &y)
+				fixed (long* pys = &ys)
 				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)(default));
-						return ret != 0;
-					}
+					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count)
 		{
-			fixed (double* px = &x)
+			fixed (long* pxs = &xs)
 			{
-				fixed (double* py = &y)
+				fixed (long* pys = &ys)
 				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-						return ret != 0;
-					}
+					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, int offset)
 		{
-			fixed (double* px = &x)
+			fixed (long* pxs = &xs)
 			{
-				fixed (double* py = &y)
+				fixed (long* pys = &ys)
 				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-						return ret != 0;
-					}
+					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
 				}
 			}
 		}
 
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, int offset, int stride)
 		{
-			fixed (double* px = &x)
+			fixed (long* pxs = &xs)
 			{
-				fixed (double* py = &y)
+				fixed (long* pys = &ys)
 				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, held);
-						return ret != 0;
-					}
+					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
 				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, (bool*)poutHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, (bool*)poutHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, held);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, held);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* pheld = &held)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, outHovered, (bool*)pheld);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* pheld = &held)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* pheld = &held)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* pheld = &held)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, outHovered, (bool*)pheld);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						fixed (bool* pheld = &held)
-						{
-							byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							fixed (bool* pheld = &held)
-							{
-								byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							fixed (bool* pheld = &held)
-							{
-								byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							fixed (bool* pheld = &held)
-							{
-								byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							fixed (bool* pheld = &held)
-							{
-								byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_DragLineX")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte DragLineXNative(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held);
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			byte ret = DragLineXNative(id, x, col, thickness, flags, outClicked, outHovered, held);
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			byte ret = DragLineXNative(id, x, col, thickness, flags, outClicked, outHovered, (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			byte ret = DragLineXNative(id, x, col, thickness, flags, outClicked, (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags)
-		{
-			byte ret = DragLineXNative(id, x, col, thickness, flags, (bool*)(default), (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness)
-		{
-			byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col)
-		{
-			byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags)
-		{
-			byte ret = DragLineXNative(id, x, col, (float)(1), flags, (bool*)(default), (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, bool* outClicked)
-		{
-			byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, bool* outClicked)
-		{
-			byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			byte ret = DragLineXNative(id, x, col, (float)(1), flags, outClicked, (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, bool* outClicked, bool* outHovered)
-		{
-			byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, bool* outClicked, bool* outHovered)
-		{
-			byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			byte ret = DragLineXNative(id, x, col, (float)(1), flags, outClicked, outHovered, (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, bool* outClicked, bool* outHovered, bool* held)
-		{
-			byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
-		{
-			byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			byte ret = DragLineXNative(id, x, col, (float)(1), flags, outClicked, outHovered, held);
-			return ret != 0;
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, outClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, outClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, outClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, outClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragLineXNative(id, x, col, thickness, flags, (bool*)poutClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragLineXNative(id, x, col, thickness, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragLineXNative(id, x, col, thickness, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ref bool outClicked)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ref bool outClicked)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragLineXNative(id, x, col, (float)(1), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ref bool outClicked, bool* outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragLineXNative(id, x, col, (float)(1), flags, (bool*)poutClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragLineXNative(id, x, col, (float)(1), flags, (bool*)poutClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ref bool outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ref bool outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragLineXNative(id, x, col, thickness, flags, outClicked, (bool*)poutHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragLineXNative(id, x, col, thickness, flags, outClicked, (bool*)poutHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, bool* outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, bool* outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragLineXNative(id, x, col, (float)(1), flags, outClicked, (bool*)poutHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragLineXNative(id, x, col, (float)(1), flags, outClicked, (bool*)poutHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, x, col, thickness, flags, (bool*)poutClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, x, col, thickness, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, x, col, (float)(1), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragLineXNative(id, x, col, (float)(1), flags, (bool*)poutClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragLineXNative(id, (double*)px, col, thickness, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, float thickness, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragLineXNative(id, (double*)px, col, thickness, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragLineXNative(id, (double*)px, col, (float)(1), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, ref double x, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragLineXNative(id, (double*)px, col, (float)(1), flags, (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* pheld = &held)
-			{
-				byte ret = DragLineXNative(id, x, col, thickness, flags, outClicked, outHovered, (bool*)pheld);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* pheld = &held)
-			{
-				byte ret = DragLineXNative(id, x, col, thickness, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* pheld = &held)
-			{
-				byte ret = DragLineXNative(id, x, col, (float)(1), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragLineX(int id, double* x, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* pheld = &held)
-			{
-				byte ret = DragLineXNative(id, x, col, (float)(1), flags, outClicked, outHovered, (bool*)pheld);
-				return ret != 0;
 			}
 		}
 	}

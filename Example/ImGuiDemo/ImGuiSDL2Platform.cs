@@ -8,11 +8,19 @@
     using Silk.NET.SDL;
     using System.Diagnostics;
     using System.Numerics;
+    using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
 
     public static class ImGuiSDL2Platform
     {
         private static readonly Sdl sdl = Sdl.GetApi();
+
+        public enum GamepadMode
+        {
+            AutoFirst,
+            AutoAll,
+            Manual
+        }
 
         /// <summary>
         /// SDL Data
@@ -22,16 +30,21 @@
             public Window* Window;
             public Renderer* Renderer;
             public ulong Time;
+            public byte* ClipboardTextData;
+            public bool UseVulkan;
+            public bool WantUpdateMonitors;
+
             public uint MouseWindowID;
             public int MouseButtonsDown;
             public Cursor** MouseCursors;
             public Cursor* LastMouseCursor;
-            public int PendingMouseLeaveFrame;
-            public byte* ClipboardTextData;
+            public int MouseLastLeaveFrame;
             public bool MouseCanUseGlobalState;
             public bool MouseCanReportHoveredViewport;  // This is hard to use/unreliable on SDL so we'll set ImGuiBackendFlags_HasMouseHoveredViewport dynamically based on state.
-            public bool UseVulkan;
-            public bool WantUpdateMonitors;
+
+            public UnsafeList<Pointer<GameController>> Gamepads;
+            public GamepadMode GamepadMode;
+            public bool WantUpdateGamepadsList;
         }
 
         /// <summary>
@@ -183,6 +196,8 @@
                 KeyCode.KF10 => ImGuiKey.F10,
                 KeyCode.KF11 => ImGuiKey.F11,
                 KeyCode.KF12 => ImGuiKey.F12,
+                KeyCode.KACBack => ImGuiKey.AppBack,
+                KeyCode.KACForward => ImGuiKey.AppForward,
                 _ => ImGuiKey.None,
             };
         }
@@ -286,14 +301,14 @@
                         // - In some cases, when detaching a window from main viewport SDL may send SDL_WINDOWEVENT_ENTER one frame too late,
                         //   causing SDL_WINDOWEVENT_LEAVE on previous frame to interrupt drag operation by clear mouse position. This is why
                         //   we delay process the SDL_WINDOWEVENT_LEAVE events by one frame. See issue #5012 for details.
-                        WindowEventID window_event = (WindowEventID)env.Window.Type;
+                        WindowEventID window_event = (WindowEventID)env.Window.Event;
                         if (window_event == WindowEventID.Enter)
                         {
                             bd->MouseWindowID = env.Window.WindowID;
-                            bd->PendingMouseLeaveFrame = 0;
+                            bd->MouseLastLeaveFrame = 0;
                         }
                         if (window_event == WindowEventID.Leave)
-                            bd->PendingMouseLeaveFrame = ImGui.GetFrameCount() + 1;
+                            bd->MouseLastLeaveFrame = ImGui.GetFrameCount() + 1;
                         if (window_event == WindowEventID.FocusGained)
                         {
                             io.AddFocusEvent(true);
@@ -303,7 +318,9 @@
                             io.AddFocusEvent(false);
                         }
 
-                        if (window_event == WindowEventID.Close || window_event == WindowEventID.Moved || window_event == WindowEventID.Resized)
+                        Trace.WriteLine(window_event);
+
+                        if (window_event == WindowEventID.Close || window_event == WindowEventID.Moved || window_event == WindowEventID.SizeChanged)
                         {
                             ImGuiViewport* viewport = ImGui.FindViewportByPlatformHandle(sdl.GetWindowFromID(env.Window.WindowID));
 
@@ -319,6 +336,13 @@
                             }
                         }
 
+                        return true;
+                    }
+
+                case EventType.Controllerdeviceadded:
+                case EventType.Controllerdeviceremoved:
+                    {
+                        bd->WantUpdateGamepadsList = true;
                         return true;
                     }
             }
@@ -462,7 +486,7 @@
             for (ImGuiMouseCursor cursor_n = 0; cursor_n < ImGuiMouseCursor.Count; cursor_n++)
                 sdl.Free(bd->MouseCursors[(int)cursor_n]);
             Free(bd->MouseCursors);
-            bd->LastMouseCursor = null;
+            CloseGamepads();
 
             io.BackendPlatformName = null;
             io.BackendPlatformUserData = null;
@@ -566,65 +590,133 @@
             }
         }
 
+        private static unsafe void CloseGamepads()
+        {
+            var bd = GetBackendData();
+            if (bd->GamepadMode != GamepadMode.Manual)
+            {
+                for (int i = 0; i < bd->Gamepads.Size; i++)
+                {
+                    GameController* gamepad = bd->Gamepads[i];
+                    sdl.GameControllerClose(gamepad);
+                }
+            }
+
+            bd->Gamepads.Resize(0);
+        }
+
+        public static unsafe void SetGamepadMode(GamepadMode mode, GameController** manual_gamepads_array, int manual_gamepads_count)
+        {
+            BackendData* bd = GetBackendData();
+            CloseGamepads();
+            if (mode == GamepadMode.Manual)
+            {
+                Debug.Assert(manual_gamepads_array != null && manual_gamepads_count > 0);
+                for (int n = 0; n < manual_gamepads_count; n++)
+                    bd->Gamepads.PushBack(manual_gamepads_array[n]);
+            }
+            else
+            {
+                Debug.Assert(manual_gamepads_array == null && manual_gamepads_count <= 0);
+                bd->WantUpdateGamepadsList = true;
+            }
+            bd->GamepadMode = mode;
+        }
+
+        private static unsafe void UpdateGamepadButton(BackendData* bd, ImGuiIO* io, ImGuiKey key, GameControllerButton button_no)
+        {
+            bool merged_value = false;
+            for (int i = 0; i < bd->Gamepads.Size; i++)
+            {
+                GameController* gamepad = bd->Gamepads[i];
+                merged_value |= sdl.GameControllerGetButton(gamepad, button_no) != 0;
+            }
+
+            io->AddKeyEvent(key, merged_value);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static float Saturate(float v)
+        {
+            return v < 0.0f ? 0.0f : v > 1.0f ? 1.0f : v;
+        }
+
+        private static unsafe void UpdateGamepadAnalog(BackendData* bd, ImGuiIO* io, ImGuiKey key, GameControllerAxis axis_no, float v0, float v1)
+        {
+            float merged_value = 0.0f;
+            for (int i = 0; i < bd->Gamepads.Size; i++)
+            {
+                GameController* gamepad = bd->Gamepads[i];
+                float vn = Saturate((float)(sdl.GameControllerGetAxis(gamepad, axis_no) - v0) / (float)(v1 - v0));
+                if (merged_value < vn)
+                    merged_value = vn;
+            }
+            io->AddKeyAnalogEvent(key, merged_value > 0.1f, merged_value);
+        }
+
         private static unsafe void UpdateGamepads()
         {
-            var io = ImGui.GetIO();
-            io.NavInputs.Clear();
-            if ((io.ConfigFlags & ImGuiConfigFlags.NavEnableGamepad) == 0) // FIXME: Technically feeding gamepad shouldn't depend on this now that they are regular inputs.
+            BackendData* bd = GetBackendData();
+            ImGuiIOPtr io = ImGui.GetIO();
+
+            // Update list of controller(s) to use
+            if (bd->WantUpdateGamepadsList && bd->GamepadMode != GamepadMode.Manual)
             {
-                return;
+                CloseGamepads();
+                int joystick_count = sdl.NumJoysticks();
+                for (int n = 0; n < joystick_count; n++)
+                {
+                    if (sdl.IsGameController(n) == SdlBool.True)
+                    {
+                        GameController* gamepad = sdl.GameControllerOpen(n);
+                        if (gamepad != null)
+                        {
+                            bd->Gamepads.PushBack(gamepad);
+                            if (bd->GamepadMode == GamepadMode.AutoFirst)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                bd->WantUpdateGamepadsList = false;
             }
 
-            // Get gamepad
-            GameController* game_controller = sdl.GameControllerOpen(0);
-            if (game_controller == null)
-            {
-                io.BackendFlags &= ~ImGuiBackendFlags.HasGamepad;
+            // FIXME: Technically feeding gamepad shouldn't depend on this now that they are regular inputs.
+            if ((io.ConfigFlags & ImGuiConfigFlags.NavEnableGamepad) == 0)
                 return;
-            }
+            io.BackendFlags &= ~ImGuiBackendFlags.HasGamepad;
+            if (bd->Gamepads.Size == 0)
+                return;
+            io.BackendFlags |= ImGuiBackendFlags.HasGamepad;
 
             // Update gamepad inputs
-            void MapButton(ImGuiNavInput NAV_NO, GameControllerButton BUTTON_NO)
-            {
-                io.NavInputs[(int)NAV_NO] = sdl.GameControllerGetButton(game_controller, BUTTON_NO) != 0 ? 1.0f : 0.0f;
-            }
-            void MapAnalog(ImGuiNavInput NAV_NO, GameControllerAxis AXIS_NO, int V0, int V1)
-            {
-                float vn = (float)(sdl.GameControllerGetAxis(game_controller, AXIS_NO) - V0) / (V1 - V0);
-                if (vn > 1.0f)
-                {
-                    vn = 1.0f;
-                }
-
-                if (vn > 0.0f && io.NavInputs[(int)NAV_NO] < vn)
-                {
-                    io.NavInputs[(int)NAV_NO] = vn;
-                }
-                else
-                {
-                    io.NavInputs[(int)NAV_NO] = 0;
-                }
-            }
-
-            const int thumb_dead_zone = 8000;           // SDL_gamecontroller.h suggests using this value.
-            MapButton(ImGuiNavInput.Activate, GameControllerButton.A);               // Cross / A
-            MapButton(ImGuiNavInput.Cancel, GameControllerButton.B);               // Circle / B
-            MapButton(ImGuiNavInput.Menu, GameControllerButton.X);               // Square / X
-            MapButton(ImGuiNavInput.Input, GameControllerButton.Y);               // Triangle / Y
-            MapButton(ImGuiNavInput.DpadLeft, GameControllerButton.DpadLeft);       // D-Pad Left
-            MapButton(ImGuiNavInput.DpadRight, GameControllerButton.DpadRight);      // D-Pad Right
-            MapButton(ImGuiNavInput.DpadUp, GameControllerButton.DpadUp);         // D-Pad Up
-            MapButton(ImGuiNavInput.DpadDown, GameControllerButton.DpadDown);       // D-Pad Down
-            MapButton(ImGuiNavInput.FocusPrev, GameControllerButton.Leftshoulder);    // L1 / LB
-            MapButton(ImGuiNavInput.FocusNext, GameControllerButton.Rightshoulder);   // R1 / RB
-            MapButton(ImGuiNavInput.TweakSlow, GameControllerButton.Leftshoulder);    // L1 / LB
-            MapButton(ImGuiNavInput.TweakFast, GameControllerButton.Rightshoulder);   // R1 / RB
-            MapAnalog(ImGuiNavInput.LStickLeft, GameControllerAxis.Leftx, -thumb_dead_zone, -32768);
-            MapAnalog(ImGuiNavInput.LStickRight, GameControllerAxis.Leftx, +thumb_dead_zone, +32767);
-            MapAnalog(ImGuiNavInput.LStickUp, GameControllerAxis.Lefty, -thumb_dead_zone, -32767);
-            MapAnalog(ImGuiNavInput.LStickDown, GameControllerAxis.Lefty, +thumb_dead_zone, +32767);
-
-            io.BackendFlags |= ImGuiBackendFlags.HasGamepad;
+            const int thumb_dead_zone = 8000; // SDL_gamecontroller.h suggests using this value.
+            UpdateGamepadButton(bd, io, ImGuiKey.GamepadStart, GameControllerButton.Start);
+            UpdateGamepadButton(bd, io, ImGuiKey.GamepadBack, GameControllerButton.Back);
+            UpdateGamepadButton(bd, io, ImGuiKey.GamepadFaceLeft, GameControllerButton.X);              // Xbox X, PS Square
+            UpdateGamepadButton(bd, io, ImGuiKey.GamepadFaceRight, GameControllerButton.B);              // Xbox B, PS Circle
+            UpdateGamepadButton(bd, io, ImGuiKey.GamepadFaceUp, GameControllerButton.Y);              // Xbox Y, PS Triangle
+            UpdateGamepadButton(bd, io, ImGuiKey.GamepadFaceDown, GameControllerButton.A);              // Xbox A, PS Cross
+            UpdateGamepadButton(bd, io, ImGuiKey.GamepadDpadLeft, GameControllerButton.DpadLeft);
+            UpdateGamepadButton(bd, io, ImGuiKey.GamepadDpadRight, GameControllerButton.DpadRight);
+            UpdateGamepadButton(bd, io, ImGuiKey.GamepadDpadUp, GameControllerButton.DpadUp);
+            UpdateGamepadButton(bd, io, ImGuiKey.GamepadDpadDown, GameControllerButton.DpadDown);
+            UpdateGamepadButton(bd, io, ImGuiKey.GamepadL1, GameControllerButton.Leftshoulder);
+            UpdateGamepadButton(bd, io, ImGuiKey.GamepadR1, GameControllerButton.Rightshoulder);
+            UpdateGamepadAnalog(bd, io, ImGuiKey.GamepadL2, GameControllerAxis.Triggerleft, 0.0f, 32767);
+            UpdateGamepadAnalog(bd, io, ImGuiKey.GamepadR2, GameControllerAxis.Triggerright, 0.0f, 32767);
+            UpdateGamepadButton(bd, io, ImGuiKey.GamepadL3, GameControllerButton.Leftstick);
+            UpdateGamepadButton(bd, io, ImGuiKey.GamepadR3, GameControllerButton.Rightstick);
+            UpdateGamepadAnalog(bd, io, ImGuiKey.GamepadLStickLeft, GameControllerAxis.Leftx, -thumb_dead_zone, -32768);
+            UpdateGamepadAnalog(bd, io, ImGuiKey.GamepadLStickRight, GameControllerAxis.Leftx, +thumb_dead_zone, +32767);
+            UpdateGamepadAnalog(bd, io, ImGuiKey.GamepadLStickUp, GameControllerAxis.Lefty, -thumb_dead_zone, -32768);
+            UpdateGamepadAnalog(bd, io, ImGuiKey.GamepadLStickDown, GameControllerAxis.Lefty, +thumb_dead_zone, +32767);
+            UpdateGamepadAnalog(bd, io, ImGuiKey.GamepadRStickLeft, GameControllerAxis.Rightx, -thumb_dead_zone, -32768);
+            UpdateGamepadAnalog(bd, io, ImGuiKey.GamepadRStickRight, GameControllerAxis.Rightx, +thumb_dead_zone, +32767);
+            UpdateGamepadAnalog(bd, io, ImGuiKey.GamepadRStickUp, GameControllerAxis.Righty, -thumb_dead_zone, -32768);
+            UpdateGamepadAnalog(bd, io, ImGuiKey.GamepadRStickDown, GameControllerAxis.Righty, +thumb_dead_zone, +32767);
         }
 
         /// <summary>
@@ -687,10 +779,10 @@
 
             io.DeltaTime = Time.Delta;
 
-            if (bd->PendingMouseLeaveFrame != 0 && bd->PendingMouseLeaveFrame >= ImGui.GetFrameCount() && bd->MouseButtonsDown == 0)
+            if (bd->MouseLastLeaveFrame != 0 && bd->MouseLastLeaveFrame >= ImGui.GetFrameCount() && bd->MouseButtonsDown == 0)
             {
                 bd->MouseWindowID = 0;
-                bd->PendingMouseLeaveFrame = 0;
+                bd->MouseLastLeaveFrame = 0;
                 io.AddMousePosEvent(-float.MaxValue, -float.MaxValue);
             }
 
@@ -703,6 +795,8 @@
 
             UpdateMouseData();
             UpdateMouseCursor();
+
+            // Update game controllers (if enabled and available)
             UpdateGamepads();
         }
 

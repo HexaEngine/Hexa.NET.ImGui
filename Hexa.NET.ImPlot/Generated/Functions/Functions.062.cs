@@ -4540,51 +4540,51 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotPieChart_FloatPtr")]
+		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotPieChart_FloatPtrPlotFormatter")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotPieChartNative(byte** labelIds, float* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags);
+		internal static partial void PlotPieChartNative(byte** labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags);
 
-		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
+		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, angle0, flags);
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, angle0, flags);
 		}
 
-		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
+		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
 		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
 		}
 
-		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, byte* labelFmt)
+		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
 		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
 		}
 
-		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius)
+		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt)
 		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
 		}
 
-		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, double angle0)
+		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
 		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
 		}
 
-		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
+		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
 		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, (double)(90), flags);
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, fmtData, (double)(90), flags);
 		}
 
-		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
+		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
 		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", (double)(90), flags);
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
 		}
 
-		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
+		public static void PlotPieChart(byte** labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
 		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", angle0, flags);
+			PlotPieChartNative(labelIds, values, count, x, y, radius, fmt, (void*)(default), angle0, flags);
 		}
 
-		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
+		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
 			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
@@ -4604,7 +4604,7 @@ namespace Hexa.NET.ImPlot
 			{
 				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
 			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, angle0, flags);
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, angle0, flags);
 			for (int i = 0; i < labelIds.Length; i++)
 			{
 				Utils.Free(pStrArray0[i]);
@@ -4615,7 +4615,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
+		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
 		{
 			byte** pStrArray0 = null;
 			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
@@ -4635,7 +4635,7 @@ namespace Hexa.NET.ImPlot
 			{
 				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
 			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
 			for (int i = 0; i < labelIds.Length; i++)
 			{
 				Utils.Free(pStrArray0[i]);
@@ -4646,7 +4646,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, byte* labelFmt)
+		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
 		{
 			byte** pStrArray0 = null;
 			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
@@ -4666,7 +4666,7 @@ namespace Hexa.NET.ImPlot
 			{
 				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
 			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
 			for (int i = 0; i < labelIds.Length; i++)
 			{
 				Utils.Free(pStrArray0[i]);
@@ -4677,7 +4677,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius)
+		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt)
 		{
 			byte** pStrArray0 = null;
 			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
@@ -4697,7 +4697,7 @@ namespace Hexa.NET.ImPlot
 			{
 				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
 			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
 			for (int i = 0; i < labelIds.Length; i++)
 			{
 				Utils.Free(pStrArray0[i]);
@@ -4708,7 +4708,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, double angle0)
+		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
 		{
 			byte** pStrArray0 = null;
 			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
@@ -4728,7 +4728,7 @@ namespace Hexa.NET.ImPlot
 			{
 				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
 			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
 			for (int i = 0; i < labelIds.Length; i++)
 			{
 				Utils.Free(pStrArray0[i]);
@@ -4739,7 +4739,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
+		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
 			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
@@ -4759,7 +4759,7 @@ namespace Hexa.NET.ImPlot
 			{
 				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
 			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, (double)(90), flags);
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, (double)(90), flags);
 			for (int i = 0; i < labelIds.Length; i++)
 			{
 				Utils.Free(pStrArray0[i]);
@@ -4770,7 +4770,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
+		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
 			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
@@ -4790,7 +4790,7 @@ namespace Hexa.NET.ImPlot
 			{
 				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
 			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", (double)(90), flags);
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
 			for (int i = 0; i < labelIds.Length; i++)
 			{
 				Utils.Free(pStrArray0[i]);
@@ -4801,7 +4801,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
+		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
 			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
@@ -4821,7 +4821,7 @@ namespace Hexa.NET.ImPlot
 			{
 				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
 			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", angle0, flags);
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, flags);
 			for (int i = 0; i < labelIds.Length; i++)
 			{
 				Utils.Free(pStrArray0[i]);
@@ -4832,71 +4832,71 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
 			fixed (float* pvalues = &values)
 			{
-				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, labelFmt, angle0, flags);
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
 			}
 		}
 
-		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
 		{
 			fixed (float* pvalues = &values)
 			{
-				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
 			}
 		}
 
-		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, byte* labelFmt)
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
 		{
 			fixed (float* pvalues = &values)
 			{
-				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
 			}
 		}
 
-		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius)
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt)
 		{
 			fixed (float* pvalues = &values)
 			{
-				PlotPieChart(labelIds, (float*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
 			}
 		}
 
-		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, double angle0)
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
 		{
 			fixed (float* pvalues = &values)
 			{
-				PlotPieChart(labelIds, (float*)pvalues, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
 			}
 		}
 
-		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
 		{
 			fixed (float* pvalues = &values)
 			{
-				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, labelFmt, (double)(90), flags);
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), flags);
 			}
 		}
 
-		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
 		{
 			fixed (float* pvalues = &values)
 			{
-				PlotPieChart(labelIds, (float*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), flags);
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
 			}
 		}
 
-		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
 		{
 			fixed (float* pvalues = &values)
 			{
-				PlotPieChart(labelIds, (float*)pvalues, count, x, y, radius, (string)"%.1f", angle0, flags);
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, flags);
 			}
 		}
 
-		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
+		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
 			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
@@ -4918,7 +4918,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (float* pvalues = &values)
 			{
-				PlotPieChartNative(pStrArray0, (float*)pvalues, count, x, y, radius, labelFmt, angle0, flags);
+				PlotPieChartNative(pStrArray0, (float*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
 				for (int i = 0; i < labelIds.Length; i++)
 				{
 					Utils.Free(pStrArray0[i]);
@@ -4930,7 +4930,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
+		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
 		{
 			byte** pStrArray0 = null;
 			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
@@ -4952,7 +4952,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (float* pvalues = &values)
 			{
-				PlotPieChartNative(pStrArray0, (float*)pvalues, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
+				PlotPieChartNative(pStrArray0, (float*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
 				for (int i = 0; i < labelIds.Length; i++)
 				{
 					Utils.Free(pStrArray0[i]);
@@ -4964,7 +4964,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, byte* labelFmt)
+		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
 		{
 			byte** pStrArray0 = null;
 			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
@@ -4986,7 +4986,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (float* pvalues = &values)
 			{
-				PlotPieChartNative(pStrArray0, (float*)pvalues, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
+				PlotPieChartNative(pStrArray0, (float*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
 				for (int i = 0; i < labelIds.Length; i++)
 				{
 					Utils.Free(pStrArray0[i]);
@@ -4998,7 +4998,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius)
+		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt)
 		{
 			byte** pStrArray0 = null;
 			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
@@ -5020,7 +5020,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (float* pvalues = &values)
 			{
-				PlotPieChart(pStrArray0, (float*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
+				PlotPieChartNative(pStrArray0, (float*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
 				for (int i = 0; i < labelIds.Length; i++)
 				{
 					Utils.Free(pStrArray0[i]);

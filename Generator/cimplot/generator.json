@@ -108,6 +108,7 @@
     "ImGuiTableColumnIdx": "sbyte",
     "ImGuiDockRequest": "void",
     "ImGuiDockNodeSettings": "void",
+    "ImGuiSelectionUserData": "long",
     "va_list": "nuint"
   },
   "AllowedFunctions": [],

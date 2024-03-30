@@ -18,80 +18,38 @@ namespace Hexa.NET.ImPlot
 	public unsafe partial class ImPlot
 	{
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_RoundTime")]
+		[LibraryImport(LibName, EntryPoint = "ImPlotAnnotationCollection_Append")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotRoundTimeNative(ImPlotTime* output, ImPlotTime t, ImPlotTimeUnit unit);
+		internal static partial void ImPlotAnnotationCollectionAppendNative(ImPlotAnnotationCollection* self, Vector2 pos, Vector2 off, uint bg, uint fg, byte clamp, byte* fmt);
 
-		public static ImPlotTime ImPlotRoundTime(ImPlotTime t, ImPlotTimeUnit unit)
+		public static void ImPlotAnnotationCollectionAppend(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, byte* fmt)
 		{
-			ImPlotTime ret;
-			ImPlotRoundTimeNative(&ret, t, unit);
-			return ret;
+			ImPlotAnnotationCollectionAppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, fmt);
 		}
 
-		public static void ImPlotRoundTime(ImPlotTimePtr output, ImPlotTime t, ImPlotTimeUnit unit)
+		public static void ImPlotAnnotationCollectionAppend(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, byte* fmt)
 		{
-			ImPlotRoundTimeNative(output, t, unit);
-		}
-
-		public static void ImPlotRoundTime(ref ImPlotTime output, ImPlotTime t, ImPlotTimeUnit unit)
-		{
-			fixed (ImPlotTime* poutput = &output)
+			fixed (ImPlotAnnotationCollection* pself = &self)
 			{
-				ImPlotRoundTimeNative((ImPlotTime*)poutput, t, unit);
+				ImPlotAnnotationCollectionAppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, fmt);
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CombineDateTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotCombineDateTimeNative(ImPlotTime* output, ImPlotTime datePart, ImPlotTime timePart);
-
-		public static ImPlotTime ImPlotCombineDateTime(ImPlotTime datePart, ImPlotTime timePart)
+		public static void ImPlotAnnotationCollectionAppend(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt)
 		{
-			ImPlotTime ret;
-			ImPlotCombineDateTimeNative(&ret, datePart, timePart);
-			return ret;
-		}
-
-		public static void ImPlotCombineDateTime(ImPlotTimePtr output, ImPlotTime datePart, ImPlotTime timePart)
-		{
-			ImPlotCombineDateTimeNative(output, datePart, timePart);
-		}
-
-		public static void ImPlotCombineDateTime(ref ImPlotTime output, ImPlotTime datePart, ImPlotTime timePart)
-		{
-			fixed (ImPlotTime* poutput = &output)
+			fixed (byte* pfmt = &fmt)
 			{
-				ImPlotCombineDateTimeNative((ImPlotTime*)poutput, datePart, timePart);
+				ImPlotAnnotationCollectionAppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt);
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_FormatTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImPlotFormatTimeNative(ImPlotTime t, byte* buffer, int size, ImPlotTimeFmt fmt, byte use24HrClk);
-
-		public static int ImPlotFormatTime(ImPlotTime t, byte* buffer, int size, ImPlotTimeFmt fmt, bool use24HrClk)
-		{
-			int ret = ImPlotFormatTimeNative(t, buffer, size, fmt, use24HrClk ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		public static int ImPlotFormatTime(ImPlotTime t, ref byte buffer, int size, ImPlotTimeFmt fmt, bool use24HrClk)
-		{
-			fixed (byte* pbuffer = &buffer)
-			{
-				int ret = ImPlotFormatTimeNative(t, (byte*)pbuffer, size, fmt, use24HrClk ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		public static int ImPlotFormatTime(ImPlotTime t, ref string buffer, int size, ImPlotTimeFmt fmt, bool use24HrClk)
+		public static void ImPlotAnnotationCollectionAppend(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, string fmt)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (buffer != null)
+			if (fmt != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(buffer);
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -101,44 +59,166 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(buffer, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ImPlotFormatTimeNative(t, pStr0, size, fmt, use24HrClk ? (byte)1 : (byte)0);
-			buffer = Utils.DecodeStringUTF8(pStr0);
+			ImPlotAnnotationCollectionAppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
-			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_FormatDate")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImPlotFormatDateNative(ImPlotTime t, byte* buffer, int size, ImPlotDateFmt fmt, byte useIso8601);
-
-		public static int ImPlotFormatDate(ImPlotTime t, byte* buffer, int size, ImPlotDateFmt fmt, bool useIso8601)
+		public static void ImPlotAnnotationCollectionAppend(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt)
 		{
-			int ret = ImPlotFormatDateNative(t, buffer, size, fmt, useIso8601 ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		public static int ImPlotFormatDate(ImPlotTime t, ref byte buffer, int size, ImPlotDateFmt fmt, bool useIso8601)
-		{
-			fixed (byte* pbuffer = &buffer)
+			fixed (ImPlotAnnotationCollection* pself = &self)
 			{
-				int ret = ImPlotFormatDateNative(t, (byte*)pbuffer, size, fmt, useIso8601 ? (byte)1 : (byte)0);
+				fixed (byte* pfmt = &fmt)
+				{
+					ImPlotAnnotationCollectionAppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt);
+				}
+			}
+		}
+
+		public static void ImPlotAnnotationCollectionAppend(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, string fmt)
+		{
+			fixed (ImPlotAnnotationCollection* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotAnnotationCollectionAppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAnnotationCollection_GetText")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte* ImPlotAnnotationCollectionGetTextNative(ImPlotAnnotationCollection* self, int idx);
+
+		public static byte* ImPlotAnnotationCollectionGetText(ImPlotAnnotationCollectionPtr self, int idx)
+		{
+			byte* ret = ImPlotAnnotationCollectionGetTextNative(self, idx);
+			return ret;
+		}
+
+		public static string ImPlotAnnotationCollectionGetTextS(ImPlotAnnotationCollectionPtr self, int idx)
+		{
+			string ret = Utils.DecodeStringUTF8(ImPlotAnnotationCollectionGetTextNative(self, idx));
+			return ret;
+		}
+
+		public static byte* ImPlotAnnotationCollectionGetText(ref ImPlotAnnotationCollection self, int idx)
+		{
+			fixed (ImPlotAnnotationCollection* pself = &self)
+			{
+				byte* ret = ImPlotAnnotationCollectionGetTextNative((ImPlotAnnotationCollection*)pself, idx);
 				return ret;
 			}
 		}
 
-		public static int ImPlotFormatDate(ImPlotTime t, ref string buffer, int size, ImPlotDateFmt fmt, bool useIso8601)
+		public static string ImPlotAnnotationCollectionGetTextS(ref ImPlotAnnotationCollection self, int idx)
+		{
+			fixed (ImPlotAnnotationCollection* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(ImPlotAnnotationCollectionGetTextNative((ImPlotAnnotationCollection*)pself, idx));
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAnnotationCollection_Reset")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAnnotationCollectionResetNative(ImPlotAnnotationCollection* self);
+
+		public static void ImPlotAnnotationCollectionReset(ImPlotAnnotationCollectionPtr self)
+		{
+			ImPlotAnnotationCollectionResetNative(self);
+		}
+
+		public static void ImPlotAnnotationCollectionReset(ref ImPlotAnnotationCollection self)
+		{
+			fixed (ImPlotAnnotationCollection* pself = &self)
+			{
+				ImPlotAnnotationCollectionResetNative((ImPlotAnnotationCollection*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTagCollection_ImPlotTagCollection")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotTagCollection* ImPlotTagCollectionImPlotTagCollectionNative();
+
+		public static ImPlotTagCollectionPtr ImPlotTagCollectionImPlotTagCollection()
+		{
+			ImPlotTagCollectionPtr ret = ImPlotTagCollectionImPlotTagCollectionNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTagCollection_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotTagCollectionDestroyNative(ImPlotTagCollection* self);
+
+		public static void ImPlotTagCollectionDestroy(ImPlotTagCollectionPtr self)
+		{
+			ImPlotTagCollectionDestroyNative(self);
+		}
+
+		public static void ImPlotTagCollectionDestroy(ref ImPlotTagCollection self)
+		{
+			fixed (ImPlotTagCollection* pself = &self)
+			{
+				ImPlotTagCollectionDestroyNative((ImPlotTagCollection*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTagCollection_AppendV")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotTagCollectionAppendVNative(ImPlotTagCollection* self, ImAxis axis, double value, uint bg, uint fg, byte* fmt, nuint args);
+
+		public static void ImPlotTagCollectionAppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, byte* fmt, nuint args)
+		{
+			ImPlotTagCollectionAppendVNative(self, axis, value, bg, fg, fmt, args);
+		}
+
+		public static void ImPlotTagCollectionAppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, byte* fmt, nuint args)
+		{
+			fixed (ImPlotTagCollection* pself = &self)
+			{
+				ImPlotTagCollectionAppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, fmt, args);
+			}
+		}
+
+		public static void ImPlotTagCollectionAppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt, nuint args)
+		{
+			fixed (byte* pfmt = &fmt)
+			{
+				ImPlotTagCollectionAppendVNative(self, axis, value, bg, fg, (byte*)pfmt, args);
+			}
+		}
+
+		public static void ImPlotTagCollectionAppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, string fmt, nuint args)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (buffer != null)
+			if (fmt != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(buffer);
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -148,44 +228,88 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(buffer, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ImPlotFormatDateNative(t, pStr0, size, fmt, useIso8601 ? (byte)1 : (byte)0);
-			buffer = Utils.DecodeStringUTF8(pStr0);
+			ImPlotTagCollectionAppendVNative(self, axis, value, bg, fg, pStr0, args);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
-			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_FormatDateTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImPlotFormatDateTimeNative(ImPlotTime t, byte* buffer, int size, ImPlotDateTimeSpec fmt);
-
-		public static int ImPlotFormatDateTime(ImPlotTime t, byte* buffer, int size, ImPlotDateTimeSpec fmt)
+		public static void ImPlotTagCollectionAppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt, nuint args)
 		{
-			int ret = ImPlotFormatDateTimeNative(t, buffer, size, fmt);
-			return ret;
-		}
-
-		public static int ImPlotFormatDateTime(ImPlotTime t, ref byte buffer, int size, ImPlotDateTimeSpec fmt)
-		{
-			fixed (byte* pbuffer = &buffer)
+			fixed (ImPlotTagCollection* pself = &self)
 			{
-				int ret = ImPlotFormatDateTimeNative(t, (byte*)pbuffer, size, fmt);
-				return ret;
+				fixed (byte* pfmt = &fmt)
+				{
+					ImPlotTagCollectionAppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, (byte*)pfmt, args);
+				}
 			}
 		}
 
-		public static int ImPlotFormatDateTime(ImPlotTime t, ref string buffer, int size, ImPlotDateTimeSpec fmt)
+		public static void ImPlotTagCollectionAppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, string fmt, nuint args)
+		{
+			fixed (ImPlotTagCollection* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotTagCollectionAppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, pStr0, args);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTagCollection_Append")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotTagCollectionAppendNative(ImPlotTagCollection* self, ImAxis axis, double value, uint bg, uint fg, byte* fmt);
+
+		public static void ImPlotTagCollectionAppend(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, byte* fmt)
+		{
+			ImPlotTagCollectionAppendNative(self, axis, value, bg, fg, fmt);
+		}
+
+		public static void ImPlotTagCollectionAppend(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, byte* fmt)
+		{
+			fixed (ImPlotTagCollection* pself = &self)
+			{
+				ImPlotTagCollectionAppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, fmt);
+			}
+		}
+
+		public static void ImPlotTagCollectionAppend(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt)
+		{
+			fixed (byte* pfmt = &fmt)
+			{
+				ImPlotTagCollectionAppendNative(self, axis, value, bg, fg, (byte*)pfmt);
+			}
+		}
+
+		public static void ImPlotTagCollectionAppend(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, string fmt)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (buffer != null)
+			if (fmt != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(buffer);
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -195,11 +319,209 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(buffer, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ImPlotFormatDateTimeNative(t, pStr0, size, fmt);
-			buffer = Utils.DecodeStringUTF8(pStr0);
+			ImPlotTagCollectionAppendNative(self, axis, value, bg, fg, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void ImPlotTagCollectionAppend(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt)
+		{
+			fixed (ImPlotTagCollection* pself = &self)
+			{
+				fixed (byte* pfmt = &fmt)
+				{
+					ImPlotTagCollectionAppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, (byte*)pfmt);
+				}
+			}
+		}
+
+		public static void ImPlotTagCollectionAppend(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, string fmt)
+		{
+			fixed (ImPlotTagCollection* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotTagCollectionAppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTagCollection_GetText")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte* ImPlotTagCollectionGetTextNative(ImPlotTagCollection* self, int idx);
+
+		public static byte* ImPlotTagCollectionGetText(ImPlotTagCollectionPtr self, int idx)
+		{
+			byte* ret = ImPlotTagCollectionGetTextNative(self, idx);
+			return ret;
+		}
+
+		public static string ImPlotTagCollectionGetTextS(ImPlotTagCollectionPtr self, int idx)
+		{
+			string ret = Utils.DecodeStringUTF8(ImPlotTagCollectionGetTextNative(self, idx));
+			return ret;
+		}
+
+		public static byte* ImPlotTagCollectionGetText(ref ImPlotTagCollection self, int idx)
+		{
+			fixed (ImPlotTagCollection* pself = &self)
+			{
+				byte* ret = ImPlotTagCollectionGetTextNative((ImPlotTagCollection*)pself, idx);
+				return ret;
+			}
+		}
+
+		public static string ImPlotTagCollectionGetTextS(ref ImPlotTagCollection self, int idx)
+		{
+			fixed (ImPlotTagCollection* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(ImPlotTagCollectionGetTextNative((ImPlotTagCollection*)pself, idx));
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTagCollection_Reset")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotTagCollectionResetNative(ImPlotTagCollection* self);
+
+		public static void ImPlotTagCollectionReset(ImPlotTagCollectionPtr self)
+		{
+			ImPlotTagCollectionResetNative(self);
+		}
+
+		public static void ImPlotTagCollectionReset(ref ImPlotTagCollection self)
+		{
+			fixed (ImPlotTagCollection* pself = &self)
+			{
+				ImPlotTagCollectionResetNative((ImPlotTagCollection*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTick_ImPlotTick")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotTick* ImPlotTickImPlotTickNative(double value, byte major, int level, byte showLabel);
+
+		public static ImPlotTickPtr ImPlotTickImPlotTick(double value, bool major, int level, bool showLabel)
+		{
+			ImPlotTickPtr ret = ImPlotTickImPlotTickNative(value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0);
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTick_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotTickDestroyNative(ImPlotTick* self);
+
+		public static void ImPlotTickDestroy(ImPlotTickPtr self)
+		{
+			ImPlotTickDestroyNative(self);
+		}
+
+		public static void ImPlotTickDestroy(ref ImPlotTick self)
+		{
+			fixed (ImPlotTick* pself = &self)
+			{
+				ImPlotTickDestroyNative((ImPlotTick*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTicker_ImPlotTicker")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotTicker* ImPlotTickerImPlotTickerNative();
+
+		public static ImPlotTickerPtr ImPlotTickerImPlotTicker()
+		{
+			ImPlotTickerPtr ret = ImPlotTickerImPlotTickerNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTicker_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotTickerDestroyNative(ImPlotTicker* self);
+
+		public static void ImPlotTickerDestroy(ImPlotTickerPtr self)
+		{
+			ImPlotTickerDestroyNative(self);
+		}
+
+		public static void ImPlotTickerDestroy(ref ImPlotTicker self)
+		{
+			fixed (ImPlotTicker* pself = &self)
+			{
+				ImPlotTickerDestroyNative((ImPlotTicker*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTicker_AddTick_doubleStr")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotTick* ImPlotTickerAddTickDoubleNative(ImPlotTicker* self, double value, byte major, int level, byte showLabel, byte* label);
+
+		public static ImPlotTickPtr ImPlotTickerAddTickDouble(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, byte* label)
+		{
+			ImPlotTickPtr ret = ImPlotTickerAddTickDoubleNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, label);
+			return ret;
+		}
+
+		public static ImPlotTickPtr ImPlotTickerAddTickDouble(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, byte* label)
+		{
+			fixed (ImPlotTicker* pself = &self)
+			{
+				ImPlotTickPtr ret = ImPlotTickerAddTickDoubleNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, label);
+				return ret;
+			}
+		}
+
+		public static ImPlotTickPtr ImPlotTickerAddTickDouble(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, ref byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				ImPlotTickPtr ret = ImPlotTickerAddTickDoubleNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
+				return ret;
+			}
+		}
+
+		public static ImPlotTickPtr ImPlotTickerAddTickDouble(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotTickPtr ret = ImPlotTickerAddTickDoubleNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -207,924 +529,1356 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_ShowDatePicker")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ImPlotShowDatePickerNative(byte* id, int* level, ImPlotTime* t, ImPlotTime* t1, ImPlotTime* t2);
-
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static ImPlotTickPtr ImPlotTickerAddTickDouble(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, ref byte label)
 		{
-			byte ret = ImPlotShowDatePickerNative(id, level, t, t1, t2);
+			fixed (ImPlotTicker* pself = &self)
+			{
+				fixed (byte* plabel = &label)
+				{
+					ImPlotTickPtr ret = ImPlotTickerAddTickDoubleNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
+					return ret;
+				}
+			}
+		}
+
+		public static ImPlotTickPtr ImPlotTickerAddTickDouble(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, string label)
+		{
+			fixed (ImPlotTicker* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotTickPtr ret = ImPlotTickerAddTickDoubleNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTicker_AddTick_doublePlotFormatter")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotTick* ImPlotTickerAddTickDoublePlotFormatterNative(ImPlotTicker* self, double value, byte major, int level, byte showLabel, ImPlotFormatter formatter, void* data);
+
+		public static ImPlotTickPtr ImPlotTickerAddTickDoublePlotFormatter(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
+		{
+			ImPlotTickPtr ret = ImPlotTickerAddTickDoublePlotFormatterNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
+			return ret;
+		}
+
+		public static ImPlotTickPtr ImPlotTickerAddTickDoublePlotFormatter(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
+		{
+			fixed (ImPlotTicker* pself = &self)
+			{
+				ImPlotTickPtr ret = ImPlotTickerAddTickDoublePlotFormatterNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTicker_AddTick_PlotTick")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotTick* ImPlotTickerAddTickPlotTickNative(ImPlotTicker* self, ImPlotTick tick);
+
+		public static ImPlotTickPtr ImPlotTickerAddTickPlotTick(ImPlotTickerPtr self, ImPlotTick tick)
+		{
+			ImPlotTickPtr ret = ImPlotTickerAddTickPlotTickNative(self, tick);
+			return ret;
+		}
+
+		public static ImPlotTickPtr ImPlotTickerAddTickPlotTick(ref ImPlotTicker self, ImPlotTick tick)
+		{
+			fixed (ImPlotTicker* pself = &self)
+			{
+				ImPlotTickPtr ret = ImPlotTickerAddTickPlotTickNative((ImPlotTicker*)pself, tick);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTicker_GetText_Int")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte* ImPlotTickerGetTextIntNative(ImPlotTicker* self, int idx);
+
+		public static byte* ImPlotTickerGetTextInt(ImPlotTickerPtr self, int idx)
+		{
+			byte* ret = ImPlotTickerGetTextIntNative(self, idx);
+			return ret;
+		}
+
+		public static string ImPlotTickerGetTextIntS(ImPlotTickerPtr self, int idx)
+		{
+			string ret = Utils.DecodeStringUTF8(ImPlotTickerGetTextIntNative(self, idx));
+			return ret;
+		}
+
+		public static byte* ImPlotTickerGetTextInt(ref ImPlotTicker self, int idx)
+		{
+			fixed (ImPlotTicker* pself = &self)
+			{
+				byte* ret = ImPlotTickerGetTextIntNative((ImPlotTicker*)pself, idx);
+				return ret;
+			}
+		}
+
+		public static string ImPlotTickerGetTextIntS(ref ImPlotTicker self, int idx)
+		{
+			fixed (ImPlotTicker* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(ImPlotTickerGetTextIntNative((ImPlotTicker*)pself, idx));
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTicker_GetText_PlotTick")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte* ImPlotTickerGetTextPlotTickNative(ImPlotTicker* self, ImPlotTick tick);
+
+		public static byte* ImPlotTickerGetTextPlotTick(ImPlotTickerPtr self, ImPlotTick tick)
+		{
+			byte* ret = ImPlotTickerGetTextPlotTickNative(self, tick);
+			return ret;
+		}
+
+		public static string ImPlotTickerGetTextPlotTickS(ImPlotTickerPtr self, ImPlotTick tick)
+		{
+			string ret = Utils.DecodeStringUTF8(ImPlotTickerGetTextPlotTickNative(self, tick));
+			return ret;
+		}
+
+		public static byte* ImPlotTickerGetTextPlotTick(ref ImPlotTicker self, ImPlotTick tick)
+		{
+			fixed (ImPlotTicker* pself = &self)
+			{
+				byte* ret = ImPlotTickerGetTextPlotTickNative((ImPlotTicker*)pself, tick);
+				return ret;
+			}
+		}
+
+		public static string ImPlotTickerGetTextPlotTickS(ref ImPlotTicker self, ImPlotTick tick)
+		{
+			fixed (ImPlotTicker* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(ImPlotTickerGetTextPlotTickNative((ImPlotTicker*)pself, tick));
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTicker_OverrideSizeLate")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotTickerOverrideSizeLateNative(ImPlotTicker* self, Vector2 size);
+
+		public static void ImPlotTickerOverrideSizeLate(ImPlotTickerPtr self, Vector2 size)
+		{
+			ImPlotTickerOverrideSizeLateNative(self, size);
+		}
+
+		public static void ImPlotTickerOverrideSizeLate(ref ImPlotTicker self, Vector2 size)
+		{
+			fixed (ImPlotTicker* pself = &self)
+			{
+				ImPlotTickerOverrideSizeLateNative((ImPlotTicker*)pself, size);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTicker_Reset")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotTickerResetNative(ImPlotTicker* self);
+
+		public static void ImPlotTickerReset(ImPlotTickerPtr self)
+		{
+			ImPlotTickerResetNative(self);
+		}
+
+		public static void ImPlotTickerReset(ref ImPlotTicker self)
+		{
+			fixed (ImPlotTicker* pself = &self)
+			{
+				ImPlotTickerResetNative((ImPlotTicker*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotTicker_TickCount")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial int ImPlotTickerTickCountNative(ImPlotTicker* self);
+
+		public static int ImPlotTickerTickCount(ImPlotTickerPtr self)
+		{
+			int ret = ImPlotTickerTickCountNative(self);
+			return ret;
+		}
+
+		public static int ImPlotTickerTickCount(ref ImPlotTicker self)
+		{
+			fixed (ImPlotTicker* pself = &self)
+			{
+				int ret = ImPlotTickerTickCountNative((ImPlotTicker*)pself);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_ImPlotAxis")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotAxis* ImPlotAxisImPlotAxisNative();
+
+		public static ImPlotAxisPtr ImPlotAxisImPlotAxis()
+		{
+			ImPlotAxisPtr ret = ImPlotAxisImPlotAxisNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAxisDestroyNative(ImPlotAxis* self);
+
+		public static void ImPlotAxisDestroy(ImPlotAxisPtr self)
+		{
+			ImPlotAxisDestroyNative(self);
+		}
+
+		public static void ImPlotAxisDestroy(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				ImPlotAxisDestroyNative((ImPlotAxis*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_Reset")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAxisResetNative(ImPlotAxis* self);
+
+		public static void ImPlotAxisReset(ImPlotAxisPtr self)
+		{
+			ImPlotAxisResetNative(self);
+		}
+
+		public static void ImPlotAxisReset(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				ImPlotAxisResetNative((ImPlotAxis*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_SetMin")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisSetMinNative(ImPlotAxis* self, double min, byte force);
+
+		public static bool ImPlotAxisSetMin(ImPlotAxisPtr self, double min, bool force)
+		{
+			byte ret = ImPlotAxisSetMinNative(self, min, force ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ImPlotAxisSetMin(ref ImPlotAxis self, double min, bool force)
 		{
-			fixed (byte* pid = &id)
+			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = ImPlotShowDatePickerNative((byte*)pid, level, t, t1, t2);
+				byte ret = ImPlotAxisSetMinNative((ImPlotAxis*)pself, min, force ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(string id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_SetMax")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisSetMaxNative(ImPlotAxis* self, double max, byte force);
+
+		public static bool ImPlotAxisSetMax(ImPlotAxisPtr self, double max, bool force)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ImPlotShowDatePickerNative(pStr0, level, t, t1, t2);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			byte ret = ImPlotAxisSetMaxNative(self, max, force ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ImPlotAxisSetMax(ref ImPlotAxis self, double max, bool force)
 		{
-			fixed (int* plevel = &level)
+			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, t, t1, t2);
+				byte ret = ImPlotAxisSetMaxNative((ImPlotAxis*)pself, max, force ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_SetRange_double")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAxisSetRangeDoubleNative(ImPlotAxis* self, double v1, double v2);
+
+		public static void ImPlotAxisSetRangeDouble(ImPlotAxisPtr self, double v1, double v2)
 		{
-			fixed (byte* pid = &id)
+			ImPlotAxisSetRangeDoubleNative(self, v1, v2);
+		}
+
+		public static void ImPlotAxisSetRangeDouble(ref ImPlotAxis self, double v1, double v2)
+		{
+			fixed (ImPlotAxis* pself = &self)
 			{
-				fixed (int* plevel = &level)
+				ImPlotAxisSetRangeDoubleNative((ImPlotAxis*)pself, v1, v2);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_SetRange_PlotRange")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAxisSetRangePlotRangeNative(ImPlotAxis* self, ImPlotRange range);
+
+		public static void ImPlotAxisSetRangePlotRange(ImPlotAxisPtr self, ImPlotRange range)
+		{
+			ImPlotAxisSetRangePlotRangeNative(self, range);
+		}
+
+		public static void ImPlotAxisSetRangePlotRange(ref ImPlotAxis self, ImPlotRange range)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				ImPlotAxisSetRangePlotRangeNative((ImPlotAxis*)pself, range);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_SetAspect")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAxisSetAspectNative(ImPlotAxis* self, double unitPerPix);
+
+		public static void ImPlotAxisSetAspect(ImPlotAxisPtr self, double unitPerPix)
+		{
+			ImPlotAxisSetAspectNative(self, unitPerPix);
+		}
+
+		public static void ImPlotAxisSetAspect(ref ImPlotAxis self, double unitPerPix)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				ImPlotAxisSetAspectNative((ImPlotAxis*)pself, unitPerPix);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_PixelSize")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial float ImPlotAxisPixelSizeNative(ImPlotAxis* self);
+
+		public static float ImPlotAxisPixelSize(ImPlotAxisPtr self)
+		{
+			float ret = ImPlotAxisPixelSizeNative(self);
+			return ret;
+		}
+
+		public static float ImPlotAxisPixelSize(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				float ret = ImPlotAxisPixelSizeNative((ImPlotAxis*)pself);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_GetAspect")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial double ImPlotAxisGetAspectNative(ImPlotAxis* self);
+
+		public static double ImPlotAxisGetAspect(ImPlotAxisPtr self)
+		{
+			double ret = ImPlotAxisGetAspectNative(self);
+			return ret;
+		}
+
+		public static double ImPlotAxisGetAspect(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				double ret = ImPlotAxisGetAspectNative((ImPlotAxis*)pself);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_Constrain")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAxisConstrainNative(ImPlotAxis* self);
+
+		public static void ImPlotAxisConstrain(ImPlotAxisPtr self)
+		{
+			ImPlotAxisConstrainNative(self);
+		}
+
+		public static void ImPlotAxisConstrain(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				ImPlotAxisConstrainNative((ImPlotAxis*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_UpdateTransformCache")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAxisUpdateTransformCacheNative(ImPlotAxis* self);
+
+		public static void ImPlotAxisUpdateTransformCache(ImPlotAxisPtr self)
+		{
+			ImPlotAxisUpdateTransformCacheNative(self);
+		}
+
+		public static void ImPlotAxisUpdateTransformCache(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				ImPlotAxisUpdateTransformCacheNative((ImPlotAxis*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_PlotToPixels")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial float ImPlotAxisPlotToPixelsNative(ImPlotAxis* self, double plt);
+
+		public static float ImPlotAxisPlotToPixels(ImPlotAxisPtr self, double plt)
+		{
+			float ret = ImPlotAxisPlotToPixelsNative(self, plt);
+			return ret;
+		}
+
+		public static float ImPlotAxisPlotToPixels(ref ImPlotAxis self, double plt)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				float ret = ImPlotAxisPlotToPixelsNative((ImPlotAxis*)pself, plt);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_PixelsToPlot")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial double ImPlotAxisPixelsToPlotNative(ImPlotAxis* self, float pix);
+
+		public static double ImPlotAxisPixelsToPlot(ImPlotAxisPtr self, float pix)
+		{
+			double ret = ImPlotAxisPixelsToPlotNative(self, pix);
+			return ret;
+		}
+
+		public static double ImPlotAxisPixelsToPlot(ref ImPlotAxis self, float pix)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				double ret = ImPlotAxisPixelsToPlotNative((ImPlotAxis*)pself, pix);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_ExtendFit")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAxisExtendFitNative(ImPlotAxis* self, double v);
+
+		public static void ImPlotAxisExtendFit(ImPlotAxisPtr self, double v)
+		{
+			ImPlotAxisExtendFitNative(self, v);
+		}
+
+		public static void ImPlotAxisExtendFit(ref ImPlotAxis self, double v)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				ImPlotAxisExtendFitNative((ImPlotAxis*)pself, v);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_ExtendFitWith")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAxisExtendFitWithNative(ImPlotAxis* self, ImPlotAxis* alt, double v, double vAlt);
+
+		public static void ImPlotAxisExtendFitWith(ImPlotAxisPtr self, ImPlotAxisPtr alt, double v, double vAlt)
+		{
+			ImPlotAxisExtendFitWithNative(self, alt, v, vAlt);
+		}
+
+		public static void ImPlotAxisExtendFitWith(ref ImPlotAxis self, ImPlotAxisPtr alt, double v, double vAlt)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				ImPlotAxisExtendFitWithNative((ImPlotAxis*)pself, alt, v, vAlt);
+			}
+		}
+
+		public static void ImPlotAxisExtendFitWith(ImPlotAxisPtr self, ref ImPlotAxis alt, double v, double vAlt)
+		{
+			fixed (ImPlotAxis* palt = &alt)
+			{
+				ImPlotAxisExtendFitWithNative(self, (ImPlotAxis*)palt, v, vAlt);
+			}
+		}
+
+		public static void ImPlotAxisExtendFitWith(ref ImPlotAxis self, ref ImPlotAxis alt, double v, double vAlt)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				fixed (ImPlotAxis* palt = &alt)
 				{
-					byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, t, t1, t2);
-					return ret != 0;
+					ImPlotAxisExtendFitWithNative((ImPlotAxis*)pself, (ImPlotAxis*)palt, v, vAlt);
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(string id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_ApplyFit")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAxisApplyFitNative(ImPlotAxis* self, float padding);
+
+		public static void ImPlotAxisApplyFit(ImPlotAxisPtr self, float padding)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
+			ImPlotAxisApplyFitNative(self, padding);
+		}
+
+		public static void ImPlotAxisApplyFit(ref ImPlotAxis self, float padding)
+		{
+			fixed (ImPlotAxis* pself = &self)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				ImPlotAxisApplyFitNative((ImPlotAxis*)pself, padding);
 			}
-			fixed (int* plevel = &level)
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_HasLabel")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisHasLabelNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisHasLabel(ImPlotAxisPtr self)
+		{
+			byte ret = ImPlotAxisHasLabelNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAxisHasLabel(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, t, t1, t2);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = ImPlotAxisHasLabelNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_HasGridLines")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisHasGridLinesNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisHasGridLines(ImPlotAxisPtr self)
 		{
-			fixed (ImPlotTime* pt = &t)
+			byte ret = ImPlotAxisHasGridLinesNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAxisHasGridLines(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
 			{
-				byte ret = ImPlotShowDatePickerNative(id, level, (ImPlotTime*)pt, t1, t2);
+				byte ret = ImPlotAxisHasGridLinesNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_HasTickLabels")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisHasTickLabelsNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisHasTickLabels(ImPlotAxisPtr self)
 		{
-			fixed (byte* pid = &id)
-			{
-				fixed (ImPlotTime* pt = &t)
-				{
-					byte ret = ImPlotShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, t1, t2);
-					return ret != 0;
-				}
-			}
+			byte ret = ImPlotAxisHasTickLabelsNative(self);
+			return ret != 0;
 		}
 
-		public static bool ImPlotShowDatePicker(string id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ImPlotAxisHasTickLabels(ref ImPlotAxis self)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
+			fixed (ImPlotAxis* pself = &self)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImPlotTime* pt = &t)
-			{
-				byte ret = ImPlotShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, t1, t2);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = ImPlotAxisHasTickLabelsNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_HasTickMarks")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisHasTickMarksNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisHasTickMarks(ImPlotAxisPtr self)
 		{
-			fixed (int* plevel = &level)
-			{
-				fixed (ImPlotTime* pt = &t)
-				{
-					byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, t1, t2);
-					return ret != 0;
-				}
-			}
+			byte ret = ImPlotAxisHasTickMarksNative(self);
+			return ret != 0;
 		}
 
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ImPlotAxisHasTickMarks(ref ImPlotAxis self)
 		{
-			fixed (byte* pid = &id)
+			fixed (ImPlotAxis* pself = &self)
 			{
-				fixed (int* plevel = &level)
-				{
-					fixed (ImPlotTime* pt = &t)
-					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, t1, t2);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(string id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* plevel = &level)
-			{
-				fixed (ImPlotTime* pt = &t)
-				{
-					byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, t1, t2);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
-		{
-			fixed (ImPlotTime* pt1 = &t1)
-			{
-				byte ret = ImPlotShowDatePickerNative(id, level, t, (ImPlotTime*)pt1, t2);
+				byte ret = ImPlotAxisHasTickMarksNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_WillRender")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisWillRenderNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisWillRender(ImPlotAxisPtr self)
 		{
-			fixed (byte* pid = &id)
-			{
-				fixed (ImPlotTime* pt1 = &t1)
-				{
-					byte ret = ImPlotShowDatePickerNative((byte*)pid, level, t, (ImPlotTime*)pt1, t2);
-					return ret != 0;
-				}
-			}
+			byte ret = ImPlotAxisWillRenderNative(self);
+			return ret != 0;
 		}
 
-		public static bool ImPlotShowDatePicker(string id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ImPlotAxisWillRender(ref ImPlotAxis self)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
+			fixed (ImPlotAxis* pself = &self)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImPlotTime* pt1 = &t1)
-			{
-				byte ret = ImPlotShowDatePickerNative(pStr0, level, t, (ImPlotTime*)pt1, t2);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = ImPlotAxisWillRenderNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_IsOpposite")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisIsOppositeNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisIsOpposite(ImPlotAxisPtr self)
 		{
-			fixed (int* plevel = &level)
-			{
-				fixed (ImPlotTime* pt1 = &t1)
-				{
-					byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, t, (ImPlotTime*)pt1, t2);
-					return ret != 0;
-				}
-			}
+			byte ret = ImPlotAxisIsOppositeNative(self);
+			return ret != 0;
 		}
 
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ImPlotAxisIsOpposite(ref ImPlotAxis self)
 		{
-			fixed (byte* pid = &id)
+			fixed (ImPlotAxis* pself = &self)
 			{
-				fixed (int* plevel = &level)
-				{
-					fixed (ImPlotTime* pt1 = &t1)
-					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, t, (ImPlotTime*)pt1, t2);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(string id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* plevel = &level)
-			{
-				fixed (ImPlotTime* pt1 = &t1)
-				{
-					byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, t, (ImPlotTime*)pt1, t2);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
-		{
-			fixed (ImPlotTime* pt = &t)
-			{
-				fixed (ImPlotTime* pt1 = &t1)
-				{
-					byte ret = ImPlotShowDatePickerNative(id, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
-		{
-			fixed (byte* pid = &id)
-			{
-				fixed (ImPlotTime* pt = &t)
-				{
-					fixed (ImPlotTime* pt1 = &t1)
-					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(string id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImPlotTime* pt = &t)
-			{
-				fixed (ImPlotTime* pt1 = &t1)
-				{
-					byte ret = ImPlotShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
-		{
-			fixed (int* plevel = &level)
-			{
-				fixed (ImPlotTime* pt = &t)
-				{
-					fixed (ImPlotTime* pt1 = &t1)
-					{
-						byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
-		{
-			fixed (byte* pid = &id)
-			{
-				fixed (int* plevel = &level)
-				{
-					fixed (ImPlotTime* pt = &t)
-					{
-						fixed (ImPlotTime* pt1 = &t1)
-						{
-							byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(string id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (int* plevel = &level)
-			{
-				fixed (ImPlotTime* pt = &t)
-				{
-					fixed (ImPlotTime* pt1 = &t1)
-					{
-						byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
-		{
-			fixed (ImPlotTime* pt2 = &t2)
-			{
-				byte ret = ImPlotShowDatePickerNative(id, level, t, t1, (ImPlotTime*)pt2);
+				byte ret = ImPlotAxisIsOppositeNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_IsInverted")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisIsInvertedNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisIsInverted(ImPlotAxisPtr self)
 		{
-			fixed (byte* pid = &id)
-			{
-				fixed (ImPlotTime* pt2 = &t2)
-				{
-					byte ret = ImPlotShowDatePickerNative((byte*)pid, level, t, t1, (ImPlotTime*)pt2);
-					return ret != 0;
-				}
-			}
+			byte ret = ImPlotAxisIsInvertedNative(self);
+			return ret != 0;
 		}
 
-		public static bool ImPlotShowDatePicker(string id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ImPlotAxisIsInverted(ref ImPlotAxis self)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
+			fixed (ImPlotAxis* pself = &self)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImPlotTime* pt2 = &t2)
-			{
-				byte ret = ImPlotShowDatePickerNative(pStr0, level, t, t1, (ImPlotTime*)pt2);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = ImPlotAxisIsInvertedNative((ImPlotAxis*)pself);
 				return ret != 0;
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_IsForeground")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisIsForegroundNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisIsForeground(ImPlotAxisPtr self)
 		{
-			fixed (int* plevel = &level)
+			byte ret = ImPlotAxisIsForegroundNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAxisIsForeground(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
 			{
-				fixed (ImPlotTime* pt2 = &t2)
+				byte ret = ImPlotAxisIsForegroundNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_IsAutoFitting")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisIsAutoFittingNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisIsAutoFitting(ImPlotAxisPtr self)
+		{
+			byte ret = ImPlotAxisIsAutoFittingNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAxisIsAutoFitting(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = ImPlotAxisIsAutoFittingNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_CanInitFit")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisCanInitFitNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisCanInitFit(ImPlotAxisPtr self)
+		{
+			byte ret = ImPlotAxisCanInitFitNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAxisCanInitFit(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = ImPlotAxisCanInitFitNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_IsRangeLocked")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisIsRangeLockedNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisIsRangeLocked(ImPlotAxisPtr self)
+		{
+			byte ret = ImPlotAxisIsRangeLockedNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAxisIsRangeLocked(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = ImPlotAxisIsRangeLockedNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_IsLockedMin")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisIsLockedMinNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisIsLockedMin(ImPlotAxisPtr self)
+		{
+			byte ret = ImPlotAxisIsLockedMinNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAxisIsLockedMin(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = ImPlotAxisIsLockedMinNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_IsLockedMax")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisIsLockedMaxNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisIsLockedMax(ImPlotAxisPtr self)
+		{
+			byte ret = ImPlotAxisIsLockedMaxNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAxisIsLockedMax(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = ImPlotAxisIsLockedMaxNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_IsLocked")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisIsLockedNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisIsLocked(ImPlotAxisPtr self)
+		{
+			byte ret = ImPlotAxisIsLockedNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAxisIsLocked(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = ImPlotAxisIsLockedNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_IsInputLockedMin")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisIsInputLockedMinNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisIsInputLockedMin(ImPlotAxisPtr self)
+		{
+			byte ret = ImPlotAxisIsInputLockedMinNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAxisIsInputLockedMin(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = ImPlotAxisIsInputLockedMinNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_IsInputLockedMax")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisIsInputLockedMaxNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisIsInputLockedMax(ImPlotAxisPtr self)
+		{
+			byte ret = ImPlotAxisIsInputLockedMaxNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAxisIsInputLockedMax(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = ImPlotAxisIsInputLockedMaxNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_IsInputLocked")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisIsInputLockedNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisIsInputLocked(ImPlotAxisPtr self)
+		{
+			byte ret = ImPlotAxisIsInputLockedNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAxisIsInputLocked(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = ImPlotAxisIsInputLockedNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_HasMenus")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisHasMenusNative(ImPlotAxis* self);
+
+		public static bool ImPlotAxisHasMenus(ImPlotAxisPtr self)
+		{
+			byte ret = ImPlotAxisHasMenusNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAxisHasMenus(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = ImPlotAxisHasMenusNative((ImPlotAxis*)pself);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_IsPanLocked")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAxisIsPanLockedNative(ImPlotAxis* self, byte increasing);
+
+		public static bool ImPlotAxisIsPanLocked(ImPlotAxisPtr self, bool increasing)
+		{
+			byte ret = ImPlotAxisIsPanLockedNative(self, increasing ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAxisIsPanLocked(ref ImPlotAxis self, bool increasing)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				byte ret = ImPlotAxisIsPanLockedNative((ImPlotAxis*)pself, increasing ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_PushLinks")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAxisPushLinksNative(ImPlotAxis* self);
+
+		public static void ImPlotAxisPushLinks(ImPlotAxisPtr self)
+		{
+			ImPlotAxisPushLinksNative(self);
+		}
+
+		public static void ImPlotAxisPushLinks(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				ImPlotAxisPushLinksNative((ImPlotAxis*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAxis_PullLinks")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAxisPullLinksNative(ImPlotAxis* self);
+
+		public static void ImPlotAxisPullLinks(ImPlotAxisPtr self)
+		{
+			ImPlotAxisPullLinksNative(self);
+		}
+
+		public static void ImPlotAxisPullLinks(ref ImPlotAxis self)
+		{
+			fixed (ImPlotAxis* pself = &self)
+			{
+				ImPlotAxisPullLinksNative((ImPlotAxis*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAlignmentData_ImPlotAlignmentData")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotAlignmentData* ImPlotAlignmentDataImPlotAlignmentDataNative();
+
+		public static ImPlotAlignmentDataPtr ImPlotAlignmentDataImPlotAlignmentData()
+		{
+			ImPlotAlignmentDataPtr ret = ImPlotAlignmentDataImPlotAlignmentDataNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAlignmentData_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAlignmentDataDestroyNative(ImPlotAlignmentData* self);
+
+		public static void ImPlotAlignmentDataDestroy(ImPlotAlignmentDataPtr self)
+		{
+			ImPlotAlignmentDataDestroyNative(self);
+		}
+
+		public static void ImPlotAlignmentDataDestroy(ref ImPlotAlignmentData self)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				ImPlotAlignmentDataDestroyNative((ImPlotAlignmentData*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAlignmentData_Begin")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAlignmentDataBeginNative(ImPlotAlignmentData* self);
+
+		public static void ImPlotAlignmentDataBegin(ImPlotAlignmentDataPtr self)
+		{
+			ImPlotAlignmentDataBeginNative(self);
+		}
+
+		public static void ImPlotAlignmentDataBegin(ref ImPlotAlignmentData self)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				ImPlotAlignmentDataBeginNative((ImPlotAlignmentData*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAlignmentData_Update")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAlignmentDataUpdateNative(ImPlotAlignmentData* self, float* padA, float* padB, float* deltaA, float* deltaB);
+
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, float* padB, float* deltaA, float* deltaB)
+		{
+			ImPlotAlignmentDataUpdateNative(self, padA, padB, deltaA, deltaB);
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, float* padB, float* deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, padB, deltaA, deltaB);
+			}
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, float* padB, float* deltaA, float* deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, padB, deltaA, deltaB);
+			}
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, float* padB, float* deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* ppadA = &padA)
 				{
-					byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, t, t1, (ImPlotTime*)pt2);
-					return ret != 0;
+					ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, deltaA, deltaB);
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, ref float padB, float* deltaA, float* deltaB)
 		{
-			fixed (byte* pid = &id)
+			fixed (float* ppadB = &padB)
 			{
-				fixed (int* plevel = &level)
+				ImPlotAlignmentDataUpdateNative(self, padA, (float*)ppadB, deltaA, deltaB);
+			}
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, ref float padB, float* deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* ppadB = &padB)
 				{
-					fixed (ImPlotTime* pt2 = &t2)
+					ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, deltaA, deltaB);
+				}
+			}
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, float* deltaA, float* deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, (float*)ppadB, deltaA, deltaB);
+				}
+			}
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, ref float padB, float* deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* ppadB = &padB)
 					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, t, t1, (ImPlotTime*)pt2);
-						return ret != 0;
+						ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, deltaA, deltaB);
 					}
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(string id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, float* padB, ref float deltaA, float* deltaB)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
+			fixed (float* pdeltaA = &deltaA)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				ImPlotAlignmentDataUpdateNative(self, padA, padB, (float*)pdeltaA, deltaB);
 			}
-			fixed (int* plevel = &level)
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, float* padB, ref float deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
 			{
-				fixed (ImPlotTime* pt2 = &t2)
+				fixed (float* pdeltaA = &deltaA)
 				{
-					byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, t, t1, (ImPlotTime*)pt2);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
+					ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, padB, (float*)pdeltaA, deltaB);
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, float* padB, ref float deltaA, float* deltaB)
 		{
-			fixed (ImPlotTime* pt = &t)
+			fixed (float* ppadA = &padA)
 			{
-				fixed (ImPlotTime* pt2 = &t2)
+				fixed (float* pdeltaA = &deltaA)
 				{
-					byte ret = ImPlotShowDatePickerNative(id, level, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
-					return ret != 0;
+					ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, padB, (float*)pdeltaA, deltaB);
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, float* padB, ref float deltaA, float* deltaB)
 		{
-			fixed (byte* pid = &id)
+			fixed (ImPlotAlignmentData* pself = &self)
 			{
-				fixed (ImPlotTime* pt = &t)
+				fixed (float* ppadA = &padA)
 				{
-					fixed (ImPlotTime* pt2 = &t2)
+					fixed (float* pdeltaA = &deltaA)
 					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
-						return ret != 0;
+						ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, (float*)pdeltaA, deltaB);
 					}
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(string id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, ref float padB, ref float deltaA, float* deltaB)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
+			fixed (float* ppadB = &padB)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (float* pdeltaA = &deltaA)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImPlotTime* pt = &t)
-			{
-				fixed (ImPlotTime* pt2 = &t2)
-				{
-					byte ret = ImPlotShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
+					ImPlotAlignmentDataUpdateNative(self, padA, (float*)ppadB, (float*)pdeltaA, deltaB);
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, ref float padB, ref float deltaA, float* deltaB)
 		{
-			fixed (int* plevel = &level)
+			fixed (ImPlotAlignmentData* pself = &self)
 			{
-				fixed (ImPlotTime* pt = &t)
+				fixed (float* ppadB = &padB)
 				{
-					fixed (ImPlotTime* pt2 = &t2)
+					fixed (float* pdeltaA = &deltaA)
 					{
-						byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
-						return ret != 0;
+						ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, (float*)pdeltaA, deltaB);
 					}
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, ref float deltaA, float* deltaB)
 		{
-			fixed (byte* pid = &id)
+			fixed (float* ppadA = &padA)
 			{
-				fixed (int* plevel = &level)
+				fixed (float* ppadB = &padB)
 				{
-					fixed (ImPlotTime* pt = &t)
+					fixed (float* pdeltaA = &deltaA)
 					{
-						fixed (ImPlotTime* pt2 = &t2)
+						ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, deltaB);
+					}
+				}
+			}
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, ref float padB, ref float deltaA, float* deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* ppadB = &padB)
+					{
+						fixed (float* pdeltaA = &deltaA)
 						{
-							byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
-							return ret != 0;
+							ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, deltaB);
 						}
 					}
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(string id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, float* padB, float* deltaA, ref float deltaB)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
+			fixed (float* pdeltaB = &deltaB)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				ImPlotAlignmentDataUpdateNative(self, padA, padB, deltaA, (float*)pdeltaB);
 			}
-			fixed (int* plevel = &level)
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, float* padB, float* deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
 			{
-				fixed (ImPlotTime* pt = &t)
+				fixed (float* pdeltaB = &deltaB)
 				{
-					fixed (ImPlotTime* pt2 = &t2)
+					ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, padB, deltaA, (float*)pdeltaB);
+				}
+			}
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, float* padB, float* deltaA, ref float deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* pdeltaB = &deltaB)
+				{
+					ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, padB, deltaA, (float*)pdeltaB);
+				}
+			}
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, float* padB, float* deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* pdeltaB = &deltaB)
 					{
-						byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
+						ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, deltaA, (float*)pdeltaB);
+					}
+				}
+			}
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, ref float padB, float* deltaA, ref float deltaB)
+		{
+			fixed (float* ppadB = &padB)
+			{
+				fixed (float* pdeltaB = &deltaB)
+				{
+					ImPlotAlignmentDataUpdateNative(self, padA, (float*)ppadB, deltaA, (float*)pdeltaB);
+				}
+			}
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, ref float padB, float* deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					fixed (float* pdeltaB = &deltaB)
+					{
+						ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, deltaA, (float*)pdeltaB);
+					}
+				}
+			}
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, float* deltaA, ref float deltaB)
+		{
+			fixed (float* ppadA = &padA)
+			{
+				fixed (float* ppadB = &padB)
+				{
+					fixed (float* pdeltaB = &deltaB)
+					{
+						ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, (float*)ppadB, deltaA, (float*)pdeltaB);
+					}
+				}
+			}
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, ref float padB, float* deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* ppadB = &padB)
+					{
+						fixed (float* pdeltaB = &deltaB)
 						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
-		{
-			fixed (ImPlotTime* pt1 = &t1)
-			{
-				fixed (ImPlotTime* pt2 = &t2)
-				{
-					byte ret = ImPlotShowDatePickerNative(id, level, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
-		{
-			fixed (byte* pid = &id)
-			{
-				fixed (ImPlotTime* pt1 = &t1)
-				{
-					fixed (ImPlotTime* pt2 = &t2)
-					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, level, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(string id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImPlotTime* pt1 = &t1)
-			{
-				fixed (ImPlotTime* pt2 = &t2)
-				{
-					byte ret = ImPlotShowDatePickerNative(pStr0, level, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
-		{
-			fixed (int* plevel = &level)
-			{
-				fixed (ImPlotTime* pt1 = &t1)
-				{
-					fixed (ImPlotTime* pt2 = &t2)
-					{
-						byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
-		{
-			fixed (byte* pid = &id)
-			{
-				fixed (int* plevel = &level)
-				{
-					fixed (ImPlotTime* pt1 = &t1)
-					{
-						fixed (ImPlotTime* pt2 = &t2)
-						{
-							byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
-							return ret != 0;
+							ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, deltaA, (float*)pdeltaB);
 						}
 					}
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(string id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, float* padB, ref float deltaA, ref float deltaB)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
+			fixed (float* pdeltaA = &deltaA)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (float* pdeltaB = &deltaB)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					ImPlotAlignmentDataUpdateNative(self, padA, padB, (float*)pdeltaA, (float*)pdeltaB);
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* plevel = &level)
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, float* padB, ref float deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
 			{
-				fixed (ImPlotTime* pt1 = &t1)
+				fixed (float* pdeltaA = &deltaA)
 				{
-					fixed (ImPlotTime* pt2 = &t2)
+					fixed (float* pdeltaB = &deltaB)
 					{
-						byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
+						ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, padB, (float*)pdeltaA, (float*)pdeltaB);
 					}
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, float* padB, ref float deltaA, ref float deltaB)
 		{
-			fixed (ImPlotTime* pt = &t)
+			fixed (float* ppadA = &padA)
 			{
-				fixed (ImPlotTime* pt1 = &t1)
+				fixed (float* pdeltaA = &deltaA)
 				{
-					fixed (ImPlotTime* pt2 = &t2)
+					fixed (float* pdeltaB = &deltaB)
 					{
-						byte ret = ImPlotShowDatePickerNative(id, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
-						return ret != 0;
+						ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, padB, (float*)pdeltaA, (float*)pdeltaB);
 					}
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, float* padB, ref float deltaA, ref float deltaB)
 		{
-			fixed (byte* pid = &id)
+			fixed (ImPlotAlignmentData* pself = &self)
 			{
-				fixed (ImPlotTime* pt = &t)
+				fixed (float* ppadA = &padA)
 				{
-					fixed (ImPlotTime* pt1 = &t1)
+					fixed (float* pdeltaA = &deltaA)
 					{
-						fixed (ImPlotTime* pt2 = &t2)
+						fixed (float* pdeltaB = &deltaB)
 						{
-							byte ret = ImPlotShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
-							return ret != 0;
+							ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, (float*)pdeltaA, (float*)pdeltaB);
 						}
 					}
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(string id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, ref float padB, ref float deltaA, ref float deltaB)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (id != null)
+			fixed (float* ppadB = &padB)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (float* pdeltaA = &deltaA)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImPlotTime* pt = &t)
-			{
-				fixed (ImPlotTime* pt1 = &t1)
-				{
-					fixed (ImPlotTime* pt2 = &t2)
+					fixed (float* pdeltaB = &deltaB)
 					{
-						byte ret = ImPlotShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
+						ImPlotAlignmentDataUpdateNative(self, padA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
 					}
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, ref float padB, ref float deltaA, ref float deltaB)
 		{
-			fixed (int* plevel = &level)
+			fixed (ImPlotAlignmentData* pself = &self)
 			{
-				fixed (ImPlotTime* pt = &t)
+				fixed (float* ppadB = &padB)
 				{
-					fixed (ImPlotTime* pt1 = &t1)
+					fixed (float* pdeltaA = &deltaA)
 					{
-						fixed (ImPlotTime* pt2 = &t2)
+						fixed (float* pdeltaB = &deltaB)
 						{
-							byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
-							return ret != 0;
+							ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
 						}
 					}
 				}
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, ref float deltaA, ref float deltaB)
 		{
-			fixed (byte* pid = &id)
+			fixed (float* ppadA = &padA)
 			{
-				fixed (int* plevel = &level)
+				fixed (float* ppadB = &padB)
 				{
-					fixed (ImPlotTime* pt = &t)
+					fixed (float* pdeltaA = &deltaA)
 					{
-						fixed (ImPlotTime* pt1 = &t1)
+						fixed (float* pdeltaB = &deltaB)
 						{
-							fixed (ImPlotTime* pt2 = &t2)
+							ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
+						}
+					}
+				}
+			}
+		}
+
+		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, ref float padB, ref float deltaA, ref float deltaB)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				fixed (float* ppadA = &padA)
+				{
+					fixed (float* ppadB = &padB)
+					{
+						fixed (float* pdeltaA = &deltaA)
+						{
+							fixed (float* pdeltaB = &deltaB)
 							{
-								byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
-								return ret != 0;
+								ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
 							}
 						}
 					}
@@ -1132,13 +1886,192 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static bool ImPlotShowDatePicker(string id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
+		[LibraryImport(LibName, EntryPoint = "ImPlotAlignmentData_End")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAlignmentDataEndNative(ImPlotAlignmentData* self);
+
+		public static void ImPlotAlignmentDataEnd(ImPlotAlignmentDataPtr self)
+		{
+			ImPlotAlignmentDataEndNative(self);
+		}
+
+		public static void ImPlotAlignmentDataEnd(ref ImPlotAlignmentData self)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				ImPlotAlignmentDataEndNative((ImPlotAlignmentData*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotAlignmentData_Reset")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAlignmentDataResetNative(ImPlotAlignmentData* self);
+
+		public static void ImPlotAlignmentDataReset(ImPlotAlignmentDataPtr self)
+		{
+			ImPlotAlignmentDataResetNative(self);
+		}
+
+		public static void ImPlotAlignmentDataReset(ref ImPlotAlignmentData self)
+		{
+			fixed (ImPlotAlignmentData* pself = &self)
+			{
+				ImPlotAlignmentDataResetNative((ImPlotAlignmentData*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItem_ImPlotItem")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotItem* ImPlotItemImPlotItemNative();
+
+		public static ImPlotItemPtr ImPlotItemImPlotItem()
+		{
+			ImPlotItemPtr ret = ImPlotItemImPlotItemNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItem_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotItemDestroyNative(ImPlotItem* self);
+
+		public static void ImPlotItemDestroy(ImPlotItemPtr self)
+		{
+			ImPlotItemDestroyNative(self);
+		}
+
+		public static void ImPlotItemDestroy(ref ImPlotItem self)
+		{
+			fixed (ImPlotItem* pself = &self)
+			{
+				ImPlotItemDestroyNative((ImPlotItem*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotLegend_ImPlotLegend")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotLegend* ImPlotLegendImPlotLegendNative();
+
+		public static ImPlotLegendPtr ImPlotLegendImPlotLegend()
+		{
+			ImPlotLegendPtr ret = ImPlotLegendImPlotLegendNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotLegend_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotLegendDestroyNative(ImPlotLegend* self);
+
+		public static void ImPlotLegendDestroy(ImPlotLegendPtr self)
+		{
+			ImPlotLegendDestroyNative(self);
+		}
+
+		public static void ImPlotLegendDestroy(ref ImPlotLegend self)
+		{
+			fixed (ImPlotLegend* pself = &self)
+			{
+				ImPlotLegendDestroyNative((ImPlotLegend*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotLegend_Reset")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotLegendResetNative(ImPlotLegend* self);
+
+		public static void ImPlotLegendReset(ImPlotLegendPtr self)
+		{
+			ImPlotLegendResetNative(self);
+		}
+
+		public static void ImPlotLegendReset(ref ImPlotLegend self)
+		{
+			fixed (ImPlotLegend* pself = &self)
+			{
+				ImPlotLegendResetNative((ImPlotLegend*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItemGroup_ImPlotItemGroup")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotItemGroup* ImPlotItemGroupImPlotItemGroupNative();
+
+		public static ImPlotItemGroupPtr ImPlotItemGroupImPlotItemGroup()
+		{
+			ImPlotItemGroupPtr ret = ImPlotItemGroupImPlotItemGroupNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItemGroup_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotItemGroupDestroyNative(ImPlotItemGroup* self);
+
+		public static void ImPlotItemGroupDestroy(ImPlotItemGroupPtr self)
+		{
+			ImPlotItemGroupDestroyNative(self);
+		}
+
+		public static void ImPlotItemGroupDestroy(ref ImPlotItemGroup self)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				ImPlotItemGroupDestroyNative((ImPlotItemGroup*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItemGroup_GetItemCount")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial int ImPlotItemGroupGetItemCountNative(ImPlotItemGroup* self);
+
+		public static int ImPlotItemGroupGetItemCount(ImPlotItemGroupPtr self)
+		{
+			int ret = ImPlotItemGroupGetItemCountNative(self);
+			return ret;
+		}
+
+		public static int ImPlotItemGroupGetItemCount(ref ImPlotItemGroup self)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				int ret = ImPlotItemGroupGetItemCountNative((ImPlotItemGroup*)pself);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItemGroup_GetItemID")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial int ImPlotItemGroupGetItemIDNative(ImPlotItemGroup* self, byte* labelId);
+
+		public static int ImPlotItemGroupGetItemID(ImPlotItemGroupPtr self, byte* labelId)
+		{
+			int ret = ImPlotItemGroupGetItemIDNative(self, labelId);
+			return ret;
+		}
+
+		public static int ImPlotItemGroupGetItemID(ref ImPlotItemGroup self, byte* labelId)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				int ret = ImPlotItemGroupGetItemIDNative((ImPlotItemGroup*)pself, labelId);
+				return ret;
+			}
+		}
+
+		public static int ImPlotItemGroupGetItemID(ImPlotItemGroupPtr self, ref byte labelId)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				int ret = ImPlotItemGroupGetItemIDNative(self, (byte*)plabelId);
+				return ret;
+			}
+		}
+
+		public static int ImPlotItemGroupGetItemID(ImPlotItemGroupPtr self, string labelId)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (id != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1148,55 +2081,1102 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* plevel = &level)
+			int ret = ImPlotItemGroupGetItemIDNative(self, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				fixed (ImPlotTime* pt = &t)
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static int ImPlotItemGroupGetItemID(ref ImPlotItemGroup self, ref byte labelId)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				fixed (byte* plabelId = &labelId)
 				{
-					fixed (ImPlotTime* pt1 = &t1)
+					int ret = ImPlotItemGroupGetItemIDNative((ImPlotItemGroup*)pself, (byte*)plabelId);
+					return ret;
+				}
+			}
+		}
+
+		public static int ImPlotItemGroupGetItemID(ref ImPlotItemGroup self, string labelId)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelId != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelId);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						fixed (ImPlotTime* pt2 = &t2)
-						{
-							byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
-							if (pStrSize0 >= Utils.MaxStackallocSize)
-							{
-								Utils.Free(pStr0);
-							}
-							return ret != 0;
-						}
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				int ret = ImPlotItemGroupGetItemIDNative((ImPlotItemGroup*)pself, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItemGroup_GetItem_ID")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotItem* ImPlotItemGroupGetItemIDNative(ImPlotItemGroup* self, int id);
+
+		public static ImPlotItemPtr ImPlotItemGroupGetItemID(ImPlotItemGroupPtr self, int id)
+		{
+			ImPlotItemPtr ret = ImPlotItemGroupGetItemIDNative(self, id);
+			return ret;
+		}
+
+		public static ImPlotItemPtr ImPlotItemGroupGetItemID(ref ImPlotItemGroup self, int id)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				ImPlotItemPtr ret = ImPlotItemGroupGetItemIDNative((ImPlotItemGroup*)pself, id);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItemGroup_GetItem_Str")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotItem* ImPlotItemGroupGetItemNative(ImPlotItemGroup* self, byte* labelId);
+
+		public static ImPlotItemPtr ImPlotItemGroupGetItem(ImPlotItemGroupPtr self, byte* labelId)
+		{
+			ImPlotItemPtr ret = ImPlotItemGroupGetItemNative(self, labelId);
+			return ret;
+		}
+
+		public static ImPlotItemPtr ImPlotItemGroupGetItem(ref ImPlotItemGroup self, byte* labelId)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				ImPlotItemPtr ret = ImPlotItemGroupGetItemNative((ImPlotItemGroup*)pself, labelId);
+				return ret;
+			}
+		}
+
+		public static ImPlotItemPtr ImPlotItemGroupGetItem(ImPlotItemGroupPtr self, ref byte labelId)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				ImPlotItemPtr ret = ImPlotItemGroupGetItemNative(self, (byte*)plabelId);
+				return ret;
+			}
+		}
+
+		public static ImPlotItemPtr ImPlotItemGroupGetItem(ImPlotItemGroupPtr self, string labelId)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotItemPtr ret = ImPlotItemGroupGetItemNative(self, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static ImPlotItemPtr ImPlotItemGroupGetItem(ref ImPlotItemGroup self, ref byte labelId)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				fixed (byte* plabelId = &labelId)
+				{
+					ImPlotItemPtr ret = ImPlotItemGroupGetItemNative((ImPlotItemGroup*)pself, (byte*)plabelId);
+					return ret;
+				}
+			}
+		}
+
+		public static ImPlotItemPtr ImPlotItemGroupGetItem(ref ImPlotItemGroup self, string labelId)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelId != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelId);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotItemPtr ret = ImPlotItemGroupGetItemNative((ImPlotItemGroup*)pself, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItemGroup_GetOrAddItem")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotItem* ImPlotItemGroupGetOrAddItemNative(ImPlotItemGroup* self, int id);
+
+		public static ImPlotItemPtr ImPlotItemGroupGetOrAddItem(ImPlotItemGroupPtr self, int id)
+		{
+			ImPlotItemPtr ret = ImPlotItemGroupGetOrAddItemNative(self, id);
+			return ret;
+		}
+
+		public static ImPlotItemPtr ImPlotItemGroupGetOrAddItem(ref ImPlotItemGroup self, int id)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				ImPlotItemPtr ret = ImPlotItemGroupGetOrAddItemNative((ImPlotItemGroup*)pself, id);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItemGroup_GetItemByIndex")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotItem* ImPlotItemGroupGetItemByIndexNative(ImPlotItemGroup* self, int i);
+
+		public static ImPlotItemPtr ImPlotItemGroupGetItemByIndex(ImPlotItemGroupPtr self, int i)
+		{
+			ImPlotItemPtr ret = ImPlotItemGroupGetItemByIndexNative(self, i);
+			return ret;
+		}
+
+		public static ImPlotItemPtr ImPlotItemGroupGetItemByIndex(ref ImPlotItemGroup self, int i)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				ImPlotItemPtr ret = ImPlotItemGroupGetItemByIndexNative((ImPlotItemGroup*)pself, i);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItemGroup_GetItemIndex")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial int ImPlotItemGroupGetItemIndexNative(ImPlotItemGroup* self, ImPlotItem* item);
+
+		public static int ImPlotItemGroupGetItemIndex(ImPlotItemGroupPtr self, ImPlotItemPtr item)
+		{
+			int ret = ImPlotItemGroupGetItemIndexNative(self, item);
+			return ret;
+		}
+
+		public static int ImPlotItemGroupGetItemIndex(ref ImPlotItemGroup self, ImPlotItemPtr item)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				int ret = ImPlotItemGroupGetItemIndexNative((ImPlotItemGroup*)pself, item);
+				return ret;
+			}
+		}
+
+		public static int ImPlotItemGroupGetItemIndex(ImPlotItemGroupPtr self, ref ImPlotItem item)
+		{
+			fixed (ImPlotItem* pitem = &item)
+			{
+				int ret = ImPlotItemGroupGetItemIndexNative(self, (ImPlotItem*)pitem);
+				return ret;
+			}
+		}
+
+		public static int ImPlotItemGroupGetItemIndex(ref ImPlotItemGroup self, ref ImPlotItem item)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				fixed (ImPlotItem* pitem = &item)
+				{
+					int ret = ImPlotItemGroupGetItemIndexNative((ImPlotItemGroup*)pself, (ImPlotItem*)pitem);
+					return ret;
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItemGroup_GetLegendCount")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial int ImPlotItemGroupGetLegendCountNative(ImPlotItemGroup* self);
+
+		public static int ImPlotItemGroupGetLegendCount(ImPlotItemGroupPtr self)
+		{
+			int ret = ImPlotItemGroupGetLegendCountNative(self);
+			return ret;
+		}
+
+		public static int ImPlotItemGroupGetLegendCount(ref ImPlotItemGroup self)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				int ret = ImPlotItemGroupGetLegendCountNative((ImPlotItemGroup*)pself);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItemGroup_GetLegendItem")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotItem* ImPlotItemGroupGetLegendItemNative(ImPlotItemGroup* self, int i);
+
+		public static ImPlotItemPtr ImPlotItemGroupGetLegendItem(ImPlotItemGroupPtr self, int i)
+		{
+			ImPlotItemPtr ret = ImPlotItemGroupGetLegendItemNative(self, i);
+			return ret;
+		}
+
+		public static ImPlotItemPtr ImPlotItemGroupGetLegendItem(ref ImPlotItemGroup self, int i)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				ImPlotItemPtr ret = ImPlotItemGroupGetLegendItemNative((ImPlotItemGroup*)pself, i);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItemGroup_GetLegendLabel")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte* ImPlotItemGroupGetLegendLabelNative(ImPlotItemGroup* self, int i);
+
+		public static byte* ImPlotItemGroupGetLegendLabel(ImPlotItemGroupPtr self, int i)
+		{
+			byte* ret = ImPlotItemGroupGetLegendLabelNative(self, i);
+			return ret;
+		}
+
+		public static string ImPlotItemGroupGetLegendLabelS(ImPlotItemGroupPtr self, int i)
+		{
+			string ret = Utils.DecodeStringUTF8(ImPlotItemGroupGetLegendLabelNative(self, i));
+			return ret;
+		}
+
+		public static byte* ImPlotItemGroupGetLegendLabel(ref ImPlotItemGroup self, int i)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				byte* ret = ImPlotItemGroupGetLegendLabelNative((ImPlotItemGroup*)pself, i);
+				return ret;
+			}
+		}
+
+		public static string ImPlotItemGroupGetLegendLabelS(ref ImPlotItemGroup self, int i)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(ImPlotItemGroupGetLegendLabelNative((ImPlotItemGroup*)pself, i));
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotItemGroup_Reset")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotItemGroupResetNative(ImPlotItemGroup* self);
+
+		public static void ImPlotItemGroupReset(ImPlotItemGroupPtr self)
+		{
+			ImPlotItemGroupResetNative(self);
+		}
+
+		public static void ImPlotItemGroupReset(ref ImPlotItemGroup self)
+		{
+			fixed (ImPlotItemGroup* pself = &self)
+			{
+				ImPlotItemGroupResetNative((ImPlotItemGroup*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_ImPlotPlot")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotPlot* ImPlotPlotImPlotPlotNative();
+
+		public static ImPlotPlotPtr ImPlotPlotImPlotPlot()
+		{
+			ImPlotPlotPtr ret = ImPlotPlotImPlotPlotNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotPlotDestroyNative(ImPlotPlot* self);
+
+		public static void ImPlotPlotDestroy(ImPlotPlotPtr self)
+		{
+			ImPlotPlotDestroyNative(self);
+		}
+
+		public static void ImPlotPlotDestroy(ref ImPlotPlot self)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				ImPlotPlotDestroyNative((ImPlotPlot*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_IsInputLocked")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotPlotIsInputLockedNative(ImPlotPlot* self);
+
+		public static bool ImPlotPlotIsInputLocked(ImPlotPlotPtr self)
+		{
+			byte ret = ImPlotPlotIsInputLockedNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotPlotIsInputLocked(ref ImPlotPlot self)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				byte ret = ImPlotPlotIsInputLockedNative((ImPlotPlot*)pself);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_ClearTextBuffer")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotPlotClearTextBufferNative(ImPlotPlot* self);
+
+		public static void ImPlotPlotClearTextBuffer(ImPlotPlotPtr self)
+		{
+			ImPlotPlotClearTextBufferNative(self);
+		}
+
+		public static void ImPlotPlotClearTextBuffer(ref ImPlotPlot self)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				ImPlotPlotClearTextBufferNative((ImPlotPlot*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_SetTitle")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotPlotSetTitleNative(ImPlotPlot* self, byte* title);
+
+		public static void ImPlotPlotSetTitle(ImPlotPlotPtr self, byte* title)
+		{
+			ImPlotPlotSetTitleNative(self, title);
+		}
+
+		public static void ImPlotPlotSetTitle(ref ImPlotPlot self, byte* title)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				ImPlotPlotSetTitleNative((ImPlotPlot*)pself, title);
+			}
+		}
+
+		public static void ImPlotPlotSetTitle(ImPlotPlotPtr self, ref byte title)
+		{
+			fixed (byte* ptitle = &title)
+			{
+				ImPlotPlotSetTitleNative(self, (byte*)ptitle);
+			}
+		}
+
+		public static void ImPlotPlotSetTitle(ImPlotPlotPtr self, string title)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (title != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(title);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(title, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotPlotSetTitleNative(self, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void ImPlotPlotSetTitle(ref ImPlotPlot self, ref byte title)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				fixed (byte* ptitle = &title)
+				{
+					ImPlotPlotSetTitleNative((ImPlotPlot*)pself, (byte*)ptitle);
+				}
+			}
+		}
+
+		public static void ImPlotPlotSetTitle(ref ImPlotPlot self, string title)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (title != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(title);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(title, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotPlotSetTitleNative((ImPlotPlot*)pself, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_HasTitle")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotPlotHasTitleNative(ImPlotPlot* self);
+
+		public static bool ImPlotPlotHasTitle(ImPlotPlotPtr self)
+		{
+			byte ret = ImPlotPlotHasTitleNative(self);
+			return ret != 0;
+		}
+
+		public static bool ImPlotPlotHasTitle(ref ImPlotPlot self)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				byte ret = ImPlotPlotHasTitleNative((ImPlotPlot*)pself);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_GetTitle")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte* ImPlotPlotGetTitleNative(ImPlotPlot* self);
+
+		public static byte* ImPlotPlotGetTitle(ImPlotPlotPtr self)
+		{
+			byte* ret = ImPlotPlotGetTitleNative(self);
+			return ret;
+		}
+
+		public static string ImPlotPlotGetTitleS(ImPlotPlotPtr self)
+		{
+			string ret = Utils.DecodeStringUTF8(ImPlotPlotGetTitleNative(self));
+			return ret;
+		}
+
+		public static byte* ImPlotPlotGetTitle(ref ImPlotPlot self)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				byte* ret = ImPlotPlotGetTitleNative((ImPlotPlot*)pself);
+				return ret;
+			}
+		}
+
+		public static string ImPlotPlotGetTitleS(ref ImPlotPlot self)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(ImPlotPlotGetTitleNative((ImPlotPlot*)pself));
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_XAxis_Nil")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotAxis* ImPlotPlotXAxisNilNative(ImPlotPlot* self, int i);
+
+		public static ImPlotAxisPtr ImPlotPlotXAxisNil(ImPlotPlotPtr self, int i)
+		{
+			ImPlotAxisPtr ret = ImPlotPlotXAxisNilNative(self, i);
+			return ret;
+		}
+
+		public static ImPlotAxisPtr ImPlotPlotXAxisNil(ref ImPlotPlot self, int i)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				ImPlotAxisPtr ret = ImPlotPlotXAxisNilNative((ImPlotPlot*)pself, i);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_XAxis__const")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotAxis* ImPlotPlotXAxisConstNative(ImPlotPlot* self, int i);
+
+		public static ImPlotAxisPtr ImPlotPlotXAxisConst(ImPlotPlotPtr self, int i)
+		{
+			ImPlotAxisPtr ret = ImPlotPlotXAxisConstNative(self, i);
+			return ret;
+		}
+
+		public static ImPlotAxisPtr ImPlotPlotXAxisConst(ref ImPlotPlot self, int i)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				ImPlotAxisPtr ret = ImPlotPlotXAxisConstNative((ImPlotPlot*)pself, i);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_YAxis_Nil")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotAxis* ImPlotPlotYAxisNilNative(ImPlotPlot* self, int i);
+
+		public static ImPlotAxisPtr ImPlotPlotYAxisNil(ImPlotPlotPtr self, int i)
+		{
+			ImPlotAxisPtr ret = ImPlotPlotYAxisNilNative(self, i);
+			return ret;
+		}
+
+		public static ImPlotAxisPtr ImPlotPlotYAxisNil(ref ImPlotPlot self, int i)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				ImPlotAxisPtr ret = ImPlotPlotYAxisNilNative((ImPlotPlot*)pself, i);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_YAxis__const")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotAxis* ImPlotPlotYAxisConstNative(ImPlotPlot* self, int i);
+
+		public static ImPlotAxisPtr ImPlotPlotYAxisConst(ImPlotPlotPtr self, int i)
+		{
+			ImPlotAxisPtr ret = ImPlotPlotYAxisConstNative(self, i);
+			return ret;
+		}
+
+		public static ImPlotAxisPtr ImPlotPlotYAxisConst(ref ImPlotPlot self, int i)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				ImPlotAxisPtr ret = ImPlotPlotYAxisConstNative((ImPlotPlot*)pself, i);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_EnabledAxesX")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial int ImPlotPlotEnabledAxesXNative(ImPlotPlot* self);
+
+		public static int ImPlotPlotEnabledAxesX(ImPlotPlotPtr self)
+		{
+			int ret = ImPlotPlotEnabledAxesXNative(self);
+			return ret;
+		}
+
+		public static int ImPlotPlotEnabledAxesX(ref ImPlotPlot self)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				int ret = ImPlotPlotEnabledAxesXNative((ImPlotPlot*)pself);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_EnabledAxesY")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial int ImPlotPlotEnabledAxesYNative(ImPlotPlot* self);
+
+		public static int ImPlotPlotEnabledAxesY(ImPlotPlotPtr self)
+		{
+			int ret = ImPlotPlotEnabledAxesYNative(self);
+			return ret;
+		}
+
+		public static int ImPlotPlotEnabledAxesY(ref ImPlotPlot self)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				int ret = ImPlotPlotEnabledAxesYNative((ImPlotPlot*)pself);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_SetAxisLabel")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotPlotSetAxisLabelNative(ImPlotPlot* self, ImPlotAxis* axis, byte* label);
+
+		public static void ImPlotPlotSetAxisLabel(ImPlotPlotPtr self, ImPlotAxisPtr axis, byte* label)
+		{
+			ImPlotPlotSetAxisLabelNative(self, axis, label);
+		}
+
+		public static void ImPlotPlotSetAxisLabel(ref ImPlotPlot self, ImPlotAxisPtr axis, byte* label)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				ImPlotPlotSetAxisLabelNative((ImPlotPlot*)pself, axis, label);
+			}
+		}
+
+		public static void ImPlotPlotSetAxisLabel(ImPlotPlotPtr self, ref ImPlotAxis axis, byte* label)
+		{
+			fixed (ImPlotAxis* paxis = &axis)
+			{
+				ImPlotPlotSetAxisLabelNative(self, (ImPlotAxis*)paxis, label);
+			}
+		}
+
+		public static void ImPlotPlotSetAxisLabel(ref ImPlotPlot self, ref ImPlotAxis axis, byte* label)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				fixed (ImPlotAxis* paxis = &axis)
+				{
+					ImPlotPlotSetAxisLabelNative((ImPlotPlot*)pself, (ImPlotAxis*)paxis, label);
+				}
+			}
+		}
+
+		public static void ImPlotPlotSetAxisLabel(ImPlotPlotPtr self, ImPlotAxisPtr axis, ref byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				ImPlotPlotSetAxisLabelNative(self, axis, (byte*)plabel);
+			}
+		}
+
+		public static void ImPlotPlotSetAxisLabel(ImPlotPlotPtr self, ImPlotAxisPtr axis, string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotPlotSetAxisLabelNative(self, axis, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void ImPlotPlotSetAxisLabel(ref ImPlotPlot self, ImPlotAxisPtr axis, ref byte label)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				fixed (byte* plabel = &label)
+				{
+					ImPlotPlotSetAxisLabelNative((ImPlotPlot*)pself, axis, (byte*)plabel);
+				}
+			}
+		}
+
+		public static void ImPlotPlotSetAxisLabel(ref ImPlotPlot self, ImPlotAxisPtr axis, string label)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotPlotSetAxisLabelNative((ImPlotPlot*)pself, axis, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void ImPlotPlotSetAxisLabel(ImPlotPlotPtr self, ref ImPlotAxis axis, ref byte label)
+		{
+			fixed (ImPlotAxis* paxis = &axis)
+			{
+				fixed (byte* plabel = &label)
+				{
+					ImPlotPlotSetAxisLabelNative(self, (ImPlotAxis*)paxis, (byte*)plabel);
+				}
+			}
+		}
+
+		public static void ImPlotPlotSetAxisLabel(ImPlotPlotPtr self, ref ImPlotAxis axis, string label)
+		{
+			fixed (ImPlotAxis* paxis = &axis)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotPlotSetAxisLabelNative(self, (ImPlotAxis*)paxis, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void ImPlotPlotSetAxisLabel(ref ImPlotPlot self, ref ImPlotAxis axis, ref byte label)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				fixed (ImPlotAxis* paxis = &axis)
+				{
+					fixed (byte* plabel = &label)
+					{
+						ImPlotPlotSetAxisLabelNative((ImPlotPlot*)pself, (ImPlotAxis*)paxis, (byte*)plabel);
 					}
 				}
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_ShowTimePicker")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ImPlotShowTimePickerNative(byte* id, ImPlotTime* t);
-
-		public static bool ImPlotShowTimePicker(byte* id, ImPlotTimePtr t)
+		public static void ImPlotPlotSetAxisLabel(ref ImPlotPlot self, ref ImPlotAxis axis, string label)
 		{
-			byte ret = ImPlotShowTimePickerNative(id, t);
-			return ret != 0;
-		}
-
-		public static bool ImPlotShowTimePicker(ref byte id, ImPlotTimePtr t)
-		{
-			fixed (byte* pid = &id)
+			fixed (ImPlotPlot* pself = &self)
 			{
-				byte ret = ImPlotShowTimePickerNative((byte*)pid, t);
-				return ret != 0;
+				fixed (ImPlotAxis* paxis = &axis)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (label != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(label);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					ImPlotPlotSetAxisLabelNative((ImPlotPlot*)pself, (ImPlotAxis*)paxis, pStr0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
 			}
 		}
 
-		public static bool ImPlotShowTimePicker(string id, ImPlotTimePtr t)
+		[LibraryImport(LibName, EntryPoint = "ImPlotPlot_GetAxisLabel")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte* ImPlotPlotGetAxisLabelNative(ImPlotPlot* self, ImPlotAxis axis);
+
+		public static byte* ImPlotPlotGetAxisLabel(ImPlotPlotPtr self, ImPlotAxis axis)
+		{
+			byte* ret = ImPlotPlotGetAxisLabelNative(self, axis);
+			return ret;
+		}
+
+		public static string ImPlotPlotGetAxisLabelS(ImPlotPlotPtr self, ImPlotAxis axis)
+		{
+			string ret = Utils.DecodeStringUTF8(ImPlotPlotGetAxisLabelNative(self, axis));
+			return ret;
+		}
+
+		public static byte* ImPlotPlotGetAxisLabel(ref ImPlotPlot self, ImPlotAxis axis)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				byte* ret = ImPlotPlotGetAxisLabelNative((ImPlotPlot*)pself, axis);
+				return ret;
+			}
+		}
+
+		public static string ImPlotPlotGetAxisLabelS(ref ImPlotPlot self, ImPlotAxis axis)
+		{
+			fixed (ImPlotPlot* pself = &self)
+			{
+				string ret = Utils.DecodeStringUTF8(ImPlotPlotGetAxisLabelNative((ImPlotPlot*)pself, axis));
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotSubplot_ImPlotSubplot")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotSubplot* ImPlotSubplotImPlotSubplotNative();
+
+		public static ImPlotSubplotPtr ImPlotSubplotImPlotSubplot()
+		{
+			ImPlotSubplotPtr ret = ImPlotSubplotImPlotSubplotNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotSubplot_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotSubplotDestroyNative(ImPlotSubplot* self);
+
+		public static void ImPlotSubplotDestroy(ImPlotSubplotPtr self)
+		{
+			ImPlotSubplotDestroyNative(self);
+		}
+
+		public static void ImPlotSubplotDestroy(ref ImPlotSubplot self)
+		{
+			fixed (ImPlotSubplot* pself = &self)
+			{
+				ImPlotSubplotDestroyNative((ImPlotSubplot*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotNextPlotData_ImPlotNextPlotData")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotNextPlotData* ImPlotNextPlotDataImPlotNextPlotDataNative();
+
+		public static ImPlotNextPlotDataPtr ImPlotNextPlotDataImPlotNextPlotData()
+		{
+			ImPlotNextPlotDataPtr ret = ImPlotNextPlotDataImPlotNextPlotDataNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotNextPlotData_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotNextPlotDataDestroyNative(ImPlotNextPlotData* self);
+
+		public static void ImPlotNextPlotDataDestroy(ImPlotNextPlotDataPtr self)
+		{
+			ImPlotNextPlotDataDestroyNative(self);
+		}
+
+		public static void ImPlotNextPlotDataDestroy(ref ImPlotNextPlotData self)
+		{
+			fixed (ImPlotNextPlotData* pself = &self)
+			{
+				ImPlotNextPlotDataDestroyNative((ImPlotNextPlotData*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotNextPlotData_Reset")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotNextPlotDataResetNative(ImPlotNextPlotData* self);
+
+		public static void ImPlotNextPlotDataReset(ImPlotNextPlotDataPtr self)
+		{
+			ImPlotNextPlotDataResetNative(self);
+		}
+
+		public static void ImPlotNextPlotDataReset(ref ImPlotNextPlotData self)
+		{
+			fixed (ImPlotNextPlotData* pself = &self)
+			{
+				ImPlotNextPlotDataResetNative((ImPlotNextPlotData*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotNextItemData_ImPlotNextItemData")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotNextItemData* ImPlotNextItemDataImPlotNextItemDataNative();
+
+		public static ImPlotNextItemDataPtr ImPlotNextItemDataImPlotNextItemData()
+		{
+			ImPlotNextItemDataPtr ret = ImPlotNextItemDataImPlotNextItemDataNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotNextItemData_destroy")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotNextItemDataDestroyNative(ImPlotNextItemData* self);
+
+		public static void ImPlotNextItemDataDestroy(ImPlotNextItemDataPtr self)
+		{
+			ImPlotNextItemDataDestroyNative(self);
+		}
+
+		public static void ImPlotNextItemDataDestroy(ref ImPlotNextItemData self)
+		{
+			fixed (ImPlotNextItemData* pself = &self)
+			{
+				ImPlotNextItemDataDestroyNative((ImPlotNextItemData*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlotNextItemData_Reset")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotNextItemDataResetNative(ImPlotNextItemData* self);
+
+		public static void ImPlotNextItemDataReset(ImPlotNextItemDataPtr self)
+		{
+			ImPlotNextItemDataResetNative(self);
+		}
+
+		public static void ImPlotNextItemDataReset(ref ImPlotNextItemData self)
+		{
+			fixed (ImPlotNextItemData* pself = &self)
+			{
+				ImPlotNextItemDataResetNative((ImPlotNextItemData*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_Initialize")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotInitializeNative(ImPlotContext* ctx);
+
+		public static void ImPlotInitialize(ImPlotContextPtr ctx)
+		{
+			ImPlotInitializeNative(ctx);
+		}
+
+		public static void ImPlotInitialize(ref ImPlotContext ctx)
+		{
+			fixed (ImPlotContext* pctx = &ctx)
+			{
+				ImPlotInitializeNative((ImPlotContext*)pctx);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_ResetCtxForNextPlot")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotResetCtxForNextPlotNative(ImPlotContext* ctx);
+
+		public static void ImPlotResetCtxForNextPlot(ImPlotContextPtr ctx)
+		{
+			ImPlotResetCtxForNextPlotNative(ctx);
+		}
+
+		public static void ImPlotResetCtxForNextPlot(ref ImPlotContext ctx)
+		{
+			fixed (ImPlotContext* pctx = &ctx)
+			{
+				ImPlotResetCtxForNextPlotNative((ImPlotContext*)pctx);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_ResetCtxForNextAlignedPlots")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotResetCtxForNextAlignedPlotsNative(ImPlotContext* ctx);
+
+		public static void ImPlotResetCtxForNextAlignedPlots(ImPlotContextPtr ctx)
+		{
+			ImPlotResetCtxForNextAlignedPlotsNative(ctx);
+		}
+
+		public static void ImPlotResetCtxForNextAlignedPlots(ref ImPlotContext ctx)
+		{
+			fixed (ImPlotContext* pctx = &ctx)
+			{
+				ImPlotResetCtxForNextAlignedPlotsNative((ImPlotContext*)pctx);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_ResetCtxForNextSubplot")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotResetCtxForNextSubplotNative(ImPlotContext* ctx);
+
+		public static void ImPlotResetCtxForNextSubplot(ImPlotContextPtr ctx)
+		{
+			ImPlotResetCtxForNextSubplotNative(ctx);
+		}
+
+		public static void ImPlotResetCtxForNextSubplot(ref ImPlotContext ctx)
+		{
+			fixed (ImPlotContext* pctx = &ctx)
+			{
+				ImPlotResetCtxForNextSubplotNative((ImPlotContext*)pctx);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_GetPlot")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotPlot* ImPlotGetPlotNative(byte* title);
+
+		public static ImPlotPlotPtr ImPlotGetPlot(byte* title)
+		{
+			ImPlotPlotPtr ret = ImPlotGetPlotNative(title);
+			return ret;
+		}
+
+		public static ImPlotPlotPtr ImPlotGetPlot(ref byte title)
+		{
+			fixed (byte* ptitle = &title)
+			{
+				ImPlotPlotPtr ret = ImPlotGetPlotNative((byte*)ptitle);
+				return ret;
+			}
+		}
+
+		public static ImPlotPlotPtr ImPlotGetPlot(string title)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (id != null)
+			if (title != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
+				pStrSize0 = Utils.GetByteCountUTF8(title);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1206,10 +3186,127 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(title, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImPlotShowTimePickerNative(pStr0, t);
+			ImPlotPlotPtr ret = ImPlotGetPlotNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_GetCurrentPlot")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotPlot* ImPlotGetCurrentPlotNative();
+
+		public static ImPlotPlotPtr ImPlotGetCurrentPlot()
+		{
+			ImPlotPlotPtr ret = ImPlotGetCurrentPlotNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_BustPlotCache")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotBustPlotCacheNative();
+
+		public static void ImPlotBustPlotCache()
+		{
+			ImPlotBustPlotCacheNative();
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_ShowPlotContextMenu")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotShowPlotContextMenuNative(ImPlotPlot* plot);
+
+		public static void ImPlotShowPlotContextMenu(ImPlotPlotPtr plot)
+		{
+			ImPlotShowPlotContextMenuNative(plot);
+		}
+
+		public static void ImPlotShowPlotContextMenu(ref ImPlotPlot plot)
+		{
+			fixed (ImPlotPlot* pplot = &plot)
+			{
+				ImPlotShowPlotContextMenuNative((ImPlotPlot*)pplot);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupLock")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotSetupLockNative();
+
+		public static void ImPlotSetupLock()
+		{
+			ImPlotSetupLockNative();
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_SubplotNextCell")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotSubplotNextCellNative();
+
+		public static void ImPlotSubplotNextCell()
+		{
+			ImPlotSubplotNextCellNative();
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_ShowSubplotsContextMenu")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotShowSubplotsContextMenuNative(ImPlotSubplot* subplot);
+
+		public static void ImPlotShowSubplotsContextMenu(ImPlotSubplotPtr subplot)
+		{
+			ImPlotShowSubplotsContextMenuNative(subplot);
+		}
+
+		public static void ImPlotShowSubplotsContextMenu(ref ImPlotSubplot subplot)
+		{
+			fixed (ImPlotSubplot* psubplot = &subplot)
+			{
+				ImPlotShowSubplotsContextMenuNative((ImPlotSubplot*)psubplot);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginItem")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotBeginItemNative(byte* labelId, ImPlotItemFlags flags, ImPlotCol recolorFrom);
+
+		public static bool ImPlotBeginItem(byte* labelId, ImPlotItemFlags flags, ImPlotCol recolorFrom)
+		{
+			byte ret = ImPlotBeginItemNative(labelId, flags, recolorFrom);
+			return ret != 0;
+		}
+
+		public static bool ImPlotBeginItem(ref byte labelId, ImPlotItemFlags flags, ImPlotCol recolorFrom)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				byte ret = ImPlotBeginItemNative((byte*)plabelId, flags, recolorFrom);
+				return ret != 0;
+			}
+		}
+
+		public static bool ImPlotBeginItem(string labelId, ImPlotItemFlags flags, ImPlotCol recolorFrom)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ImPlotBeginItemNative(pStr0, flags, recolorFrom);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1217,34 +3314,496 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		public static bool ImPlotShowTimePicker(byte* id, ref ImPlotTime t)
+		[LibraryImport(LibName, EntryPoint = "ImPlot_EndItem")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotEndItemNative();
+
+		public static void ImPlotEndItem()
 		{
-			fixed (ImPlotTime* pt = &t)
+			ImPlotEndItemNative();
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_RegisterOrGetItem")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotItem* ImPlotRegisterOrGetItemNative(byte* labelId, ImPlotItemFlags flags, bool* justCreated);
+
+		public static ImPlotItemPtr ImPlotRegisterOrGetItem(byte* labelId, ImPlotItemFlags flags, bool* justCreated)
+		{
+			ImPlotItemPtr ret = ImPlotRegisterOrGetItemNative(labelId, flags, justCreated);
+			return ret;
+		}
+
+		public static ImPlotItemPtr ImPlotRegisterOrGetItem(ref byte labelId, ImPlotItemFlags flags, bool* justCreated)
+		{
+			fixed (byte* plabelId = &labelId)
 			{
-				byte ret = ImPlotShowTimePickerNative(id, (ImPlotTime*)pt);
+				ImPlotItemPtr ret = ImPlotRegisterOrGetItemNative((byte*)plabelId, flags, justCreated);
+				return ret;
+			}
+		}
+
+		public static ImPlotItemPtr ImPlotRegisterOrGetItem(string labelId, ImPlotItemFlags flags, bool* justCreated)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotItemPtr ret = ImPlotRegisterOrGetItemNative(pStr0, flags, justCreated);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static ImPlotItemPtr ImPlotRegisterOrGetItem(byte* labelId, ImPlotItemFlags flags, ref bool justCreated)
+		{
+			fixed (bool* pjustCreated = &justCreated)
+			{
+				ImPlotItemPtr ret = ImPlotRegisterOrGetItemNative(labelId, flags, (bool*)pjustCreated);
+				return ret;
+			}
+		}
+
+		public static ImPlotItemPtr ImPlotRegisterOrGetItem(ref byte labelId, ImPlotItemFlags flags, ref bool justCreated)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (bool* pjustCreated = &justCreated)
+				{
+					ImPlotItemPtr ret = ImPlotRegisterOrGetItemNative((byte*)plabelId, flags, (bool*)pjustCreated);
+					return ret;
+				}
+			}
+		}
+
+		public static ImPlotItemPtr ImPlotRegisterOrGetItem(string labelId, ImPlotItemFlags flags, ref bool justCreated)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (bool* pjustCreated = &justCreated)
+			{
+				ImPlotItemPtr ret = ImPlotRegisterOrGetItemNative(pStr0, flags, (bool*)pjustCreated);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_GetItem")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotItem* ImPlotGetItemNative(byte* labelId);
+
+		public static ImPlotItemPtr ImPlotGetItem(byte* labelId)
+		{
+			ImPlotItemPtr ret = ImPlotGetItemNative(labelId);
+			return ret;
+		}
+
+		public static ImPlotItemPtr ImPlotGetItem(ref byte labelId)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				ImPlotItemPtr ret = ImPlotGetItemNative((byte*)plabelId);
+				return ret;
+			}
+		}
+
+		public static ImPlotItemPtr ImPlotGetItem(string labelId)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotItemPtr ret = ImPlotGetItemNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_GetCurrentItem")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial ImPlotItem* ImPlotGetCurrentItemNative();
+
+		public static ImPlotItemPtr ImPlotGetCurrentItem()
+		{
+			ImPlotItemPtr ret = ImPlotGetCurrentItemNative();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_BustItemCache")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotBustItemCacheNative();
+
+		public static void ImPlotBustItemCache()
+		{
+			ImPlotBustItemCacheNative();
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_AnyAxesInputLocked")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAnyAxesInputLockedNative(ImPlotAxis* axes, int count);
+
+		public static bool ImPlotAnyAxesInputLocked(ImPlotAxisPtr axes, int count)
+		{
+			byte ret = ImPlotAnyAxesInputLockedNative(axes, count);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAnyAxesInputLocked(ref ImPlotAxis axes, int count)
+		{
+			fixed (ImPlotAxis* paxes = &axes)
+			{
+				byte ret = ImPlotAnyAxesInputLockedNative((ImPlotAxis*)paxes, count);
 				return ret != 0;
 			}
 		}
 
-		public static bool ImPlotShowTimePicker(ref byte id, ref ImPlotTime t)
+		[LibraryImport(LibName, EntryPoint = "ImPlot_AllAxesInputLocked")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAllAxesInputLockedNative(ImPlotAxis* axes, int count);
+
+		public static bool ImPlotAllAxesInputLocked(ImPlotAxisPtr axes, int count)
 		{
-			fixed (byte* pid = &id)
+			byte ret = ImPlotAllAxesInputLockedNative(axes, count);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAllAxesInputLocked(ref ImPlotAxis axes, int count)
+		{
+			fixed (ImPlotAxis* paxes = &axes)
 			{
-				fixed (ImPlotTime* pt = &t)
+				byte ret = ImPlotAllAxesInputLockedNative((ImPlotAxis*)paxes, count);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_AnyAxesHeld")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAnyAxesHeldNative(ImPlotAxis* axes, int count);
+
+		public static bool ImPlotAnyAxesHeld(ImPlotAxisPtr axes, int count)
+		{
+			byte ret = ImPlotAnyAxesHeldNative(axes, count);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAnyAxesHeld(ref ImPlotAxis axes, int count)
+		{
+			fixed (ImPlotAxis* paxes = &axes)
+			{
+				byte ret = ImPlotAnyAxesHeldNative((ImPlotAxis*)paxes, count);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_AnyAxesHovered")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotAnyAxesHoveredNative(ImPlotAxis* axes, int count);
+
+		public static bool ImPlotAnyAxesHovered(ImPlotAxisPtr axes, int count)
+		{
+			byte ret = ImPlotAnyAxesHoveredNative(axes, count);
+			return ret != 0;
+		}
+
+		public static bool ImPlotAnyAxesHovered(ref ImPlotAxis axes, int count)
+		{
+			fixed (ImPlotAxis* paxes = &axes)
+			{
+				byte ret = ImPlotAnyAxesHoveredNative((ImPlotAxis*)paxes, count);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_FitThisFrame")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotFitThisFrameNative();
+
+		public static bool ImPlotFitThisFrame()
+		{
+			byte ret = ImPlotFitThisFrameNative();
+			return ret != 0;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_FitPointX")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotFitPointXNative(double x);
+
+		public static void ImPlotFitPointX(double x)
+		{
+			ImPlotFitPointXNative(x);
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_FitPointY")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotFitPointYNative(double y);
+
+		public static void ImPlotFitPointY(double y)
+		{
+			ImPlotFitPointYNative(y);
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_FitPoint")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotFitPointNative(ImPlotPoint p);
+
+		public static void ImPlotFitPoint(ImPlotPoint p)
+		{
+			ImPlotFitPointNative(p);
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_RangesOverlap")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotRangesOverlapNative(ImPlotRange r1, ImPlotRange r2);
+
+		public static bool ImPlotRangesOverlap(ImPlotRange r1, ImPlotRange r2)
+		{
+			byte ret = ImPlotRangesOverlapNative(r1, r2);
+			return ret != 0;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_ShowAxisContextMenu")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotShowAxisContextMenuNative(ImPlotAxis* axis, ImPlotAxis* equalAxis, byte timeAllowed);
+
+		public static void ImPlotShowAxisContextMenu(ImPlotAxisPtr axis, ImPlotAxisPtr equalAxis, bool timeAllowed)
+		{
+			ImPlotShowAxisContextMenuNative(axis, equalAxis, timeAllowed ? (byte)1 : (byte)0);
+		}
+
+		public static void ImPlotShowAxisContextMenu(ref ImPlotAxis axis, ImPlotAxisPtr equalAxis, bool timeAllowed)
+		{
+			fixed (ImPlotAxis* paxis = &axis)
+			{
+				ImPlotShowAxisContextMenuNative((ImPlotAxis*)paxis, equalAxis, timeAllowed ? (byte)1 : (byte)0);
+			}
+		}
+
+		public static void ImPlotShowAxisContextMenu(ImPlotAxisPtr axis, ref ImPlotAxis equalAxis, bool timeAllowed)
+		{
+			fixed (ImPlotAxis* pequalAxis = &equalAxis)
+			{
+				ImPlotShowAxisContextMenuNative(axis, (ImPlotAxis*)pequalAxis, timeAllowed ? (byte)1 : (byte)0);
+			}
+		}
+
+		public static void ImPlotShowAxisContextMenu(ref ImPlotAxis axis, ref ImPlotAxis equalAxis, bool timeAllowed)
+		{
+			fixed (ImPlotAxis* paxis = &axis)
+			{
+				fixed (ImPlotAxis* pequalAxis = &equalAxis)
 				{
-					byte ret = ImPlotShowTimePickerNative((byte*)pid, (ImPlotTime*)pt);
+					ImPlotShowAxisContextMenuNative((ImPlotAxis*)paxis, (ImPlotAxis*)pequalAxis, timeAllowed ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_GetLocationPos")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotGetLocationPosNative(Vector2* output, ImRect outerRect, Vector2 innerSize, ImPlotLocation location, Vector2 pad);
+
+		public static Vector2 ImPlotGetLocationPos(ImRect outerRect, Vector2 innerSize, ImPlotLocation location, Vector2 pad)
+		{
+			Vector2 ret;
+			ImPlotGetLocationPosNative(&ret, outerRect, innerSize, location, pad);
+			return ret;
+		}
+
+		public static void ImPlotGetLocationPos(Vector2* output, ImRect outerRect, Vector2 innerSize, ImPlotLocation location, Vector2 pad)
+		{
+			ImPlotGetLocationPosNative(output, outerRect, innerSize, location, pad);
+		}
+
+		public static void ImPlotGetLocationPos(ref Vector2 output, ImRect outerRect, Vector2 innerSize, ImPlotLocation location, Vector2 pad)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				ImPlotGetLocationPosNative((Vector2*)poutput, outerRect, innerSize, location, pad);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_CalcLegendSize")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotCalcLegendSizeNative(Vector2* output, ImPlotItemGroup* items, Vector2 pad, Vector2 spacing, byte vertical);
+
+		public static Vector2 ImPlotCalcLegendSize(ImPlotItemGroupPtr items, Vector2 pad, Vector2 spacing, bool vertical)
+		{
+			Vector2 ret;
+			ImPlotCalcLegendSizeNative(&ret, items, pad, spacing, vertical ? (byte)1 : (byte)0);
+			return ret;
+		}
+
+		public static void ImPlotCalcLegendSize(Vector2* output, ImPlotItemGroupPtr items, Vector2 pad, Vector2 spacing, bool vertical)
+		{
+			ImPlotCalcLegendSizeNative(output, items, pad, spacing, vertical ? (byte)1 : (byte)0);
+		}
+
+		public static void ImPlotCalcLegendSize(ref Vector2 output, ImPlotItemGroupPtr items, Vector2 pad, Vector2 spacing, bool vertical)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				ImPlotCalcLegendSizeNative((Vector2*)poutput, items, pad, spacing, vertical ? (byte)1 : (byte)0);
+			}
+		}
+
+		public static Vector2 ImPlotCalcLegendSize(ref ImPlotItemGroup items, Vector2 pad, Vector2 spacing, bool vertical)
+		{
+			fixed (ImPlotItemGroup* pitems = &items)
+			{
+				Vector2 ret;
+				ImPlotCalcLegendSizeNative(&ret, (ImPlotItemGroup*)pitems, pad, spacing, vertical ? (byte)1 : (byte)0);
+				return ret;
+			}
+		}
+
+		public static void ImPlotCalcLegendSize(Vector2* output, ref ImPlotItemGroup items, Vector2 pad, Vector2 spacing, bool vertical)
+		{
+			fixed (ImPlotItemGroup* pitems = &items)
+			{
+				ImPlotCalcLegendSizeNative(output, (ImPlotItemGroup*)pitems, pad, spacing, vertical ? (byte)1 : (byte)0);
+			}
+		}
+
+		public static void ImPlotCalcLegendSize(ref Vector2 output, ref ImPlotItemGroup items, Vector2 pad, Vector2 spacing, bool vertical)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImPlotItemGroup* pitems = &items)
+				{
+					ImPlotCalcLegendSizeNative((Vector2*)poutput, (ImPlotItemGroup*)pitems, pad, spacing, vertical ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_ClampLegendRect")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotClampLegendRectNative(ImRect* legendRect, ImRect outerRect, Vector2 pad);
+
+		public static bool ImPlotClampLegendRect(ImRectPtr legendRect, ImRect outerRect, Vector2 pad)
+		{
+			byte ret = ImPlotClampLegendRectNative(legendRect, outerRect, pad);
+			return ret != 0;
+		}
+
+		public static bool ImPlotClampLegendRect(ref ImRect legendRect, ImRect outerRect, Vector2 pad)
+		{
+			fixed (ImRect* plegendRect = &legendRect)
+			{
+				byte ret = ImPlotClampLegendRectNative((ImRect*)plegendRect, outerRect, pad);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_ShowLegendEntries")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotShowLegendEntriesNative(ImPlotItemGroup* items, ImRect legendBb, byte interactable, Vector2 pad, Vector2 spacing, byte vertical, ImDrawList* drawList);
+
+		public static bool ImPlotShowLegendEntries(ImPlotItemGroupPtr items, ImRect legendBb, bool interactable, Vector2 pad, Vector2 spacing, bool vertical, ImDrawListPtr drawList)
+		{
+			byte ret = ImPlotShowLegendEntriesNative(items, legendBb, interactable ? (byte)1 : (byte)0, pad, spacing, vertical ? (byte)1 : (byte)0, drawList);
+			return ret != 0;
+		}
+
+		public static bool ImPlotShowLegendEntries(ref ImPlotItemGroup items, ImRect legendBb, bool interactable, Vector2 pad, Vector2 spacing, bool vertical, ImDrawListPtr drawList)
+		{
+			fixed (ImPlotItemGroup* pitems = &items)
+			{
+				byte ret = ImPlotShowLegendEntriesNative((ImPlotItemGroup*)pitems, legendBb, interactable ? (byte)1 : (byte)0, pad, spacing, vertical ? (byte)1 : (byte)0, drawList);
+				return ret != 0;
+			}
+		}
+
+		public static bool ImPlotShowLegendEntries(ImPlotItemGroupPtr items, ImRect legendBb, bool interactable, Vector2 pad, Vector2 spacing, bool vertical, ref ImDrawList drawList)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte ret = ImPlotShowLegendEntriesNative(items, legendBb, interactable ? (byte)1 : (byte)0, pad, spacing, vertical ? (byte)1 : (byte)0, (ImDrawList*)pdrawList);
+				return ret != 0;
+			}
+		}
+
+		public static bool ImPlotShowLegendEntries(ref ImPlotItemGroup items, ImRect legendBb, bool interactable, Vector2 pad, Vector2 spacing, bool vertical, ref ImDrawList drawList)
+		{
+			fixed (ImPlotItemGroup* pitems = &items)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					byte ret = ImPlotShowLegendEntriesNative((ImPlotItemGroup*)pitems, legendBb, interactable ? (byte)1 : (byte)0, pad, spacing, vertical ? (byte)1 : (byte)0, (ImDrawList*)pdrawList);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool ImPlotShowTimePicker(string id, ref ImPlotTime t)
+		[LibraryImport(LibName, EntryPoint = "ImPlot_ShowAltLegend")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotShowAltLegendNative(byte* titleId, byte vertical, Vector2 size, byte interactable);
+
+		public static void ImPlotShowAltLegend(byte* titleId, bool vertical, Vector2 size, bool interactable)
+		{
+			ImPlotShowAltLegendNative(titleId, vertical ? (byte)1 : (byte)0, size, interactable ? (byte)1 : (byte)0);
+		}
+
+		public static void ImPlotShowAltLegend(ref byte titleId, bool vertical, Vector2 size, bool interactable)
+		{
+			fixed (byte* ptitleId = &titleId)
+			{
+				ImPlotShowAltLegendNative((byte*)ptitleId, vertical ? (byte)1 : (byte)0, size, interactable ? (byte)1 : (byte)0);
+			}
+		}
+
+		public static void ImPlotShowAltLegend(string titleId, bool vertical, Vector2 size, bool interactable)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (id != null)
+			if (titleId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(id);
+				pStrSize0 = Utils.GetByteCountUTF8(titleId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1254,100 +3813,53 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(titleId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ImPlotTime* pt = &t)
+			ImPlotShowAltLegendNative(pStr0, vertical ? (byte)1 : (byte)0, size, interactable ? (byte)1 : (byte)0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = ImPlotShowTimePickerNative(pStr0, (ImPlotTime*)pt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				Utils.Free(pStr0);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_ShowLegendContextMenu")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotShowLegendContextMenuNative(ImPlotLegend* legend, byte visible);
+
+		public static bool ImPlotShowLegendContextMenu(ImPlotLegendPtr legend, bool visible)
+		{
+			byte ret = ImPlotShowLegendContextMenuNative(legend, visible ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		public static bool ImPlotShowLegendContextMenu(ref ImPlotLegend legend, bool visible)
+		{
+			fixed (ImPlotLegend* plegend = &legend)
+			{
+				byte ret = ImPlotShowLegendContextMenuNative((ImPlotLegend*)plegend, visible ? (byte)1 : (byte)0);
 				return ret != 0;
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TransformForward_Log10")]
+		[LibraryImport(LibName, EntryPoint = "ImPlot_LabelAxisValue")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImPlotTransformForwardLog10Native(double v, void* noname1);
+		internal static partial void ImPlotLabelAxisValueNative(ImPlotAxis axis, double value, byte* buff, int size, byte round);
 
-		public static double ImPlotTransformForwardLog10(double v, void* noname1)
+		public static void ImPlotLabelAxisValue(ImPlotAxis axis, double value, byte* buff, int size, bool round)
 		{
-			double ret = ImPlotTransformForwardLog10Native(v, noname1);
-			return ret;
+			ImPlotLabelAxisValueNative(axis, value, buff, size, round ? (byte)1 : (byte)0);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TransformInverse_Log10")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImPlotTransformInverseLog10Native(double v, void* noname1);
-
-		public static double ImPlotTransformInverseLog10(double v, void* noname1)
-		{
-			double ret = ImPlotTransformInverseLog10Native(v, noname1);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TransformForward_SymLog")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImPlotTransformForwardSymLogNative(double v, void* noname1);
-
-		public static double ImPlotTransformForwardSymLog(double v, void* noname1)
-		{
-			double ret = ImPlotTransformForwardSymLogNative(v, noname1);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TransformInverse_SymLog")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImPlotTransformInverseSymLogNative(double v, void* noname1);
-
-		public static double ImPlotTransformInverseSymLog(double v, void* noname1)
-		{
-			double ret = ImPlotTransformInverseSymLogNative(v, noname1);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TransformForward_Logit")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImPlotTransformForwardLogitNative(double v, void* noname1);
-
-		public static double ImPlotTransformForwardLogit(double v, void* noname1)
-		{
-			double ret = ImPlotTransformForwardLogitNative(v, noname1);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TransformInverse_Logit")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImPlotTransformInverseLogitNative(double v, void* noname1);
-
-		public static double ImPlotTransformInverseLogit(double v, void* noname1)
-		{
-			double ret = ImPlotTransformInverseLogitNative(v, noname1);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Formatter_Default")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImPlotFormatterDefaultNative(double value, byte* buff, int size, void* data);
-
-		public static int ImPlotFormatterDefault(double value, byte* buff, int size, void* data)
-		{
-			int ret = ImPlotFormatterDefaultNative(value, buff, size, data);
-			return ret;
-		}
-
-		public static int ImPlotFormatterDefault(double value, ref byte buff, int size, void* data)
+		public static void ImPlotLabelAxisValue(ImPlotAxis axis, double value, ref byte buff, int size, bool round)
 		{
 			fixed (byte* pbuff = &buff)
 			{
-				int ret = ImPlotFormatterDefaultNative(value, (byte*)pbuff, size, data);
-				return ret;
+				ImPlotLabelAxisValueNative(axis, value, (byte*)pbuff, size, round ? (byte)1 : (byte)0);
 			}
 		}
 
-		public static int ImPlotFormatterDefault(double value, ref string buff, int size, void* data)
+		public static void ImPlotLabelAxisValue(ImPlotAxis axis, double value, ref string buff, int size, bool round)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1366,41 +3878,134 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(buff, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ImPlotFormatterDefaultNative(value, pStr0, size, data);
+			ImPlotLabelAxisValueNative(axis, value, pStr0, size, round ? (byte)1 : (byte)0);
 			buff = Utils.DecodeStringUTF8(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
-			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Formatter_Logit")]
+		[LibraryImport(LibName, EntryPoint = "ImPlot_GetItemData")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImPlotFormatterLogitNative(double value, byte* buff, int size, void* noname1);
+		internal static partial ImPlotNextItemData* ImPlotGetItemDataNative();
 
-		public static int ImPlotFormatterLogit(double value, byte* buff, int size, void* noname1)
+		public static ImPlotNextItemDataPtr ImPlotGetItemData()
 		{
-			int ret = ImPlotFormatterLogitNative(value, buff, size, noname1);
+			ImPlotNextItemDataPtr ret = ImPlotGetItemDataNative();
 			return ret;
 		}
 
-		public static int ImPlotFormatterLogit(double value, ref byte buff, int size, void* noname1)
+		[LibraryImport(LibName, EntryPoint = "ImPlot_IsColorAuto_Vec4")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotIsColorAutoVec4Native(Vector4 col);
+
+		public static bool ImPlotIsColorAutoVec4(Vector4 col)
 		{
-			fixed (byte* pbuff = &buff)
+			byte ret = ImPlotIsColorAutoVec4Native(col);
+			return ret != 0;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_IsColorAuto_PlotCol")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ImPlotIsColorAutoPlotColNative(ImPlotCol idx);
+
+		public static bool ImPlotIsColorAutoPlotCol(ImPlotCol idx)
+		{
+			byte ret = ImPlotIsColorAutoPlotColNative(idx);
+			return ret != 0;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_GetAutoColor")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotGetAutoColorNative(Vector4* output, ImPlotCol idx);
+
+		public static Vector4 ImPlotGetAutoColor(ImPlotCol idx)
+		{
+			Vector4 ret;
+			ImPlotGetAutoColorNative(&ret, idx);
+			return ret;
+		}
+
+		public static void ImPlotGetAutoColor(Vector4* output, ImPlotCol idx)
+		{
+			ImPlotGetAutoColorNative(output, idx);
+		}
+
+		public static void ImPlotGetAutoColor(ref Vector4 output, ImPlotCol idx)
+		{
+			fixed (Vector4* poutput = &output)
 			{
-				int ret = ImPlotFormatterLogitNative(value, (byte*)pbuff, size, noname1);
-				return ret;
+				ImPlotGetAutoColorNative((Vector4*)poutput, idx);
 			}
 		}
 
-		public static int ImPlotFormatterLogit(double value, ref string buff, int size, void* noname1)
+		[LibraryImport(LibName, EntryPoint = "ImPlot_GetStyleColorVec4")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotGetStyleColorVec4Native(Vector4* output, ImPlotCol idx);
+
+		public static Vector4 ImPlotGetStyleColorVec4(ImPlotCol idx)
+		{
+			Vector4 ret;
+			ImPlotGetStyleColorVec4Native(&ret, idx);
+			return ret;
+		}
+
+		public static void ImPlotGetStyleColorVec4(Vector4* output, ImPlotCol idx)
+		{
+			ImPlotGetStyleColorVec4Native(output, idx);
+		}
+
+		public static void ImPlotGetStyleColorVec4(ref Vector4 output, ImPlotCol idx)
+		{
+			fixed (Vector4* poutput = &output)
+			{
+				ImPlotGetStyleColorVec4Native((Vector4*)poutput, idx);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_GetStyleColorU32")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial uint ImPlotGetStyleColorU32Native(ImPlotCol idx);
+
+		public static uint ImPlotGetStyleColorU32(ImPlotCol idx)
+		{
+			uint ret = ImPlotGetStyleColorU32Native(idx);
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_AddTextVertical")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAddTextVerticalNative(ImDrawList* drawList, Vector2 pos, uint col, byte* textBegin, byte* textEnd);
+
+		public static void ImPlotAddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
+		{
+			ImPlotAddTextVerticalNative(drawList, pos, col, textBegin, textEnd);
+		}
+
+		public static void ImPlotAddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				ImPlotAddTextVerticalNative((ImDrawList*)pdrawList, pos, col, textBegin, textEnd);
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				ImPlotAddTextVerticalNative(drawList, pos, col, (byte*)ptextBegin, textEnd);
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, string textBegin, byte* textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (buff != null)
+			if (textBegin != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(buff);
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1410,44 +4015,71 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(buff, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ImPlotFormatterLogitNative(value, pStr0, size, noname1);
-			buff = Utils.DecodeStringUTF8(pStr0);
+			ImPlotAddTextVerticalNative(drawList, pos, col, pStr0, textEnd);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
-			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Formatter_Time")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImPlotFormatterTimeNative(double noname1, byte* buff, int size, void* data);
-
-		public static int ImPlotFormatterTime(double noname1, byte* buff, int size, void* data)
+		public static void ImPlotAddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
 		{
-			int ret = ImPlotFormatterTimeNative(noname1, buff, size, data);
-			return ret;
-		}
-
-		public static int ImPlotFormatterTime(double noname1, ref byte buff, int size, void* data)
-		{
-			fixed (byte* pbuff = &buff)
+			fixed (ImDrawList* pdrawList = &drawList)
 			{
-				int ret = ImPlotFormatterTimeNative(noname1, (byte*)pbuff, size, data);
-				return ret;
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					ImPlotAddTextVerticalNative((ImDrawList*)pdrawList, pos, col, (byte*)ptextBegin, textEnd);
+				}
 			}
 		}
 
-		public static int ImPlotFormatterTime(double noname1, ref string buff, int size, void* data)
+		public static void ImPlotAddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, string textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotAddTextVerticalNative((ImDrawList*)pdrawList, pos, col, pStr0, textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				ImPlotAddTextVerticalNative(drawList, pos, col, textBegin, (byte*)ptextEnd);
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, byte* textBegin, string textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (buff != null)
+			if (textEnd != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(buff);
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1457,11 +4089,520 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(buff, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ImPlotFormatterTimeNative(noname1, pStr0, size, data);
-			buff = Utils.DecodeStringUTF8(pStr0);
+			ImPlotAddTextVerticalNative(drawList, pos, col, textBegin, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImPlotAddTextVerticalNative((ImDrawList*)pdrawList, pos, col, textBegin, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, byte* textBegin, string textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotAddTextVerticalNative((ImDrawList*)pdrawList, pos, col, textBegin, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImPlotAddTextVerticalNative(drawList, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, string textBegin, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			ImPlotAddTextVerticalNative(drawList, pos, col, pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImPlotAddTextVerticalNative((ImDrawList*)pdrawList, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
+					}
+				}
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, string textBegin, string textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				ImPlotAddTextVerticalNative((ImDrawList*)pdrawList, pos, col, pStr0, pStr1);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_AddTextCentered")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotAddTextCenteredNative(ImDrawList* drawList, Vector2 topCenter, uint col, byte* textBegin, byte* textEnd);
+
+		public static void ImPlotAddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, byte* textEnd)
+		{
+			ImPlotAddTextCenteredNative(drawList, topCenter, col, textBegin, textEnd);
+		}
+
+		public static void ImPlotAddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, byte* textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				ImPlotAddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, textBegin, textEnd);
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, ref byte textBegin, byte* textEnd)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				ImPlotAddTextCenteredNative(drawList, topCenter, col, (byte*)ptextBegin, textEnd);
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, string textBegin, byte* textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotAddTextCenteredNative(drawList, topCenter, col, pStr0, textEnd);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, ref byte textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					ImPlotAddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, (byte*)ptextBegin, textEnd);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, string textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotAddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, pStr0, textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				ImPlotAddTextCenteredNative(drawList, topCenter, col, textBegin, (byte*)ptextEnd);
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotAddTextCenteredNative(drawList, topCenter, col, textBegin, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImPlotAddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, textBegin, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, byte* textBegin, string textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotAddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, textBegin, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImPlotAddTextCenteredNative(drawList, topCenter, col, (byte*)ptextBegin, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, string textBegin, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			ImPlotAddTextCenteredNative(drawList, topCenter, col, pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImPlotAddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, (byte*)ptextBegin, (byte*)ptextEnd);
+					}
+				}
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, string textBegin, string textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				ImPlotAddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, pStr0, pStr1);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_CalcTextSizeVertical")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotCalcTextSizeVerticalNative(Vector2* output, byte* text);
+
+		public static Vector2 ImPlotCalcTextSizeVertical(byte* text)
+		{
+			Vector2 ret;
+			ImPlotCalcTextSizeVerticalNative(&ret, text);
+			return ret;
+		}
+
+		public static void ImPlotCalcTextSizeVertical(Vector2* output, byte* text)
+		{
+			ImPlotCalcTextSizeVerticalNative(output, text);
+		}
+
+		public static void ImPlotCalcTextSizeVertical(ref Vector2 output, byte* text)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				ImPlotCalcTextSizeVerticalNative((Vector2*)poutput, text);
+			}
+		}
+
+		public static Vector2 ImPlotCalcTextSizeVertical(ref byte text)
+		{
+			fixed (byte* ptext = &text)
+			{
+				Vector2 ret;
+				ImPlotCalcTextSizeVerticalNative(&ret, (byte*)ptext);
+				return ret;
+			}
+		}
+
+		public static Vector2 ImPlotCalcTextSizeVertical(string text)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			Vector2 ret;
+			ImPlotCalcTextSizeVerticalNative(&ret, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1469,73 +4610,417 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Locator_Default")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotLocatorDefaultNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData);
-
-		public static void ImPlotLocatorDefault(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
+		public static void ImPlotCalcTextSizeVertical(ref Vector2 output, ref byte text)
 		{
-			ImPlotLocatorDefaultNative(ticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
-		}
-
-		public static void ImPlotLocatorDefault(ref ImPlotTicker ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
-		{
-			fixed (ImPlotTicker* pticker = &ticker)
+			fixed (Vector2* poutput = &output)
 			{
-				ImPlotLocatorDefaultNative((ImPlotTicker*)pticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
+				fixed (byte* ptext = &text)
+				{
+					ImPlotCalcTextSizeVerticalNative((Vector2*)poutput, (byte*)ptext);
+				}
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Locator_Time")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotLocatorTimeNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData);
-
-		public static void ImPlotLocatorTime(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
+		public static void ImPlotCalcTextSizeVertical(ref Vector2 output, string text)
 		{
-			ImPlotLocatorTimeNative(ticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
-		}
-
-		public static void ImPlotLocatorTime(ref ImPlotTicker ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
-		{
-			fixed (ImPlotTicker* pticker = &ticker)
+			fixed (Vector2* poutput = &output)
 			{
-				ImPlotLocatorTimeNative((ImPlotTicker*)pticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotCalcTextSizeVerticalNative((Vector2*)poutput, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Locator_Log10")]
+		[LibraryImport(LibName, EntryPoint = "ImPlot_CalcTextColor_Vec4")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotLocatorLog10Native(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData);
+		internal static partial uint ImPlotCalcTextColorVec4Native(Vector4 bg);
 
-		public static void ImPlotLocatorLog10(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
+		public static uint ImPlotCalcTextColorVec4(Vector4 bg)
 		{
-			ImPlotLocatorLog10Native(ticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
+			uint ret = ImPlotCalcTextColorVec4Native(bg);
+			return ret;
 		}
 
-		public static void ImPlotLocatorLog10(ref ImPlotTicker ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
+		[LibraryImport(LibName, EntryPoint = "ImPlot_CalcTextColor_U32")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial uint ImPlotCalcTextColorU32Native(uint bg);
+
+		public static uint ImPlotCalcTextColorU32(uint bg)
 		{
-			fixed (ImPlotTicker* pticker = &ticker)
+			uint ret = ImPlotCalcTextColorU32Native(bg);
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_CalcHoverColor")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial uint ImPlotCalcHoverColorNative(uint col);
+
+		public static uint ImPlotCalcHoverColor(uint col)
+		{
+			uint ret = ImPlotCalcHoverColorNative(col);
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_ClampLabelPos")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotClampLabelPosNative(Vector2* output, Vector2 pos, Vector2 size, Vector2 min, Vector2 max);
+
+		public static Vector2 ImPlotClampLabelPos(Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
+		{
+			Vector2 ret;
+			ImPlotClampLabelPosNative(&ret, pos, size, min, max);
+			return ret;
+		}
+
+		public static void ImPlotClampLabelPos(Vector2* output, Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
+		{
+			ImPlotClampLabelPosNative(output, pos, size, min, max);
+		}
+
+		public static void ImPlotClampLabelPos(ref Vector2 output, Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
+		{
+			fixed (Vector2* poutput = &output)
 			{
-				ImPlotLocatorLog10Native((ImPlotTicker*)pticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
+				ImPlotClampLabelPosNative((Vector2*)poutput, pos, size, min, max);
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Locator_SymLog")]
+		[LibraryImport(LibName, EntryPoint = "ImPlot_GetColormapColorU32")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotLocatorSymLogNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData);
+		internal static partial uint ImPlotGetColormapColorU32Native(int idx, ImPlotColormap cmap);
 
-		public static void ImPlotLocatorSymLog(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
+		public static uint ImPlotGetColormapColorU32(int idx, ImPlotColormap cmap)
 		{
-			ImPlotLocatorSymLogNative(ticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
+			uint ret = ImPlotGetColormapColorU32Native(idx, cmap);
+			return ret;
 		}
 
-		public static void ImPlotLocatorSymLog(ref ImPlotTicker ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
+		[LibraryImport(LibName, EntryPoint = "ImPlot_NextColormapColorU32")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial uint ImPlotNextColormapColorU32Native();
+
+		public static uint ImPlotNextColormapColorU32()
 		{
-			fixed (ImPlotTicker* pticker = &ticker)
+			uint ret = ImPlotNextColormapColorU32Native();
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_SampleColormapU32")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial uint ImPlotSampleColormapU32Native(float t, ImPlotColormap cmap);
+
+		public static uint ImPlotSampleColormapU32(float t, ImPlotColormap cmap)
+		{
+			uint ret = ImPlotSampleColormapU32Native(t, cmap);
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_RenderColorBar")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotRenderColorBarNative(uint* colors, int size, ImDrawList* drawList, ImRect bounds, byte vert, byte reversed, byte continuous);
+
+		public static void ImPlotRenderColorBar(uint* colors, int size, ImDrawListPtr drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
+		{
+			ImPlotRenderColorBarNative(colors, size, drawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
+		}
+
+		public static void ImPlotRenderColorBar(ref uint colors, int size, ImDrawListPtr drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
+		{
+			fixed (uint* pcolors = &colors)
 			{
-				ImPlotLocatorSymLogNative((ImPlotTicker*)pticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
+				ImPlotRenderColorBarNative((uint*)pcolors, size, drawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
 			}
 		}
 
+		public static void ImPlotRenderColorBar(uint* colors, int size, ref ImDrawList drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				ImPlotRenderColorBarNative(colors, size, (ImDrawList*)pdrawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
+			}
+		}
+
+		public static void ImPlotRenderColorBar(ref uint colors, int size, ref ImDrawList drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
+		{
+			fixed (uint* pcolors = &colors)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					ImPlotRenderColorBarNative((uint*)pcolors, size, (ImDrawList*)pdrawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_NiceNum")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial double ImPlotNiceNumNative(double x, byte round);
+
+		public static double ImPlotNiceNum(double x, bool round)
+		{
+			double ret = ImPlotNiceNumNative(x, round ? (byte)1 : (byte)0);
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_OrderOfMagnitude")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial int ImPlotOrderOfMagnitudeNative(double val);
+
+		public static int ImPlotOrderOfMagnitude(double val)
+		{
+			int ret = ImPlotOrderOfMagnitudeNative(val);
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_OrderToPrecision")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial int ImPlotOrderToPrecisionNative(int order);
+
+		public static int ImPlotOrderToPrecision(int order)
+		{
+			int ret = ImPlotOrderToPrecisionNative(order);
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_Precision")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial int ImPlotPrecisionNative(double val);
+
+		public static int ImPlotPrecision(double val)
+		{
+			int ret = ImPlotPrecisionNative(val);
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_RoundTo")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial double ImPlotRoundToNative(double val, int prec);
+
+		public static double ImPlotRoundTo(double val, int prec)
+		{
+			double ret = ImPlotRoundToNative(val, prec);
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_Intersection")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotIntersectionNative(Vector2* output, Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2);
+
+		public static Vector2 ImPlotIntersection(Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
+		{
+			Vector2 ret;
+			ImPlotIntersectionNative(&ret, a1, a2, b1, b2);
+			return ret;
+		}
+
+		public static void ImPlotIntersection(Vector2* output, Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
+		{
+			ImPlotIntersectionNative(output, a1, a2, b1, b2);
+		}
+
+		public static void ImPlotIntersection(ref Vector2 output, Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				ImPlotIntersectionNative((Vector2*)poutput, a1, a2, b1, b2);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_FillRange_Vector_Float_Ptr")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotFillRangeVectorFloatPtrNative(ImVectorFloat* buffer, int n, float vmin, float vmax);
+
+		public static void ImPlotFillRangeVectorFloatPtr(ImVectorFloat* buffer, int n, float vmin, float vmax)
+		{
+			ImPlotFillRangeVectorFloatPtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorFloatPtr(ref ImVectorFloat buffer, int n, float vmin, float vmax)
+		{
+			fixed (ImVectorFloat* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorFloatPtrNative((ImVectorFloat*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_FillRange_Vector_double_Ptr")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotFillRangeVectorDoublePtrNative(ImVectorDouble* buffer, int n, double vmin, double vmax);
+
+		public static void ImPlotFillRangeVectorDoublePtr(ImVectorDoublePtr buffer, int n, double vmin, double vmax)
+		{
+			ImPlotFillRangeVectorDoublePtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorDoublePtr(ref ImVectorDouble buffer, int n, double vmin, double vmax)
+		{
+			fixed (ImVectorDouble* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorDoublePtrNative((ImVectorDouble*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_FillRange_Vector_S8_Ptr")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotFillRangeVectorS8PtrNative(ImVectorImS8* buffer, int n, sbyte vmin, sbyte vmax);
+
+		public static void ImPlotFillRangeVectorS8Ptr(ImVectorImS8Ptr buffer, int n, sbyte vmin, sbyte vmax)
+		{
+			ImPlotFillRangeVectorS8PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorS8Ptr(ref ImVectorImS8 buffer, int n, sbyte vmin, sbyte vmax)
+		{
+			fixed (ImVectorImS8* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorS8PtrNative((ImVectorImS8*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_FillRange_Vector_U8_Ptr")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotFillRangeVectorU8PtrNative(ImVectorImU8* buffer, int n, byte vmin, byte vmax);
+
+		public static void ImPlotFillRangeVectorU8Ptr(ImVectorImU8Ptr buffer, int n, byte vmin, byte vmax)
+		{
+			ImPlotFillRangeVectorU8PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorU8Ptr(ref ImVectorImU8 buffer, int n, byte vmin, byte vmax)
+		{
+			fixed (ImVectorImU8* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorU8PtrNative((ImVectorImU8*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_FillRange_Vector_S16_Ptr")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotFillRangeVectorS16PtrNative(ImVectorImS16* buffer, int n, short vmin, short vmax);
+
+		public static void ImPlotFillRangeVectorS16Ptr(ImVectorImS16Ptr buffer, int n, short vmin, short vmax)
+		{
+			ImPlotFillRangeVectorS16PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorS16Ptr(ref ImVectorImS16 buffer, int n, short vmin, short vmax)
+		{
+			fixed (ImVectorImS16* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorS16PtrNative((ImVectorImS16*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_FillRange_Vector_U16_Ptr")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotFillRangeVectorU16PtrNative(ImVectorImU16* buffer, int n, ushort vmin, ushort vmax);
+
+		public static void ImPlotFillRangeVectorU16Ptr(ImVectorImU16Ptr buffer, int n, ushort vmin, ushort vmax)
+		{
+			ImPlotFillRangeVectorU16PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorU16Ptr(ref ImVectorImU16 buffer, int n, ushort vmin, ushort vmax)
+		{
+			fixed (ImVectorImU16* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorU16PtrNative((ImVectorImU16*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_FillRange_Vector_S32_Ptr")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotFillRangeVectorS32PtrNative(ImVectorImS32* buffer, int n, int vmin, int vmax);
+
+		public static void ImPlotFillRangeVectorS32Ptr(ImVectorImS32Ptr buffer, int n, int vmin, int vmax)
+		{
+			ImPlotFillRangeVectorS32PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorS32Ptr(ref ImVectorImS32 buffer, int n, int vmin, int vmax)
+		{
+			fixed (ImVectorImS32* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorS32PtrNative((ImVectorImS32*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_FillRange_Vector_U32_Ptr")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotFillRangeVectorU32PtrNative(ImVectorImU32* buffer, int n, uint vmin, uint vmax);
+
+		public static void ImPlotFillRangeVectorU32Ptr(ImVectorImU32* buffer, int n, uint vmin, uint vmax)
+		{
+			ImPlotFillRangeVectorU32PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorU32Ptr(ref ImVectorImU32 buffer, int n, uint vmin, uint vmax)
+		{
+			fixed (ImVectorImU32* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorU32PtrNative((ImVectorImU32*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_FillRange_Vector_S64_Ptr")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotFillRangeVectorS64PtrNative(ImVectorImS64* buffer, int n, long vmin, long vmax);
+
+		public static void ImPlotFillRangeVectorS64Ptr(ImVectorImS64Ptr buffer, int n, long vmin, long vmax)
+		{
+			ImPlotFillRangeVectorS64PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorS64Ptr(ref ImVectorImS64 buffer, int n, long vmin, long vmax)
+		{
+			fixed (ImVectorImS64* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorS64PtrNative((ImVectorImS64*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_FillRange_Vector_U64_Ptr")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotFillRangeVectorU64PtrNative(ImVectorImU64* buffer, int n, ulong vmin, ulong vmax);
+
+		public static void ImPlotFillRangeVectorU64Ptr(ImVectorImU64Ptr buffer, int n, ulong vmin, ulong vmax)
+		{
+			ImPlotFillRangeVectorU64PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorU64Ptr(ref ImVectorImU64 buffer, int n, ulong vmin, ulong vmax)
+		{
+			fixed (ImVectorImU64* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorU64PtrNative((ImVectorImU64*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImPlot_CalculateBins_FloatPtr")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImPlotCalculateBinsFloatPtrNative(float* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut);
+
+		public static void ImPlotCalculateBinsFloatPtr(float* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		{
+			ImPlotCalculateBinsFloatPtrNative(values, count, meth, range, binsOut, widthOut);
+		}
 	}
 }

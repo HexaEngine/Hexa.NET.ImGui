@@ -368,6 +368,94 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddEllipse(Vector2 center, float radiusX, float radiusY, uint col, float rot, int numSegments, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddEllipseNative(@this, center, radiusX, radiusY, col, rot, numSegments, thickness);
+			}
+		}
+
+		public unsafe void AddEllipse(Vector2 center, float radiusX, float radiusY, uint col, float rot, int numSegments)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddEllipseNative(@this, center, radiusX, radiusY, col, rot, numSegments, (float)(1.0f));
+			}
+		}
+
+		public unsafe void AddEllipse(Vector2 center, float radiusX, float radiusY, uint col, float rot)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddEllipseNative(@this, center, radiusX, radiusY, col, rot, (int)(0), (float)(1.0f));
+			}
+		}
+
+		public unsafe void AddEllipse(Vector2 center, float radiusX, float radiusY, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddEllipseNative(@this, center, radiusX, radiusY, col, (float)(0.0f), (int)(0), (float)(1.0f));
+			}
+		}
+
+		public unsafe void AddEllipse(Vector2 center, float radiusX, float radiusY, uint col, int numSegments)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddEllipseNative(@this, center, radiusX, radiusY, col, (float)(0.0f), numSegments, (float)(1.0f));
+			}
+		}
+
+		public unsafe void AddEllipse(Vector2 center, float radiusX, float radiusY, uint col, float rot, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddEllipseNative(@this, center, radiusX, radiusY, col, rot, (int)(0), thickness);
+			}
+		}
+
+		public unsafe void AddEllipse(Vector2 center, float radiusX, float radiusY, uint col, int numSegments, float thickness)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddEllipseNative(@this, center, radiusX, radiusY, col, (float)(0.0f), numSegments, thickness);
+			}
+		}
+
+		public unsafe void AddEllipseFilled(Vector2 center, float radiusX, float radiusY, uint col, float rot, int numSegments)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddEllipseFilledNative(@this, center, radiusX, radiusY, col, rot, numSegments);
+			}
+		}
+
+		public unsafe void AddEllipseFilled(Vector2 center, float radiusX, float radiusY, uint col, float rot)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddEllipseFilledNative(@this, center, radiusX, radiusY, col, rot, (int)(0));
+			}
+		}
+
+		public unsafe void AddEllipseFilled(Vector2 center, float radiusX, float radiusY, uint col)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddEllipseFilledNative(@this, center, radiusX, radiusY, col, (float)(0.0f), (int)(0));
+			}
+		}
+
+		public unsafe void AddEllipseFilled(Vector2 center, float radiusX, float radiusY, uint col, int numSegments)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.AddEllipseFilledNative(@this, center, radiusX, radiusY, col, (float)(0.0f), numSegments);
+			}
+		}
+
 		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
 		{
 			fixed (ImDrawList* @this = &this)
@@ -3720,6 +3808,22 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void PathEllipticalArcTo(Vector2 center, float radiusX, float radiusY, float rot, float aMin, float aMax, int numSegments)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PathEllipticalArcToNative(@this, center, radiusX, radiusY, rot, aMin, aMax, numSegments);
+			}
+		}
+
+		public unsafe void PathEllipticalArcTo(Vector2 center, float radiusX, float radiusY, float rot, float aMin, float aMax)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui.PathEllipticalArcToNative(@this, center, radiusX, radiusY, rot, aMin, aMax, (int)(0));
+			}
+		}
+
 		public unsafe void PathFillConvex(uint col)
 		{
 			fixed (ImDrawList* @this = &this)
@@ -4092,6 +4196,61 @@ namespace Hexa.NET.ImGui
 		public unsafe void AddDrawCmd()
 		{
 			ImGui.AddDrawCmdNative(Handle);
+		}
+
+		public unsafe void AddEllipse(Vector2 center, float radiusX, float radiusY, uint col, float rot, int numSegments, float thickness)
+		{
+			ImGui.AddEllipseNative(Handle, center, radiusX, radiusY, col, rot, numSegments, thickness);
+		}
+
+		public unsafe void AddEllipse(Vector2 center, float radiusX, float radiusY, uint col, float rot, int numSegments)
+		{
+			ImGui.AddEllipseNative(Handle, center, radiusX, radiusY, col, rot, numSegments, (float)(1.0f));
+		}
+
+		public unsafe void AddEllipse(Vector2 center, float radiusX, float radiusY, uint col, float rot)
+		{
+			ImGui.AddEllipseNative(Handle, center, radiusX, radiusY, col, rot, (int)(0), (float)(1.0f));
+		}
+
+		public unsafe void AddEllipse(Vector2 center, float radiusX, float radiusY, uint col)
+		{
+			ImGui.AddEllipseNative(Handle, center, radiusX, radiusY, col, (float)(0.0f), (int)(0), (float)(1.0f));
+		}
+
+		public unsafe void AddEllipse(Vector2 center, float radiusX, float radiusY, uint col, int numSegments)
+		{
+			ImGui.AddEllipseNative(Handle, center, radiusX, radiusY, col, (float)(0.0f), numSegments, (float)(1.0f));
+		}
+
+		public unsafe void AddEllipse(Vector2 center, float radiusX, float radiusY, uint col, float rot, float thickness)
+		{
+			ImGui.AddEllipseNative(Handle, center, radiusX, radiusY, col, rot, (int)(0), thickness);
+		}
+
+		public unsafe void AddEllipse(Vector2 center, float radiusX, float radiusY, uint col, int numSegments, float thickness)
+		{
+			ImGui.AddEllipseNative(Handle, center, radiusX, radiusY, col, (float)(0.0f), numSegments, thickness);
+		}
+
+		public unsafe void AddEllipseFilled(Vector2 center, float radiusX, float radiusY, uint col, float rot, int numSegments)
+		{
+			ImGui.AddEllipseFilledNative(Handle, center, radiusX, radiusY, col, rot, numSegments);
+		}
+
+		public unsafe void AddEllipseFilled(Vector2 center, float radiusX, float radiusY, uint col, float rot)
+		{
+			ImGui.AddEllipseFilledNative(Handle, center, radiusX, radiusY, col, rot, (int)(0));
+		}
+
+		public unsafe void AddEllipseFilled(Vector2 center, float radiusX, float radiusY, uint col)
+		{
+			ImGui.AddEllipseFilledNative(Handle, center, radiusX, radiusY, col, (float)(0.0f), (int)(0));
+		}
+
+		public unsafe void AddEllipseFilled(Vector2 center, float radiusX, float radiusY, uint col, int numSegments)
+		{
+			ImGui.AddEllipseFilledNative(Handle, center, radiusX, radiusY, col, (float)(0.0f), numSegments);
 		}
 
 		public unsafe void AddImage(ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
@@ -6886,6 +7045,16 @@ namespace Hexa.NET.ImGui
 		public unsafe void PathClear()
 		{
 			ImGui.PathClearNative(Handle);
+		}
+
+		public unsafe void PathEllipticalArcTo(Vector2 center, float radiusX, float radiusY, float rot, float aMin, float aMax, int numSegments)
+		{
+			ImGui.PathEllipticalArcToNative(Handle, center, radiusX, radiusY, rot, aMin, aMax, numSegments);
+		}
+
+		public unsafe void PathEllipticalArcTo(Vector2 center, float radiusX, float radiusY, float rot, float aMin, float aMax)
+		{
+			ImGui.PathEllipticalArcToNative(Handle, center, radiusX, radiusY, rot, aMin, aMax, (int)(0));
 		}
 
 		public unsafe void PathFillConvex(uint col)
@@ -12087,91 +12256,91 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontSize, sizePixels, fontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontSize, sizePixels, fontCfg, (char*)(default));
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, (char*)(default));
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, char* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 					return ret;
 				}
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontSize, sizePixels, fontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ref char glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -12179,98 +12348,98 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(@this, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 						return ret;
 					}
 				}
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontSize, sizePixels, fontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, fontCfg, glyphRanges);
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontSize, sizePixels, fontCfg, (char*)(default));
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, fontCfg, (char*)(default));
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, char* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (ImFontConfig* pfontCfg = &fontCfg)
 				{
-					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 					return ret;
 				}
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontSize, sizePixels, fontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, fontCfg, (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ref char glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontSize, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
@@ -12278,7 +12447,7 @@ namespace Hexa.NET.ImGui
 				{
 					fixed (char* pglyphRanges = &glyphRanges)
 					{
-						ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+						ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(@this, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 						return ret;
 					}
 				}
@@ -14429,145 +14598,145 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
-			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontSize, sizePixels, fontCfg, glyphRanges);
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
 			return ret;
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg)
 		{
-			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontSize, sizePixels, fontCfg, (char*)(default));
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, (char*)(default));
 			return ret;
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels)
 		{
-			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
 			return ret;
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, char* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, char* glyphRanges)
 		{
-			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
+			ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
 			return ret;
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (char* pglyphRanges = &glyphRanges)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontSize, sizePixels, fontCfg, (char*)pglyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, (char*)pglyphRanges);
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ref char glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref char glyphRanges)
 		{
 			fixed (char* pglyphRanges = &glyphRanges)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryCompressedTTF(void* compressedFontData, int compressedFontDataSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedTTFNative(Handle, compressedFontData, compressedFontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 					return ret;
 				}
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
-			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontSize, sizePixels, fontCfg, glyphRanges);
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, fontCfg, glyphRanges);
 			return ret;
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg)
 		{
-			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontSize, sizePixels, fontCfg, (char*)(default));
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, fontCfg, (char*)(default));
 			return ret;
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels)
 		{
-			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), (char*)(default));
 			return ret;
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, char* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, char* glyphRanges)
 		{
-			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
+			ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), glyphRanges);
 			return ret;
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref ImFontConfig fontCfg)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
 		{
 			fixed (char* pglyphRanges = &glyphRanges)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontSize, sizePixels, fontCfg, (char*)pglyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, fontCfg, (char*)pglyphRanges);
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ref char glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref char glyphRanges)
 		{
 			fixed (char* pglyphRanges = &glyphRanges)
 			{
-				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontSize, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
+				ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
 				return ret;
 			}
 		}
 
-		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		public unsafe ImFontPtr AddFontFromMemoryTTF(void* fontData, int fontDataSize, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
 			{
 				fixed (char* pglyphRanges = &glyphRanges)
 				{
-					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+					ImFontPtr ret = ImGui.AddFontFromMemoryTTFNative(Handle, fontData, fontDataSize, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
 					return ret;
 				}
 			}
@@ -15581,6 +15750,7 @@ namespace Hexa.NET.ImGui
 		public byte MergeMode;
 		public uint FontBuilderFlags;
 		public float RasterizerMultiply;
+		public float RasterizerDensity;
 		public char EllipsisChar;
 		public byte Name_0;
 		public byte Name_1;
@@ -15683,6 +15853,7 @@ namespace Hexa.NET.ImGui
 		public ref bool MergeMode => ref Unsafe.AsRef<bool>(&Handle->MergeMode);
 		public ref uint FontBuilderFlags => ref Unsafe.AsRef<uint>(&Handle->FontBuilderFlags);
 		public ref float RasterizerMultiply => ref Unsafe.AsRef<float>(&Handle->RasterizerMultiply);
+		public ref float RasterizerDensity => ref Unsafe.AsRef<float>(&Handle->RasterizerDensity);
 		public ref char EllipsisChar => ref Unsafe.AsRef<char>(&Handle->EllipsisChar);
 		public unsafe Span<byte> Name
 		
@@ -16987,6 +17158,7 @@ namespace Hexa.NET.ImGui
 		public ImGuiStorage WindowsById;
 		public int WindowsActiveCount;
 		public Vector2 WindowsHoverPadding;
+		public int DebugBreakInWindow;
 		public unsafe ImGuiWindow* CurrentWindow;
 		public unsafe ImGuiWindow* HoveredWindow;
 		public unsafe ImGuiWindow* HoveredWindowUnderMovingWindow;
@@ -16994,6 +17166,7 @@ namespace Hexa.NET.ImGui
 		public unsafe ImGuiWindow* WheelingWindow;
 		public Vector2 WheelingWindowRefMousePos;
 		public int WheelingWindowStartFrame;
+		public int WheelingWindowScrolledFrame;
 		public float WheelingWindowReleaseTimer;
 		public Vector2 WheelingWindowWheelRemainder;
 		public Vector2 WheelingAxisAvg;
@@ -17013,16 +17186,21 @@ namespace Hexa.NET.ImGui
 		public byte ActiveIdHasBeenPressedBefore;
 		public byte ActiveIdHasBeenEditedBefore;
 		public byte ActiveIdHasBeenEditedThisFrame;
+		public byte ActiveIdFromShortcut;
+		public int ActiveIdMouseButton;
 		public Vector2 ActiveIdClickOffset;
 		public unsafe ImGuiWindow* ActiveIdWindow;
 		public ImGuiInputSource ActiveIdSource;
-		public int ActiveIdMouseButton;
 		public int ActiveIdPreviousFrame;
 		public byte ActiveIdPreviousFrameIsAlive;
 		public byte ActiveIdPreviousFrameHasBeenEditedBefore;
 		public unsafe ImGuiWindow* ActiveIdPreviousFrameWindow;
 		public int LastActiveId;
 		public float LastActiveIdTimer;
+		public double LastKeyModsChangeTime;
+		public double LastKeyModsChangeFromNoneTime;
+		public double LastKeyboardKeyPressTime;
+		public nuint KeysMayBeCharInput;
 		public ImGuiKeyOwnerData KeysOwnerData_0;
 		public ImGuiKeyOwnerData KeysOwnerData_1;
 		public ImGuiKeyOwnerData KeysOwnerData_2;
@@ -17163,26 +17341,41 @@ namespace Hexa.NET.ImGui
 		public ImGuiKeyOwnerData KeysOwnerData_137;
 		public ImGuiKeyOwnerData KeysOwnerData_138;
 		public ImGuiKeyOwnerData KeysOwnerData_139;
+		public ImGuiKeyOwnerData KeysOwnerData_140;
+		public ImGuiKeyOwnerData KeysOwnerData_141;
+		public ImGuiKeyOwnerData KeysOwnerData_142;
+		public ImGuiKeyOwnerData KeysOwnerData_143;
+		public ImGuiKeyOwnerData KeysOwnerData_144;
+		public ImGuiKeyOwnerData KeysOwnerData_145;
+		public ImGuiKeyOwnerData KeysOwnerData_146;
+		public ImGuiKeyOwnerData KeysOwnerData_147;
+		public ImGuiKeyOwnerData KeysOwnerData_148;
+		public ImGuiKeyOwnerData KeysOwnerData_149;
+		public ImGuiKeyOwnerData KeysOwnerData_150;
+		public ImGuiKeyOwnerData KeysOwnerData_151;
+		public ImGuiKeyOwnerData KeysOwnerData_152;
+		public ImGuiKeyOwnerData KeysOwnerData_153;
 		public ImGuiKeyRoutingTable KeysRoutingTable;
 		public uint ActiveIdUsingNavDirMask;
 		public byte ActiveIdUsingAllKeyboardKeys;
-		public uint ActiveIdUsingNavInputMask;
+		public int DebugBreakInShortcutRouting;
 		public int CurrentFocusScopeId;
 		public ImGuiItemFlags CurrentItemFlags;
 		public int DebugLocateId;
 		public ImGuiNextItemData NextItemData;
 		public ImGuiLastItemData LastItemData;
 		public ImGuiNextWindowData NextWindowData;
+		public byte DebugShowGroupRects;
+		public ImGuiCol DebugFlashStyleColorIdx;
 		public ImVectorImGuiColorMod ColorStack;
 		public ImVectorImGuiStyleMod StyleVarStack;
 		public ImVectorImFontPtr FontStack;
-		public ImVectorImGuiID FocusScopeStack;
+		public ImVectorImGuiFocusScopeData FocusScopeStack;
 		public ImVectorImGuiItemFlags ItemFlagsStack;
 		public ImVectorImGuiGroupData GroupStack;
 		public ImVectorImGuiPopupData OpenPopupStack;
 		public ImVectorImGuiPopupData BeginPopupStack;
 		public ImVectorImGuiNavTreeNodeData NavTreeNodeStack;
-		public int BeginMenuCount;
 		public ImVectorImGuiViewportPPtr Viewports;
 		public float CurrentDpiScale;
 		public unsafe ImGuiViewportP* CurrentViewport;
@@ -17190,16 +17383,20 @@ namespace Hexa.NET.ImGui
 		public unsafe ImGuiViewportP* MouseLastHoveredViewport;
 		public int PlatformLastFocusedViewportId;
 		public ImGuiPlatformMonitor FallbackMonitor;
+		public ImRect PlatformMonitorsFullWorkRect;
 		public int ViewportCreatedCount;
 		public int PlatformWindowsCreatedCount;
 		public int ViewportFocusedStampCount;
 		public unsafe ImGuiWindow* NavWindow;
 		public int NavId;
 		public int NavFocusScopeId;
+		public ImVectorImGuiFocusScopeData NavFocusRoute;
 		public int NavActivateId;
 		public int NavActivateDownId;
 		public int NavActivatePressedId;
 		public ImGuiActivateFlags NavActivateFlags;
+		public int NavHighlightActivatedId;
+		public float NavHighlightActivatedTimer;
 		public int NavJustMovedToId;
 		public int NavJustMovedToFocusScopeId;
 		public int NavJustMovedToKeyMods;
@@ -17207,6 +17404,7 @@ namespace Hexa.NET.ImGui
 		public ImGuiActivateFlags NavNextActivateFlags;
 		public ImGuiInputSource NavInputSource;
 		public ImGuiNavLayer NavLayer;
+		public long NavLastValidSelectionUserData;
 		public byte NavIdIsAlive;
 		public byte NavMousePosDirty;
 		public byte NavDisableHighlight;
@@ -17241,6 +17439,7 @@ namespace Hexa.NET.ImGui
 		public float NavWindowingTimer;
 		public float NavWindowingHighlightAlpha;
 		public byte NavWindowingToggleLayer;
+		public ImGuiKey NavWindowingToggleKey;
 		public Vector2 NavWindowingAccumDeltaPos;
 		public Vector2 NavWindowingAccumDeltaSize;
 		public float DimBgRatio;
@@ -17252,6 +17451,7 @@ namespace Hexa.NET.ImGui
 		public int DragDropMouseButton;
 		public ImGuiPayload DragDropPayload;
 		public ImRect DragDropTargetRect;
+		public ImRect DragDropTargetClipRect;
 		public int DragDropTargetId;
 		public ImGuiDragDropFlags DragDropAcceptFlags;
 		public float DragDropAcceptIdCurrRectSurface;
@@ -17279,6 +17479,7 @@ namespace Hexa.NET.ImGui
 		public int ClipperTempDataStacked;
 		public ImVectorImGuiListClipperData ClipperTempData;
 		public unsafe ImGuiTable* CurrentTable;
+		public int DebugBreakInTable;
 		public int TablesTempDataStacked;
 		public ImVectorImGuiTableTempData TablesTempData;
 		public ImPoolImGuiTable Tables;
@@ -17301,6 +17502,8 @@ namespace Hexa.NET.ImGui
 		public ImGuiInputTextDeactivatedState InputTextDeactivatedState;
 		public ImFont InputTextPasswordFont;
 		public int TempInputId;
+		public int BeginMenuDepth;
+		public int BeginComboDepth;
 		public ImGuiColorEditFlags ColorEditOptions;
 		public int ColorEditCurrentID;
 		public int ColorEditSavedID;
@@ -17309,6 +17512,8 @@ namespace Hexa.NET.ImGui
 		public uint ColorEditSavedColor;
 		public Vector4 ColorPickerRef;
 		public ImGuiComboPreviewData ComboPreviewData;
+		public ImRect WindowResizeBorderExpectedRect;
+		public byte WindowResizeRelativeMode;
 		public float SliderGrabClickOffset;
 		public float SliderCurrentAccum;
 		public byte SliderCurrentAccumDirty;
@@ -17322,6 +17527,7 @@ namespace Hexa.NET.ImGui
 		public short TooltipOverrideCount;
 		public ImVectorChar ClipboardHandlerData;
 		public ImVectorImGuiID MenusIdSubmittedThisFrame;
+		public ImGuiTypingSelectState TypingSelectState;
 		public ImGuiPlatformImeData PlatformImeData;
 		public ImGuiPlatformImeData PlatformImeDataPrev;
 		public int PlatformImeViewport;
@@ -17345,6 +17551,7 @@ namespace Hexa.NET.ImGui
 		public unsafe byte* LocalizationTable_7;
 		public unsafe byte* LocalizationTable_8;
 		public unsafe byte* LocalizationTable_9;
+		public unsafe byte* LocalizationTable_10;
 		public byte LogEnabled;
 		public ImGuiLogType LogType;
 		public ImFileHandle LogFile;
@@ -17359,14 +17566,20 @@ namespace Hexa.NET.ImGui
 		public ImGuiDebugLogFlags DebugLogFlags;
 		public ImGuiTextBuffer DebugLogBuf;
 		public ImGuiTextIndex DebugLogIndex;
-		public byte DebugLogClipperAutoDisableFrames;
+		public ImGuiDebugLogFlags DebugLogAutoDisableFlags;
+		public byte DebugLogAutoDisableFrames;
 		public byte DebugLocateFrames;
+		public byte DebugBreakInLocateId;
+		public int DebugBreakKeyChord;
 		public sbyte DebugBeginReturnValueCullDepth;
 		public byte DebugItemPickerActive;
 		public byte DebugItemPickerMouseButton;
 		public int DebugItemPickerBreakId;
+		public float DebugFlashStyleColorTime;
+		public Vector4 DebugFlashStyleColorBackup;
 		public ImGuiMetricsConfig DebugMetricsConfig;
-		public ImGuiStackTool DebugStackTool;
+		public ImGuiIDStackTool DebugIDStackTool;
+		public ImGuiDebugAllocInfo DebugAllocInfo;
 		public unsafe ImGuiDockNode* DebugHoveredDockNode;
 		public float FramerateSecPerFrame_0;
 		public float FramerateSecPerFrame_1;
@@ -17435,6 +17648,70 @@ namespace Hexa.NET.ImGui
 		public int WantCaptureKeyboardNextFrame;
 		public int WantTextInputNextFrame;
 		public ImVectorChar TempBuffer;
+		public byte TempKeychordName_0;
+		public byte TempKeychordName_1;
+		public byte TempKeychordName_2;
+		public byte TempKeychordName_3;
+		public byte TempKeychordName_4;
+		public byte TempKeychordName_5;
+		public byte TempKeychordName_6;
+		public byte TempKeychordName_7;
+		public byte TempKeychordName_8;
+		public byte TempKeychordName_9;
+		public byte TempKeychordName_10;
+		public byte TempKeychordName_11;
+		public byte TempKeychordName_12;
+		public byte TempKeychordName_13;
+		public byte TempKeychordName_14;
+		public byte TempKeychordName_15;
+		public byte TempKeychordName_16;
+		public byte TempKeychordName_17;
+		public byte TempKeychordName_18;
+		public byte TempKeychordName_19;
+		public byte TempKeychordName_20;
+		public byte TempKeychordName_21;
+		public byte TempKeychordName_22;
+		public byte TempKeychordName_23;
+		public byte TempKeychordName_24;
+		public byte TempKeychordName_25;
+		public byte TempKeychordName_26;
+		public byte TempKeychordName_27;
+		public byte TempKeychordName_28;
+		public byte TempKeychordName_29;
+		public byte TempKeychordName_30;
+		public byte TempKeychordName_31;
+		public byte TempKeychordName_32;
+		public byte TempKeychordName_33;
+		public byte TempKeychordName_34;
+		public byte TempKeychordName_35;
+		public byte TempKeychordName_36;
+		public byte TempKeychordName_37;
+		public byte TempKeychordName_38;
+		public byte TempKeychordName_39;
+		public byte TempKeychordName_40;
+		public byte TempKeychordName_41;
+		public byte TempKeychordName_42;
+		public byte TempKeychordName_43;
+		public byte TempKeychordName_44;
+		public byte TempKeychordName_45;
+		public byte TempKeychordName_46;
+		public byte TempKeychordName_47;
+		public byte TempKeychordName_48;
+		public byte TempKeychordName_49;
+		public byte TempKeychordName_50;
+		public byte TempKeychordName_51;
+		public byte TempKeychordName_52;
+		public byte TempKeychordName_53;
+		public byte TempKeychordName_54;
+		public byte TempKeychordName_55;
+		public byte TempKeychordName_56;
+		public byte TempKeychordName_57;
+		public byte TempKeychordName_58;
+		public byte TempKeychordName_59;
+		public byte TempKeychordName_60;
+		public byte TempKeychordName_61;
+		public byte TempKeychordName_62;
+		public byte TempKeychordName_63;
 
 		public unsafe Span<ImGuiKeyOwnerData> KeysOwnerData
 		
@@ -17443,7 +17720,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (ImGuiKeyOwnerData* p = &this.KeysOwnerData_0)
 				{
-					return new Span<ImGuiKeyOwnerData>(p, 140);
+					return new Span<ImGuiKeyOwnerData>(p, 154);
 				}
 			}
 		}
@@ -17514,6 +17791,7 @@ namespace Hexa.NET.ImGui
 		public ref ImGuiStorage WindowsById => ref Unsafe.AsRef<ImGuiStorage>(&Handle->WindowsById);
 		public ref int WindowsActiveCount => ref Unsafe.AsRef<int>(&Handle->WindowsActiveCount);
 		public ref Vector2 WindowsHoverPadding => ref Unsafe.AsRef<Vector2>(&Handle->WindowsHoverPadding);
+		public ref int DebugBreakInWindow => ref Unsafe.AsRef<int>(&Handle->DebugBreakInWindow);
 		public ref ImGuiWindowPtr CurrentWindow => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->CurrentWindow);
 		public ref ImGuiWindowPtr HoveredWindow => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->HoveredWindow);
 		public ref ImGuiWindowPtr HoveredWindowUnderMovingWindow => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->HoveredWindowUnderMovingWindow);
@@ -17521,6 +17799,7 @@ namespace Hexa.NET.ImGui
 		public ref ImGuiWindowPtr WheelingWindow => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->WheelingWindow);
 		public ref Vector2 WheelingWindowRefMousePos => ref Unsafe.AsRef<Vector2>(&Handle->WheelingWindowRefMousePos);
 		public ref int WheelingWindowStartFrame => ref Unsafe.AsRef<int>(&Handle->WheelingWindowStartFrame);
+		public ref int WheelingWindowScrolledFrame => ref Unsafe.AsRef<int>(&Handle->WheelingWindowScrolledFrame);
 		public ref float WheelingWindowReleaseTimer => ref Unsafe.AsRef<float>(&Handle->WheelingWindowReleaseTimer);
 		public ref Vector2 WheelingWindowWheelRemainder => ref Unsafe.AsRef<Vector2>(&Handle->WheelingWindowWheelRemainder);
 		public ref Vector2 WheelingAxisAvg => ref Unsafe.AsRef<Vector2>(&Handle->WheelingAxisAvg);
@@ -17540,44 +17819,50 @@ namespace Hexa.NET.ImGui
 		public ref bool ActiveIdHasBeenPressedBefore => ref Unsafe.AsRef<bool>(&Handle->ActiveIdHasBeenPressedBefore);
 		public ref bool ActiveIdHasBeenEditedBefore => ref Unsafe.AsRef<bool>(&Handle->ActiveIdHasBeenEditedBefore);
 		public ref bool ActiveIdHasBeenEditedThisFrame => ref Unsafe.AsRef<bool>(&Handle->ActiveIdHasBeenEditedThisFrame);
+		public ref bool ActiveIdFromShortcut => ref Unsafe.AsRef<bool>(&Handle->ActiveIdFromShortcut);
+		public ref int ActiveIdMouseButton => ref Unsafe.AsRef<int>(&Handle->ActiveIdMouseButton);
 		public ref Vector2 ActiveIdClickOffset => ref Unsafe.AsRef<Vector2>(&Handle->ActiveIdClickOffset);
 		public ref ImGuiWindowPtr ActiveIdWindow => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->ActiveIdWindow);
 		public ref ImGuiInputSource ActiveIdSource => ref Unsafe.AsRef<ImGuiInputSource>(&Handle->ActiveIdSource);
-		public ref int ActiveIdMouseButton => ref Unsafe.AsRef<int>(&Handle->ActiveIdMouseButton);
 		public ref int ActiveIdPreviousFrame => ref Unsafe.AsRef<int>(&Handle->ActiveIdPreviousFrame);
 		public ref bool ActiveIdPreviousFrameIsAlive => ref Unsafe.AsRef<bool>(&Handle->ActiveIdPreviousFrameIsAlive);
 		public ref bool ActiveIdPreviousFrameHasBeenEditedBefore => ref Unsafe.AsRef<bool>(&Handle->ActiveIdPreviousFrameHasBeenEditedBefore);
 		public ref ImGuiWindowPtr ActiveIdPreviousFrameWindow => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->ActiveIdPreviousFrameWindow);
 		public ref int LastActiveId => ref Unsafe.AsRef<int>(&Handle->LastActiveId);
 		public ref float LastActiveIdTimer => ref Unsafe.AsRef<float>(&Handle->LastActiveIdTimer);
+		public ref double LastKeyModsChangeTime => ref Unsafe.AsRef<double>(&Handle->LastKeyModsChangeTime);
+		public ref double LastKeyModsChangeFromNoneTime => ref Unsafe.AsRef<double>(&Handle->LastKeyModsChangeFromNoneTime);
+		public ref double LastKeyboardKeyPressTime => ref Unsafe.AsRef<double>(&Handle->LastKeyboardKeyPressTime);
+		public ref nuint KeysMayBeCharInput => ref Unsafe.AsRef<nuint>(&Handle->KeysMayBeCharInput);
 		public unsafe Span<ImGuiKeyOwnerData> KeysOwnerData
 		
 		{
 			get
 			{
-				return new Span<ImGuiKeyOwnerData>(&Handle->KeysOwnerData_0, 140);
+				return new Span<ImGuiKeyOwnerData>(&Handle->KeysOwnerData_0, 154);
 			}
 		}
 		public ref ImGuiKeyRoutingTable KeysRoutingTable => ref Unsafe.AsRef<ImGuiKeyRoutingTable>(&Handle->KeysRoutingTable);
 		public ref uint ActiveIdUsingNavDirMask => ref Unsafe.AsRef<uint>(&Handle->ActiveIdUsingNavDirMask);
 		public ref bool ActiveIdUsingAllKeyboardKeys => ref Unsafe.AsRef<bool>(&Handle->ActiveIdUsingAllKeyboardKeys);
-		public ref uint ActiveIdUsingNavInputMask => ref Unsafe.AsRef<uint>(&Handle->ActiveIdUsingNavInputMask);
+		public ref int DebugBreakInShortcutRouting => ref Unsafe.AsRef<int>(&Handle->DebugBreakInShortcutRouting);
 		public ref int CurrentFocusScopeId => ref Unsafe.AsRef<int>(&Handle->CurrentFocusScopeId);
 		public ref ImGuiItemFlags CurrentItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->CurrentItemFlags);
 		public ref int DebugLocateId => ref Unsafe.AsRef<int>(&Handle->DebugLocateId);
 		public ref ImGuiNextItemData NextItemData => ref Unsafe.AsRef<ImGuiNextItemData>(&Handle->NextItemData);
 		public ref ImGuiLastItemData LastItemData => ref Unsafe.AsRef<ImGuiLastItemData>(&Handle->LastItemData);
 		public ref ImGuiNextWindowData NextWindowData => ref Unsafe.AsRef<ImGuiNextWindowData>(&Handle->NextWindowData);
+		public ref bool DebugShowGroupRects => ref Unsafe.AsRef<bool>(&Handle->DebugShowGroupRects);
+		public ref ImGuiCol DebugFlashStyleColorIdx => ref Unsafe.AsRef<ImGuiCol>(&Handle->DebugFlashStyleColorIdx);
 		public ref ImVectorImGuiColorMod ColorStack => ref Unsafe.AsRef<ImVectorImGuiColorMod>(&Handle->ColorStack);
 		public ref ImVectorImGuiStyleMod StyleVarStack => ref Unsafe.AsRef<ImVectorImGuiStyleMod>(&Handle->StyleVarStack);
 		public ref ImVectorImFontPtr FontStack => ref Unsafe.AsRef<ImVectorImFontPtr>(&Handle->FontStack);
-		public ref ImVectorImGuiID FocusScopeStack => ref Unsafe.AsRef<ImVectorImGuiID>(&Handle->FocusScopeStack);
+		public ref ImVectorImGuiFocusScopeData FocusScopeStack => ref Unsafe.AsRef<ImVectorImGuiFocusScopeData>(&Handle->FocusScopeStack);
 		public ref ImVectorImGuiItemFlags ItemFlagsStack => ref Unsafe.AsRef<ImVectorImGuiItemFlags>(&Handle->ItemFlagsStack);
 		public ref ImVectorImGuiGroupData GroupStack => ref Unsafe.AsRef<ImVectorImGuiGroupData>(&Handle->GroupStack);
 		public ref ImVectorImGuiPopupData OpenPopupStack => ref Unsafe.AsRef<ImVectorImGuiPopupData>(&Handle->OpenPopupStack);
 		public ref ImVectorImGuiPopupData BeginPopupStack => ref Unsafe.AsRef<ImVectorImGuiPopupData>(&Handle->BeginPopupStack);
 		public ref ImVectorImGuiNavTreeNodeData NavTreeNodeStack => ref Unsafe.AsRef<ImVectorImGuiNavTreeNodeData>(&Handle->NavTreeNodeStack);
-		public ref int BeginMenuCount => ref Unsafe.AsRef<int>(&Handle->BeginMenuCount);
 		public ref ImVectorImGuiViewportPPtr Viewports => ref Unsafe.AsRef<ImVectorImGuiViewportPPtr>(&Handle->Viewports);
 		public ref float CurrentDpiScale => ref Unsafe.AsRef<float>(&Handle->CurrentDpiScale);
 		public ref ImGuiViewportPPtr CurrentViewport => ref Unsafe.AsRef<ImGuiViewportPPtr>(&Handle->CurrentViewport);
@@ -17585,16 +17870,20 @@ namespace Hexa.NET.ImGui
 		public ref ImGuiViewportPPtr MouseLastHoveredViewport => ref Unsafe.AsRef<ImGuiViewportPPtr>(&Handle->MouseLastHoveredViewport);
 		public ref int PlatformLastFocusedViewportId => ref Unsafe.AsRef<int>(&Handle->PlatformLastFocusedViewportId);
 		public ref ImGuiPlatformMonitor FallbackMonitor => ref Unsafe.AsRef<ImGuiPlatformMonitor>(&Handle->FallbackMonitor);
+		public ref ImRect PlatformMonitorsFullWorkRect => ref Unsafe.AsRef<ImRect>(&Handle->PlatformMonitorsFullWorkRect);
 		public ref int ViewportCreatedCount => ref Unsafe.AsRef<int>(&Handle->ViewportCreatedCount);
 		public ref int PlatformWindowsCreatedCount => ref Unsafe.AsRef<int>(&Handle->PlatformWindowsCreatedCount);
 		public ref int ViewportFocusedStampCount => ref Unsafe.AsRef<int>(&Handle->ViewportFocusedStampCount);
 		public ref ImGuiWindowPtr NavWindow => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->NavWindow);
 		public ref int NavId => ref Unsafe.AsRef<int>(&Handle->NavId);
 		public ref int NavFocusScopeId => ref Unsafe.AsRef<int>(&Handle->NavFocusScopeId);
+		public ref ImVectorImGuiFocusScopeData NavFocusRoute => ref Unsafe.AsRef<ImVectorImGuiFocusScopeData>(&Handle->NavFocusRoute);
 		public ref int NavActivateId => ref Unsafe.AsRef<int>(&Handle->NavActivateId);
 		public ref int NavActivateDownId => ref Unsafe.AsRef<int>(&Handle->NavActivateDownId);
 		public ref int NavActivatePressedId => ref Unsafe.AsRef<int>(&Handle->NavActivatePressedId);
 		public ref ImGuiActivateFlags NavActivateFlags => ref Unsafe.AsRef<ImGuiActivateFlags>(&Handle->NavActivateFlags);
+		public ref int NavHighlightActivatedId => ref Unsafe.AsRef<int>(&Handle->NavHighlightActivatedId);
+		public ref float NavHighlightActivatedTimer => ref Unsafe.AsRef<float>(&Handle->NavHighlightActivatedTimer);
 		public ref int NavJustMovedToId => ref Unsafe.AsRef<int>(&Handle->NavJustMovedToId);
 		public ref int NavJustMovedToFocusScopeId => ref Unsafe.AsRef<int>(&Handle->NavJustMovedToFocusScopeId);
 		public ref int NavJustMovedToKeyMods => ref Unsafe.AsRef<int>(&Handle->NavJustMovedToKeyMods);
@@ -17602,6 +17891,7 @@ namespace Hexa.NET.ImGui
 		public ref ImGuiActivateFlags NavNextActivateFlags => ref Unsafe.AsRef<ImGuiActivateFlags>(&Handle->NavNextActivateFlags);
 		public ref ImGuiInputSource NavInputSource => ref Unsafe.AsRef<ImGuiInputSource>(&Handle->NavInputSource);
 		public ref ImGuiNavLayer NavLayer => ref Unsafe.AsRef<ImGuiNavLayer>(&Handle->NavLayer);
+		public ref long NavLastValidSelectionUserData => ref Unsafe.AsRef<long>(&Handle->NavLastValidSelectionUserData);
 		public ref bool NavIdIsAlive => ref Unsafe.AsRef<bool>(&Handle->NavIdIsAlive);
 		public ref bool NavMousePosDirty => ref Unsafe.AsRef<bool>(&Handle->NavMousePosDirty);
 		public ref bool NavDisableHighlight => ref Unsafe.AsRef<bool>(&Handle->NavDisableHighlight);
@@ -17636,6 +17926,7 @@ namespace Hexa.NET.ImGui
 		public ref float NavWindowingTimer => ref Unsafe.AsRef<float>(&Handle->NavWindowingTimer);
 		public ref float NavWindowingHighlightAlpha => ref Unsafe.AsRef<float>(&Handle->NavWindowingHighlightAlpha);
 		public ref bool NavWindowingToggleLayer => ref Unsafe.AsRef<bool>(&Handle->NavWindowingToggleLayer);
+		public ref ImGuiKey NavWindowingToggleKey => ref Unsafe.AsRef<ImGuiKey>(&Handle->NavWindowingToggleKey);
 		public ref Vector2 NavWindowingAccumDeltaPos => ref Unsafe.AsRef<Vector2>(&Handle->NavWindowingAccumDeltaPos);
 		public ref Vector2 NavWindowingAccumDeltaSize => ref Unsafe.AsRef<Vector2>(&Handle->NavWindowingAccumDeltaSize);
 		public ref float DimBgRatio => ref Unsafe.AsRef<float>(&Handle->DimBgRatio);
@@ -17647,6 +17938,7 @@ namespace Hexa.NET.ImGui
 		public ref int DragDropMouseButton => ref Unsafe.AsRef<int>(&Handle->DragDropMouseButton);
 		public ref ImGuiPayload DragDropPayload => ref Unsafe.AsRef<ImGuiPayload>(&Handle->DragDropPayload);
 		public ref ImRect DragDropTargetRect => ref Unsafe.AsRef<ImRect>(&Handle->DragDropTargetRect);
+		public ref ImRect DragDropTargetClipRect => ref Unsafe.AsRef<ImRect>(&Handle->DragDropTargetClipRect);
 		public ref int DragDropTargetId => ref Unsafe.AsRef<int>(&Handle->DragDropTargetId);
 		public ref ImGuiDragDropFlags DragDropAcceptFlags => ref Unsafe.AsRef<ImGuiDragDropFlags>(&Handle->DragDropAcceptFlags);
 		public ref float DragDropAcceptIdCurrRectSurface => ref Unsafe.AsRef<float>(&Handle->DragDropAcceptIdCurrRectSurface);
@@ -17666,6 +17958,7 @@ namespace Hexa.NET.ImGui
 		public ref int ClipperTempDataStacked => ref Unsafe.AsRef<int>(&Handle->ClipperTempDataStacked);
 		public ref ImVectorImGuiListClipperData ClipperTempData => ref Unsafe.AsRef<ImVectorImGuiListClipperData>(&Handle->ClipperTempData);
 		public ref ImGuiTablePtr CurrentTable => ref Unsafe.AsRef<ImGuiTablePtr>(&Handle->CurrentTable);
+		public ref int DebugBreakInTable => ref Unsafe.AsRef<int>(&Handle->DebugBreakInTable);
 		public ref int TablesTempDataStacked => ref Unsafe.AsRef<int>(&Handle->TablesTempDataStacked);
 		public ref ImVectorImGuiTableTempData TablesTempData => ref Unsafe.AsRef<ImVectorImGuiTableTempData>(&Handle->TablesTempData);
 		public ref ImPoolImGuiTable Tables => ref Unsafe.AsRef<ImPoolImGuiTable>(&Handle->Tables);
@@ -17688,6 +17981,8 @@ namespace Hexa.NET.ImGui
 		public ref ImGuiInputTextDeactivatedState InputTextDeactivatedState => ref Unsafe.AsRef<ImGuiInputTextDeactivatedState>(&Handle->InputTextDeactivatedState);
 		public ref ImFont InputTextPasswordFont => ref Unsafe.AsRef<ImFont>(&Handle->InputTextPasswordFont);
 		public ref int TempInputId => ref Unsafe.AsRef<int>(&Handle->TempInputId);
+		public ref int BeginMenuDepth => ref Unsafe.AsRef<int>(&Handle->BeginMenuDepth);
+		public ref int BeginComboDepth => ref Unsafe.AsRef<int>(&Handle->BeginComboDepth);
 		public ref ImGuiColorEditFlags ColorEditOptions => ref Unsafe.AsRef<ImGuiColorEditFlags>(&Handle->ColorEditOptions);
 		public ref int ColorEditCurrentID => ref Unsafe.AsRef<int>(&Handle->ColorEditCurrentID);
 		public ref int ColorEditSavedID => ref Unsafe.AsRef<int>(&Handle->ColorEditSavedID);
@@ -17696,6 +17991,8 @@ namespace Hexa.NET.ImGui
 		public ref uint ColorEditSavedColor => ref Unsafe.AsRef<uint>(&Handle->ColorEditSavedColor);
 		public ref Vector4 ColorPickerRef => ref Unsafe.AsRef<Vector4>(&Handle->ColorPickerRef);
 		public ref ImGuiComboPreviewData ComboPreviewData => ref Unsafe.AsRef<ImGuiComboPreviewData>(&Handle->ComboPreviewData);
+		public ref ImRect WindowResizeBorderExpectedRect => ref Unsafe.AsRef<ImRect>(&Handle->WindowResizeBorderExpectedRect);
+		public ref bool WindowResizeRelativeMode => ref Unsafe.AsRef<bool>(&Handle->WindowResizeRelativeMode);
 		public ref float SliderGrabClickOffset => ref Unsafe.AsRef<float>(&Handle->SliderGrabClickOffset);
 		public ref float SliderCurrentAccum => ref Unsafe.AsRef<float>(&Handle->SliderCurrentAccum);
 		public ref bool SliderCurrentAccumDirty => ref Unsafe.AsRef<bool>(&Handle->SliderCurrentAccumDirty);
@@ -17709,6 +18006,7 @@ namespace Hexa.NET.ImGui
 		public ref short TooltipOverrideCount => ref Unsafe.AsRef<short>(&Handle->TooltipOverrideCount);
 		public ref ImVectorChar ClipboardHandlerData => ref Unsafe.AsRef<ImVectorChar>(&Handle->ClipboardHandlerData);
 		public ref ImVectorImGuiID MenusIdSubmittedThisFrame => ref Unsafe.AsRef<ImVectorImGuiID>(&Handle->MenusIdSubmittedThisFrame);
+		public ref ImGuiTypingSelectState TypingSelectState => ref Unsafe.AsRef<ImGuiTypingSelectState>(&Handle->TypingSelectState);
 		public ref ImGuiPlatformImeData PlatformImeData => ref Unsafe.AsRef<ImGuiPlatformImeData>(&Handle->PlatformImeData);
 		public ref ImGuiPlatformImeData PlatformImeDataPrev => ref Unsafe.AsRef<ImGuiPlatformImeData>(&Handle->PlatformImeDataPrev);
 		public ref int PlatformImeViewport => ref Unsafe.AsRef<int>(&Handle->PlatformImeViewport);
@@ -17736,14 +18034,20 @@ namespace Hexa.NET.ImGui
 		public ref ImGuiDebugLogFlags DebugLogFlags => ref Unsafe.AsRef<ImGuiDebugLogFlags>(&Handle->DebugLogFlags);
 		public ref ImGuiTextBuffer DebugLogBuf => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->DebugLogBuf);
 		public ref ImGuiTextIndex DebugLogIndex => ref Unsafe.AsRef<ImGuiTextIndex>(&Handle->DebugLogIndex);
-		public ref byte DebugLogClipperAutoDisableFrames => ref Unsafe.AsRef<byte>(&Handle->DebugLogClipperAutoDisableFrames);
+		public ref ImGuiDebugLogFlags DebugLogAutoDisableFlags => ref Unsafe.AsRef<ImGuiDebugLogFlags>(&Handle->DebugLogAutoDisableFlags);
+		public ref byte DebugLogAutoDisableFrames => ref Unsafe.AsRef<byte>(&Handle->DebugLogAutoDisableFrames);
 		public ref byte DebugLocateFrames => ref Unsafe.AsRef<byte>(&Handle->DebugLocateFrames);
+		public ref bool DebugBreakInLocateId => ref Unsafe.AsRef<bool>(&Handle->DebugBreakInLocateId);
+		public ref int DebugBreakKeyChord => ref Unsafe.AsRef<int>(&Handle->DebugBreakKeyChord);
 		public ref sbyte DebugBeginReturnValueCullDepth => ref Unsafe.AsRef<sbyte>(&Handle->DebugBeginReturnValueCullDepth);
 		public ref bool DebugItemPickerActive => ref Unsafe.AsRef<bool>(&Handle->DebugItemPickerActive);
 		public ref byte DebugItemPickerMouseButton => ref Unsafe.AsRef<byte>(&Handle->DebugItemPickerMouseButton);
 		public ref int DebugItemPickerBreakId => ref Unsafe.AsRef<int>(&Handle->DebugItemPickerBreakId);
+		public ref float DebugFlashStyleColorTime => ref Unsafe.AsRef<float>(&Handle->DebugFlashStyleColorTime);
+		public ref Vector4 DebugFlashStyleColorBackup => ref Unsafe.AsRef<Vector4>(&Handle->DebugFlashStyleColorBackup);
 		public ref ImGuiMetricsConfig DebugMetricsConfig => ref Unsafe.AsRef<ImGuiMetricsConfig>(&Handle->DebugMetricsConfig);
-		public ref ImGuiStackTool DebugStackTool => ref Unsafe.AsRef<ImGuiStackTool>(&Handle->DebugStackTool);
+		public ref ImGuiIDStackTool DebugIDStackTool => ref Unsafe.AsRef<ImGuiIDStackTool>(&Handle->DebugIDStackTool);
+		public ref ImGuiDebugAllocInfo DebugAllocInfo => ref Unsafe.AsRef<ImGuiDebugAllocInfo>(&Handle->DebugAllocInfo);
 		public ref ImGuiDockNodePtr DebugHoveredDockNode => ref Unsafe.AsRef<ImGuiDockNodePtr>(&Handle->DebugHoveredDockNode);
 		public unsafe Span<float> FramerateSecPerFrame
 		
@@ -17760,6 +18064,14 @@ namespace Hexa.NET.ImGui
 		public ref int WantCaptureKeyboardNextFrame => ref Unsafe.AsRef<int>(&Handle->WantCaptureKeyboardNextFrame);
 		public ref int WantTextInputNextFrame => ref Unsafe.AsRef<int>(&Handle->WantTextInputNextFrame);
 		public ref ImVectorChar TempBuffer => ref Unsafe.AsRef<ImVectorChar>(&Handle->TempBuffer);
+		public unsafe Span<byte> TempKeychordName
+		
+		{
+			get
+			{
+				return new Span<byte>(&Handle->TempKeychordName_0, 64);
+			}
+		}
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -17800,6 +18112,7 @@ namespace Hexa.NET.ImGui
 		public float MouseDragThreshold;
 		public float KeyRepeatDelay;
 		public float KeyRepeatRate;
+		public byte ConfigDebugIsDebuggerPresent;
 		public byte ConfigDebugBeginReturnValueOnce;
 		public byte ConfigDebugBeginReturnValueLoop;
 		public byte ConfigDebugIgnoreFocusLoss;
@@ -17813,7 +18126,6 @@ namespace Hexa.NET.ImGui
 		public unsafe void* SetClipboardTextFn;
 		public unsafe void* ClipboardUserData;
 		public unsafe void* SetPlatformImeDataFn;
-		public unsafe void* UnusedPadding;
 		public char PlatformLocaleDecimalPoint;
 		public byte WantCaptureMouse;
 		public byte WantCaptureKeyboard;
@@ -17827,1328 +18139,7 @@ namespace Hexa.NET.ImGui
 		public int MetricsRenderIndices;
 		public int MetricsRenderWindows;
 		public int MetricsActiveWindows;
-		public int MetricsActiveAllocations;
 		public Vector2 MouseDelta;
-		public int KeyMap_0;
-		public int KeyMap_1;
-		public int KeyMap_2;
-		public int KeyMap_3;
-		public int KeyMap_4;
-		public int KeyMap_5;
-		public int KeyMap_6;
-		public int KeyMap_7;
-		public int KeyMap_8;
-		public int KeyMap_9;
-		public int KeyMap_10;
-		public int KeyMap_11;
-		public int KeyMap_12;
-		public int KeyMap_13;
-		public int KeyMap_14;
-		public int KeyMap_15;
-		public int KeyMap_16;
-		public int KeyMap_17;
-		public int KeyMap_18;
-		public int KeyMap_19;
-		public int KeyMap_20;
-		public int KeyMap_21;
-		public int KeyMap_22;
-		public int KeyMap_23;
-		public int KeyMap_24;
-		public int KeyMap_25;
-		public int KeyMap_26;
-		public int KeyMap_27;
-		public int KeyMap_28;
-		public int KeyMap_29;
-		public int KeyMap_30;
-		public int KeyMap_31;
-		public int KeyMap_32;
-		public int KeyMap_33;
-		public int KeyMap_34;
-		public int KeyMap_35;
-		public int KeyMap_36;
-		public int KeyMap_37;
-		public int KeyMap_38;
-		public int KeyMap_39;
-		public int KeyMap_40;
-		public int KeyMap_41;
-		public int KeyMap_42;
-		public int KeyMap_43;
-		public int KeyMap_44;
-		public int KeyMap_45;
-		public int KeyMap_46;
-		public int KeyMap_47;
-		public int KeyMap_48;
-		public int KeyMap_49;
-		public int KeyMap_50;
-		public int KeyMap_51;
-		public int KeyMap_52;
-		public int KeyMap_53;
-		public int KeyMap_54;
-		public int KeyMap_55;
-		public int KeyMap_56;
-		public int KeyMap_57;
-		public int KeyMap_58;
-		public int KeyMap_59;
-		public int KeyMap_60;
-		public int KeyMap_61;
-		public int KeyMap_62;
-		public int KeyMap_63;
-		public int KeyMap_64;
-		public int KeyMap_65;
-		public int KeyMap_66;
-		public int KeyMap_67;
-		public int KeyMap_68;
-		public int KeyMap_69;
-		public int KeyMap_70;
-		public int KeyMap_71;
-		public int KeyMap_72;
-		public int KeyMap_73;
-		public int KeyMap_74;
-		public int KeyMap_75;
-		public int KeyMap_76;
-		public int KeyMap_77;
-		public int KeyMap_78;
-		public int KeyMap_79;
-		public int KeyMap_80;
-		public int KeyMap_81;
-		public int KeyMap_82;
-		public int KeyMap_83;
-		public int KeyMap_84;
-		public int KeyMap_85;
-		public int KeyMap_86;
-		public int KeyMap_87;
-		public int KeyMap_88;
-		public int KeyMap_89;
-		public int KeyMap_90;
-		public int KeyMap_91;
-		public int KeyMap_92;
-		public int KeyMap_93;
-		public int KeyMap_94;
-		public int KeyMap_95;
-		public int KeyMap_96;
-		public int KeyMap_97;
-		public int KeyMap_98;
-		public int KeyMap_99;
-		public int KeyMap_100;
-		public int KeyMap_101;
-		public int KeyMap_102;
-		public int KeyMap_103;
-		public int KeyMap_104;
-		public int KeyMap_105;
-		public int KeyMap_106;
-		public int KeyMap_107;
-		public int KeyMap_108;
-		public int KeyMap_109;
-		public int KeyMap_110;
-		public int KeyMap_111;
-		public int KeyMap_112;
-		public int KeyMap_113;
-		public int KeyMap_114;
-		public int KeyMap_115;
-		public int KeyMap_116;
-		public int KeyMap_117;
-		public int KeyMap_118;
-		public int KeyMap_119;
-		public int KeyMap_120;
-		public int KeyMap_121;
-		public int KeyMap_122;
-		public int KeyMap_123;
-		public int KeyMap_124;
-		public int KeyMap_125;
-		public int KeyMap_126;
-		public int KeyMap_127;
-		public int KeyMap_128;
-		public int KeyMap_129;
-		public int KeyMap_130;
-		public int KeyMap_131;
-		public int KeyMap_132;
-		public int KeyMap_133;
-		public int KeyMap_134;
-		public int KeyMap_135;
-		public int KeyMap_136;
-		public int KeyMap_137;
-		public int KeyMap_138;
-		public int KeyMap_139;
-		public int KeyMap_140;
-		public int KeyMap_141;
-		public int KeyMap_142;
-		public int KeyMap_143;
-		public int KeyMap_144;
-		public int KeyMap_145;
-		public int KeyMap_146;
-		public int KeyMap_147;
-		public int KeyMap_148;
-		public int KeyMap_149;
-		public int KeyMap_150;
-		public int KeyMap_151;
-		public int KeyMap_152;
-		public int KeyMap_153;
-		public int KeyMap_154;
-		public int KeyMap_155;
-		public int KeyMap_156;
-		public int KeyMap_157;
-		public int KeyMap_158;
-		public int KeyMap_159;
-		public int KeyMap_160;
-		public int KeyMap_161;
-		public int KeyMap_162;
-		public int KeyMap_163;
-		public int KeyMap_164;
-		public int KeyMap_165;
-		public int KeyMap_166;
-		public int KeyMap_167;
-		public int KeyMap_168;
-		public int KeyMap_169;
-		public int KeyMap_170;
-		public int KeyMap_171;
-		public int KeyMap_172;
-		public int KeyMap_173;
-		public int KeyMap_174;
-		public int KeyMap_175;
-		public int KeyMap_176;
-		public int KeyMap_177;
-		public int KeyMap_178;
-		public int KeyMap_179;
-		public int KeyMap_180;
-		public int KeyMap_181;
-		public int KeyMap_182;
-		public int KeyMap_183;
-		public int KeyMap_184;
-		public int KeyMap_185;
-		public int KeyMap_186;
-		public int KeyMap_187;
-		public int KeyMap_188;
-		public int KeyMap_189;
-		public int KeyMap_190;
-		public int KeyMap_191;
-		public int KeyMap_192;
-		public int KeyMap_193;
-		public int KeyMap_194;
-		public int KeyMap_195;
-		public int KeyMap_196;
-		public int KeyMap_197;
-		public int KeyMap_198;
-		public int KeyMap_199;
-		public int KeyMap_200;
-		public int KeyMap_201;
-		public int KeyMap_202;
-		public int KeyMap_203;
-		public int KeyMap_204;
-		public int KeyMap_205;
-		public int KeyMap_206;
-		public int KeyMap_207;
-		public int KeyMap_208;
-		public int KeyMap_209;
-		public int KeyMap_210;
-		public int KeyMap_211;
-		public int KeyMap_212;
-		public int KeyMap_213;
-		public int KeyMap_214;
-		public int KeyMap_215;
-		public int KeyMap_216;
-		public int KeyMap_217;
-		public int KeyMap_218;
-		public int KeyMap_219;
-		public int KeyMap_220;
-		public int KeyMap_221;
-		public int KeyMap_222;
-		public int KeyMap_223;
-		public int KeyMap_224;
-		public int KeyMap_225;
-		public int KeyMap_226;
-		public int KeyMap_227;
-		public int KeyMap_228;
-		public int KeyMap_229;
-		public int KeyMap_230;
-		public int KeyMap_231;
-		public int KeyMap_232;
-		public int KeyMap_233;
-		public int KeyMap_234;
-		public int KeyMap_235;
-		public int KeyMap_236;
-		public int KeyMap_237;
-		public int KeyMap_238;
-		public int KeyMap_239;
-		public int KeyMap_240;
-		public int KeyMap_241;
-		public int KeyMap_242;
-		public int KeyMap_243;
-		public int KeyMap_244;
-		public int KeyMap_245;
-		public int KeyMap_246;
-		public int KeyMap_247;
-		public int KeyMap_248;
-		public int KeyMap_249;
-		public int KeyMap_250;
-		public int KeyMap_251;
-		public int KeyMap_252;
-		public int KeyMap_253;
-		public int KeyMap_254;
-		public int KeyMap_255;
-		public int KeyMap_256;
-		public int KeyMap_257;
-		public int KeyMap_258;
-		public int KeyMap_259;
-		public int KeyMap_260;
-		public int KeyMap_261;
-		public int KeyMap_262;
-		public int KeyMap_263;
-		public int KeyMap_264;
-		public int KeyMap_265;
-		public int KeyMap_266;
-		public int KeyMap_267;
-		public int KeyMap_268;
-		public int KeyMap_269;
-		public int KeyMap_270;
-		public int KeyMap_271;
-		public int KeyMap_272;
-		public int KeyMap_273;
-		public int KeyMap_274;
-		public int KeyMap_275;
-		public int KeyMap_276;
-		public int KeyMap_277;
-		public int KeyMap_278;
-		public int KeyMap_279;
-		public int KeyMap_280;
-		public int KeyMap_281;
-		public int KeyMap_282;
-		public int KeyMap_283;
-		public int KeyMap_284;
-		public int KeyMap_285;
-		public int KeyMap_286;
-		public int KeyMap_287;
-		public int KeyMap_288;
-		public int KeyMap_289;
-		public int KeyMap_290;
-		public int KeyMap_291;
-		public int KeyMap_292;
-		public int KeyMap_293;
-		public int KeyMap_294;
-		public int KeyMap_295;
-		public int KeyMap_296;
-		public int KeyMap_297;
-		public int KeyMap_298;
-		public int KeyMap_299;
-		public int KeyMap_300;
-		public int KeyMap_301;
-		public int KeyMap_302;
-		public int KeyMap_303;
-		public int KeyMap_304;
-		public int KeyMap_305;
-		public int KeyMap_306;
-		public int KeyMap_307;
-		public int KeyMap_308;
-		public int KeyMap_309;
-		public int KeyMap_310;
-		public int KeyMap_311;
-		public int KeyMap_312;
-		public int KeyMap_313;
-		public int KeyMap_314;
-		public int KeyMap_315;
-		public int KeyMap_316;
-		public int KeyMap_317;
-		public int KeyMap_318;
-		public int KeyMap_319;
-		public int KeyMap_320;
-		public int KeyMap_321;
-		public int KeyMap_322;
-		public int KeyMap_323;
-		public int KeyMap_324;
-		public int KeyMap_325;
-		public int KeyMap_326;
-		public int KeyMap_327;
-		public int KeyMap_328;
-		public int KeyMap_329;
-		public int KeyMap_330;
-		public int KeyMap_331;
-		public int KeyMap_332;
-		public int KeyMap_333;
-		public int KeyMap_334;
-		public int KeyMap_335;
-		public int KeyMap_336;
-		public int KeyMap_337;
-		public int KeyMap_338;
-		public int KeyMap_339;
-		public int KeyMap_340;
-		public int KeyMap_341;
-		public int KeyMap_342;
-		public int KeyMap_343;
-		public int KeyMap_344;
-		public int KeyMap_345;
-		public int KeyMap_346;
-		public int KeyMap_347;
-		public int KeyMap_348;
-		public int KeyMap_349;
-		public int KeyMap_350;
-		public int KeyMap_351;
-		public int KeyMap_352;
-		public int KeyMap_353;
-		public int KeyMap_354;
-		public int KeyMap_355;
-		public int KeyMap_356;
-		public int KeyMap_357;
-		public int KeyMap_358;
-		public int KeyMap_359;
-		public int KeyMap_360;
-		public int KeyMap_361;
-		public int KeyMap_362;
-		public int KeyMap_363;
-		public int KeyMap_364;
-		public int KeyMap_365;
-		public int KeyMap_366;
-		public int KeyMap_367;
-		public int KeyMap_368;
-		public int KeyMap_369;
-		public int KeyMap_370;
-		public int KeyMap_371;
-		public int KeyMap_372;
-		public int KeyMap_373;
-		public int KeyMap_374;
-		public int KeyMap_375;
-		public int KeyMap_376;
-		public int KeyMap_377;
-		public int KeyMap_378;
-		public int KeyMap_379;
-		public int KeyMap_380;
-		public int KeyMap_381;
-		public int KeyMap_382;
-		public int KeyMap_383;
-		public int KeyMap_384;
-		public int KeyMap_385;
-		public int KeyMap_386;
-		public int KeyMap_387;
-		public int KeyMap_388;
-		public int KeyMap_389;
-		public int KeyMap_390;
-		public int KeyMap_391;
-		public int KeyMap_392;
-		public int KeyMap_393;
-		public int KeyMap_394;
-		public int KeyMap_395;
-		public int KeyMap_396;
-		public int KeyMap_397;
-		public int KeyMap_398;
-		public int KeyMap_399;
-		public int KeyMap_400;
-		public int KeyMap_401;
-		public int KeyMap_402;
-		public int KeyMap_403;
-		public int KeyMap_404;
-		public int KeyMap_405;
-		public int KeyMap_406;
-		public int KeyMap_407;
-		public int KeyMap_408;
-		public int KeyMap_409;
-		public int KeyMap_410;
-		public int KeyMap_411;
-		public int KeyMap_412;
-		public int KeyMap_413;
-		public int KeyMap_414;
-		public int KeyMap_415;
-		public int KeyMap_416;
-		public int KeyMap_417;
-		public int KeyMap_418;
-		public int KeyMap_419;
-		public int KeyMap_420;
-		public int KeyMap_421;
-		public int KeyMap_422;
-		public int KeyMap_423;
-		public int KeyMap_424;
-		public int KeyMap_425;
-		public int KeyMap_426;
-		public int KeyMap_427;
-		public int KeyMap_428;
-		public int KeyMap_429;
-		public int KeyMap_430;
-		public int KeyMap_431;
-		public int KeyMap_432;
-		public int KeyMap_433;
-		public int KeyMap_434;
-		public int KeyMap_435;
-		public int KeyMap_436;
-		public int KeyMap_437;
-		public int KeyMap_438;
-		public int KeyMap_439;
-		public int KeyMap_440;
-		public int KeyMap_441;
-		public int KeyMap_442;
-		public int KeyMap_443;
-		public int KeyMap_444;
-		public int KeyMap_445;
-		public int KeyMap_446;
-		public int KeyMap_447;
-		public int KeyMap_448;
-		public int KeyMap_449;
-		public int KeyMap_450;
-		public int KeyMap_451;
-		public int KeyMap_452;
-		public int KeyMap_453;
-		public int KeyMap_454;
-		public int KeyMap_455;
-		public int KeyMap_456;
-		public int KeyMap_457;
-		public int KeyMap_458;
-		public int KeyMap_459;
-		public int KeyMap_460;
-		public int KeyMap_461;
-		public int KeyMap_462;
-		public int KeyMap_463;
-		public int KeyMap_464;
-		public int KeyMap_465;
-		public int KeyMap_466;
-		public int KeyMap_467;
-		public int KeyMap_468;
-		public int KeyMap_469;
-		public int KeyMap_470;
-		public int KeyMap_471;
-		public int KeyMap_472;
-		public int KeyMap_473;
-		public int KeyMap_474;
-		public int KeyMap_475;
-		public int KeyMap_476;
-		public int KeyMap_477;
-		public int KeyMap_478;
-		public int KeyMap_479;
-		public int KeyMap_480;
-		public int KeyMap_481;
-		public int KeyMap_482;
-		public int KeyMap_483;
-		public int KeyMap_484;
-		public int KeyMap_485;
-		public int KeyMap_486;
-		public int KeyMap_487;
-		public int KeyMap_488;
-		public int KeyMap_489;
-		public int KeyMap_490;
-		public int KeyMap_491;
-		public int KeyMap_492;
-		public int KeyMap_493;
-		public int KeyMap_494;
-		public int KeyMap_495;
-		public int KeyMap_496;
-		public int KeyMap_497;
-		public int KeyMap_498;
-		public int KeyMap_499;
-		public int KeyMap_500;
-		public int KeyMap_501;
-		public int KeyMap_502;
-		public int KeyMap_503;
-		public int KeyMap_504;
-		public int KeyMap_505;
-		public int KeyMap_506;
-		public int KeyMap_507;
-		public int KeyMap_508;
-		public int KeyMap_509;
-		public int KeyMap_510;
-		public int KeyMap_511;
-		public int KeyMap_512;
-		public int KeyMap_513;
-		public int KeyMap_514;
-		public int KeyMap_515;
-		public int KeyMap_516;
-		public int KeyMap_517;
-		public int KeyMap_518;
-		public int KeyMap_519;
-		public int KeyMap_520;
-		public int KeyMap_521;
-		public int KeyMap_522;
-		public int KeyMap_523;
-		public int KeyMap_524;
-		public int KeyMap_525;
-		public int KeyMap_526;
-		public int KeyMap_527;
-		public int KeyMap_528;
-		public int KeyMap_529;
-		public int KeyMap_530;
-		public int KeyMap_531;
-		public int KeyMap_532;
-		public int KeyMap_533;
-		public int KeyMap_534;
-		public int KeyMap_535;
-		public int KeyMap_536;
-		public int KeyMap_537;
-		public int KeyMap_538;
-		public int KeyMap_539;
-		public int KeyMap_540;
-		public int KeyMap_541;
-		public int KeyMap_542;
-		public int KeyMap_543;
-		public int KeyMap_544;
-		public int KeyMap_545;
-		public int KeyMap_546;
-		public int KeyMap_547;
-		public int KeyMap_548;
-		public int KeyMap_549;
-		public int KeyMap_550;
-		public int KeyMap_551;
-		public int KeyMap_552;
-		public int KeyMap_553;
-		public int KeyMap_554;
-		public int KeyMap_555;
-		public int KeyMap_556;
-		public int KeyMap_557;
-		public int KeyMap_558;
-		public int KeyMap_559;
-		public int KeyMap_560;
-		public int KeyMap_561;
-		public int KeyMap_562;
-		public int KeyMap_563;
-		public int KeyMap_564;
-		public int KeyMap_565;
-		public int KeyMap_566;
-		public int KeyMap_567;
-		public int KeyMap_568;
-		public int KeyMap_569;
-		public int KeyMap_570;
-		public int KeyMap_571;
-		public int KeyMap_572;
-		public int KeyMap_573;
-		public int KeyMap_574;
-		public int KeyMap_575;
-		public int KeyMap_576;
-		public int KeyMap_577;
-		public int KeyMap_578;
-		public int KeyMap_579;
-		public int KeyMap_580;
-		public int KeyMap_581;
-		public int KeyMap_582;
-		public int KeyMap_583;
-		public int KeyMap_584;
-		public int KeyMap_585;
-		public int KeyMap_586;
-		public int KeyMap_587;
-		public int KeyMap_588;
-		public int KeyMap_589;
-		public int KeyMap_590;
-		public int KeyMap_591;
-		public int KeyMap_592;
-		public int KeyMap_593;
-		public int KeyMap_594;
-		public int KeyMap_595;
-		public int KeyMap_596;
-		public int KeyMap_597;
-		public int KeyMap_598;
-		public int KeyMap_599;
-		public int KeyMap_600;
-		public int KeyMap_601;
-		public int KeyMap_602;
-		public int KeyMap_603;
-		public int KeyMap_604;
-		public int KeyMap_605;
-		public int KeyMap_606;
-		public int KeyMap_607;
-		public int KeyMap_608;
-		public int KeyMap_609;
-		public int KeyMap_610;
-		public int KeyMap_611;
-		public int KeyMap_612;
-		public int KeyMap_613;
-		public int KeyMap_614;
-		public int KeyMap_615;
-		public int KeyMap_616;
-		public int KeyMap_617;
-		public int KeyMap_618;
-		public int KeyMap_619;
-		public int KeyMap_620;
-		public int KeyMap_621;
-		public int KeyMap_622;
-		public int KeyMap_623;
-		public int KeyMap_624;
-		public int KeyMap_625;
-		public int KeyMap_626;
-		public int KeyMap_627;
-		public int KeyMap_628;
-		public int KeyMap_629;
-		public int KeyMap_630;
-		public int KeyMap_631;
-		public int KeyMap_632;
-		public int KeyMap_633;
-		public int KeyMap_634;
-		public int KeyMap_635;
-		public int KeyMap_636;
-		public int KeyMap_637;
-		public int KeyMap_638;
-		public int KeyMap_639;
-		public int KeyMap_640;
-		public int KeyMap_641;
-		public int KeyMap_642;
-		public int KeyMap_643;
-		public int KeyMap_644;
-		public int KeyMap_645;
-		public int KeyMap_646;
-		public int KeyMap_647;
-		public int KeyMap_648;
-		public int KeyMap_649;
-		public int KeyMap_650;
-		public int KeyMap_651;
-		public bool KeysDown_0;
-		public bool KeysDown_1;
-		public bool KeysDown_2;
-		public bool KeysDown_3;
-		public bool KeysDown_4;
-		public bool KeysDown_5;
-		public bool KeysDown_6;
-		public bool KeysDown_7;
-		public bool KeysDown_8;
-		public bool KeysDown_9;
-		public bool KeysDown_10;
-		public bool KeysDown_11;
-		public bool KeysDown_12;
-		public bool KeysDown_13;
-		public bool KeysDown_14;
-		public bool KeysDown_15;
-		public bool KeysDown_16;
-		public bool KeysDown_17;
-		public bool KeysDown_18;
-		public bool KeysDown_19;
-		public bool KeysDown_20;
-		public bool KeysDown_21;
-		public bool KeysDown_22;
-		public bool KeysDown_23;
-		public bool KeysDown_24;
-		public bool KeysDown_25;
-		public bool KeysDown_26;
-		public bool KeysDown_27;
-		public bool KeysDown_28;
-		public bool KeysDown_29;
-		public bool KeysDown_30;
-		public bool KeysDown_31;
-		public bool KeysDown_32;
-		public bool KeysDown_33;
-		public bool KeysDown_34;
-		public bool KeysDown_35;
-		public bool KeysDown_36;
-		public bool KeysDown_37;
-		public bool KeysDown_38;
-		public bool KeysDown_39;
-		public bool KeysDown_40;
-		public bool KeysDown_41;
-		public bool KeysDown_42;
-		public bool KeysDown_43;
-		public bool KeysDown_44;
-		public bool KeysDown_45;
-		public bool KeysDown_46;
-		public bool KeysDown_47;
-		public bool KeysDown_48;
-		public bool KeysDown_49;
-		public bool KeysDown_50;
-		public bool KeysDown_51;
-		public bool KeysDown_52;
-		public bool KeysDown_53;
-		public bool KeysDown_54;
-		public bool KeysDown_55;
-		public bool KeysDown_56;
-		public bool KeysDown_57;
-		public bool KeysDown_58;
-		public bool KeysDown_59;
-		public bool KeysDown_60;
-		public bool KeysDown_61;
-		public bool KeysDown_62;
-		public bool KeysDown_63;
-		public bool KeysDown_64;
-		public bool KeysDown_65;
-		public bool KeysDown_66;
-		public bool KeysDown_67;
-		public bool KeysDown_68;
-		public bool KeysDown_69;
-		public bool KeysDown_70;
-		public bool KeysDown_71;
-		public bool KeysDown_72;
-		public bool KeysDown_73;
-		public bool KeysDown_74;
-		public bool KeysDown_75;
-		public bool KeysDown_76;
-		public bool KeysDown_77;
-		public bool KeysDown_78;
-		public bool KeysDown_79;
-		public bool KeysDown_80;
-		public bool KeysDown_81;
-		public bool KeysDown_82;
-		public bool KeysDown_83;
-		public bool KeysDown_84;
-		public bool KeysDown_85;
-		public bool KeysDown_86;
-		public bool KeysDown_87;
-		public bool KeysDown_88;
-		public bool KeysDown_89;
-		public bool KeysDown_90;
-		public bool KeysDown_91;
-		public bool KeysDown_92;
-		public bool KeysDown_93;
-		public bool KeysDown_94;
-		public bool KeysDown_95;
-		public bool KeysDown_96;
-		public bool KeysDown_97;
-		public bool KeysDown_98;
-		public bool KeysDown_99;
-		public bool KeysDown_100;
-		public bool KeysDown_101;
-		public bool KeysDown_102;
-		public bool KeysDown_103;
-		public bool KeysDown_104;
-		public bool KeysDown_105;
-		public bool KeysDown_106;
-		public bool KeysDown_107;
-		public bool KeysDown_108;
-		public bool KeysDown_109;
-		public bool KeysDown_110;
-		public bool KeysDown_111;
-		public bool KeysDown_112;
-		public bool KeysDown_113;
-		public bool KeysDown_114;
-		public bool KeysDown_115;
-		public bool KeysDown_116;
-		public bool KeysDown_117;
-		public bool KeysDown_118;
-		public bool KeysDown_119;
-		public bool KeysDown_120;
-		public bool KeysDown_121;
-		public bool KeysDown_122;
-		public bool KeysDown_123;
-		public bool KeysDown_124;
-		public bool KeysDown_125;
-		public bool KeysDown_126;
-		public bool KeysDown_127;
-		public bool KeysDown_128;
-		public bool KeysDown_129;
-		public bool KeysDown_130;
-		public bool KeysDown_131;
-		public bool KeysDown_132;
-		public bool KeysDown_133;
-		public bool KeysDown_134;
-		public bool KeysDown_135;
-		public bool KeysDown_136;
-		public bool KeysDown_137;
-		public bool KeysDown_138;
-		public bool KeysDown_139;
-		public bool KeysDown_140;
-		public bool KeysDown_141;
-		public bool KeysDown_142;
-		public bool KeysDown_143;
-		public bool KeysDown_144;
-		public bool KeysDown_145;
-		public bool KeysDown_146;
-		public bool KeysDown_147;
-		public bool KeysDown_148;
-		public bool KeysDown_149;
-		public bool KeysDown_150;
-		public bool KeysDown_151;
-		public bool KeysDown_152;
-		public bool KeysDown_153;
-		public bool KeysDown_154;
-		public bool KeysDown_155;
-		public bool KeysDown_156;
-		public bool KeysDown_157;
-		public bool KeysDown_158;
-		public bool KeysDown_159;
-		public bool KeysDown_160;
-		public bool KeysDown_161;
-		public bool KeysDown_162;
-		public bool KeysDown_163;
-		public bool KeysDown_164;
-		public bool KeysDown_165;
-		public bool KeysDown_166;
-		public bool KeysDown_167;
-		public bool KeysDown_168;
-		public bool KeysDown_169;
-		public bool KeysDown_170;
-		public bool KeysDown_171;
-		public bool KeysDown_172;
-		public bool KeysDown_173;
-		public bool KeysDown_174;
-		public bool KeysDown_175;
-		public bool KeysDown_176;
-		public bool KeysDown_177;
-		public bool KeysDown_178;
-		public bool KeysDown_179;
-		public bool KeysDown_180;
-		public bool KeysDown_181;
-		public bool KeysDown_182;
-		public bool KeysDown_183;
-		public bool KeysDown_184;
-		public bool KeysDown_185;
-		public bool KeysDown_186;
-		public bool KeysDown_187;
-		public bool KeysDown_188;
-		public bool KeysDown_189;
-		public bool KeysDown_190;
-		public bool KeysDown_191;
-		public bool KeysDown_192;
-		public bool KeysDown_193;
-		public bool KeysDown_194;
-		public bool KeysDown_195;
-		public bool KeysDown_196;
-		public bool KeysDown_197;
-		public bool KeysDown_198;
-		public bool KeysDown_199;
-		public bool KeysDown_200;
-		public bool KeysDown_201;
-		public bool KeysDown_202;
-		public bool KeysDown_203;
-		public bool KeysDown_204;
-		public bool KeysDown_205;
-		public bool KeysDown_206;
-		public bool KeysDown_207;
-		public bool KeysDown_208;
-		public bool KeysDown_209;
-		public bool KeysDown_210;
-		public bool KeysDown_211;
-		public bool KeysDown_212;
-		public bool KeysDown_213;
-		public bool KeysDown_214;
-		public bool KeysDown_215;
-		public bool KeysDown_216;
-		public bool KeysDown_217;
-		public bool KeysDown_218;
-		public bool KeysDown_219;
-		public bool KeysDown_220;
-		public bool KeysDown_221;
-		public bool KeysDown_222;
-		public bool KeysDown_223;
-		public bool KeysDown_224;
-		public bool KeysDown_225;
-		public bool KeysDown_226;
-		public bool KeysDown_227;
-		public bool KeysDown_228;
-		public bool KeysDown_229;
-		public bool KeysDown_230;
-		public bool KeysDown_231;
-		public bool KeysDown_232;
-		public bool KeysDown_233;
-		public bool KeysDown_234;
-		public bool KeysDown_235;
-		public bool KeysDown_236;
-		public bool KeysDown_237;
-		public bool KeysDown_238;
-		public bool KeysDown_239;
-		public bool KeysDown_240;
-		public bool KeysDown_241;
-		public bool KeysDown_242;
-		public bool KeysDown_243;
-		public bool KeysDown_244;
-		public bool KeysDown_245;
-		public bool KeysDown_246;
-		public bool KeysDown_247;
-		public bool KeysDown_248;
-		public bool KeysDown_249;
-		public bool KeysDown_250;
-		public bool KeysDown_251;
-		public bool KeysDown_252;
-		public bool KeysDown_253;
-		public bool KeysDown_254;
-		public bool KeysDown_255;
-		public bool KeysDown_256;
-		public bool KeysDown_257;
-		public bool KeysDown_258;
-		public bool KeysDown_259;
-		public bool KeysDown_260;
-		public bool KeysDown_261;
-		public bool KeysDown_262;
-		public bool KeysDown_263;
-		public bool KeysDown_264;
-		public bool KeysDown_265;
-		public bool KeysDown_266;
-		public bool KeysDown_267;
-		public bool KeysDown_268;
-		public bool KeysDown_269;
-		public bool KeysDown_270;
-		public bool KeysDown_271;
-		public bool KeysDown_272;
-		public bool KeysDown_273;
-		public bool KeysDown_274;
-		public bool KeysDown_275;
-		public bool KeysDown_276;
-		public bool KeysDown_277;
-		public bool KeysDown_278;
-		public bool KeysDown_279;
-		public bool KeysDown_280;
-		public bool KeysDown_281;
-		public bool KeysDown_282;
-		public bool KeysDown_283;
-		public bool KeysDown_284;
-		public bool KeysDown_285;
-		public bool KeysDown_286;
-		public bool KeysDown_287;
-		public bool KeysDown_288;
-		public bool KeysDown_289;
-		public bool KeysDown_290;
-		public bool KeysDown_291;
-		public bool KeysDown_292;
-		public bool KeysDown_293;
-		public bool KeysDown_294;
-		public bool KeysDown_295;
-		public bool KeysDown_296;
-		public bool KeysDown_297;
-		public bool KeysDown_298;
-		public bool KeysDown_299;
-		public bool KeysDown_300;
-		public bool KeysDown_301;
-		public bool KeysDown_302;
-		public bool KeysDown_303;
-		public bool KeysDown_304;
-		public bool KeysDown_305;
-		public bool KeysDown_306;
-		public bool KeysDown_307;
-		public bool KeysDown_308;
-		public bool KeysDown_309;
-		public bool KeysDown_310;
-		public bool KeysDown_311;
-		public bool KeysDown_312;
-		public bool KeysDown_313;
-		public bool KeysDown_314;
-		public bool KeysDown_315;
-		public bool KeysDown_316;
-		public bool KeysDown_317;
-		public bool KeysDown_318;
-		public bool KeysDown_319;
-		public bool KeysDown_320;
-		public bool KeysDown_321;
-		public bool KeysDown_322;
-		public bool KeysDown_323;
-		public bool KeysDown_324;
-		public bool KeysDown_325;
-		public bool KeysDown_326;
-		public bool KeysDown_327;
-		public bool KeysDown_328;
-		public bool KeysDown_329;
-		public bool KeysDown_330;
-		public bool KeysDown_331;
-		public bool KeysDown_332;
-		public bool KeysDown_333;
-		public bool KeysDown_334;
-		public bool KeysDown_335;
-		public bool KeysDown_336;
-		public bool KeysDown_337;
-		public bool KeysDown_338;
-		public bool KeysDown_339;
-		public bool KeysDown_340;
-		public bool KeysDown_341;
-		public bool KeysDown_342;
-		public bool KeysDown_343;
-		public bool KeysDown_344;
-		public bool KeysDown_345;
-		public bool KeysDown_346;
-		public bool KeysDown_347;
-		public bool KeysDown_348;
-		public bool KeysDown_349;
-		public bool KeysDown_350;
-		public bool KeysDown_351;
-		public bool KeysDown_352;
-		public bool KeysDown_353;
-		public bool KeysDown_354;
-		public bool KeysDown_355;
-		public bool KeysDown_356;
-		public bool KeysDown_357;
-		public bool KeysDown_358;
-		public bool KeysDown_359;
-		public bool KeysDown_360;
-		public bool KeysDown_361;
-		public bool KeysDown_362;
-		public bool KeysDown_363;
-		public bool KeysDown_364;
-		public bool KeysDown_365;
-		public bool KeysDown_366;
-		public bool KeysDown_367;
-		public bool KeysDown_368;
-		public bool KeysDown_369;
-		public bool KeysDown_370;
-		public bool KeysDown_371;
-		public bool KeysDown_372;
-		public bool KeysDown_373;
-		public bool KeysDown_374;
-		public bool KeysDown_375;
-		public bool KeysDown_376;
-		public bool KeysDown_377;
-		public bool KeysDown_378;
-		public bool KeysDown_379;
-		public bool KeysDown_380;
-		public bool KeysDown_381;
-		public bool KeysDown_382;
-		public bool KeysDown_383;
-		public bool KeysDown_384;
-		public bool KeysDown_385;
-		public bool KeysDown_386;
-		public bool KeysDown_387;
-		public bool KeysDown_388;
-		public bool KeysDown_389;
-		public bool KeysDown_390;
-		public bool KeysDown_391;
-		public bool KeysDown_392;
-		public bool KeysDown_393;
-		public bool KeysDown_394;
-		public bool KeysDown_395;
-		public bool KeysDown_396;
-		public bool KeysDown_397;
-		public bool KeysDown_398;
-		public bool KeysDown_399;
-		public bool KeysDown_400;
-		public bool KeysDown_401;
-		public bool KeysDown_402;
-		public bool KeysDown_403;
-		public bool KeysDown_404;
-		public bool KeysDown_405;
-		public bool KeysDown_406;
-		public bool KeysDown_407;
-		public bool KeysDown_408;
-		public bool KeysDown_409;
-		public bool KeysDown_410;
-		public bool KeysDown_411;
-		public bool KeysDown_412;
-		public bool KeysDown_413;
-		public bool KeysDown_414;
-		public bool KeysDown_415;
-		public bool KeysDown_416;
-		public bool KeysDown_417;
-		public bool KeysDown_418;
-		public bool KeysDown_419;
-		public bool KeysDown_420;
-		public bool KeysDown_421;
-		public bool KeysDown_422;
-		public bool KeysDown_423;
-		public bool KeysDown_424;
-		public bool KeysDown_425;
-		public bool KeysDown_426;
-		public bool KeysDown_427;
-		public bool KeysDown_428;
-		public bool KeysDown_429;
-		public bool KeysDown_430;
-		public bool KeysDown_431;
-		public bool KeysDown_432;
-		public bool KeysDown_433;
-		public bool KeysDown_434;
-		public bool KeysDown_435;
-		public bool KeysDown_436;
-		public bool KeysDown_437;
-		public bool KeysDown_438;
-		public bool KeysDown_439;
-		public bool KeysDown_440;
-		public bool KeysDown_441;
-		public bool KeysDown_442;
-		public bool KeysDown_443;
-		public bool KeysDown_444;
-		public bool KeysDown_445;
-		public bool KeysDown_446;
-		public bool KeysDown_447;
-		public bool KeysDown_448;
-		public bool KeysDown_449;
-		public bool KeysDown_450;
-		public bool KeysDown_451;
-		public bool KeysDown_452;
-		public bool KeysDown_453;
-		public bool KeysDown_454;
-		public bool KeysDown_455;
-		public bool KeysDown_456;
-		public bool KeysDown_457;
-		public bool KeysDown_458;
-		public bool KeysDown_459;
-		public bool KeysDown_460;
-		public bool KeysDown_461;
-		public bool KeysDown_462;
-		public bool KeysDown_463;
-		public bool KeysDown_464;
-		public bool KeysDown_465;
-		public bool KeysDown_466;
-		public bool KeysDown_467;
-		public bool KeysDown_468;
-		public bool KeysDown_469;
-		public bool KeysDown_470;
-		public bool KeysDown_471;
-		public bool KeysDown_472;
-		public bool KeysDown_473;
-		public bool KeysDown_474;
-		public bool KeysDown_475;
-		public bool KeysDown_476;
-		public bool KeysDown_477;
-		public bool KeysDown_478;
-		public bool KeysDown_479;
-		public bool KeysDown_480;
-		public bool KeysDown_481;
-		public bool KeysDown_482;
-		public bool KeysDown_483;
-		public bool KeysDown_484;
-		public bool KeysDown_485;
-		public bool KeysDown_486;
-		public bool KeysDown_487;
-		public bool KeysDown_488;
-		public bool KeysDown_489;
-		public bool KeysDown_490;
-		public bool KeysDown_491;
-		public bool KeysDown_492;
-		public bool KeysDown_493;
-		public bool KeysDown_494;
-		public bool KeysDown_495;
-		public bool KeysDown_496;
-		public bool KeysDown_497;
-		public bool KeysDown_498;
-		public bool KeysDown_499;
-		public bool KeysDown_500;
-		public bool KeysDown_501;
-		public bool KeysDown_502;
-		public bool KeysDown_503;
-		public bool KeysDown_504;
-		public bool KeysDown_505;
-		public bool KeysDown_506;
-		public bool KeysDown_507;
-		public bool KeysDown_508;
-		public bool KeysDown_509;
-		public bool KeysDown_510;
-		public bool KeysDown_511;
-		public bool KeysDown_512;
-		public bool KeysDown_513;
-		public bool KeysDown_514;
-		public bool KeysDown_515;
-		public bool KeysDown_516;
-		public bool KeysDown_517;
-		public bool KeysDown_518;
-		public bool KeysDown_519;
-		public bool KeysDown_520;
-		public bool KeysDown_521;
-		public bool KeysDown_522;
-		public bool KeysDown_523;
-		public bool KeysDown_524;
-		public bool KeysDown_525;
-		public bool KeysDown_526;
-		public bool KeysDown_527;
-		public bool KeysDown_528;
-		public bool KeysDown_529;
-		public bool KeysDown_530;
-		public bool KeysDown_531;
-		public bool KeysDown_532;
-		public bool KeysDown_533;
-		public bool KeysDown_534;
-		public bool KeysDown_535;
-		public bool KeysDown_536;
-		public bool KeysDown_537;
-		public bool KeysDown_538;
-		public bool KeysDown_539;
-		public bool KeysDown_540;
-		public bool KeysDown_541;
-		public bool KeysDown_542;
-		public bool KeysDown_543;
-		public bool KeysDown_544;
-		public bool KeysDown_545;
-		public bool KeysDown_546;
-		public bool KeysDown_547;
-		public bool KeysDown_548;
-		public bool KeysDown_549;
-		public bool KeysDown_550;
-		public bool KeysDown_551;
-		public bool KeysDown_552;
-		public bool KeysDown_553;
-		public bool KeysDown_554;
-		public bool KeysDown_555;
-		public bool KeysDown_556;
-		public bool KeysDown_557;
-		public bool KeysDown_558;
-		public bool KeysDown_559;
-		public bool KeysDown_560;
-		public bool KeysDown_561;
-		public bool KeysDown_562;
-		public bool KeysDown_563;
-		public bool KeysDown_564;
-		public bool KeysDown_565;
-		public bool KeysDown_566;
-		public bool KeysDown_567;
-		public bool KeysDown_568;
-		public bool KeysDown_569;
-		public bool KeysDown_570;
-		public bool KeysDown_571;
-		public bool KeysDown_572;
-		public bool KeysDown_573;
-		public bool KeysDown_574;
-		public bool KeysDown_575;
-		public bool KeysDown_576;
-		public bool KeysDown_577;
-		public bool KeysDown_578;
-		public bool KeysDown_579;
-		public bool KeysDown_580;
-		public bool KeysDown_581;
-		public bool KeysDown_582;
-		public bool KeysDown_583;
-		public bool KeysDown_584;
-		public bool KeysDown_585;
-		public bool KeysDown_586;
-		public bool KeysDown_587;
-		public bool KeysDown_588;
-		public bool KeysDown_589;
-		public bool KeysDown_590;
-		public bool KeysDown_591;
-		public bool KeysDown_592;
-		public bool KeysDown_593;
-		public bool KeysDown_594;
-		public bool KeysDown_595;
-		public bool KeysDown_596;
-		public bool KeysDown_597;
-		public bool KeysDown_598;
-		public bool KeysDown_599;
-		public bool KeysDown_600;
-		public bool KeysDown_601;
-		public bool KeysDown_602;
-		public bool KeysDown_603;
-		public bool KeysDown_604;
-		public bool KeysDown_605;
-		public bool KeysDown_606;
-		public bool KeysDown_607;
-		public bool KeysDown_608;
-		public bool KeysDown_609;
-		public bool KeysDown_610;
-		public bool KeysDown_611;
-		public bool KeysDown_612;
-		public bool KeysDown_613;
-		public bool KeysDown_614;
-		public bool KeysDown_615;
-		public bool KeysDown_616;
-		public bool KeysDown_617;
-		public bool KeysDown_618;
-		public bool KeysDown_619;
-		public bool KeysDown_620;
-		public bool KeysDown_621;
-		public bool KeysDown_622;
-		public bool KeysDown_623;
-		public bool KeysDown_624;
-		public bool KeysDown_625;
-		public bool KeysDown_626;
-		public bool KeysDown_627;
-		public bool KeysDown_628;
-		public bool KeysDown_629;
-		public bool KeysDown_630;
-		public bool KeysDown_631;
-		public bool KeysDown_632;
-		public bool KeysDown_633;
-		public bool KeysDown_634;
-		public bool KeysDown_635;
-		public bool KeysDown_636;
-		public bool KeysDown_637;
-		public bool KeysDown_638;
-		public bool KeysDown_639;
-		public bool KeysDown_640;
-		public bool KeysDown_641;
-		public bool KeysDown_642;
-		public bool KeysDown_643;
-		public bool KeysDown_644;
-		public bool KeysDown_645;
-		public bool KeysDown_646;
-		public bool KeysDown_647;
-		public bool KeysDown_648;
-		public bool KeysDown_649;
-		public bool KeysDown_650;
-		public bool KeysDown_651;
-		public float NavInputs_0;
-		public float NavInputs_1;
-		public float NavInputs_2;
-		public float NavInputs_3;
-		public float NavInputs_4;
-		public float NavInputs_5;
-		public float NavInputs_6;
-		public float NavInputs_7;
-		public float NavInputs_8;
-		public float NavInputs_9;
-		public float NavInputs_10;
-		public float NavInputs_11;
-		public float NavInputs_12;
-		public float NavInputs_13;
-		public float NavInputs_14;
-		public float NavInputs_15;
 		public unsafe ImGuiContext* Ctx;
 		public Vector2 MousePos;
 		public bool MouseDown_0;
@@ -19319,504 +18310,6 @@ namespace Hexa.NET.ImGui
 		public ImGuiKeyData KeysData_151;
 		public ImGuiKeyData KeysData_152;
 		public ImGuiKeyData KeysData_153;
-		public ImGuiKeyData KeysData_154;
-		public ImGuiKeyData KeysData_155;
-		public ImGuiKeyData KeysData_156;
-		public ImGuiKeyData KeysData_157;
-		public ImGuiKeyData KeysData_158;
-		public ImGuiKeyData KeysData_159;
-		public ImGuiKeyData KeysData_160;
-		public ImGuiKeyData KeysData_161;
-		public ImGuiKeyData KeysData_162;
-		public ImGuiKeyData KeysData_163;
-		public ImGuiKeyData KeysData_164;
-		public ImGuiKeyData KeysData_165;
-		public ImGuiKeyData KeysData_166;
-		public ImGuiKeyData KeysData_167;
-		public ImGuiKeyData KeysData_168;
-		public ImGuiKeyData KeysData_169;
-		public ImGuiKeyData KeysData_170;
-		public ImGuiKeyData KeysData_171;
-		public ImGuiKeyData KeysData_172;
-		public ImGuiKeyData KeysData_173;
-		public ImGuiKeyData KeysData_174;
-		public ImGuiKeyData KeysData_175;
-		public ImGuiKeyData KeysData_176;
-		public ImGuiKeyData KeysData_177;
-		public ImGuiKeyData KeysData_178;
-		public ImGuiKeyData KeysData_179;
-		public ImGuiKeyData KeysData_180;
-		public ImGuiKeyData KeysData_181;
-		public ImGuiKeyData KeysData_182;
-		public ImGuiKeyData KeysData_183;
-		public ImGuiKeyData KeysData_184;
-		public ImGuiKeyData KeysData_185;
-		public ImGuiKeyData KeysData_186;
-		public ImGuiKeyData KeysData_187;
-		public ImGuiKeyData KeysData_188;
-		public ImGuiKeyData KeysData_189;
-		public ImGuiKeyData KeysData_190;
-		public ImGuiKeyData KeysData_191;
-		public ImGuiKeyData KeysData_192;
-		public ImGuiKeyData KeysData_193;
-		public ImGuiKeyData KeysData_194;
-		public ImGuiKeyData KeysData_195;
-		public ImGuiKeyData KeysData_196;
-		public ImGuiKeyData KeysData_197;
-		public ImGuiKeyData KeysData_198;
-		public ImGuiKeyData KeysData_199;
-		public ImGuiKeyData KeysData_200;
-		public ImGuiKeyData KeysData_201;
-		public ImGuiKeyData KeysData_202;
-		public ImGuiKeyData KeysData_203;
-		public ImGuiKeyData KeysData_204;
-		public ImGuiKeyData KeysData_205;
-		public ImGuiKeyData KeysData_206;
-		public ImGuiKeyData KeysData_207;
-		public ImGuiKeyData KeysData_208;
-		public ImGuiKeyData KeysData_209;
-		public ImGuiKeyData KeysData_210;
-		public ImGuiKeyData KeysData_211;
-		public ImGuiKeyData KeysData_212;
-		public ImGuiKeyData KeysData_213;
-		public ImGuiKeyData KeysData_214;
-		public ImGuiKeyData KeysData_215;
-		public ImGuiKeyData KeysData_216;
-		public ImGuiKeyData KeysData_217;
-		public ImGuiKeyData KeysData_218;
-		public ImGuiKeyData KeysData_219;
-		public ImGuiKeyData KeysData_220;
-		public ImGuiKeyData KeysData_221;
-		public ImGuiKeyData KeysData_222;
-		public ImGuiKeyData KeysData_223;
-		public ImGuiKeyData KeysData_224;
-		public ImGuiKeyData KeysData_225;
-		public ImGuiKeyData KeysData_226;
-		public ImGuiKeyData KeysData_227;
-		public ImGuiKeyData KeysData_228;
-		public ImGuiKeyData KeysData_229;
-		public ImGuiKeyData KeysData_230;
-		public ImGuiKeyData KeysData_231;
-		public ImGuiKeyData KeysData_232;
-		public ImGuiKeyData KeysData_233;
-		public ImGuiKeyData KeysData_234;
-		public ImGuiKeyData KeysData_235;
-		public ImGuiKeyData KeysData_236;
-		public ImGuiKeyData KeysData_237;
-		public ImGuiKeyData KeysData_238;
-		public ImGuiKeyData KeysData_239;
-		public ImGuiKeyData KeysData_240;
-		public ImGuiKeyData KeysData_241;
-		public ImGuiKeyData KeysData_242;
-		public ImGuiKeyData KeysData_243;
-		public ImGuiKeyData KeysData_244;
-		public ImGuiKeyData KeysData_245;
-		public ImGuiKeyData KeysData_246;
-		public ImGuiKeyData KeysData_247;
-		public ImGuiKeyData KeysData_248;
-		public ImGuiKeyData KeysData_249;
-		public ImGuiKeyData KeysData_250;
-		public ImGuiKeyData KeysData_251;
-		public ImGuiKeyData KeysData_252;
-		public ImGuiKeyData KeysData_253;
-		public ImGuiKeyData KeysData_254;
-		public ImGuiKeyData KeysData_255;
-		public ImGuiKeyData KeysData_256;
-		public ImGuiKeyData KeysData_257;
-		public ImGuiKeyData KeysData_258;
-		public ImGuiKeyData KeysData_259;
-		public ImGuiKeyData KeysData_260;
-		public ImGuiKeyData KeysData_261;
-		public ImGuiKeyData KeysData_262;
-		public ImGuiKeyData KeysData_263;
-		public ImGuiKeyData KeysData_264;
-		public ImGuiKeyData KeysData_265;
-		public ImGuiKeyData KeysData_266;
-		public ImGuiKeyData KeysData_267;
-		public ImGuiKeyData KeysData_268;
-		public ImGuiKeyData KeysData_269;
-		public ImGuiKeyData KeysData_270;
-		public ImGuiKeyData KeysData_271;
-		public ImGuiKeyData KeysData_272;
-		public ImGuiKeyData KeysData_273;
-		public ImGuiKeyData KeysData_274;
-		public ImGuiKeyData KeysData_275;
-		public ImGuiKeyData KeysData_276;
-		public ImGuiKeyData KeysData_277;
-		public ImGuiKeyData KeysData_278;
-		public ImGuiKeyData KeysData_279;
-		public ImGuiKeyData KeysData_280;
-		public ImGuiKeyData KeysData_281;
-		public ImGuiKeyData KeysData_282;
-		public ImGuiKeyData KeysData_283;
-		public ImGuiKeyData KeysData_284;
-		public ImGuiKeyData KeysData_285;
-		public ImGuiKeyData KeysData_286;
-		public ImGuiKeyData KeysData_287;
-		public ImGuiKeyData KeysData_288;
-		public ImGuiKeyData KeysData_289;
-		public ImGuiKeyData KeysData_290;
-		public ImGuiKeyData KeysData_291;
-		public ImGuiKeyData KeysData_292;
-		public ImGuiKeyData KeysData_293;
-		public ImGuiKeyData KeysData_294;
-		public ImGuiKeyData KeysData_295;
-		public ImGuiKeyData KeysData_296;
-		public ImGuiKeyData KeysData_297;
-		public ImGuiKeyData KeysData_298;
-		public ImGuiKeyData KeysData_299;
-		public ImGuiKeyData KeysData_300;
-		public ImGuiKeyData KeysData_301;
-		public ImGuiKeyData KeysData_302;
-		public ImGuiKeyData KeysData_303;
-		public ImGuiKeyData KeysData_304;
-		public ImGuiKeyData KeysData_305;
-		public ImGuiKeyData KeysData_306;
-		public ImGuiKeyData KeysData_307;
-		public ImGuiKeyData KeysData_308;
-		public ImGuiKeyData KeysData_309;
-		public ImGuiKeyData KeysData_310;
-		public ImGuiKeyData KeysData_311;
-		public ImGuiKeyData KeysData_312;
-		public ImGuiKeyData KeysData_313;
-		public ImGuiKeyData KeysData_314;
-		public ImGuiKeyData KeysData_315;
-		public ImGuiKeyData KeysData_316;
-		public ImGuiKeyData KeysData_317;
-		public ImGuiKeyData KeysData_318;
-		public ImGuiKeyData KeysData_319;
-		public ImGuiKeyData KeysData_320;
-		public ImGuiKeyData KeysData_321;
-		public ImGuiKeyData KeysData_322;
-		public ImGuiKeyData KeysData_323;
-		public ImGuiKeyData KeysData_324;
-		public ImGuiKeyData KeysData_325;
-		public ImGuiKeyData KeysData_326;
-		public ImGuiKeyData KeysData_327;
-		public ImGuiKeyData KeysData_328;
-		public ImGuiKeyData KeysData_329;
-		public ImGuiKeyData KeysData_330;
-		public ImGuiKeyData KeysData_331;
-		public ImGuiKeyData KeysData_332;
-		public ImGuiKeyData KeysData_333;
-		public ImGuiKeyData KeysData_334;
-		public ImGuiKeyData KeysData_335;
-		public ImGuiKeyData KeysData_336;
-		public ImGuiKeyData KeysData_337;
-		public ImGuiKeyData KeysData_338;
-		public ImGuiKeyData KeysData_339;
-		public ImGuiKeyData KeysData_340;
-		public ImGuiKeyData KeysData_341;
-		public ImGuiKeyData KeysData_342;
-		public ImGuiKeyData KeysData_343;
-		public ImGuiKeyData KeysData_344;
-		public ImGuiKeyData KeysData_345;
-		public ImGuiKeyData KeysData_346;
-		public ImGuiKeyData KeysData_347;
-		public ImGuiKeyData KeysData_348;
-		public ImGuiKeyData KeysData_349;
-		public ImGuiKeyData KeysData_350;
-		public ImGuiKeyData KeysData_351;
-		public ImGuiKeyData KeysData_352;
-		public ImGuiKeyData KeysData_353;
-		public ImGuiKeyData KeysData_354;
-		public ImGuiKeyData KeysData_355;
-		public ImGuiKeyData KeysData_356;
-		public ImGuiKeyData KeysData_357;
-		public ImGuiKeyData KeysData_358;
-		public ImGuiKeyData KeysData_359;
-		public ImGuiKeyData KeysData_360;
-		public ImGuiKeyData KeysData_361;
-		public ImGuiKeyData KeysData_362;
-		public ImGuiKeyData KeysData_363;
-		public ImGuiKeyData KeysData_364;
-		public ImGuiKeyData KeysData_365;
-		public ImGuiKeyData KeysData_366;
-		public ImGuiKeyData KeysData_367;
-		public ImGuiKeyData KeysData_368;
-		public ImGuiKeyData KeysData_369;
-		public ImGuiKeyData KeysData_370;
-		public ImGuiKeyData KeysData_371;
-		public ImGuiKeyData KeysData_372;
-		public ImGuiKeyData KeysData_373;
-		public ImGuiKeyData KeysData_374;
-		public ImGuiKeyData KeysData_375;
-		public ImGuiKeyData KeysData_376;
-		public ImGuiKeyData KeysData_377;
-		public ImGuiKeyData KeysData_378;
-		public ImGuiKeyData KeysData_379;
-		public ImGuiKeyData KeysData_380;
-		public ImGuiKeyData KeysData_381;
-		public ImGuiKeyData KeysData_382;
-		public ImGuiKeyData KeysData_383;
-		public ImGuiKeyData KeysData_384;
-		public ImGuiKeyData KeysData_385;
-		public ImGuiKeyData KeysData_386;
-		public ImGuiKeyData KeysData_387;
-		public ImGuiKeyData KeysData_388;
-		public ImGuiKeyData KeysData_389;
-		public ImGuiKeyData KeysData_390;
-		public ImGuiKeyData KeysData_391;
-		public ImGuiKeyData KeysData_392;
-		public ImGuiKeyData KeysData_393;
-		public ImGuiKeyData KeysData_394;
-		public ImGuiKeyData KeysData_395;
-		public ImGuiKeyData KeysData_396;
-		public ImGuiKeyData KeysData_397;
-		public ImGuiKeyData KeysData_398;
-		public ImGuiKeyData KeysData_399;
-		public ImGuiKeyData KeysData_400;
-		public ImGuiKeyData KeysData_401;
-		public ImGuiKeyData KeysData_402;
-		public ImGuiKeyData KeysData_403;
-		public ImGuiKeyData KeysData_404;
-		public ImGuiKeyData KeysData_405;
-		public ImGuiKeyData KeysData_406;
-		public ImGuiKeyData KeysData_407;
-		public ImGuiKeyData KeysData_408;
-		public ImGuiKeyData KeysData_409;
-		public ImGuiKeyData KeysData_410;
-		public ImGuiKeyData KeysData_411;
-		public ImGuiKeyData KeysData_412;
-		public ImGuiKeyData KeysData_413;
-		public ImGuiKeyData KeysData_414;
-		public ImGuiKeyData KeysData_415;
-		public ImGuiKeyData KeysData_416;
-		public ImGuiKeyData KeysData_417;
-		public ImGuiKeyData KeysData_418;
-		public ImGuiKeyData KeysData_419;
-		public ImGuiKeyData KeysData_420;
-		public ImGuiKeyData KeysData_421;
-		public ImGuiKeyData KeysData_422;
-		public ImGuiKeyData KeysData_423;
-		public ImGuiKeyData KeysData_424;
-		public ImGuiKeyData KeysData_425;
-		public ImGuiKeyData KeysData_426;
-		public ImGuiKeyData KeysData_427;
-		public ImGuiKeyData KeysData_428;
-		public ImGuiKeyData KeysData_429;
-		public ImGuiKeyData KeysData_430;
-		public ImGuiKeyData KeysData_431;
-		public ImGuiKeyData KeysData_432;
-		public ImGuiKeyData KeysData_433;
-		public ImGuiKeyData KeysData_434;
-		public ImGuiKeyData KeysData_435;
-		public ImGuiKeyData KeysData_436;
-		public ImGuiKeyData KeysData_437;
-		public ImGuiKeyData KeysData_438;
-		public ImGuiKeyData KeysData_439;
-		public ImGuiKeyData KeysData_440;
-		public ImGuiKeyData KeysData_441;
-		public ImGuiKeyData KeysData_442;
-		public ImGuiKeyData KeysData_443;
-		public ImGuiKeyData KeysData_444;
-		public ImGuiKeyData KeysData_445;
-		public ImGuiKeyData KeysData_446;
-		public ImGuiKeyData KeysData_447;
-		public ImGuiKeyData KeysData_448;
-		public ImGuiKeyData KeysData_449;
-		public ImGuiKeyData KeysData_450;
-		public ImGuiKeyData KeysData_451;
-		public ImGuiKeyData KeysData_452;
-		public ImGuiKeyData KeysData_453;
-		public ImGuiKeyData KeysData_454;
-		public ImGuiKeyData KeysData_455;
-		public ImGuiKeyData KeysData_456;
-		public ImGuiKeyData KeysData_457;
-		public ImGuiKeyData KeysData_458;
-		public ImGuiKeyData KeysData_459;
-		public ImGuiKeyData KeysData_460;
-		public ImGuiKeyData KeysData_461;
-		public ImGuiKeyData KeysData_462;
-		public ImGuiKeyData KeysData_463;
-		public ImGuiKeyData KeysData_464;
-		public ImGuiKeyData KeysData_465;
-		public ImGuiKeyData KeysData_466;
-		public ImGuiKeyData KeysData_467;
-		public ImGuiKeyData KeysData_468;
-		public ImGuiKeyData KeysData_469;
-		public ImGuiKeyData KeysData_470;
-		public ImGuiKeyData KeysData_471;
-		public ImGuiKeyData KeysData_472;
-		public ImGuiKeyData KeysData_473;
-		public ImGuiKeyData KeysData_474;
-		public ImGuiKeyData KeysData_475;
-		public ImGuiKeyData KeysData_476;
-		public ImGuiKeyData KeysData_477;
-		public ImGuiKeyData KeysData_478;
-		public ImGuiKeyData KeysData_479;
-		public ImGuiKeyData KeysData_480;
-		public ImGuiKeyData KeysData_481;
-		public ImGuiKeyData KeysData_482;
-		public ImGuiKeyData KeysData_483;
-		public ImGuiKeyData KeysData_484;
-		public ImGuiKeyData KeysData_485;
-		public ImGuiKeyData KeysData_486;
-		public ImGuiKeyData KeysData_487;
-		public ImGuiKeyData KeysData_488;
-		public ImGuiKeyData KeysData_489;
-		public ImGuiKeyData KeysData_490;
-		public ImGuiKeyData KeysData_491;
-		public ImGuiKeyData KeysData_492;
-		public ImGuiKeyData KeysData_493;
-		public ImGuiKeyData KeysData_494;
-		public ImGuiKeyData KeysData_495;
-		public ImGuiKeyData KeysData_496;
-		public ImGuiKeyData KeysData_497;
-		public ImGuiKeyData KeysData_498;
-		public ImGuiKeyData KeysData_499;
-		public ImGuiKeyData KeysData_500;
-		public ImGuiKeyData KeysData_501;
-		public ImGuiKeyData KeysData_502;
-		public ImGuiKeyData KeysData_503;
-		public ImGuiKeyData KeysData_504;
-		public ImGuiKeyData KeysData_505;
-		public ImGuiKeyData KeysData_506;
-		public ImGuiKeyData KeysData_507;
-		public ImGuiKeyData KeysData_508;
-		public ImGuiKeyData KeysData_509;
-		public ImGuiKeyData KeysData_510;
-		public ImGuiKeyData KeysData_511;
-		public ImGuiKeyData KeysData_512;
-		public ImGuiKeyData KeysData_513;
-		public ImGuiKeyData KeysData_514;
-		public ImGuiKeyData KeysData_515;
-		public ImGuiKeyData KeysData_516;
-		public ImGuiKeyData KeysData_517;
-		public ImGuiKeyData KeysData_518;
-		public ImGuiKeyData KeysData_519;
-		public ImGuiKeyData KeysData_520;
-		public ImGuiKeyData KeysData_521;
-		public ImGuiKeyData KeysData_522;
-		public ImGuiKeyData KeysData_523;
-		public ImGuiKeyData KeysData_524;
-		public ImGuiKeyData KeysData_525;
-		public ImGuiKeyData KeysData_526;
-		public ImGuiKeyData KeysData_527;
-		public ImGuiKeyData KeysData_528;
-		public ImGuiKeyData KeysData_529;
-		public ImGuiKeyData KeysData_530;
-		public ImGuiKeyData KeysData_531;
-		public ImGuiKeyData KeysData_532;
-		public ImGuiKeyData KeysData_533;
-		public ImGuiKeyData KeysData_534;
-		public ImGuiKeyData KeysData_535;
-		public ImGuiKeyData KeysData_536;
-		public ImGuiKeyData KeysData_537;
-		public ImGuiKeyData KeysData_538;
-		public ImGuiKeyData KeysData_539;
-		public ImGuiKeyData KeysData_540;
-		public ImGuiKeyData KeysData_541;
-		public ImGuiKeyData KeysData_542;
-		public ImGuiKeyData KeysData_543;
-		public ImGuiKeyData KeysData_544;
-		public ImGuiKeyData KeysData_545;
-		public ImGuiKeyData KeysData_546;
-		public ImGuiKeyData KeysData_547;
-		public ImGuiKeyData KeysData_548;
-		public ImGuiKeyData KeysData_549;
-		public ImGuiKeyData KeysData_550;
-		public ImGuiKeyData KeysData_551;
-		public ImGuiKeyData KeysData_552;
-		public ImGuiKeyData KeysData_553;
-		public ImGuiKeyData KeysData_554;
-		public ImGuiKeyData KeysData_555;
-		public ImGuiKeyData KeysData_556;
-		public ImGuiKeyData KeysData_557;
-		public ImGuiKeyData KeysData_558;
-		public ImGuiKeyData KeysData_559;
-		public ImGuiKeyData KeysData_560;
-		public ImGuiKeyData KeysData_561;
-		public ImGuiKeyData KeysData_562;
-		public ImGuiKeyData KeysData_563;
-		public ImGuiKeyData KeysData_564;
-		public ImGuiKeyData KeysData_565;
-		public ImGuiKeyData KeysData_566;
-		public ImGuiKeyData KeysData_567;
-		public ImGuiKeyData KeysData_568;
-		public ImGuiKeyData KeysData_569;
-		public ImGuiKeyData KeysData_570;
-		public ImGuiKeyData KeysData_571;
-		public ImGuiKeyData KeysData_572;
-		public ImGuiKeyData KeysData_573;
-		public ImGuiKeyData KeysData_574;
-		public ImGuiKeyData KeysData_575;
-		public ImGuiKeyData KeysData_576;
-		public ImGuiKeyData KeysData_577;
-		public ImGuiKeyData KeysData_578;
-		public ImGuiKeyData KeysData_579;
-		public ImGuiKeyData KeysData_580;
-		public ImGuiKeyData KeysData_581;
-		public ImGuiKeyData KeysData_582;
-		public ImGuiKeyData KeysData_583;
-		public ImGuiKeyData KeysData_584;
-		public ImGuiKeyData KeysData_585;
-		public ImGuiKeyData KeysData_586;
-		public ImGuiKeyData KeysData_587;
-		public ImGuiKeyData KeysData_588;
-		public ImGuiKeyData KeysData_589;
-		public ImGuiKeyData KeysData_590;
-		public ImGuiKeyData KeysData_591;
-		public ImGuiKeyData KeysData_592;
-		public ImGuiKeyData KeysData_593;
-		public ImGuiKeyData KeysData_594;
-		public ImGuiKeyData KeysData_595;
-		public ImGuiKeyData KeysData_596;
-		public ImGuiKeyData KeysData_597;
-		public ImGuiKeyData KeysData_598;
-		public ImGuiKeyData KeysData_599;
-		public ImGuiKeyData KeysData_600;
-		public ImGuiKeyData KeysData_601;
-		public ImGuiKeyData KeysData_602;
-		public ImGuiKeyData KeysData_603;
-		public ImGuiKeyData KeysData_604;
-		public ImGuiKeyData KeysData_605;
-		public ImGuiKeyData KeysData_606;
-		public ImGuiKeyData KeysData_607;
-		public ImGuiKeyData KeysData_608;
-		public ImGuiKeyData KeysData_609;
-		public ImGuiKeyData KeysData_610;
-		public ImGuiKeyData KeysData_611;
-		public ImGuiKeyData KeysData_612;
-		public ImGuiKeyData KeysData_613;
-		public ImGuiKeyData KeysData_614;
-		public ImGuiKeyData KeysData_615;
-		public ImGuiKeyData KeysData_616;
-		public ImGuiKeyData KeysData_617;
-		public ImGuiKeyData KeysData_618;
-		public ImGuiKeyData KeysData_619;
-		public ImGuiKeyData KeysData_620;
-		public ImGuiKeyData KeysData_621;
-		public ImGuiKeyData KeysData_622;
-		public ImGuiKeyData KeysData_623;
-		public ImGuiKeyData KeysData_624;
-		public ImGuiKeyData KeysData_625;
-		public ImGuiKeyData KeysData_626;
-		public ImGuiKeyData KeysData_627;
-		public ImGuiKeyData KeysData_628;
-		public ImGuiKeyData KeysData_629;
-		public ImGuiKeyData KeysData_630;
-		public ImGuiKeyData KeysData_631;
-		public ImGuiKeyData KeysData_632;
-		public ImGuiKeyData KeysData_633;
-		public ImGuiKeyData KeysData_634;
-		public ImGuiKeyData KeysData_635;
-		public ImGuiKeyData KeysData_636;
-		public ImGuiKeyData KeysData_637;
-		public ImGuiKeyData KeysData_638;
-		public ImGuiKeyData KeysData_639;
-		public ImGuiKeyData KeysData_640;
-		public ImGuiKeyData KeysData_641;
-		public ImGuiKeyData KeysData_642;
-		public ImGuiKeyData KeysData_643;
-		public ImGuiKeyData KeysData_644;
-		public ImGuiKeyData KeysData_645;
-		public ImGuiKeyData KeysData_646;
-		public ImGuiKeyData KeysData_647;
-		public ImGuiKeyData KeysData_648;
-		public ImGuiKeyData KeysData_649;
-		public ImGuiKeyData KeysData_650;
-		public ImGuiKeyData KeysData_651;
 		public byte WantCaptureMouseUnlessPopupClose;
 		public Vector2 MousePosPrev;
 		public Vector2 MouseClickedPos_0;
@@ -19900,7 +18393,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (ImGuiKeyData* p = &this.KeysData_0)
 				{
-					return new Span<ImGuiKeyData>(p, 652);
+					return new Span<ImGuiKeyData>(p, 154);
 				}
 			}
 		}
@@ -20172,6 +18665,7 @@ namespace Hexa.NET.ImGui
 		public ref float MouseDragThreshold => ref Unsafe.AsRef<float>(&Handle->MouseDragThreshold);
 		public ref float KeyRepeatDelay => ref Unsafe.AsRef<float>(&Handle->KeyRepeatDelay);
 		public ref float KeyRepeatRate => ref Unsafe.AsRef<float>(&Handle->KeyRepeatRate);
+		public ref bool ConfigDebugIsDebuggerPresent => ref Unsafe.AsRef<bool>(&Handle->ConfigDebugIsDebuggerPresent);
 		public ref bool ConfigDebugBeginReturnValueOnce => ref Unsafe.AsRef<bool>(&Handle->ConfigDebugBeginReturnValueOnce);
 		public ref bool ConfigDebugBeginReturnValueLoop => ref Unsafe.AsRef<bool>(&Handle->ConfigDebugBeginReturnValueLoop);
 		public ref bool ConfigDebugIgnoreFocusLoss => ref Unsafe.AsRef<bool>(&Handle->ConfigDebugIgnoreFocusLoss);
@@ -20185,7 +18679,6 @@ namespace Hexa.NET.ImGui
 		public void* SetClipboardTextFn { get => Handle->SetClipboardTextFn; set => Handle->SetClipboardTextFn = value; }
 		public void* ClipboardUserData { get => Handle->ClipboardUserData; set => Handle->ClipboardUserData = value; }
 		public void* SetPlatformImeDataFn { get => Handle->SetPlatformImeDataFn; set => Handle->SetPlatformImeDataFn = value; }
-		public void* UnusedPadding { get => Handle->UnusedPadding; set => Handle->UnusedPadding = value; }
 		public ref char PlatformLocaleDecimalPoint => ref Unsafe.AsRef<char>(&Handle->PlatformLocaleDecimalPoint);
 		public ref bool WantCaptureMouse => ref Unsafe.AsRef<bool>(&Handle->WantCaptureMouse);
 		public ref bool WantCaptureKeyboard => ref Unsafe.AsRef<bool>(&Handle->WantCaptureKeyboard);
@@ -20199,32 +18692,7 @@ namespace Hexa.NET.ImGui
 		public ref int MetricsRenderIndices => ref Unsafe.AsRef<int>(&Handle->MetricsRenderIndices);
 		public ref int MetricsRenderWindows => ref Unsafe.AsRef<int>(&Handle->MetricsRenderWindows);
 		public ref int MetricsActiveWindows => ref Unsafe.AsRef<int>(&Handle->MetricsActiveWindows);
-		public ref int MetricsActiveAllocations => ref Unsafe.AsRef<int>(&Handle->MetricsActiveAllocations);
 		public ref Vector2 MouseDelta => ref Unsafe.AsRef<Vector2>(&Handle->MouseDelta);
-		public unsafe Span<int> KeyMap
-		
-		{
-			get
-			{
-				return new Span<int>(&Handle->KeyMap_0, 652);
-			}
-		}
-		public unsafe Span<bool> KeysDown
-		
-		{
-			get
-			{
-				return new Span<bool>(&Handle->KeysDown_0, 652);
-			}
-		}
-		public unsafe Span<float> NavInputs
-		
-		{
-			get
-			{
-				return new Span<float>(&Handle->NavInputs_0, 16);
-			}
-		}
 		public ref ImGuiContextPtr Ctx => ref Unsafe.AsRef<ImGuiContextPtr>(&Handle->Ctx);
 		public ref Vector2 MousePos => ref Unsafe.AsRef<Vector2>(&Handle->MousePos);
 		public unsafe Span<bool> MouseDown
@@ -20249,7 +18717,7 @@ namespace Hexa.NET.ImGui
 		{
 			get
 			{
-				return new Span<ImGuiKeyData>(&Handle->KeysData_0, 652);
+				return new Span<ImGuiKeyData>(&Handle->KeysData_0, 154);
 			}
 		}
 		public ref bool WantCaptureMouseUnlessPopupClose => ref Unsafe.AsRef<bool>(&Handle->WantCaptureMouseUnlessPopupClose);
@@ -20819,6 +19287,8 @@ namespace Hexa.NET.ImGui
 		public float TabRounding;
 		public float TabBorderSize;
 		public float TabMinWidthForCloseButton;
+		public float TabBarBorderSize;
+		public float TableAngledHeadersAngle;
 		public ImGuiDir ColorButtonPosition;
 		public Vector2 ButtonTextAlign;
 		public Vector2 SelectableTextAlign;
@@ -20986,6 +19456,8 @@ namespace Hexa.NET.ImGui
 		public ref float TabRounding => ref Unsafe.AsRef<float>(&Handle->TabRounding);
 		public ref float TabBorderSize => ref Unsafe.AsRef<float>(&Handle->TabBorderSize);
 		public ref float TabMinWidthForCloseButton => ref Unsafe.AsRef<float>(&Handle->TabMinWidthForCloseButton);
+		public ref float TabBarBorderSize => ref Unsafe.AsRef<float>(&Handle->TabBarBorderSize);
+		public ref float TableAngledHeadersAngle => ref Unsafe.AsRef<float>(&Handle->TableAngledHeadersAngle);
 		public ref ImGuiDir ColorButtonPosition => ref Unsafe.AsRef<ImGuiDir>(&Handle->ColorButtonPosition);
 		public ref Vector2 ButtonTextAlign => ref Unsafe.AsRef<Vector2>(&Handle->ButtonTextAlign);
 		public ref Vector2 SelectableTextAlign => ref Unsafe.AsRef<Vector2>(&Handle->SelectableTextAlign);
@@ -21217,6 +19689,7 @@ namespace Hexa.NET.ImGui
 		public int ID;
 		public ImGuiWindowFlags Flags;
 		public ImGuiWindowFlags FlagsPreviousFrame;
+		public ImGuiChildFlags ChildFlags;
 		public ImGuiWindowClass WindowClass;
 		public unsafe ImGuiViewportP* Viewport;
 		public int ViewportId;
@@ -21261,6 +19734,7 @@ namespace Hexa.NET.ImGui
 		public byte IsFallbackWindow;
 		public byte IsExplicitChild;
 		public byte HasCloseButton;
+		public byte ResizeBorderHovered;
 		public byte ResizeBorderHeld;
 		public short BeginCount;
 		public short BeginCountPreviousFrame;
@@ -21270,7 +19744,6 @@ namespace Hexa.NET.ImGui
 		public int PopupId;
 		public sbyte AutoFitFramesX;
 		public sbyte AutoFitFramesY;
-		public sbyte AutoFitChildAxises;
 		public byte AutoFitOnlyGrows;
 		public ImGuiDir AutoPosLastDirection;
 		public sbyte HiddenFramesCanSkipItems;
@@ -21312,6 +19785,7 @@ namespace Hexa.NET.ImGui
 		public unsafe ImGuiWindow* RootWindowDockTree;
 		public unsafe ImGuiWindow* RootWindowForTitleBarHighlight;
 		public unsafe ImGuiWindow* RootWindowForNav;
+		public unsafe ImGuiWindow* ParentWindowForFocusRoute;
 		public unsafe ImGuiWindow* NavLastChildNavWindow;
 		public uint NavLastIds_0;
 		public uint NavLastIds_1;
@@ -21396,6 +19870,7 @@ namespace Hexa.NET.ImGui
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImGuiWindowFlags Flags => ref Unsafe.AsRef<ImGuiWindowFlags>(&Handle->Flags);
 		public ref ImGuiWindowFlags FlagsPreviousFrame => ref Unsafe.AsRef<ImGuiWindowFlags>(&Handle->FlagsPreviousFrame);
+		public ref ImGuiChildFlags ChildFlags => ref Unsafe.AsRef<ImGuiChildFlags>(&Handle->ChildFlags);
 		public ref ImGuiWindowClass WindowClass => ref Unsafe.AsRef<ImGuiWindowClass>(&Handle->WindowClass);
 		public ref ImGuiViewportPPtr Viewport => ref Unsafe.AsRef<ImGuiViewportPPtr>(&Handle->Viewport);
 		public ref int ViewportId => ref Unsafe.AsRef<int>(&Handle->ViewportId);
@@ -21440,6 +19915,7 @@ namespace Hexa.NET.ImGui
 		public ref bool IsFallbackWindow => ref Unsafe.AsRef<bool>(&Handle->IsFallbackWindow);
 		public ref bool IsExplicitChild => ref Unsafe.AsRef<bool>(&Handle->IsExplicitChild);
 		public ref bool HasCloseButton => ref Unsafe.AsRef<bool>(&Handle->HasCloseButton);
+		public ref byte ResizeBorderHovered => ref Unsafe.AsRef<byte>(&Handle->ResizeBorderHovered);
 		public ref byte ResizeBorderHeld => ref Unsafe.AsRef<byte>(&Handle->ResizeBorderHeld);
 		public ref short BeginCount => ref Unsafe.AsRef<short>(&Handle->BeginCount);
 		public ref short BeginCountPreviousFrame => ref Unsafe.AsRef<short>(&Handle->BeginCountPreviousFrame);
@@ -21449,7 +19925,6 @@ namespace Hexa.NET.ImGui
 		public ref int PopupId => ref Unsafe.AsRef<int>(&Handle->PopupId);
 		public ref sbyte AutoFitFramesX => ref Unsafe.AsRef<sbyte>(&Handle->AutoFitFramesX);
 		public ref sbyte AutoFitFramesY => ref Unsafe.AsRef<sbyte>(&Handle->AutoFitFramesY);
-		public ref sbyte AutoFitChildAxises => ref Unsafe.AsRef<sbyte>(&Handle->AutoFitChildAxises);
 		public ref bool AutoFitOnlyGrows => ref Unsafe.AsRef<bool>(&Handle->AutoFitOnlyGrows);
 		public ref ImGuiDir AutoPosLastDirection => ref Unsafe.AsRef<ImGuiDir>(&Handle->AutoPosLastDirection);
 		public ref sbyte HiddenFramesCanSkipItems => ref Unsafe.AsRef<sbyte>(&Handle->HiddenFramesCanSkipItems);
@@ -21491,6 +19966,7 @@ namespace Hexa.NET.ImGui
 		public ref ImGuiWindowPtr RootWindowDockTree => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->RootWindowDockTree);
 		public ref ImGuiWindowPtr RootWindowForTitleBarHighlight => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->RootWindowForTitleBarHighlight);
 		public ref ImGuiWindowPtr RootWindowForNav => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->RootWindowForNav);
+		public ref ImGuiWindowPtr ParentWindowForFocusRoute => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->ParentWindowForFocusRoute);
 		public ref ImGuiWindowPtr NavLastChildNavWindow => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->NavLastChildNavWindow);
 		public unsafe Span<uint> NavLastIds
 		
@@ -21576,6 +20052,7 @@ namespace Hexa.NET.ImGui
 	{
 		public int ClassId;
 		public int ParentViewportId;
+		public int FocusRouteParentWindowId;
 		public ImGuiViewportFlags ViewportFlagsOverrideSet;
 		public ImGuiViewportFlags ViewportFlagsOverrideClear;
 		public ImGuiTabItemFlags TabItemFlagsOverrideSet;
@@ -21628,6 +20105,7 @@ namespace Hexa.NET.ImGui
 		private string DebuggerDisplay => string.Format("ImGuiWindowClassPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		public ref int ClassId => ref Unsafe.AsRef<int>(&Handle->ClassId);
 		public ref int ParentViewportId => ref Unsafe.AsRef<int>(&Handle->ParentViewportId);
+		public ref int FocusRouteParentWindowId => ref Unsafe.AsRef<int>(&Handle->FocusRouteParentWindowId);
 		public ref ImGuiViewportFlags ViewportFlagsOverrideSet => ref Unsafe.AsRef<ImGuiViewportFlags>(&Handle->ViewportFlagsOverrideSet);
 		public ref ImGuiViewportFlags ViewportFlagsOverrideClear => ref Unsafe.AsRef<ImGuiViewportFlags>(&Handle->ViewportFlagsOverrideClear);
 		public ref ImGuiTabItemFlags TabItemFlagsOverrideSet => ref Unsafe.AsRef<ImGuiTabItemFlags>(&Handle->TabItemFlagsOverrideSet);
@@ -21897,6 +20375,7 @@ namespace Hexa.NET.ImGui
 		public int CurrentTableIdx;
 		public ImGuiLayoutType LayoutType;
 		public ImGuiLayoutType ParentLayoutType;
+		public uint ModalDimBgColor;
 		public float ItemWidth;
 		public float TextWrapPos;
 		public ImVectorFloat ItemWidthStack;
@@ -22838,6 +21317,8 @@ namespace Hexa.NET.ImGui
 		public float ScrollingSpeed;
 		public float ScrollingRectMinX;
 		public float ScrollingRectMaxX;
+		public float SeparatorMinX;
+		public float SeparatorMaxX;
 		public int ReorderRequestTabId;
 		public short ReorderRequestOffset;
 		public sbyte BeginCount;
@@ -22904,6 +21385,8 @@ namespace Hexa.NET.ImGui
 		public ref float ScrollingSpeed => ref Unsafe.AsRef<float>(&Handle->ScrollingSpeed);
 		public ref float ScrollingRectMinX => ref Unsafe.AsRef<float>(&Handle->ScrollingRectMinX);
 		public ref float ScrollingRectMaxX => ref Unsafe.AsRef<float>(&Handle->ScrollingRectMaxX);
+		public ref float SeparatorMinX => ref Unsafe.AsRef<float>(&Handle->SeparatorMinX);
+		public ref float SeparatorMaxX => ref Unsafe.AsRef<float>(&Handle->SeparatorMaxX);
 		public ref int ReorderRequestTabId => ref Unsafe.AsRef<int>(&Handle->ReorderRequestTabId);
 		public ref short ReorderRequestOffset => ref Unsafe.AsRef<short>(&Handle->ReorderRequestOffset);
 		public ref sbyte BeginCount => ref Unsafe.AsRef<sbyte>(&Handle->BeginCount);
@@ -23831,6 +22314,7 @@ public unsafe void appendf(string fmt)
 		public ImRect Rect;
 		public ImRect NavRect;
 		public ImRect DisplayRect;
+		public ImRect ClipRect;
 
 	}
 
@@ -23872,6 +22356,7 @@ public unsafe void appendf(string fmt)
 		public ref ImRect Rect => ref Unsafe.AsRef<ImRect>(&Handle->Rect);
 		public ref ImRect NavRect => ref Unsafe.AsRef<ImRect>(&Handle->NavRect);
 		public ref ImRect DisplayRect => ref Unsafe.AsRef<ImRect>(&Handle->DisplayRect);
+		public ref ImRect ClipRect => ref Unsafe.AsRef<ImRect>(&Handle->ClipRect);
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -23930,6 +22415,17 @@ public unsafe void appendf(string fmt)
 		public ref short SizeOfItemFlagsStack => ref Unsafe.AsRef<short>(&Handle->SizeOfItemFlagsStack);
 		public ref short SizeOfBeginPopupStack => ref Unsafe.AsRef<short>(&Handle->SizeOfBeginPopupStack);
 		public ref short SizeOfDisabledStack => ref Unsafe.AsRef<short>(&Handle->SizeOfDisabledStack);
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImBitArrayImGuiKeyNamedKeyCOUNTLessImGuiKeyNamedKeyBEGIN
+	{
+		public uint Storage_0;
+		public uint Storage_1;
+		public uint Storage_2;
+		public uint Storage_3;
+		public uint Storage_4;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -24123,6 +22619,20 @@ public unsafe void appendf(string fmt)
 		public short Index_137;
 		public short Index_138;
 		public short Index_139;
+		public short Index_140;
+		public short Index_141;
+		public short Index_142;
+		public short Index_143;
+		public short Index_144;
+		public short Index_145;
+		public short Index_146;
+		public short Index_147;
+		public short Index_148;
+		public short Index_149;
+		public short Index_150;
+		public short Index_151;
+		public short Index_152;
+		public short Index_153;
 		public ImVectorImGuiKeyRoutingData Entries;
 		public ImVectorImGuiKeyRoutingData EntriesNext;
 
@@ -24165,7 +22675,7 @@ public unsafe void appendf(string fmt)
 		{
 			get
 			{
-				return new Span<short>(&Handle->Index_0, 140);
+				return new Span<short>(&Handle->Index_0, 154);
 			}
 		}
 		public ref ImVectorImGuiKeyRoutingData Entries => ref Unsafe.AsRef<ImVectorImGuiKeyRoutingData>(&Handle->Entries);
@@ -24186,6 +22696,7 @@ public unsafe void appendf(string fmt)
 	{
 		public short NextEntryIndex;
 		public ushort Mods;
+		public byte RoutingCurrScore;
 		public byte RoutingNextScore;
 		public int RoutingCurr;
 		public int RoutingNext;
@@ -24226,6 +22737,7 @@ public unsafe void appendf(string fmt)
 		private string DebuggerDisplay => string.Format("ImGuiKeyRoutingDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		public ref short NextEntryIndex => ref Unsafe.AsRef<short>(&Handle->NextEntryIndex);
 		public ref ushort Mods => ref Unsafe.AsRef<ushort>(&Handle->Mods);
+		public ref byte RoutingCurrScore => ref Unsafe.AsRef<byte>(&Handle->RoutingCurrScore);
 		public ref byte RoutingNextScore => ref Unsafe.AsRef<byte>(&Handle->RoutingNextScore);
 		public ref int RoutingCurr => ref Unsafe.AsRef<int>(&Handle->RoutingCurr);
 		public ref int RoutingNext => ref Unsafe.AsRef<int>(&Handle->RoutingNext);
@@ -24236,10 +22748,11 @@ public unsafe void appendf(string fmt)
 	{
 		public ImGuiNextItemDataFlags Flags;
 		public ImGuiItemFlags ItemFlags;
+		public long SelectionUserData;
 		public float Width;
-		public int FocusScopeId;
-		public ImGuiCond OpenCond;
+		public int Shortcut;
 		public byte OpenVal;
+		public ImGuiCond OpenCond;
 
 	}
 
@@ -24277,10 +22790,11 @@ public unsafe void appendf(string fmt)
 		private string DebuggerDisplay => string.Format("ImGuiNextItemDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		public ref ImGuiNextItemDataFlags Flags => ref Unsafe.AsRef<ImGuiNextItemDataFlags>(&Handle->Flags);
 		public ref ImGuiItemFlags ItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->ItemFlags);
+		public ref long SelectionUserData => ref Unsafe.AsRef<long>(&Handle->SelectionUserData);
 		public ref float Width => ref Unsafe.AsRef<float>(&Handle->Width);
-		public ref int FocusScopeId => ref Unsafe.AsRef<int>(&Handle->FocusScopeId);
-		public ref ImGuiCond OpenCond => ref Unsafe.AsRef<ImGuiCond>(&Handle->OpenCond);
+		public ref int Shortcut => ref Unsafe.AsRef<int>(&Handle->Shortcut);
 		public ref bool OpenVal => ref Unsafe.AsRef<bool>(&Handle->OpenVal);
+		public ref ImGuiCond OpenCond => ref Unsafe.AsRef<ImGuiCond>(&Handle->OpenCond);
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -24296,6 +22810,7 @@ public unsafe void appendf(string fmt)
 		public Vector2 SizeVal;
 		public Vector2 ContentSizeVal;
 		public Vector2 ScrollVal;
+		public ImGuiChildFlags ChildFlags;
 		public byte PosUndock;
 		public byte CollapsedVal;
 		public ImRect SizeConstraintRect;
@@ -24351,6 +22866,7 @@ public unsafe void appendf(string fmt)
 		public ref Vector2 SizeVal => ref Unsafe.AsRef<Vector2>(&Handle->SizeVal);
 		public ref Vector2 ContentSizeVal => ref Unsafe.AsRef<Vector2>(&Handle->ContentSizeVal);
 		public ref Vector2 ScrollVal => ref Unsafe.AsRef<Vector2>(&Handle->ScrollVal);
+		public ref ImGuiChildFlags ChildFlags => ref Unsafe.AsRef<ImGuiChildFlags>(&Handle->ChildFlags);
 		public ref bool PosUndock => ref Unsafe.AsRef<bool>(&Handle->PosUndock);
 		public ref bool CollapsedVal => ref Unsafe.AsRef<bool>(&Handle->CollapsedVal);
 		public ref ImRect SizeConstraintRect => ref Unsafe.AsRef<ImRect>(&Handle->SizeConstraintRect);
@@ -24494,6 +23010,59 @@ public unsafe void appendf(string fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImVectorImGuiFocusScopeData
+	{
+		public int Size;
+		public int Capacity;
+		public unsafe ImGuiFocusScopeData* Data;
+
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiFocusScopeData
+	{
+		public int ID;
+		public int WindowID;
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImGuiFocusScopeDataPtr : IEquatable<ImGuiFocusScopeDataPtr>
+	{
+		public ImGuiFocusScopeDataPtr(ImGuiFocusScopeData* handle) { Handle = handle; }
+
+		public ImGuiFocusScopeData* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImGuiFocusScopeDataPtr Null => new ImGuiFocusScopeDataPtr(null);
+
+		public static implicit operator ImGuiFocusScopeDataPtr(ImGuiFocusScopeData* handle) => new ImGuiFocusScopeDataPtr(handle);
+
+		public static implicit operator ImGuiFocusScopeData*(ImGuiFocusScopeDataPtr handle) => handle.Handle;
+
+		public static bool operator ==(ImGuiFocusScopeDataPtr left, ImGuiFocusScopeDataPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImGuiFocusScopeDataPtr left, ImGuiFocusScopeDataPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImGuiFocusScopeDataPtr left, ImGuiFocusScopeData* right) => left.Handle == right;
+
+		public static bool operator !=(ImGuiFocusScopeDataPtr left, ImGuiFocusScopeData* right) => left.Handle != right;
+
+		public bool Equals(ImGuiFocusScopeDataPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImGuiFocusScopeDataPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImGuiFocusScopeDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
+		public ref int WindowID => ref Unsafe.AsRef<int>(&Handle->WindowID);
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImVectorImGuiItemFlags
 	{
 		public int Size;
@@ -24517,6 +23086,7 @@ public unsafe void appendf(string fmt)
 		public int WindowID;
 		public Vector2 BackupCursorPos;
 		public Vector2 BackupCursorMaxPos;
+		public Vector2 BackupCursorPosPrevLine;
 		public ImVec1 BackupIndent;
 		public ImVec1 BackupGroupOffset;
 		public Vector2 BackupCurrLineSize;
@@ -24524,6 +23094,7 @@ public unsafe void appendf(string fmt)
 		public int BackupActiveIdIsAlive;
 		public byte BackupActiveIdPreviousFrameIsAlive;
 		public byte BackupHoveredIdIsAlive;
+		public byte BackupIsSameLine;
 		public byte EmitItem;
 
 	}
@@ -24563,6 +23134,7 @@ public unsafe void appendf(string fmt)
 		public ref int WindowID => ref Unsafe.AsRef<int>(&Handle->WindowID);
 		public ref Vector2 BackupCursorPos => ref Unsafe.AsRef<Vector2>(&Handle->BackupCursorPos);
 		public ref Vector2 BackupCursorMaxPos => ref Unsafe.AsRef<Vector2>(&Handle->BackupCursorMaxPos);
+		public ref Vector2 BackupCursorPosPrevLine => ref Unsafe.AsRef<Vector2>(&Handle->BackupCursorPosPrevLine);
 		public ref ImVec1 BackupIndent => ref Unsafe.AsRef<ImVec1>(&Handle->BackupIndent);
 		public ref ImVec1 BackupGroupOffset => ref Unsafe.AsRef<ImVec1>(&Handle->BackupGroupOffset);
 		public ref Vector2 BackupCurrLineSize => ref Unsafe.AsRef<Vector2>(&Handle->BackupCurrLineSize);
@@ -24570,6 +23142,7 @@ public unsafe void appendf(string fmt)
 		public ref int BackupActiveIdIsAlive => ref Unsafe.AsRef<int>(&Handle->BackupActiveIdIsAlive);
 		public ref bool BackupActiveIdPreviousFrameIsAlive => ref Unsafe.AsRef<bool>(&Handle->BackupActiveIdPreviousFrameIsAlive);
 		public ref bool BackupHoveredIdIsAlive => ref Unsafe.AsRef<bool>(&Handle->BackupHoveredIdIsAlive);
+		public ref bool BackupIsSameLine => ref Unsafe.AsRef<bool>(&Handle->BackupIsSameLine);
 		public ref bool EmitItem => ref Unsafe.AsRef<bool>(&Handle->EmitItem);
 	}
 
@@ -24710,6 +23283,7 @@ public unsafe void appendf(string fmt)
 		public int FocusScopeId;
 		public ImRect RectRel;
 		public ImGuiItemFlags InFlags;
+		public long SelectionUserData;
 		public float DistBox;
 		public float DistCenter;
 		public float DistAxial;
@@ -24753,6 +23327,7 @@ public unsafe void appendf(string fmt)
 		public ref int FocusScopeId => ref Unsafe.AsRef<int>(&Handle->FocusScopeId);
 		public ref ImRect RectRel => ref Unsafe.AsRef<ImRect>(&Handle->RectRel);
 		public ref ImGuiItemFlags InFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->InFlags);
+		public ref long SelectionUserData => ref Unsafe.AsRef<long>(&Handle->SelectionUserData);
 		public ref float DistBox => ref Unsafe.AsRef<float>(&Handle->DistBox);
 		public ref float DistCenter => ref Unsafe.AsRef<float>(&Handle->DistCenter);
 		public ref float DistAxial => ref Unsafe.AsRef<float>(&Handle->DistAxial);
@@ -25329,6 +23904,8 @@ public unsafe void appendf(string fmt)
 		public float ResizedColumnNextWidth;
 		public float ResizeLockMinContentsX2;
 		public float RefScale;
+		public float AngledHeadersHeight;
+		public float AngledHeadersSlope;
 		public ImRect OuterRect;
 		public ImRect InnerRect;
 		public ImRect WorkRect;
@@ -25351,8 +23928,10 @@ public unsafe void appendf(string fmt)
 		public sbyte ColumnsEnabledCount;
 		public sbyte ColumnsEnabledFixedCount;
 		public sbyte DeclColumnsCount;
+		public sbyte AngledHeadersCount;
 		public sbyte HoveredColumnBody;
 		public sbyte HoveredColumnBorder;
+		public sbyte HighlightColumnHeader;
 		public sbyte AutoFitSingleColumn;
 		public sbyte ResizedColumn;
 		public sbyte LastResizedColumn;
@@ -25378,6 +23957,7 @@ public unsafe void appendf(string fmt)
 		public byte IsSortSpecsDirty;
 		public byte IsUsingHeaders;
 		public byte IsContextPopupOpen;
+		public byte DisableDefaultContextMenu;
 		public byte IsSettingsRequestLoad;
 		public byte IsSettingsDirty;
 		public byte IsDefaultDisplayOrder;
@@ -25385,6 +23965,8 @@ public unsafe void appendf(string fmt)
 		public byte IsResetDisplayOrderRequest;
 		public byte IsUnfrozenRows;
 		public byte IsDefaultSizingPolicy;
+		public byte IsActiveIdAliveBeforeTable;
+		public byte IsActiveIdInTable;
 		public byte HasScrollbarYCurr;
 		public byte HasScrollbarYPrev;
 		public byte MemoryCompacted;
@@ -25476,6 +24058,8 @@ public unsafe void appendf(string fmt)
 		public ref float ResizedColumnNextWidth => ref Unsafe.AsRef<float>(&Handle->ResizedColumnNextWidth);
 		public ref float ResizeLockMinContentsX2 => ref Unsafe.AsRef<float>(&Handle->ResizeLockMinContentsX2);
 		public ref float RefScale => ref Unsafe.AsRef<float>(&Handle->RefScale);
+		public ref float AngledHeadersHeight => ref Unsafe.AsRef<float>(&Handle->AngledHeadersHeight);
+		public ref float AngledHeadersSlope => ref Unsafe.AsRef<float>(&Handle->AngledHeadersSlope);
 		public ref ImRect OuterRect => ref Unsafe.AsRef<ImRect>(&Handle->OuterRect);
 		public ref ImRect InnerRect => ref Unsafe.AsRef<ImRect>(&Handle->InnerRect);
 		public ref ImRect WorkRect => ref Unsafe.AsRef<ImRect>(&Handle->WorkRect);
@@ -25498,8 +24082,10 @@ public unsafe void appendf(string fmt)
 		public ref sbyte ColumnsEnabledCount => ref Unsafe.AsRef<sbyte>(&Handle->ColumnsEnabledCount);
 		public ref sbyte ColumnsEnabledFixedCount => ref Unsafe.AsRef<sbyte>(&Handle->ColumnsEnabledFixedCount);
 		public ref sbyte DeclColumnsCount => ref Unsafe.AsRef<sbyte>(&Handle->DeclColumnsCount);
+		public ref sbyte AngledHeadersCount => ref Unsafe.AsRef<sbyte>(&Handle->AngledHeadersCount);
 		public ref sbyte HoveredColumnBody => ref Unsafe.AsRef<sbyte>(&Handle->HoveredColumnBody);
 		public ref sbyte HoveredColumnBorder => ref Unsafe.AsRef<sbyte>(&Handle->HoveredColumnBorder);
+		public ref sbyte HighlightColumnHeader => ref Unsafe.AsRef<sbyte>(&Handle->HighlightColumnHeader);
 		public ref sbyte AutoFitSingleColumn => ref Unsafe.AsRef<sbyte>(&Handle->AutoFitSingleColumn);
 		public ref sbyte ResizedColumn => ref Unsafe.AsRef<sbyte>(&Handle->ResizedColumn);
 		public ref sbyte LastResizedColumn => ref Unsafe.AsRef<sbyte>(&Handle->LastResizedColumn);
@@ -25525,6 +24111,7 @@ public unsafe void appendf(string fmt)
 		public ref bool IsSortSpecsDirty => ref Unsafe.AsRef<bool>(&Handle->IsSortSpecsDirty);
 		public ref bool IsUsingHeaders => ref Unsafe.AsRef<bool>(&Handle->IsUsingHeaders);
 		public ref bool IsContextPopupOpen => ref Unsafe.AsRef<bool>(&Handle->IsContextPopupOpen);
+		public ref bool DisableDefaultContextMenu => ref Unsafe.AsRef<bool>(&Handle->DisableDefaultContextMenu);
 		public ref bool IsSettingsRequestLoad => ref Unsafe.AsRef<bool>(&Handle->IsSettingsRequestLoad);
 		public ref bool IsSettingsDirty => ref Unsafe.AsRef<bool>(&Handle->IsSettingsDirty);
 		public ref bool IsDefaultDisplayOrder => ref Unsafe.AsRef<bool>(&Handle->IsDefaultDisplayOrder);
@@ -25532,6 +24119,8 @@ public unsafe void appendf(string fmt)
 		public ref bool IsResetDisplayOrderRequest => ref Unsafe.AsRef<bool>(&Handle->IsResetDisplayOrderRequest);
 		public ref bool IsUnfrozenRows => ref Unsafe.AsRef<bool>(&Handle->IsUnfrozenRows);
 		public ref bool IsDefaultSizingPolicy => ref Unsafe.AsRef<bool>(&Handle->IsDefaultSizingPolicy);
+		public ref bool IsActiveIdAliveBeforeTable => ref Unsafe.AsRef<bool>(&Handle->IsActiveIdAliveBeforeTable);
+		public ref bool IsActiveIdInTable => ref Unsafe.AsRef<bool>(&Handle->IsActiveIdInTable);
 		public ref bool HasScrollbarYCurr => ref Unsafe.AsRef<bool>(&Handle->HasScrollbarYCurr);
 		public ref bool HasScrollbarYPrev => ref Unsafe.AsRef<bool>(&Handle->HasScrollbarYPrev);
 		public ref bool MemoryCompacted => ref Unsafe.AsRef<bool>(&Handle->MemoryCompacted);
@@ -25543,6 +24132,7 @@ public unsafe void appendf(string fmt)
 	{
 		public int TableIndex;
 		public float LastTimeActive;
+		public float AngledHeadersExtraWidth;
 		public Vector2 UserOuterSize;
 		public ImDrawListSplitter DrawSplitter;
 		public ImRect HostBackupWorkRect;
@@ -25590,6 +24180,7 @@ public unsafe void appendf(string fmt)
 		private string DebuggerDisplay => string.Format("ImGuiTableTempDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		public ref int TableIndex => ref Unsafe.AsRef<int>(&Handle->TableIndex);
 		public ref float LastTimeActive => ref Unsafe.AsRef<float>(&Handle->LastTimeActive);
+		public ref float AngledHeadersExtraWidth => ref Unsafe.AsRef<float>(&Handle->AngledHeadersExtraWidth);
 		public ref Vector2 UserOuterSize => ref Unsafe.AsRef<Vector2>(&Handle->UserOuterSize);
 		public ref ImDrawListSplitter DrawSplitter => ref Unsafe.AsRef<ImDrawListSplitter>(&Handle->DrawSplitter);
 		public ref ImRect HostBackupWorkRect => ref Unsafe.AsRef<ImRect>(&Handle->HostBackupWorkRect);
@@ -25797,7 +24388,7 @@ public unsafe void appendf(string fmt)
 	{
 		public int TableInstanceID;
 		public float LastOuterHeight;
-		public float LastFirstRowHeight;
+		public float LastTopHeadersRowHeight;
 		public float LastFrozenHeight;
 		public int HoveredRowLast;
 		public int HoveredRowNext;
@@ -25838,7 +24429,7 @@ public unsafe void appendf(string fmt)
 		private string DebuggerDisplay => string.Format("ImGuiTableInstanceDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		public ref int TableInstanceID => ref Unsafe.AsRef<int>(&Handle->TableInstanceID);
 		public ref float LastOuterHeight => ref Unsafe.AsRef<float>(&Handle->LastOuterHeight);
-		public ref float LastFirstRowHeight => ref Unsafe.AsRef<float>(&Handle->LastFirstRowHeight);
+		public ref float LastTopHeadersRowHeight => ref Unsafe.AsRef<float>(&Handle->LastTopHeadersRowHeight);
 		public ref float LastFrozenHeight => ref Unsafe.AsRef<float>(&Handle->LastFrozenHeight);
 		public ref int HoveredRowLast => ref Unsafe.AsRef<int>(&Handle->HoveredRowLast);
 		public ref int HoveredRowNext => ref Unsafe.AsRef<int>(&Handle->HoveredRowNext);
@@ -26160,6 +24751,9 @@ public unsafe void appendf(string fmt)
 		public byte SelectedAllMouseLock;
 		public byte Edited;
 		public ImGuiInputTextFlags Flags;
+		public byte ReloadUserBuf;
+		public int ReloadSelectionStart;
+		public int ReloadSelectionEnd;
 
 	}
 
@@ -26211,6 +24805,9 @@ public unsafe void appendf(string fmt)
 		public ref bool SelectedAllMouseLock => ref Unsafe.AsRef<bool>(&Handle->SelectedAllMouseLock);
 		public ref bool Edited => ref Unsafe.AsRef<bool>(&Handle->Edited);
 		public ref ImGuiInputTextFlags Flags => ref Unsafe.AsRef<ImGuiInputTextFlags>(&Handle->Flags);
+		public ref bool ReloadUserBuf => ref Unsafe.AsRef<bool>(&Handle->ReloadUserBuf);
+		public ref int ReloadSelectionStart => ref Unsafe.AsRef<int>(&Handle->ReloadSelectionStart);
+		public ref int ReloadSelectionEnd => ref Unsafe.AsRef<int>(&Handle->ReloadSelectionEnd);
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -27459,6 +26056,180 @@ public unsafe void appendf(string fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiTypingSelectState
+	{
+		public ImGuiTypingSelectRequest Request;
+		public byte SearchBuffer_0;
+		public byte SearchBuffer_1;
+		public byte SearchBuffer_2;
+		public byte SearchBuffer_3;
+		public byte SearchBuffer_4;
+		public byte SearchBuffer_5;
+		public byte SearchBuffer_6;
+		public byte SearchBuffer_7;
+		public byte SearchBuffer_8;
+		public byte SearchBuffer_9;
+		public byte SearchBuffer_10;
+		public byte SearchBuffer_11;
+		public byte SearchBuffer_12;
+		public byte SearchBuffer_13;
+		public byte SearchBuffer_14;
+		public byte SearchBuffer_15;
+		public byte SearchBuffer_16;
+		public byte SearchBuffer_17;
+		public byte SearchBuffer_18;
+		public byte SearchBuffer_19;
+		public byte SearchBuffer_20;
+		public byte SearchBuffer_21;
+		public byte SearchBuffer_22;
+		public byte SearchBuffer_23;
+		public byte SearchBuffer_24;
+		public byte SearchBuffer_25;
+		public byte SearchBuffer_26;
+		public byte SearchBuffer_27;
+		public byte SearchBuffer_28;
+		public byte SearchBuffer_29;
+		public byte SearchBuffer_30;
+		public byte SearchBuffer_31;
+		public byte SearchBuffer_32;
+		public byte SearchBuffer_33;
+		public byte SearchBuffer_34;
+		public byte SearchBuffer_35;
+		public byte SearchBuffer_36;
+		public byte SearchBuffer_37;
+		public byte SearchBuffer_38;
+		public byte SearchBuffer_39;
+		public byte SearchBuffer_40;
+		public byte SearchBuffer_41;
+		public byte SearchBuffer_42;
+		public byte SearchBuffer_43;
+		public byte SearchBuffer_44;
+		public byte SearchBuffer_45;
+		public byte SearchBuffer_46;
+		public byte SearchBuffer_47;
+		public byte SearchBuffer_48;
+		public byte SearchBuffer_49;
+		public byte SearchBuffer_50;
+		public byte SearchBuffer_51;
+		public byte SearchBuffer_52;
+		public byte SearchBuffer_53;
+		public byte SearchBuffer_54;
+		public byte SearchBuffer_55;
+		public byte SearchBuffer_56;
+		public byte SearchBuffer_57;
+		public byte SearchBuffer_58;
+		public byte SearchBuffer_59;
+		public byte SearchBuffer_60;
+		public byte SearchBuffer_61;
+		public byte SearchBuffer_62;
+		public byte SearchBuffer_63;
+		public int FocusScope;
+		public int LastRequestFrame;
+		public float LastRequestTime;
+		public byte SingleCharModeLock;
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImGuiTypingSelectStatePtr : IEquatable<ImGuiTypingSelectStatePtr>
+	{
+		public ImGuiTypingSelectStatePtr(ImGuiTypingSelectState* handle) { Handle = handle; }
+
+		public ImGuiTypingSelectState* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImGuiTypingSelectStatePtr Null => new ImGuiTypingSelectStatePtr(null);
+
+		public static implicit operator ImGuiTypingSelectStatePtr(ImGuiTypingSelectState* handle) => new ImGuiTypingSelectStatePtr(handle);
+
+		public static implicit operator ImGuiTypingSelectState*(ImGuiTypingSelectStatePtr handle) => handle.Handle;
+
+		public static bool operator ==(ImGuiTypingSelectStatePtr left, ImGuiTypingSelectStatePtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImGuiTypingSelectStatePtr left, ImGuiTypingSelectStatePtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImGuiTypingSelectStatePtr left, ImGuiTypingSelectState* right) => left.Handle == right;
+
+		public static bool operator !=(ImGuiTypingSelectStatePtr left, ImGuiTypingSelectState* right) => left.Handle != right;
+
+		public bool Equals(ImGuiTypingSelectStatePtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImGuiTypingSelectStatePtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImGuiTypingSelectStatePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref ImGuiTypingSelectRequest Request => ref Unsafe.AsRef<ImGuiTypingSelectRequest>(&Handle->Request);
+		public unsafe Span<byte> SearchBuffer
+		
+		{
+			get
+			{
+				return new Span<byte>(&Handle->SearchBuffer_0, 64);
+			}
+		}
+		public ref int FocusScope => ref Unsafe.AsRef<int>(&Handle->FocusScope);
+		public ref int LastRequestFrame => ref Unsafe.AsRef<int>(&Handle->LastRequestFrame);
+		public ref float LastRequestTime => ref Unsafe.AsRef<float>(&Handle->LastRequestTime);
+		public ref bool SingleCharModeLock => ref Unsafe.AsRef<bool>(&Handle->SingleCharModeLock);
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiTypingSelectRequest
+	{
+		public ImGuiTypingSelectFlags Flags;
+		public int SearchBufferLen;
+		public unsafe byte* SearchBuffer;
+		public byte SelectRequest;
+		public byte SingleCharMode;
+		public sbyte SingleCharSize;
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImGuiTypingSelectRequestPtr : IEquatable<ImGuiTypingSelectRequestPtr>
+	{
+		public ImGuiTypingSelectRequestPtr(ImGuiTypingSelectRequest* handle) { Handle = handle; }
+
+		public ImGuiTypingSelectRequest* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImGuiTypingSelectRequestPtr Null => new ImGuiTypingSelectRequestPtr(null);
+
+		public static implicit operator ImGuiTypingSelectRequestPtr(ImGuiTypingSelectRequest* handle) => new ImGuiTypingSelectRequestPtr(handle);
+
+		public static implicit operator ImGuiTypingSelectRequest*(ImGuiTypingSelectRequestPtr handle) => handle.Handle;
+
+		public static bool operator ==(ImGuiTypingSelectRequestPtr left, ImGuiTypingSelectRequestPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImGuiTypingSelectRequestPtr left, ImGuiTypingSelectRequestPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImGuiTypingSelectRequestPtr left, ImGuiTypingSelectRequest* right) => left.Handle == right;
+
+		public static bool operator !=(ImGuiTypingSelectRequestPtr left, ImGuiTypingSelectRequest* right) => left.Handle != right;
+
+		public bool Equals(ImGuiTypingSelectRequestPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImGuiTypingSelectRequestPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImGuiTypingSelectRequestPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref ImGuiTypingSelectFlags Flags => ref Unsafe.AsRef<ImGuiTypingSelectFlags>(&Handle->Flags);
+		public ref int SearchBufferLen => ref Unsafe.AsRef<int>(&Handle->SearchBufferLen);
+		public byte* SearchBuffer { get => Handle->SearchBuffer; set => Handle->SearchBuffer = value; }
+		public ref bool SelectRequest => ref Unsafe.AsRef<bool>(&Handle->SelectRequest);
+		public ref bool SingleCharMode => ref Unsafe.AsRef<bool>(&Handle->SingleCharMode);
+		public ref sbyte SingleCharSize => ref Unsafe.AsRef<sbyte>(&Handle->SingleCharSize);
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiDockContext
 	{
 		public ImGuiStorage Nodes;
@@ -27801,21 +26572,24 @@ public unsafe void appendf(string fmt)
 	public partial struct ImGuiMetricsConfig
 	{
 		public byte ShowDebugLog;
-		public byte ShowStackTool;
+		public byte ShowIDStackTool;
 		public byte ShowWindowsRects;
 		public byte ShowWindowsBeginOrder;
 		public byte ShowTablesRects;
 		public byte ShowDrawCmdMesh;
 		public byte ShowDrawCmdBoundingBoxes;
+		public byte ShowTextEncodingViewer;
 		public byte ShowAtlasTintedWithTextColor;
 		public byte ShowDockingNodes;
 		public int ShowWindowsRectsType;
 		public int ShowTablesRectsType;
+		public int HighlightMonitorIdx;
+		public int HighlightViewportID;
 
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImGuiStackTool
+	public partial struct ImGuiIDStackTool
 	{
 		public int LastActiveFrame;
 		public int StackLevel;
@@ -27827,37 +26601,37 @@ public unsafe void appendf(string fmt)
 	}
 
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	public unsafe struct ImGuiStackToolPtr : IEquatable<ImGuiStackToolPtr>
+	public unsafe struct ImGuiIDStackToolPtr : IEquatable<ImGuiIDStackToolPtr>
 	{
-		public ImGuiStackToolPtr(ImGuiStackTool* handle) { Handle = handle; }
+		public ImGuiIDStackToolPtr(ImGuiIDStackTool* handle) { Handle = handle; }
 
-		public ImGuiStackTool* Handle;
+		public ImGuiIDStackTool* Handle;
 
 		public bool IsNull => Handle == null;
 
-		public static ImGuiStackToolPtr Null => new ImGuiStackToolPtr(null);
+		public static ImGuiIDStackToolPtr Null => new ImGuiIDStackToolPtr(null);
 
-		public static implicit operator ImGuiStackToolPtr(ImGuiStackTool* handle) => new ImGuiStackToolPtr(handle);
+		public static implicit operator ImGuiIDStackToolPtr(ImGuiIDStackTool* handle) => new ImGuiIDStackToolPtr(handle);
 
-		public static implicit operator ImGuiStackTool*(ImGuiStackToolPtr handle) => handle.Handle;
+		public static implicit operator ImGuiIDStackTool*(ImGuiIDStackToolPtr handle) => handle.Handle;
 
-		public static bool operator ==(ImGuiStackToolPtr left, ImGuiStackToolPtr right) => left.Handle == right.Handle;
+		public static bool operator ==(ImGuiIDStackToolPtr left, ImGuiIDStackToolPtr right) => left.Handle == right.Handle;
 
-		public static bool operator !=(ImGuiStackToolPtr left, ImGuiStackToolPtr right) => left.Handle != right.Handle;
+		public static bool operator !=(ImGuiIDStackToolPtr left, ImGuiIDStackToolPtr right) => left.Handle != right.Handle;
 
-		public static bool operator ==(ImGuiStackToolPtr left, ImGuiStackTool* right) => left.Handle == right;
+		public static bool operator ==(ImGuiIDStackToolPtr left, ImGuiIDStackTool* right) => left.Handle == right;
 
-		public static bool operator !=(ImGuiStackToolPtr left, ImGuiStackTool* right) => left.Handle != right;
+		public static bool operator !=(ImGuiIDStackToolPtr left, ImGuiIDStackTool* right) => left.Handle != right;
 
-		public bool Equals(ImGuiStackToolPtr other) => Handle == other.Handle;
+		public bool Equals(ImGuiIDStackToolPtr other) => Handle == other.Handle;
 
 		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImGuiStackToolPtr handle && Equals(handle);
+		public override bool Equals(object obj) => obj is ImGuiIDStackToolPtr handle && Equals(handle);
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
-		private string DebuggerDisplay => string.Format("ImGuiStackToolPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		private string DebuggerDisplay => string.Format("ImGuiIDStackToolPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		public ref int LastActiveFrame => ref Unsafe.AsRef<int>(&Handle->LastActiveFrame);
 		public ref int StackLevel => ref Unsafe.AsRef<int>(&Handle->StackLevel);
 		public ref int QueryId => ref Unsafe.AsRef<int>(&Handle->QueryId);
@@ -27986,6 +26760,86 @@ public unsafe void appendf(string fmt)
 				return new Span<byte>(&Handle->Desc_0, 57);
 			}
 		}
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiDebugAllocInfo
+	{
+		public int TotalAllocCount;
+		public int TotalFreeCount;
+		public short LastEntriesIdx;
+		public ImGuiDebugAllocEntry LastEntriesBuf_0;
+		public ImGuiDebugAllocEntry LastEntriesBuf_1;
+		public ImGuiDebugAllocEntry LastEntriesBuf_2;
+		public ImGuiDebugAllocEntry LastEntriesBuf_3;
+		public ImGuiDebugAllocEntry LastEntriesBuf_4;
+		public ImGuiDebugAllocEntry LastEntriesBuf_5;
+
+		public unsafe Span<ImGuiDebugAllocEntry> LastEntriesBuf
+		
+		{
+			get
+			{
+				fixed (ImGuiDebugAllocEntry* p = &this.LastEntriesBuf_0)
+				{
+					return new Span<ImGuiDebugAllocEntry>(p, 6);
+				}
+			}
+		}
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImGuiDebugAllocInfoPtr : IEquatable<ImGuiDebugAllocInfoPtr>
+	{
+		public ImGuiDebugAllocInfoPtr(ImGuiDebugAllocInfo* handle) { Handle = handle; }
+
+		public ImGuiDebugAllocInfo* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImGuiDebugAllocInfoPtr Null => new ImGuiDebugAllocInfoPtr(null);
+
+		public static implicit operator ImGuiDebugAllocInfoPtr(ImGuiDebugAllocInfo* handle) => new ImGuiDebugAllocInfoPtr(handle);
+
+		public static implicit operator ImGuiDebugAllocInfo*(ImGuiDebugAllocInfoPtr handle) => handle.Handle;
+
+		public static bool operator ==(ImGuiDebugAllocInfoPtr left, ImGuiDebugAllocInfoPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImGuiDebugAllocInfoPtr left, ImGuiDebugAllocInfoPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImGuiDebugAllocInfoPtr left, ImGuiDebugAllocInfo* right) => left.Handle == right;
+
+		public static bool operator !=(ImGuiDebugAllocInfoPtr left, ImGuiDebugAllocInfo* right) => left.Handle != right;
+
+		public bool Equals(ImGuiDebugAllocInfoPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImGuiDebugAllocInfoPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImGuiDebugAllocInfoPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref int TotalAllocCount => ref Unsafe.AsRef<int>(&Handle->TotalAllocCount);
+		public ref int TotalFreeCount => ref Unsafe.AsRef<int>(&Handle->TotalFreeCount);
+		public ref short LastEntriesIdx => ref Unsafe.AsRef<short>(&Handle->LastEntriesIdx);
+		public unsafe Span<ImGuiDebugAllocEntry> LastEntriesBuf
+		
+		{
+			get
+			{
+				return new Span<ImGuiDebugAllocEntry>(&Handle->LastEntriesBuf_0, 6);
+			}
+		}
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiDebugAllocEntry
+	{
+		public int FrameCount;
+		public short AllocCount;
+		public short FreeCount;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -29928,6 +28782,7 @@ public unsafe void appendf(string fmt)
 		public int ClassId;
 		public short DockOrder;
 		public byte Collapsed;
+		public byte IsChild;
 		public byte WantApply;
 		public byte WantDelete;
 
@@ -29974,6 +28829,7 @@ public unsafe void appendf(string fmt)
 		public ref int ClassId => ref Unsafe.AsRef<int>(&Handle->ClassId);
 		public ref short DockOrder => ref Unsafe.AsRef<short>(&Handle->DockOrder);
 		public ref bool Collapsed => ref Unsafe.AsRef<bool>(&Handle->Collapsed);
+		public ref bool IsChild => ref Unsafe.AsRef<bool>(&Handle->IsChild);
 		public ref bool WantApply => ref Unsafe.AsRef<bool>(&Handle->WantApply);
 		public ref bool WantDelete => ref Unsafe.AsRef<bool>(&Handle->WantDelete);
 	}
@@ -30047,17 +28903,6 @@ public unsafe void appendf(string fmt)
 		public byte Data_5;
 		public byte Data_6;
 		public byte Data_7;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImBitArrayImGuiKeyNamedKeyCOUNTLessImGuiKeyNamedKeyBEGIN
-	{
-		public uint Storage_0;
-		public uint Storage_1;
-		public uint Storage_2;
-		public uint Storage_3;
-		public uint Storage_4;
 
 	}
 

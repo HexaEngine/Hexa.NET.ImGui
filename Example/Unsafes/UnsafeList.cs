@@ -1,5 +1,6 @@
 ﻿namespace HexaEngine.Core.Unsafes
 {
+    using Silk.NET.SDL;
     using System.Runtime.CompilerServices;
 
     public unsafe struct UnsafeList<T> : IFreeable where T : unmanaged
@@ -91,7 +92,7 @@
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void EnsureCapacity(int capacity)
         {
-            if (this.capacity < capacity)
+            if (this.capacity < capacity || data == null)
             {
                 Grow(capacity);
             }
@@ -207,7 +208,7 @@
             return -1;
         }
 
-        public void Reverse()
+        public readonly void Reverse()
         {
             new Span<T>(data, size).Reverse();
         }
@@ -219,6 +220,22 @@
             data = null;
             capacity = 0;
             size = 0;
+        }
+
+        public void Resize(int newSize)
+        {
+            if (newSize == 0)
+            {
+                Free();
+                return;
+            }
+            EnsureCapacity(newSize);
+            size = newSize;
+        }
+
+        public void PushBack(T item)
+        {
+            Add(item);
         }
     }
 }

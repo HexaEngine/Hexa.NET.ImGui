@@ -17,6 +17,204 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
+		public static string CalcWordWrapPositionAS(ref ImFont self, float scale, ref byte text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptext = &text)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative((ImFont*)pself, scale, (byte*)ptext, textEnd, wrapWidth));
+					return ret;
+				}
+			}
+		}
+
+		public static byte* CalcWordWrapPositionA(ref ImFont self, float scale, string text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = CalcWordWrapPositionANative((ImFont*)pself, scale, pStr0, textEnd, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		public static string CalcWordWrapPositionAS(ref ImFont self, float scale, string text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative((ImFont*)pself, scale, pStr0, textEnd, wrapWidth));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		public static byte* CalcWordWrapPositionA(ImFontPtr self, float scale, byte* text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				byte* ret = CalcWordWrapPositionANative(self, scale, text, (byte*)ptextEnd, wrapWidth);
+				return ret;
+			}
+		}
+
+		public static string CalcWordWrapPositionAS(ImFontPtr self, float scale, byte* text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative(self, scale, text, (byte*)ptextEnd, wrapWidth));
+				return ret;
+			}
+		}
+
+		public static byte* CalcWordWrapPositionA(ImFontPtr self, float scale, byte* text, string textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = CalcWordWrapPositionANative(self, scale, text, pStr0, wrapWidth);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static string CalcWordWrapPositionAS(ImFontPtr self, float scale, byte* text, string textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative(self, scale, text, pStr0, wrapWidth));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static byte* CalcWordWrapPositionA(ref ImFont self, float scale, byte* text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					byte* ret = CalcWordWrapPositionANative((ImFont*)pself, scale, text, (byte*)ptextEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		public static string CalcWordWrapPositionAS(ref ImFont self, float scale, byte* text, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative((ImFont*)pself, scale, text, (byte*)ptextEnd, wrapWidth));
+					return ret;
+				}
+			}
+		}
+
+		public static byte* CalcWordWrapPositionA(ref ImFont self, float scale, byte* text, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* ret = CalcWordWrapPositionANative((ImFont*)pself, scale, text, pStr0, wrapWidth);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
 		public static string CalcWordWrapPositionAS(ref ImFont self, float scale, byte* text, string textEnd, float wrapWidth)
 		{
 			fixed (ImFont* pself = &self)
@@ -4648,25 +4846,6 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igImStrlenW")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImStrlenWNative(char* str);
-
-		public static int ImStrlenW(char* str)
-		{
-			int ret = ImStrlenWNative(str);
-			return ret;
-		}
-
-		public static int ImStrlenW(ref char str)
-		{
-			fixed (char* pstr = &str)
-			{
-				int ret = ImStrlenWNative((char*)pstr);
-				return ret;
-			}
-		}
-
 		[LibraryImport(LibName, EntryPoint = "igImStreolRange")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte* ImStreolRangeNative(byte* str, byte* strEnd);
@@ -4836,188 +5015,6 @@ namespace Hexa.NET.ImGui
 					byte* ret = ImStreolRangeNative((byte*)pstr, (byte*)pstrEnd);
 					return ret;
 				}
-			}
-		}
-
-		public static string ImStreolRangeS(ref byte str, ref byte strEnd)
-		{
-			fixed (byte* pstr = &str)
-			{
-				fixed (byte* pstrEnd = &strEnd)
-				{
-					string ret = Utils.DecodeStringUTF8(ImStreolRangeNative((byte*)pstr, (byte*)pstrEnd));
-					return ret;
-				}
-			}
-		}
-
-		public static byte* ImStreolRange(string str, string strEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (str != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(str);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (strEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(strEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte* ret = ImStreolRangeNative(pStr0, pStr1);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static string ImStreolRangeS(string str, string strEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (str != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(str);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (strEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(strEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(pStr0, pStr1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImStrbolW")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial char* ImStrbolWNative(char* bufMidLine, char* bufBegin);
-
-		public static char* ImStrbolW(char* bufMidLine, char* bufBegin)
-		{
-			char* ret = ImStrbolWNative(bufMidLine, bufBegin);
-			return ret;
-		}
-
-		public static char* ImStrbolW(ref char bufMidLine, char* bufBegin)
-		{
-			fixed (char* pbufMidLine = &bufMidLine)
-			{
-				char* ret = ImStrbolWNative((char*)pbufMidLine, bufBegin);
-				return ret;
-			}
-		}
-
-		public static char* ImStrbolW(char* bufMidLine, ref char bufBegin)
-		{
-			fixed (char* pbufBegin = &bufBegin)
-			{
-				char* ret = ImStrbolWNative(bufMidLine, (char*)pbufBegin);
-				return ret;
-			}
-		}
-
-		public static char* ImStrbolW(ref char bufMidLine, ref char bufBegin)
-		{
-			fixed (char* pbufMidLine = &bufMidLine)
-			{
-				fixed (char* pbufBegin = &bufBegin)
-				{
-					char* ret = ImStrbolWNative((char*)pbufMidLine, (char*)pbufBegin);
-					return ret;
-				}
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImStristr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte* ImStristrNative(byte* haystack, byte* haystackEnd, byte* needle, byte* needleEnd);
-
-		public static byte* ImStristr(byte* haystack, byte* haystackEnd, byte* needle, byte* needleEnd)
-		{
-			byte* ret = ImStristrNative(haystack, haystackEnd, needle, needleEnd);
-			return ret;
-		}
-
-		public static string ImStristrS(byte* haystack, byte* haystackEnd, byte* needle, byte* needleEnd)
-		{
-			string ret = Utils.DecodeStringUTF8(ImStristrNative(haystack, haystackEnd, needle, needleEnd));
-			return ret;
-		}
-
-		public static byte* ImStristr(ref byte haystack, byte* haystackEnd, byte* needle, byte* needleEnd)
-		{
-			fixed (byte* phaystack = &haystack)
-			{
-				byte* ret = ImStristrNative((byte*)phaystack, haystackEnd, needle, needleEnd);
-				return ret;
-			}
-		}
-
-		public static string ImStristrS(ref byte haystack, byte* haystackEnd, byte* needle, byte* needleEnd)
-		{
-			fixed (byte* phaystack = &haystack)
-			{
-				string ret = Utils.DecodeStringUTF8(ImStristrNative((byte*)phaystack, haystackEnd, needle, needleEnd));
-				return ret;
 			}
 		}
 	}

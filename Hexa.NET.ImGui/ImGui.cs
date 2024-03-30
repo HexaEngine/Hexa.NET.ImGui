@@ -1,3 +1,4 @@
+#nullable disable
 namespace Hexa.NET.ImGui
 {
     using System.Numerics;
@@ -6439,15 +6440,15 @@ namespace Hexa.NET.ImGui
         }
 
         [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "igInputTextEx")]
-        internal static extern byte InputTextExNative(byte* label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData);
+        internal static extern byte InputTextExNative(byte* label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData);
 
-        public static bool InputTextEx(byte* label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(byte* label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             byte ret = InputTextExNative(label, hint, buf, bufSize, sizeArg, flags, callback, userData);
             return ret != 0;
         }
 
-        public static bool InputTextEx(ref byte label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(ref byte label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             fixed (byte* plabel = &label)
             {
@@ -6456,7 +6457,7 @@ namespace Hexa.NET.ImGui
             }
         }
 
-        public static bool InputTextEx(string label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(string label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             byte* pStr0 = null;
             int pStrSize0 = 0;
@@ -6483,7 +6484,7 @@ namespace Hexa.NET.ImGui
             return ret != 0;
         }
 
-        public static bool InputTextEx(byte* label, ref byte hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(byte* label, ref byte hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             fixed (byte* phint = &hint)
             {
@@ -6492,7 +6493,7 @@ namespace Hexa.NET.ImGui
             }
         }
 
-        public static bool InputTextEx(byte* label, string hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(byte* label, string hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             byte* pStr0 = null;
             int pStrSize0 = 0;
@@ -6519,7 +6520,7 @@ namespace Hexa.NET.ImGui
             return ret != 0;
         }
 
-        public static bool InputTextEx(ref byte label, ref byte hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(ref byte label, ref byte hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             fixed (byte* plabel = &label)
             {
@@ -6531,7 +6532,7 @@ namespace Hexa.NET.ImGui
             }
         }
 
-        public static bool InputTextEx(string label, string hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(string label, string hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             byte* pStr0 = null;
             int pStrSize0 = 0;
@@ -6579,7 +6580,7 @@ namespace Hexa.NET.ImGui
             return ret != 0;
         }
 
-        public static bool InputTextEx(byte* label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(byte* label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             fixed (byte* pbuf = &buf)
             {
@@ -6588,7 +6589,7 @@ namespace Hexa.NET.ImGui
             }
         }
 
-        public static bool InputTextEx(byte* label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(byte* label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             byte* pStr0 = null;
             int pStrSize0 = 0;
@@ -6616,7 +6617,7 @@ namespace Hexa.NET.ImGui
             return ret != 0;
         }
 
-        public static bool InputTextEx(ref byte label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(ref byte label, byte* hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             fixed (byte* plabel = &label)
             {
@@ -6628,7 +6629,7 @@ namespace Hexa.NET.ImGui
             }
         }
 
-        public static bool InputTextEx(string label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(string label, byte* hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             byte* pStr0 = null;
             int pStrSize0 = 0;
@@ -6677,7 +6678,7 @@ namespace Hexa.NET.ImGui
             return ret != 0;
         }
 
-        public static bool InputTextEx(byte* label, ref byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(byte* label, ref byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             fixed (byte* phint = &hint)
             {
@@ -6689,7 +6690,7 @@ namespace Hexa.NET.ImGui
             }
         }
 
-        public static bool InputTextEx(byte* label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(byte* label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             byte* pStr0 = null;
             int pStrSize0 = 0;
@@ -6738,7 +6739,7 @@ namespace Hexa.NET.ImGui
             return ret != 0;
         }
 
-        public static bool InputTextEx(ref byte label, ref byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(ref byte label, ref byte hint, ref byte buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             fixed (byte* plabel = &label)
             {
@@ -6753,7 +6754,7 @@ namespace Hexa.NET.ImGui
             }
         }
 
-        public static bool InputTextEx(string label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        public static bool InputTextEx(string label, string hint, ref string buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, void* callback, void* userData)
         {
             byte* pStr0 = null;
             int pStrSize0 = 0;

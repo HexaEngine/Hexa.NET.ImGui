@@ -17,7 +17,7 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 size)
+		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -36,7 +36,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, size, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -44,7 +44,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector4 bgCol)
+		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -63,7 +63,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, size, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -71,7 +71,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 size, Vector4 bgCol)
+		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -90,7 +90,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, size, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -98,7 +98,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 size, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -117,7 +117,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, size, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -125,7 +125,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 size, Vector4 bgCol, Vector4 tintCol)
+		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -144,7 +144,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, size, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1581,41 +1581,41 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igCombo_FnBoolPtr")]
+		[LibraryImport(LibName, EntryPoint = "igCombo_FnStrPtr")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ComboNative(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount, int popupMaxHeightInItems);
+		internal static partial byte ComboNative(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int popupMaxHeightInItems);
 
-		public static bool Combo(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
-			byte ret = ComboNative(label, currentItem, itemsGetter, data, itemsCount, popupMaxHeightInItems);
+			byte ret = ComboNative(label, currentItem, getter, userData, itemsCount, popupMaxHeightInItems);
 			return ret != 0;
 		}
 
-		public static bool Combo(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount)
+		public static bool Combo(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount)
 		{
-			byte ret = ComboNative(label, currentItem, itemsGetter, data, itemsCount, (int)(-1));
+			byte ret = ComboNative(label, currentItem, getter, userData, itemsCount, (int)(-1));
 			return ret != 0;
 		}
 
-		public static bool Combo(ref byte label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(ref byte label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = ComboNative((byte*)plabel, currentItem, itemsGetter, data, itemsCount, popupMaxHeightInItems);
+				byte ret = ComboNative((byte*)plabel, currentItem, getter, userData, itemsCount, popupMaxHeightInItems);
 				return ret != 0;
 			}
 		}
 
-		public static bool Combo(ref byte label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount)
+		public static bool Combo(ref byte label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = ComboNative((byte*)plabel, currentItem, itemsGetter, data, itemsCount, (int)(-1));
+				byte ret = ComboNative((byte*)plabel, currentItem, getter, userData, itemsCount, (int)(-1));
 				return ret != 0;
 			}
 		}
 
-		public static bool Combo(string label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(string label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1634,7 +1634,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ComboNative(pStr0, currentItem, itemsGetter, data, itemsCount, popupMaxHeightInItems);
+			byte ret = ComboNative(pStr0, currentItem, getter, userData, itemsCount, popupMaxHeightInItems);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1642,7 +1642,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool Combo(string label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount)
+		public static bool Combo(string label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1661,7 +1661,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ComboNative(pStr0, currentItem, itemsGetter, data, itemsCount, (int)(-1));
+			byte ret = ComboNative(pStr0, currentItem, getter, userData, itemsCount, (int)(-1));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -1669,49 +1669,49 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool Combo(byte* label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(byte* label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (int* pcurrentItem = &currentItem)
 			{
-				byte ret = ComboNative(label, (int*)pcurrentItem, itemsGetter, data, itemsCount, popupMaxHeightInItems);
+				byte ret = ComboNative(label, (int*)pcurrentItem, getter, userData, itemsCount, popupMaxHeightInItems);
 				return ret != 0;
 			}
 		}
 
-		public static bool Combo(byte* label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount)
+		public static bool Combo(byte* label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount)
 		{
 			fixed (int* pcurrentItem = &currentItem)
 			{
-				byte ret = ComboNative(label, (int*)pcurrentItem, itemsGetter, data, itemsCount, (int)(-1));
+				byte ret = ComboNative(label, (int*)pcurrentItem, getter, userData, itemsCount, (int)(-1));
 				return ret != 0;
 			}
 		}
 
-		public static bool Combo(ref byte label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(ref byte label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (int* pcurrentItem = &currentItem)
 				{
-					byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, itemsGetter, data, itemsCount, popupMaxHeightInItems);
+					byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, getter, userData, itemsCount, popupMaxHeightInItems);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool Combo(ref byte label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount)
+		public static bool Combo(ref byte label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (int* pcurrentItem = &currentItem)
 				{
-					byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, itemsGetter, data, itemsCount, (int)(-1));
+					byte ret = ComboNative((byte*)plabel, (int*)pcurrentItem, getter, userData, itemsCount, (int)(-1));
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool Combo(string label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount, int popupMaxHeightInItems)
+		public static bool Combo(string label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1732,7 +1732,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (int* pcurrentItem = &currentItem)
 			{
-				byte ret = ComboNative(pStr0, (int*)pcurrentItem, itemsGetter, data, itemsCount, popupMaxHeightInItems);
+				byte ret = ComboNative(pStr0, (int*)pcurrentItem, getter, userData, itemsCount, popupMaxHeightInItems);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1741,7 +1741,7 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static bool Combo(string label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount)
+		public static bool Combo(string label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1762,7 +1762,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (int* pcurrentItem = &currentItem)
 			{
-				byte ret = ComboNative(pStr0, (int*)pcurrentItem, itemsGetter, data, itemsCount, (int)(-1));
+				byte ret = ComboNative(pStr0, (int*)pcurrentItem, getter, userData, itemsCount, (int)(-1));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);

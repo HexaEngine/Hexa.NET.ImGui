@@ -18,5011 +18,5019 @@ namespace Hexa.NET.ImPlot
 	public unsafe partial class ImPlot
 	{
 
-		public static bool BeginAlignedPlots(ref byte groupId, bool vertical)
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			fixed (byte* pgroupId = &groupId)
+			fixed (double* py2 = &y2)
 			{
-				byte ret = BeginAlignedPlotsNative((byte*)pgroupId, vertical ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginAlignedPlots(ref byte groupId)
-		{
-			fixed (byte* pgroupId = &groupId)
-			{
-				byte ret = BeginAlignedPlotsNative((byte*)pgroupId, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginAlignedPlots(string groupId, bool vertical)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (groupId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(groupId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(groupId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginAlignedPlotsNative(pStr0, vertical ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginAlignedPlots(string groupId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (groupId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(groupId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(groupId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginAlignedPlotsNative(pStr0, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_EndAlignedPlots")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndAlignedPlotsNative();
-
-		public static void EndAlignedPlots()
-		{
-			EndAlignedPlotsNative();
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginLegendPopup")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginLegendPopupNative(byte* labelId, ImGuiMouseButton mouseButton);
-
-		public static bool BeginLegendPopup(byte* labelId, ImGuiMouseButton mouseButton)
-		{
-			byte ret = BeginLegendPopupNative(labelId, mouseButton);
-			return ret != 0;
-		}
-
-		public static bool BeginLegendPopup(byte* labelId)
-		{
-			byte ret = BeginLegendPopupNative(labelId, (ImGuiMouseButton)(1));
-			return ret != 0;
-		}
-
-		public static bool BeginLegendPopup(ref byte labelId, ImGuiMouseButton mouseButton)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				byte ret = BeginLegendPopupNative((byte*)plabelId, mouseButton);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginLegendPopup(ref byte labelId)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				byte ret = BeginLegendPopupNative((byte*)plabelId, (ImGuiMouseButton)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginLegendPopup(string labelId, ImGuiMouseButton mouseButton)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginLegendPopupNative(pStr0, mouseButton);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginLegendPopup(string labelId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginLegendPopupNative(pStr0, (ImGuiMouseButton)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_EndLegendPopup")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndLegendPopupNative();
-
-		public static void EndLegendPopup()
-		{
-			EndLegendPopupNative();
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_IsLegendEntryHovered")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsLegendEntryHoveredNative(byte* labelId);
-
-		public static bool IsLegendEntryHovered(byte* labelId)
-		{
-			byte ret = IsLegendEntryHoveredNative(labelId);
-			return ret != 0;
-		}
-
-		public static bool IsLegendEntryHovered(ref byte labelId)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				byte ret = IsLegendEntryHoveredNative((byte*)plabelId);
-				return ret != 0;
-			}
-		}
-
-		public static bool IsLegendEntryHovered(string labelId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = IsLegendEntryHoveredNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginDragDropTargetPlot")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginDragDropTargetPlotNative();
-
-		public static bool BeginDragDropTargetPlot()
-		{
-			byte ret = BeginDragDropTargetPlotNative();
-			return ret != 0;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginDragDropTargetAxis")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginDragDropTargetAxisNative(ImAxis axis);
-
-		public static bool BeginDragDropTargetAxis(ImAxis axis)
-		{
-			byte ret = BeginDragDropTargetAxisNative(axis);
-			return ret != 0;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginDragDropTargetLegend")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginDragDropTargetLegendNative();
-
-		public static bool BeginDragDropTargetLegend()
-		{
-			byte ret = BeginDragDropTargetLegendNative();
-			return ret != 0;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_EndDragDropTarget")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndDragDropTargetNative();
-
-		public static void EndDragDropTarget()
-		{
-			EndDragDropTargetNative();
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginDragDropSourcePlot")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginDragDropSourcePlotNative(ImGuiDragDropFlags flags);
-
-		public static bool BeginDragDropSourcePlot(ImGuiDragDropFlags flags)
-		{
-			byte ret = BeginDragDropSourcePlotNative(flags);
-			return ret != 0;
-		}
-
-		public static bool BeginDragDropSourcePlot()
-		{
-			byte ret = BeginDragDropSourcePlotNative((ImGuiDragDropFlags)(0));
-			return ret != 0;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginDragDropSourceAxis")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginDragDropSourceAxisNative(ImAxis axis, ImGuiDragDropFlags flags);
-
-		public static bool BeginDragDropSourceAxis(ImAxis axis, ImGuiDragDropFlags flags)
-		{
-			byte ret = BeginDragDropSourceAxisNative(axis, flags);
-			return ret != 0;
-		}
-
-		public static bool BeginDragDropSourceAxis(ImAxis axis)
-		{
-			byte ret = BeginDragDropSourceAxisNative(axis, (ImGuiDragDropFlags)(0));
-			return ret != 0;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginDragDropSourceItem")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginDragDropSourceItemNative(byte* labelId, ImGuiDragDropFlags flags);
-
-		public static bool BeginDragDropSourceItem(byte* labelId, ImGuiDragDropFlags flags)
-		{
-			byte ret = BeginDragDropSourceItemNative(labelId, flags);
-			return ret != 0;
-		}
-
-		public static bool BeginDragDropSourceItem(byte* labelId)
-		{
-			byte ret = BeginDragDropSourceItemNative(labelId, (ImGuiDragDropFlags)(0));
-			return ret != 0;
-		}
-
-		public static bool BeginDragDropSourceItem(ref byte labelId, ImGuiDragDropFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				byte ret = BeginDragDropSourceItemNative((byte*)plabelId, flags);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginDragDropSourceItem(ref byte labelId)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				byte ret = BeginDragDropSourceItemNative((byte*)plabelId, (ImGuiDragDropFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginDragDropSourceItem(string labelId, ImGuiDragDropFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginDragDropSourceItemNative(pStr0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginDragDropSourceItem(string labelId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginDragDropSourceItemNative(pStr0, (ImGuiDragDropFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_EndDragDropSource")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndDragDropSourceNative();
-
-		public static void EndDragDropSource()
-		{
-			EndDragDropSourceNative();
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotStyle* GetStyleNative();
-
-		public static ImPlotStylePtr GetStyle()
-		{
-			ImPlotStylePtr ret = GetStyleNative();
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_StyleColorsAuto")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void StyleColorsAutoNative(ImPlotStyle* dst);
-
-		public static void StyleColorsAuto(ImPlotStylePtr dst)
-		{
-			StyleColorsAutoNative(dst);
-		}
-
-		public static void StyleColorsAuto()
-		{
-			StyleColorsAutoNative((ImPlotStyle*)(default));
-		}
-
-		public static void StyleColorsAuto(ref ImPlotStyle dst)
-		{
-			fixed (ImPlotStyle* pdst = &dst)
-			{
-				StyleColorsAutoNative((ImPlotStyle*)pdst);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_StyleColorsClassic")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void StyleColorsClassicNative(ImPlotStyle* dst);
-
-		public static void StyleColorsClassic(ImPlotStylePtr dst)
-		{
-			StyleColorsClassicNative(dst);
-		}
-
-		public static void StyleColorsClassic()
-		{
-			StyleColorsClassicNative((ImPlotStyle*)(default));
-		}
-
-		public static void StyleColorsClassic(ref ImPlotStyle dst)
-		{
-			fixed (ImPlotStyle* pdst = &dst)
-			{
-				StyleColorsClassicNative((ImPlotStyle*)pdst);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_StyleColorsDark")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void StyleColorsDarkNative(ImPlotStyle* dst);
-
-		public static void StyleColorsDark(ImPlotStylePtr dst)
-		{
-			StyleColorsDarkNative(dst);
-		}
-
-		public static void StyleColorsDark()
-		{
-			StyleColorsDarkNative((ImPlotStyle*)(default));
-		}
-
-		public static void StyleColorsDark(ref ImPlotStyle dst)
-		{
-			fixed (ImPlotStyle* pdst = &dst)
-			{
-				StyleColorsDarkNative((ImPlotStyle*)pdst);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_StyleColorsLight")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void StyleColorsLightNative(ImPlotStyle* dst);
-
-		public static void StyleColorsLight(ImPlotStylePtr dst)
-		{
-			StyleColorsLightNative(dst);
-		}
-
-		public static void StyleColorsLight()
-		{
-			StyleColorsLightNative((ImPlotStyle*)(default));
-		}
-
-		public static void StyleColorsLight(ref ImPlotStyle dst)
-		{
-			fixed (ImPlotStyle* pdst = &dst)
-			{
-				StyleColorsLightNative((ImPlotStyle*)pdst);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PushStyleColor_U32")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleColorNative(ImPlotCol idx, uint col);
-
-		public static void PushStyleColor(ImPlotCol idx, uint col)
-		{
-			PushStyleColorNative(idx, col);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PushStyleColor_Vec4")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleColorNative(ImPlotCol idx, Vector4 col);
-
-		public static void PushStyleColor(ImPlotCol idx, Vector4 col)
-		{
-			PushStyleColorNative(idx, col);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PopStyleColor")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopStyleColorNative(int count);
-
-		public static void PopStyleColor(int count)
-		{
-			PopStyleColorNative(count);
-		}
-
-		public static void PopStyleColor()
-		{
-			PopStyleColorNative((int)(1));
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PushStyleVar_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleVarNative(ImPlotStyleVar idx, float val);
-
-		public static void PushStyleVar(ImPlotStyleVar idx, float val)
-		{
-			PushStyleVarNative(idx, val);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PushStyleVar_Int")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleVarNative(ImPlotStyleVar idx, int val);
-
-		public static void PushStyleVar(ImPlotStyleVar idx, int val)
-		{
-			PushStyleVarNative(idx, val);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PushStyleVar_Vec2")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleVarNative(ImPlotStyleVar idx, Vector2 val);
-
-		public static void PushStyleVar(ImPlotStyleVar idx, Vector2 val)
-		{
-			PushStyleVarNative(idx, val);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PopStyleVar")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopStyleVarNative(int count);
-
-		public static void PopStyleVar(int count)
-		{
-			PopStyleVarNative(count);
-		}
-
-		public static void PopStyleVar()
-		{
-			PopStyleVarNative((int)(1));
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextLineStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextLineStyleNative(Vector4 col, float weight);
-
-		public static void SetNextLineStyle(Vector4 col, float weight)
-		{
-			SetNextLineStyleNative(col, weight);
-		}
-
-		public static void SetNextLineStyle(Vector4 col)
-		{
-			SetNextLineStyleNative(col, (float)(-1));
-		}
-
-		public static void SetNextLineStyle()
-		{
-			SetNextLineStyleNative((Vector4)(new Vector4(0,0,0,-1)), (float)(-1));
-		}
-
-		public static void SetNextLineStyle(float weight)
-		{
-			SetNextLineStyleNative((Vector4)(new Vector4(0,0,0,-1)), weight);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextFillStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextFillStyleNative(Vector4 col, float alphaMod);
-
-		public static void SetNextFillStyle(Vector4 col, float alphaMod)
-		{
-			SetNextFillStyleNative(col, alphaMod);
-		}
-
-		public static void SetNextFillStyle(Vector4 col)
-		{
-			SetNextFillStyleNative(col, (float)(-1));
-		}
-
-		public static void SetNextFillStyle()
-		{
-			SetNextFillStyleNative((Vector4)(new Vector4(0,0,0,-1)), (float)(-1));
-		}
-
-		public static void SetNextFillStyle(float alphaMod)
-		{
-			SetNextFillStyleNative((Vector4)(new Vector4(0,0,0,-1)), alphaMod);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextMarkerStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextMarkerStyleNative(ImPlotMarker marker, float size, Vector4 fill, float weight, Vector4 outline);
-
-		public static void SetNextMarkerStyle(ImPlotMarker marker, float size, Vector4 fill, float weight, Vector4 outline)
-		{
-			SetNextMarkerStyleNative(marker, size, fill, weight, outline);
-		}
-
-		public static void SetNextMarkerStyle(ImPlotMarker marker, float size, Vector4 fill, float weight)
-		{
-			SetNextMarkerStyleNative(marker, size, fill, weight, (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		public static void SetNextMarkerStyle(ImPlotMarker marker, float size, Vector4 fill)
-		{
-			SetNextMarkerStyleNative(marker, size, fill, (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		public static void SetNextMarkerStyle(ImPlotMarker marker, float size)
-		{
-			SetNextMarkerStyleNative(marker, size, (Vector4)(new Vector4(0,0,0,-1)), (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		public static void SetNextMarkerStyle(ImPlotMarker marker)
-		{
-			SetNextMarkerStyleNative(marker, (float)(-1), (Vector4)(new Vector4(0,0,0,-1)), (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		public static void SetNextMarkerStyle()
-		{
-			SetNextMarkerStyleNative((ImPlotMarker)(-1), (float)(-1), (Vector4)(new Vector4(0,0,0,-1)), (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		public static void SetNextMarkerStyle(float size)
-		{
-			SetNextMarkerStyleNative((ImPlotMarker)(-1), size, (Vector4)(new Vector4(0,0,0,-1)), (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		public static void SetNextMarkerStyle(ImPlotMarker marker, Vector4 fill)
-		{
-			SetNextMarkerStyleNative(marker, (float)(-1), fill, (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		public static void SetNextMarkerStyle(Vector4 fill)
-		{
-			SetNextMarkerStyleNative((ImPlotMarker)(-1), (float)(-1), fill, (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		public static void SetNextMarkerStyle(float size, Vector4 fill)
-		{
-			SetNextMarkerStyleNative((ImPlotMarker)(-1), size, fill, (float)(-1), (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		public static void SetNextMarkerStyle(ImPlotMarker marker, float size, float weight)
-		{
-			SetNextMarkerStyleNative(marker, size, (Vector4)(new Vector4(0,0,0,-1)), weight, (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		public static void SetNextMarkerStyle(float size, float weight)
-		{
-			SetNextMarkerStyleNative((ImPlotMarker)(-1), size, (Vector4)(new Vector4(0,0,0,-1)), weight, (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		public static void SetNextMarkerStyle(ImPlotMarker marker, Vector4 fill, float weight)
-		{
-			SetNextMarkerStyleNative(marker, (float)(-1), fill, weight, (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		public static void SetNextMarkerStyle(Vector4 fill, float weight)
-		{
-			SetNextMarkerStyleNative((ImPlotMarker)(-1), (float)(-1), fill, weight, (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		public static void SetNextMarkerStyle(float size, Vector4 fill, float weight)
-		{
-			SetNextMarkerStyleNative((ImPlotMarker)(-1), size, fill, weight, (Vector4)(new Vector4(0,0,0,-1)));
-		}
-
-		public static void SetNextMarkerStyle(ImPlotMarker marker, float size, Vector4 fill, Vector4 outline)
-		{
-			SetNextMarkerStyleNative(marker, size, fill, (float)(-1), outline);
-		}
-
-		public static void SetNextMarkerStyle(ImPlotMarker marker, Vector4 fill, Vector4 outline)
-		{
-			SetNextMarkerStyleNative(marker, (float)(-1), fill, (float)(-1), outline);
-		}
-
-		public static void SetNextMarkerStyle(Vector4 fill, Vector4 outline)
-		{
-			SetNextMarkerStyleNative((ImPlotMarker)(-1), (float)(-1), fill, (float)(-1), outline);
-		}
-
-		public static void SetNextMarkerStyle(float size, Vector4 fill, Vector4 outline)
-		{
-			SetNextMarkerStyleNative((ImPlotMarker)(-1), size, fill, (float)(-1), outline);
-		}
-
-		public static void SetNextMarkerStyle(ImPlotMarker marker, float size, float weight, Vector4 outline)
-		{
-			SetNextMarkerStyleNative(marker, size, (Vector4)(new Vector4(0,0,0,-1)), weight, outline);
-		}
-
-		public static void SetNextMarkerStyle(float size, float weight, Vector4 outline)
-		{
-			SetNextMarkerStyleNative((ImPlotMarker)(-1), size, (Vector4)(new Vector4(0,0,0,-1)), weight, outline);
-		}
-
-		public static void SetNextMarkerStyle(ImPlotMarker marker, Vector4 fill, float weight, Vector4 outline)
-		{
-			SetNextMarkerStyleNative(marker, (float)(-1), fill, weight, outline);
-		}
-
-		public static void SetNextMarkerStyle(Vector4 fill, float weight, Vector4 outline)
-		{
-			SetNextMarkerStyleNative((ImPlotMarker)(-1), (float)(-1), fill, weight, outline);
-		}
-
-		public static void SetNextMarkerStyle(float size, Vector4 fill, float weight, Vector4 outline)
-		{
-			SetNextMarkerStyleNative((ImPlotMarker)(-1), size, fill, weight, outline);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextErrorBarStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextErrorBarStyleNative(Vector4 col, float size, float weight);
-
-		public static void SetNextErrorBarStyle(Vector4 col, float size, float weight)
-		{
-			SetNextErrorBarStyleNative(col, size, weight);
-		}
-
-		public static void SetNextErrorBarStyle(Vector4 col, float size)
-		{
-			SetNextErrorBarStyleNative(col, size, (float)(-1));
-		}
-
-		public static void SetNextErrorBarStyle(Vector4 col)
-		{
-			SetNextErrorBarStyleNative(col, (float)(-1), (float)(-1));
-		}
-
-		public static void SetNextErrorBarStyle()
-		{
-			SetNextErrorBarStyleNative((Vector4)(new Vector4(0,0,0,-1)), (float)(-1), (float)(-1));
-		}
-
-		public static void SetNextErrorBarStyle(float size)
-		{
-			SetNextErrorBarStyleNative((Vector4)(new Vector4(0,0,0,-1)), size, (float)(-1));
-		}
-
-		public static void SetNextErrorBarStyle(float size, float weight)
-		{
-			SetNextErrorBarStyleNative((Vector4)(new Vector4(0,0,0,-1)), size, weight);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetLastItemColor")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetLastItemColorNative(Vector4* output);
-
-		public static Vector4 GetLastItemColor()
-		{
-			Vector4 ret;
-			GetLastItemColorNative(&ret);
-			return ret;
-		}
-
-		public static void GetLastItemColor(Vector4* output)
-		{
-			GetLastItemColorNative(output);
-		}
-
-		public static void GetLastItemColor(ref Vector4 output)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				GetLastItemColorNative((Vector4*)poutput);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetStyleColorName")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte* GetStyleColorNameNative(ImPlotCol idx);
-
-		public static byte* GetStyleColorName(ImPlotCol idx)
-		{
-			byte* ret = GetStyleColorNameNative(idx);
-			return ret;
-		}
-
-		public static string GetStyleColorNameS(ImPlotCol idx)
-		{
-			string ret = Utils.DecodeStringUTF8(GetStyleColorNameNative(idx));
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetMarkerName")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte* GetMarkerNameNative(ImPlotMarker idx);
-
-		public static byte* GetMarkerName(ImPlotMarker idx)
-		{
-			byte* ret = GetMarkerNameNative(idx);
-			return ret;
-		}
-
-		public static string GetMarkerNameS(ImPlotMarker idx)
-		{
-			string ret = Utils.DecodeStringUTF8(GetMarkerNameNative(idx));
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_AddColormap_Vec4Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotColormap AddColormapNative(byte* name, Vector4* cols, int size, byte qual);
-
-		public static ImPlotColormap AddColormap(byte* name, Vector4* cols, int size, bool qual)
-		{
-			ImPlotColormap ret = AddColormapNative(name, cols, size, qual ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		public static ImPlotColormap AddColormap(byte* name, Vector4* cols, int size)
-		{
-			ImPlotColormap ret = AddColormapNative(name, cols, size, (byte)(1));
-			return ret;
-		}
-
-		public static ImPlotColormap AddColormap(ref byte name, Vector4* cols, int size, bool qual)
-		{
-			fixed (byte* pname = &name)
-			{
-				ImPlotColormap ret = AddColormapNative((byte*)pname, cols, size, qual ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap AddColormap(ref byte name, Vector4* cols, int size)
-		{
-			fixed (byte* pname = &name)
-			{
-				ImPlotColormap ret = AddColormapNative((byte*)pname, cols, size, (byte)(1));
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap AddColormap(string name, Vector4* cols, int size, bool qual)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImPlotColormap ret = AddColormapNative(pStr0, cols, size, qual ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static ImPlotColormap AddColormap(string name, Vector4* cols, int size)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImPlotColormap ret = AddColormapNative(pStr0, cols, size, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static ImPlotColormap AddColormap(byte* name, ref Vector4 cols, int size, bool qual)
-		{
-			fixed (Vector4* pcols = &cols)
-			{
-				ImPlotColormap ret = AddColormapNative(name, (Vector4*)pcols, size, qual ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap AddColormap(byte* name, ref Vector4 cols, int size)
-		{
-			fixed (Vector4* pcols = &cols)
-			{
-				ImPlotColormap ret = AddColormapNative(name, (Vector4*)pcols, size, (byte)(1));
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap AddColormap(ref byte name, ref Vector4 cols, int size, bool qual)
-		{
-			fixed (byte* pname = &name)
-			{
-				fixed (Vector4* pcols = &cols)
-				{
-					ImPlotColormap ret = AddColormapNative((byte*)pname, (Vector4*)pcols, size, qual ? (byte)1 : (byte)0);
-					return ret;
-				}
-			}
-		}
-
-		public static ImPlotColormap AddColormap(ref byte name, ref Vector4 cols, int size)
-		{
-			fixed (byte* pname = &name)
-			{
-				fixed (Vector4* pcols = &cols)
-				{
-					ImPlotColormap ret = AddColormapNative((byte*)pname, (Vector4*)pcols, size, (byte)(1));
-					return ret;
-				}
-			}
-		}
-
-		public static ImPlotColormap AddColormap(string name, ref Vector4 cols, int size, bool qual)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector4* pcols = &cols)
-			{
-				ImPlotColormap ret = AddColormapNative(pStr0, (Vector4*)pcols, size, qual ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap AddColormap(string name, ref Vector4 cols, int size)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector4* pcols = &cols)
-			{
-				ImPlotColormap ret = AddColormapNative(pStr0, (Vector4*)pcols, size, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_AddColormap_U32Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotColormap AddColormapNative(byte* name, uint* cols, int size, byte qual);
-
-		public static ImPlotColormap AddColormap(byte* name, uint* cols, int size, bool qual)
-		{
-			ImPlotColormap ret = AddColormapNative(name, cols, size, qual ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		public static ImPlotColormap AddColormap(byte* name, uint* cols, int size)
-		{
-			ImPlotColormap ret = AddColormapNative(name, cols, size, (byte)(1));
-			return ret;
-		}
-
-		public static ImPlotColormap AddColormap(ref byte name, uint* cols, int size, bool qual)
-		{
-			fixed (byte* pname = &name)
-			{
-				ImPlotColormap ret = AddColormapNative((byte*)pname, cols, size, qual ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap AddColormap(ref byte name, uint* cols, int size)
-		{
-			fixed (byte* pname = &name)
-			{
-				ImPlotColormap ret = AddColormapNative((byte*)pname, cols, size, (byte)(1));
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap AddColormap(string name, uint* cols, int size, bool qual)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImPlotColormap ret = AddColormapNative(pStr0, cols, size, qual ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static ImPlotColormap AddColormap(string name, uint* cols, int size)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImPlotColormap ret = AddColormapNative(pStr0, cols, size, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static ImPlotColormap AddColormap(byte* name, ref uint cols, int size, bool qual)
-		{
-			fixed (uint* pcols = &cols)
-			{
-				ImPlotColormap ret = AddColormapNative(name, (uint*)pcols, size, qual ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap AddColormap(byte* name, ref uint cols, int size)
-		{
-			fixed (uint* pcols = &cols)
-			{
-				ImPlotColormap ret = AddColormapNative(name, (uint*)pcols, size, (byte)(1));
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap AddColormap(ref byte name, ref uint cols, int size, bool qual)
-		{
-			fixed (byte* pname = &name)
-			{
-				fixed (uint* pcols = &cols)
-				{
-					ImPlotColormap ret = AddColormapNative((byte*)pname, (uint*)pcols, size, qual ? (byte)1 : (byte)0);
-					return ret;
-				}
-			}
-		}
-
-		public static ImPlotColormap AddColormap(ref byte name, ref uint cols, int size)
-		{
-			fixed (byte* pname = &name)
-			{
-				fixed (uint* pcols = &cols)
-				{
-					ImPlotColormap ret = AddColormapNative((byte*)pname, (uint*)pcols, size, (byte)(1));
-					return ret;
-				}
-			}
-		}
-
-		public static ImPlotColormap AddColormap(string name, ref uint cols, int size, bool qual)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pcols = &cols)
-			{
-				ImPlotColormap ret = AddColormapNative(pStr0, (uint*)pcols, size, qual ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap AddColormap(string name, ref uint cols, int size)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pcols = &cols)
-			{
-				ImPlotColormap ret = AddColormapNative(pStr0, (uint*)pcols, size, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetColormapCount")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int GetColormapCountNative();
-
-		public static int GetColormapCount()
-		{
-			int ret = GetColormapCountNative();
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetColormapName")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte* GetColormapNameNative(ImPlotColormap cmap);
-
-		public static byte* GetColormapName(ImPlotColormap cmap)
-		{
-			byte* ret = GetColormapNameNative(cmap);
-			return ret;
-		}
-
-		public static string GetColormapNameS(ImPlotColormap cmap)
-		{
-			string ret = Utils.DecodeStringUTF8(GetColormapNameNative(cmap));
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetColormapIndex")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotColormap GetColormapIndexNative(byte* name);
-
-		public static ImPlotColormap GetColormapIndex(byte* name)
-		{
-			ImPlotColormap ret = GetColormapIndexNative(name);
-			return ret;
-		}
-
-		public static ImPlotColormap GetColormapIndex(ref byte name)
-		{
-			fixed (byte* pname = &name)
-			{
-				ImPlotColormap ret = GetColormapIndexNative((byte*)pname);
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap GetColormapIndex(string name)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImPlotColormap ret = GetColormapIndexNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PushColormap_PlotColormap")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushColormapNative(ImPlotColormap cmap);
-
-		public static void PushColormap(ImPlotColormap cmap)
-		{
-			PushColormapNative(cmap);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PushColormap_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushColormapNative(byte* name);
-
-		public static void PushColormap(byte* name)
-		{
-			PushColormapNative(name);
-		}
-
-		public static void PushColormap(ref byte name)
-		{
-			fixed (byte* pname = &name)
-			{
-				PushColormapNative((byte*)pname);
-			}
-		}
-
-		public static void PushColormap(string name)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PushColormapNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PopColormap")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopColormapNative(int count);
-
-		public static void PopColormap(int count)
-		{
-			PopColormapNative(count);
-		}
-
-		public static void PopColormap()
-		{
-			PopColormapNative((int)(1));
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_NextColormapColor")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void NextColormapColorNative(Vector4* output);
-
-		public static Vector4 NextColormapColor()
-		{
-			Vector4 ret;
-			NextColormapColorNative(&ret);
-			return ret;
-		}
-
-		public static void NextColormapColor(Vector4* output)
-		{
-			NextColormapColorNative(output);
-		}
-
-		public static void NextColormapColor(ref Vector4 output)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				NextColormapColorNative((Vector4*)poutput);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetColormapSize")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int GetColormapSizeNative(ImPlotColormap cmap);
-
-		public static int GetColormapSize(ImPlotColormap cmap)
-		{
-			int ret = GetColormapSizeNative(cmap);
-			return ret;
-		}
-
-		public static int GetColormapSize()
-		{
-			int ret = GetColormapSizeNative((ImPlotColormap)(-1));
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetColormapColor")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetColormapColorNative(Vector4* output, int idx, ImPlotColormap cmap);
-
-		public static Vector4 GetColormapColor(int idx)
-		{
-			Vector4 ret;
-			GetColormapColorNative(&ret, idx, (ImPlotColormap)(-1));
-			return ret;
-		}
-
-		public static Vector4 GetColormapColor(int idx, ImPlotColormap cmap)
-		{
-			Vector4 ret;
-			GetColormapColorNative(&ret, idx, cmap);
-			return ret;
-		}
-
-		public static void GetColormapColor(Vector4* output, int idx, ImPlotColormap cmap)
-		{
-			GetColormapColorNative(output, idx, cmap);
-		}
-
-		public static void GetColormapColor(Vector4* output, int idx)
-		{
-			GetColormapColorNative(output, idx, (ImPlotColormap)(-1));
-		}
-
-		public static void GetColormapColor(ref Vector4 output, int idx, ImPlotColormap cmap)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				GetColormapColorNative((Vector4*)poutput, idx, cmap);
-			}
-		}
-
-		public static void GetColormapColor(ref Vector4 output, int idx)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				GetColormapColorNative((Vector4*)poutput, idx, (ImPlotColormap)(-1));
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SampleColormap")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SampleColormapNative(Vector4* output, float t, ImPlotColormap cmap);
-
-		public static Vector4 SampleColormap(float t)
-		{
-			Vector4 ret;
-			SampleColormapNative(&ret, t, (ImPlotColormap)(-1));
-			return ret;
-		}
-
-		public static Vector4 SampleColormap(float t, ImPlotColormap cmap)
-		{
-			Vector4 ret;
-			SampleColormapNative(&ret, t, cmap);
-			return ret;
-		}
-
-		public static void SampleColormap(Vector4* output, float t, ImPlotColormap cmap)
-		{
-			SampleColormapNative(output, t, cmap);
-		}
-
-		public static void SampleColormap(Vector4* output, float t)
-		{
-			SampleColormapNative(output, t, (ImPlotColormap)(-1));
-		}
-
-		public static void SampleColormap(ref Vector4 output, float t, ImPlotColormap cmap)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				SampleColormapNative((Vector4*)poutput, t, cmap);
-			}
-		}
-
-		public static void SampleColormap(ref Vector4 output, float t)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				SampleColormapNative((Vector4*)poutput, t, (ImPlotColormap)(-1));
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_ColormapScale")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ColormapScaleNative(byte* label, double scaleMin, double scaleMax, Vector2 size, byte* format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap);
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, byte* format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			ColormapScaleNative(label, scaleMin, scaleMax, size, format, flags, cmap);
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, byte* format, ImPlotColormapScaleFlags flags)
-		{
-			ColormapScaleNative(label, scaleMin, scaleMax, size, format, flags, (ImPlotColormap)(-1));
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, byte* format)
-		{
-			ColormapScaleNative(label, scaleMin, scaleMax, size, format, (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size)
-		{
-			ColormapScale(label, scaleMin, scaleMax, size, (string)"%g", (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax)
-		{
-			ColormapScale(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (string)"%g", (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, byte* format)
-		{
-			ColormapScaleNative(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), format, (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, ImPlotColormapScaleFlags flags)
-		{
-			ColormapScale(label, scaleMin, scaleMax, size, (string)"%g", flags, (ImPlotColormap)(-1));
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, ImPlotColormapScaleFlags flags)
-		{
-			ColormapScale(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (string)"%g", flags, (ImPlotColormap)(-1));
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, byte* format, ImPlotColormapScaleFlags flags)
-		{
-			ColormapScaleNative(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), format, flags, (ImPlotColormap)(-1));
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, byte* format, ImPlotColormap cmap)
-		{
-			ColormapScaleNative(label, scaleMin, scaleMax, size, format, (ImPlotColormapScaleFlags)(0), cmap);
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, ImPlotColormap cmap)
-		{
-			ColormapScale(label, scaleMin, scaleMax, size, (string)"%g", (ImPlotColormapScaleFlags)(0), cmap);
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, ImPlotColormap cmap)
-		{
-			ColormapScale(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (string)"%g", (ImPlotColormapScaleFlags)(0), cmap);
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, byte* format, ImPlotColormap cmap)
-		{
-			ColormapScaleNative(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), format, (ImPlotColormapScaleFlags)(0), cmap);
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			ColormapScale(label, scaleMin, scaleMax, size, (string)"%g", flags, cmap);
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			ColormapScale(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (string)"%g", flags, cmap);
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, byte* format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			ColormapScaleNative(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), format, flags, cmap);
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, Vector2 size, byte* format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, size, format, flags, cmap);
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, Vector2 size, byte* format, ImPlotColormapScaleFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, size, format, flags, (ImPlotColormap)(-1));
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, Vector2 size, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, size, format, (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, Vector2 size)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScale((byte*)plabel, scaleMin, scaleMax, size, (string)"%g", (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScale((byte*)plabel, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (string)"%g", (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), format, (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, Vector2 size, ImPlotColormapScaleFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScale((byte*)plabel, scaleMin, scaleMax, size, (string)"%g", flags, (ImPlotColormap)(-1));
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, ImPlotColormapScaleFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScale((byte*)plabel, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (string)"%g", flags, (ImPlotColormap)(-1));
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, byte* format, ImPlotColormapScaleFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), format, flags, (ImPlotColormap)(-1));
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, Vector2 size, byte* format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, size, format, (ImPlotColormapScaleFlags)(0), cmap);
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, Vector2 size, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScale((byte*)plabel, scaleMin, scaleMax, size, (string)"%g", (ImPlotColormapScaleFlags)(0), cmap);
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScale((byte*)plabel, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (string)"%g", (ImPlotColormapScaleFlags)(0), cmap);
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, byte* format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), format, (ImPlotColormapScaleFlags)(0), cmap);
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, Vector2 size, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScale((byte*)plabel, scaleMin, scaleMax, size, (string)"%g", flags, cmap);
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScale((byte*)plabel, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (string)"%g", flags, cmap);
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, byte* format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), format, flags, cmap);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, Vector2 size, byte* format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, size, format, flags, cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, Vector2 size, byte* format, ImPlotColormapScaleFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, size, format, flags, (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, Vector2 size, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, size, format, (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, Vector2 size)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScale(pStr0, scaleMin, scaleMax, size, (string)"%g", (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScale(pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (string)"%g", (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), format, (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, Vector2 size, ImPlotColormapScaleFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScale(pStr0, scaleMin, scaleMax, size, (string)"%g", flags, (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, ImPlotColormapScaleFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScale(pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (string)"%g", flags, (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, byte* format, ImPlotColormapScaleFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), format, flags, (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, Vector2 size, byte* format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, size, format, (ImPlotColormapScaleFlags)(0), cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, Vector2 size, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScale(pStr0, scaleMin, scaleMax, size, (string)"%g", (ImPlotColormapScaleFlags)(0), cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScale(pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (string)"%g", (ImPlotColormapScaleFlags)(0), cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, byte* format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), format, (ImPlotColormapScaleFlags)(0), cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, Vector2 size, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScale(pStr0, scaleMin, scaleMax, size, (string)"%g", flags, cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScale(pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (string)"%g", flags, cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, byte* format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), format, flags, cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, ref byte format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			fixed (byte* pformat = &format)
-			{
-				ColormapScaleNative(label, scaleMin, scaleMax, size, (byte*)pformat, flags, cmap);
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, ref byte format, ImPlotColormapScaleFlags flags)
-		{
-			fixed (byte* pformat = &format)
-			{
-				ColormapScaleNative(label, scaleMin, scaleMax, size, (byte*)pformat, flags, (ImPlotColormap)(-1));
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, ref byte format)
-		{
-			fixed (byte* pformat = &format)
-			{
-				ColormapScaleNative(label, scaleMin, scaleMax, size, (byte*)pformat, (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, ref byte format)
-		{
-			fixed (byte* pformat = &format)
-			{
-				ColormapScaleNative(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (byte*)pformat, (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, ref byte format, ImPlotColormapScaleFlags flags)
-		{
-			fixed (byte* pformat = &format)
-			{
-				ColormapScaleNative(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (byte*)pformat, flags, (ImPlotColormap)(-1));
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, ref byte format, ImPlotColormap cmap)
-		{
-			fixed (byte* pformat = &format)
-			{
-				ColormapScaleNative(label, scaleMin, scaleMax, size, (byte*)pformat, (ImPlotColormapScaleFlags)(0), cmap);
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, ref byte format, ImPlotColormap cmap)
-		{
-			fixed (byte* pformat = &format)
-			{
-				ColormapScaleNative(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (byte*)pformat, (ImPlotColormapScaleFlags)(0), cmap);
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, ref byte format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			fixed (byte* pformat = &format)
-			{
-				ColormapScaleNative(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (byte*)pformat, flags, cmap);
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, string format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(label, scaleMin, scaleMax, size, pStr0, flags, cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, string format, ImPlotColormapScaleFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(label, scaleMin, scaleMax, size, pStr0, flags, (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(label, scaleMin, scaleMax, size, pStr0, (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), pStr0, (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, string format, ImPlotColormapScaleFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), pStr0, flags, (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, string format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(label, scaleMin, scaleMax, size, pStr0, (ImPlotColormapScaleFlags)(0), cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, string format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), pStr0, (ImPlotColormapScaleFlags)(0), cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, string format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ColormapScaleNative(label, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), pStr0, flags, cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, Vector2 size, ref byte format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, size, (byte*)pformat, flags, cmap);
-				}
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, Vector2 size, ref byte format, ImPlotColormapScaleFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, size, (byte*)pformat, flags, (ImPlotColormap)(-1));
-				}
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, Vector2 size, ref byte format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, size, (byte*)pformat, (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-				}
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, ref byte format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (byte*)pformat, (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-				}
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, ref byte format, ImPlotColormapScaleFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (byte*)pformat, flags, (ImPlotColormap)(-1));
-				}
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, Vector2 size, ref byte format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, size, (byte*)pformat, (ImPlotColormapScaleFlags)(0), cmap);
-				}
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, ref byte format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (byte*)pformat, (ImPlotColormapScaleFlags)(0), cmap);
-				}
-			}
-		}
-
-		public static void ColormapScale(ref byte label, double scaleMin, double scaleMax, ref byte format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					ColormapScaleNative((byte*)plabel, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (byte*)pformat, flags, cmap);
-				}
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, Vector2 size, string format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, size, pStr1, flags, cmap);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, Vector2 size, string format, ImPlotColormapScaleFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, size, pStr1, flags, (ImPlotColormap)(-1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, Vector2 size, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, size, pStr1, (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), pStr1, (ImPlotColormapScaleFlags)(0), (ImPlotColormap)(-1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, string format, ImPlotColormapScaleFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), pStr1, flags, (ImPlotColormap)(-1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, Vector2 size, string format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, size, pStr1, (ImPlotColormapScaleFlags)(0), cmap);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, string format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), pStr1, (ImPlotColormapScaleFlags)(0), cmap);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ColormapScale(string label, double scaleMin, double scaleMax, string format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			ColormapScaleNative(pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), pStr1, flags, cmap);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_ColormapSlider")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ColormapSliderNative(byte* label, float* t, Vector4* output, byte* format, ImPlotColormap cmap);
-
-		public static bool ColormapSlider(byte* label, float* t, Vector4* output, byte* format, ImPlotColormap cmap)
-		{
-			byte ret = ColormapSliderNative(label, t, output, format, cmap);
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, Vector4* output, byte* format)
-		{
-			byte ret = ColormapSliderNative(label, t, output, format, (ImPlotColormap)(-1));
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, Vector4* output)
-		{
-			bool ret = ColormapSlider(label, t, output, (string)"", (ImPlotColormap)(-1));
-			return ret;
-		}
-
-		public static bool ColormapSlider(byte* label, float* t)
-		{
-			bool ret = ColormapSlider(label, t, (Vector4*)(default), (string)"", (ImPlotColormap)(-1));
-			return ret;
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, byte* format)
-		{
-			byte ret = ColormapSliderNative(label, t, (Vector4*)(default), format, (ImPlotColormap)(-1));
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, Vector4* output, ImPlotColormap cmap)
-		{
-			bool ret = ColormapSlider(label, t, output, (string)"", cmap);
-			return ret;
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, ImPlotColormap cmap)
-		{
-			bool ret = ColormapSlider(label, t, (Vector4*)(default), (string)"", cmap);
-			return ret;
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, byte* format, ImPlotColormap cmap)
-		{
-			byte ret = ColormapSliderNative(label, t, (Vector4*)(default), format, cmap);
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, Vector4* output, byte* format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ColormapSliderNative((byte*)plabel, t, output, format, cmap);
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, Vector4* output, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ColormapSliderNative((byte*)plabel, t, output, format, (ImPlotColormap)(-1));
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, Vector4* output)
-		{
-			fixed (byte* plabel = &label)
-			{
-				bool ret = ColormapSlider((byte*)plabel, t, output, (string)"", (ImPlotColormap)(-1));
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t)
-		{
-			fixed (byte* plabel = &label)
-			{
-				bool ret = ColormapSlider((byte*)plabel, t, (Vector4*)(default), (string)"", (ImPlotColormap)(-1));
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)(default), format, (ImPlotColormap)(-1));
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, Vector4* output, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				bool ret = ColormapSlider((byte*)plabel, t, output, (string)"", cmap);
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				bool ret = ColormapSlider((byte*)plabel, t, (Vector4*)(default), (string)"", cmap);
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, byte* format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)(default), format, cmap);
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(string label, float* t, Vector4* output, byte* format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ColormapSliderNative(pStr0, t, output, format, cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(string label, float* t, Vector4* output, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ColormapSliderNative(pStr0, t, output, format, (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(string label, float* t, Vector4* output)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			bool ret = ColormapSlider(pStr0, t, output, (string)"", (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static bool ColormapSlider(string label, float* t)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			bool ret = ColormapSlider(pStr0, t, (Vector4*)(default), (string)"", (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static bool ColormapSlider(string label, float* t, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ColormapSliderNative(pStr0, t, (Vector4*)(default), format, (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(string label, float* t, Vector4* output, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			bool ret = ColormapSlider(pStr0, t, output, (string)"", cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static bool ColormapSlider(string label, float* t, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			bool ret = ColormapSlider(pStr0, t, (Vector4*)(default), (string)"", cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static bool ColormapSlider(string label, float* t, byte* format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ColormapSliderNative(pStr0, t, (Vector4*)(default), format, cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, Vector4* output, byte* format, ImPlotColormap cmap)
-		{
-			fixed (float* pt = &t)
-			{
-				byte ret = ColormapSliderNative(label, (float*)pt, output, format, cmap);
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, Vector4* output, byte* format)
-		{
-			fixed (float* pt = &t)
-			{
-				byte ret = ColormapSliderNative(label, (float*)pt, output, format, (ImPlotColormap)(-1));
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, Vector4* output)
-		{
-			fixed (float* pt = &t)
-			{
-				bool ret = ColormapSlider(label, (float*)pt, output, (string)"", (ImPlotColormap)(-1));
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t)
-		{
-			fixed (float* pt = &t)
-			{
-				bool ret = ColormapSlider(label, (float*)pt, (Vector4*)(default), (string)"", (ImPlotColormap)(-1));
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, byte* format)
-		{
-			fixed (float* pt = &t)
-			{
-				byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)(default), format, (ImPlotColormap)(-1));
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, Vector4* output, ImPlotColormap cmap)
-		{
-			fixed (float* pt = &t)
-			{
-				bool ret = ColormapSlider(label, (float*)pt, output, (string)"", cmap);
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, ImPlotColormap cmap)
-		{
-			fixed (float* pt = &t)
-			{
-				bool ret = ColormapSlider(label, (float*)pt, (Vector4*)(default), (string)"", cmap);
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, byte* format, ImPlotColormap cmap)
-		{
-			fixed (float* pt = &t)
-			{
-				byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)(default), format, cmap);
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, Vector4* output, byte* format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
+				fixed (bool* poutClicked = &outClicked)
 				{
-					byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, output, format, cmap);
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool ColormapSlider(ref byte label, ref float t, Vector4* output, byte* format)
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
 		{
-			fixed (byte* plabel = &label)
+			fixed (double* py2 = &y2)
 			{
-				fixed (float* pt = &t)
+				fixed (bool* poutClicked = &outClicked)
 				{
-					byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, output, format, (ImPlotColormap)(-1));
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool ColormapSlider(ref byte label, ref float t, Vector4* output)
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
 		{
-			fixed (byte* plabel = &label)
+			fixed (double* py2 = &y2)
 			{
-				fixed (float* pt = &t)
+				fixed (bool* poutClicked = &outClicked)
 				{
-					bool ret = ColormapSlider((byte*)plabel, (float*)pt, output, (string)"", (ImPlotColormap)(-1));
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					bool ret = ColormapSlider((byte*)plabel, (float*)pt, (Vector4*)(default), (string)"", (ImPlotColormap)(-1));
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)(default), format, (ImPlotColormap)(-1));
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool ColormapSlider(ref byte label, ref float t, Vector4* output, ImPlotColormap cmap)
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked)
 		{
-			fixed (byte* plabel = &label)
+			fixed (double* py2 = &y2)
 			{
-				fixed (float* pt = &t)
+				fixed (bool* poutClicked = &outClicked)
 				{
-					bool ret = ColormapSlider((byte*)plabel, (float*)pt, output, (string)"", cmap);
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					bool ret = ColormapSlider((byte*)plabel, (float*)pt, (Vector4*)(default), (string)"", cmap);
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, byte* format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)(default), format, cmap);
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool ColormapSlider(string label, ref float t, Vector4* output, byte* format, ImPlotColormap cmap)
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (double* py2 = &y2)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (bool* poutClicked = &outClicked)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				byte ret = ColormapSliderNative(pStr0, (float*)pt, output, format, cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, Vector4* output, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				byte ret = ColormapSliderNative(pStr0, (float*)pt, output, format, (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, Vector4* output)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				bool ret = ColormapSlider(pStr0, (float*)pt, output, (string)"", (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				bool ret = ColormapSlider(pStr0, (float*)pt, (Vector4*)(default), (string)"", (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)(default), format, (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, Vector4* output, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				bool ret = ColormapSlider(pStr0, (float*)pt, output, (string)"", cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				bool ret = ColormapSlider(pStr0, (float*)pt, (Vector4*)(default), (string)"", cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, byte* format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)(default), format, cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, byte* format, ImPlotColormap cmap)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				byte ret = ColormapSliderNative(label, t, (Vector4*)poutput, format, cmap);
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, byte* format)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				byte ret = ColormapSliderNative(label, t, (Vector4*)poutput, format, (ImPlotColormap)(-1));
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				bool ret = ColormapSlider(label, t, (Vector4*)poutput, (string)"", (ImPlotColormap)(-1));
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, ImPlotColormap cmap)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				bool ret = ColormapSlider(label, t, (Vector4*)poutput, (string)"", cmap);
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output, byte* format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, format, cmap);
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output, byte* format)
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			fixed (byte* plabel = &label)
+			fixed (double* py2 = &y2)
 			{
-				fixed (Vector4* poutput = &output)
+				fixed (bool* poutClicked = &outClicked)
 				{
-					byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, format, (ImPlotColormap)(-1));
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output)
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			fixed (byte* plabel = &label)
+			fixed (double* px1 = &x1)
 			{
-				fixed (Vector4* poutput = &output)
+				fixed (double* py2 = &y2)
 				{
-					bool ret = ColormapSlider((byte*)plabel, t, (Vector4*)poutput, (string)"", (ImPlotColormap)(-1));
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					bool ret = ColormapSlider((byte*)plabel, t, (Vector4*)poutput, (string)"", cmap);
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output, byte* format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector4* poutput = &output)
-			{
-				byte ret = ColormapSliderNative(pStr0, t, (Vector4*)poutput, format, cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector4* poutput = &output)
-			{
-				byte ret = ColormapSliderNative(pStr0, t, (Vector4*)poutput, format, (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector4* poutput = &output)
-			{
-				bool ret = ColormapSlider(pStr0, t, (Vector4*)poutput, (string)"", (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector4* poutput = &output)
-			{
-				bool ret = ColormapSlider(pStr0, t, (Vector4*)poutput, (string)"", cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, ref Vector4 output, byte* format, ImPlotColormap cmap)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)poutput, format, cmap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, ref Vector4 output, byte* format)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)poutput, format, (ImPlotColormap)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, ref Vector4 output)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					bool ret = ColormapSlider(label, (float*)pt, (Vector4*)poutput, (string)"", (ImPlotColormap)(-1));
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, ref Vector4 output, ImPlotColormap cmap)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					bool ret = ColormapSlider(label, (float*)pt, (Vector4*)poutput, (string)"", cmap);
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, ref Vector4 output, byte* format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					fixed (Vector4* poutput = &output)
+					fixed (bool* poutClicked = &outClicked)
 					{
-						byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, format, cmap);
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool ColormapSlider(ref byte label, ref float t, ref Vector4 output, byte* format)
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
 		{
-			fixed (byte* plabel = &label)
+			fixed (double* px1 = &x1)
 			{
-				fixed (float* pt = &t)
+				fixed (double* py2 = &y2)
 				{
-					fixed (Vector4* poutput = &output)
+					fixed (bool* poutClicked = &outClicked)
 					{
-						byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, format, (ImPlotColormap)(-1));
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool ColormapSlider(ref byte label, ref float t, ref Vector4 output)
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
 		{
-			fixed (byte* plabel = &label)
+			fixed (double* px1 = &x1)
 			{
-				fixed (float* pt = &t)
+				fixed (double* py2 = &y2)
 				{
-					fixed (Vector4* poutput = &output)
+					fixed (bool* poutClicked = &outClicked)
 					{
-						bool ret = ColormapSlider((byte*)plabel, (float*)pt, (Vector4*)poutput, (string)"", (ImPlotColormap)(-1));
-						return ret;
-					}
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, ref Vector4 output, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					fixed (Vector4* poutput = &output)
-					{
-						bool ret = ColormapSlider((byte*)plabel, (float*)pt, (Vector4*)poutput, (string)"", cmap);
-						return ret;
-					}
-				}
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, ref Vector4 output, byte* format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)poutput, format, cmap);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, ref Vector4 output, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)poutput, format, (ImPlotColormap)(-1));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, ref Vector4 output)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					bool ret = ColormapSlider(pStr0, (float*)pt, (Vector4*)poutput, (string)"", (ImPlotColormap)(-1));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, ref Vector4 output, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					bool ret = ColormapSlider(pStr0, (float*)pt, (Vector4*)poutput, (string)"", cmap);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, Vector4* output, ref byte format, ImPlotColormap cmap)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = ColormapSliderNative(label, t, output, (byte*)pformat, cmap);
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, Vector4* output, ref byte format)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = ColormapSliderNative(label, t, output, (byte*)pformat, (ImPlotColormap)(-1));
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, ref byte format)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = ColormapSliderNative(label, t, (Vector4*)(default), (byte*)pformat, (ImPlotColormap)(-1));
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, ref byte format, ImPlotColormap cmap)
-		{
-			fixed (byte* pformat = &format)
-			{
-				byte ret = ColormapSliderNative(label, t, (Vector4*)(default), (byte*)pformat, cmap);
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, Vector4* output, string format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ColormapSliderNative(label, t, output, pStr0, cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, Vector4* output, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ColormapSliderNative(label, t, output, pStr0, (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ColormapSliderNative(label, t, (Vector4*)(default), pStr0, (ImPlotColormap)(-1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, string format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (format != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(format);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ColormapSliderNative(label, t, (Vector4*)(default), pStr0, cmap);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, Vector4* output, ref byte format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = ColormapSliderNative((byte*)plabel, t, output, (byte*)pformat, cmap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, Vector4* output, ref byte format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = ColormapSliderNative((byte*)plabel, t, output, (byte*)pformat, (ImPlotColormap)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, ref byte format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)(default), (byte*)pformat, (ImPlotColormap)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, ref byte format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)(default), (byte*)pformat, cmap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(string label, float* t, Vector4* output, string format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = ColormapSliderNative(pStr0, t, output, pStr1, cmap);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(string label, float* t, Vector4* output, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = ColormapSliderNative(pStr0, t, output, pStr1, (ImPlotColormap)(-1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(string label, float* t, string format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = ColormapSliderNative(pStr0, t, (Vector4*)(default), pStr1, (ImPlotColormap)(-1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(string label, float* t, string format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (format != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(format);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = ColormapSliderNative(pStr0, t, (Vector4*)(default), pStr1, cmap);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, Vector4* output, ref byte format, ImPlotColormap cmap)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = ColormapSliderNative(label, (float*)pt, output, (byte*)pformat, cmap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, Vector4* output, ref byte format)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = ColormapSliderNative(label, (float*)pt, output, (byte*)pformat, (ImPlotColormap)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, ref byte format)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)(default), (byte*)pformat, (ImPlotColormap)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, ref byte format, ImPlotColormap cmap)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)(default), (byte*)pformat, cmap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, Vector4* output, string format, ImPlotColormap cmap)
-		{
-			fixed (float* pt = &t)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = ColormapSliderNative(label, (float*)pt, output, pStr0, cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, Vector4* output, string format)
-		{
-			fixed (float* pt = &t)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = ColormapSliderNative(label, (float*)pt, output, pStr0, (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, string format)
-		{
-			fixed (float* pt = &t)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)(default), pStr0, (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, string format, ImPlotColormap cmap)
-		{
-			fixed (float* pt = &t)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)(default), pStr0, cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, Vector4* output, ref byte format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					fixed (byte* pformat = &format)
-					{
-						byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, output, (byte*)pformat, cmap);
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool ColormapSlider(ref byte label, ref float t, Vector4* output, ref byte format)
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked)
 		{
-			fixed (byte* plabel = &label)
+			fixed (double* px1 = &x1)
 			{
-				fixed (float* pt = &t)
+				fixed (double* py2 = &y2)
 				{
-					fixed (byte* pformat = &format)
+					fixed (bool* poutClicked = &outClicked)
 					{
-						byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, output, (byte*)pformat, (ImPlotColormap)(-1));
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool ColormapSlider(ref byte label, ref float t, ref byte format)
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
 		{
-			fixed (byte* plabel = &label)
+			fixed (double* px1 = &x1)
 			{
-				fixed (float* pt = &t)
+				fixed (double* py2 = &y2)
 				{
-					fixed (byte* pformat = &format)
+					fixed (bool* poutClicked = &outClicked)
 					{
-						byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)(default), (byte*)pformat, (ImPlotColormap)(-1));
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool ColormapSlider(ref byte label, ref float t, ref byte format, ImPlotColormap cmap)
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			fixed (byte* plabel = &label)
+			fixed (double* px1 = &x1)
 			{
-				fixed (float* pt = &t)
+				fixed (double* py2 = &y2)
 				{
-					fixed (byte* pformat = &format)
+					fixed (bool* poutClicked = &outClicked)
 					{
-						byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)(default), (byte*)pformat, cmap);
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool ColormapSlider(string label, ref float t, Vector4* output, string format, ImPlotColormap cmap)
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (double* py1 = &y1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* py2 = &y2)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pt = &t)
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (format != null)
+				fixed (double* py2 = &y2)
 				{
-					pStrSize1 = Utils.GetByteCountUTF8(format);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
+					fixed (bool* poutClicked = &outClicked)
 					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
 					}
-					else
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
 					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
 					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
 				}
-				byte ret = ColormapSliderNative(pStr0, (float*)pt, output, pStr1, cmap);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
 				{
-					Utils.Free(pStr1);
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
 				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
 				{
-					Utils.Free(pStr0);
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
 				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutClicked = &outClicked)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, held);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutClicked = &outClicked)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutClicked = &outClicked)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutClicked = &outClicked)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutClicked = &outClicked)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutClicked = &outClicked)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, outClicked, (bool*)poutHovered, held);
 				return ret != 0;
 			}
 		}
 
-		public static bool ColormapSlider(string label, ref float t, Vector4* output, string format)
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (bool* poutHovered = &outHovered)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (format != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(format);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = ColormapSliderNative(pStr0, (float*)pt, output, pStr1, (ImPlotColormap)(-1));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
 				return ret != 0;
 			}
 		}
 
-		public static bool ColormapSlider(string label, ref float t, string format)
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (bool* poutHovered = &outHovered)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (format != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(format);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)(default), pStr1, (ImPlotColormap)(-1));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
 				return ret != 0;
 			}
 		}
 
-		public static bool ColormapSlider(string label, ref float t, string format, ImPlotColormap cmap)
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (bool* poutHovered = &outHovered)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (format != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(format);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)(default), pStr1, cmap);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
 				return ret != 0;
 			}
 		}
 
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, ref byte format, ImPlotColormap cmap)
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
 		{
-			fixed (Vector4* poutput = &output)
+			fixed (double* px1 = &x1)
 			{
-				fixed (byte* pformat = &format)
+				fixed (bool* poutHovered = &outHovered)
 				{
-					byte ret = ColormapSliderNative(label, t, (Vector4*)poutput, (byte*)pformat, cmap);
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, outClicked, (bool*)poutHovered, held);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, ref byte format)
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
 		{
-			fixed (Vector4* poutput = &output)
+			fixed (double* px1 = &x1)
 			{
-				fixed (byte* pformat = &format)
+				fixed (bool* poutHovered = &outHovered)
 				{
-					byte ret = ColormapSliderNative(label, t, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, string format, ImPlotColormap cmap)
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
 		{
-			fixed (Vector4* poutput = &output)
+			fixed (double* px1 = &x1)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
+				fixed (bool* poutHovered = &outHovered)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
 				}
-				byte ret = ColormapSliderNative(label, t, (Vector4*)poutput, pStr0, cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
 			}
 		}
 
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, string format)
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
 		{
-			fixed (Vector4* poutput = &output)
+			fixed (double* px1 = &x1)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (format != null)
+				fixed (bool* poutHovered = &outHovered)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(format);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+					return ret != 0;
 				}
-				byte ret = ColormapSliderNative(label, t, (Vector4*)poutput, pStr0, (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
 			}
 		}
 
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output, ref byte format, ImPlotColormap cmap)
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
 		{
-			fixed (byte* plabel = &label)
+			fixed (double* py1 = &y1)
 			{
-				fixed (Vector4* poutput = &output)
+				fixed (bool* poutHovered = &outHovered)
 				{
-					fixed (byte* pformat = &format)
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, outClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutHovered = &outHovered)
 					{
-						byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, (byte*)pformat, cmap);
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, outClicked, (bool*)poutHovered, held);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output, ref byte format)
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
 		{
-			fixed (byte* plabel = &label)
+			fixed (double* px1 = &x1)
 			{
-				fixed (Vector4* poutput = &output)
+				fixed (double* py1 = &y1)
 				{
-					fixed (byte* pformat = &format)
+					fixed (bool* poutHovered = &outHovered)
 					{
-						byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, (byte*)pformat, (ImPlotColormap)(-1));
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output, string format, ImPlotColormap cmap)
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (double* px1 = &x1)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (double* py1 = &y1)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector4* poutput = &output)
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (format != null)
+				fixed (double* py1 = &y1)
 				{
-					pStrSize1 = Utils.GetByteCountUTF8(format);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
+					fixed (bool* poutHovered = &outHovered)
 					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+						return ret != 0;
 					}
-					else
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
 					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, held);
+						return ret != 0;
 					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
 				}
-				byte ret = ColormapSliderNative(pStr0, t, (Vector4*)poutput, pStr1, cmap);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
 				{
-					Utils.Free(pStr1);
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
 				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
 				{
-					Utils.Free(pStr0);
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
 				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, held);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)(default));
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutClicked = &outClicked)
+							{
+								fixed (bool* poutHovered = &outHovered)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, held);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutClicked = &outClicked)
+							{
+								fixed (bool* poutHovered = &outHovered)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutClicked = &outClicked)
+							{
+								fixed (bool* poutHovered = &outHovered)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutClicked = &outClicked)
+							{
+								fixed (bool* poutHovered = &outHovered)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (bool* pheld = &held)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, outClicked, outHovered, (bool*)pheld);
 				return ret != 0;
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (bool* pheld = &held)
+			{
+				byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+				return ret != 0;
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, outClicked, outHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, outClicked, outHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, outClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, outClicked, outHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, outClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, outClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, outClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, outClicked, outHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, outClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, outClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, outClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, outClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, outClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, outHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutClicked = &outClicked)
+							{
+								fixed (bool* pheld = &held)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutClicked = &outClicked)
+							{
+								fixed (bool* pheld = &held)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								fixed (bool* pheld = &held)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								fixed (bool* pheld = &held)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								fixed (bool* pheld = &held)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								fixed (bool* pheld = &held)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								fixed (bool* pheld = &held)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								fixed (bool* pheld = &held)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}

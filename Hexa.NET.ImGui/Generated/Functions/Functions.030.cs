@@ -17,6 +17,65 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
+		public static void SetKeyEventNativeData(ref ImGuiIO self, ImGuiKey key, int nativeKeycode, int nativeScancode, int nativeLegacyIndex)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				SetKeyEventNativeDataNative((ImGuiIO*)pself, key, nativeKeycode, nativeScancode, nativeLegacyIndex);
+			}
+		}
+
+		public static void SetKeyEventNativeData(ref ImGuiIO self, ImGuiKey key, int nativeKeycode, int nativeScancode)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				SetKeyEventNativeDataNative((ImGuiIO*)pself, key, nativeKeycode, nativeScancode, (int)(-1));
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImGuiIO_SetAppAcceptingEvents")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetAppAcceptingEventsNative(ImGuiIO* self, byte acceptingEvents);
+
+		public static void SetAppAcceptingEvents(ImGuiIOPtr self, bool acceptingEvents)
+		{
+			SetAppAcceptingEventsNative(self, acceptingEvents ? (byte)1 : (byte)0);
+		}
+
+		public static void SetAppAcceptingEvents(ref ImGuiIO self, bool acceptingEvents)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				SetAppAcceptingEventsNative((ImGuiIO*)pself, acceptingEvents ? (byte)1 : (byte)0);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImGuiIO_ClearEventsQueue")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ClearEventsQueueNative(ImGuiIO* self);
+
+		public static void ClearEventsQueue(ImGuiIOPtr self)
+		{
+			ClearEventsQueueNative(self);
+		}
+
+		public static void ClearEventsQueue(ref ImGuiIO self)
+		{
+			fixed (ImGuiIO* pself = &self)
+			{
+				ClearEventsQueueNative((ImGuiIO*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImGuiIO_ClearInputKeys")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ClearInputKeysNative(ImGuiIO* self);
+
+		public static void ClearInputKeys(ImGuiIOPtr self)
+		{
+			ClearInputKeysNative(self);
+		}
+
 		public static void ClearInputKeys(ref ImGuiIO self)
 		{
 			fixed (ImGuiIO* pself = &self)
@@ -726,60 +785,6 @@ namespace Hexa.NET.ImGui
 			{
 				byte ret = IsDeliveryNative((ImGuiPayload*)pself);
 				return ret != 0;
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiTableColumnSortSpecs_ImGuiTableColumnSortSpecs")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTableColumnSortSpecs* ImGuiTableColumnSortSpecsNative();
-
-		public static ImGuiTableColumnSortSpecsPtr ImGuiTableColumnSortSpecs()
-		{
-			ImGuiTableColumnSortSpecsPtr ret = ImGuiTableColumnSortSpecsNative();
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiTableColumnSortSpecs_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImGuiTableColumnSortSpecs* self);
-
-		public static void Destroy(ImGuiTableColumnSortSpecsPtr self)
-		{
-			DestroyNative(self);
-		}
-
-		public static void Destroy(ref ImGuiTableColumnSortSpecs self)
-		{
-			fixed (ImGuiTableColumnSortSpecs* pself = &self)
-			{
-				DestroyNative((ImGuiTableColumnSortSpecs*)pself);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiTableSortSpecs_ImGuiTableSortSpecs")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTableSortSpecs* ImGuiTableSortSpecsNative();
-
-		public static ImGuiTableSortSpecsPtr ImGuiTableSortSpecs()
-		{
-			ImGuiTableSortSpecsPtr ret = ImGuiTableSortSpecsNative();
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiTableSortSpecs_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImGuiTableSortSpecs* self);
-
-		public static void Destroy(ImGuiTableSortSpecsPtr self)
-		{
-			DestroyNative(self);
-		}
-
-		public static void Destroy(ref ImGuiTableSortSpecs self)
-		{
-			fixed (ImGuiTableSortSpecs* pself = &self)
-			{
-				DestroyNative((ImGuiTableSortSpecs*)pself);
 			}
 		}
 
@@ -2438,11 +2443,11 @@ namespace Hexa.NET.ImGui
 
 		[LibraryImport(LibName, EntryPoint = "ImGuiStoragePair_ImGuiStoragePair_Int")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiStoragePair* ImGuiStoragePairNative(int key, int valI);
+		internal static partial ImGuiStoragePair* ImGuiStoragePairNative(int key, int val);
 
-		public static ImGuiStoragePairPtr ImGuiStoragePair(int key, int valI)
+		public static ImGuiStoragePairPtr ImGuiStoragePair(int key, int val)
 		{
-			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, valI);
+			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, val);
 			return ret;
 		}
 
@@ -2465,21 +2470,21 @@ namespace Hexa.NET.ImGui
 
 		[LibraryImport(LibName, EntryPoint = "ImGuiStoragePair_ImGuiStoragePair_Float")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiStoragePair* ImGuiStoragePairNative(int key, float valF);
+		internal static partial ImGuiStoragePair* ImGuiStoragePairNative(int key, float val);
 
-		public static ImGuiStoragePairPtr ImGuiStoragePair(int key, float valF)
+		public static ImGuiStoragePairPtr ImGuiStoragePair(int key, float val)
 		{
-			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, valF);
+			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, val);
 			return ret;
 		}
 
 		[LibraryImport(LibName, EntryPoint = "ImGuiStoragePair_ImGuiStoragePair_Ptr")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiStoragePair* ImGuiStoragePairNative(int key, void* valP);
+		internal static partial ImGuiStoragePair* ImGuiStoragePairNative(int key, void* val);
 
-		public static ImGuiStoragePairPtr ImGuiStoragePair(int key, void* valP)
+		public static ImGuiStoragePairPtr ImGuiStoragePair(int key, void* val)
 		{
-			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, valP);
+			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, val);
 			return ret;
 		}
 
@@ -2825,23 +2830,6 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuiStorage_SetAllInt")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetAllIntNative(ImGuiStorage* self, int val);
-
-		public static void SetAllInt(ImGuiStoragePtr self, int val)
-		{
-			SetAllIntNative(self, val);
-		}
-
-		public static void SetAllInt(ref ImGuiStorage self, int val)
-		{
-			fixed (ImGuiStorage* pself = &self)
-			{
-				SetAllIntNative((ImGuiStorage*)pself, val);
-			}
-		}
-
 		[LibraryImport(LibName, EntryPoint = "ImGuiStorage_BuildSortByKey")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void BuildSortByKeyNative(ImGuiStorage* self);
@@ -2856,6 +2844,23 @@ namespace Hexa.NET.ImGui
 			fixed (ImGuiStorage* pself = &self)
 			{
 				BuildSortByKeyNative((ImGuiStorage*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImGuiStorage_SetAllInt")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetAllIntNative(ImGuiStorage* self, int val);
+
+		public static void SetAllInt(ImGuiStoragePtr self, int val)
+		{
+			SetAllIntNative(self, val);
+		}
+
+		public static void SetAllInt(ref ImGuiStorage self, int val)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				SetAllIntNative((ImGuiStorage*)pself, val);
 			}
 		}
 
@@ -4019,6 +4024,157 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddEllipse")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void AddEllipseNative(ImDrawList* self, Vector2 center, float radiusX, float radiusY, uint col, float rot, int numSegments, float thickness);
+
+		public static void AddEllipse(ImDrawListPtr self, Vector2 center, float radiusX, float radiusY, uint col, float rot, int numSegments, float thickness)
+		{
+			AddEllipseNative(self, center, radiusX, radiusY, col, rot, numSegments, thickness);
+		}
+
+		public static void AddEllipse(ImDrawListPtr self, Vector2 center, float radiusX, float radiusY, uint col, float rot, int numSegments)
+		{
+			AddEllipseNative(self, center, radiusX, radiusY, col, rot, numSegments, (float)(1.0f));
+		}
+
+		public static void AddEllipse(ImDrawListPtr self, Vector2 center, float radiusX, float radiusY, uint col, float rot)
+		{
+			AddEllipseNative(self, center, radiusX, radiusY, col, rot, (int)(0), (float)(1.0f));
+		}
+
+		public static void AddEllipse(ImDrawListPtr self, Vector2 center, float radiusX, float radiusY, uint col)
+		{
+			AddEllipseNative(self, center, radiusX, radiusY, col, (float)(0.0f), (int)(0), (float)(1.0f));
+		}
+
+		public static void AddEllipse(ImDrawListPtr self, Vector2 center, float radiusX, float radiusY, uint col, int numSegments)
+		{
+			AddEllipseNative(self, center, radiusX, radiusY, col, (float)(0.0f), numSegments, (float)(1.0f));
+		}
+
+		public static void AddEllipse(ImDrawListPtr self, Vector2 center, float radiusX, float radiusY, uint col, float rot, float thickness)
+		{
+			AddEllipseNative(self, center, radiusX, radiusY, col, rot, (int)(0), thickness);
+		}
+
+		public static void AddEllipse(ImDrawListPtr self, Vector2 center, float radiusX, float radiusY, uint col, int numSegments, float thickness)
+		{
+			AddEllipseNative(self, center, radiusX, radiusY, col, (float)(0.0f), numSegments, thickness);
+		}
+
+		public static void AddEllipse(ref ImDrawList self, Vector2 center, float radiusX, float radiusY, uint col, float rot, int numSegments, float thickness)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddEllipseNative((ImDrawList*)pself, center, radiusX, radiusY, col, rot, numSegments, thickness);
+			}
+		}
+
+		public static void AddEllipse(ref ImDrawList self, Vector2 center, float radiusX, float radiusY, uint col, float rot, int numSegments)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddEllipseNative((ImDrawList*)pself, center, radiusX, radiusY, col, rot, numSegments, (float)(1.0f));
+			}
+		}
+
+		public static void AddEllipse(ref ImDrawList self, Vector2 center, float radiusX, float radiusY, uint col, float rot)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddEllipseNative((ImDrawList*)pself, center, radiusX, radiusY, col, rot, (int)(0), (float)(1.0f));
+			}
+		}
+
+		public static void AddEllipse(ref ImDrawList self, Vector2 center, float radiusX, float radiusY, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddEllipseNative((ImDrawList*)pself, center, radiusX, radiusY, col, (float)(0.0f), (int)(0), (float)(1.0f));
+			}
+		}
+
+		public static void AddEllipse(ref ImDrawList self, Vector2 center, float radiusX, float radiusY, uint col, int numSegments)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddEllipseNative((ImDrawList*)pself, center, radiusX, radiusY, col, (float)(0.0f), numSegments, (float)(1.0f));
+			}
+		}
+
+		public static void AddEllipse(ref ImDrawList self, Vector2 center, float radiusX, float radiusY, uint col, float rot, float thickness)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddEllipseNative((ImDrawList*)pself, center, radiusX, radiusY, col, rot, (int)(0), thickness);
+			}
+		}
+
+		public static void AddEllipse(ref ImDrawList self, Vector2 center, float radiusX, float radiusY, uint col, int numSegments, float thickness)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddEllipseNative((ImDrawList*)pself, center, radiusX, radiusY, col, (float)(0.0f), numSegments, thickness);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddEllipseFilled")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void AddEllipseFilledNative(ImDrawList* self, Vector2 center, float radiusX, float radiusY, uint col, float rot, int numSegments);
+
+		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, float radiusX, float radiusY, uint col, float rot, int numSegments)
+		{
+			AddEllipseFilledNative(self, center, radiusX, radiusY, col, rot, numSegments);
+		}
+
+		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, float radiusX, float radiusY, uint col, float rot)
+		{
+			AddEllipseFilledNative(self, center, radiusX, radiusY, col, rot, (int)(0));
+		}
+
+		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, float radiusX, float radiusY, uint col)
+		{
+			AddEllipseFilledNative(self, center, radiusX, radiusY, col, (float)(0.0f), (int)(0));
+		}
+
+		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, float radiusX, float radiusY, uint col, int numSegments)
+		{
+			AddEllipseFilledNative(self, center, radiusX, radiusY, col, (float)(0.0f), numSegments);
+		}
+
+		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, float radiusX, float radiusY, uint col, float rot, int numSegments)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddEllipseFilledNative((ImDrawList*)pself, center, radiusX, radiusY, col, rot, numSegments);
+			}
+		}
+
+		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, float radiusX, float radiusY, uint col, float rot)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddEllipseFilledNative((ImDrawList*)pself, center, radiusX, radiusY, col, rot, (int)(0));
+			}
+		}
+
+		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, float radiusX, float radiusY, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddEllipseFilledNative((ImDrawList*)pself, center, radiusX, radiusY, col, (float)(0.0f), (int)(0));
+			}
+		}
+
+		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, float radiusX, float radiusY, uint col, int numSegments)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddEllipseFilledNative((ImDrawList*)pself, center, radiusX, radiusY, col, (float)(0.0f), numSegments);
+			}
+		}
+
 		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddText_Vec2")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void AddTextNative(ImDrawList* self, Vector2 pos, uint col, byte* textBegin, byte* textEnd);
@@ -4870,175 +5026,6 @@ namespace Hexa.NET.ImGui
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, Vector4* cpuFineClipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), cpuFineClipRect);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, cpuFineClipRect);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
 			}
 		}
 	}

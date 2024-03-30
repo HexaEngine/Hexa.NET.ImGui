@@ -79,6 +79,8 @@
     "ImPoolIdx": "int",
     "ImGuiTableDrawChannelIdx": "byte",
     "ImGuiTableColumnIdx": "sbyte",
+    "ImGuiSelectionUserData": "long",
+    "ImBitArrayForNamedKeys": "nuint",
     "va_list": "nuint"
   },
   "AllowedFunctions": [],

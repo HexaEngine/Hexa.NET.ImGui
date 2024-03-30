@@ -14,7 +14,7 @@
   "KnownExtensionPrefixes": {},
   "KnownExtensionNames": {},
   "KnownStructMethods": {},
-  "IgnoredParts": [ "bit", "Ig", "ImGui", "Str", "Arr", "ImNodes" ],
+  "IgnoredParts": [ "bit", "Ig", "ImGui", "Str", "Arr", "ImNodes", "Imnodes", "imnodes" ],
   "PreserveCaps": [ "" ],
   "Keywords": [ "object", "event", "out", "base" ],
   "IgnoredTypes": [ "ImVec4", "ImVec3", "ImVec2" ],
@@ -90,6 +90,7 @@
     "ImGuiTableColumnIdx": "sbyte",
     "ImGuiDockRequest": "void",
     "ImGuiDockNodeSettings": "void",
+    "ImGuiSelectionUserData": "long",
     "va_list": "nuint"
   },
   "AllowedFunctions": [],

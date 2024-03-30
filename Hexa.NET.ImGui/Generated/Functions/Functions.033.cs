@@ -17,6 +17,194 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
+		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_IsBuilt")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte IsBuiltNative(ImFontAtlas* self);
+
+		public static bool IsBuilt(ImFontAtlasPtr self)
+		{
+			byte ret = IsBuiltNative(self);
+			return ret != 0;
+		}
+
+		public static bool IsBuilt(ref ImFontAtlas self)
+		{
+			fixed (ImFontAtlas* pself = &self)
+			{
+				byte ret = IsBuiltNative((ImFontAtlas*)pself);
+				return ret != 0;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_SetTexID")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetTexIDNative(ImFontAtlas* self, ImTextureID id);
+
+		public static void SetTexID(ImFontAtlasPtr self, ImTextureID id)
+		{
+			SetTexIDNative(self, id);
+		}
+
+		public static void SetTexID(ref ImFontAtlas self, ImTextureID id)
+		{
+			fixed (ImFontAtlas* pself = &self)
+			{
+				SetTexIDNative((ImFontAtlas*)pself, id);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_GetGlyphRangesDefault")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial char* GetGlyphRangesDefaultNative(ImFontAtlas* self);
+
+		public static char* GetGlyphRangesDefault(ImFontAtlasPtr self)
+		{
+			char* ret = GetGlyphRangesDefaultNative(self);
+			return ret;
+		}
+
+		public static char* GetGlyphRangesDefault(ref ImFontAtlas self)
+		{
+			fixed (ImFontAtlas* pself = &self)
+			{
+				char* ret = GetGlyphRangesDefaultNative((ImFontAtlas*)pself);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_GetGlyphRangesGreek")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial char* GetGlyphRangesGreekNative(ImFontAtlas* self);
+
+		public static char* GetGlyphRangesGreek(ImFontAtlasPtr self)
+		{
+			char* ret = GetGlyphRangesGreekNative(self);
+			return ret;
+		}
+
+		public static char* GetGlyphRangesGreek(ref ImFontAtlas self)
+		{
+			fixed (ImFontAtlas* pself = &self)
+			{
+				char* ret = GetGlyphRangesGreekNative((ImFontAtlas*)pself);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_GetGlyphRangesKorean")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial char* GetGlyphRangesKoreanNative(ImFontAtlas* self);
+
+		public static char* GetGlyphRangesKorean(ImFontAtlasPtr self)
+		{
+			char* ret = GetGlyphRangesKoreanNative(self);
+			return ret;
+		}
+
+		public static char* GetGlyphRangesKorean(ref ImFontAtlas self)
+		{
+			fixed (ImFontAtlas* pself = &self)
+			{
+				char* ret = GetGlyphRangesKoreanNative((ImFontAtlas*)pself);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_GetGlyphRangesJapanese")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial char* GetGlyphRangesJapaneseNative(ImFontAtlas* self);
+
+		public static char* GetGlyphRangesJapanese(ImFontAtlasPtr self)
+		{
+			char* ret = GetGlyphRangesJapaneseNative(self);
+			return ret;
+		}
+
+		public static char* GetGlyphRangesJapanese(ref ImFontAtlas self)
+		{
+			fixed (ImFontAtlas* pself = &self)
+			{
+				char* ret = GetGlyphRangesJapaneseNative((ImFontAtlas*)pself);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_GetGlyphRangesChineseFull")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial char* GetGlyphRangesChineseFullNative(ImFontAtlas* self);
+
+		public static char* GetGlyphRangesChineseFull(ImFontAtlasPtr self)
+		{
+			char* ret = GetGlyphRangesChineseFullNative(self);
+			return ret;
+		}
+
+		public static char* GetGlyphRangesChineseFull(ref ImFontAtlas self)
+		{
+			fixed (ImFontAtlas* pself = &self)
+			{
+				char* ret = GetGlyphRangesChineseFullNative((ImFontAtlas*)pself);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_GetGlyphRangesChineseSimplifiedCommon")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial char* GetGlyphRangesChineseSimplifiedCommonNative(ImFontAtlas* self);
+
+		public static char* GetGlyphRangesChineseSimplifiedCommon(ImFontAtlasPtr self)
+		{
+			char* ret = GetGlyphRangesChineseSimplifiedCommonNative(self);
+			return ret;
+		}
+
+		public static char* GetGlyphRangesChineseSimplifiedCommon(ref ImFontAtlas self)
+		{
+			fixed (ImFontAtlas* pself = &self)
+			{
+				char* ret = GetGlyphRangesChineseSimplifiedCommonNative((ImFontAtlas*)pself);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_GetGlyphRangesCyrillic")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial char* GetGlyphRangesCyrillicNative(ImFontAtlas* self);
+
+		public static char* GetGlyphRangesCyrillic(ImFontAtlasPtr self)
+		{
+			char* ret = GetGlyphRangesCyrillicNative(self);
+			return ret;
+		}
+
+		public static char* GetGlyphRangesCyrillic(ref ImFontAtlas self)
+		{
+			fixed (ImFontAtlas* pself = &self)
+			{
+				char* ret = GetGlyphRangesCyrillicNative((ImFontAtlas*)pself);
+				return ret;
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_GetGlyphRangesThai")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial char* GetGlyphRangesThaiNative(ImFontAtlas* self);
+
+		public static char* GetGlyphRangesThai(ImFontAtlasPtr self)
+		{
+			char* ret = GetGlyphRangesThaiNative(self);
+			return ret;
+		}
+
+		public static char* GetGlyphRangesThai(ref ImFontAtlas self)
+		{
+			fixed (ImFontAtlas* pself = &self)
+			{
+				char* ret = GetGlyphRangesThaiNative((ImFontAtlas*)pself);
+				return ret;
+			}
+		}
+
 		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_GetGlyphRangesVietnamese")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial char* GetGlyphRangesVietnameseNative(ImFontAtlas* self);
@@ -4832,204 +5020,6 @@ namespace Hexa.NET.ImGui
 					byte* ret = CalcWordWrapPositionANative((ImFont*)pself, scale, (byte*)ptext, textEnd, wrapWidth);
 					return ret;
 				}
-			}
-		}
-
-		public static string CalcWordWrapPositionAS(ref ImFont self, float scale, ref byte text, byte* textEnd, float wrapWidth)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptext = &text)
-				{
-					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative((ImFont*)pself, scale, (byte*)ptext, textEnd, wrapWidth));
-					return ret;
-				}
-			}
-		}
-
-		public static byte* CalcWordWrapPositionA(ref ImFont self, float scale, string text, byte* textEnd, float wrapWidth)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* ret = CalcWordWrapPositionANative((ImFont*)pself, scale, pStr0, textEnd, wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static string CalcWordWrapPositionAS(ref ImFont self, float scale, string text, byte* textEnd, float wrapWidth)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative((ImFont*)pself, scale, pStr0, textEnd, wrapWidth));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static byte* CalcWordWrapPositionA(ImFontPtr self, float scale, byte* text, ref byte textEnd, float wrapWidth)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				byte* ret = CalcWordWrapPositionANative(self, scale, text, (byte*)ptextEnd, wrapWidth);
-				return ret;
-			}
-		}
-
-		public static string CalcWordWrapPositionAS(ImFontPtr self, float scale, byte* text, ref byte textEnd, float wrapWidth)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative(self, scale, text, (byte*)ptextEnd, wrapWidth));
-				return ret;
-			}
-		}
-
-		public static byte* CalcWordWrapPositionA(ImFontPtr self, float scale, byte* text, string textEnd, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* ret = CalcWordWrapPositionANative(self, scale, text, pStr0, wrapWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static string CalcWordWrapPositionAS(ImFontPtr self, float scale, byte* text, string textEnd, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative(self, scale, text, pStr0, wrapWidth));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static byte* CalcWordWrapPositionA(ref ImFont self, float scale, byte* text, ref byte textEnd, float wrapWidth)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					byte* ret = CalcWordWrapPositionANative((ImFont*)pself, scale, text, (byte*)ptextEnd, wrapWidth);
-					return ret;
-				}
-			}
-		}
-
-		public static string CalcWordWrapPositionAS(ref ImFont self, float scale, byte* text, ref byte textEnd, float wrapWidth)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					string ret = Utils.DecodeStringUTF8(CalcWordWrapPositionANative((ImFont*)pself, scale, text, (byte*)ptextEnd, wrapWidth));
-					return ret;
-				}
-			}
-		}
-
-		public static byte* CalcWordWrapPositionA(ref ImFont self, float scale, byte* text, string textEnd, float wrapWidth)
-		{
-			fixed (ImFont* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* ret = CalcWordWrapPositionANative((ImFont*)pself, scale, text, pStr0, wrapWidth);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
 			}
 		}
 	}

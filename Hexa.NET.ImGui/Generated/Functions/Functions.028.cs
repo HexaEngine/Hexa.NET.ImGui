@@ -4272,15 +4272,6 @@ namespace Hexa.NET.ImGui
 			TableSetupScrollFreezeNative(cols, rows);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableHeadersRow")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableHeadersRowNative();
-
-		public static void TableHeadersRow()
-		{
-			TableHeadersRowNative();
-		}
-
 		[LibraryImport(LibName, EntryPoint = "igTableHeader")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void TableHeaderNative(byte* label);
@@ -4322,6 +4313,24 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igTableHeadersRow")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void TableHeadersRowNative();
+
+		public static void TableHeadersRow()
+		{
+			TableHeadersRowNative();
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igTableAngledHeadersRow")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void TableAngledHeadersRowNative();
+
+		public static void TableAngledHeadersRow()
+		{
+			TableAngledHeadersRowNative();
 		}
 
 		[LibraryImport(LibName, EntryPoint = "igTableGetSortSpecs")]

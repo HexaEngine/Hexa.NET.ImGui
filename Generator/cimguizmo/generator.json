@@ -86,6 +86,7 @@
     "ImGuiTableColumnIdx": "sbyte",
     "ImGuiDockRequest": "void",
     "ImGuiDockNodeSettings": "void",
+    "ImGuiSelectionUserData": "long",
     "va_list": "nuint",
     "OPERATION": "ImGuizmoOperation",
     "MODE": "ImGuizmoMode",

@@ -131,9 +131,9 @@
             return link;
         }
 
-        public string SaveState()
+        public unsafe string SaveState()
         {
-            return ImNodes.SaveEditorStateToIniStringS(context);
+            return ImNodes.SaveEditorStateToIniStringS(context, null);
         }
 
         public void RestoreState(string state)
@@ -167,7 +167,8 @@
             int idNode2 = 0;
             int idpin1 = 0;
             int idpin2 = 0;
-            if (ImNodes.IsLinkCreated(ref idNode1, ref idpin1, ref idNode2, ref idpin2))
+            bool createdFromSnap = false;
+            if (ImNodes.IsLinkCreatedIntPtr(ref idNode1, ref idpin1, ref idNode2, ref idpin2, ref createdFromSnap))
             {
                 var pino = GetNode(idNode1).GetOuput(idpin1);
                 var pini = GetNode(idNode2).GetInput(idpin2);

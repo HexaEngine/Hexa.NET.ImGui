@@ -3996,41 +3996,41 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igListBox_FnBoolPtr")]
+		[LibraryImport(LibName, EntryPoint = "igListBox_FnStrPtr")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ListBoxNative(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount, int heightInItems);
+		internal static partial byte ListBoxNative(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int heightInItems);
 
-		public static bool ListBox(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount, int heightInItems)
+		public static bool ListBox(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int heightInItems)
 		{
-			byte ret = ListBoxNative(label, currentItem, itemsGetter, data, itemsCount, heightInItems);
+			byte ret = ListBoxNative(label, currentItem, getter, userData, itemsCount, heightInItems);
 			return ret != 0;
 		}
 
-		public static bool ListBox(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount)
+		public static bool ListBox(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount)
 		{
-			byte ret = ListBoxNative(label, currentItem, itemsGetter, data, itemsCount, (int)(-1));
+			byte ret = ListBoxNative(label, currentItem, getter, userData, itemsCount, (int)(-1));
 			return ret != 0;
 		}
 
-		public static bool ListBox(ref byte label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount, int heightInItems)
+		public static bool ListBox(ref byte label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int heightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = ListBoxNative((byte*)plabel, currentItem, itemsGetter, data, itemsCount, heightInItems);
+				byte ret = ListBoxNative((byte*)plabel, currentItem, getter, userData, itemsCount, heightInItems);
 				return ret != 0;
 			}
 		}
 
-		public static bool ListBox(ref byte label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount)
+		public static bool ListBox(ref byte label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount)
 		{
 			fixed (byte* plabel = &label)
 			{
-				byte ret = ListBoxNative((byte*)plabel, currentItem, itemsGetter, data, itemsCount, (int)(-1));
+				byte ret = ListBoxNative((byte*)plabel, currentItem, getter, userData, itemsCount, (int)(-1));
 				return ret != 0;
 			}
 		}
 
-		public static bool ListBox(string label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount, int heightInItems)
+		public static bool ListBox(string label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int heightInItems)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4049,7 +4049,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ListBoxNative(pStr0, currentItem, itemsGetter, data, itemsCount, heightInItems);
+			byte ret = ListBoxNative(pStr0, currentItem, getter, userData, itemsCount, heightInItems);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4057,7 +4057,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool ListBox(string label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount)
+		public static bool ListBox(string label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4076,7 +4076,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ListBoxNative(pStr0, currentItem, itemsGetter, data, itemsCount, (int)(-1));
+			byte ret = ListBoxNative(pStr0, currentItem, getter, userData, itemsCount, (int)(-1));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4084,49 +4084,49 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool ListBox(byte* label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount, int heightInItems)
+		public static bool ListBox(byte* label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int heightInItems)
 		{
 			fixed (int* pcurrentItem = &currentItem)
 			{
-				byte ret = ListBoxNative(label, (int*)pcurrentItem, itemsGetter, data, itemsCount, heightInItems);
+				byte ret = ListBoxNative(label, (int*)pcurrentItem, getter, userData, itemsCount, heightInItems);
 				return ret != 0;
 			}
 		}
 
-		public static bool ListBox(byte* label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount)
+		public static bool ListBox(byte* label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount)
 		{
 			fixed (int* pcurrentItem = &currentItem)
 			{
-				byte ret = ListBoxNative(label, (int*)pcurrentItem, itemsGetter, data, itemsCount, (int)(-1));
+				byte ret = ListBoxNative(label, (int*)pcurrentItem, getter, userData, itemsCount, (int)(-1));
 				return ret != 0;
 			}
 		}
 
-		public static bool ListBox(ref byte label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount, int heightInItems)
+		public static bool ListBox(ref byte label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int heightInItems)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (int* pcurrentItem = &currentItem)
 				{
-					byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, itemsGetter, data, itemsCount, heightInItems);
+					byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, getter, userData, itemsCount, heightInItems);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool ListBox(ref byte label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount)
+		public static bool ListBox(ref byte label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount)
 		{
 			fixed (byte* plabel = &label)
 			{
 				fixed (int* pcurrentItem = &currentItem)
 				{
-					byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, itemsGetter, data, itemsCount, (int)(-1));
+					byte ret = ListBoxNative((byte*)plabel, (int*)pcurrentItem, getter, userData, itemsCount, (int)(-1));
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool ListBox(string label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount, int heightInItems)
+		public static bool ListBox(string label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int heightInItems)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4147,7 +4147,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (int* pcurrentItem = &currentItem)
 			{
-				byte ret = ListBoxNative(pStr0, (int*)pcurrentItem, itemsGetter, data, itemsCount, heightInItems);
+				byte ret = ListBoxNative(pStr0, (int*)pcurrentItem, getter, userData, itemsCount, heightInItems);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4156,7 +4156,7 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static bool ListBox(string label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int, byte**>, void*, int, int> itemsGetter, void* data, int itemsCount)
+		public static bool ListBox(string label, ref int currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4177,7 +4177,7 @@ namespace Hexa.NET.ImGui
 			}
 			fixed (int* pcurrentItem = &currentItem)
 			{
-				byte ret = ListBoxNative(pStr0, (int*)pcurrentItem, itemsGetter, data, itemsCount, (int)(-1));
+				byte ret = ListBoxNative(pStr0, (int*)pcurrentItem, getter, userData, itemsCount, (int)(-1));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);

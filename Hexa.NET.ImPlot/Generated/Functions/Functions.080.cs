@@ -18,7 +18,7 @@ namespace Hexa.NET.ImPlot
 	public unsafe partial class ImPlot
 	{
 
-		public static double PlotHistogram(string labelId, ref byte values, int count, int bins)
+		public static void PlotHeatmap(string labelId, ref ulong values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -37,18 +37,38 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pvalues = &values)
+			fixed (ulong* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (byte*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ulong*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref byte values, int count)
+		public static void PlotHeatmap(string labelId, ref ulong values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -67,18 +87,38 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pvalues = &values)
+			fixed (ulong* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (byte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ulong*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref byte values, int count, double barScale)
+		public static void PlotHeatmap(string labelId, ref ulong values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -97,18 +137,38 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pvalues = &values)
+			fixed (ulong* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (byte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ulong*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref byte values, int count, int bins, ImPlotRange range)
+		public static void PlotHeatmap(string labelId, ref ulong values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -127,18 +187,38 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pvalues = &values)
+			fixed (ulong* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (byte*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ulong*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref byte values, int count, ImPlotRange range)
+		public static void PlotHeatmap(string labelId, ref ulong values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -157,18 +237,38 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pvalues = &values)
+			fixed (ulong* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (byte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ulong*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref byte values, int count, double barScale, ImPlotRange range)
+		public static void PlotHeatmap(string labelId, ref ulong values, int rows, int cols, double scaleMin, string labelFmt, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -187,18 +287,38 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pvalues = &values)
+			fixed (ulong* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (byte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ulong*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref byte values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static void PlotHeatmap(string labelId, ref ulong values, int rows, int cols, string labelFmt, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -217,18 +337,38 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pvalues = &values)
+			fixed (ulong* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (byte*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ulong*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref byte values, int count, int bins, ImPlotHistogramFlags flags)
+		public static void PlotHeatmap(string labelId, ref ulong values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -247,18 +387,38 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pvalues = &values)
+			fixed (ulong* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (byte*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ulong*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref byte values, int count, ImPlotHistogramFlags flags)
+		public static void PlotHeatmap(string labelId, ref ulong values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -277,18 +437,38 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pvalues = &values)
+			fixed (ulong* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (byte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ulong*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref byte values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static void PlotHeatmap(string labelId, ref ulong values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -307,18 +487,38 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pvalues = &values)
+			fixed (ulong* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (byte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ulong*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, boundsMax, flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref byte values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static void PlotHeatmap(string labelId, ref ulong values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -337,178 +537,138 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (byte* pvalues = &values)
+			fixed (ulong* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (byte*)pvalues, count, bins, (double)(1.0), range, flags);
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ulong*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, boundsMax, flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref byte values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				double ret = PlotHistogramNative(pStr0, (byte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static double PlotHistogram(string labelId, ref byte values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				double ret = PlotHistogramNative(pStr0, (byte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotHistogram_S16Ptr")]
+		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotHistogram_FloatPtr")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double PlotHistogramNative(byte* labelId, short* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags);
+		internal static partial double PlotHistogramNative(byte* labelId, float* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags);
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, float* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, range, flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, float* values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, int bins, double barScale)
+		public static double PlotHistogram(byte* labelId, float* values, int count, int bins, double barScale)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, int bins)
+		public static double PlotHistogram(byte* labelId, float* values, int count, int bins)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count)
+		public static double PlotHistogram(byte* labelId, float* values, int count)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, double barScale)
+		public static double PlotHistogram(byte* labelId, float* values, int count, double barScale)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, float* values, int count, int bins, ImPlotRange range)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, float* values, int count, ImPlotRange range)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, float* values, int count, double barScale, ImPlotRange range)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, float* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, float* values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, float* values, int count, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, float* values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, float* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), range, flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, float* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, short* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, float* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -517,7 +677,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -526,7 +686,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, int bins, double barScale)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, int bins, double barScale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -535,7 +695,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, int bins)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, int bins)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -544,7 +704,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count)
+		public static double PlotHistogram(ref byte labelId, float* values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -553,7 +713,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, double barScale)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, double barScale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -562,7 +722,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, int bins, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -571,7 +731,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -580,7 +740,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, double barScale, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -589,7 +749,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -598,7 +758,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -607,7 +767,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -616,7 +776,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -625,7 +785,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -634,7 +794,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -643,7 +803,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, short* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, float* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -652,7 +812,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, float* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -679,7 +839,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(string labelId, float* values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -706,7 +866,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, int bins, double barScale)
+		public static double PlotHistogram(string labelId, float* values, int count, int bins, double barScale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -733,7 +893,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, int bins)
+		public static double PlotHistogram(string labelId, float* values, int count, int bins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -760,7 +920,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count)
+		public static double PlotHistogram(string labelId, float* values, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -787,7 +947,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, double barScale)
+		public static double PlotHistogram(string labelId, float* values, int count, double barScale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -814,7 +974,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(string labelId, float* values, int count, int bins, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -841,7 +1001,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, ImPlotRange range)
+		public static double PlotHistogram(string labelId, float* values, int count, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -868,7 +1028,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(string labelId, float* values, int count, double barScale, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -895,7 +1055,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, float* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -922,7 +1082,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, float* values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -949,7 +1109,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, float* values, int count, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -976,7 +1136,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, float* values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1003,7 +1163,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, float* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1030,7 +1190,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, float* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1057,7 +1217,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, short* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, float* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1084,343 +1244,343 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, bins, barScale, range, flags);
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, bins, barScale, range, flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, int bins, double barScale, ImPlotRange range)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, int bins, double barScale)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, int bins, double barScale)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, int bins)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, int bins)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count)
+		public static double PlotHistogram(byte* labelId, ref float values, int count)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, double barScale)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, double barScale)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, int bins, ImPlotRange range)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, ImPlotRange range)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, double barScale, ImPlotRange range)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, int bins, ImPlotHistogramFlags flags)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, ImPlotHistogramFlags flags)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, bins, (double)(1.0), range, flags);
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, bins, (double)(1.0), range, flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref short values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref float values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
+				double ret = PlotHistogramNative(labelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, bins, barScale, range, flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, bins, barScale, range, flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, int bins, double barScale)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, int bins, double barScale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, int bins)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, int bins)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, double barScale)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, double barScale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, int bins, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, double barScale, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, bins, (double)(1.0), range, flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, bins, (double)(1.0), range, flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref short values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref float values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref float values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1439,9 +1599,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, bins, barScale, range, flags);
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, bins, barScale, range, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1450,7 +1610,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(string labelId, ref float values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1469,9 +1629,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1480,7 +1640,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, int bins, double barScale)
+		public static double PlotHistogram(string labelId, ref float values, int count, int bins, double barScale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1499,9 +1659,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1510,7 +1670,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, int bins)
+		public static double PlotHistogram(string labelId, ref float values, int count, int bins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1529,9 +1689,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1540,7 +1700,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count)
+		public static double PlotHistogram(string labelId, ref float values, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1559,9 +1719,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1570,7 +1730,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, double barScale)
+		public static double PlotHistogram(string labelId, ref float values, int count, double barScale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1589,9 +1749,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1600,7 +1760,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(string labelId, ref float values, int count, int bins, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1619,9 +1779,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1630,7 +1790,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, ImPlotRange range)
+		public static double PlotHistogram(string labelId, ref float values, int count, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1649,9 +1809,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1660,7 +1820,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(string labelId, ref float values, int count, double barScale, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1679,9 +1839,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1690,7 +1850,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref float values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1709,9 +1869,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1720,7 +1880,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref float values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1739,9 +1899,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1750,7 +1910,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref float values, int count, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1769,9 +1929,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1780,7 +1940,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref float values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1799,9 +1959,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1810,7 +1970,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref float values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1829,9 +1989,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, bins, (double)(1.0), range, flags);
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, bins, (double)(1.0), range, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1840,7 +2000,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref float values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1859,9 +2019,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1870,7 +2030,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref short values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref float values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1889,9 +2049,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (short*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
+				double ret = PlotHistogramNative(pStr0, (float*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1900,107 +2060,107 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotHistogram_U16Ptr")]
+		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotHistogram_doublePtr")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double PlotHistogramNative(byte* labelId, ushort* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags);
+		internal static partial double PlotHistogramNative(byte* labelId, double* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags);
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, double* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, range, flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, double* values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, int bins, double barScale)
+		public static double PlotHistogram(byte* labelId, double* values, int count, int bins, double barScale)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, int bins)
+		public static double PlotHistogram(byte* labelId, double* values, int count, int bins)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count)
+		public static double PlotHistogram(byte* labelId, double* values, int count)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, double barScale)
+		public static double PlotHistogram(byte* labelId, double* values, int count, double barScale)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, double* values, int count, int bins, ImPlotRange range)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, double* values, int count, ImPlotRange range)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, double* values, int count, double barScale, ImPlotRange range)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, double* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, double* values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, double* values, int count, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, double* values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, double* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), range, flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, double* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ushort* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, double* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2009,7 +2169,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2018,7 +2178,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, int bins, double barScale)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, int bins, double barScale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2027,7 +2187,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, int bins)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, int bins)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2036,7 +2196,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count)
+		public static double PlotHistogram(ref byte labelId, double* values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2045,7 +2205,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, double barScale)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, double barScale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2054,7 +2214,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, int bins, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2063,7 +2223,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2072,7 +2232,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, double barScale, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2081,7 +2241,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2090,7 +2250,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2099,7 +2259,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2108,7 +2268,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2117,7 +2277,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2126,7 +2286,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2135,7 +2295,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ushort* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, double* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2144,7 +2304,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, double* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2171,7 +2331,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(string labelId, double* values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2198,7 +2358,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, int bins, double barScale)
+		public static double PlotHistogram(string labelId, double* values, int count, int bins, double barScale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2225,7 +2385,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, int bins)
+		public static double PlotHistogram(string labelId, double* values, int count, int bins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2252,7 +2412,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count)
+		public static double PlotHistogram(string labelId, double* values, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2279,7 +2439,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, double barScale)
+		public static double PlotHistogram(string labelId, double* values, int count, double barScale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2306,7 +2466,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(string labelId, double* values, int count, int bins, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2333,7 +2493,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, ImPlotRange range)
+		public static double PlotHistogram(string labelId, double* values, int count, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2360,7 +2520,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(string labelId, double* values, int count, double barScale, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2387,7 +2547,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, double* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2414,7 +2574,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, double* values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2441,7 +2601,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, double* values, int count, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2468,7 +2628,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, double* values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2495,7 +2655,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, double* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2522,7 +2682,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, double* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2549,7 +2709,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, ushort* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, double* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2576,343 +2736,343 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, bins, barScale, range, flags);
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, bins, barScale, range, flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, int bins, double barScale, ImPlotRange range)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, int bins, double barScale)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, int bins, double barScale)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, int bins)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, int bins)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count)
+		public static double PlotHistogram(byte* labelId, ref double values, int count)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, double barScale)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, double barScale)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, int bins, ImPlotRange range)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, ImPlotRange range)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, double barScale, ImPlotRange range)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, int bins, ImPlotHistogramFlags flags)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, ImPlotHistogramFlags flags)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, bins, (double)(1.0), range, flags);
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, bins, (double)(1.0), range, flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref ushort values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref double values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
+				double ret = PlotHistogramNative(labelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, bins, barScale, range, flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, bins, barScale, range, flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, int bins, double barScale)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, int bins, double barScale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, int bins)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, int bins)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, double barScale)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, double barScale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, int bins, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, double barScale, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, bins, (double)(1.0), range, flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, bins, (double)(1.0), range, flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref ushort values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref double values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ushort* pvalues = &values)
+				fixed (double* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref double values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2931,9 +3091,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, bins, barScale, range, flags);
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, bins, barScale, range, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2942,7 +3102,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(string labelId, ref double values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2961,9 +3121,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2972,7 +3132,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, int bins, double barScale)
+		public static double PlotHistogram(string labelId, ref double values, int count, int bins, double barScale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2991,9 +3151,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3002,7 +3162,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, int bins)
+		public static double PlotHistogram(string labelId, ref double values, int count, int bins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3021,9 +3181,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3032,7 +3192,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count)
+		public static double PlotHistogram(string labelId, ref double values, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3051,9 +3211,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3062,7 +3222,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, double barScale)
+		public static double PlotHistogram(string labelId, ref double values, int count, double barScale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3081,9 +3241,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3092,7 +3252,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(string labelId, ref double values, int count, int bins, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3111,9 +3271,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3122,7 +3282,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, ImPlotRange range)
+		public static double PlotHistogram(string labelId, ref double values, int count, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3141,9 +3301,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3152,7 +3312,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(string labelId, ref double values, int count, double barScale, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3171,9 +3331,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3182,7 +3342,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref double values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3201,9 +3361,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3212,7 +3372,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref double values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3231,9 +3391,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3242,7 +3402,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref double values, int count, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3261,9 +3421,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3272,7 +3432,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref double values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3291,9 +3451,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3302,7 +3462,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref double values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3321,9 +3481,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, bins, (double)(1.0), range, flags);
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, bins, (double)(1.0), range, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3332,7 +3492,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref double values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3351,9 +3511,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3362,7 +3522,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref ushort values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref double values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3381,9 +3541,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ushort* pvalues = &values)
+			fixed (double* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (ushort*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
+				double ret = PlotHistogramNative(pStr0, (double*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3392,107 +3552,107 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotHistogram_S32Ptr")]
+		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotHistogram_S8Ptr")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double PlotHistogramNative(byte* labelId, int* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags);
+		internal static partial double PlotHistogramNative(byte* labelId, sbyte* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags);
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, range, flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, int bins, double barScale)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, int bins, double barScale)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, int bins)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, int bins)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, double barScale)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, double barScale)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, int bins, ImPlotRange range)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, ImPlotRange range)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, double barScale, ImPlotRange range)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), range, flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, int* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, sbyte* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
 			return ret;
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3501,7 +3661,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3510,7 +3670,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, int bins, double barScale)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, int bins, double barScale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3519,7 +3679,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, int bins)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, int bins)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3528,7 +3688,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3537,7 +3697,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, double barScale)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, double barScale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3546,7 +3706,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, int bins, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3555,7 +3715,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3564,7 +3724,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, double barScale, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3573,7 +3733,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3582,7 +3742,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3591,7 +3751,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3600,7 +3760,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3609,7 +3769,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3618,7 +3778,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3627,7 +3787,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, int* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, sbyte* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3636,7 +3796,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3663,7 +3823,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3690,7 +3850,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, int bins, double barScale)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, int bins, double barScale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3717,7 +3877,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, int bins)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, int bins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3744,7 +3904,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count)
+		public static double PlotHistogram(string labelId, sbyte* values, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3771,7 +3931,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, double barScale)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, double barScale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3798,7 +3958,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, int bins, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3825,7 +3985,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, ImPlotRange range)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3852,7 +4012,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, double barScale, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3879,7 +4039,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3906,7 +4066,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3933,7 +4093,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3960,7 +4120,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3987,7 +4147,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4014,7 +4174,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4041,7 +4201,7 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(string labelId, int* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, sbyte* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4068,343 +4228,343 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, bins, barScale, range, flags);
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, bins, barScale, range, flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, int bins, double barScale, ImPlotRange range)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, int bins, double barScale)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, int bins, double barScale)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, int bins)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, int bins)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, double barScale)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, double barScale)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, int bins, ImPlotRange range)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, ImPlotRange range)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, double barScale, ImPlotRange range)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, int bins, ImPlotHistogramFlags flags)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, ImPlotHistogramFlags flags)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, bins, (double)(1.0), range, flags);
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, bins, (double)(1.0), range, flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(byte* labelId, ref int values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(byte* labelId, ref sbyte values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(labelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
+				double ret = PlotHistogramNative(labelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
 				return ret;
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, bins, barScale, range, flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, bins, barScale, range, flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, int bins, double barScale)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, int bins, double barScale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, int bins)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, int bins)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, double barScale)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, double barScale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, int bins, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, double barScale, ImPlotRange range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, bins, (double)(1.0), range, flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, bins, (double)(1.0), range, flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(ref byte labelId, ref int values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(ref byte labelId, ref sbyte values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (int* pvalues = &values)
+				fixed (sbyte* pvalues = &values)
 				{
-					double ret = PlotHistogramNative((byte*)plabelId, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
+					double ret = PlotHistogramNative((byte*)plabelId, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
 					return ret;
 				}
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4423,9 +4583,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, bins, barScale, range, flags);
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, bins, barScale, range, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4434,7 +4594,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, int bins, double barScale, ImPlotRange range)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, int bins, double barScale, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4453,9 +4613,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4464,7 +4624,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, int bins, double barScale)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, int bins, double barScale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4483,9 +4643,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4494,7 +4654,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, int bins)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, int bins)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4513,9 +4673,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4524,7 +4684,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4543,9 +4703,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4554,7 +4714,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, double barScale)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, double barScale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4573,9 +4733,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4584,7 +4744,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, int bins, ImPlotRange range)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, int bins, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4603,9 +4763,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4614,7 +4774,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, ImPlotRange range)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4633,9 +4793,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4644,7 +4804,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, double barScale, ImPlotRange range)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, double barScale, ImPlotRange range)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4663,9 +4823,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4674,7 +4834,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4693,9 +4853,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4704,7 +4864,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, int bins, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, int bins, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4723,9 +4883,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4734,7 +4894,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4753,9 +4913,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4764,7 +4924,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, double barScale, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, double barScale, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4783,9 +4943,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4794,7 +4954,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4813,9 +4973,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, bins, (double)(1.0), range, flags);
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, bins, (double)(1.0), range, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4824,7 +4984,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4843,9 +5003,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4854,7 +5014,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static double PlotHistogram(string labelId, ref int values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
+		public static double PlotHistogram(string labelId, ref sbyte values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4873,149 +5033,13 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (int* pvalues = &values)
+			fixed (sbyte* pvalues = &values)
 			{
-				double ret = PlotHistogramNative(pStr0, (int*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
+				double ret = PlotHistogramNative(pStr0, (sbyte*)pvalues, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret;
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotHistogram_U32Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double PlotHistogramNative(byte* labelId, uint* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags);
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, range, flags);
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, int bins, double barScale, ImPlotRange range)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, int bins, double barScale)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, int bins)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, double barScale)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, int bins, ImPlotRange range)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), range, (ImPlotHistogramFlags)(0));
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, ImPlotRange range)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, (ImPlotHistogramFlags)(0));
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, double barScale, ImPlotRange range)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, range, (ImPlotHistogramFlags)(0));
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, int bins, double barScale, ImPlotHistogramFlags flags)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, int bins, ImPlotHistogramFlags flags)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, ImPlotHistogramFlags flags)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), flags);
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, double barScale, ImPlotHistogramFlags flags)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, (ImPlotRange)(*ImPlotRangeNative()), flags);
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, int bins, ImPlotRange range, ImPlotHistogramFlags flags)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, bins, (double)(1.0), range, flags);
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, ImPlotRange range, ImPlotHistogramFlags flags)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), (double)(1.0), range, flags);
-			return ret;
-		}
-
-		public static double PlotHistogram(byte* labelId, uint* values, int count, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
-		{
-			double ret = PlotHistogramNative(labelId, values, count, (int)((int)ImPlotBin.Sturges), barScale, range, flags);
-			return ret;
-		}
-
-		public static double PlotHistogram(ref byte labelId, uint* values, int count, int bins, double barScale, ImPlotRange range, ImPlotHistogramFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				double ret = PlotHistogramNative((byte*)plabelId, values, count, bins, barScale, range, flags);
-				return ret;
-			}
-		}
-
-		public static double PlotHistogram(ref byte labelId, uint* values, int count, int bins, double barScale, ImPlotRange range)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				double ret = PlotHistogramNative((byte*)plabelId, values, count, bins, barScale, range, (ImPlotHistogramFlags)(0));
-				return ret;
-			}
-		}
-
-		public static double PlotHistogram(ref byte labelId, uint* values, int count, int bins, double barScale)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				double ret = PlotHistogramNative((byte*)plabelId, values, count, bins, barScale, (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
-				return ret;
-			}
-		}
-
-		public static double PlotHistogram(ref byte labelId, uint* values, int count, int bins)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				double ret = PlotHistogramNative((byte*)plabelId, values, count, bins, (double)(1.0), (ImPlotRange)(*ImPlotRangeNative()), (ImPlotHistogramFlags)(0));
 				return ret;
 			}
 		}
