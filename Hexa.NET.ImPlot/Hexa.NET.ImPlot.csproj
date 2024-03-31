@@ -94,7 +94,7 @@
 		<ProjectReference Include="..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Update="README.md" Pack="true" PackagePath="\" />
-		<None Update="LICENSE.txt" Pack="true" PackagePath="\" />
+		<Content Include="LICENSE.txt" Pack="true" PackagePath="\" />
+		<Content Include="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 </Project>
