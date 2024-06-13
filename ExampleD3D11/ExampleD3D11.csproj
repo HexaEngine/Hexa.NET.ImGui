@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Silk.NET.GLFW" Version="2.20.0" />
+		<PackageReference Include="Silk.NET.OpenGL" Version="2.20.0" />
+		<PackageReference Include="Silk.NET.SDL" Version="2.20.0" />
+		<PackageReference Include="HexaEngine.DirectXTex" Version="2.0.0" />
+		<PackageReference Include="Silk.NET.Direct3D.Compilers" Version="2.20.0" />
+		<PackageReference Include="Silk.NET.Direct3D11" Version="2.20.0" />
+		<PackageReference Include="Silk.NET.Direct3D11.Extensions.D3D11On12" Version="2.20.0" />
+		<PackageReference Include="Silk.NET.Direct3D12" Version="2.20.0" />
+		<PackageReference Include="Silk.NET.DXGI" Version="2.20.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Hexa.NET.ImGuizmo\Hexa.NET.ImGuizmo.csproj" />
+	  <ProjectReference Include="..\Hexa.NET.ImGui\Hexa.NET.ImGui.csproj" />
+	  <ProjectReference Include="..\Hexa.NET.ImNodes\Hexa.NET.ImNodes.csproj" />
+	  <ProjectReference Include="..\Hexa.NET.ImPlot\Hexa.NET.ImPlot.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="assets\fonts\SEGMDL2.TTF">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+</Project>
