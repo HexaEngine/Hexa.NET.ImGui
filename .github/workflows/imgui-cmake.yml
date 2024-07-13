@@ -28,6 +28,7 @@ jobs:
         repository: 'cimgui/cimgui'
         ref: 'v1.53.1'
         path: 'cimgui'
+        submodules: true
 
     - name: Checkout specific commit
       run: |
