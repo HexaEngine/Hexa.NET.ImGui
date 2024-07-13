@@ -1,0 +1,74 @@
+name: Build cimplot Libraries
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            arch: x86_64
+          - os: ubuntu-latest
+            arch: arm64
+          - os: windows-latest
+            arch: x86_64
+          - os: windows-latest
+            arch: x86
+          - os: windows-latest
+            arch: arm64
+          - os: macos-latest
+            arch: x86_64
+          - os: macos-latest
+            arch: arm64
+    steps:
+    - uses: actions/checkout@v4.1.7
+      with:
+        repository: 'cimgui/cimgui'
+        path: 'cimgui'
+        submodules: true
+        
+    - uses: actions/checkout@v4.1.7
+      with:
+        repository: 'JunaMeinhold/cimplot'
+        path: 'cimplot'
+        submodules: true
+
+    - name: Install dependencies on Ubuntu
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake
+
+    - name: Install dependencies on macOS
+      if: matrix.os == 'macos-latest'
+      run: |
+        brew update
+        brew install cmake
+
+    - name: Install dependencies on Windows
+      if: matrix.os == 'windows-latest'
+      run: |
+        choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System'
+
+    - name: Configure cimnodes with CMake for macOS ARM64
+      if: matrix.arch == 'arm64' && matrix.os == 'macos-latest'
+      run: cmake -S cimplot -B cimplot/build -DCMAKE_OSX_ARCHITECTURES=arm64
+
+    - name: Configure cimnodes with CMake
+      if: matrix.arch != 'arm64' || matrix.os != 'macos-latest'
+      run: cmake -S cimplot -B cimplot/build
+
+    - name: Build cimnodes
+      run: cmake --build cimplot/build --config Release
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4.3.4
+      with:
+        name: ${{ matrix.os }}-${{ matrix.arch }}-artifacts 
+        path: |
+          cimplot/build/Release/*.dll
+          cimplot/build/*.so
+          cimplot/build/*.dylib
+        if-no-files-found: ignore # 'warn' or 'ignore' or 'error'
