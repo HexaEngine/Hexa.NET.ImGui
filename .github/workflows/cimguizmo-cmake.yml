@@ -1,4 +1,4 @@
-name: Build cimgui Libraries
+name: Build cimguizmo Libraries
 
 on: [workflow_dispatch]
 
@@ -46,15 +46,15 @@ jobs:
       run: |
         choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System'
 
-    - name: Configure cimgui with CMake for macOS ARM64
+    - name: Configure cimguizmo with CMake for macOS ARM64
       if: matrix.arch == 'arm64' && matrix.os == 'macos-latest'
       run: cmake -S cimguizmo -B cimguizmo/build -DCMAKE_OSX_ARCHITECTURES=arm64
 
-    - name: Configure cimgui with CMake
+    - name: Configure cimguizmo with CMake
       if: matrix.arch != 'arm64' || matrix.os != 'macos-latest'
       run: cmake -S cimguizmo -B cimguizmo/build
 
-    - name: Build cimgui
+    - name: Build cimguizmo
       run: cmake --build cimguizmo/build --config Release
 
     - name: Upload Artifacts
