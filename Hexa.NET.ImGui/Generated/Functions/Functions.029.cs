@@ -17,6 +17,36 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
+		public static bool BeginTabItem(string label, ref bool pOpen, ImGuiTabItemFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (bool* ppOpen = &pOpen)
+			{
+				byte ret = BeginTabItemNative(pStr0, (bool*)ppOpen, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
 		public static bool BeginTabItem(string label, ref bool pOpen)
 		{
 			byte* pStr0 = null;
@@ -189,158 +219,215 @@ namespace Hexa.NET.ImGui
 
 		[LibraryImport(LibName, EntryPoint = "igDockSpace")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int DockSpaceNative(int id, Vector2 size, ImGuiDockNodeFlags flags, ImGuiWindowClass* windowClass);
+		internal static partial int DockSpaceNative(int dockspaceId, Vector2 size, ImGuiDockNodeFlags flags, ImGuiWindowClass* windowClass);
 
-		public static int DockSpace(int id, Vector2 size, ImGuiDockNodeFlags flags, ImGuiWindowClassPtr windowClass)
+		public static int DockSpace(int dockspaceId, Vector2 size, ImGuiDockNodeFlags flags, ImGuiWindowClassPtr windowClass)
 		{
-			int ret = DockSpaceNative(id, size, flags, windowClass);
+			int ret = DockSpaceNative(dockspaceId, size, flags, windowClass);
 			return ret;
 		}
 
-		public static int DockSpace(int id, Vector2 size, ImGuiDockNodeFlags flags)
+		public static int DockSpace(int dockspaceId, Vector2 size, ImGuiDockNodeFlags flags)
 		{
-			int ret = DockSpaceNative(id, size, flags, (ImGuiWindowClass*)(default));
+			int ret = DockSpaceNative(dockspaceId, size, flags, (ImGuiWindowClass*)(default));
 			return ret;
 		}
 
-		public static int DockSpace(int id, Vector2 size)
+		public static int DockSpace(int dockspaceId, Vector2 size)
 		{
-			int ret = DockSpaceNative(id, size, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)(default));
+			int ret = DockSpaceNative(dockspaceId, size, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)(default));
 			return ret;
 		}
 
-		public static int DockSpace(int id)
+		public static int DockSpace(int dockspaceId)
 		{
-			int ret = DockSpaceNative(id, (Vector2)(new Vector2(0,0)), (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)(default));
+			int ret = DockSpaceNative(dockspaceId, (Vector2)(new Vector2(0,0)), (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)(default));
 			return ret;
 		}
 
-		public static int DockSpace(int id, ImGuiDockNodeFlags flags)
+		public static int DockSpace(int dockspaceId, ImGuiDockNodeFlags flags)
 		{
-			int ret = DockSpaceNative(id, (Vector2)(new Vector2(0,0)), flags, (ImGuiWindowClass*)(default));
+			int ret = DockSpaceNative(dockspaceId, (Vector2)(new Vector2(0,0)), flags, (ImGuiWindowClass*)(default));
 			return ret;
 		}
 
-		public static int DockSpace(int id, Vector2 size, ImGuiWindowClassPtr windowClass)
+		public static int DockSpace(int dockspaceId, Vector2 size, ImGuiWindowClassPtr windowClass)
 		{
-			int ret = DockSpaceNative(id, size, (ImGuiDockNodeFlags)(0), windowClass);
+			int ret = DockSpaceNative(dockspaceId, size, (ImGuiDockNodeFlags)(0), windowClass);
 			return ret;
 		}
 
-		public static int DockSpace(int id, ImGuiWindowClassPtr windowClass)
+		public static int DockSpace(int dockspaceId, ImGuiWindowClassPtr windowClass)
 		{
-			int ret = DockSpaceNative(id, (Vector2)(new Vector2(0,0)), (ImGuiDockNodeFlags)(0), windowClass);
+			int ret = DockSpaceNative(dockspaceId, (Vector2)(new Vector2(0,0)), (ImGuiDockNodeFlags)(0), windowClass);
 			return ret;
 		}
 
-		public static int DockSpace(int id, ImGuiDockNodeFlags flags, ImGuiWindowClassPtr windowClass)
+		public static int DockSpace(int dockspaceId, ImGuiDockNodeFlags flags, ImGuiWindowClassPtr windowClass)
 		{
-			int ret = DockSpaceNative(id, (Vector2)(new Vector2(0,0)), flags, windowClass);
+			int ret = DockSpaceNative(dockspaceId, (Vector2)(new Vector2(0,0)), flags, windowClass);
 			return ret;
 		}
 
-		public static int DockSpace(int id, Vector2 size, ImGuiDockNodeFlags flags, ref ImGuiWindowClass windowClass)
+		public static int DockSpace(int dockspaceId, Vector2 size, ImGuiDockNodeFlags flags, ref ImGuiWindowClass windowClass)
 		{
 			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
 			{
-				int ret = DockSpaceNative(id, size, flags, (ImGuiWindowClass*)pwindowClass);
+				int ret = DockSpaceNative(dockspaceId, size, flags, (ImGuiWindowClass*)pwindowClass);
 				return ret;
 			}
 		}
 
-		public static int DockSpace(int id, Vector2 size, ref ImGuiWindowClass windowClass)
+		public static int DockSpace(int dockspaceId, Vector2 size, ref ImGuiWindowClass windowClass)
 		{
 			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
 			{
-				int ret = DockSpaceNative(id, size, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
+				int ret = DockSpaceNative(dockspaceId, size, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
 				return ret;
 			}
 		}
 
-		public static int DockSpace(int id, ref ImGuiWindowClass windowClass)
+		public static int DockSpace(int dockspaceId, ref ImGuiWindowClass windowClass)
 		{
 			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
 			{
-				int ret = DockSpaceNative(id, (Vector2)(new Vector2(0,0)), (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
+				int ret = DockSpaceNative(dockspaceId, (Vector2)(new Vector2(0,0)), (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
 				return ret;
 			}
 		}
 
-		public static int DockSpace(int id, ImGuiDockNodeFlags flags, ref ImGuiWindowClass windowClass)
+		public static int DockSpace(int dockspaceId, ImGuiDockNodeFlags flags, ref ImGuiWindowClass windowClass)
 		{
 			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
 			{
-				int ret = DockSpaceNative(id, (Vector2)(new Vector2(0,0)), flags, (ImGuiWindowClass*)pwindowClass);
+				int ret = DockSpaceNative(dockspaceId, (Vector2)(new Vector2(0,0)), flags, (ImGuiWindowClass*)pwindowClass);
 				return ret;
 			}
 		}
 
 		[LibraryImport(LibName, EntryPoint = "igDockSpaceOverViewport")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int DockSpaceOverViewportNative(ImGuiViewport* viewport, ImGuiDockNodeFlags flags, ImGuiWindowClass* windowClass);
+		internal static partial int DockSpaceOverViewportNative(int dockspaceId, ImGuiViewport* viewport, ImGuiDockNodeFlags flags, ImGuiWindowClass* windowClass);
 
-		public static int DockSpaceOverViewport(ImGuiViewportPtr viewport, ImGuiDockNodeFlags flags, ImGuiWindowClassPtr windowClass)
+		public static int DockSpaceOverViewport(int dockspaceId, ImGuiViewportPtr viewport, ImGuiDockNodeFlags flags, ImGuiWindowClassPtr windowClass)
 		{
-			int ret = DockSpaceOverViewportNative(viewport, flags, windowClass);
+			int ret = DockSpaceOverViewportNative(dockspaceId, viewport, flags, windowClass);
 			return ret;
 		}
 
-		public static int DockSpaceOverViewport(ImGuiViewportPtr viewport, ImGuiDockNodeFlags flags)
+		public static int DockSpaceOverViewport(int dockspaceId, ImGuiViewportPtr viewport, ImGuiDockNodeFlags flags)
 		{
-			int ret = DockSpaceOverViewportNative(viewport, flags, (ImGuiWindowClass*)(default));
+			int ret = DockSpaceOverViewportNative(dockspaceId, viewport, flags, (ImGuiWindowClass*)(default));
 			return ret;
 		}
 
-		public static int DockSpaceOverViewport(ImGuiViewportPtr viewport)
+		public static int DockSpaceOverViewport(int dockspaceId, ImGuiViewportPtr viewport)
 		{
-			int ret = DockSpaceOverViewportNative(viewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)(default));
+			int ret = DockSpaceOverViewportNative(dockspaceId, viewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)(default));
+			return ret;
+		}
+
+		public static int DockSpaceOverViewport(int dockspaceId)
+		{
+			int ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)(default), (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)(default));
 			return ret;
 		}
 
 		public static int DockSpaceOverViewport()
 		{
-			int ret = DockSpaceOverViewportNative((ImGuiViewport*)(default), (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)(default));
+			int ret = DockSpaceOverViewportNative((int)(0), (ImGuiViewport*)(default), (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)(default));
+			return ret;
+		}
+
+		public static int DockSpaceOverViewport(ImGuiViewportPtr viewport)
+		{
+			int ret = DockSpaceOverViewportNative((int)(0), viewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)(default));
+			return ret;
+		}
+
+		public static int DockSpaceOverViewport(int dockspaceId, ImGuiDockNodeFlags flags)
+		{
+			int ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)(default), flags, (ImGuiWindowClass*)(default));
 			return ret;
 		}
 
 		public static int DockSpaceOverViewport(ImGuiDockNodeFlags flags)
 		{
-			int ret = DockSpaceOverViewportNative((ImGuiViewport*)(default), flags, (ImGuiWindowClass*)(default));
+			int ret = DockSpaceOverViewportNative((int)(0), (ImGuiViewport*)(default), flags, (ImGuiWindowClass*)(default));
 			return ret;
 		}
 
-		public static int DockSpaceOverViewport(ImGuiViewportPtr viewport, ImGuiWindowClassPtr windowClass)
+		public static int DockSpaceOverViewport(ImGuiViewportPtr viewport, ImGuiDockNodeFlags flags)
 		{
-			int ret = DockSpaceOverViewportNative(viewport, (ImGuiDockNodeFlags)(0), windowClass);
+			int ret = DockSpaceOverViewportNative((int)(0), viewport, flags, (ImGuiWindowClass*)(default));
+			return ret;
+		}
+
+		public static int DockSpaceOverViewport(int dockspaceId, ImGuiViewportPtr viewport, ImGuiWindowClassPtr windowClass)
+		{
+			int ret = DockSpaceOverViewportNative(dockspaceId, viewport, (ImGuiDockNodeFlags)(0), windowClass);
+			return ret;
+		}
+
+		public static int DockSpaceOverViewport(int dockspaceId, ImGuiWindowClassPtr windowClass)
+		{
+			int ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)(default), (ImGuiDockNodeFlags)(0), windowClass);
 			return ret;
 		}
 
 		public static int DockSpaceOverViewport(ImGuiWindowClassPtr windowClass)
 		{
-			int ret = DockSpaceOverViewportNative((ImGuiViewport*)(default), (ImGuiDockNodeFlags)(0), windowClass);
+			int ret = DockSpaceOverViewportNative((int)(0), (ImGuiViewport*)(default), (ImGuiDockNodeFlags)(0), windowClass);
+			return ret;
+		}
+
+		public static int DockSpaceOverViewport(ImGuiViewportPtr viewport, ImGuiWindowClassPtr windowClass)
+		{
+			int ret = DockSpaceOverViewportNative((int)(0), viewport, (ImGuiDockNodeFlags)(0), windowClass);
+			return ret;
+		}
+
+		public static int DockSpaceOverViewport(int dockspaceId, ImGuiDockNodeFlags flags, ImGuiWindowClassPtr windowClass)
+		{
+			int ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)(default), flags, windowClass);
 			return ret;
 		}
 
 		public static int DockSpaceOverViewport(ImGuiDockNodeFlags flags, ImGuiWindowClassPtr windowClass)
 		{
-			int ret = DockSpaceOverViewportNative((ImGuiViewport*)(default), flags, windowClass);
+			int ret = DockSpaceOverViewportNative((int)(0), (ImGuiViewport*)(default), flags, windowClass);
 			return ret;
 		}
 
-		public static int DockSpaceOverViewport(ref ImGuiViewport viewport, ImGuiDockNodeFlags flags, ImGuiWindowClassPtr windowClass)
+		public static int DockSpaceOverViewport(ImGuiViewportPtr viewport, ImGuiDockNodeFlags flags, ImGuiWindowClassPtr windowClass)
+		{
+			int ret = DockSpaceOverViewportNative((int)(0), viewport, flags, windowClass);
+			return ret;
+		}
+
+		public static int DockSpaceOverViewport(int dockspaceId, ref ImGuiViewport viewport, ImGuiDockNodeFlags flags, ImGuiWindowClassPtr windowClass)
 		{
 			fixed (ImGuiViewport* pviewport = &viewport)
 			{
-				int ret = DockSpaceOverViewportNative((ImGuiViewport*)pviewport, flags, windowClass);
+				int ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)pviewport, flags, windowClass);
 				return ret;
 			}
 		}
 
-		public static int DockSpaceOverViewport(ref ImGuiViewport viewport, ImGuiDockNodeFlags flags)
+		public static int DockSpaceOverViewport(int dockspaceId, ref ImGuiViewport viewport, ImGuiDockNodeFlags flags)
 		{
 			fixed (ImGuiViewport* pviewport = &viewport)
 			{
-				int ret = DockSpaceOverViewportNative((ImGuiViewport*)pviewport, flags, (ImGuiWindowClass*)(default));
+				int ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)pviewport, flags, (ImGuiWindowClass*)(default));
+				return ret;
+			}
+		}
+
+		public static int DockSpaceOverViewport(int dockspaceId, ref ImGuiViewport viewport)
+		{
+			fixed (ImGuiViewport* pviewport = &viewport)
+			{
+				int ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)pviewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)(default));
 				return ret;
 			}
 		}
@@ -349,7 +436,25 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImGuiViewport* pviewport = &viewport)
 			{
-				int ret = DockSpaceOverViewportNative((ImGuiViewport*)pviewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)(default));
+				int ret = DockSpaceOverViewportNative((int)(0), (ImGuiViewport*)pviewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)(default));
+				return ret;
+			}
+		}
+
+		public static int DockSpaceOverViewport(ref ImGuiViewport viewport, ImGuiDockNodeFlags flags)
+		{
+			fixed (ImGuiViewport* pviewport = &viewport)
+			{
+				int ret = DockSpaceOverViewportNative((int)(0), (ImGuiViewport*)pviewport, flags, (ImGuiWindowClass*)(default));
+				return ret;
+			}
+		}
+
+		public static int DockSpaceOverViewport(int dockspaceId, ref ImGuiViewport viewport, ImGuiWindowClassPtr windowClass)
+		{
+			fixed (ImGuiViewport* pviewport = &viewport)
+			{
+				int ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)pviewport, (ImGuiDockNodeFlags)(0), windowClass);
 				return ret;
 			}
 		}
@@ -358,25 +463,43 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImGuiViewport* pviewport = &viewport)
 			{
-				int ret = DockSpaceOverViewportNative((ImGuiViewport*)pviewport, (ImGuiDockNodeFlags)(0), windowClass);
+				int ret = DockSpaceOverViewportNative((int)(0), (ImGuiViewport*)pviewport, (ImGuiDockNodeFlags)(0), windowClass);
 				return ret;
 			}
 		}
 
-		public static int DockSpaceOverViewport(ImGuiViewportPtr viewport, ImGuiDockNodeFlags flags, ref ImGuiWindowClass windowClass)
+		public static int DockSpaceOverViewport(ref ImGuiViewport viewport, ImGuiDockNodeFlags flags, ImGuiWindowClassPtr windowClass)
 		{
-			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
+			fixed (ImGuiViewport* pviewport = &viewport)
 			{
-				int ret = DockSpaceOverViewportNative(viewport, flags, (ImGuiWindowClass*)pwindowClass);
+				int ret = DockSpaceOverViewportNative((int)(0), (ImGuiViewport*)pviewport, flags, windowClass);
 				return ret;
 			}
 		}
 
-		public static int DockSpaceOverViewport(ImGuiViewportPtr viewport, ref ImGuiWindowClass windowClass)
+		public static int DockSpaceOverViewport(int dockspaceId, ImGuiViewportPtr viewport, ImGuiDockNodeFlags flags, ref ImGuiWindowClass windowClass)
 		{
 			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
 			{
-				int ret = DockSpaceOverViewportNative(viewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
+				int ret = DockSpaceOverViewportNative(dockspaceId, viewport, flags, (ImGuiWindowClass*)pwindowClass);
+				return ret;
+			}
+		}
+
+		public static int DockSpaceOverViewport(int dockspaceId, ImGuiViewportPtr viewport, ref ImGuiWindowClass windowClass)
+		{
+			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
+			{
+				int ret = DockSpaceOverViewportNative(dockspaceId, viewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
+				return ret;
+			}
+		}
+
+		public static int DockSpaceOverViewport(int dockspaceId, ref ImGuiWindowClass windowClass)
+		{
+			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
+			{
+				int ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)(default), (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
 				return ret;
 			}
 		}
@@ -385,7 +508,25 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
 			{
-				int ret = DockSpaceOverViewportNative((ImGuiViewport*)(default), (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
+				int ret = DockSpaceOverViewportNative((int)(0), (ImGuiViewport*)(default), (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
+				return ret;
+			}
+		}
+
+		public static int DockSpaceOverViewport(ImGuiViewportPtr viewport, ref ImGuiWindowClass windowClass)
+		{
+			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
+			{
+				int ret = DockSpaceOverViewportNative((int)(0), viewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
+				return ret;
+			}
+		}
+
+		public static int DockSpaceOverViewport(int dockspaceId, ImGuiDockNodeFlags flags, ref ImGuiWindowClass windowClass)
+		{
+			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
+			{
+				int ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)(default), flags, (ImGuiWindowClass*)pwindowClass);
 				return ret;
 			}
 		}
@@ -394,18 +535,39 @@ namespace Hexa.NET.ImGui
 		{
 			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
 			{
-				int ret = DockSpaceOverViewportNative((ImGuiViewport*)(default), flags, (ImGuiWindowClass*)pwindowClass);
+				int ret = DockSpaceOverViewportNative((int)(0), (ImGuiViewport*)(default), flags, (ImGuiWindowClass*)pwindowClass);
 				return ret;
 			}
 		}
 
-		public static int DockSpaceOverViewport(ref ImGuiViewport viewport, ImGuiDockNodeFlags flags, ref ImGuiWindowClass windowClass)
+		public static int DockSpaceOverViewport(ImGuiViewportPtr viewport, ImGuiDockNodeFlags flags, ref ImGuiWindowClass windowClass)
+		{
+			fixed (ImGuiWindowClass* pwindowClass = &windowClass)
+			{
+				int ret = DockSpaceOverViewportNative((int)(0), viewport, flags, (ImGuiWindowClass*)pwindowClass);
+				return ret;
+			}
+		}
+
+		public static int DockSpaceOverViewport(int dockspaceId, ref ImGuiViewport viewport, ImGuiDockNodeFlags flags, ref ImGuiWindowClass windowClass)
 		{
 			fixed (ImGuiViewport* pviewport = &viewport)
 			{
 				fixed (ImGuiWindowClass* pwindowClass = &windowClass)
 				{
-					int ret = DockSpaceOverViewportNative((ImGuiViewport*)pviewport, flags, (ImGuiWindowClass*)pwindowClass);
+					int ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)pviewport, flags, (ImGuiWindowClass*)pwindowClass);
+					return ret;
+				}
+			}
+		}
+
+		public static int DockSpaceOverViewport(int dockspaceId, ref ImGuiViewport viewport, ref ImGuiWindowClass windowClass)
+		{
+			fixed (ImGuiViewport* pviewport = &viewport)
+			{
+				fixed (ImGuiWindowClass* pwindowClass = &windowClass)
+				{
+					int ret = DockSpaceOverViewportNative(dockspaceId, (ImGuiViewport*)pviewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
 					return ret;
 				}
 			}
@@ -417,7 +579,19 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (ImGuiWindowClass* pwindowClass = &windowClass)
 				{
-					int ret = DockSpaceOverViewportNative((ImGuiViewport*)pviewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
+					int ret = DockSpaceOverViewportNative((int)(0), (ImGuiViewport*)pviewport, (ImGuiDockNodeFlags)(0), (ImGuiWindowClass*)pwindowClass);
+					return ret;
+				}
+			}
+		}
+
+		public static int DockSpaceOverViewport(ref ImGuiViewport viewport, ImGuiDockNodeFlags flags, ref ImGuiWindowClass windowClass)
+		{
+			fixed (ImGuiViewport* pviewport = &viewport)
+			{
+				fixed (ImGuiWindowClass* pwindowClass = &windowClass)
+				{
+					int ret = DockSpaceOverViewportNative((int)(0), (ImGuiViewport*)pviewport, flags, (ImGuiWindowClass*)pwindowClass);
 					return ret;
 				}
 			}
@@ -1192,33 +1366,19 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetBackgroundDrawList_Nil")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImDrawList* GetBackgroundDrawListNative();
-
-		public static ImDrawListPtr GetBackgroundDrawList()
-		{
-			ImDrawListPtr ret = GetBackgroundDrawListNative();
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igGetForegroundDrawList_Nil")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImDrawList* GetForegroundDrawListNative();
-
-		public static ImDrawListPtr GetForegroundDrawList()
-		{
-			ImDrawListPtr ret = GetForegroundDrawListNative();
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igGetBackgroundDrawList_ViewportPtr")]
+		[LibraryImport(LibName, EntryPoint = "igGetBackgroundDrawList")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial ImDrawList* GetBackgroundDrawListNative(ImGuiViewport* viewport);
 
 		public static ImDrawListPtr GetBackgroundDrawList(ImGuiViewportPtr viewport)
 		{
 			ImDrawListPtr ret = GetBackgroundDrawListNative(viewport);
+			return ret;
+		}
+
+		public static ImDrawListPtr GetBackgroundDrawList()
+		{
+			ImDrawListPtr ret = GetBackgroundDrawListNative((ImGuiViewport*)(default));
 			return ret;
 		}
 
@@ -1238,6 +1398,12 @@ namespace Hexa.NET.ImGui
 		public static ImDrawListPtr GetForegroundDrawList(ImGuiViewportPtr viewport)
 		{
 			ImDrawListPtr ret = GetForegroundDrawListNative(viewport);
+			return ret;
+		}
+
+		public static ImDrawListPtr GetForegroundDrawList()
+		{
+			ImDrawListPtr ret = GetForegroundDrawListNative((ImGuiViewport*)(default));
 			return ret;
 		}
 
@@ -3862,6 +4028,36 @@ namespace Hexa.NET.ImGui
 			SetNextFrameWantCaptureKeyboardNative(wantCaptureKeyboard ? (byte)1 : (byte)0);
 		}
 
+		[LibraryImport(LibName, EntryPoint = "igShortcut_Nil")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte ShortcutNative(int keyChord, ImGuiInputFlags flags);
+
+		public static bool Shortcut(int keyChord, ImGuiInputFlags flags)
+		{
+			byte ret = ShortcutNative(keyChord, flags);
+			return ret != 0;
+		}
+
+		public static bool Shortcut(int keyChord)
+		{
+			byte ret = ShortcutNative(keyChord, (ImGuiInputFlags)(0));
+			return ret != 0;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igSetNextItemShortcut")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetNextItemShortcutNative(int keyChord, ImGuiInputFlags flags);
+
+		public static void SetNextItemShortcut(int keyChord, ImGuiInputFlags flags)
+		{
+			SetNextItemShortcutNative(keyChord, flags);
+		}
+
+		public static void SetNextItemShortcut(int keyChord)
+		{
+			SetNextItemShortcutNative(keyChord, (ImGuiInputFlags)(0));
+		}
+
 		[LibraryImport(LibName, EntryPoint = "igIsMouseDown_Nil")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte IsMouseDownNative(ImGuiMouseButton button);
@@ -4821,204 +5017,6 @@ namespace Hexa.NET.ImGui
 		public static void AddMouseWheelEvent(ImGuiIOPtr self, float wheelX, float wheelY)
 		{
 			AddMouseWheelEventNative(self, wheelX, wheelY);
-		}
-
-		public static void AddMouseWheelEvent(ref ImGuiIO self, float wheelX, float wheelY)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				AddMouseWheelEventNative((ImGuiIO*)pself, wheelX, wheelY);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_AddMouseSourceEvent")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddMouseSourceEventNative(ImGuiIO* self, ImGuiMouseSource source);
-
-		public static void AddMouseSourceEvent(ImGuiIOPtr self, ImGuiMouseSource source)
-		{
-			AddMouseSourceEventNative(self, source);
-		}
-
-		public static void AddMouseSourceEvent(ref ImGuiIO self, ImGuiMouseSource source)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				AddMouseSourceEventNative((ImGuiIO*)pself, source);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_AddMouseViewportEvent")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddMouseViewportEventNative(ImGuiIO* self, int id);
-
-		public static void AddMouseViewportEvent(ImGuiIOPtr self, int id)
-		{
-			AddMouseViewportEventNative(self, id);
-		}
-
-		public static void AddMouseViewportEvent(ref ImGuiIO self, int id)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				AddMouseViewportEventNative((ImGuiIO*)pself, id);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_AddFocusEvent")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddFocusEventNative(ImGuiIO* self, byte focused);
-
-		public static void AddFocusEvent(ImGuiIOPtr self, bool focused)
-		{
-			AddFocusEventNative(self, focused ? (byte)1 : (byte)0);
-		}
-
-		public static void AddFocusEvent(ref ImGuiIO self, bool focused)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				AddFocusEventNative((ImGuiIO*)pself, focused ? (byte)1 : (byte)0);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_AddInputCharacter")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddInputCharacterNative(ImGuiIO* self, uint c);
-
-		public static void AddInputCharacter(ImGuiIOPtr self, uint c)
-		{
-			AddInputCharacterNative(self, c);
-		}
-
-		public static void AddInputCharacter(ref ImGuiIO self, uint c)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				AddInputCharacterNative((ImGuiIO*)pself, c);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_AddInputCharacterUTF16")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddInputCharacterUTF16Native(ImGuiIO* self, char c);
-
-		public static void AddInputCharacterUTF16(ImGuiIOPtr self, char c)
-		{
-			AddInputCharacterUTF16Native(self, c);
-		}
-
-		public static void AddInputCharacterUTF16(ref ImGuiIO self, char c)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				AddInputCharacterUTF16Native((ImGuiIO*)pself, c);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_AddInputCharactersUTF8")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddInputCharactersUTF8Native(ImGuiIO* self, byte* str);
-
-		public static void AddInputCharactersUTF8(ImGuiIOPtr self, byte* str)
-		{
-			AddInputCharactersUTF8Native(self, str);
-		}
-
-		public static void AddInputCharactersUTF8(ref ImGuiIO self, byte* str)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				AddInputCharactersUTF8Native((ImGuiIO*)pself, str);
-			}
-		}
-
-		public static void AddInputCharactersUTF8(ImGuiIOPtr self, ref byte str)
-		{
-			fixed (byte* pstr = &str)
-			{
-				AddInputCharactersUTF8Native(self, (byte*)pstr);
-			}
-		}
-
-		public static void AddInputCharactersUTF8(ImGuiIOPtr self, string str)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (str != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(str);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddInputCharactersUTF8Native(self, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddInputCharactersUTF8(ref ImGuiIO self, ref byte str)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				fixed (byte* pstr = &str)
-				{
-					AddInputCharactersUTF8Native((ImGuiIO*)pself, (byte*)pstr);
-				}
-			}
-		}
-
-		public static void AddInputCharactersUTF8(ref ImGuiIO self, string str)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (str != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(str);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddInputCharactersUTF8Native((ImGuiIO*)pself, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_SetKeyEventNativeData")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetKeyEventNativeDataNative(ImGuiIO* self, ImGuiKey key, int nativeKeycode, int nativeScancode, int nativeLegacyIndex);
-
-		public static void SetKeyEventNativeData(ImGuiIOPtr self, ImGuiKey key, int nativeKeycode, int nativeScancode, int nativeLegacyIndex)
-		{
-			SetKeyEventNativeDataNative(self, key, nativeKeycode, nativeScancode, nativeLegacyIndex);
-		}
-
-		public static void SetKeyEventNativeData(ImGuiIOPtr self, ImGuiKey key, int nativeKeycode, int nativeScancode)
-		{
-			SetKeyEventNativeDataNative(self, key, nativeKeycode, nativeScancode, (int)(-1));
 		}
 	}
 }

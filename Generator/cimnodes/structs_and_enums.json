@@ -1,9 +1,4 @@
 {
-  "enum_comments": {
-    "ImNodesAttributeFlags_": {
-      "above": "// This enum controls the way the attribute pins behave."
-    }
-  },
   "enums": {
     "ImNodesAttributeFlags_": [
       {
@@ -340,25 +335,21 @@
   },
   "enumtypes": [],
   "locations": {
-    "EmulateThreeButtonMouse": "imnodes:114",
-    "ImNodesAttributeFlags_": "imnodes:97",
-    "ImNodesCol_": "imnodes:23",
-    "ImNodesIO": "imnodes:112",
-    "ImNodesMiniMapLocation_": "imnodes:213",
-    "ImNodesPinShape_": "imnodes:86",
-    "ImNodesStyle": "imnodes:167",
-    "ImNodesStyleFlags_": "imnodes:77",
-    "ImNodesStyleVar_": "imnodes:57",
-    "LinkDetachWithModifierClick": "imnodes:126",
-    "MultipleSelectModifier": "imnodes:142"
+    "EmulateThreeButtonMouse": "imnodes:112",
+    "ImNodesAttributeFlags_": "imnodes:95",
+    "ImNodesCol_": "imnodes:21",
+    "ImNodesIO": "imnodes:110",
+    "ImNodesMiniMapLocation_": "imnodes:211",
+    "ImNodesPinShape_": "imnodes:84",
+    "ImNodesStyle": "imnodes:165",
+    "ImNodesStyleFlags_": "imnodes:75",
+    "ImNodesStyleVar_": "imnodes:55",
+    "LinkDetachWithModifierClick": "imnodes:124",
+    "MultipleSelectModifier": "imnodes:140"
   },
-  "struct_comments": [],
   "structs": {
     "EmulateThreeButtonMouse": [
       {
-        "comment": {
-          "above": "        // The keyboard modifier to use in combination with mouse left click to pan the editor view.\n        // Set to NULL by default. To enable this feature, set the modifier to point to a boolean\n        // indicating the state of a modifier. For example,\n        //\n        // ImNodes::GetIO().EmulateThreeButtonMouse.Modifier = &ImGui::GetIO().KeyAlt;"
-        },
         "name": "Modifier",
         "type": "const bool*"
       }
@@ -377,16 +368,10 @@
         "type": "MultipleSelectModifier"
       },
       {
-        "comment": {
-          "above": "    // Holding alt mouse button pans the node area, by default middle mouse button will be used\n    // Set based on ImGuiMouseButton values"
-        },
         "name": "AltMouseButton",
         "type": "int"
       },
       {
-        "comment": {
-          "above": "    // Panning speed when dragging an element and mouse is outside the main editor view."
-        },
         "name": "AutoPanningSpeed",
         "type": "float"
       }
@@ -421,72 +406,42 @@
         "type": "float"
       },
       {
-        "comment": {
-          "above": "    // The circle radius used when the pin shape is either ImNodesPinShape_Circle or\n    // ImNodesPinShape_CircleFilled."
-        },
         "name": "PinCircleRadius",
         "type": "float"
       },
       {
-        "comment": {
-          "above": "\n    // The quad side length used when the shape is either ImNodesPinShape_Quad or\n    // ImNodesPinShape_QuadFilled."
-        },
         "name": "PinQuadSideLength",
         "type": "float"
       },
       {
-        "comment": {
-          "above": "\n    // The equilateral triangle side length used when the pin shape is either\n    // ImNodesPinShape_Triangle or ImNodesPinShape_TriangleFilled."
-        },
         "name": "PinTriangleSideLength",
         "type": "float"
       },
       {
-        "comment": {
-          "above": "\n    // The thickness of the line used when the pin shape is not filled."
-        },
         "name": "PinLineThickness",
         "type": "float"
       },
       {
-        "comment": {
-          "above": "\n    // The radius from the pin's center position inside of which it is detected as being hovered\n    // over."
-        },
         "name": "PinHoverRadius",
         "type": "float"
       },
       {
-        "comment": {
-          "above": "\n    // Offsets the pins' positions from the edge of the node to the outside of the node."
-        },
         "name": "PinOffset",
         "type": "float"
       },
       {
-        "comment": {
-          "above": "    // Mini-map padding size between mini-map edge and mini-map content."
-        },
         "name": "MiniMapPadding",
         "type": "ImVec2"
       },
       {
-        "comment": {
-          "above": "\n    // Mini-map offset from the screen side."
-        },
         "name": "MiniMapOffset",
         "type": "ImVec2"
       },
       {
-        "comment": {
-          "above": "    // By default, ImNodesStyleFlags_NodeOutline and ImNodesStyleFlags_Gridlines are enabled."
-        },
         "name": "Flags",
         "type": "ImNodesStyleFlags"
       },
       {
-        "comment": {
-          "above": "\n    // Set these mid-frame using Push/PopColorStyle. You can index this color array with with a\n    // ImNodesCol value."
-        },
         "name": "Colors[ImNodesCol_COUNT]",
         "size": 29,
         "type": "unsigned int"
@@ -494,18 +449,12 @@
     ],
     "LinkDetachWithModifierClick": [
       {
-        "comment": {
-          "above": "        // Pointer to a boolean value indicating when the desired modifier is pressed. Set to NULL\n        // by default. To enable the feature, set the modifier to point to a boolean indicating the\n        // state of a modifier. For example,\n        //\n        // ImNodes::GetIO().LinkDetachWithModifierClick.Modifier = &ImGui::GetIO().KeyCtrl;\n        //\n        // Left-clicking a link with this modifier pressed will detach that link. NOTE: the user has\n        // to actually delete the link for this to work. A deleted link can be detected by calling\n        // IsLinkDestroyed() after EndNodeEditor()."
-        },
         "name": "Modifier",
         "type": "const bool*"
       }
     ],
     "MultipleSelectModifier": [
       {
-        "comment": {
-          "above": "        // Pointer to a boolean value indicating when the desired modifier is pressed. Set to NULL\n        // by default. To enable the feature, set the modifier to point to a boolean indicating the\n        // state of a modifier. For example,\n        //\n        // ImNodes::GetIO().MultipleSelectModifier.Modifier = &ImGui::GetIO().KeyCtrl;\n        //\n        // Left-clicking a node with this modifier pressed will add the node to the list of\n        // currently selected nodes. If this value is NULL, the Ctrl key will be used."
-        },
         "name": "Modifier",
         "type": "const bool*"
       }

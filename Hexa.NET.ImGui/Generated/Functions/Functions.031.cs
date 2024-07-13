@@ -17,6 +17,226 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), cpuFineClipRect);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
 		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, Vector4* cpuFineClipRect)
 		{
 			byte* pStr0 = null;
@@ -4581,6 +4801,66 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddBezierCubic")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void AddBezierCubicNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments);
+
+		public static void AddBezierCubic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
+		{
+			AddBezierCubicNative(self, p1, p2, p3, p4, col, thickness, numSegments);
+		}
+
+		public static void AddBezierCubic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
+		{
+			AddBezierCubicNative(self, p1, p2, p3, p4, col, thickness, (int)(0));
+		}
+
+		public static void AddBezierCubic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddBezierCubicNative((ImDrawList*)pself, p1, p2, p3, p4, col, thickness, numSegments);
+			}
+		}
+
+		public static void AddBezierCubic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddBezierCubicNative((ImDrawList*)pself, p1, p2, p3, p4, col, thickness, (int)(0));
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddBezierQuadratic")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void AddBezierQuadraticNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments);
+
+		public static void AddBezierQuadratic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
+		{
+			AddBezierQuadraticNative(self, p1, p2, p3, col, thickness, numSegments);
+		}
+
+		public static void AddBezierQuadratic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
+		{
+			AddBezierQuadraticNative(self, p1, p2, p3, col, thickness, (int)(0));
+		}
+
+		public static void AddBezierQuadratic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddBezierQuadraticNative((ImDrawList*)pself, p1, p2, p3, col, thickness, numSegments);
+			}
+		}
+
+		public static void AddBezierQuadratic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddBezierQuadraticNative((ImDrawList*)pself, p1, p2, p3, col, thickness, (int)(0));
+			}
+		}
+
 		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddPolyline")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void AddPolylineNative(ImDrawList* self, Vector2* points, int numPoints, uint col, ImDrawFlags flags, float thickness);
@@ -4653,63 +4933,39 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddBezierCubic")]
+		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddConcavePolyFilled")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddBezierCubicNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments);
+		internal static partial void AddConcavePolyFilledNative(ImDrawList* self, Vector2* points, int numPoints, uint col);
 
-		public static void AddBezierCubic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
+		public static void AddConcavePolyFilled(ImDrawListPtr self, Vector2* points, int numPoints, uint col)
 		{
-			AddBezierCubicNative(self, p1, p2, p3, p4, col, thickness, numSegments);
+			AddConcavePolyFilledNative(self, points, numPoints, col);
 		}
 
-		public static void AddBezierCubic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
-		{
-			AddBezierCubicNative(self, p1, p2, p3, p4, col, thickness, (int)(0));
-		}
-
-		public static void AddBezierCubic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
+		public static void AddConcavePolyFilled(ref ImDrawList self, Vector2* points, int numPoints, uint col)
 		{
 			fixed (ImDrawList* pself = &self)
 			{
-				AddBezierCubicNative((ImDrawList*)pself, p1, p2, p3, p4, col, thickness, numSegments);
+				AddConcavePolyFilledNative((ImDrawList*)pself, points, numPoints, col);
 			}
 		}
 
-		public static void AddBezierCubic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
+		public static void AddConcavePolyFilled(ImDrawListPtr self, ref Vector2 points, int numPoints, uint col)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (Vector2* ppoints = &points)
 			{
-				AddBezierCubicNative((ImDrawList*)pself, p1, p2, p3, p4, col, thickness, (int)(0));
+				AddConcavePolyFilledNative(self, (Vector2*)ppoints, numPoints, col);
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddBezierQuadratic")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddBezierQuadraticNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments);
-
-		public static void AddBezierQuadratic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
-		{
-			AddBezierQuadraticNative(self, p1, p2, p3, col, thickness, numSegments);
-		}
-
-		public static void AddBezierQuadratic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
-		{
-			AddBezierQuadraticNative(self, p1, p2, p3, col, thickness, (int)(0));
-		}
-
-		public static void AddBezierQuadratic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
+		public static void AddConcavePolyFilled(ref ImDrawList self, ref Vector2 points, int numPoints, uint col)
 		{
 			fixed (ImDrawList* pself = &self)
 			{
-				AddBezierQuadraticNative((ImDrawList*)pself, p1, p2, p3, col, thickness, numSegments);
-			}
-		}
-
-		public static void AddBezierQuadratic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddBezierQuadraticNative((ImDrawList*)pself, p1, p2, p3, col, thickness, (int)(0));
+				fixed (Vector2* ppoints = &points)
+				{
+					AddConcavePolyFilledNative((ImDrawList*)pself, (Vector2*)ppoints, numPoints, col);
+				}
 			}
 		}
 
@@ -4761,262 +5017,6 @@ namespace Hexa.NET.ImGui
 			{
 				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, uvMax, (uint)(4294967295));
 			}
-		}
-
-		public static void AddImage(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), (uint)(4294967295));
-			}
-		}
-
-		public static void AddImage(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (uint)(4294967295));
-			}
-		}
-
-		public static void AddImage(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), col);
-			}
-		}
-
-		public static void AddImage(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), col);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddImageQuad")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddImageQuadNative(ImDrawList* self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col);
-
-		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
-		{
-			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
-		}
-
-		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4)
-		{
-			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, (uint)(4294967295));
-		}
-
-		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3)
-		{
-			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), (uint)(4294967295));
-		}
-
-		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2)
-		{
-			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
-		}
-
-		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1)
-		{
-			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
-		}
-
-		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
-		{
-			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
-		}
-
-		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, uint col)
-		{
-			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), col);
-		}
-
-		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, uint col)
-		{
-			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
-		}
-
-		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, uint col)
-		{
-			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
-		}
-
-		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
-		{
-			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
-		}
-
-		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
-			}
-		}
-
-		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, (uint)(4294967295));
-			}
-		}
-
-		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), (uint)(4294967295));
-			}
-		}
-
-		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
-			}
-		}
-
-		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
-			}
-		}
-
-		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
-			}
-		}
-
-		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), col);
-			}
-		}
-
-		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
-			}
-		}
-
-		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
-			}
-		}
-
-		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddImageRounded")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddImageRoundedNative(ImDrawList* self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags);
-
-		public static void AddImageRounded(ImDrawListPtr self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
-		{
-			AddImageRoundedNative(self, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
-		}
-
-		public static void AddImageRounded(ImDrawListPtr self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding)
-		{
-			AddImageRoundedNative(self, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, (ImDrawFlags)(0));
-		}
-
-		public static void AddImageRounded(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageRoundedNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
-			}
-		}
-
-		public static void AddImageRounded(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddImageRoundedNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, (ImDrawFlags)(0));
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathClear")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathClearNative(ImDrawList* self);
-
-		public static void PathClear(ImDrawListPtr self)
-		{
-			PathClearNative(self);
-		}
-
-		public static void PathClear(ref ImDrawList self)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathClearNative((ImDrawList*)pself);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathLineTo")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathLineToNative(ImDrawList* self, Vector2 pos);
-
-		public static void PathLineTo(ImDrawListPtr self, Vector2 pos)
-		{
-			PathLineToNative(self, pos);
-		}
-
-		public static void PathLineTo(ref ImDrawList self, Vector2 pos)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathLineToNative((ImDrawList*)pself, pos);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathLineToMergeDuplicate")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathLineToMergeDuplicateNative(ImDrawList* self, Vector2 pos);
-
-		public static void PathLineToMergeDuplicate(ImDrawListPtr self, Vector2 pos)
-		{
-			PathLineToMergeDuplicateNative(self, pos);
-		}
-
-		public static void PathLineToMergeDuplicate(ref ImDrawList self, Vector2 pos)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				PathLineToMergeDuplicateNative((ImDrawList*)pself, pos);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathFillConvex")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathFillConvexNative(ImDrawList* self, uint col);
-
-		public static void PathFillConvex(ImDrawListPtr self, uint col)
-		{
-			PathFillConvexNative(self, col);
 		}
 	}
 }

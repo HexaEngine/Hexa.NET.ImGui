@@ -168,7 +168,7 @@
             int idpin1 = 0;
             int idpin2 = 0;
             bool createdFromSnap = false;
-            if (ImNodes.IsLinkCreatedIntPtr(ref idNode1, ref idpin1, ref idNode2, ref idpin2, ref createdFromSnap))
+            if (ImNodes.IsLinkCreated(ref idNode1, ref idpin1, ref idNode2, ref idpin2, ref createdFromSnap))
             {
                 var pino = GetNode(idNode1).GetOuput(idpin1);
                 var pini = GetNode(idNode2).GetInput(idpin2);

@@ -17,6 +17,582 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
+		public static void DebugNodeDrawList(ImGuiWindowPtr window, ImGuiViewportPPtr viewport, ref ImDrawList drawList, ref byte label)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* plabel = &label)
+				{
+					DebugNodeDrawListNative(window, viewport, (ImDrawList*)pdrawList, (byte*)plabel);
+				}
+			}
+		}
+
+		public static void DebugNodeDrawList(ImGuiWindowPtr window, ImGuiViewportPPtr viewport, ref ImDrawList drawList, string label)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				DebugNodeDrawListNative(window, viewport, (ImDrawList*)pdrawList, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void DebugNodeDrawList(ref ImGuiWindow window, ImGuiViewportPPtr viewport, ref ImDrawList drawList, ref byte label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* plabel = &label)
+					{
+						DebugNodeDrawListNative((ImGuiWindow*)pwindow, viewport, (ImDrawList*)pdrawList, (byte*)plabel);
+					}
+				}
+			}
+		}
+
+		public static void DebugNodeDrawList(ref ImGuiWindow window, ImGuiViewportPPtr viewport, ref ImDrawList drawList, string label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (label != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(label);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					DebugNodeDrawListNative((ImGuiWindow*)pwindow, viewport, (ImDrawList*)pdrawList, pStr0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void DebugNodeDrawList(ImGuiWindowPtr window, ref ImGuiViewportP viewport, ref ImDrawList drawList, ref byte label)
+		{
+			fixed (ImGuiViewportP* pviewport = &viewport)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* plabel = &label)
+					{
+						DebugNodeDrawListNative(window, (ImGuiViewportP*)pviewport, (ImDrawList*)pdrawList, (byte*)plabel);
+					}
+				}
+			}
+		}
+
+		public static void DebugNodeDrawList(ImGuiWindowPtr window, ref ImGuiViewportP viewport, ref ImDrawList drawList, string label)
+		{
+			fixed (ImGuiViewportP* pviewport = &viewport)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (label != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(label);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					DebugNodeDrawListNative(window, (ImGuiViewportP*)pviewport, (ImDrawList*)pdrawList, pStr0);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void DebugNodeDrawList(ref ImGuiWindow window, ref ImGuiViewportP viewport, ref ImDrawList drawList, ref byte label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImGuiViewportP* pviewport = &viewport)
+				{
+					fixed (ImDrawList* pdrawList = &drawList)
+					{
+						fixed (byte* plabel = &label)
+						{
+							DebugNodeDrawListNative((ImGuiWindow*)pwindow, (ImGuiViewportP*)pviewport, (ImDrawList*)pdrawList, (byte*)plabel);
+						}
+					}
+				}
+			}
+		}
+
+		public static void DebugNodeDrawList(ref ImGuiWindow window, ref ImGuiViewportP viewport, ref ImDrawList drawList, string label)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				fixed (ImGuiViewportP* pviewport = &viewport)
+				{
+					fixed (ImDrawList* pdrawList = &drawList)
+					{
+						byte* pStr0 = null;
+						int pStrSize0 = 0;
+						if (label != null)
+						{
+							pStrSize0 = Utils.GetByteCountUTF8(label);
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+							}
+							else
+							{
+								byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+								pStr0 = pStrStack0;
+							}
+							int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+							pStr0[pStrOffset0] = 0;
+						}
+						DebugNodeDrawListNative((ImGuiWindow*)pwindow, (ImGuiViewportP*)pviewport, (ImDrawList*)pdrawList, pStr0);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDebugNodeDrawCmdShowMeshAndBoundingBox")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DebugNodeDrawCmdShowMeshAndBoundingBoxNative(ImDrawList* outDrawList, ImDrawList* drawList, ImDrawCmd* drawCmd, byte showMesh, byte showAabb);
+
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ImDrawListPtr outDrawList, ImDrawListPtr drawList, ImDrawCmdPtr drawCmd, bool showMesh, bool showAabb)
+		{
+			DebugNodeDrawCmdShowMeshAndBoundingBoxNative(outDrawList, drawList, drawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+		}
+
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ref ImDrawList outDrawList, ImDrawListPtr drawList, ImDrawCmdPtr drawCmd, bool showMesh, bool showAabb)
+		{
+			fixed (ImDrawList* poutDrawList = &outDrawList)
+			{
+				DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, drawList, drawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+			}
+		}
+
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ImDrawListPtr outDrawList, ref ImDrawList drawList, ImDrawCmdPtr drawCmd, bool showMesh, bool showAabb)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				DebugNodeDrawCmdShowMeshAndBoundingBoxNative(outDrawList, (ImDrawList*)pdrawList, drawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+			}
+		}
+
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ref ImDrawList outDrawList, ref ImDrawList drawList, ImDrawCmdPtr drawCmd, bool showMesh, bool showAabb)
+		{
+			fixed (ImDrawList* poutDrawList = &outDrawList)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, (ImDrawList*)pdrawList, drawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ImDrawListPtr outDrawList, ImDrawListPtr drawList, ref ImDrawCmd drawCmd, bool showMesh, bool showAabb)
+		{
+			fixed (ImDrawCmd* pdrawCmd = &drawCmd)
+			{
+				DebugNodeDrawCmdShowMeshAndBoundingBoxNative(outDrawList, drawList, (ImDrawCmd*)pdrawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+			}
+		}
+
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ref ImDrawList outDrawList, ImDrawListPtr drawList, ref ImDrawCmd drawCmd, bool showMesh, bool showAabb)
+		{
+			fixed (ImDrawList* poutDrawList = &outDrawList)
+			{
+				fixed (ImDrawCmd* pdrawCmd = &drawCmd)
+				{
+					DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, drawList, (ImDrawCmd*)pdrawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ImDrawListPtr outDrawList, ref ImDrawList drawList, ref ImDrawCmd drawCmd, bool showMesh, bool showAabb)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (ImDrawCmd* pdrawCmd = &drawCmd)
+				{
+					DebugNodeDrawCmdShowMeshAndBoundingBoxNative(outDrawList, (ImDrawList*)pdrawList, (ImDrawCmd*)pdrawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		public static void DebugNodeDrawCmdShowMeshAndBoundingBox(ref ImDrawList outDrawList, ref ImDrawList drawList, ref ImDrawCmd drawCmd, bool showMesh, bool showAabb)
+		{
+			fixed (ImDrawList* poutDrawList = &outDrawList)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (ImDrawCmd* pdrawCmd = &drawCmd)
+					{
+						DebugNodeDrawCmdShowMeshAndBoundingBoxNative((ImDrawList*)poutDrawList, (ImDrawList*)pdrawList, (ImDrawCmd*)pdrawCmd, showMesh ? (byte)1 : (byte)0, showAabb ? (byte)1 : (byte)0);
+					}
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDebugNodeFont")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DebugNodeFontNative(ImFont* font);
+
+		public static void DebugNodeFont(ImFontPtr font)
+		{
+			DebugNodeFontNative(font);
+		}
+
+		public static void DebugNodeFont(ref ImFont font)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				DebugNodeFontNative((ImFont*)pfont);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDebugNodeFontGlyph")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DebugNodeFontGlyphNative(ImFont* font, ImFontGlyph* glyph);
+
+		public static void DebugNodeFontGlyph(ImFontPtr font, ImFontGlyphPtr glyph)
+		{
+			DebugNodeFontGlyphNative(font, glyph);
+		}
+
+		public static void DebugNodeFontGlyph(ref ImFont font, ImFontGlyphPtr glyph)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				DebugNodeFontGlyphNative((ImFont*)pfont, glyph);
+			}
+		}
+
+		public static void DebugNodeFontGlyph(ImFontPtr font, ref ImFontGlyph glyph)
+		{
+			fixed (ImFontGlyph* pglyph = &glyph)
+			{
+				DebugNodeFontGlyphNative(font, (ImFontGlyph*)pglyph);
+			}
+		}
+
+		public static void DebugNodeFontGlyph(ref ImFont font, ref ImFontGlyph glyph)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (ImFontGlyph* pglyph = &glyph)
+				{
+					DebugNodeFontGlyphNative((ImFont*)pfont, (ImFontGlyph*)pglyph);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDebugNodeStorage")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DebugNodeStorageNative(ImGuiStorage* storage, byte* label);
+
+		public static void DebugNodeStorage(ImGuiStoragePtr storage, byte* label)
+		{
+			DebugNodeStorageNative(storage, label);
+		}
+
+		public static void DebugNodeStorage(ref ImGuiStorage storage, byte* label)
+		{
+			fixed (ImGuiStorage* pstorage = &storage)
+			{
+				DebugNodeStorageNative((ImGuiStorage*)pstorage, label);
+			}
+		}
+
+		public static void DebugNodeStorage(ImGuiStoragePtr storage, ref byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				DebugNodeStorageNative(storage, (byte*)plabel);
+			}
+		}
+
+		public static void DebugNodeStorage(ImGuiStoragePtr storage, string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			DebugNodeStorageNative(storage, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void DebugNodeStorage(ref ImGuiStorage storage, ref byte label)
+		{
+			fixed (ImGuiStorage* pstorage = &storage)
+			{
+				fixed (byte* plabel = &label)
+				{
+					DebugNodeStorageNative((ImGuiStorage*)pstorage, (byte*)plabel);
+				}
+			}
+		}
+
+		public static void DebugNodeStorage(ref ImGuiStorage storage, string label)
+		{
+			fixed (ImGuiStorage* pstorage = &storage)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				DebugNodeStorageNative((ImGuiStorage*)pstorage, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDebugNodeTabBar")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DebugNodeTabBarNative(ImGuiTabBar* tabBar, byte* label);
+
+		public static void DebugNodeTabBar(ImGuiTabBarPtr tabBar, byte* label)
+		{
+			DebugNodeTabBarNative(tabBar, label);
+		}
+
+		public static void DebugNodeTabBar(ref ImGuiTabBar tabBar, byte* label)
+		{
+			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			{
+				DebugNodeTabBarNative((ImGuiTabBar*)ptabBar, label);
+			}
+		}
+
+		public static void DebugNodeTabBar(ImGuiTabBarPtr tabBar, ref byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				DebugNodeTabBarNative(tabBar, (byte*)plabel);
+			}
+		}
+
+		public static void DebugNodeTabBar(ImGuiTabBarPtr tabBar, string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			DebugNodeTabBarNative(tabBar, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void DebugNodeTabBar(ref ImGuiTabBar tabBar, ref byte label)
+		{
+			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			{
+				fixed (byte* plabel = &label)
+				{
+					DebugNodeTabBarNative((ImGuiTabBar*)ptabBar, (byte*)plabel);
+				}
+			}
+		}
+
+		public static void DebugNodeTabBar(ref ImGuiTabBar tabBar, string label)
+		{
+			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				DebugNodeTabBarNative((ImGuiTabBar*)ptabBar, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDebugNodeTable")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DebugNodeTableNative(ImGuiTable* table);
+
+		public static void DebugNodeTable(ImGuiTablePtr table)
+		{
+			DebugNodeTableNative(table);
+		}
+
+		public static void DebugNodeTable(ref ImGuiTable table)
+		{
+			fixed (ImGuiTable* ptable = &table)
+			{
+				DebugNodeTableNative((ImGuiTable*)ptable);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDebugNodeTableSettings")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DebugNodeTableSettingsNative(ImGuiTableSettings* settings);
+
+		public static void DebugNodeTableSettings(ImGuiTableSettingsPtr settings)
+		{
+			DebugNodeTableSettingsNative(settings);
+		}
+
+		public static void DebugNodeTableSettings(ref ImGuiTableSettings settings)
+		{
+			fixed (ImGuiTableSettings* psettings = &settings)
+			{
+				DebugNodeTableSettingsNative((ImGuiTableSettings*)psettings);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDebugNodeInputTextState")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DebugNodeInputTextStateNative(ImGuiInputTextState* state);
+
+		public static void DebugNodeInputTextState(ImGuiInputTextStatePtr state)
+		{
+			DebugNodeInputTextStateNative(state);
+		}
+
+		public static void DebugNodeInputTextState(ref ImGuiInputTextState state)
+		{
+			fixed (ImGuiInputTextState* pstate = &state)
+			{
+				DebugNodeInputTextStateNative((ImGuiInputTextState*)pstate);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDebugNodeTypingSelectState")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DebugNodeTypingSelectStateNative(ImGuiTypingSelectState* state);
+
+		public static void DebugNodeTypingSelectState(ImGuiTypingSelectStatePtr state)
+		{
+			DebugNodeTypingSelectStateNative(state);
+		}
+
+		public static void DebugNodeTypingSelectState(ref ImGuiTypingSelectState state)
+		{
+			fixed (ImGuiTypingSelectState* pstate = &state)
+			{
+				DebugNodeTypingSelectStateNative((ImGuiTypingSelectState*)pstate);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDebugNodeWindow")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DebugNodeWindowNative(ImGuiWindow* window, byte* label);
+
+		public static void DebugNodeWindow(ImGuiWindowPtr window, byte* label)
+		{
+			DebugNodeWindowNative(window, label);
+		}
+
 		public static void DebugNodeWindow(ref ImGuiWindow window, byte* label)
 		{
 			fixed (ImGuiWindow* pwindow = &window)
@@ -967,6 +1543,40 @@ public static float GETFLTMIN()
 			fixed (ImVectorImWchar* pp = &p)
 			{
 				ImVectorImWcharUnInitNative((ImVectorImWchar*)pp);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImGuiPlatformIO_Set_Platform_GetWindowPos")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImGuiPlatformIOSetPlatformGetWindowPosNative(ImGuiPlatformIO* platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*>> userCallback);
+
+		public static void ImGuiPlatformIOSetPlatformGetWindowPos(ImGuiPlatformIOPtr platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*>> userCallback)
+		{
+			ImGuiPlatformIOSetPlatformGetWindowPosNative(platformIo, userCallback);
+		}
+
+		public static void ImGuiPlatformIOSetPlatformGetWindowPos(ref ImGuiPlatformIO platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*>> userCallback)
+		{
+			fixed (ImGuiPlatformIO* pplatformIo = &platformIo)
+			{
+				ImGuiPlatformIOSetPlatformGetWindowPosNative((ImGuiPlatformIO*)pplatformIo, userCallback);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImGuiPlatformIO_Set_Platform_GetWindowSize")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void ImGuiPlatformIOSetPlatformGetWindowSizeNative(ImGuiPlatformIO* platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*>> userCallback);
+
+		public static void ImGuiPlatformIOSetPlatformGetWindowSize(ImGuiPlatformIOPtr platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*>> userCallback)
+		{
+			ImGuiPlatformIOSetPlatformGetWindowSizeNative(platformIo, userCallback);
+		}
+
+		public static void ImGuiPlatformIOSetPlatformGetWindowSize(ref ImGuiPlatformIO platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*>> userCallback)
+		{
+			fixed (ImGuiPlatformIO* pplatformIo = &platformIo)
+			{
+				ImGuiPlatformIOSetPlatformGetWindowSizeNative((ImGuiPlatformIO*)pplatformIo, userCallback);
 			}
 		}
 

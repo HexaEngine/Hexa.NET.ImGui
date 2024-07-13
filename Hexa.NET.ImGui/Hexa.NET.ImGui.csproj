@@ -10,9 +10,9 @@
 		<EnableAotAnalyzer>true</EnableAotAnalyzer>
 		<IsAotCompatible>true</IsAotCompatible>
 
-		<AssemblyVersion>1.90.4</AssemblyVersion>
-		<PackageVersion>1.0.3</PackageVersion>
-		<Description>A .NET wrapper for the Dear ImGui library. (1.90.4)</Description>
+		<AssemblyVersion>1.90.9</AssemblyVersion>
+		<PackageVersion>1.0.4</PackageVersion>
+		<Description>A .NET wrapper for the Dear ImGui library. (1.90.9)</Description>
 		<PackageTags>ImGui UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
 		<Copyright>Copyright (c) 2023 Juna Meinhold</Copyright>
@@ -33,18 +33,6 @@
 			<Link>runtimes\android-arm64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackagePath>runtimes/android-arm64/native</PackagePath>
-			<Pack>true</Pack>
-		</None>
-		<None Include="..\native\android-arm\cimgui.so">
-			<Link>runtimes\android-arm\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<PackagePath>runtimes/android-arm/native</PackagePath>
-			<Pack>true</Pack>
-		</None>
-		<None Include="..\native\android-x86\cimgui.so">
-			<Link>runtimes\android-x86\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<PackagePath>runtimes/android-x86/native</PackagePath>
 			<Pack>true</Pack>
 		</None>
 		<None Include="..\native\osx-arm64\cimgui.dylib">

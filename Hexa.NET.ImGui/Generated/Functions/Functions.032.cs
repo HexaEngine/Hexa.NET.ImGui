@@ -17,11 +17,284 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
+		public static void AddImage(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), (uint)(4294967295));
+			}
+		}
+
+		public static void AddImage(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (uint)(4294967295));
+			}
+		}
+
+		public static void AddImage(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), col);
+			}
+		}
+
+		public static void AddImage(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), col);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddImageQuad")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void AddImageQuadNative(ImDrawList* self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col);
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, (uint)(4294967295));
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, uint col)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), col);
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, uint col)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, uint col)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, (uint)(4294967295));
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), col);
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddImageRounded")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void AddImageRoundedNative(ImDrawList* self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags);
+
+		public static void AddImageRounded(ImDrawListPtr self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
+		{
+			AddImageRoundedNative(self, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
+		}
+
+		public static void AddImageRounded(ImDrawListPtr self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding)
+		{
+			AddImageRoundedNative(self, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, (ImDrawFlags)(0));
+		}
+
+		public static void AddImageRounded(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageRoundedNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
+			}
+		}
+
+		public static void AddImageRounded(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageRoundedNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, (ImDrawFlags)(0));
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathClear")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void PathClearNative(ImDrawList* self);
+
+		public static void PathClear(ImDrawListPtr self)
+		{
+			PathClearNative(self);
+		}
+
+		public static void PathClear(ref ImDrawList self)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathClearNative((ImDrawList*)pself);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathLineTo")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void PathLineToNative(ImDrawList* self, Vector2 pos);
+
+		public static void PathLineTo(ImDrawListPtr self, Vector2 pos)
+		{
+			PathLineToNative(self, pos);
+		}
+
+		public static void PathLineTo(ref ImDrawList self, Vector2 pos)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathLineToNative((ImDrawList*)pself, pos);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathLineToMergeDuplicate")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void PathLineToMergeDuplicateNative(ImDrawList* self, Vector2 pos);
+
+		public static void PathLineToMergeDuplicate(ImDrawListPtr self, Vector2 pos)
+		{
+			PathLineToMergeDuplicateNative(self, pos);
+		}
+
+		public static void PathLineToMergeDuplicate(ref ImDrawList self, Vector2 pos)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathLineToMergeDuplicateNative((ImDrawList*)pself, pos);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathFillConvex")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void PathFillConvexNative(ImDrawList* self, uint col);
+
+		public static void PathFillConvex(ImDrawListPtr self, uint col)
+		{
+			PathFillConvexNative(self, col);
+		}
+
 		public static void PathFillConvex(ref ImDrawList self, uint col)
 		{
 			fixed (ImDrawList* pself = &self)
 			{
 				PathFillConvexNative((ImDrawList*)pself, col);
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathFillConcave")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void PathFillConcaveNative(ImDrawList* self, uint col);
+
+		public static void PathFillConcave(ImDrawListPtr self, uint col)
+		{
+			PathFillConcaveNative(self, col);
+		}
+
+		public static void PathFillConcave(ref ImDrawList self, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathFillConcaveNative((ImDrawList*)pself, col);
 			}
 		}
 
@@ -130,31 +403,31 @@ namespace Hexa.NET.ImGui
 
 		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathEllipticalArcTo")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathEllipticalArcToNative(ImDrawList* self, Vector2 center, float radiusX, float radiusY, float rot, float aMin, float aMax, int numSegments);
+		internal static partial void PathEllipticalArcToNative(ImDrawList* self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments);
 
-		public static void PathEllipticalArcTo(ImDrawListPtr self, Vector2 center, float radiusX, float radiusY, float rot, float aMin, float aMax, int numSegments)
+		public static void PathEllipticalArcTo(ImDrawListPtr self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
 		{
-			PathEllipticalArcToNative(self, center, radiusX, radiusY, rot, aMin, aMax, numSegments);
+			PathEllipticalArcToNative(self, center, radius, rot, aMin, aMax, numSegments);
 		}
 
-		public static void PathEllipticalArcTo(ImDrawListPtr self, Vector2 center, float radiusX, float radiusY, float rot, float aMin, float aMax)
+		public static void PathEllipticalArcTo(ImDrawListPtr self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax)
 		{
-			PathEllipticalArcToNative(self, center, radiusX, radiusY, rot, aMin, aMax, (int)(0));
+			PathEllipticalArcToNative(self, center, radius, rot, aMin, aMax, (int)(0));
 		}
 
-		public static void PathEllipticalArcTo(ref ImDrawList self, Vector2 center, float radiusX, float radiusY, float rot, float aMin, float aMax, int numSegments)
+		public static void PathEllipticalArcTo(ref ImDrawList self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
 		{
 			fixed (ImDrawList* pself = &self)
 			{
-				PathEllipticalArcToNative((ImDrawList*)pself, center, radiusX, radiusY, rot, aMin, aMax, numSegments);
+				PathEllipticalArcToNative((ImDrawList*)pself, center, radius, rot, aMin, aMax, numSegments);
 			}
 		}
 
-		public static void PathEllipticalArcTo(ref ImDrawList self, Vector2 center, float radiusX, float radiusY, float rot, float aMin, float aMax)
+		public static void PathEllipticalArcTo(ref ImDrawList self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax)
 		{
 			fixed (ImDrawList* pself = &self)
 			{
-				PathEllipticalArcToNative((ImDrawList*)pself, center, radiusX, radiusY, rot, aMin, aMax, (int)(0));
+				PathEllipticalArcToNative((ImDrawList*)pself, center, radius, rot, aMin, aMax, (int)(0));
 			}
 		}
 
@@ -4742,292 +5015,6 @@ namespace Hexa.NET.ImGui
 					fixed (int* poutHeight = &outHeight)
 					{
 						GetTexDataAsRGBA32Native((ImFontAtlas*)pself, outPixels, (int*)poutWidth, (int*)poutHeight, (int*)(default));
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ImFontAtlasPtr self, ref byte* outPixels, ref int outWidth, ref int outHeight, int* outBytesPerPixel)
-		{
-			fixed (byte** poutPixels = &outPixels)
-			{
-				fixed (int* poutWidth = &outWidth)
-				{
-					fixed (int* poutHeight = &outHeight)
-					{
-						GetTexDataAsRGBA32Native(self, (byte**)poutPixels, (int*)poutWidth, (int*)poutHeight, outBytesPerPixel);
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ImFontAtlasPtr self, ref byte* outPixels, ref int outWidth, ref int outHeight)
-		{
-			fixed (byte** poutPixels = &outPixels)
-			{
-				fixed (int* poutWidth = &outWidth)
-				{
-					fixed (int* poutHeight = &outHeight)
-					{
-						GetTexDataAsRGBA32Native(self, (byte**)poutPixels, (int*)poutWidth, (int*)poutHeight, (int*)(default));
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ref ImFontAtlas self, ref byte* outPixels, ref int outWidth, ref int outHeight, int* outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte** poutPixels = &outPixels)
-				{
-					fixed (int* poutWidth = &outWidth)
-					{
-						fixed (int* poutHeight = &outHeight)
-						{
-							GetTexDataAsRGBA32Native((ImFontAtlas*)pself, (byte**)poutPixels, (int*)poutWidth, (int*)poutHeight, outBytesPerPixel);
-						}
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ref ImFontAtlas self, ref byte* outPixels, ref int outWidth, ref int outHeight)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte** poutPixels = &outPixels)
-				{
-					fixed (int* poutWidth = &outWidth)
-					{
-						fixed (int* poutHeight = &outHeight)
-						{
-							GetTexDataAsRGBA32Native((ImFontAtlas*)pself, (byte**)poutPixels, (int*)poutWidth, (int*)poutHeight, (int*)(default));
-						}
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ImFontAtlasPtr self, byte** outPixels, int* outWidth, int* outHeight, ref int outBytesPerPixel)
-		{
-			fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-			{
-				GetTexDataAsRGBA32Native(self, outPixels, outWidth, outHeight, (int*)poutBytesPerPixel);
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ref ImFontAtlas self, byte** outPixels, int* outWidth, int* outHeight, ref int outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-				{
-					GetTexDataAsRGBA32Native((ImFontAtlas*)pself, outPixels, outWidth, outHeight, (int*)poutBytesPerPixel);
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ImFontAtlasPtr self, ref byte* outPixels, int* outWidth, int* outHeight, ref int outBytesPerPixel)
-		{
-			fixed (byte** poutPixels = &outPixels)
-			{
-				fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-				{
-					GetTexDataAsRGBA32Native(self, (byte**)poutPixels, outWidth, outHeight, (int*)poutBytesPerPixel);
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ref ImFontAtlas self, ref byte* outPixels, int* outWidth, int* outHeight, ref int outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte** poutPixels = &outPixels)
-				{
-					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-					{
-						GetTexDataAsRGBA32Native((ImFontAtlas*)pself, (byte**)poutPixels, outWidth, outHeight, (int*)poutBytesPerPixel);
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ImFontAtlasPtr self, byte** outPixels, ref int outWidth, int* outHeight, ref int outBytesPerPixel)
-		{
-			fixed (int* poutWidth = &outWidth)
-			{
-				fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-				{
-					GetTexDataAsRGBA32Native(self, outPixels, (int*)poutWidth, outHeight, (int*)poutBytesPerPixel);
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ref ImFontAtlas self, byte** outPixels, ref int outWidth, int* outHeight, ref int outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (int* poutWidth = &outWidth)
-				{
-					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-					{
-						GetTexDataAsRGBA32Native((ImFontAtlas*)pself, outPixels, (int*)poutWidth, outHeight, (int*)poutBytesPerPixel);
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ImFontAtlasPtr self, ref byte* outPixels, ref int outWidth, int* outHeight, ref int outBytesPerPixel)
-		{
-			fixed (byte** poutPixels = &outPixels)
-			{
-				fixed (int* poutWidth = &outWidth)
-				{
-					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-					{
-						GetTexDataAsRGBA32Native(self, (byte**)poutPixels, (int*)poutWidth, outHeight, (int*)poutBytesPerPixel);
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ref ImFontAtlas self, ref byte* outPixels, ref int outWidth, int* outHeight, ref int outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte** poutPixels = &outPixels)
-				{
-					fixed (int* poutWidth = &outWidth)
-					{
-						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-						{
-							GetTexDataAsRGBA32Native((ImFontAtlas*)pself, (byte**)poutPixels, (int*)poutWidth, outHeight, (int*)poutBytesPerPixel);
-						}
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ImFontAtlasPtr self, byte** outPixels, int* outWidth, ref int outHeight, ref int outBytesPerPixel)
-		{
-			fixed (int* poutHeight = &outHeight)
-			{
-				fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-				{
-					GetTexDataAsRGBA32Native(self, outPixels, outWidth, (int*)poutHeight, (int*)poutBytesPerPixel);
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ref ImFontAtlas self, byte** outPixels, int* outWidth, ref int outHeight, ref int outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (int* poutHeight = &outHeight)
-				{
-					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-					{
-						GetTexDataAsRGBA32Native((ImFontAtlas*)pself, outPixels, outWidth, (int*)poutHeight, (int*)poutBytesPerPixel);
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ImFontAtlasPtr self, ref byte* outPixels, int* outWidth, ref int outHeight, ref int outBytesPerPixel)
-		{
-			fixed (byte** poutPixels = &outPixels)
-			{
-				fixed (int* poutHeight = &outHeight)
-				{
-					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-					{
-						GetTexDataAsRGBA32Native(self, (byte**)poutPixels, outWidth, (int*)poutHeight, (int*)poutBytesPerPixel);
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ref ImFontAtlas self, ref byte* outPixels, int* outWidth, ref int outHeight, ref int outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte** poutPixels = &outPixels)
-				{
-					fixed (int* poutHeight = &outHeight)
-					{
-						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-						{
-							GetTexDataAsRGBA32Native((ImFontAtlas*)pself, (byte**)poutPixels, outWidth, (int*)poutHeight, (int*)poutBytesPerPixel);
-						}
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ImFontAtlasPtr self, byte** outPixels, ref int outWidth, ref int outHeight, ref int outBytesPerPixel)
-		{
-			fixed (int* poutWidth = &outWidth)
-			{
-				fixed (int* poutHeight = &outHeight)
-				{
-					fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-					{
-						GetTexDataAsRGBA32Native(self, outPixels, (int*)poutWidth, (int*)poutHeight, (int*)poutBytesPerPixel);
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ref ImFontAtlas self, byte** outPixels, ref int outWidth, ref int outHeight, ref int outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (int* poutWidth = &outWidth)
-				{
-					fixed (int* poutHeight = &outHeight)
-					{
-						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-						{
-							GetTexDataAsRGBA32Native((ImFontAtlas*)pself, outPixels, (int*)poutWidth, (int*)poutHeight, (int*)poutBytesPerPixel);
-						}
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ImFontAtlasPtr self, ref byte* outPixels, ref int outWidth, ref int outHeight, ref int outBytesPerPixel)
-		{
-			fixed (byte** poutPixels = &outPixels)
-			{
-				fixed (int* poutWidth = &outWidth)
-				{
-					fixed (int* poutHeight = &outHeight)
-					{
-						fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-						{
-							GetTexDataAsRGBA32Native(self, (byte**)poutPixels, (int*)poutWidth, (int*)poutHeight, (int*)poutBytesPerPixel);
-						}
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsRGBA32(ref ImFontAtlas self, ref byte* outPixels, ref int outWidth, ref int outHeight, ref int outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte** poutPixels = &outPixels)
-				{
-					fixed (int* poutWidth = &outWidth)
-					{
-						fixed (int* poutHeight = &outHeight)
-						{
-							fixed (int* poutBytesPerPixel = &outBytesPerPixel)
-							{
-								GetTexDataAsRGBA32Native((ImFontAtlas*)pself, (byte**)poutPixels, (int*)poutWidth, (int*)poutHeight, (int*)poutBytesPerPixel);
-							}
-						}
 					}
 				}
 			}

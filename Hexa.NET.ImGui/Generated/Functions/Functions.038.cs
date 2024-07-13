@@ -17,6 +17,436 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
+		[LibraryImport(LibName, EntryPoint = "igDockContextQueueUndockWindow")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DockContextQueueUndockWindowNative(ImGuiContext* ctx, ImGuiWindow* window);
+
+		public static void DockContextQueueUndockWindow(ImGuiContextPtr ctx, ImGuiWindowPtr window)
+		{
+			DockContextQueueUndockWindowNative(ctx, window);
+		}
+
+		public static void DockContextQueueUndockWindow(ref ImGuiContext ctx, ImGuiWindowPtr window)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				DockContextQueueUndockWindowNative((ImGuiContext*)pctx, window);
+			}
+		}
+
+		public static void DockContextQueueUndockWindow(ImGuiContextPtr ctx, ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				DockContextQueueUndockWindowNative(ctx, (ImGuiWindow*)pwindow);
+			}
+		}
+
+		public static void DockContextQueueUndockWindow(ref ImGuiContext ctx, ref ImGuiWindow window)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				fixed (ImGuiWindow* pwindow = &window)
+				{
+					DockContextQueueUndockWindowNative((ImGuiContext*)pctx, (ImGuiWindow*)pwindow);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDockContextQueueUndockNode")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DockContextQueueUndockNodeNative(ImGuiContext* ctx, ImGuiDockNode* node);
+
+		public static void DockContextQueueUndockNode(ImGuiContextPtr ctx, ImGuiDockNodePtr node)
+		{
+			DockContextQueueUndockNodeNative(ctx, node);
+		}
+
+		public static void DockContextQueueUndockNode(ref ImGuiContext ctx, ImGuiDockNodePtr node)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				DockContextQueueUndockNodeNative((ImGuiContext*)pctx, node);
+			}
+		}
+
+		public static void DockContextQueueUndockNode(ImGuiContextPtr ctx, ref ImGuiDockNode node)
+		{
+			fixed (ImGuiDockNode* pnode = &node)
+			{
+				DockContextQueueUndockNodeNative(ctx, (ImGuiDockNode*)pnode);
+			}
+		}
+
+		public static void DockContextQueueUndockNode(ref ImGuiContext ctx, ref ImGuiDockNode node)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				fixed (ImGuiDockNode* pnode = &node)
+				{
+					DockContextQueueUndockNodeNative((ImGuiContext*)pctx, (ImGuiDockNode*)pnode);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDockContextProcessUndockWindow")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DockContextProcessUndockWindowNative(ImGuiContext* ctx, ImGuiWindow* window, byte clearPersistentDockingRef);
+
+		public static void DockContextProcessUndockWindow(ImGuiContextPtr ctx, ImGuiWindowPtr window, bool clearPersistentDockingRef)
+		{
+			DockContextProcessUndockWindowNative(ctx, window, clearPersistentDockingRef ? (byte)1 : (byte)0);
+		}
+
+		public static void DockContextProcessUndockWindow(ref ImGuiContext ctx, ImGuiWindowPtr window, bool clearPersistentDockingRef)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				DockContextProcessUndockWindowNative((ImGuiContext*)pctx, window, clearPersistentDockingRef ? (byte)1 : (byte)0);
+			}
+		}
+
+		public static void DockContextProcessUndockWindow(ImGuiContextPtr ctx, ref ImGuiWindow window, bool clearPersistentDockingRef)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				DockContextProcessUndockWindowNative(ctx, (ImGuiWindow*)pwindow, clearPersistentDockingRef ? (byte)1 : (byte)0);
+			}
+		}
+
+		public static void DockContextProcessUndockWindow(ref ImGuiContext ctx, ref ImGuiWindow window, bool clearPersistentDockingRef)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				fixed (ImGuiWindow* pwindow = &window)
+				{
+					DockContextProcessUndockWindowNative((ImGuiContext*)pctx, (ImGuiWindow*)pwindow, clearPersistentDockingRef ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDockContextProcessUndockNode")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void DockContextProcessUndockNodeNative(ImGuiContext* ctx, ImGuiDockNode* node);
+
+		public static void DockContextProcessUndockNode(ImGuiContextPtr ctx, ImGuiDockNodePtr node)
+		{
+			DockContextProcessUndockNodeNative(ctx, node);
+		}
+
+		public static void DockContextProcessUndockNode(ref ImGuiContext ctx, ImGuiDockNodePtr node)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				DockContextProcessUndockNodeNative((ImGuiContext*)pctx, node);
+			}
+		}
+
+		public static void DockContextProcessUndockNode(ImGuiContextPtr ctx, ref ImGuiDockNode node)
+		{
+			fixed (ImGuiDockNode* pnode = &node)
+			{
+				DockContextProcessUndockNodeNative(ctx, (ImGuiDockNode*)pnode);
+			}
+		}
+
+		public static void DockContextProcessUndockNode(ref ImGuiContext ctx, ref ImGuiDockNode node)
+		{
+			fixed (ImGuiContext* pctx = &ctx)
+			{
+				fixed (ImGuiDockNode* pnode = &node)
+				{
+					DockContextProcessUndockNodeNative((ImGuiContext*)pctx, (ImGuiDockNode*)pnode);
+				}
+			}
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igDockContextCalcDropPosForDocking")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte DockContextCalcDropPosForDockingNative(ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payloadWindow, ImGuiDockNode* payloadNode, ImGuiDir splitDir, byte splitOuter, Vector2* outPos);
+
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+			return ret != 0;
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+				return ret != 0;
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			{
+				byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+				return ret != 0;
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ptargetNode = &targetNode)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+			{
+				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+				return ret != 0;
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			{
+				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ptargetNode = &targetNode)
+				{
+					fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+			{
+				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+				return ret != 0;
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			{
+				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ptargetNode = &targetNode)
+				{
+					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+			{
+				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+				{
+					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			{
+				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+				{
+					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ptargetNode = &targetNode)
+				{
+					fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+					{
+						fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
+						{
+							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (Vector2* poutPos = &outPos)
+			{
+				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+				return ret != 0;
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (Vector2* poutPos = &outPos)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			{
+				fixed (Vector2* poutPos = &outPos)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiDockNode* ptargetNode = &targetNode)
+				{
+					fixed (Vector2* poutPos = &outPos)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+			{
+				fixed (Vector2* poutPos = &outPos)
+				{
+					byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiWindow* ptarget = &target)
+			{
+				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+				{
+					fixed (Vector2* poutPos = &outPos)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		{
+			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			{
+				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+				{
+					fixed (Vector2* poutPos = &outPos)
+					{
+						byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
 		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
 		{
 			fixed (ImGuiWindow* ptarget = &target)
@@ -1212,16 +1642,6 @@ namespace Hexa.NET.ImGui
 			TableSetColumnSortDirectionNative(columnN, sortDirection, appendToSortSpecs ? (byte)1 : (byte)0);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGetHoveredColumn")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int TableGetHoveredColumnNative();
-
-		public static int TableGetHoveredColumn()
-		{
-			int ret = TableGetHoveredColumnNative();
-			return ret;
-		}
-
 		[LibraryImport(LibName, EntryPoint = "igTableGetHoveredRow")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial int TableGetHoveredRowNative();
@@ -1272,11 +1692,19 @@ namespace Hexa.NET.ImGui
 
 		[LibraryImport(LibName, EntryPoint = "igTableAngledHeadersRowEx")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableAngledHeadersRowExNative(float angle, float maxLabelWidth);
+		internal static partial void TableAngledHeadersRowExNative(int rowId, float angle, float maxLabelWidth, ImGuiTableHeaderData* data, int dataCount);
 
-		public static void TableAngledHeadersRowEx(float angle, float maxLabelWidth)
+		public static void TableAngledHeadersRowEx(int rowId, float angle, float maxLabelWidth, ImGuiTableHeaderDataPtr data, int dataCount)
 		{
-			TableAngledHeadersRowExNative(angle, maxLabelWidth);
+			TableAngledHeadersRowExNative(rowId, angle, maxLabelWidth, data, dataCount);
+		}
+
+		public static void TableAngledHeadersRowEx(int rowId, float angle, float maxLabelWidth, ref ImGuiTableHeaderData data, int dataCount)
+		{
+			fixed (ImGuiTableHeaderData* pdata = &data)
+			{
+				TableAngledHeadersRowExNative(rowId, angle, maxLabelWidth, (ImGuiTableHeaderData*)pdata, dataCount);
+			}
 		}
 
 		[LibraryImport(LibName, EntryPoint = "igGetCurrentTable")]
@@ -4589,440 +5017,6 @@ namespace Hexa.NET.ImGui
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, pStr0, textSizeIfKnown, align, clipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					RenderTextClippedExNative(drawList, posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, string text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			RenderTextClippedExNative(drawList, posMin, posMax, pStr0, pStr1, textSizeIfKnown, align, clipRect);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, string text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, pStr0, pStr1, textSizeIfKnown, align, clipRect);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextClippedExNative(drawList, posMin, posMax, text, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, ref byte text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextClippedExNative(drawList, posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, string text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextClippedExNative(drawList, posMin, posMax, pStr0, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, ref byte text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, string text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, pStr0, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextClippedExNative(drawList, posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextClippedExNative(drawList, posMin, posMax, text, pStr0, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, pStr0, (Vector2*)ptextSizeIfKnown, align, clipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextClippedExNative(drawList, posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, string text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextClippedExNative(drawList, posMin, posMax, pStr0, pStr1, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-						{
-							RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-						}
-					}
-				}
 			}
 		}
 	}

@@ -3556,129 +3556,129 @@ namespace Hexa.NET.ImGui
 
 		[LibraryImport(LibName, EntryPoint = "igBeginTable")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginTableNative(byte* strId, int column, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth);
+		internal static partial byte BeginTableNative(byte* strId, int columns, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth);
 
-		public static bool BeginTable(byte* strId, int column, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		public static bool BeginTable(byte* strId, int columns, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
 		{
-			byte ret = BeginTableNative(strId, column, flags, outerSize, innerWidth);
+			byte ret = BeginTableNative(strId, columns, flags, outerSize, innerWidth);
 			return ret != 0;
 		}
 
-		public static bool BeginTable(byte* strId, int column, ImGuiTableFlags flags, Vector2 outerSize)
+		public static bool BeginTable(byte* strId, int columns, ImGuiTableFlags flags, Vector2 outerSize)
 		{
-			byte ret = BeginTableNative(strId, column, flags, outerSize, (float)(0.0f));
+			byte ret = BeginTableNative(strId, columns, flags, outerSize, (float)(0.0f));
 			return ret != 0;
 		}
 
-		public static bool BeginTable(byte* strId, int column, ImGuiTableFlags flags)
+		public static bool BeginTable(byte* strId, int columns, ImGuiTableFlags flags)
 		{
-			byte ret = BeginTableNative(strId, column, flags, (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
+			byte ret = BeginTableNative(strId, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
 			return ret != 0;
 		}
 
-		public static bool BeginTable(byte* strId, int column)
+		public static bool BeginTable(byte* strId, int columns)
 		{
-			byte ret = BeginTableNative(strId, column, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
+			byte ret = BeginTableNative(strId, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
 			return ret != 0;
 		}
 
-		public static bool BeginTable(byte* strId, int column, Vector2 outerSize)
+		public static bool BeginTable(byte* strId, int columns, Vector2 outerSize)
 		{
-			byte ret = BeginTableNative(strId, column, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
+			byte ret = BeginTableNative(strId, columns, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
 			return ret != 0;
 		}
 
-		public static bool BeginTable(byte* strId, int column, ImGuiTableFlags flags, float innerWidth)
+		public static bool BeginTable(byte* strId, int columns, ImGuiTableFlags flags, float innerWidth)
 		{
-			byte ret = BeginTableNative(strId, column, flags, (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
+			byte ret = BeginTableNative(strId, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
 			return ret != 0;
 		}
 
-		public static bool BeginTable(byte* strId, int column, float innerWidth)
+		public static bool BeginTable(byte* strId, int columns, float innerWidth)
 		{
-			byte ret = BeginTableNative(strId, column, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
+			byte ret = BeginTableNative(strId, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
 			return ret != 0;
 		}
 
-		public static bool BeginTable(byte* strId, int column, Vector2 outerSize, float innerWidth)
+		public static bool BeginTable(byte* strId, int columns, Vector2 outerSize, float innerWidth)
 		{
-			byte ret = BeginTableNative(strId, column, (ImGuiTableFlags)(0), outerSize, innerWidth);
+			byte ret = BeginTableNative(strId, columns, (ImGuiTableFlags)(0), outerSize, innerWidth);
 			return ret != 0;
 		}
 
-		public static bool BeginTable(ref byte strId, int column, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		public static bool BeginTable(ref byte strId, int columns, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginTableNative((byte*)pstrId, column, flags, outerSize, innerWidth);
+				byte ret = BeginTableNative((byte*)pstrId, columns, flags, outerSize, innerWidth);
 				return ret != 0;
 			}
 		}
 
-		public static bool BeginTable(ref byte strId, int column, ImGuiTableFlags flags, Vector2 outerSize)
+		public static bool BeginTable(ref byte strId, int columns, ImGuiTableFlags flags, Vector2 outerSize)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginTableNative((byte*)pstrId, column, flags, outerSize, (float)(0.0f));
+				byte ret = BeginTableNative((byte*)pstrId, columns, flags, outerSize, (float)(0.0f));
 				return ret != 0;
 			}
 		}
 
-		public static bool BeginTable(ref byte strId, int column, ImGuiTableFlags flags)
+		public static bool BeginTable(ref byte strId, int columns, ImGuiTableFlags flags)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginTableNative((byte*)pstrId, column, flags, (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
+				byte ret = BeginTableNative((byte*)pstrId, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
 				return ret != 0;
 			}
 		}
 
-		public static bool BeginTable(ref byte strId, int column)
+		public static bool BeginTable(ref byte strId, int columns)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginTableNative((byte*)pstrId, column, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
+				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
 				return ret != 0;
 			}
 		}
 
-		public static bool BeginTable(ref byte strId, int column, Vector2 outerSize)
+		public static bool BeginTable(ref byte strId, int columns, Vector2 outerSize)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginTableNative((byte*)pstrId, column, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
+				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
 				return ret != 0;
 			}
 		}
 
-		public static bool BeginTable(ref byte strId, int column, ImGuiTableFlags flags, float innerWidth)
+		public static bool BeginTable(ref byte strId, int columns, ImGuiTableFlags flags, float innerWidth)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginTableNative((byte*)pstrId, column, flags, (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
+				byte ret = BeginTableNative((byte*)pstrId, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
 				return ret != 0;
 			}
 		}
 
-		public static bool BeginTable(ref byte strId, int column, float innerWidth)
+		public static bool BeginTable(ref byte strId, int columns, float innerWidth)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginTableNative((byte*)pstrId, column, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
+				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
 				return ret != 0;
 			}
 		}
 
-		public static bool BeginTable(ref byte strId, int column, Vector2 outerSize, float innerWidth)
+		public static bool BeginTable(ref byte strId, int columns, Vector2 outerSize, float innerWidth)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				byte ret = BeginTableNative((byte*)pstrId, column, (ImGuiTableFlags)(0), outerSize, innerWidth);
+				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), outerSize, innerWidth);
 				return ret != 0;
 			}
 		}
 
-		public static bool BeginTable(string strId, int column, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		public static bool BeginTable(string strId, int columns, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3697,7 +3697,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableNative(pStr0, column, flags, outerSize, innerWidth);
+			byte ret = BeginTableNative(pStr0, columns, flags, outerSize, innerWidth);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3705,7 +3705,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool BeginTable(string strId, int column, ImGuiTableFlags flags, Vector2 outerSize)
+		public static bool BeginTable(string strId, int columns, ImGuiTableFlags flags, Vector2 outerSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3724,7 +3724,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableNative(pStr0, column, flags, outerSize, (float)(0.0f));
+			byte ret = BeginTableNative(pStr0, columns, flags, outerSize, (float)(0.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3732,7 +3732,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool BeginTable(string strId, int column, ImGuiTableFlags flags)
+		public static bool BeginTable(string strId, int columns, ImGuiTableFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3751,7 +3751,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableNative(pStr0, column, flags, (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
+			byte ret = BeginTableNative(pStr0, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3759,7 +3759,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool BeginTable(string strId, int column)
+		public static bool BeginTable(string strId, int columns)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3778,7 +3778,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableNative(pStr0, column, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
+			byte ret = BeginTableNative(pStr0, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3786,7 +3786,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool BeginTable(string strId, int column, Vector2 outerSize)
+		public static bool BeginTable(string strId, int columns, Vector2 outerSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3805,7 +3805,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableNative(pStr0, column, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
+			byte ret = BeginTableNative(pStr0, columns, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3813,7 +3813,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool BeginTable(string strId, int column, ImGuiTableFlags flags, float innerWidth)
+		public static bool BeginTable(string strId, int columns, ImGuiTableFlags flags, float innerWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3832,7 +3832,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableNative(pStr0, column, flags, (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
+			byte ret = BeginTableNative(pStr0, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3840,7 +3840,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool BeginTable(string strId, int column, float innerWidth)
+		public static bool BeginTable(string strId, int columns, float innerWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3859,7 +3859,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableNative(pStr0, column, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
+			byte ret = BeginTableNative(pStr0, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3867,7 +3867,7 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool BeginTable(string strId, int column, Vector2 outerSize, float innerWidth)
+		public static bool BeginTable(string strId, int columns, Vector2 outerSize, float innerWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3886,7 +3886,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableNative(pStr0, column, (ImGuiTableFlags)(0), outerSize, innerWidth);
+			byte ret = BeginTableNative(pStr0, columns, (ImGuiTableFlags)(0), outerSize, innerWidth);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4424,6 +4424,16 @@ namespace Hexa.NET.ImGui
 		public static void TableSetColumnEnabled(int columnN, bool v)
 		{
 			TableSetColumnEnabledNative(columnN, v ? (byte)1 : (byte)0);
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igTableGetHoveredColumn")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial int TableGetHoveredColumnNative();
+
+		public static int TableGetHoveredColumn()
+		{
+			int ret = TableGetHoveredColumnNative();
+			return ret;
 		}
 
 		[LibraryImport(LibName, EntryPoint = "igTableSetBgColor")]
@@ -5007,36 +5017,6 @@ namespace Hexa.NET.ImGui
 					byte ret = BeginTabItemNative((byte*)plabel, (bool*)ppOpen, (ImGuiTabItemFlags)(0));
 					return ret != 0;
 				}
-			}
-		}
-
-		public static bool BeginTabItem(string label, ref bool pOpen, ImGuiTabItemFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* ppOpen = &pOpen)
-			{
-				byte ret = BeginTabItemNative(pStr0, (bool*)ppOpen, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
 			}
 		}
 	}

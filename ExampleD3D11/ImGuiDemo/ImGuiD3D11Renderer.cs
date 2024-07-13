@@ -754,7 +754,7 @@ namespace ExampleD3D11.ImGuiDemo
             ViewportData* vd = (ViewportData*)viewport->RendererUserData;
             var rtv = vd->RTView.Handle;
             bd->context.OMSetRenderTargets(1, &rtv, (ID3D11DepthStencilView*)null);
-            if ((viewport->Flags & ImGuiViewportFlags.NoRendererClear) != 0)
+            if ((viewport->Flags & ImGuiViewportFlags.NoRendererClear) == 0)
             {
                 var col = new Vector4(0.0f, 0.0f, 0.0f, 1.0f);
                 bd->context.ClearRenderTargetView(rtv, (float*)&col);

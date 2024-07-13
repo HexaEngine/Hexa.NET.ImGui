@@ -11,7 +11,7 @@
 		<IsAotCompatible>true</IsAotCompatible>
 
 		<AssemblyVersion>0.5.0</AssemblyVersion>
-		<PackageVersion>1.0.3</PackageVersion>
+		<PackageVersion>1.0.4</PackageVersion>
 		<Description>A .NET wrapper for the ImNodes library. (0.5.0)</Description>
 		<PackageTags>ImNodes UI Immidate GUI Nodes Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
@@ -33,18 +33,6 @@
 			<Link>runtimes\android-arm64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<PackagePath>runtimes/android-arm64/native</PackagePath>
-			<Pack>true</Pack>
-		</None>
-		<None Include="..\native\android-arm\cimnodes.so">
-			<Link>runtimes\android-arm\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<PackagePath>runtimes/android-arm/native</PackagePath>
-			<Pack>true</Pack>
-		</None>
-		<None Include="..\native\android-x86\cimnodes.so">
-			<Link>runtimes\android-x86\native\%(RecursiveDir)%(Filename)%(Extension)</Link>
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<PackagePath>runtimes/android-x86/native</PackagePath>
 			<Pack>true</Pack>
 		</None>
 		<None Include="..\native\osx-arm64\cimnodes.dylib">

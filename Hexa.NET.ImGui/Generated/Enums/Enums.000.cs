@@ -20,6 +20,16 @@ namespace Hexa.NET.ImGui
 		Count = unchecked(3),
 	}
 
+	public enum ImGuiDir
+	{
+		None = unchecked(-1),
+		Left = unchecked(0),
+		Right = unchecked(1),
+		Up = unchecked(2),
+		Down = unchecked(3),
+		Count = unchecked(4),
+	}
+
 	public enum ImGuiInputEventType
 	{
 		None = unchecked(0),
@@ -39,8 +49,7 @@ namespace Hexa.NET.ImGui
 		Mouse = unchecked(1),
 		Keyboard = unchecked(2),
 		Gamepad = unchecked(3),
-		Clipboard = unchecked(4),
-		Count = unchecked(5),
+		Count = unchecked(4),
 	}
 
 	public enum ImGuiKey
@@ -206,8 +215,7 @@ namespace Hexa.NET.ImGui
 		ModShift = unchecked(8192),
 		ModAlt = unchecked(16384),
 		ModSuper = unchecked(32768),
-		ModShortcut = unchecked(2048),
-		ModMask = unchecked(63488),
+		ModMask = unchecked(61440),
 		NamedKeyBegin = unchecked(512),
 		NamedKeyEnd = Count,
 		NamedKeyCount = unchecked(154),
@@ -235,6 +243,13 @@ namespace Hexa.NET.ImGui
 		None = unchecked(-1),
 		X = unchecked(0),
 		Y = unchecked(1),
+	}
+
+	public enum ImGuiSortDirection
+	{
+		None = unchecked(0),
+		Ascending = unchecked(1),
+		Descending = unchecked(2),
 	}
 
 	public enum ImGuiContextHookType
@@ -300,7 +315,6 @@ namespace Hexa.NET.ImGui
 		NoNav = unchecked(196608),
 		NoDecoration = unchecked(43),
 		NoInputs = unchecked(197120),
-		NavFlattened = unchecked(8388608),
 		ChildWindow = unchecked(16777216),
 		Tooltip = unchecked(33554432),
 		Popup = unchecked(67108864),
@@ -320,6 +334,7 @@ namespace Hexa.NET.ImGui
 		AutoResizeY = unchecked(32),
 		AlwaysAutoResize = unchecked(64),
 		FrameStyle = unchecked(128),
+		NavFlattened = unchecked(256),
 	}
 
 	public enum ImGuiInputTextFlags
@@ -327,25 +342,27 @@ namespace Hexa.NET.ImGui
 		None = unchecked(0),
 		CharsDecimal = unchecked(1),
 		CharsHexadecimal = unchecked(2),
-		CharsUppercase = unchecked(4),
-		CharsNoBlank = unchecked(8),
-		AutoSelectAll = unchecked(16),
-		EnterReturnsTrue = unchecked(32),
-		CallbackCompletion = unchecked(64),
-		CallbackHistory = unchecked(128),
-		CallbackAlways = unchecked(256),
-		CallbackCharFilter = unchecked(512),
-		AllowTabInput = unchecked(1024),
-		CtrlEnterForNewLine = unchecked(2048),
-		NoHorizontalScroll = unchecked(4096),
-		AlwaysOverwrite = unchecked(8192),
-		ReadOnly = unchecked(16384),
-		Password = unchecked(32768),
+		CharsScientific = unchecked(4),
+		CharsUppercase = unchecked(8),
+		CharsNoBlank = unchecked(16),
+		AllowTabInput = unchecked(32),
+		EnterReturnsTrue = unchecked(64),
+		EscapeClearsAll = unchecked(128),
+		CtrlEnterForNewLine = unchecked(256),
+		ReadOnly = unchecked(512),
+		Password = unchecked(1024),
+		AlwaysOverwrite = unchecked(2048),
+		AutoSelectAll = unchecked(4096),
+		ParseEmptyRefVal = unchecked(8192),
+		DisplayEmptyRefVal = unchecked(16384),
+		NoHorizontalScroll = unchecked(32768),
 		NoUndoRedo = unchecked(65536),
-		CharsScientific = unchecked(131072),
-		CallbackResize = unchecked(262144),
-		CallbackEdit = unchecked(524288),
-		EscapeClearsAll = unchecked(1048576),
+		CallbackCompletion = unchecked(131072),
+		CallbackHistory = unchecked(262144),
+		CallbackAlways = unchecked(524288),
+		CallbackCharFilter = unchecked(1048576),
+		CallbackResize = unchecked(2097152),
+		CallbackEdit = unchecked(4194304),
 	}
 
 	public enum ImGuiTreeNodeFlags
@@ -364,8 +381,9 @@ namespace Hexa.NET.ImGui
 		FramePadding = unchecked(1024),
 		SpanAvailWidth = unchecked(2048),
 		SpanFullWidth = unchecked(4096),
-		SpanAllColumns = unchecked(8192),
-		NavLeftJumpsBackHere = unchecked(16384),
+		SpanTextWidth = unchecked(8192),
+		SpanAllColumns = unchecked(16384),
+		NavLeftJumpsBackHere = unchecked(32768),
 		CollapsingHeader = unchecked(26),
 	}
 
@@ -418,9 +436,10 @@ namespace Hexa.NET.ImGui
 		NoCloseWithMiddleMouseButton = unchecked(8),
 		NoTabListScrollingButtons = unchecked(16),
 		NoTooltip = unchecked(32),
-		FittingPolicyResizeDown = unchecked(64),
-		FittingPolicyScroll = unchecked(128),
-		FittingPolicyMask = unchecked(192),
+		DrawSelectedOverline = unchecked(64),
+		FittingPolicyResizeDown = unchecked(128),
+		FittingPolicyScroll = unchecked(256),
+		FittingPolicyMask = unchecked(384),
 		FittingPolicyDefault = FittingPolicyResizeDown,
 	}
 
@@ -494,7 +513,9 @@ namespace Hexa.NET.ImGui
 		SourceNoHoldToOpenOthers = unchecked(4),
 		SourceAllowNullId = unchecked(8),
 		SourceExtern = unchecked(16),
-		SourceAutoExpirePayload = unchecked(32),
+		PayloadAutoExpire = unchecked(32),
+		PayloadNoCrossContext = unchecked(64),
+		PayloadNoCrossProcess = unchecked(128),
 		AcceptBeforeDelivery = unchecked(1024),
 		AcceptNoDrawDefaultRect = unchecked(2048),
 		AcceptNoPreviewTooltip = unchecked(4096),
@@ -516,21 +537,19 @@ namespace Hexa.NET.ImGui
 		Count = unchecked(10),
 	}
 
-	public enum ImGuiDir
-	{
-		None = unchecked(-1),
-		Left = unchecked(0),
-		Right = unchecked(1),
-		Up = unchecked(2),
-		Down = unchecked(3),
-		Count = unchecked(4),
-	}
-
-	public enum ImGuiSortDirection
+	public enum ImGuiInputFlags
 	{
 		None = unchecked(0),
-		Ascending = unchecked(1),
-		Descending = unchecked(2),
+		Repeat = unchecked(1),
+		RouteActive = unchecked(1024),
+		RouteFocused = unchecked(2048),
+		RouteGlobal = unchecked(4096),
+		RouteAlways = unchecked(8192),
+		RouteOverFocused = unchecked(16384),
+		RouteOverActive = unchecked(32768),
+		RouteUnlessBgFocused = unchecked(65536),
+		RouteFromRootWindow = unchecked(131072),
+		Tooltip = unchecked(262144),
 	}
 
 	public enum ImGuiConfigFlags
@@ -542,7 +561,8 @@ namespace Hexa.NET.ImGui
 		NavNoCaptureKeyboard = unchecked(8),
 		NoMouse = unchecked(16),
 		NoMouseCursorChange = unchecked(32),
-		DockingEnable = unchecked(64),
+		NoKeyboard = unchecked(64),
+		DockingEnable = unchecked(128),
 		ViewportsEnable = unchecked(1024),
 		DpiEnableScaleViewports = unchecked(16384),
 		DpiEnableScaleFonts = unchecked(32768),
@@ -597,29 +617,31 @@ namespace Hexa.NET.ImGui
 		ResizeGrip = unchecked(30),
 		ResizeGripHovered = unchecked(31),
 		ResizeGripActive = unchecked(32),
-		Tab = unchecked(33),
-		TabHovered = unchecked(34),
-		TabActive = unchecked(35),
-		TabUnfocused = unchecked(36),
-		TabUnfocusedActive = unchecked(37),
-		DockingPreview = unchecked(38),
-		DockingEmptyBg = unchecked(39),
-		PlotLines = unchecked(40),
-		PlotLinesHovered = unchecked(41),
-		PlotHistogram = unchecked(42),
-		PlotHistogramHovered = unchecked(43),
-		TableHeaderBg = unchecked(44),
-		TableBorderStrong = unchecked(45),
-		TableBorderLight = unchecked(46),
-		TableRowBg = unchecked(47),
-		TableRowBgAlt = unchecked(48),
-		TextSelectedBg = unchecked(49),
-		DragDropTarget = unchecked(50),
-		NavHighlight = unchecked(51),
-		NavWindowingHighlight = unchecked(52),
-		NavWindowingDimBg = unchecked(53),
-		ModalWindowDimBg = unchecked(54),
-		Count = unchecked(55),
+		TabHovered = unchecked(33),
+		Tab = unchecked(34),
+		TabSelected = unchecked(35),
+		TabSelectedOverline = unchecked(36),
+		TabDimmed = unchecked(37),
+		TabDimmedSelected = unchecked(38),
+		TabDimmedSelectedOverline = unchecked(39),
+		DockingPreview = unchecked(40),
+		DockingEmptyBg = unchecked(41),
+		PlotLines = unchecked(42),
+		PlotLinesHovered = unchecked(43),
+		PlotHistogram = unchecked(44),
+		PlotHistogramHovered = unchecked(45),
+		TableHeaderBg = unchecked(46),
+		TableBorderStrong = unchecked(47),
+		TableBorderLight = unchecked(48),
+		TableRowBg = unchecked(49),
+		TableRowBgAlt = unchecked(50),
+		TextSelectedBg = unchecked(51),
+		DragDropTarget = unchecked(52),
+		NavHighlight = unchecked(53),
+		NavWindowingHighlight = unchecked(54),
+		NavWindowingDimBg = unchecked(55),
+		ModalWindowDimBg = unchecked(56),
+		Count = unchecked(57),
 	}
 
 	public enum ImGuiStyleVar
@@ -647,14 +669,17 @@ namespace Hexa.NET.ImGui
 		GrabMinSize = unchecked(20),
 		GrabRounding = unchecked(21),
 		TabRounding = unchecked(22),
-		TabBarBorderSize = unchecked(23),
-		ButtonTextAlign = unchecked(24),
-		SelectableTextAlign = unchecked(25),
-		SeparatorTextBorderSize = unchecked(26),
-		SeparatorTextAlign = unchecked(27),
-		SeparatorTextPadding = unchecked(28),
-		DockingSeparatorSize = unchecked(29),
-		Count = unchecked(30),
+		TabBorderSize = unchecked(23),
+		TabBarBorderSize = unchecked(24),
+		TableAngledHeadersAngle = unchecked(25),
+		TableAngledHeadersTextAlign = unchecked(26),
+		ButtonTextAlign = unchecked(27),
+		SelectableTextAlign = unchecked(28),
+		SeparatorTextBorderSize = unchecked(29),
+		SeparatorTextAlign = unchecked(30),
+		SeparatorTextPadding = unchecked(31),
+		DockingSeparatorSize = unchecked(32),
+		Count = unchecked(33),
 	}
 
 	public enum ImGuiButtonFlags
@@ -664,7 +689,6 @@ namespace Hexa.NET.ImGui
 		MouseButtonRight = unchecked(2),
 		MouseButtonMiddle = unchecked(4),
 		MouseButtonMask = unchecked(7),
-		MouseButtonDefault = MouseButtonLeft,
 	}
 
 	public enum ImGuiColorEditFlags
@@ -707,6 +731,7 @@ namespace Hexa.NET.ImGui
 		Logarithmic = unchecked(32),
 		NoRoundToFormat = unchecked(64),
 		NoInput = unchecked(128),
+		WrapAround = unchecked(256),
 		InvalidMask = unchecked(1879048207),
 	}
 
@@ -883,6 +908,13 @@ namespace Hexa.NET.ImGui
 		IsFocused = unchecked(8192),
 	}
 
+	public enum ImGuiDataTypePrivate
+	{
+		String = unchecked(11),
+		Pointer = unchecked(12),
+		Id = unchecked(13),
+	}
+
 	public enum ImGuiItemFlags
 	{
 		None = unchecked(0),
@@ -913,6 +945,7 @@ namespace Hexa.NET.ImGui
 		HoveredWindow = unchecked(128),
 		Visible = unchecked(256),
 		HasClipRect = unchecked(512),
+		HasShortcut = unchecked(1024),
 	}
 
 	public enum ImGuiHoveredFlagsPrivate
@@ -927,6 +960,7 @@ namespace Hexa.NET.ImGui
 		Multiline = unchecked(67108864),
 		NoMarkEdited = unchecked(134217728),
 		MergedItem = unchecked(268435456),
+		LocalizeDecimalPoint = unchecked(536870912),
 	}
 
 	public enum ImGuiButtonFlagsPrivate
@@ -1020,6 +1054,14 @@ namespace Hexa.NET.ImGui
 		Histogram = unchecked(1),
 	}
 
+	public enum ImGuiWindowRefreshFlags
+	{
+		None = unchecked(0),
+		TryToAvoidRefresh = unchecked(1),
+		OnHover = unchecked(2),
+		OnFocus = unchecked(4),
+	}
+
 	public enum ImGuiNextWindowDataFlags
 	{
 		None = unchecked(0),
@@ -1032,9 +1074,10 @@ namespace Hexa.NET.ImGui
 		HasBgAlpha = unchecked(64),
 		HasScroll = unchecked(128),
 		HasChildFlags = unchecked(256),
-		HasViewport = unchecked(512),
-		HasDock = unchecked(1024),
-		HasWindowClass = unchecked(2048),
+		HasRefreshPolicy = unchecked(512),
+		HasViewport = unchecked(1024),
+		HasDock = unchecked(2048),
+		HasWindowClass = unchecked(4096),
 	}
 
 	public enum ImGuiNextItemDataFlags
@@ -1043,13 +1086,7 @@ namespace Hexa.NET.ImGui
 		HasWidth = unchecked(1),
 		HasOpen = unchecked(2),
 		HasShortcut = unchecked(4),
-	}
-
-	public enum ImGuiDataTypePrivate
-	{
-		String = unchecked(11),
-		Pointer = unchecked(12),
-		Id = unchecked(13),
+		HasRefVal = unchecked(8),
 	}
 
 	public enum ImGuiPopupPositionPolicy
@@ -1059,10 +1096,8 @@ namespace Hexa.NET.ImGui
 		Tooltip = unchecked(2),
 	}
 
-	public enum ImGuiInputFlags
+	public enum ImGuiInputFlagsPrivate
 	{
-		None = unchecked(0),
-		Repeat = unchecked(1),
 		RepeatRateDefault = unchecked(2),
 		RepeatRateNavMove = unchecked(4),
 		RepeatRateNavTweak = unchecked(8),
@@ -1070,27 +1105,23 @@ namespace Hexa.NET.ImGui
 		RepeatUntilKeyModsChange = unchecked(32),
 		RepeatUntilKeyModsChangeFromNone = unchecked(64),
 		RepeatUntilOtherKeyPress = unchecked(128),
-		CondHovered = unchecked(256),
-		CondActive = unchecked(512),
-		CondDefault = unchecked(768),
-		LockThisFrame = unchecked(1024),
-		LockUntilRelease = unchecked(2048),
-		RouteFocused = unchecked(4096),
-		RouteGlobalLow = unchecked(8192),
-		RouteGlobal = unchecked(16384),
-		RouteGlobalHigh = unchecked(32768),
-		RouteAlways = unchecked(65536),
-		RouteUnlessBgFocused = unchecked(131072),
+		LockThisFrame = unchecked(1048576),
+		LockUntilRelease = unchecked(2097152),
+		CondHovered = unchecked(4194304),
+		CondActive = unchecked(8388608),
+		CondDefault = unchecked(12582912),
 		RepeatRateMask = unchecked(14),
 		RepeatUntilMask = unchecked(240),
 		RepeatMask = unchecked(255),
-		CondMask = unchecked(768),
-		RouteMask = unchecked(61440),
+		CondMask = unchecked(12582912),
+		RouteTypeMask = unchecked(15360),
+		RouteOptionsMask = unchecked(245760),
 		SupportedByIsKeyPressed = RepeatMask,
-		SupportedByIsMouseClicked = Repeat,
-		SupportedByShortcut = unchecked(258303),
-		SupportedBySetKeyOwner = unchecked(3072),
-		SupportedBySetItemKeyOwner = unchecked(3840),
+		SupportedByIsMouseClicked = unchecked((int)1 << 0),
+		SupportedByShortcut = unchecked(261375),
+		SupportedBySetNextItemShortcut = unchecked(523519),
+		SupportedBySetKeyOwner = unchecked(3145728),
+		SupportedBySetItemKeyOwner = unchecked(15728640),
 	}
 
 	public enum ImGuiActivateFlags
@@ -1144,6 +1175,7 @@ namespace Hexa.NET.ImGui
 		Activate = unchecked(4096),
 		NoSelect = unchecked(8192),
 		NoSetNavHighlight = unchecked(16384),
+		NoClearActiveId = unchecked(32768),
 	}
 
 	public enum ImGuiTypingSelectFlags
@@ -1195,12 +1227,14 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiWindowDockStyleCol
 	{
 		Text = unchecked(0),
-		Tab = unchecked(1),
-		TabHovered = unchecked(2),
-		TabActive = unchecked(3),
-		TabUnfocused = unchecked(4),
-		TabUnfocusedActive = unchecked(5),
-		Count = unchecked(6),
+		TabHovered = unchecked(1),
+		TabFocused = unchecked(2),
+		TabSelected = unchecked(3),
+		TabSelectedOverline = unchecked(4),
+		TabDimmed = unchecked(5),
+		TabDimmedSelected = unchecked(6),
+		TabDimmedSelectedOverline = unchecked(7),
+		Count = unchecked(8),
 	}
 
 	public enum ImGuiDebugLogFlags

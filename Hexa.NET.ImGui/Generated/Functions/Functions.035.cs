@@ -17,6 +17,226 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
+		public static string ImStrchrRangeS(string strBegin, string strEnd, byte c)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (strEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStrchrRangeNative(pStr0, pStr1, c));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igImStreolRange")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte* ImStreolRangeNative(byte* str, byte* strEnd);
+
+		public static byte* ImStreolRange(byte* str, byte* strEnd)
+		{
+			byte* ret = ImStreolRangeNative(str, strEnd);
+			return ret;
+		}
+
+		public static string ImStreolRangeS(byte* str, byte* strEnd)
+		{
+			string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(str, strEnd));
+			return ret;
+		}
+
+		public static byte* ImStreolRange(ref byte str, byte* strEnd)
+		{
+			fixed (byte* pstr = &str)
+			{
+				byte* ret = ImStreolRangeNative((byte*)pstr, strEnd);
+				return ret;
+			}
+		}
+
+		public static string ImStreolRangeS(ref byte str, byte* strEnd)
+		{
+			fixed (byte* pstr = &str)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStreolRangeNative((byte*)pstr, strEnd));
+				return ret;
+			}
+		}
+
+		public static byte* ImStreolRange(string str, byte* strEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (str != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(str);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = ImStreolRangeNative(pStr0, strEnd);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static string ImStreolRangeS(string str, byte* strEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (str != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(str);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(pStr0, strEnd));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static byte* ImStreolRange(byte* str, ref byte strEnd)
+		{
+			fixed (byte* pstrEnd = &strEnd)
+			{
+				byte* ret = ImStreolRangeNative(str, (byte*)pstrEnd);
+				return ret;
+			}
+		}
+
+		public static string ImStreolRangeS(byte* str, ref byte strEnd)
+		{
+			fixed (byte* pstrEnd = &strEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(str, (byte*)pstrEnd));
+				return ret;
+			}
+		}
+
+		public static byte* ImStreolRange(byte* str, string strEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* ret = ImStreolRangeNative(str, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static string ImStreolRangeS(byte* str, string strEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			string ret = Utils.DecodeStringUTF8(ImStreolRangeNative(str, pStr0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static byte* ImStreolRange(ref byte str, ref byte strEnd)
+		{
+			fixed (byte* pstr = &str)
+			{
+				fixed (byte* pstrEnd = &strEnd)
+				{
+					byte* ret = ImStreolRangeNative((byte*)pstr, (byte*)pstrEnd);
+					return ret;
+				}
+			}
+		}
+
 		public static string ImStreolRangeS(ref byte str, ref byte strEnd)
 		{
 			fixed (byte* pstr = &str)
@@ -4232,6 +4452,148 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
+		[LibraryImport(LibName, EntryPoint = "igImTextCountLines")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial int ImTextCountLinesNative(byte* inText, byte* inTextEnd);
+
+		public static int ImTextCountLines(byte* inText, byte* inTextEnd)
+		{
+			int ret = ImTextCountLinesNative(inText, inTextEnd);
+			return ret;
+		}
+
+		public static int ImTextCountLines(ref byte inText, byte* inTextEnd)
+		{
+			fixed (byte* pinText = &inText)
+			{
+				int ret = ImTextCountLinesNative((byte*)pinText, inTextEnd);
+				return ret;
+			}
+		}
+
+		public static int ImTextCountLines(string inText, byte* inTextEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (inText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(inText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(inText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			int ret = ImTextCountLinesNative(pStr0, inTextEnd);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static int ImTextCountLines(byte* inText, ref byte inTextEnd)
+		{
+			fixed (byte* pinTextEnd = &inTextEnd)
+			{
+				int ret = ImTextCountLinesNative(inText, (byte*)pinTextEnd);
+				return ret;
+			}
+		}
+
+		public static int ImTextCountLines(byte* inText, string inTextEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (inTextEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(inTextEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(inTextEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			int ret = ImTextCountLinesNative(inText, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static int ImTextCountLines(ref byte inText, ref byte inTextEnd)
+		{
+			fixed (byte* pinText = &inText)
+			{
+				fixed (byte* pinTextEnd = &inTextEnd)
+				{
+					int ret = ImTextCountLinesNative((byte*)pinText, (byte*)pinTextEnd);
+					return ret;
+				}
+			}
+		}
+
+		public static int ImTextCountLines(string inText, string inTextEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (inText != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(inText);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(inText, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (inTextEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(inTextEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(inTextEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			int ret = ImTextCountLinesNative(pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
 		[LibraryImport(LibName, EntryPoint = "igImFileOpen")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial ImFileHandle ImFileOpenNative(byte* filename, byte* mode);
@@ -4662,361 +5024,6 @@ namespace Hexa.NET.ImGui
 					}
 				}
 			}
-		}
-
-		public static void* ImFileLoadToMemory(string filename, string mode, ref nuint outFileSize, int paddingBytes)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (filename != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(filename);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(filename, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (mode != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(mode);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(mode, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			fixed (nuint* poutFileSize = &outFileSize)
-			{
-				void* ret = ImFileLoadToMemoryNative(pStr0, pStr1, (nuint*)poutFileSize, paddingBytes);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImPow_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float ImPowFloatNative(float x, float y);
-
-		public static float ImPowFloat(float x, float y)
-		{
-			float ret = ImPowFloatNative(x, y);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImPow_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImPowDoubleNative(double x, double y);
-
-		public static double ImPowDouble(double x, double y)
-		{
-			double ret = ImPowDoubleNative(x, y);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImLog_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float ImLogFloatNative(float x);
-
-		public static float ImLogFloat(float x)
-		{
-			float ret = ImLogFloatNative(x);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImLog_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImLogDoubleNative(double x);
-
-		public static double ImLogDouble(double x)
-		{
-			double ret = ImLogDoubleNative(x);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImAbs_Int")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImAbsIntNative(int x);
-
-		public static int ImAbsInt(int x)
-		{
-			int ret = ImAbsIntNative(x);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImAbs_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float ImAbsFloatNative(float x);
-
-		public static float ImAbsFloat(float x)
-		{
-			float ret = ImAbsFloatNative(x);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImAbs_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImAbsDoubleNative(double x);
-
-		public static double ImAbsDouble(double x)
-		{
-			double ret = ImAbsDoubleNative(x);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImSign_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float ImSignFloatNative(float x);
-
-		public static float ImSignFloat(float x)
-		{
-			float ret = ImSignFloatNative(x);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImSign_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImSignDoubleNative(double x);
-
-		public static double ImSignDouble(double x)
-		{
-			double ret = ImSignDoubleNative(x);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImRsqrt_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float ImRsqrtFloatNative(float x);
-
-		public static float ImRsqrtFloat(float x)
-		{
-			float ret = ImRsqrtFloatNative(x);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImRsqrt_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImRsqrtDoubleNative(double x);
-
-		public static double ImRsqrtDouble(double x)
-		{
-			double ret = ImRsqrtDoubleNative(x);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImMin")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImMinNative(Vector2* output, Vector2 lhs, Vector2 rhs);
-
-		public static Vector2 ImMin(Vector2 lhs, Vector2 rhs)
-		{
-			Vector2 ret;
-			ImMinNative(&ret, lhs, rhs);
-			return ret;
-		}
-
-		public static void ImMin(Vector2* output, Vector2 lhs, Vector2 rhs)
-		{
-			ImMinNative(output, lhs, rhs);
-		}
-
-		public static void ImMin(ref Vector2 output, Vector2 lhs, Vector2 rhs)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				ImMinNative((Vector2*)poutput, lhs, rhs);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImMax")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImMaxNative(Vector2* output, Vector2 lhs, Vector2 rhs);
-
-		public static Vector2 ImMax(Vector2 lhs, Vector2 rhs)
-		{
-			Vector2 ret;
-			ImMaxNative(&ret, lhs, rhs);
-			return ret;
-		}
-
-		public static void ImMax(Vector2* output, Vector2 lhs, Vector2 rhs)
-		{
-			ImMaxNative(output, lhs, rhs);
-		}
-
-		public static void ImMax(ref Vector2 output, Vector2 lhs, Vector2 rhs)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				ImMaxNative((Vector2*)poutput, lhs, rhs);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImClamp")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImClampNative(Vector2* output, Vector2 v, Vector2 mn, Vector2 mx);
-
-		public static Vector2 ImClamp(Vector2 v, Vector2 mn, Vector2 mx)
-		{
-			Vector2 ret;
-			ImClampNative(&ret, v, mn, mx);
-			return ret;
-		}
-
-		public static void ImClamp(Vector2* output, Vector2 v, Vector2 mn, Vector2 mx)
-		{
-			ImClampNative(output, v, mn, mx);
-		}
-
-		public static void ImClamp(ref Vector2 output, Vector2 v, Vector2 mn, Vector2 mx)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				ImClampNative((Vector2*)poutput, v, mn, mx);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImLerp_Vec2Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImLerpVec2FloatNative(Vector2* output, Vector2 a, Vector2 b, float t);
-
-		public static Vector2 ImLerpVec2Float(Vector2 a, Vector2 b, float t)
-		{
-			Vector2 ret;
-			ImLerpVec2FloatNative(&ret, a, b, t);
-			return ret;
-		}
-
-		public static void ImLerpVec2Float(Vector2* output, Vector2 a, Vector2 b, float t)
-		{
-			ImLerpVec2FloatNative(output, a, b, t);
-		}
-
-		public static void ImLerpVec2Float(ref Vector2 output, Vector2 a, Vector2 b, float t)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				ImLerpVec2FloatNative((Vector2*)poutput, a, b, t);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImLerp_Vec2Vec2")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImLerpVec2Vec2Native(Vector2* output, Vector2 a, Vector2 b, Vector2 t);
-
-		public static Vector2 ImLerpVec2Vec2(Vector2 a, Vector2 b, Vector2 t)
-		{
-			Vector2 ret;
-			ImLerpVec2Vec2Native(&ret, a, b, t);
-			return ret;
-		}
-
-		public static void ImLerpVec2Vec2(Vector2* output, Vector2 a, Vector2 b, Vector2 t)
-		{
-			ImLerpVec2Vec2Native(output, a, b, t);
-		}
-
-		public static void ImLerpVec2Vec2(ref Vector2 output, Vector2 a, Vector2 b, Vector2 t)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				ImLerpVec2Vec2Native((Vector2*)poutput, a, b, t);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImLerp_Vec4")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImLerpVec4Native(Vector4* output, Vector4 a, Vector4 b, float t);
-
-		public static Vector4 ImLerpVec4(Vector4 a, Vector4 b, float t)
-		{
-			Vector4 ret;
-			ImLerpVec4Native(&ret, a, b, t);
-			return ret;
-		}
-
-		public static void ImLerpVec4(Vector4* output, Vector4 a, Vector4 b, float t)
-		{
-			ImLerpVec4Native(output, a, b, t);
-		}
-
-		public static void ImLerpVec4(ref Vector4 output, Vector4 a, Vector4 b, float t)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				ImLerpVec4Native((Vector4*)poutput, a, b, t);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImSaturate")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float ImSaturateNative(float f);
-
-		public static float ImSaturate(float f)
-		{
-			float ret = ImSaturateNative(f);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImLengthSqr_Vec2")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float ImLengthSqrVec2Native(Vector2 lhs);
-
-		public static float ImLengthSqrVec2(Vector2 lhs)
-		{
-			float ret = ImLengthSqrVec2Native(lhs);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImLengthSqr_Vec4")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float ImLengthSqrVec4Native(Vector4 lhs);
-
-		public static float ImLengthSqrVec4(Vector4 lhs)
-		{
-			float ret = ImLengthSqrVec4Native(lhs);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImInvLength")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float ImInvLengthNative(Vector2 lhs, float failValue);
-
-		public static float ImInvLength(Vector2 lhs, float failValue)
-		{
-			float ret = ImInvLengthNative(lhs, failValue);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImTrunc_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float ImTruncFloatNative(float f);
-
-		public static float ImTruncFloat(float f)
-		{
-			float ret = ImTruncFloatNative(f);
-			return ret;
 		}
 	}
 }
