@@ -68,7 +68,7 @@ jobs:
       with:
         name: ${{ matrix.os }}-${{ matrix.arch }}-artifacts 
         path: |
-          cimguizmo/build/Release/*.dll
-          cimguizmo/build/*.so
-          cimguizmo/build/*.dylib
+          cimnodes/build/Release/*.dll
+          cimnodes/build/*.so
+          cimnodes/build/*.dylib
         if-no-files-found: ignore # 'warn' or 'ignore' or 'error'
