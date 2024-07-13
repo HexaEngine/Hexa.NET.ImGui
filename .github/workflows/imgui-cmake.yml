@@ -26,14 +26,8 @@ jobs:
     - uses: actions/checkout@v4.1.7
       with:
         repository: 'cimgui/cimgui'
-        ref: 'v1.53.1'
         path: 'cimgui'
         submodules: true
-
-    - name: Checkout specific commit
-      run: |
-        cd cimgui
-        git checkout 0781f92
 
     - name: Install dependencies on Ubuntu
       if: matrix.os == 'ubuntu-latest'
