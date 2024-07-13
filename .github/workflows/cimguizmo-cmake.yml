@@ -25,7 +25,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4.1.7
       with:
-        repository: 'cimgui/cimguizmo'
+        repository: 'JunaMeinhold/cimguizmo'
         path: 'cimguizmo'
         submodules: true
 
