@@ -90,7 +90,10 @@
             var options = new CppParserOptions
             {
                 ParseMacros = true,
+            
             };
+
+            options.Defines.Add("CIMGUI_DEFINE_ENUMS_AND_STRUCTS");
 
             var compilation = CppParser.ParseFile(headerFile, options);
 
@@ -183,7 +186,9 @@
             var options = new CppParserOptions
             {
                 ParseMacros = true,
-            };
+            }; 
+            
+            options.Defines.Add("CIMGUI_DEFINE_ENUMS_AND_STRUCTS");
 
             var compilation = CppParser.ParseFile(headerFile, options);
 
@@ -341,6 +346,8 @@
                 ParseMacros = true,
             };
 
+            options.Defines.Add("CIMGUI_DEFINE_ENUMS_AND_STRUCTS");
+
             var compilation = CppParser.ParseFile(headerFile, options);
 
             // Print diagnostic messages
@@ -402,6 +409,8 @@
             {
                 ParseMacros = true,
             };
+
+            options.Defines.Add("CIMGUI_DEFINE_ENUMS_AND_STRUCTS");
 
             var compilation = CppParser.ParseFile(headerFile, options);
 

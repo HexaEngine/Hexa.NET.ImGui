@@ -1117,7 +1117,7 @@ namespace Hexa.NET.ImGui
 		RouteTypeMask = unchecked(15360),
 		RouteOptionsMask = unchecked(245760),
 		SupportedByIsKeyPressed = RepeatMask,
-		SupportedByIsMouseClicked = unchecked((int)1 << 0),
+		SupportedByIsMouseClicked = unchecked((int)Repeat),
 		SupportedByShortcut = unchecked(261375),
 		SupportedBySetNextItemShortcut = unchecked(523519),
 		SupportedBySetKeyOwner = unchecked(3145728),

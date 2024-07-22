@@ -17,21 +17,32 @@
 
         public unsafe ImGuiManager(Window* window, ComPtr<ID3D11Device1> device, ComPtr<ID3D11DeviceContext1> deviceContext)
         {
+            // Create ImGui context
             guiContext = ImGui.CreateContext(null);
 
+            // Set ImGui context
             ImGui.SetCurrentContext(guiContext);
+
+            // Set ImGui context for ImGuizmo
             ImGuizmo.SetImGuiContext(guiContext);
+
+            // Set ImGui context for ImPlot
             ImPlot.SetImGuiContext(guiContext);
+
+            // Set ImGui context for ImNodes
             ImNodes.SetImGuiContext(guiContext);
 
+            // Create and set ImNodes context and set style
             nodesContext = ImNodes.CreateContext();
             ImNodes.SetCurrentContext(nodesContext);
             ImNodes.StyleColorsDark(ImNodes.GetStyle());
 
+            // Create and set ImPlot context and set style
             plotContext = ImPlot.CreateContext();
             ImPlot.SetCurrentContext(plotContext);
             ImPlot.StyleColorsDark(ImPlot.GetStyle());
 
+            // Setup ImGui config.
             var io = ImGui.GetIO();
             io.ConfigFlags |= ImGuiConfigFlags.NavEnableKeyboard;     // Enable Keyboard Controls
             io.ConfigFlags |= ImGuiConfigFlags.NavEnableGamepad;      // Enable Gamepad Controls
@@ -40,9 +51,12 @@
             io.ConfigViewportsNoAutoMerge = false;
             io.ConfigViewportsNoTaskBarIcon = false;
 
+            // setup fonts.
             var config = ImGui.ImFontConfig();
             io.Fonts.AddFontDefault(config);
 
+            // load custom font
+            config.FontDataOwnedByAtlas = false; // Set this option to false to avoid ImGui to delete the data, used with fixed statement.
             config.MergeMode = true;
             config.GlyphMinAdvanceX = 18;
             config.GlyphOffset = new(0, 4);
@@ -52,10 +66,14 @@
                 var bytes = File.ReadAllBytes("assets/fonts/SEGMDL2.TTF");
                 fixed (byte* buffer2 = bytes)
                 {
+                    // IMPORTANT: AddFontFromMemoryTTF() by default transfer ownership of the data buffer to the font atlas, which will attempt to free it on destruction.
+                    // This was to avoid an unnecessary copy, and is perhaps not a good API (a future version will redesign it).
+                    // Set config.FontDataOwnedByAtlas to false to keep ownership of the data (so you need to free the data yourself).
                     io.Fonts.AddFontFromMemoryTTF(buffer2, bytes.Length, 14, config, buffer);
                 }
             }
 
+            // setup ImGui style
             var style = ImGui.GetStyle();
             var colors = style.Colors;
 
@@ -94,9 +112,9 @@
             colors[(int)ImGuiCol.ResizeGripActive] = new Vector4(0.40f, 0.44f, 0.47f, 1.00f);
             colors[(int)ImGuiCol.Tab] = new Vector4(0.00f, 0.00f, 0.00f, 0.52f);
             colors[(int)ImGuiCol.TabHovered] = new Vector4(0.14f, 0.14f, 0.14f, 1.00f);
-            //colors[(int)ImGuiCol.TabActive] = new Vector4(0.20f, 0.20f, 0.20f, 0.36f);
-            //colors[(int)ImGuiCol.TabUnfocused] = new Vector4(0.00f, 0.00f, 0.00f, 0.52f);
-            //colors[(int)ImGuiCol.TabUnfocusedActive] = new Vector4(0.14f, 0.14f, 0.14f, 1.00f);
+            colors[(int)ImGuiCol.TabSelected] = new Vector4(0.20f, 0.20f, 0.20f, 0.36f);
+            colors[(int)ImGuiCol.TabDimmed] = new Vector4(0.00f, 0.00f, 0.00f, 0.52f);
+            colors[(int)ImGuiCol.TabDimmedSelected] = new Vector4(0.14f, 0.14f, 0.14f, 1.00f);
             colors[(int)ImGuiCol.DockingPreview] = new Vector4(0.33f, 0.67f, 0.86f, 1.00f);
             colors[(int)ImGuiCol.DockingEmptyBg] = new Vector4(1.00f, 0.00f, 0.00f, 1.00f);
             colors[(int)ImGuiCol.PlotLines] = new Vector4(1.00f, 0.00f, 0.00f, 1.00f);
@@ -138,12 +156,14 @@
             style.LogSliderDeadzone = 4;
             style.TabRounding = 4;
 
+            // When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
             if ((io.ConfigFlags & ImGuiConfigFlags.ViewportsEnable) != 0)
             {
                 style.WindowRounding = 0.0f;
                 style.Colors[(int)ImGuiCol.WindowBg].W = 1.0f;
             }
 
+            // Setup Platform
             ImGuiSDL2Platform.Init(window, null, null);
 
             ComPtr<ID3D11Device> d = default;
@@ -152,28 +172,34 @@
             ComPtr<ID3D11DeviceContext> c = default;
             c.Handle = (ID3D11DeviceContext*)deviceContext.Handle;
 
+            // Setup Renderer
             ImGuiD3D11Renderer.Init(d, c);
-
-            //ImGuiRenderer.Init(device, context);
-            //ImGuiRenderer.Init(device, context);
         }
 
         public unsafe void NewFrame()
         {
+            // Set ImGui context
             ImGui.SetCurrentContext(guiContext);
+            // Set ImGui context for ImGuizmo
             ImGuizmo.SetImGuiContext(guiContext);
+            // Set ImGui context for ImPlot
             ImPlot.SetImGuiContext(guiContext);
+            // Set ImGui context for ImNodes
             ImNodes.SetImGuiContext(guiContext);
 
+            // Set ImNodes context
             ImNodes.SetCurrentContext(nodesContext);
+            // Set ImPlot context
             ImPlot.SetCurrentContext(plotContext);
 
+            // Start new frame, call order matters.
             ImGuiSDL2Platform.NewFrame();
             ImGui.NewFrame();
-            ImGuizmo.BeginFrame();
+            ImGuizmo.BeginFrame(); // mandatory for ImGuizmo
 
+            // Example for getting the central dockspace id of a window/viewport.
             ImGui.PushStyleColor(ImGuiCol.WindowBg, Vector4.Zero);
-            DockSpaceId = ImGui.DockSpaceOverViewport(null, ImGuiDockNodeFlags.PassthruCentralNode, null);
+            DockSpaceId = ImGui.DockSpaceOverViewport(null, ImGuiDockNodeFlags.PassthruCentralNode, null); // passing null as first argument will use the main viewport
             ImGui.PopStyleColor(1);
         }
 
@@ -181,11 +207,13 @@
 
         public unsafe void EndFrame()
         {
+            // Renders ImGui Data
             var io = ImGui.GetIO();
             ImGui.Render();
             ImGui.EndFrame();
             ImGuiD3D11Renderer.RenderDrawData(ImGui.GetDrawData());
 
+            // Update and Render additional Platform Windows
             if ((io.ConfigFlags & ImGuiConfigFlags.ViewportsEnable) != 0)
             {
                 ImGui.UpdatePlatformWindows();

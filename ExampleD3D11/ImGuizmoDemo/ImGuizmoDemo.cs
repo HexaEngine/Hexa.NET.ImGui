@@ -50,6 +50,7 @@
 
         public void Draw()
         {
+            // IMPORTANT: If you want to render your scene through the window, set the background color to transparent, make sure to calculate the viewport after it to avoid misalignment
             ImGui.PushStyleColor(ImGuiCol.WindowBg, Vector4.Zero);
             if (!ImGui.Begin("Demo ImGuizmo", ImGuiWindowFlags.MenuBar | ImGuiWindowFlags.NoMove))
             {
@@ -68,6 +69,7 @@
             HandleInput();
             DrawMenuBar();
 
+            // IMPORTANT: Calculate the viewport, so the gizmo is always in the center of the window, to avoid misalignment
             var position = ImGui.GetWindowPos();
             var size = ImGui.GetWindowSize();
             float ratioX = size.X / SourceViewport.Width;
@@ -79,8 +81,11 @@
             var y = position.Y + (size.Y - h) / 2;
             Viewport = new Viewport(x, y, w, h);
 
+            // Get the view and projection matrix from the camera
             var view = camera.View;
             var proj = camera.Projection;
+
+            // IMPORTANT: Set the drawlist and enable ImGuizmo and set the rect, before using any ImGuizmo functions
             ImGuizmo.SetDrawlist();
             ImGuizmo.Enable(true);
             ImGuizmo.SetOrthographic(false);
@@ -88,24 +93,29 @@
 
             var transform = cube;
 
+            // Draw the grid and the cube
             Matrix4x4 matrix = Matrix4x4.Identity;
             ImGuizmo.DrawGrid(ref view, ref proj, ref matrix, 10);
             ImGuizmo.DrawCubes(ref view, ref proj, ref transform, 1);
 
+            // IMPORTANT: If you use multiple gizmos, you need to set the ID for each gizmo
             ImGuizmo.SetID(0);
 
+            // Call the Manipulate function to manipulate the cube
             if (ImGuizmo.Manipulate(ref view, ref proj, operation, mode, ref transform))
             {
                 gimbalGrabbed = true;
                 cube = transform;
             }
 
+            // Query gizmo state and update local variables
             if (!ImGuizmo.IsUsing() && gimbalGrabbed)
             {
                 gimbalGrabbed = false;
             }
             overGimbal = ImGuizmo.IsOver();
 
+            // User-Interface for the gizmo operation modes.
             ImGui.PushItemWidth(100);
             int opIndex = Array.IndexOf(operations, operation);
             if (ImGui.Combo("##Operation", ref opIndex, operationNames, operationNames.Length))
@@ -119,6 +129,7 @@
             }
             ImGui.PopItemWidth();
 
+            // Display the gizmo state
             ImGui.Text($"IsOver: {overGimbal}");
             ImGui.Text($"IsUsed: {gimbalGrabbed}");
 

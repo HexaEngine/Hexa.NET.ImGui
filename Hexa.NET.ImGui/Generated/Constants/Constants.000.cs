@@ -13,6 +13,8 @@ namespace Hexa.NET.ImGui
 {
 	public unsafe partial class ImGui
 	{
+		public const int CimguiDefineEnumsAndStructs = 1;
+
 		public const int ImguiHasDock = 1;
 
 	}

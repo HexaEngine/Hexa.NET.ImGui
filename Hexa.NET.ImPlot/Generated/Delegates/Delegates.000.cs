@@ -20,7 +20,7 @@ namespace Hexa.NET.ImPlot
 	public unsafe delegate int Formatter(double value, byte* buff, int size, void* userData);
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void Locator(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, delegate*<double, byte*, int, void*, int> formatter, void* formatterData);
+	public unsafe delegate void Locator(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData);
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate double TransformForward(double value, void* userData);
@@ -35,7 +35,7 @@ namespace Hexa.NET.ImPlot
 	public unsafe delegate int ImPlotFormatter(double value, byte* buff, int size, void* userData);
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImPlotLocator(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, delegate*<double, byte*, int, void*, int> formatter, void* formatterData);
+	public unsafe delegate void ImPlotLocator(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData);
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate double ImPlotTransform(double value, void* userData);
