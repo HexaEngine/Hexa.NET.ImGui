@@ -1,6 +1,6 @@
 # Hexa.NET.ImGui 
 
-A .NET wrapper for the Dear ImGui (1.90.4) library + internal + addons (ImGuizmo, ImNodes, ImPlot).
+A .NET wrapper for the Dear ImGui (1.90.9) library + internal + addons (ImGuizmo, ImNodes, ImPlot).
 
 # TODO:
 - Refractor the generator
