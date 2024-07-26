@@ -62,6 +62,13 @@ For a comprehensive example of how to use the library, refer to the [ExampleD3D1
 
 For details on how to set up the library, check the [ImGuiManager.cs](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/ExampleD3D11/ImGuiDemo/ImGuiManager.cs) file in the ExampleD3D11 project.
 
+
+## Projects Using Hexa.NET.ImGui
+
+[HexaEngine](https://github.com/HexaEngine/HexaEngine)
+
+<img src="https://github.com/user-attachments/assets/b54145fe-5bd5-4998-b36f-24efe8345aba" alt="HexaEngine Editor" width="400"/>
+
 ## TODO
 
 - **Refactor the generator**: Improve the code generation process for better performance and maintainability.
