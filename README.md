@@ -7,6 +7,8 @@ Hexa.NET.ImGui is a .NET wrapper for the Dear ImGui (1.90.9) library, including 
 - **Comprehensive Wrapper**: Integrates the core Dear ImGui library along with essential addons such as ImGuizmo, ImNodes, and ImPlot.
 - **Multi Viewport Support**: Enables seamless multi-viewport rendering for advanced UI scenarios.
 - **Active Development**: Regular updates and improvements to ensure compatibility with the latest Dear ImGui features and .NET advancements.
+- **Trustworthy Builds**: Native libraries are built using GitHub Actions for added trustworthiness and can be found [here](https://github.com/HexaEngine/Hexa.NET.ImGui/actions).
+- **Open Source**: The source code for the native libraries is public and can be reviewed by anyone.
 
 ## Packages
 
