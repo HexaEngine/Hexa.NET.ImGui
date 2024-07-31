@@ -9,7 +9,7 @@
 
         private static void GenerateHandles(CppCompilation compilation, string outputPath)
         {
-            string[] usings = { "System", "System.Diagnostics", "System.Runtime.InteropServices" };
+            string[] usings = { "System", "System.Diagnostics", "System.Runtime.InteropServices", "HexaGen.Runtime" };
 
             string outDir = Path.Combine(outputPath, "Handles");
             string fileName = Path.Combine(outDir, "Handles.cs");
@@ -44,7 +44,9 @@
         private static void WriteHandle(ICodeWriter writer, CppTypedef typedef, string csName, bool isDispatchable)
         {
             WriteCsSummary(typedef.Comment, writer);
+            writer.WriteLine("#if NET5_0_OR_GREATER");
             writer.WriteLine($"[DebuggerDisplay(\"{{DebuggerDisplay,nq}}\")]");
+            writer.WriteLine("#endif");
             using (writer.PushBlock($"public readonly partial struct {csName} : IEquatable<{csName}>"))
             {
                 string handleType = isDispatchable ? "nint" : "ulong";
@@ -65,7 +67,9 @@
                 writer.WriteLine($"public override bool Equals(object obj) => obj is {csName} handle && Equals(handle);");
                 writer.WriteLine("/// <inheritdoc/>");
                 writer.WriteLine($"public override int GetHashCode() => Handle.GetHashCode();");
+                writer.WriteLine("#if NET5_0_OR_GREATER");
                 writer.WriteLine($"private string DebuggerDisplay => string.Format(\"{csName} [0x{{0}}]\", Handle.ToString(\"X\"));");
+                writer.WriteLine("#endif");
             }
             writer.WriteLine();
         }

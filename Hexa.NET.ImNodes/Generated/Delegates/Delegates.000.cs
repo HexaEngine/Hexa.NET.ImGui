@@ -11,12 +11,20 @@ using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
 namespace Hexa.NET.ImNodes
 {
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImNodesMiniMapNodeHoveringCallback(int intValue, void* voidValue);
+
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImNodesMiniMapNodeHoveringCallback(int intValue, nint voidValue);
+
+	#endif
 
 }

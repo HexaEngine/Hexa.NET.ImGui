@@ -6,6 +6,7 @@
     using System.IO;
     using System.Linq;
     using System.Reflection.Metadata.Ecma335;
+    using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     using System.Text;
 
@@ -125,6 +126,7 @@
                                 delegateType = $"delegate* unmanaged[{cppFunction.CallingConvention.GetCallingConventionDelegate()}]<{GetNamelessParameterSignature(cppFunction.Parameters, false, true)}, {returnType}>";
                             }
 
+                            writer.WriteLine("#if NET5_0_OR_GREATER");
                             // isolates the argument names
                             string argumentNames = WriteFunctionMarshalling(cppFunction.Parameters);
 
@@ -138,6 +140,40 @@
                             {
                                 writer.WriteLine($"return (({delegateType})vt[{vTableIndex}])({argumentNames});");
                             }
+
+                            writer.WriteLine("#else");
+
+                            string returnTypeOld = GetCsTypeName(cppFunction.ReturnType);
+                            if (returnTypeOld == "bool")
+                            {
+                                returnTypeOld = GetBoolType();
+                            }
+                            if (returnTypeOld.Contains('*'))
+                            {
+                                returnTypeOld = "nint";
+                            }
+                            string delegateTypeOld;
+                            if (cppFunction.Parameters.Count == 0)
+                            {
+                                delegateTypeOld = $"delegate* unmanaged[{cppFunction.CallingConvention.GetCallingConventionDelegate()}]<{returnTypeOld}>";
+                            }
+                            else
+                            {
+                                delegateTypeOld = $"delegate* unmanaged[{cppFunction.CallingConvention.GetCallingConventionDelegate()}]<{GetNamelessParameterSignature(cppFunction.Parameters, false, true, compatibility: true)}, {returnTypeOld}>";
+                            }
+
+                            string argumentNamesOld = WriteFunctionMarshalling(cppFunction.Parameters, compatibility: true);
+
+                            if (returnCsName == "void")
+                            {
+                                writer.WriteLine($"(({delegateTypeOld})vt[{vTableIndex}])({argumentNamesOld});");
+                            }
+                            else
+                            {
+                                writer.WriteLine($"return ({returnType})(({delegateTypeOld})vt[{vTableIndex}])({argumentNamesOld});");
+                            }
+
+                            writer.WriteLine("#endif");
 
                             writer.EndBlock();
                             break;
@@ -375,6 +411,7 @@
                 {
                     var cppParameter = overload.Parameters[i + offset];
                     var isRef = false;
+                    var isSpan = false;
                     var isPointer = false;
                     var isStr = false;
                     var isArray = false;
@@ -388,6 +425,7 @@
                         {
                             cppParameter = param;
                             isRef = param.Type.IsRef;
+                            isSpan = param.Type.IsSpan;
                             isPointer = param.Type.IsPointer;
                             isStr = param.Type.IsString;
                             isArray = param.Type.IsArray;
@@ -456,13 +494,19 @@
                         sb.Append($"({overload.Parameters[i + offset].Type.Name})p{cppParameter.Name}");
                         stacks++;
                     }
+                    else if (isSpan)
+                    {
+                        writer.BeginBlock($"fixed ({cppParameter.Type.CleanName}* p{cppParameter.Name} = {cppParameter.Name})");
+                        sb.Append($"({overload.Parameters[i + offset].Type.Name})p{cppParameter.Name}");
+                        stacks++;
+                    }
                     else if (isArray)
                     {
                         writer.BeginBlock($"fixed ({cppParameter.Type.CleanName}* p{cppParameter.Name} = {cppParameter.Name})");
                         sb.Append($"({overload.Parameters[i + offset].Type.Name})p{cppParameter.Name}");
                         stacks++;
                     }
-                    else if (isBool && !isRef && !isPointer)
+                    else if (isBool && !isRef && !isSpan && !isPointer)
                     {
                         sb.Append($"{cppParameter.Name} ? (byte)1 : (byte)0");
                     }
@@ -789,7 +833,7 @@
             }
         }
 
-        private static string GetParameterSignature(IList<CppParameter> parameters, bool canUseOut)
+        private static string GetParameterSignature(IList<CppParameter> parameters, bool canUseOut, bool delegateType = false, bool compatibility = false)
         {
             StringBuilder argumentBuilder = new();
             int index = 0;
@@ -800,6 +844,35 @@
                 var paramCsTypeName = GetCsTypeName(cppParameter.Type, false);
                 var paramCsName = GetParameterName(cppParameter.Type, cppParameter.Name);
 
+                CppType ptrType = cppParameter.Type;
+                int depth = 0;
+                if (cppParameter.Type.IsPointer(ref depth, out var pointerType))
+                {
+                    ptrType = pointerType;
+                }
+
+                if (cppParameter.Type is CppQualifiedType qualifiedType)
+                {
+                    ptrType = qualifiedType.ElementType;
+                }
+
+                if (delegateType && ptrType is CppTypedef typedef && typedef.ElementType.IsDelegate(out var cppFunction))
+                {
+                    if (cppFunction.Parameters.Count == 0)
+                    {
+                        paramCsTypeName = $"delegate*<{GetCsTypeName(cppFunction.ReturnType)}>";
+                    }
+                    else
+                    {
+                        paramCsTypeName = $"delegate*<{GetNamelessParameterSignature(cppFunction.Parameters, false, delegateType)}, {GetCsTypeName(cppFunction.ReturnType)}>";
+                    }
+
+                    while (depth-- > 0)
+                    {
+                        paramCsTypeName += "*";
+                    }
+                }
+
                 if (paramCsTypeName == "bool")
                 {
                     paramCsTypeName = "byte";
@@ -809,6 +882,11 @@
                 {
                     argumentBuilder.Append("out ");
                     paramCsTypeName = GetCsTypeName(cppTypeDeclaration, false);
+                }
+
+                if (compatibility && paramCsTypeName.Contains('*'))
+                {
+                    paramCsTypeName = "nint";
                 }
 
                 argumentBuilder.Append(paramCsTypeName).Append(' ').Append(paramCsName);
@@ -824,7 +902,7 @@
             return argumentBuilder.ToString();
         }
 
-        private static string GetNamelessParameterSignature(IList<CppParameter> parameters, bool canUseOut, bool delegateType = false)
+        private static string GetNamelessParameterSignature(IList<CppParameter> parameters, bool canUseOut, bool delegateType = false, bool compatibility = false)
         {
             var argumentBuilder = new StringBuilder();
             int index = 0;
@@ -874,6 +952,11 @@
                     paramCsTypeName = GetCsTypeName(cppTypeDeclaration, false);
                 }
 
+                if (compatibility && paramCsTypeName.Contains('*'))
+                {
+                    paramCsTypeName = "nint";
+                }
+
                 argumentBuilder.Append(paramCsTypeName);
                 if (index < parameters.Count - 1)
                 {
@@ -886,7 +969,7 @@
             return argumentBuilder.ToString();
         }
 
-        private static string WriteFunctionMarshalling(IList<CppParameter> parameters)
+        private static string WriteFunctionMarshalling(IList<CppParameter> parameters, bool compatibility = false)
         {
             var argumentBuilder = new StringBuilder();
             int index = 0;
@@ -925,11 +1008,24 @@
                         paramCsTypeName += "*";
                     }
 
-                    argumentBuilder.Append($"({paramCsTypeName})Marshal.GetFunctionPointerForDelegate({paramCsName})");
+                    if (compatibility && paramCsTypeName.Contains('*'))
+                    {
+                        paramCsTypeName = "nint";
+                    }
+
+                    argumentBuilder.Append($"({paramCsTypeName})Utils.GetFunctionPointerForDelegate({paramCsName})");
                 }
                 else
                 {
-                    argumentBuilder.Append(paramCsName);
+                    if (compatibility && paramCsTypeName.Contains('*'))
+                    {
+
+                        argumentBuilder.Append($"(nint){paramCsName}");
+                    }
+                    else
+                    {
+                        argumentBuilder.Append(paramCsName);
+                    }
                 }
 
                 if (index < parameters.Count - 1)
@@ -975,6 +1071,7 @@
             {
                 {
                     CsParameterInfo[] refParameterList = new CsParameterInfo[parameters.Count];
+                    CsParameterInfo[] spanParameterList = new CsParameterInfo[parameters.Count];
                     CsParameterInfo[] stringParameterList = new CsParameterInfo[parameters.Count];
                     CsParameterInfo[][] customParameterList = new CsParameterInfo[mapping?.CustomVariations.Count ?? 0][];
                     for (int i = 0; i < (mapping?.CustomVariations.Count ?? 0); i++)
@@ -996,10 +1093,12 @@
                             {
                                 if (arrayType.Size > 0)
                                 {
+                                    spanParameterList[j] = new(paramCsName, new($"ReadOnlySpan<{GetCsTypeName(arrayType.ElementType, false)}>", kind), direction);
                                     refParameterList[j] = new(paramCsName, new("ref " + GetCsTypeName(arrayType.ElementType, false), kind), direction);
                                 }
                                 else
                                 {
+                                    spanParameterList[j] = new(paramCsName, new(GetCsWrapperTypeName(cppParameter.Type, false), kind), direction);
                                     refParameterList[j] = new(paramCsName, new(GetCsWrapperTypeName(cppParameter.Type, false), kind), direction);
                                 }
 
@@ -1018,10 +1117,26 @@
 
                                 if (IsString(cppParameter.Type))
                                 {
+                                    switch (kind)
+                                    {
+                                        case CppPrimitiveKind.Char:
+                                            if (direction == Direction.InOut || direction == Direction.Out) goto default;
+                                            spanParameterList[j] = new(paramCsName, new("ReadOnlySpan<byte>", kind), direction);
+                                            break;
+                                        case CppPrimitiveKind.WChar:
+                                            if (direction == Direction.InOut || direction == Direction.Out) goto default;
+                                            spanParameterList[j] = new(paramCsName, new("ReadOnlySpan<char>", kind), direction);
+                                            break;
+                                        default:
+                                            spanParameterList[j] = new(paramCsName, new(GetCsWrapperTypeName(cppParameter.Type, false), kind), direction);
+                                            break;
+                                    }
+                                   
                                     stringParameterList[j] = new(paramCsName, new(direction == Direction.InOut ? "ref string" : "string", kind), direction);
                                 }
                                 else
                                 {
+                                    spanParameterList[j] = new(paramCsName, new(GetCsWrapperTypeName(cppParameter.Type, false), kind), direction);
                                     stringParameterList[j] = new(paramCsName, new(GetCsWrapperTypeName(cppParameter.Type, false), kind), direction);
                                 }
                             }
@@ -1045,6 +1160,7 @@
                         {
                             refParameterList[j] = new(paramCsName, new(GetCsTypeName(cppParameter.Type, false), kind), direction);
                             stringParameterList[j] = new(paramCsName, new(GetCsTypeName(cppParameter.Type, false), kind), direction);
+                            spanParameterList[j] = new(paramCsName, new(GetCsTypeName(cppParameter.Type, false), kind), direction);
                             if (mapping != null)
                             {
                                 for (int i = 0; i < mapping.CustomVariations.Count; i++)
@@ -1059,6 +1175,8 @@
                     refVariation.Parameters.AddRange(refParameterList);
                     CsFunctionVariation stringVariation = function.CreateVariationWith();
                     stringVariation.Parameters.AddRange(stringParameterList);
+                    CsFunctionVariation spanVariation = function.CreateVariationWith();
+                    spanVariation.Parameters.AddRange(spanParameterList);
 
                     if (!function.HasVariation(refVariation))
                     {
@@ -1071,6 +1189,12 @@
                         function.Variations.Add(stringVariation);
                         GenerateDefaultValueVariations(parameters, function, stringVariation, isMember);
                         GenerateReturnVariations(function, stringVariation, isMember);
+                    }
+                    if (!function.HasVariation(spanVariation))
+                    {
+                        function.Variations.Add(spanVariation);
+                        GenerateDefaultValueVariations(parameters, function, spanVariation, isMember);
+                        GenerateReturnVariations(function, spanVariation, isMember);
                     }
                     for (int i = 0; i < (mapping?.CustomVariations.Count ?? 0); i++)
                     {

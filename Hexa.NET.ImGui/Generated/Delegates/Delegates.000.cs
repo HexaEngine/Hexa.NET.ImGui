@@ -11,149 +11,479 @@ using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 
 namespace Hexa.NET.ImGui
 {
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void UserCallback(ImDrawList* parentList, ImDrawCmd* cmd);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void UserCallback(nint parentList, nint cmd);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate byte FontBuilderBuild(ImFontAtlas* atlas);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate byte FontBuilderBuild(nint atlas);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void DockNodeWindowMenuHandler(ImGuiContext* ctx, ImGuiDockNode* node, ImGuiTabBar* tabBar);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void DockNodeWindowMenuHandler(nint ctx, nint node, nint tabBar);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate byte* GetClipboardTextFn(void* userData);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate nint GetClipboardTextFn(nint userData);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void SetClipboardTextFn(void* userData, byte* text);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void SetClipboardTextFn(nint userData, nint text);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate byte PlatformOpenInShellFn(ImGuiContext* ctx, byte* path);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate byte PlatformOpenInShellFn(nint ctx, nint path);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void PlatformSetImeDataFn(ImGuiContext* ctx, ImGuiViewport* viewport, ImGuiPlatformImeData* data);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void PlatformSetImeDataFn(nint ctx, nint viewport, nint data);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void PlatformCreateWindow(ImGuiViewport* vp);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void PlatformCreateWindow(nint vp);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void PlatformDestroyWindow(ImGuiViewport* vp);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void PlatformDestroyWindow(nint vp);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void PlatformShowWindow(ImGuiViewport* vp);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void PlatformShowWindow(nint vp);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void PlatformSetWindowPos(ImGuiViewport* vp, Vector2 pos);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void PlatformSetWindowPos(nint vp, Vector2 pos);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate Vector2* PlatformGetWindowPos(Vector2* pos, ImGuiViewport* viewport);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate Vector2* PlatformGetWindowPos(Vector2* pos, ImGuiViewport* viewport);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void PlatformSetWindowSize(ImGuiViewport* vp, Vector2 size);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void PlatformSetWindowSize(nint vp, Vector2 size);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate Vector2* PlatformGetWindowSize(Vector2* size, ImGuiViewport* viewport);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate Vector2* PlatformGetWindowSize(Vector2* size, ImGuiViewport* viewport);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void PlatformSetWindowFocus(ImGuiViewport* vp);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void PlatformSetWindowFocus(nint vp);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate byte PlatformGetWindowFocus(ImGuiViewport* vp);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate byte PlatformGetWindowFocus(nint vp);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate byte PlatformGetWindowMinimized(ImGuiViewport* vp);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate byte PlatformGetWindowMinimized(nint vp);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void PlatformSetWindowTitle(ImGuiViewport* vp, byte* str);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void PlatformSetWindowTitle(nint vp, nint str);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void PlatformSetWindowAlpha(ImGuiViewport* vp, float alpha);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void PlatformSetWindowAlpha(nint vp, float alpha);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void PlatformUpdateWindow(ImGuiViewport* vp);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void PlatformUpdateWindow(nint vp);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void PlatformRenderWindow(ImGuiViewport* vp, void* renderArg);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void PlatformRenderWindow(nint vp, nint renderArg);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void PlatformSwapBuffers(ImGuiViewport* vp, void* renderArg);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void PlatformSwapBuffers(nint vp, nint renderArg);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate float PlatformGetWindowDpiScale(ImGuiViewport* vp);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate float PlatformGetWindowDpiScale(nint vp);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void PlatformOnChangedViewport(ImGuiViewport* vp);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void PlatformOnChangedViewport(nint vp);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate int PlatformCreateVkSurface(ImGuiViewport* vp, ulong vkInst, void* vkAllocators, ulong* outVkSurface);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate int PlatformCreateVkSurface(nint vp, ulong vkInst, nint vkAllocators, nint outVkSurface);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void RendererCreateWindow(ImGuiViewport* vp);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void RendererCreateWindow(nint vp);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void RendererDestroyWindow(ImGuiViewport* vp);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void RendererDestroyWindow(nint vp);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void RendererSetWindowSize(ImGuiViewport* vp, Vector2 size);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void RendererSetWindowSize(nint vp, Vector2 size);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void RendererRenderWindow(ImGuiViewport* vp, void* renderArg);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void RendererRenderWindow(nint vp, nint renderArg);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void RendererSwapBuffers(ImGuiViewport* vp, void* renderArg);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void RendererSwapBuffers(nint vp, nint renderArg);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void SizeCallback(ImGuiSizeCallbackData* data);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void SizeCallback(nint data);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ClearAllFn(ImGuiContext* ctx, ImGuiSettingsHandler* handler);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ClearAllFn(nint ctx, nint handler);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ReadInitFn(ImGuiContext* ctx, ImGuiSettingsHandler* handler);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ReadInitFn(nint ctx, nint handler);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void* ReadOpenFn(ImGuiContext* ctx, ImGuiSettingsHandler* handler, byte* name);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate nint ReadOpenFn(nint ctx, nint handler, nint name);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ReadLineFn(ImGuiContext* ctx, ImGuiSettingsHandler* handler, void* entry, byte* line);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ReadLineFn(nint ctx, nint handler, nint entry, nint line);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ApplyAllFn(ImGuiContext* ctx, ImGuiSettingsHandler* handler);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ApplyAllFn(nint ctx, nint handler);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void WriteAllFn(ImGuiContext* ctx, ImGuiSettingsHandler* handler, ImGuiTextBuffer* outBuf);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void WriteAllFn(nint ctx, nint handler, nint outBuf);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void Callback(ImGuiContext* ctx, ImGuiContextHook* hook);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void Callback(nint ctx, nint hook);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate int AdapterIndexToStorageId(ImGuiSelectionBasicStorage* self, int idx);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate int AdapterIndexToStorageId(nint self, int idx);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void AdapterSetItemSelected(ImGuiSelectionExternalStorage* self, int idx, byte selected);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void AdapterSetItemSelected(nint self, int idx, byte selected);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImDrawCallback(ImDrawList* parentList, ImDrawCmd* cmd);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImDrawCallback(nint parentList, nint cmd);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImGuiSizeCallback(ImGuiSizeCallbackData* data);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImGuiSizeCallback(nint data);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImGuiContextHookCallback(ImGuiContext* ctx, ImGuiContextHook* hook);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImGuiContextHookCallback(nint ctx, nint hook);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate int ImGuiInputTextCallback(ImGuiInputTextCallbackData* data);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate int ImGuiInputTextCallback(nint data);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void* ImGuiMemAllocFunc(nuint sz, void* userData);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate nint ImGuiMemAllocFunc(nuint sz, nint userData);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImGuiMemFreeFunc(void* ptr, void* userData);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImGuiMemFreeFunc(nint ptr, nint userData);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImGuiErrorLogCallback(void* userData, byte* fmt);
+
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImGuiErrorLogCallback(nint userData, nint fmt);
+
+	#endif
 
 }

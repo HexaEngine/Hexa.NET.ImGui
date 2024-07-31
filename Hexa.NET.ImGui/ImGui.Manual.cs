@@ -2,14 +2,16 @@
 namespace Hexa.NET.ImGui
 {
     using System.Numerics;
+    using System.Reflection.Emit;
     using System.Runtime.InteropServices;
+    using HexaGen.Runtime;
 
     public static unsafe partial class ImGui
     {
- 
-        [LibraryImport(LibName, EntryPoint = "igInputText")]
-        [UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
-        internal static partial byte InputTextNative(byte* label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData);
+        internal static byte InputTextNative(byte* label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        {
+            return ((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, ImGuiInputTextFlags, delegate* <ImGuiInputTextCallbackData*, int>, void*, byte>)vt[1420])(label, buf, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
+        }
 
         public static bool InputText(byte* label, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
         {
@@ -1131,9 +1133,10 @@ namespace Hexa.NET.ImGui
             return ret != 0;
         }
 
-        [LibraryImport(LibName, EntryPoint = "igInputTextMultiline")]
-        [UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
-        internal static partial byte InputTextMultilineNative(byte* label, byte* buf, nuint bufSize, Vector2 size, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData);
+        internal static byte InputTextMultilineNative(byte* label, byte* buf, nuint bufSize, Vector2 size, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        {
+            return ((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, Vector2, ImGuiInputTextFlags, delegate*<ImGuiInputTextCallbackData*, int>, void*, byte>)vt[1421])(label, buf, bufSize, size, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
+        }
 
         public static bool InputTextMultiline(byte* label, byte* buf, nuint bufSize, Vector2 size, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
         {
@@ -3375,9 +3378,10 @@ namespace Hexa.NET.ImGui
             return ret != 0;
         }
 
-        [LibraryImport(LibName, EntryPoint = "igInputTextWithHint")]
-        [UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
-        internal static partial byte InputTextWithHintNative(byte* label, byte* hint, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData);
+        internal static byte InputTextWithHintNative(byte* label, byte* hint, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
+        {
+            return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, nuint, ImGuiInputTextFlags, delegate*<ImGuiInputTextCallbackData*, int>, void*, byte>)vt[1422])(label, hint, buf, bufSize, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
+        }
 
         public static bool InputTextWithHint(byte* label, byte* hint, byte* buf, nuint bufSize, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
         {
@@ -6962,10 +6966,11 @@ namespace Hexa.NET.ImGui
             }
             return ret != 0;
         }
-
-        [LibraryImport(LibName, EntryPoint = "igImFormatString")]
-        [UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
-        internal static partial int ImFormatStringNative(byte* buf, nuint bufSize, byte* fmt);
+    
+        internal static int ImFormatStringNative(byte* buf, nuint bufSize, byte* fmt)
+        {
+            return ((delegate* unmanaged[Cdecl]<byte*, nuint, byte*, int>)vt[1423])(buf, bufSize, fmt);
+        }
 
         public static int ImFormatString(byte* buf, nuint bufSize, byte* fmt)
         {
@@ -7107,9 +7112,10 @@ namespace Hexa.NET.ImGui
             return ret;
         }
 
-        [LibraryImport(LibName, EntryPoint = "igImFormatStringV")]
-        [UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
-        internal static partial int ImFormatStringVNative(byte* buf, nuint bufSize, byte* fmt, nuint args);
+        internal static int ImFormatStringVNative(byte* buf, nuint bufSize, byte* fmt, nuint args)
+        {
+            return ((delegate* unmanaged[Cdecl]<byte*, nuint, byte*, nuint, int>)vt[1424])(buf, bufSize, fmt, args);
+        }
 
         public static int ImFormatStringV(byte* buf, nuint bufSize, byte* fmt, nuint args)
         {
@@ -7251,9 +7257,10 @@ namespace Hexa.NET.ImGui
             return ret;
         }
 
-        [LibraryImport(LibName, EntryPoint = "igImParseFormatTrimDecorations")]
-        [UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
-        internal static partial byte* ImParseFormatTrimDecorationsNative(byte* format, byte* buf, nuint bufSize);
+        internal static byte* ImParseFormatTrimDecorationsNative(byte* format, byte* buf, nuint bufSize)
+        {
+            return ((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, byte*>)vt[1425])(format, buf, bufSize);
+        }
 
         public static byte* ImParseFormatTrimDecorations(byte* format, byte* buf, nuint bufSize)
         {
@@ -7535,9 +7542,10 @@ namespace Hexa.NET.ImGui
             return ret;
         }
 
-        [LibraryImport(LibName, EntryPoint = "igImTextStrToUtf8")]
-        [UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
-        internal static partial int ImTextToUtf8Native(byte* outBuf, int outBufSize, char* inText, char* inTextEnd);
+        internal static int ImTextToUtf8Native(byte* outBuf, int outBufSize, char* inText, char* inTextEnd)
+        {
+            return ((delegate* unmanaged[Cdecl]<byte*, int, char*, char*, int>)vt[1426])(outBuf, outBufSize, inText, inTextEnd);
+        }
 
         public static int ImTextToUtf8(byte* outBuf, int outBufSize, char* inText, char* inTextEnd)
         {
@@ -7747,9 +7755,10 @@ namespace Hexa.NET.ImGui
             }
         }
 
-        [LibraryImport(LibName, EntryPoint = "igImTextStrFromUtf8")]
-        [UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
-        internal static partial int ImTextFromUtf8Native(char* outBuf, int outBufSize, byte* inText, byte* inTextEnd, byte** inRemaining);
+        internal static int ImTextFromUtf8Native(char* outBuf, int outBufSize, byte* inText, byte* inTextEnd, byte** inRemaining)
+        {
+            return ((delegate* unmanaged[Cdecl]<char*, int, byte*, byte*, byte**, int>)vt[1427])(outBuf, outBufSize, inText, inTextEnd,inRemaining);
+        }
 
         public static int ImTextFromUtf8(char* outBuf, int outBufSize, byte* inText, byte* inTextEnd, byte** inRemaining)
         {
@@ -8386,10 +8395,11 @@ namespace Hexa.NET.ImGui
                 }
             }
         }
-
-        [LibraryImport(LibName, EntryPoint = "igGetKeyChordName")]
-        [UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
-        internal static partial void GetKeyChordNameNative(int keyChord, byte* outBuf, int outBufSize);
+      
+        internal static void GetKeyChordNameNative(int keyChord, byte* outBuf, int outBufSize)
+        {
+            ((delegate* unmanaged[Cdecl]<int, byte*, int, void>)vt[1428])(keyChord, outBuf, outBufSize);
+        }
 
         public static void GetKeyChordName(int keyChord, byte* outBuf, int outBufSize)
         {
@@ -8431,9 +8441,10 @@ namespace Hexa.NET.ImGui
             }
         }
 
-        [LibraryImport(LibName, EntryPoint = "igDataTypeFormatString")]
-        [UnmanagedCallConv(CallConvs = new Type[] { typeof(System.Runtime.CompilerServices.CallConvCdecl) })]
-        internal static partial int DataTypeFormatStringNative(byte* buf, int bufSize, ImGuiDataType dataType, void* pData, byte* format);
+        internal static int DataTypeFormatStringNative(byte* buf, int bufSize, ImGuiDataType dataType, void* pData, byte* format)
+        {
+            return ((delegate* unmanaged[Cdecl]<byte*, int, ImGuiDataType, void*, byte*, int>)vt[1429])(buf, bufSize, dataType, pData, format);
+        }
 
         public static int DataTypeFormatString(byte* buf, int bufSize, ImGuiDataType dataType, void* pData, byte* format)
         {

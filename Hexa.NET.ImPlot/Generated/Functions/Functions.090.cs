@@ -19,51 +19,194 @@ namespace Hexa.NET.ImPlot
 	public unsafe partial class ImPlot
 	{
 
-		public static void PlotDigital(ref byte labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags)
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pxs = &xs)
+				fixed (ushort* pvalues = &values)
 				{
-					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, flags, (int)(0), (int)(sizeof(long)));
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
 
-		public static void PlotDigital(ref byte labelId, ref long xs, long* ys, int count)
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pxs = &xs)
+				fixed (ushort* pvalues = &values)
 				{
-					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
 
-		public static void PlotDigital(ref byte labelId, ref long xs, long* ys, int count, int offset)
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pxs = &xs)
+				fixed (ushort* pvalues = &values)
 				{
-					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
 
-		public static void PlotDigital(ref byte labelId, ref long xs, long* ys, int count, int offset, int stride)
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, ImPlotHeatmapFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pxs = &xs)
+				fixed (ushort* pvalues = &values)
 				{
-					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
 				}
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, byte* labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -82,9 +225,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (ushort* pvalues = &values)
 			{
-				PlotDigitalNative(pStr0, (long*)pxs, ys, count, flags, offset, stride);
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -92,7 +235,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags, int offset)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -111,9 +254,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (ushort* pvalues = &values)
 			{
-				PlotDigitalNative(pStr0, (long*)pxs, ys, count, flags, offset, (int)(sizeof(long)));
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -121,7 +264,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -140,9 +283,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (ushort* pvalues = &values)
 			{
-				PlotDigitalNative(pStr0, (long*)pxs, ys, count, flags, (int)(0), (int)(sizeof(long)));
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -150,7 +293,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref long xs, long* ys, int count)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -169,9 +312,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (ushort* pvalues = &values)
 			{
-				PlotDigitalNative(pStr0, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -179,7 +322,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, int offset)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -198,9 +341,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (ushort* pvalues = &values)
 			{
-				PlotDigitalNative(pStr0, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -208,7 +351,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, int offset, int stride)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -227,9 +370,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (ushort* pvalues = &values)
 			{
-				PlotDigitalNative(pStr0, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -237,121 +380,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (long*)pys, count, flags, offset, stride);
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, int offset)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, int offset, int stride)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -370,9 +399,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pys = &ys)
+			fixed (ushort* pvalues = &values)
 			{
-				PlotDigitalNative(pStr0, xs, (long*)pys, count, flags, offset, stride);
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -380,7 +409,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -399,9 +428,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pys = &ys)
+			fixed (ushort* pvalues = &values)
 			{
-				PlotDigitalNative(pStr0, xs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -409,7 +438,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, byte* labelFmt)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -428,9 +457,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pys = &ys)
+			fixed (ushort* pvalues = &values)
 			{
-				PlotDigitalNative(pStr0, xs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -438,7 +467,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, long* xs, ref long ys, int count)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -457,9 +486,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pys = &ys)
+			fixed (ushort* pvalues = &values)
 			{
-				PlotDigitalNative(pStr0, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -467,7 +496,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, int offset)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -486,9 +515,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pys = &ys)
+			fixed (ushort* pvalues = &values)
 			{
-				PlotDigitalNative(pStr0, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -496,7 +525,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, int offset, int stride)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, ImPlotPoint boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -515,9 +544,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pys = &ys)
+			fixed (ushort* pvalues = &values)
 			{
-				PlotDigitalNative(pStr0, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -525,157 +554,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (long*)pxs, (long*)pys, count, flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (long*)pxs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (long*)pxs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref long xs, ref long ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref long xs, ref long ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref long xs, ref long ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -694,1368 +573,4248 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (long* pys = &ys)
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					PlotDigitalNative(pStr0, (long*)pxs, (long*)pys, count, flags, offset, stride);
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, byte* labelFmt, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmap(pStr0, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, byte* labelFmt)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, byte* labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmap((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ref ushort values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, ref byte labelFmt)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, ref byte labelFmt)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = &labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, boundsMax, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, string labelFmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, string labelFmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, string labelFmt, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, boundsMax, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, boundsMax, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, ReadOnlySpan<byte> labelFmt)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ushort* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelFmt = labelFmt)
+			{
+				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, double scaleMin, ref byte labelFmt)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, ref byte labelFmt)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ushort* values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, boundsMax, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, double scaleMin, string labelFmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, string labelFmt)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, string labelFmt, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, boundsMax, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ushort* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (labelFmt != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, boundsMax, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, ReadOnlySpan<byte> labelFmt)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ReadOnlySpan<byte> labelId, ushort* values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, ref byte labelFmt)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, ref byte labelFmt)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = &labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, boundsMax, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset)
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (ushort* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(pStr0, (long*)pxs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags)
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (ushort* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(pStr0, (long*)pxs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref long xs, ref long ys, int count)
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (ushort* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(pStr0, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref long xs, ref long ys, int count, int offset)
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, string labelFmt)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (ushort* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(pStr0, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref long xs, ref long ys, int count, int offset, int stride)
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, string labelFmt)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (ushort* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(pStr0, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
-				}
-			}
-		}
-
-		internal static void PlotDigitalNative(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, ulong*, ulong*, int, ImPlotDigitalFlags, int, int, void>)vt[288])(labelId, xs, ys, count, flags, offset, stride);
-		}
-
-		public static void PlotDigital(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			PlotDigitalNative(labelId, xs, ys, count, flags, offset, stride);
-		}
-
-		public static void PlotDigital(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			PlotDigitalNative(labelId, xs, ys, count, flags, offset, (int)(sizeof(ulong)));
-		}
-
-		public static void PlotDigital(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotDigitalFlags flags)
-		{
-			PlotDigitalNative(labelId, xs, ys, count, flags, (int)(0), (int)(sizeof(ulong)));
-		}
-
-		public static void PlotDigital(byte* labelId, ulong* xs, ulong* ys, int count)
-		{
-			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
-		}
-
-		public static void PlotDigital(byte* labelId, ulong* xs, ulong* ys, int count, int offset)
-		{
-			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
-		}
-
-		public static void PlotDigital(byte* labelId, ulong* xs, ulong* ys, int count, int offset, int stride)
-		{
-			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
-		}
-
-		public static void PlotDigital(ref byte labelId, ulong* xs, ulong* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ulong* xs, ulong* ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ulong* xs, ulong* ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ulong* xs, ulong* ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ulong* xs, ulong* ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ulong* xs, ulong* ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotDigital(string labelId, ulong* xs, ulong* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotDigitalNative(pStr0, xs, ys, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotDigital(string labelId, ulong* xs, ulong* ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotDigitalNative(pStr0, xs, ys, count, flags, offset, (int)(sizeof(ulong)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotDigital(string labelId, ulong* xs, ulong* ys, int count, ImPlotDigitalFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotDigitalNative(pStr0, xs, ys, count, flags, (int)(0), (int)(sizeof(ulong)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotDigital(string labelId, ulong* xs, ulong* ys, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotDigital(string labelId, ulong* xs, ulong* ys, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotDigital(string labelId, ulong* xs, ulong* ys, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref ulong xs, ulong* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotDigitalNative(labelId, (ulong*)pxs, ys, count, flags, offset, stride);
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref ulong xs, ulong* ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotDigitalNative(labelId, (ulong*)pxs, ys, count, flags, offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref ulong xs, ulong* ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotDigitalNative(labelId, (ulong*)pxs, ys, count, flags, (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref ulong xs, ulong* ys, int count)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotDigitalNative(labelId, (ulong*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref ulong xs, ulong* ys, int count, int offset)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotDigitalNative(labelId, (ulong*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref ulong xs, ulong* ys, int count, int offset, int stride)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotDigitalNative(labelId, (ulong*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ulong* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotDigitalNative((byte*)plabelId, (ulong*)pxs, ys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ulong* ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotDigitalNative((byte*)plabelId, (ulong*)pxs, ys, count, flags, offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ulong* ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotDigitalNative((byte*)plabelId, (ulong*)pxs, ys, count, flags, (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ulong* ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotDigitalNative((byte*)plabelId, (ulong*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ulong* ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotDigitalNative((byte*)plabelId, (ulong*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ulong* ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotDigitalNative((byte*)plabelId, (ulong*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref ulong xs, ulong* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotDigitalNative(pStr0, (ulong*)pxs, ys, count, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref ulong xs, ulong* ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotDigitalNative(pStr0, (ulong*)pxs, ys, count, flags, offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref ulong xs, ulong* ys, int count, ImPlotDigitalFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotDigitalNative(pStr0, (ulong*)pxs, ys, count, flags, (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref ulong xs, ulong* ys, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotDigitalNative(pStr0, (ulong*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref ulong xs, ulong* ys, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotDigitalNative(pStr0, (ulong*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref ulong xs, ulong* ys, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotDigitalNative(pStr0, (ulong*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (ulong*)pys, count, flags, offset, stride);
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ulong* xs, ref ulong ys, int count)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ulong* xs, ref ulong ys, int count, int offset)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ulong* xs, ref ulong ys, int count, int offset, int stride)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ulong* xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (ulong*)pys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ulong* xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ulong* xs, ref ulong ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ulong* xs, ref ulong ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ulong* xs, ref ulong ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ulong* xs, ref ulong ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ulong* xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotDigitalNative(pStr0, xs, (ulong*)pys, count, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ulong* xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotDigitalNative(pStr0, xs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ulong* xs, ref ulong ys, int count, ImPlotDigitalFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotDigitalNative(pStr0, xs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ulong* xs, ref ulong ys, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotDigitalNative(pStr0, xs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ulong* xs, ref ulong ys, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotDigitalNative(pStr0, xs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ulong* xs, ref ulong ys, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotDigitalNative(pStr0, xs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (ulong*)pxs, (ulong*)pys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (ulong*)pxs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (ulong*)pxs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref ulong xs, ref ulong ys, int count)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref ulong xs, ref ulong ys, int count, int offset)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref ulong xs, ref ulong ys, int count, int offset, int stride)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
+					else
 					{
-						PlotDigitalNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, flags, offset, stride);
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
 					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
 				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ref ulong ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ref ulong ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref ulong xs, ref ulong ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					fixed (ulong* pys = &ys)
-					{
-						PlotDigitalNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					Utils.Free(pStr0);
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (ulong* pys = &ys)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
 				{
-					PlotDigitalNative(pStr0, (ulong*)pxs, (ulong*)pys, count, flags, offset, stride);
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags, int offset)
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (ushort* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative(pStr0, (ulong*)pxs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotDigitalFlags flags)
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (ushort* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative(pStr0, (ulong*)pxs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref ulong xs, ref ulong ys, int count)
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (ushort* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref ulong xs, ref ulong ys, int count, int offset)
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (ushort* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(ulong)));
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void PlotDigital(string labelId, ref ulong xs, ref ulong ys, int count, int offset, int stride)
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotHeatmapFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (ushort* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotDigitalNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, string labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, string labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, boundsMax, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, boundsMax, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, ReadOnlySpan<byte> labelFmt)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ReadOnlySpan<byte> labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, double scaleMin, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(byte* labelId, ref ushort values, int rows, int cols, ReadOnlySpan<byte> labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				fixed (byte* plabelFmt = labelFmt)
+				{
+					PlotHeatmapNative(labelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, flags);
 					}
 				}
 			}
 		}
 
-		internal static void PlotDigitalGNative(byte* labelId, ImPlotPointGetter getter, void* data, int count, ImPlotDigitalFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, delegate*<void*, int, ImPlotPoint*, void*>, void*, int, ImPlotDigitalFlags, void>)vt[289])(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Marshal.GetFunctionPointerForDelegate(getter), data, count, flags);
-		}
-
-		public static void PlotDigitalG(byte* labelId, ImPlotPointGetter getter, void* data, int count, ImPlotDigitalFlags flags)
-		{
-			PlotDigitalGNative(labelId, getter, data, count, flags);
-		}
-
-		public static void PlotDigitalG(byte* labelId, ImPlotPointGetter getter, void* data, int count)
-		{
-			PlotDigitalGNative(labelId, getter, data, count, (ImPlotDigitalFlags)(0));
-		}
-
-		public static void PlotDigitalG(ref byte labelId, ImPlotPointGetter getter, void* data, int count, ImPlotDigitalFlags flags)
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotDigitalGNative((byte*)plabelId, getter, data, count, flags);
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+					}
+				}
 			}
 		}
 
-		public static void PlotDigitalG(ref byte labelId, ImPlotPointGetter getter, void* data, int count)
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotDigitalGNative((byte*)plabelId, getter, data, count, (ImPlotDigitalFlags)(0));
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					}
+				}
 			}
 		}
 
-		public static void PlotDigitalG(string labelId, ImPlotPointGetter getter, void* data, int count, ImPlotDigitalFlags flags)
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, ref byte labelFmt)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, ref byte labelFmt)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(ref byte labelId, ref ushort values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					fixed (byte* plabelFmt = &labelFmt)
+					{
+						PlotHeatmapNative((byte*)plabelId, (ushort*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
+					}
+				}
+			}
+		}
+
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2074,14 +4833,38 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotDigitalGNative(pStr0, getter, data, count, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ushort* pvalues = &values)
 			{
-				Utils.Free(pStr0);
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, boundsMax, flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		public static void PlotDigitalG(string labelId, ImPlotPointGetter getter, void* data, int count)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2100,175 +4883,38 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotDigitalGNative(pStr0, getter, data, count, (ImPlotDigitalFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ushort* pvalues = &values)
 			{
-				Utils.Free(pStr0);
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		internal static void PlotImageNative(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol, ImPlotImageFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, ImTextureID, ImPlotPoint, ImPlotPoint, Vector2, Vector2, Vector4, ImPlotImageFlags, void>)vt[290])(labelId, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, flags);
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol, ImPlotImageFlags flags)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, flags);
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, (ImPlotImageFlags)(0));
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, (ImPlotImageFlags)(0));
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (ImPlotImageFlags)(0));
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, ImPlotImageFlags flags)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), flags);
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, ImPlotImageFlags flags)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotImageFlags flags)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol, ImPlotImageFlags flags)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, flags);
-		}
-
-		public static void PlotImage(byte* labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol, ImPlotImageFlags flags)
-		{
-			PlotImageNative(labelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, flags);
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol, ImPlotImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, flags);
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, (ImPlotImageFlags)(0));
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, (ImPlotImageFlags)(0));
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (ImPlotImageFlags)(0));
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, ImPlotImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, ImPlotImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol, ImPlotImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, flags);
-			}
-		}
-
-		public static void PlotImage(ref byte labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol, ImPlotImageFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotImageNative((byte*)plabelId, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, flags);
-			}
-		}
-
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol, ImPlotImageFlags flags)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2287,14 +4933,38 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ushort* pvalues = &values)
 			{
-				Utils.Free(pStr0);
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, Vector4 tintCol)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2313,14 +4983,38 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, uv1, tintCol, (ImPlotImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ushort* pvalues = &values)
 			{
-				Utils.Free(pStr0);
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1)
+		public static void PlotHeatmap(string labelId, ref ushort values, int rows, int cols, double scaleMin, string labelFmt)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2339,2685 +5033,33 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (ushort* pvalues = &values)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (labelFmt != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotHeatmapNative(pStr0, (ushort*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (ImPlotImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, (ImPlotImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (ImPlotImageFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector2 uv1, ImPlotImageFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, ImPlotImageFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotImageFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector2 uv0, Vector4 tintCol, ImPlotImageFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, uv0, (Vector2)(new Vector2(1,1)), tintCol, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotImage(string labelId, ImTextureID userTextureId, ImPlotPoint boundsMin, ImPlotPoint boundsMax, Vector4 tintCol, ImPlotImageFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotImageNative(pStr0, userTextureId, boundsMin, boundsMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		internal static void PlotTextNative(byte* text, double x, double y, Vector2 pixOffset, ImPlotTextFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, double, double, Vector2, ImPlotTextFlags, void>)vt[291])(text, x, y, pixOffset, flags);
-		}
-
-		public static void PlotText(byte* text, double x, double y, Vector2 pixOffset, ImPlotTextFlags flags)
-		{
-			PlotTextNative(text, x, y, pixOffset, flags);
-		}
-
-		public static void PlotText(byte* text, double x, double y, Vector2 pixOffset)
-		{
-			PlotTextNative(text, x, y, pixOffset, (ImPlotTextFlags)(0));
-		}
-
-		public static void PlotText(byte* text, double x, double y)
-		{
-			PlotTextNative(text, x, y, (Vector2)(new Vector2(0,0)), (ImPlotTextFlags)(0));
-		}
-
-		public static void PlotText(byte* text, double x, double y, ImPlotTextFlags flags)
-		{
-			PlotTextNative(text, x, y, (Vector2)(new Vector2(0,0)), flags);
-		}
-
-		public static void PlotText(ref byte text, double x, double y, Vector2 pixOffset, ImPlotTextFlags flags)
-		{
-			fixed (byte* ptext = &text)
-			{
-				PlotTextNative((byte*)ptext, x, y, pixOffset, flags);
-			}
-		}
-
-		public static void PlotText(ref byte text, double x, double y, Vector2 pixOffset)
-		{
-			fixed (byte* ptext = &text)
-			{
-				PlotTextNative((byte*)ptext, x, y, pixOffset, (ImPlotTextFlags)(0));
-			}
-		}
-
-		public static void PlotText(ref byte text, double x, double y)
-		{
-			fixed (byte* ptext = &text)
-			{
-				PlotTextNative((byte*)ptext, x, y, (Vector2)(new Vector2(0,0)), (ImPlotTextFlags)(0));
-			}
-		}
-
-		public static void PlotText(ref byte text, double x, double y, ImPlotTextFlags flags)
-		{
-			fixed (byte* ptext = &text)
-			{
-				PlotTextNative((byte*)ptext, x, y, (Vector2)(new Vector2(0,0)), flags);
-			}
-		}
-
-		public static void PlotText(string text, double x, double y, Vector2 pixOffset, ImPlotTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotTextNative(pStr0, x, y, pixOffset, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotText(string text, double x, double y, Vector2 pixOffset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotTextNative(pStr0, x, y, pixOffset, (ImPlotTextFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotText(string text, double x, double y)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotTextNative(pStr0, x, y, (Vector2)(new Vector2(0,0)), (ImPlotTextFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotText(string text, double x, double y, ImPlotTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotTextNative(pStr0, x, y, (Vector2)(new Vector2(0,0)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		internal static void PlotDummyNative(byte* labelId, ImPlotDummyFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, ImPlotDummyFlags, void>)vt[292])(labelId, flags);
-		}
-
-		public static void PlotDummy(byte* labelId, ImPlotDummyFlags flags)
-		{
-			PlotDummyNative(labelId, flags);
-		}
-
-		public static void PlotDummy(byte* labelId)
-		{
-			PlotDummyNative(labelId, (ImPlotDummyFlags)(0));
-		}
-
-		public static void PlotDummy(ref byte labelId, ImPlotDummyFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotDummyNative((byte*)plabelId, flags);
-			}
-		}
-
-		public static void PlotDummy(ref byte labelId)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotDummyNative((byte*)plabelId, (ImPlotDummyFlags)(0));
-			}
-		}
-
-		public static void PlotDummy(string labelId, ImPlotDummyFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotDummyNative(pStr0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotDummy(string labelId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotDummyNative(pStr0, (ImPlotDummyFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		internal static byte DragPointNative(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, double*, double*, Vector4, float, ImPlotDragToolFlags, bool*, bool*, bool*, byte>)vt[293])(id, x, y, col, size, flags, outClicked, outHovered, held);
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, outHovered, held);
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, outHovered, (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags)
-		{
-			byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)(default), (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size)
-		{
-			byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col)
-		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags)
-		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)(default), (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked)
-		{
-			byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked)
-		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, (bool*)(default), (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered)
-		{
-			byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, bool* outHovered)
-		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, outHovered, (bool*)(default));
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered, bool* held)
-		{
-			byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
-		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, outHovered, held);
-			return ret != 0;
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)(default), (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)(default), (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)(default), (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)(default), (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, (bool*)poutHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, (bool*)poutHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)(default));
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutHovered = &outHovered)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, held);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (bool* poutClicked = &outClicked)
-			{
-				fixed (bool* poutHovered = &outHovered)
-				{
-					byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					fixed (bool* poutHovered = &outHovered)
-					{
-						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, held);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, held);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, bool* held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						fixed (bool* poutHovered = &outHovered)
-						{
-							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, held);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* pheld = &held)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, outHovered, (bool*)pheld);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* pheld = &held)
-			{
-				byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* pheld = &held)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (bool* pheld = &held)
-			{
-				byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, outHovered, (bool*)pheld);
-				return ret != 0;
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* py = &y)
-			{
-				fixed (bool* pheld = &held)
-				{
-					byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, outHovered, (bool*)pheld);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, bool* outHovered, ref bool held)
-		{
-			fixed (double* px = &x)
-			{
-				fixed (double* py = &y)
-				{
-					fixed (bool* pheld = &held)
-					{
-						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, outHovered, (bool*)pheld);
-						return ret != 0;
-					}
+					Utils.Free(pStr0);
 				}
 			}
 		}

@@ -18,2018 +18,30 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
-		internal static void TabBarCloseTabNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab)
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, Vector4* cpuFineClipRect)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*, void>)vt[1288])(tabBar, tab);
-		}
-
-		public static void TabBarCloseTab(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab)
-		{
-			TabBarCloseTabNative(tabBar, tab);
-		}
-
-		public static void TabBarCloseTab(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			fixed (ImDrawList* pself = &self)
 			{
-				TabBarCloseTabNative((ImGuiTabBar*)ptabBar, tab);
-			}
-		}
-
-		public static void TabBarCloseTab(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				TabBarCloseTabNative(tabBar, (ImGuiTabItem*)ptab);
-			}
-		}
-
-		public static void TabBarCloseTab(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
+				fixed (ImFont* pfont = &font)
 				{
-					TabBarCloseTabNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab);
-				}
-			}
-		}
-
-		internal static void TabBarQueueFocusNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*, void>)vt[1289])(tabBar, tab);
-		}
-
-		public static void TabBarQueueFocus(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab)
-		{
-			TabBarQueueFocusNative(tabBar, tab);
-		}
-
-		public static void TabBarQueueFocus(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				TabBarQueueFocusNative((ImGuiTabBar*)ptabBar, tab);
-			}
-		}
-
-		public static void TabBarQueueFocus(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				TabBarQueueFocusNative(tabBar, (ImGuiTabItem*)ptab);
-			}
-		}
-
-		public static void TabBarQueueFocus(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
-				{
-					TabBarQueueFocusNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab);
-				}
-			}
-		}
-
-		internal static void TabBarQueueReorderNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab, int offset)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*, int, void>)vt[1290])(tabBar, tab, offset);
-		}
-
-		public static void TabBarQueueReorder(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab, int offset)
-		{
-			TabBarQueueReorderNative(tabBar, tab, offset);
-		}
-
-		public static void TabBarQueueReorder(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab, int offset)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				TabBarQueueReorderNative((ImGuiTabBar*)ptabBar, tab, offset);
-			}
-		}
-
-		public static void TabBarQueueReorder(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab, int offset)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				TabBarQueueReorderNative(tabBar, (ImGuiTabItem*)ptab, offset);
-			}
-		}
-
-		public static void TabBarQueueReorder(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab, int offset)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
-				{
-					TabBarQueueReorderNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab, offset);
-				}
-			}
-		}
-
-		internal static void TabBarQueueReorderFromMousePosNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab, Vector2 mousePos)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*, Vector2, void>)vt[1291])(tabBar, tab, mousePos);
-		}
-
-		public static void TabBarQueueReorderFromMousePos(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab, Vector2 mousePos)
-		{
-			TabBarQueueReorderFromMousePosNative(tabBar, tab, mousePos);
-		}
-
-		public static void TabBarQueueReorderFromMousePos(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab, Vector2 mousePos)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				TabBarQueueReorderFromMousePosNative((ImGuiTabBar*)ptabBar, tab, mousePos);
-			}
-		}
-
-		public static void TabBarQueueReorderFromMousePos(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab, Vector2 mousePos)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				TabBarQueueReorderFromMousePosNative(tabBar, (ImGuiTabItem*)ptab, mousePos);
-			}
-		}
-
-		public static void TabBarQueueReorderFromMousePos(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab, Vector2 mousePos)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
-				{
-					TabBarQueueReorderFromMousePosNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab, mousePos);
-				}
-			}
-		}
-
-		internal static byte TabBarProcessReorderNative(ImGuiTabBar* tabBar)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, byte>)vt[1292])(tabBar);
-		}
-
-		public static bool TabBarProcessReorder(ImGuiTabBarPtr tabBar)
-		{
-			byte ret = TabBarProcessReorderNative(tabBar);
-			return ret != 0;
-		}
-
-		public static bool TabBarProcessReorder(ref ImGuiTabBar tabBar)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte ret = TabBarProcessReorderNative((ImGuiTabBar*)ptabBar);
-				return ret != 0;
-			}
-		}
-
-		internal static byte TabItemExNative(ImGuiTabBar* tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindow* dockedWindow)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, byte*, bool*, ImGuiTabItemFlags, ImGuiWindow*, byte>)vt[1293])(tabBar, label, pOpen, flags, dockedWindow);
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			byte ret = TabItemExNative(tabBar, label, pOpen, flags, dockedWindow);
-			return ret != 0;
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, label, pOpen, flags, dockedWindow);
-				return ret != 0;
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, ref byte label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = TabItemExNative(tabBar, (byte*)plabel, pOpen, flags, dockedWindow);
-				return ret != 0;
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, string label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = TabItemExNative(tabBar, pStr0, pOpen, flags, dockedWindow);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, ref byte label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* plabel = &label)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, (byte*)plabel, pOpen, flags, dockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, string label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
 					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, pStr0, pOpen, flags, dockedWindow);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, byte* label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (bool* ppOpen = &pOpen)
-			{
-				byte ret = TabItemExNative(tabBar, label, (bool*)ppOpen, flags, dockedWindow);
-				return ret != 0;
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, byte* label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, label, (bool*)ppOpen, flags, dockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, ref byte label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					byte ret = TabItemExNative(tabBar, (byte*)plabel, (bool*)ppOpen, flags, dockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, string label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* ppOpen = &pOpen)
-			{
-				byte ret = TabItemExNative(tabBar, pStr0, (bool*)ppOpen, flags, dockedWindow);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, ref byte label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* plabel = &label)
-				{
-					fixed (bool* ppOpen = &pOpen)
-					{
-						byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, (byte*)plabel, (bool*)ppOpen, flags, dockedWindow);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, string label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (bool* ppOpen = &pOpen)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, pStr0, (bool*)ppOpen, flags, dockedWindow);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-			{
-				byte ret = TabItemExNative(tabBar, label, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-				return ret != 0;
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, label, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, ref byte label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-				{
-					byte ret = TabItemExNative(tabBar, (byte*)plabel, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, string label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-			{
-				byte ret = TabItemExNative(tabBar, pStr0, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, ref byte label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* plabel = &label)
-				{
-					fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-					{
-						byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, (byte*)plabel, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, string label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, pStr0, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, byte* label, ref bool pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (bool* ppOpen = &pOpen)
-			{
-				fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-				{
-					byte ret = TabItemExNative(tabBar, label, (bool*)ppOpen, flags, (ImGuiWindow*)pdockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, byte* label, ref bool pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-					{
-						byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, label, (bool*)ppOpen, flags, (ImGuiWindow*)pdockedWindow);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, ref byte label, ref bool pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-					{
-						byte ret = TabItemExNative(tabBar, (byte*)plabel, (bool*)ppOpen, flags, (ImGuiWindow*)pdockedWindow);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, string label, ref bool pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* ppOpen = &pOpen)
-			{
-				fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-				{
-					byte ret = TabItemExNative(tabBar, pStr0, (bool*)ppOpen, flags, (ImGuiWindow*)pdockedWindow);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, ref byte label, ref bool pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* plabel = &label)
-				{
-					fixed (bool* ppOpen = &pOpen)
-					{
-						fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-						{
-							byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, (byte*)plabel, (bool*)ppOpen, flags, (ImGuiWindow*)pdockedWindow);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, string label, ref bool pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (bool* ppOpen = &pOpen)
-				{
-					fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-					{
-						byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, pStr0, (bool*)ppOpen, flags, (ImGuiWindow*)pdockedWindow);
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
-							Utils.Free(pStr0);
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 						}
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		internal static void TabItemCalcSizeNative(Vector2* output, byte* label, byte hasCloseButtonOrUnsavedMarker)
-		{
-			((delegate* unmanaged[Cdecl]<Vector2*, byte*, byte, void>)vt[1294])(output, label, hasCloseButtonOrUnsavedMarker);
-		}
-
-		public static Vector2 TabItemCalcSize(byte* label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			Vector2 ret;
-			TabItemCalcSizeNative(&ret, label, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		public static void TabItemCalcSize(Vector2* output, byte* label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			TabItemCalcSizeNative(output, label, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-		}
-
-		public static void TabItemCalcSize(ref Vector2 output, byte* label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				TabItemCalcSizeNative((Vector2*)poutput, label, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-			}
-		}
-
-		public static Vector2 TabItemCalcSize(ref byte label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			fixed (byte* plabel = &label)
-			{
-				Vector2 ret;
-				TabItemCalcSizeNative(&ret, (byte*)plabel, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		public static Vector2 TabItemCalcSize(string label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret;
-			TabItemCalcSizeNative(&ret, pStr0, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static void TabItemCalcSize(ref Vector2 output, ref byte label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				fixed (byte* plabel = &label)
-				{
-					TabItemCalcSizeNative((Vector2*)poutput, (byte*)plabel, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-				}
-			}
-		}
-
-		public static void TabItemCalcSize(ref Vector2 output, string label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				TabItemCalcSizeNative((Vector2*)poutput, pStr0, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void TabItemCalcSize(Vector2* output, ref byte label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			fixed (byte* plabel = &label)
-			{
-				TabItemCalcSizeNative(output, (byte*)plabel, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-			}
-		}
-
-		public static void TabItemCalcSize(Vector2* output, string label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TabItemCalcSizeNative(output, pStr0, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		internal static void TabItemCalcSizeWindowPtrNative(Vector2* output, ImGuiWindow* window)
-		{
-			((delegate* unmanaged[Cdecl]<Vector2*, ImGuiWindow*, void>)vt[1295])(output, window);
-		}
-
-		public static Vector2 TabItemCalcSizeWindowPtr(ImGuiWindowPtr window)
-		{
-			Vector2 ret;
-			TabItemCalcSizeWindowPtrNative(&ret, window);
-			return ret;
-		}
-
-		public static void TabItemCalcSizeWindowPtr(Vector2* output, ImGuiWindowPtr window)
-		{
-			TabItemCalcSizeWindowPtrNative(output, window);
-		}
-
-		public static void TabItemCalcSizeWindowPtr(ref Vector2 output, ImGuiWindowPtr window)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				TabItemCalcSizeWindowPtrNative((Vector2*)poutput, window);
-			}
-		}
-
-		public static Vector2 TabItemCalcSizeWindowPtr(ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				Vector2 ret;
-				TabItemCalcSizeWindowPtrNative(&ret, (ImGuiWindow*)pwindow);
-				return ret;
-			}
-		}
-
-		public static void TabItemCalcSizeWindowPtr(Vector2* output, ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				TabItemCalcSizeWindowPtrNative(output, (ImGuiWindow*)pwindow);
-			}
-		}
-
-		public static void TabItemCalcSizeWindowPtr(ref Vector2 output, ref ImGuiWindow window)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				fixed (ImGuiWindow* pwindow = &window)
-				{
-					TabItemCalcSizeWindowPtrNative((Vector2*)poutput, (ImGuiWindow*)pwindow);
-				}
-			}
-		}
-
-		internal static void TabItemBackgroundNative(ImDrawList* drawList, ImRect bb, ImGuiTabItemFlags flags, uint col)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, ImGuiTabItemFlags, uint, void>)vt[1296])(drawList, bb, flags, col);
-		}
-
-		public static void TabItemBackground(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, uint col)
-		{
-			TabItemBackgroundNative(drawList, bb, flags, col);
-		}
-
-		public static void TabItemBackground(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, uint col)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				TabItemBackgroundNative((ImDrawList*)pdrawList, bb, flags, col);
-			}
-		}
-
-		internal static void TabItemLabelAndCloseButtonNative(ImDrawList* drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, byte isContentsVisible, bool* outJustClosed, bool* outTextClipped)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, ImGuiTabItemFlags, Vector2, byte*, int, int, byte, bool*, bool*, void>)vt[1297])(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible, outJustClosed, outTextClipped);
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped)
-		{
-			TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped)
-		{
-			fixed (byte* plabel = &label)
-			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* plabel = &label)
-				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, bool* outTextClipped)
-		{
-			fixed (bool* poutJustClosed = &outJustClosed)
-			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, bool* outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (bool* poutJustClosed = &outJustClosed)
-				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, bool* outTextClipped)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (bool* poutJustClosed = &outJustClosed)
-				{
-					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, bool* outTextClipped)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* poutJustClosed = &outJustClosed)
-			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, bool* outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* plabel = &label)
-				{
-					fixed (bool* poutJustClosed = &outJustClosed)
-					{
-						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, bool* outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (bool* poutJustClosed = &outJustClosed)
-				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
-		{
-			fixed (bool* poutTextClipped = &outTextClipped)
-			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (bool* poutTextClipped = &outTextClipped)
-				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (bool* poutTextClipped = &outTextClipped)
-				{
-					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* poutTextClipped = &outTextClipped)
-			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* plabel = &label)
-				{
-					fixed (bool* poutTextClipped = &outTextClipped)
-					{
-						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (bool* poutTextClipped = &outTextClipped)
-				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
-		{
-			fixed (bool* poutJustClosed = &outJustClosed)
-			{
-				fixed (bool* poutTextClipped = &outTextClipped)
-				{
-					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (bool* poutJustClosed = &outJustClosed)
-				{
-					fixed (bool* poutTextClipped = &outTextClipped)
-					{
-						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (bool* poutJustClosed = &outJustClosed)
-				{
-					fixed (bool* poutTextClipped = &outTextClipped)
-					{
-						TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* poutJustClosed = &outJustClosed)
-			{
-				fixed (bool* poutTextClipped = &outTextClipped)
-				{
-					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* plabel = &label)
-				{
-					fixed (bool* poutJustClosed = &outJustClosed)
-					{
-						fixed (bool* poutTextClipped = &outTextClipped)
+						else
 						{
-							TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
 						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
 					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (bool* poutJustClosed = &outJustClosed)
-				{
-					fixed (bool* poutTextClipped = &outTextClipped)
-					{
-						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		internal static void RenderTextNative(Vector2 pos, byte* text, byte* textEnd, byte hideTextAfterHash)
-		{
-			((delegate* unmanaged[Cdecl]<Vector2, byte*, byte*, byte, void>)vt[1298])(pos, text, textEnd, hideTextAfterHash);
-		}
-
-		public static void RenderText(Vector2 pos, byte* text, byte* textEnd, bool hideTextAfterHash)
-		{
-			RenderTextNative(pos, text, textEnd, hideTextAfterHash ? (byte)1 : (byte)0);
-		}
-
-		public static void RenderText(Vector2 pos, ref byte text, byte* textEnd, bool hideTextAfterHash)
-		{
-			fixed (byte* ptext = &text)
-			{
-				RenderTextNative(pos, (byte*)ptext, textEnd, hideTextAfterHash ? (byte)1 : (byte)0);
-			}
-		}
-
-		public static void RenderText(Vector2 pos, string text, byte* textEnd, bool hideTextAfterHash)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			RenderTextNative(pos, pStr0, textEnd, hideTextAfterHash ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void RenderText(Vector2 pos, byte* text, ref byte textEnd, bool hideTextAfterHash)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				RenderTextNative(pos, text, (byte*)ptextEnd, hideTextAfterHash ? (byte)1 : (byte)0);
-			}
-		}
-
-		public static void RenderText(Vector2 pos, byte* text, string textEnd, bool hideTextAfterHash)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			RenderTextNative(pos, text, pStr0, hideTextAfterHash ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void RenderText(Vector2 pos, ref byte text, ref byte textEnd, bool hideTextAfterHash)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					RenderTextNative(pos, (byte*)ptext, (byte*)ptextEnd, hideTextAfterHash ? (byte)1 : (byte)0);
-				}
-			}
-		}
-
-		public static void RenderText(Vector2 pos, string text, string textEnd, bool hideTextAfterHash)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			RenderTextNative(pos, pStr0, pStr1, hideTextAfterHash ? (byte)1 : (byte)0);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		internal static void RenderTextWrappedNative(Vector2 pos, byte* text, byte* textEnd, float wrapWidth)
-		{
-			((delegate* unmanaged[Cdecl]<Vector2, byte*, byte*, float, void>)vt[1299])(pos, text, textEnd, wrapWidth);
-		}
-
-		public static void RenderTextWrapped(Vector2 pos, byte* text, byte* textEnd, float wrapWidth)
-		{
-			RenderTextWrappedNative(pos, text, textEnd, wrapWidth);
-		}
-
-		public static void RenderTextWrapped(Vector2 pos, ref byte text, byte* textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				RenderTextWrappedNative(pos, (byte*)ptext, textEnd, wrapWidth);
-			}
-		}
-
-		public static void RenderTextWrapped(Vector2 pos, string text, byte* textEnd, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			RenderTextWrappedNative(pos, pStr0, textEnd, wrapWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void RenderTextWrapped(Vector2 pos, byte* text, ref byte textEnd, float wrapWidth)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				RenderTextWrappedNative(pos, text, (byte*)ptextEnd, wrapWidth);
-			}
-		}
-
-		public static void RenderTextWrapped(Vector2 pos, byte* text, string textEnd, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			RenderTextWrappedNative(pos, text, pStr0, wrapWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void RenderTextWrapped(Vector2 pos, ref byte text, ref byte textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					RenderTextWrappedNative(pos, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
-				}
-			}
-		}
-
-		public static void RenderTextWrapped(Vector2 pos, string text, string textEnd, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			RenderTextWrappedNative(pos, pStr0, pStr1, wrapWidth);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		internal static void RenderTextClippedNative(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
-		{
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte*, byte*, Vector2*, Vector2, ImRect*, void>)vt[1300])(posMin, posMax, text, textEnd, textSizeIfKnown, align, clipRect);
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			RenderTextClippedNative(posMin, posMax, text, textEnd, textSizeIfKnown, align, clipRect);
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ref byte text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, align, clipRect);
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			RenderTextClippedNative(posMin, posMax, pStr0, textEnd, textSizeIfKnown, align, clipRect);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			RenderTextClippedNative(posMin, posMax, text, pStr0, textSizeIfKnown, align, clipRect);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			RenderTextClippedNative(posMin, posMax, pStr0, pStr1, textSizeIfKnown, align, clipRect);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextClippedNative(posMin, posMax, text, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ref byte text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextClippedNative(posMin, posMax, pStr0, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextClippedNative(posMin, posMax, text, pStr0, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextClippedNative(posMin, posMax, pStr0, pStr1, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (ImRect* pclipRect = &clipRect)
-			{
-				RenderTextClippedNative(posMin, posMax, text, textEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ref byte text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (ImRect* pclipRect = &clipRect)
-				{
-					RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImRect* pclipRect = &clipRect)
-			{
-				RenderTextClippedNative(posMin, posMax, pStr0, textEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				fixed (ImRect* pclipRect = &clipRect)
-				{
-					RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImRect* pclipRect = &clipRect)
-			{
-				RenderTextClippedNative(posMin, posMax, text, pStr0, textSizeIfKnown, align, (ImRect*)pclipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (ImRect* pclipRect = &clipRect)
-					{
-						RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			fixed (ImRect* pclipRect = &clipRect)
-			{
-				RenderTextClippedNative(posMin, posMax, pStr0, pStr1, textSizeIfKnown, align, (ImRect*)pclipRect);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				fixed (ImRect* pclipRect = &clipRect)
-				{
-					RenderTextClippedNative(posMin, posMax, text, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ref byte text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					fixed (ImRect* pclipRect = &clipRect)
-					{
-						RenderTextClippedNative(posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				fixed (ImRect* pclipRect = &clipRect)
-				{
-					RenderTextClippedNative(posMin, posMax, pStr0, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, cpuFineClipRect);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2038,21 +50,151 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
-			fixed (byte* ptextEnd = &textEnd)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				fixed (ImFont* pfont = &font)
 				{
-					fixed (ImRect* pclipRect = &clipRect)
+					fixed (byte* ptextBegin = textBegin)
 					{
-						RenderTextClippedNative(posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
 					}
 				}
 			}
 		}
 
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, byte* text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2071,190 +213,14 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				fixed (ImRect* pclipRect = &clipRect)
-				{
-					RenderTextClippedNative(posMin, posMax, text, pStr0, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						fixed (ImRect* pclipRect = &clipRect)
-						{
-							RenderTextClippedNative(posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
-						}
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClipped(Vector2 posMin, Vector2 posMax, string text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				fixed (ImRect* pclipRect = &clipRect)
-				{
-					RenderTextClippedNative(posMin, posMax, pStr0, pStr1, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		internal static void RenderTextClippedExNative(ImDrawList* drawList, Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, byte*, byte*, Vector2*, Vector2, ImRect*, void>)vt[1301])(drawList, posMin, posMax, text, textEnd, textSizeIfKnown, align, clipRect);
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			RenderTextClippedExNative(drawList, posMin, posMax, text, textEnd, textSizeIfKnown, align, clipRect);
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, textEnd, textSizeIfKnown, align, clipRect);
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, ref byte text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				RenderTextClippedExNative(drawList, posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, align, clipRect);
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, string text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			RenderTextClippedExNative(drawList, posMin, posMax, pStr0, textEnd, textSizeIfKnown, align, clipRect);
+			AddTextNative(self, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, cpuFineClipRect);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, ref byte text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptext = &text)
-				{
-					RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, align, clipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, string text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, pStr0, textEnd, textSizeIfKnown, align, clipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				RenderTextClippedExNative(drawList, posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2273,27 +239,144 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			RenderTextClippedExNative(drawList, posMin, posMax, text, pStr0, textSizeIfKnown, align, clipRect);
+			AddTextNative(self, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd)
 		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, Vector4* cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), cpuFineClipRect);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
 				}
 			}
 		}
 
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth)
 		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -2312,7 +395,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, pStr0, textSizeIfKnown, align, clipRect);
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, cpuFineClipRect);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2320,24 +403,632 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth)
 		{
-			fixed (byte* ptext = &text)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (byte* ptextEnd = &textEnd)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
 				{
-					RenderTextClippedExNative(drawList, posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, string text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), cpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, cpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), cpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, cpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), cpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (textBegin != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2347,7 +1038,7 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
@@ -2367,7 +1058,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			RenderTextClippedExNative(drawList, posMin, posMax, pStr0, pStr1, textSizeIfKnown, align, clipRect);
+			AddTextNative(self, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, cpuFineClipRect);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -2378,29 +1069,256 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth)
 		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
 			{
-				fixed (byte* ptext = &text)
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, (Vector4*)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), (Vector4*)(default));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, Vector4* cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), cpuFineClipRect);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, clipRect);
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
 					}
 				}
 			}
 		}
 
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, string text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth)
 		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (text != null)
+				if (textBegin != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2410,7 +1328,7 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
 				byte* pStr1 = null;
@@ -2430,7 +1348,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, pStr0, pStr1, textSizeIfKnown, align, clipRect);
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, cpuFineClipRect);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -2442,88 +1360,15 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth)
 		{
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextClippedExNative(drawList, posMin, posMax, text, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, ref byte text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextClippedExNative(drawList, posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, string text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextClippedExNative(drawList, posMin, posMax, pStr0, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, ref byte text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, string text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			fixed (ImDrawList* pself = &self)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (text != null)
+				if (textBegin != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2533,206 +1378,7 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, pStr0, textEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextClippedExNative(drawList, posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextClippedExNative(drawList, posMin, posMax, text, pStr0, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, pStr0, (Vector2*)ptextSizeIfKnown, align, clipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextClippedExNative(drawList, posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, string text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextClippedExNative(drawList, posMin, posMax, pStr0, pStr1, (Vector2*)ptextSizeIfKnown, align, clipRect);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-						{
-							RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, clipRect);
-						}
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, string text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ImRectPtr clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
 				byte* pStr1 = null;
@@ -2752,265 +1398,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, pStr0, pStr1, (Vector2*)ptextSizeIfKnown, align, clipRect);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (ImRect* pclipRect = &clipRect)
-			{
-				RenderTextClippedExNative(drawList, posMin, posMax, text, textEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (ImRect* pclipRect = &clipRect)
-				{
-					RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, textEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, ref byte text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (ImRect* pclipRect = &clipRect)
-				{
-					RenderTextClippedExNative(drawList, posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, string text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImRect* pclipRect = &clipRect)
-			{
-				RenderTextClippedExNative(drawList, posMin, posMax, pStr0, textEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, ref byte text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (ImRect* pclipRect = &clipRect)
-					{
-						RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, (byte*)ptext, textEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, string text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (ImRect* pclipRect = &clipRect)
-				{
-					RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, pStr0, textEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				fixed (ImRect* pclipRect = &clipRect)
-				{
-					RenderTextClippedExNative(drawList, posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImRect* pclipRect = &clipRect)
-			{
-				RenderTextClippedExNative(drawList, posMin, posMax, text, pStr0, textSizeIfKnown, align, (ImRect*)pclipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (ImRect* pclipRect = &clipRect)
-					{
-						RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (ImRect* pclipRect = &clipRect)
-				{
-					RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, pStr0, textSizeIfKnown, align, (ImRect*)pclipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (ImRect* pclipRect = &clipRect)
-					{
-						RenderTextClippedExNative(drawList, posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, string text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			fixed (ImRect* pclipRect = &clipRect)
-			{
-				RenderTextClippedExNative(drawList, posMin, posMax, pStr0, pStr1, textSizeIfKnown, align, (ImRect*)pclipRect);
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, (Vector4*)(default));
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -3022,32 +1410,15 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd)
 		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						fixed (ImRect* pclipRect = &clipRect)
-						{
-							RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown, align, (ImRect*)pclipRect);
-						}
-					}
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, string text, string textEnd, Vector2* textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			fixed (ImDrawList* pself = &self)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (text != null)
+				if (textBegin != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3057,7 +1428,7 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
 				byte* pStr1 = null;
@@ -3077,9 +1448,545 @@ namespace Hexa.NET.ImGui
 					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 					pStr1[pStrOffset1] = 0;
 				}
-				fixed (ImRect* pclipRect = &clipRect)
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), (Vector4*)(default));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, pStr0, pStr1, textSizeIfKnown, align, (ImRect*)pclipRect);
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), cpuFineClipRect);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, cpuFineClipRect);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, (Vector4*)(default));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), (Vector4*)(default));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), cpuFineClipRect);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (byte* ptextEnd = &textEnd)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (byte* ptextEnd = &textEnd)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (byte* ptextEnd = &textEnd)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (byte* ptextEnd = &textEnd)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte* pStr1 = null;
+					int pStrSize1 = 0;
+					if (textEnd != null)
+					{
+						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize1 >= Utils.MaxStackallocSize)
+						{
+							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						}
+						else
+						{
+							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+							pStr1 = pStrStack1;
+						}
+						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+						pStr1[pStrOffset1] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, cpuFineClipRect);
 					if (pStrSize1 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr1);
@@ -3092,52 +1999,460 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth)
 		{
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImRect* pclipRect = &clipRect)
+				fixed (ImFont* pfont = &font)
 				{
-					RenderTextClippedExNative(drawList, posMin, posMax, text, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
-				}
-			}
-		}
-
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					fixed (ImRect* pclipRect = &clipRect)
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
 					{
-						RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte* pStr1 = null;
+					int pStrSize1 = 0;
+					if (textEnd != null)
+					{
+						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize1 >= Utils.MaxStackallocSize)
+						{
+							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						}
+						else
+						{
+							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+							pStr1 = pStrStack1;
+						}
+						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+						pStr1[pStrOffset1] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, (Vector4*)(default));
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr1);
+					}
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
 					}
 				}
 			}
 		}
 
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, ref byte text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd)
 		{
-			fixed (byte* ptext = &text)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				fixed (ImFont* pfont = &font)
 				{
-					fixed (ImRect* pclipRect = &clipRect)
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
 					{
-						RenderTextClippedExNative(drawList, posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte* pStr1 = null;
+					int pStrSize1 = 0;
+					if (textEnd != null)
+					{
+						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize1 >= Utils.MaxStackallocSize)
+						{
+							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						}
+						else
+						{
+							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+							pStr1 = pStrStack1;
+						}
+						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+						pStr1[pStrOffset1] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), (Vector4*)(default));
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr1);
+					}
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
 					}
 				}
 			}
 		}
 
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, string text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte* pStr1 = null;
+					int pStrSize1 = 0;
+					if (textEnd != null)
+					{
+						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize1 >= Utils.MaxStackallocSize)
+						{
+							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						}
+						else
+						{
+							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+							pStr1 = pStrStack1;
+						}
+						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+						pStr1[pStrOffset1] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), cpuFineClipRect);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr1);
+					}
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (textBegin != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3147,48 +2462,215 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 			{
-				fixed (ImRect* pclipRect = &clipRect)
+				AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					RenderTextClippedExNative(drawList, posMin, posMax, pStr0, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 					{
-						Utils.Free(pStr0);
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
 					}
 				}
 			}
 		}
 
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, ref byte text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
 		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (byte* ptext = &text)
+				fixed (byte* ptextBegin = &textBegin)
 				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 					{
-						fixed (ImRect* pclipRect = &clipRect)
-						{
-							RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
-						}
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
 					}
 				}
 			}
 		}
 
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, string text, byte* textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
 		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (text != null)
+				if (textBegin != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3198,14 +2680,506 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 				{
-					fixed (ImRect* pclipRect = &clipRect)
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, pStr0, textEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
 							Utils.Free(pStr0);
@@ -3215,21 +3189,202 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
 		{
-			fixed (byte* ptextEnd = &textEnd)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				fixed (ImFont* pfont = &font)
 				{
-					fixed (ImRect* pclipRect = &clipRect)
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
 					{
-						RenderTextClippedExNative(drawList, posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
 					}
 				}
 			}
 		}
 
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, byte* text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3248,39 +3403,98 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 			{
-				fixed (ImRect* pclipRect = &clipRect)
+				AddTextNative(self, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)pcpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					RenderTextClippedExNative(drawList, posMin, posMax, text, pStr0, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
 		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
 			{
 				fixed (byte* ptextEnd = &textEnd)
 				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 					{
-						fixed (ImRect* pclipRect = &clipRect)
-						{
-							RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
-						}
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
 					}
 				}
 			}
 		}
 
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, byte* text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
 		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -3299,11 +3513,257 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 				{
-					fixed (ImRect* pclipRect = &clipRect)
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, text, pStr0, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)pcpuFineClipRect);
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
 							Utils.Free(pStr0);
@@ -3313,30 +3773,110 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
 		{
-			fixed (byte* ptext = &text)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (byte* ptextEnd = &textEnd)
+				fixed (ImFont* pfont = &font)
 				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
 					{
-						fixed (ImRect* pclipRect = &clipRect)
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
-							RenderTextClippedExNative(drawList, posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
 						}
 					}
 				}
 			}
 		}
 
-		public static void RenderTextClippedEx(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, string text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (text != null)
+			if (textBegin != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3346,7 +3886,7 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
@@ -3366,11 +3906,173 @@ namespace Hexa.NET.ImGui
 				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 			{
-				fixed (ImRect* pclipRect = &clipRect)
+				AddTextNative(self, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, (Vector4*)pcpuFineClipRect);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					RenderTextClippedExNative(drawList, posMin, posMax, pStr0, pStr1, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, (Vector4*)pcpuFineClipRect);
 					if (pStrSize1 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr1);
@@ -3383,19 +4085,280 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, ref byte text, ref byte textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, ref Vector4 cpuFineClipRect)
 		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (byte* ptext = &text)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr1);
+					}
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
 				{
 					fixed (byte* ptextEnd = &textEnd)
 					{
-						fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 						{
-							fixed (ImRect* pclipRect = &clipRect)
+							AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr1);
+					}
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr1);
+					}
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						fixed (byte* ptextEnd = &textEnd)
+						{
+							fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 							{
-								RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+								AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
 							}
 						}
 					}
@@ -3403,49 +4366,69 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void RenderTextClippedEx(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, string text, string textEnd, ref Vector2 textSizeIfKnown, Vector2 align, ref ImRect clipRect)
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
 		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			fixed (ImDrawList* pself = &self)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
+				fixed (ImFont* pfont = &font)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					fixed (byte* ptextBegin = &textBegin)
 					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						fixed (byte* ptextEnd = &textEnd)
+						{
+							fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+							{
+								AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+							}
+						}
 					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
 				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
 				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
 					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
 					}
-					else
+					byte* pStr1 = null;
+					int pStrSize1 = 0;
+					if (textEnd != null)
 					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
+						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize1 >= Utils.MaxStackallocSize)
+						{
+							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						}
+						else
+						{
+							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+							pStr1 = pStrStack1;
+						}
+						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+						pStr1[pStrOffset1] = 0;
 					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					fixed (ImRect* pclipRect = &clipRect)
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
 					{
-						RenderTextClippedExNative((ImDrawList*)pdrawList, posMin, posMax, pStr0, pStr1, (Vector2*)ptextSizeIfKnown, align, (ImRect*)pclipRect);
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, (Vector4*)pcpuFineClipRect);
 						if (pStrSize1 >= Utils.MaxStackallocSize)
 						{
 							Utils.Free(pStr1);
@@ -3459,1578 +4442,585 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		internal static void RenderTextEllipsisNative(ImDrawList* drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, byte* textEnd, Vector2* textSizeIfKnown)
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, ref Vector4 cpuFineClipRect)
 		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, float, byte*, byte*, Vector2*, void>)vt[1302])(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, textEnd, textSizeIfKnown);
-		}
-
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, byte* textEnd, Vector2* textSizeIfKnown)
-		{
-			RenderTextEllipsisNative(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, textEnd, textSizeIfKnown);
-		}
-
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, byte* textEnd, Vector2* textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			fixed (ImDrawList* pself = &self)
 			{
-				RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, textEnd, textSizeIfKnown);
-			}
-		}
-
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, ref byte text, byte* textEnd, Vector2* textSizeIfKnown)
-		{
-			fixed (byte* ptext = &text)
-			{
-				RenderTextEllipsisNative(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, (byte*)ptext, textEnd, textSizeIfKnown);
-			}
-		}
-
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, string text, byte* textEnd, Vector2* textSizeIfKnown)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (ImFont* pfont = &font)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			RenderTextEllipsisNative(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, pStr0, textEnd, textSizeIfKnown);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, ref byte text, byte* textEnd, Vector2* textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptext = &text)
-				{
-					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, clipMaxX, ellipsisMaxX, (byte*)ptext, textEnd, textSizeIfKnown);
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, string text, byte* textEnd, Vector2* textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
 					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, clipMaxX, ellipsisMaxX, pStr0, textEnd, textSizeIfKnown);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, ref byte textEnd, Vector2* textSizeIfKnown)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				RenderTextEllipsisNative(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, (byte*)ptextEnd, textSizeIfKnown);
-			}
-		}
-
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, string textEnd, Vector2* textSizeIfKnown)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			RenderTextEllipsisNative(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, pStr0, textSizeIfKnown);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, ref byte textEnd, Vector2* textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, (byte*)ptextEnd, textSizeIfKnown);
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, string textEnd, Vector2* textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, pStr0, textSizeIfKnown);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, ref byte text, ref byte textEnd, Vector2* textSizeIfKnown)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					RenderTextEllipsisNative(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown);
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, string text, string textEnd, Vector2* textSizeIfKnown)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			RenderTextEllipsisNative(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, pStr0, pStr1, textSizeIfKnown);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, ref byte text, ref byte textEnd, Vector2* textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, clipMaxX, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, textSizeIfKnown);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, string text, string textEnd, Vector2* textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, clipMaxX, ellipsisMaxX, pStr0, pStr1, textSizeIfKnown);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, byte* textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextEllipsisNative(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, textEnd, (Vector2*)ptextSizeIfKnown);
-			}
-		}
-
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, byte* textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, textEnd, (Vector2*)ptextSizeIfKnown);
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, ref byte text, byte* textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextEllipsisNative(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown);
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, string text, byte* textEnd, ref Vector2 textSizeIfKnown)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextEllipsisNative(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, pStr0, textEnd, (Vector2*)ptextSizeIfKnown);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, ref byte text, byte* textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, clipMaxX, ellipsisMaxX, (byte*)ptext, textEnd, (Vector2*)ptextSizeIfKnown);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, string text, byte* textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, clipMaxX, ellipsisMaxX, pStr0, textEnd, (Vector2*)ptextSizeIfKnown);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, ref byte textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextEllipsisNative(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, string textEnd, ref Vector2 textSizeIfKnown)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextEllipsisNative(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, pStr0, (Vector2*)ptextSizeIfKnown);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, ref byte textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, string textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, pStr0, (Vector2*)ptextSizeIfKnown);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, ref byte text, ref byte textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-					{
-						RenderTextEllipsisNative(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
-					}
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ImDrawListPtr drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, string text, string textEnd, ref Vector2 textSizeIfKnown)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-			{
-				RenderTextEllipsisNative(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, pStr0, pStr1, (Vector2*)ptextSizeIfKnown);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, ref byte text, ref byte textEnd, ref Vector2 textSizeIfKnown)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* ptext = &text)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
-							RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, clipMaxX, ellipsisMaxX, (byte*)ptext, (byte*)ptextEnd, (Vector2*)ptextSizeIfKnown);
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					byte* pStr1 = null;
+					int pStrSize1 = 0;
+					if (textEnd != null)
+					{
+						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize1 >= Utils.MaxStackallocSize)
+						{
+							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+						}
+						else
+						{
+							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+							pStr1 = pStrStack1;
+						}
+						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+						pStr1[pStrOffset1] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						if (pStrSize1 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr1);
+						}
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
 						}
 					}
 				}
 			}
 		}
 
-		public static void RenderTextEllipsis(ref ImDrawList drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, string text, string textEnd, ref Vector2 textSizeIfKnown)
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
 		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			fixed (ImDrawList* pself = &self)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (text != null)
+				fixed (ImFont* pfont = &font)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(text);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					fixed (byte* ptextBegin = textBegin)
 					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				fixed (Vector2* ptextSizeIfKnown = &textSizeIfKnown)
-				{
-					RenderTextEllipsisNative((ImDrawList*)pdrawList, posMin, posMax, clipMaxX, ellipsisMaxX, pStr0, pStr1, (Vector2*)ptextSizeIfKnown);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
+						fixed (byte* ptextEnd = textEnd)
+						{
+							fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+							{
+								AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+							}
+						}
 					}
 				}
 			}
 		}
 
-		internal static void RenderFrameNative(Vector2 pMin, Vector2 pMax, uint fillCol, byte border, float rounding)
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
 		{
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)vt[1303])(pMin, pMax, fillCol, border, rounding);
-		}
-
-		public static void RenderFrame(Vector2 pMin, Vector2 pMax, uint fillCol, bool border, float rounding)
-		{
-			RenderFrameNative(pMin, pMax, fillCol, border ? (byte)1 : (byte)0, rounding);
-		}
-
-		internal static void RenderFrameBorderNative(Vector2 pMin, Vector2 pMax, float rounding)
-		{
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)vt[1304])(pMin, pMax, rounding);
-		}
-
-		public static void RenderFrameBorder(Vector2 pMin, Vector2 pMax, float rounding)
-		{
-			RenderFrameBorderNative(pMin, pMax, rounding);
-		}
-
-		internal static void RenderColorRectWithAlphaCheckerboardNative(ImDrawList* drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff, float rounding, ImDrawFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)vt[1305])(drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
-		}
-
-		public static void RenderColorRectWithAlphaCheckerboard(ImDrawListPtr drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff, float rounding, ImDrawFlags flags)
-		{
-			RenderColorRectWithAlphaCheckerboardNative(drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
-		}
-
-		public static void RenderColorRectWithAlphaCheckerboard(ref ImDrawList drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff, float rounding, ImDrawFlags flags)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
+			fixed (ImDrawList* pself = &self)
 			{
-				RenderColorRectWithAlphaCheckerboardNative((ImDrawList*)pdrawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
-			}
-		}
-
-		internal static void RenderNavHighlightNative(ImRect bb, int id, ImGuiNavHighlightFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<ImRect, int, ImGuiNavHighlightFlags, void>)vt[1306])(bb, id, flags);
-		}
-
-		public static void RenderNavHighlight(ImRect bb, int id, ImGuiNavHighlightFlags flags)
-		{
-			RenderNavHighlightNative(bb, id, flags);
-		}
-
-		internal static byte* FindRenderedTextEndNative(byte* text, byte* textEnd)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)vt[1307])(text, textEnd);
-		}
-
-		public static byte* FindRenderedTextEnd(byte* text, byte* textEnd)
-		{
-			byte* ret = FindRenderedTextEndNative(text, textEnd);
-			return ret;
-		}
-
-		public static string FindRenderedTextEndS(byte* text, byte* textEnd)
-		{
-			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, textEnd));
-			return ret;
-		}
-
-		public static byte* FindRenderedTextEnd(ref byte text, byte* textEnd)
-		{
-			fixed (byte* ptext = &text)
-			{
-				byte* ret = FindRenderedTextEndNative((byte*)ptext, textEnd);
-				return ret;
-			}
-		}
-
-		public static string FindRenderedTextEndS(ref byte text, byte* textEnd)
-		{
-			fixed (byte* ptext = &text)
-			{
-				string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative((byte*)ptext, textEnd));
-				return ret;
-			}
-		}
-
-		public static byte* FindRenderedTextEnd(string text, byte* textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (ImFont* pfont = &font)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* ret = FindRenderedTextEndNative(pStr0, textEnd);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static string FindRenderedTextEndS(string text, byte* textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(pStr0, textEnd));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static byte* FindRenderedTextEnd(byte* text, ref byte textEnd)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				byte* ret = FindRenderedTextEndNative(text, (byte*)ptextEnd);
-				return ret;
-			}
-		}
-
-		public static string FindRenderedTextEndS(byte* text, ref byte textEnd)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, (byte*)ptextEnd));
-				return ret;
-			}
-		}
-
-		public static byte* FindRenderedTextEnd(byte* text, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* ret = FindRenderedTextEndNative(text, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static string FindRenderedTextEndS(byte* text, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(text, pStr0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static byte* FindRenderedTextEnd(ref byte text, ref byte textEnd)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					byte* ret = FindRenderedTextEndNative((byte*)ptext, (byte*)ptextEnd);
-					return ret;
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+							{
+								AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+							}
+						}
+					}
 				}
 			}
 		}
 
-		public static string FindRenderedTextEndS(ref byte text, ref byte textEnd)
+		internal static void AddBezierCubicNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
 		{
-			fixed (byte* ptext = &text)
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, float, int, void>)vt[555])(self, p1, p2, p3, p4, col, thickness, numSegments);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, uint, float, int, void>)vt[555])((nint)self, p1, p2, p3, p4, col, thickness, numSegments);
+			#endif
+		}
+
+		public static void AddBezierCubic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
+		{
+			AddBezierCubicNative(self, p1, p2, p3, p4, col, thickness, numSegments);
+		}
+
+		public static void AddBezierCubic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
+		{
+			AddBezierCubicNative(self, p1, p2, p3, p4, col, thickness, (int)(0));
+		}
+
+		public static void AddBezierCubic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
+		{
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (byte* ptextEnd = &textEnd)
+				AddBezierCubicNative((ImDrawList*)pself, p1, p2, p3, p4, col, thickness, numSegments);
+			}
+		}
+
+		public static void AddBezierCubic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddBezierCubicNative((ImDrawList*)pself, p1, p2, p3, p4, col, thickness, (int)(0));
+			}
+		}
+
+		internal static void AddBezierQuadraticNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, uint, float, int, void>)vt[556])(self, p1, p2, p3, col, thickness, numSegments);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, uint, float, int, void>)vt[556])((nint)self, p1, p2, p3, col, thickness, numSegments);
+			#endif
+		}
+
+		public static void AddBezierQuadratic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
+		{
+			AddBezierQuadraticNative(self, p1, p2, p3, col, thickness, numSegments);
+		}
+
+		public static void AddBezierQuadratic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
+		{
+			AddBezierQuadraticNative(self, p1, p2, p3, col, thickness, (int)(0));
+		}
+
+		public static void AddBezierQuadratic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddBezierQuadraticNative((ImDrawList*)pself, p1, p2, p3, col, thickness, numSegments);
+			}
+		}
+
+		public static void AddBezierQuadratic(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddBezierQuadraticNative((ImDrawList*)pself, p1, p2, p3, col, thickness, (int)(0));
+			}
+		}
+
+		internal static void AddPolylineNative(ImDrawList* self, Vector2* points, int numPoints, uint col, ImDrawFlags flags, float thickness)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2*, int, uint, ImDrawFlags, float, void>)vt[557])(self, points, numPoints, col, flags, thickness);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, int, uint, ImDrawFlags, float, void>)vt[557])((nint)self, (nint)points, numPoints, col, flags, thickness);
+			#endif
+		}
+
+		public static void AddPolyline(ImDrawListPtr self, Vector2* points, int numPoints, uint col, ImDrawFlags flags, float thickness)
+		{
+			AddPolylineNative(self, points, numPoints, col, flags, thickness);
+		}
+
+		public static void AddPolyline(ref ImDrawList self, Vector2* points, int numPoints, uint col, ImDrawFlags flags, float thickness)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddPolylineNative((ImDrawList*)pself, points, numPoints, col, flags, thickness);
+			}
+		}
+
+		public static void AddPolyline(ImDrawListPtr self, ref Vector2 points, int numPoints, uint col, ImDrawFlags flags, float thickness)
+		{
+			fixed (Vector2* ppoints = &points)
+			{
+				AddPolylineNative(self, (Vector2*)ppoints, numPoints, col, flags, thickness);
+			}
+		}
+
+		public static void AddPolyline(ref ImDrawList self, ref Vector2 points, int numPoints, uint col, ImDrawFlags flags, float thickness)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (Vector2* ppoints = &points)
 				{
-					string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative((byte*)ptext, (byte*)ptextEnd));
-					return ret;
+					AddPolylineNative((ImDrawList*)pself, (Vector2*)ppoints, numPoints, col, flags, thickness);
 				}
 			}
 		}
 
-		public static byte* FindRenderedTextEnd(string text, string textEnd)
+		internal static void AddConvexPolyFilledNative(ImDrawList* self, Vector2* points, int numPoints, uint col)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2*, int, uint, void>)vt[558])(self, points, numPoints, col);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, int, uint, void>)vt[558])((nint)self, (nint)points, numPoints, col);
+			#endif
+		}
+
+		public static void AddConvexPolyFilled(ImDrawListPtr self, Vector2* points, int numPoints, uint col)
+		{
+			AddConvexPolyFilledNative(self, points, numPoints, col);
+		}
+
+		public static void AddConvexPolyFilled(ref ImDrawList self, Vector2* points, int numPoints, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				AddConvexPolyFilledNative((ImDrawList*)pself, points, numPoints, col);
+			}
+		}
+
+		public static void AddConvexPolyFilled(ImDrawListPtr self, ref Vector2 points, int numPoints, uint col)
+		{
+			fixed (Vector2* ppoints = &points)
+			{
+				AddConvexPolyFilledNative(self, (Vector2*)ppoints, numPoints, col);
+			}
+		}
+
+		public static void AddConvexPolyFilled(ref ImDrawList self, ref Vector2 points, int numPoints, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (Vector2* ppoints = &points)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte* ret = FindRenderedTextEndNative(pStr0, pStr1);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static string FindRenderedTextEndS(string text, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			string ret = Utils.DecodeStringUTF8(FindRenderedTextEndNative(pStr0, pStr1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		internal static void RenderMouseCursorNative(Vector2 pos, float scale, ImGuiMouseCursor mouseCursor, uint colFill, uint colBorder, uint colShadow)
-		{
-			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)vt[1308])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
-		}
-
-		public static void RenderMouseCursor(Vector2 pos, float scale, ImGuiMouseCursor mouseCursor, uint colFill, uint colBorder, uint colShadow)
-		{
-			RenderMouseCursorNative(pos, scale, mouseCursor, colFill, colBorder, colShadow);
-		}
-
-		internal static void RenderArrowNative(ImDrawList* drawList, Vector2 pos, uint col, ImGuiDir dir, float scale)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, ImGuiDir, float, void>)vt[1309])(drawList, pos, col, dir, scale);
-		}
-
-		public static void RenderArrow(ImDrawListPtr drawList, Vector2 pos, uint col, ImGuiDir dir, float scale)
-		{
-			RenderArrowNative(drawList, pos, col, dir, scale);
-		}
-
-		public static void RenderArrow(ref ImDrawList drawList, Vector2 pos, uint col, ImGuiDir dir, float scale)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				RenderArrowNative((ImDrawList*)pdrawList, pos, col, dir, scale);
-			}
-		}
-
-		internal static void RenderBulletNative(ImDrawList* drawList, Vector2 pos, uint col)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, void>)vt[1310])(drawList, pos, col);
-		}
-
-		public static void RenderBullet(ImDrawListPtr drawList, Vector2 pos, uint col)
-		{
-			RenderBulletNative(drawList, pos, col);
-		}
-
-		public static void RenderBullet(ref ImDrawList drawList, Vector2 pos, uint col)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				RenderBulletNative((ImDrawList*)pdrawList, pos, col);
-			}
-		}
-
-		internal static void RenderCheckMarkNative(ImDrawList* drawList, Vector2 pos, uint col, float sz)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, float, void>)vt[1311])(drawList, pos, col, sz);
-		}
-
-		public static void RenderCheckMark(ImDrawListPtr drawList, Vector2 pos, uint col, float sz)
-		{
-			RenderCheckMarkNative(drawList, pos, col, sz);
-		}
-
-		public static void RenderCheckMark(ref ImDrawList drawList, Vector2 pos, uint col, float sz)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				RenderCheckMarkNative((ImDrawList*)pdrawList, pos, col, sz);
-			}
-		}
-
-		internal static void RenderArrowPointingAtNative(ImDrawList* drawList, Vector2 pos, Vector2 halfSz, ImGuiDir direction, uint col)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, ImGuiDir, uint, void>)vt[1312])(drawList, pos, halfSz, direction, col);
-		}
-
-		public static void RenderArrowPointingAt(ImDrawListPtr drawList, Vector2 pos, Vector2 halfSz, ImGuiDir direction, uint col)
-		{
-			RenderArrowPointingAtNative(drawList, pos, halfSz, direction, col);
-		}
-
-		public static void RenderArrowPointingAt(ref ImDrawList drawList, Vector2 pos, Vector2 halfSz, ImGuiDir direction, uint col)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				RenderArrowPointingAtNative((ImDrawList*)pdrawList, pos, halfSz, direction, col);
-			}
-		}
-
-		internal static void RenderArrowDockMenuNative(ImDrawList* drawList, Vector2 pMin, float sz, uint col)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, void>)vt[1313])(drawList, pMin, sz, col);
-		}
-
-		public static void RenderArrowDockMenu(ImDrawListPtr drawList, Vector2 pMin, float sz, uint col)
-		{
-			RenderArrowDockMenuNative(drawList, pMin, sz, col);
-		}
-
-		public static void RenderArrowDockMenu(ref ImDrawList drawList, Vector2 pMin, float sz, uint col)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				RenderArrowDockMenuNative((ImDrawList*)pdrawList, pMin, sz, col);
-			}
-		}
-
-		internal static void RenderRectFilledRangeHNative(ImDrawList* drawList, ImRect rect, uint col, float xStartNorm, float xEndNorm, float rounding)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, uint, float, float, float, void>)vt[1314])(drawList, rect, col, xStartNorm, xEndNorm, rounding);
-		}
-
-		public static void RenderRectFilledRangeH(ImDrawListPtr drawList, ImRect rect, uint col, float xStartNorm, float xEndNorm, float rounding)
-		{
-			RenderRectFilledRangeHNative(drawList, rect, col, xStartNorm, xEndNorm, rounding);
-		}
-
-		public static void RenderRectFilledRangeH(ref ImDrawList drawList, ImRect rect, uint col, float xStartNorm, float xEndNorm, float rounding)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				RenderRectFilledRangeHNative((ImDrawList*)pdrawList, rect, col, xStartNorm, xEndNorm, rounding);
-			}
-		}
-
-		internal static void RenderRectFilledWithHoleNative(ImDrawList* drawList, ImRect outer, ImRect inner, uint col, float rounding)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, ImRect, uint, float, void>)vt[1315])(drawList, outer, inner, col, rounding);
-		}
-
-		public static void RenderRectFilledWithHole(ImDrawListPtr drawList, ImRect outer, ImRect inner, uint col, float rounding)
-		{
-			RenderRectFilledWithHoleNative(drawList, outer, inner, col, rounding);
-		}
-
-		public static void RenderRectFilledWithHole(ref ImDrawList drawList, ImRect outer, ImRect inner, uint col, float rounding)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				RenderRectFilledWithHoleNative((ImDrawList*)pdrawList, outer, inner, col, rounding);
-			}
-		}
-
-		internal static ImDrawFlags CalcRoundingFlagsForRectInRectNative(ImRect rIn, ImRect rOuter, float threshold)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImRect, ImRect, float, ImDrawFlags>)vt[1316])(rIn, rOuter, threshold);
-		}
-
-		public static ImDrawFlags CalcRoundingFlagsForRectInRect(ImRect rIn, ImRect rOuter, float threshold)
-		{
-			ImDrawFlags ret = CalcRoundingFlagsForRectInRectNative(rIn, rOuter, threshold);
-			return ret;
-		}
-
-		internal static void TextExNative(byte* text, byte* textEnd, ImGuiTextFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, byte*, ImGuiTextFlags, void>)vt[1317])(text, textEnd, flags);
-		}
-
-		public static void TextEx(byte* text, byte* textEnd, ImGuiTextFlags flags)
-		{
-			TextExNative(text, textEnd, flags);
-		}
-
-		public static void TextEx(ref byte text, byte* textEnd, ImGuiTextFlags flags)
-		{
-			fixed (byte* ptext = &text)
-			{
-				TextExNative((byte*)ptext, textEnd, flags);
-			}
-		}
-
-		public static void TextEx(string text, byte* textEnd, ImGuiTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextExNative(pStr0, textEnd, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TextEx(byte* text, ref byte textEnd, ImGuiTextFlags flags)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				TextExNative(text, (byte*)ptextEnd, flags);
-			}
-		}
-
-		public static void TextEx(byte* text, string textEnd, ImGuiTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextExNative(text, pStr0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TextEx(ref byte text, ref byte textEnd, ImGuiTextFlags flags)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					TextExNative((byte*)ptext, (byte*)ptextEnd, flags);
+					AddConvexPolyFilledNative((ImDrawList*)pself, (Vector2*)ppoints, numPoints, col);
 				}
 			}
 		}
 
-		public static void TextEx(string text, string textEnd, ImGuiTextFlags flags)
+		internal static void AddConcavePolyFilledNative(ImDrawList* self, Vector2* points, int numPoints, uint col)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2*, int, uint, void>)vt[559])(self, points, numPoints, col);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, int, uint, void>)vt[559])((nint)self, (nint)points, numPoints, col);
+			#endif
+		}
+
+		public static void AddConcavePolyFilled(ImDrawListPtr self, Vector2* points, int numPoints, uint col)
+		{
+			AddConcavePolyFilledNative(self, points, numPoints, col);
+		}
+
+		public static void AddConcavePolyFilled(ref ImDrawList self, Vector2* points, int numPoints, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				AddConcavePolyFilledNative((ImDrawList*)pself, points, numPoints, col);
+			}
+		}
+
+		public static void AddConcavePolyFilled(ImDrawListPtr self, ref Vector2 points, int numPoints, uint col)
+		{
+			fixed (Vector2* ppoints = &points)
+			{
+				AddConcavePolyFilledNative(self, (Vector2*)ppoints, numPoints, col);
+			}
+		}
+
+		public static void AddConcavePolyFilled(ref ImDrawList self, ref Vector2 points, int numPoints, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (Vector2* ppoints = &points)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			TextExNative(pStr0, pStr1, flags);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		internal static byte ButtonExNative(byte* label, Vector2 sizeArg, ImGuiButtonFlags flags)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiButtonFlags, byte>)vt[1318])(label, sizeArg, flags);
-		}
-
-		public static bool ButtonEx(byte* label, Vector2 sizeArg, ImGuiButtonFlags flags)
-		{
-			byte ret = ButtonExNative(label, sizeArg, flags);
-			return ret != 0;
-		}
-
-		public static bool ButtonEx(ref byte label, Vector2 sizeArg, ImGuiButtonFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ButtonExNative((byte*)plabel, sizeArg, flags);
-				return ret != 0;
-			}
-		}
-
-		public static bool ButtonEx(string label, Vector2 sizeArg, ImGuiButtonFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ButtonExNative(pStr0, sizeArg, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		internal static byte ArrowButtonExNative(byte* strId, ImGuiDir dir, Vector2 sizeArg, ImGuiButtonFlags flags)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDir, Vector2, ImGuiButtonFlags, byte>)vt[1319])(strId, dir, sizeArg, flags);
-		}
-
-		public static bool ArrowButtonEx(byte* strId, ImGuiDir dir, Vector2 sizeArg, ImGuiButtonFlags flags)
-		{
-			byte ret = ArrowButtonExNative(strId, dir, sizeArg, flags);
-			return ret != 0;
-		}
-
-		public static bool ArrowButtonEx(ref byte strId, ImGuiDir dir, Vector2 sizeArg, ImGuiButtonFlags flags)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = ArrowButtonExNative((byte*)pstrId, dir, sizeArg, flags);
-				return ret != 0;
-			}
-		}
-
-		public static bool ArrowButtonEx(string strId, ImGuiDir dir, Vector2 sizeArg, ImGuiButtonFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ArrowButtonExNative(pStr0, dir, sizeArg, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		internal static byte ImageButtonExNative(int id, ImTextureID textureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol, ImGuiButtonFlags flags)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, ImGuiButtonFlags, byte>)vt[1320])(id, textureId, imageSize, uv0, uv1, bgCol, tintCol, flags);
-		}
-
-		public static bool ImageButtonEx(int id, ImTextureID textureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol, ImGuiButtonFlags flags)
-		{
-			byte ret = ImageButtonExNative(id, textureId, imageSize, uv0, uv1, bgCol, tintCol, flags);
-			return ret != 0;
-		}
-
-		internal static void SeparatorExNative(ImGuiSeparatorFlags flags, float thickness)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiSeparatorFlags, float, void>)vt[1321])(flags, thickness);
-		}
-
-		public static void SeparatorEx(ImGuiSeparatorFlags flags, float thickness)
-		{
-			SeparatorExNative(flags, thickness);
-		}
-
-		internal static void SeparatorTextExNative(int id, byte* label, byte* labelEnd, float extraWidth)
-		{
-			((delegate* unmanaged[Cdecl]<int, byte*, byte*, float, void>)vt[1322])(id, label, labelEnd, extraWidth);
-		}
-
-		public static void SeparatorTextEx(int id, byte* label, byte* labelEnd, float extraWidth)
-		{
-			SeparatorTextExNative(id, label, labelEnd, extraWidth);
-		}
-
-		public static void SeparatorTextEx(int id, ref byte label, byte* labelEnd, float extraWidth)
-		{
-			fixed (byte* plabel = &label)
-			{
-				SeparatorTextExNative(id, (byte*)plabel, labelEnd, extraWidth);
-			}
-		}
-
-		public static void SeparatorTextEx(int id, string label, byte* labelEnd, float extraWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			SeparatorTextExNative(id, pStr0, labelEnd, extraWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void SeparatorTextEx(int id, byte* label, ref byte labelEnd, float extraWidth)
-		{
-			fixed (byte* plabelEnd = &labelEnd)
-			{
-				SeparatorTextExNative(id, label, (byte*)plabelEnd, extraWidth);
-			}
-		}
-
-		public static void SeparatorTextEx(int id, byte* label, string labelEnd, float extraWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			SeparatorTextExNative(id, label, pStr0, extraWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void SeparatorTextEx(int id, ref byte label, ref byte labelEnd, float extraWidth)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* plabelEnd = &labelEnd)
-				{
-					SeparatorTextExNative(id, (byte*)plabel, (byte*)plabelEnd, extraWidth);
+					AddConcavePolyFilledNative((ImDrawList*)pself, (Vector2*)ppoints, numPoints, col);
 				}
 			}
 		}
 
-		public static void SeparatorTextEx(int id, string label, string labelEnd, float extraWidth)
+		internal static void AddImageNative(ImDrawList* self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[560])(self, userTextureId, pMin, pMax, uvMin, uvMax, col);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImTextureID, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[560])((nint)self, userTextureId, pMin, pMax, uvMin, uvMax, col);
+			#endif
+		}
+
+		public static void AddImage(ImDrawListPtr self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
+		{
+			AddImageNative(self, userTextureId, pMin, pMax, uvMin, uvMax, col);
+		}
+
+		public static void AddImage(ImDrawListPtr self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax)
+		{
+			AddImageNative(self, userTextureId, pMin, pMax, uvMin, uvMax, (uint)(4294967295));
+		}
+
+		public static void AddImage(ImDrawListPtr self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin)
+		{
+			AddImageNative(self, userTextureId, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), (uint)(4294967295));
+		}
+
+		public static void AddImage(ImDrawListPtr self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax)
+		{
+			AddImageNative(self, userTextureId, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (uint)(4294967295));
+		}
+
+		public static void AddImage(ImDrawListPtr self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, uint col)
+		{
+			AddImageNative(self, userTextureId, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), col);
+		}
+
+		public static void AddImage(ImDrawListPtr self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, uint col)
+		{
+			AddImageNative(self, userTextureId, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), col);
+		}
+
+		public static void AddImage(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (labelEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(labelEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(labelEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			SeparatorTextExNative(id, pStr0, pStr1, extraWidth);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, uvMax, col);
 			}
 		}
 
-		internal static byte CheckboxFlagsS64PtrNative(byte* label, long* flags, long flagsValue)
+		public static void AddImage(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax)
 		{
-			return ((delegate* unmanaged[Cdecl]<byte*, long*, long, byte>)vt[1323])(label, flags, flagsValue);
-		}
-
-		public static bool CheckboxFlagsS64Ptr(byte* label, long* flags, long flagsValue)
-		{
-			byte ret = CheckboxFlagsS64PtrNative(label, flags, flagsValue);
-			return ret != 0;
-		}
-
-		public static bool CheckboxFlagsS64Ptr(ref byte label, long* flags, long flagsValue)
-		{
-			fixed (byte* plabel = &label)
+			fixed (ImDrawList* pself = &self)
 			{
-				byte ret = CheckboxFlagsS64PtrNative((byte*)plabel, flags, flagsValue);
-				return ret != 0;
+				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, uvMax, (uint)(4294967295));
 			}
 		}
 
-		public static bool CheckboxFlagsS64Ptr(string label, long* flags, long flagsValue)
+		public static void AddImage(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (ImDrawList* pself = &self)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = CheckboxFlagsS64PtrNative(pStr0, flags, flagsValue);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool CheckboxFlagsS64Ptr(byte* label, ref long flags, long flagsValue)
-		{
-			fixed (long* pflags = &flags)
-			{
-				byte ret = CheckboxFlagsS64PtrNative(label, (long*)pflags, flagsValue);
-				return ret != 0;
+				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), (uint)(4294967295));
 			}
 		}
 
-		public static bool CheckboxFlagsS64Ptr(ref byte label, ref long flags, long flagsValue)
+		public static void AddImage(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax)
 		{
-			fixed (byte* plabel = &label)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (long* pflags = &flags)
-				{
-					byte ret = CheckboxFlagsS64PtrNative((byte*)plabel, (long*)pflags, flagsValue);
-					return ret != 0;
-				}
+				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (uint)(4294967295));
 			}
 		}
 
-		public static bool CheckboxFlagsS64Ptr(string label, ref long flags, long flagsValue)
+		public static void AddImage(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, uint col)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (ImDrawList* pself = &self)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, (Vector2)(new Vector2(1,1)), col);
 			}
-			fixed (long* pflags = &flags)
+		}
+
+		public static void AddImage(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
 			{
-				byte ret = CheckboxFlagsS64PtrNative(pStr0, (long*)pflags, flagsValue);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
+				AddImageNative((ImDrawList*)pself, userTextureId, pMin, pMax, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), col);
 			}
+		}
+
+		internal static void AddImageQuadNative(ImDrawList* self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[561])(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImTextureID, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[561])((nint)self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
+			#endif
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, (uint)(4294967295));
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, uint col)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), col);
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, uint col)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, uint col)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+		}
+
+		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
+		{
+			AddImageQuadNative(self, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, (uint)(4294967295));
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), (uint)(4294967295));
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, (Vector2)(new Vector2(0,1)), col);
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, uv2, (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, uv1, (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+			}
+		}
+
+		public static void AddImageQuad(ref ImDrawList self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageQuadNative((ImDrawList*)pself, userTextureId, p1, p2, p3, p4, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,0)), (Vector2)(new Vector2(1,1)), (Vector2)(new Vector2(0,1)), col);
+			}
+		}
+
+		internal static void AddImageRoundedNative(ImDrawList* self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, Vector2, Vector2, Vector2, Vector2, uint, float, ImDrawFlags, void>)vt[562])(self, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImTextureID, Vector2, Vector2, Vector2, Vector2, uint, float, ImDrawFlags, void>)vt[562])((nint)self, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
+			#endif
+		}
+
+		public static void AddImageRounded(ImDrawListPtr self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
+		{
+			AddImageRoundedNative(self, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
+		}
+
+		public static void AddImageRounded(ImDrawListPtr self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding)
+		{
+			AddImageRoundedNative(self, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, (ImDrawFlags)(0));
+		}
+
+		public static void AddImageRounded(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageRoundedNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
+			}
+		}
+
+		public static void AddImageRounded(ref ImDrawList self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddImageRoundedNative((ImDrawList*)pself, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, (ImDrawFlags)(0));
+			}
+		}
+
+		internal static void PathClearNative(ImDrawList* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[563])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[563])((nint)self);
+			#endif
+		}
+
+		public static void PathClear(ImDrawListPtr self)
+		{
+			PathClearNative(self);
+		}
+
+		public static void PathClear(ref ImDrawList self)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PathClearNative((ImDrawList*)pself);
+			}
+		}
+
+		internal static void PathLineToNative(ImDrawList* self, Vector2 pos)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, void>)vt[564])(self, pos);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)vt[564])((nint)self, pos);
+			#endif
 		}
 	}
 }

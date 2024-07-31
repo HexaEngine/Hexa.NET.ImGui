@@ -18,288 +18,43 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
-		public static void ClosePopupsOverWindow(ref ImGuiWindow refWindow, bool restoreFocusToWindowUnderPopup)
+		public static void append(ref ImGuiTextBuffer self, ReadOnlySpan<byte> str, byte* strEnd)
 		{
-			fixed (ImGuiWindow* prefWindow = &refWindow)
+			fixed (ImGuiTextBuffer* pself = &self)
 			{
-				ClosePopupsOverWindowNative((ImGuiWindow*)prefWindow, restoreFocusToWindowUnderPopup ? (byte)1 : (byte)0);
-			}
-		}
-
-		internal static void ClosePopupsExceptModalsNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1082])();
-		}
-
-		public static void ClosePopupsExceptModals()
-		{
-			ClosePopupsExceptModalsNative();
-		}
-
-		internal static byte IsPopupOpenIDNative(int id, ImGuiPopupFlags popupFlags)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiPopupFlags, byte>)vt[1083])(id, popupFlags);
-		}
-
-		public static bool IsPopupOpenID(int id, ImGuiPopupFlags popupFlags)
-		{
-			byte ret = IsPopupOpenIDNative(id, popupFlags);
-			return ret != 0;
-		}
-
-		internal static void GetPopupAllowedExtentRectNative(ImRect* output, ImGuiWindow* window)
-		{
-			((delegate* unmanaged[Cdecl]<ImRect*, ImGuiWindow*, void>)vt[1084])(output, window);
-		}
-
-		public static ImRect GetPopupAllowedExtentRect(ImGuiWindowPtr window)
-		{
-			ImRect ret;
-			GetPopupAllowedExtentRectNative(&ret, window);
-			return ret;
-		}
-
-		public static void GetPopupAllowedExtentRect(ImRectPtr output, ImGuiWindowPtr window)
-		{
-			GetPopupAllowedExtentRectNative(output, window);
-		}
-
-		public static void GetPopupAllowedExtentRect(ref ImRect output, ImGuiWindowPtr window)
-		{
-			fixed (ImRect* poutput = &output)
-			{
-				GetPopupAllowedExtentRectNative((ImRect*)poutput, window);
-			}
-		}
-
-		public static ImRect GetPopupAllowedExtentRect(ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				ImRect ret;
-				GetPopupAllowedExtentRectNative(&ret, (ImGuiWindow*)pwindow);
-				return ret;
-			}
-		}
-
-		public static void GetPopupAllowedExtentRect(ImRectPtr output, ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				GetPopupAllowedExtentRectNative(output, (ImGuiWindow*)pwindow);
-			}
-		}
-
-		public static void GetPopupAllowedExtentRect(ref ImRect output, ref ImGuiWindow window)
-		{
-			fixed (ImRect* poutput = &output)
-			{
-				fixed (ImGuiWindow* pwindow = &window)
+				fixed (byte* pstr = str)
 				{
-					GetPopupAllowedExtentRectNative((ImRect*)poutput, (ImGuiWindow*)pwindow);
+					appendNative((ImGuiTextBuffer*)pself, (byte*)pstr, strEnd);
 				}
 			}
 		}
 
-		internal static ImGuiWindow* GetTopMostPopupModalNative()
+		public static void append(ref ImGuiTextBuffer self, ReadOnlySpan<byte> str)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*>)vt[1085])();
-		}
-
-		public static ImGuiWindowPtr GetTopMostPopupModal()
-		{
-			ImGuiWindowPtr ret = GetTopMostPopupModalNative();
-			return ret;
-		}
-
-		internal static ImGuiWindow* GetTopMostAndVisiblePopupModalNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*>)vt[1086])();
-		}
-
-		public static ImGuiWindowPtr GetTopMostAndVisiblePopupModal()
-		{
-			ImGuiWindowPtr ret = GetTopMostAndVisiblePopupModalNative();
-			return ret;
-		}
-
-		internal static ImGuiWindow* FindBlockingModalNative(ImGuiWindow* window)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiWindow*>)vt[1087])(window);
-		}
-
-		public static ImGuiWindowPtr FindBlockingModal(ImGuiWindowPtr window)
-		{
-			ImGuiWindowPtr ret = FindBlockingModalNative(window);
-			return ret;
-		}
-
-		public static ImGuiWindowPtr FindBlockingModal(ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
+			fixed (ImGuiTextBuffer* pself = &self)
 			{
-				ImGuiWindowPtr ret = FindBlockingModalNative((ImGuiWindow*)pwindow);
-				return ret;
-			}
-		}
-
-		internal static void FindBestWindowPosForPopupNative(Vector2* output, ImGuiWindow* window)
-		{
-			((delegate* unmanaged[Cdecl]<Vector2*, ImGuiWindow*, void>)vt[1088])(output, window);
-		}
-
-		public static Vector2 FindBestWindowPosForPopup(ImGuiWindowPtr window)
-		{
-			Vector2 ret;
-			FindBestWindowPosForPopupNative(&ret, window);
-			return ret;
-		}
-
-		public static void FindBestWindowPosForPopup(Vector2* output, ImGuiWindowPtr window)
-		{
-			FindBestWindowPosForPopupNative(output, window);
-		}
-
-		public static void FindBestWindowPosForPopup(ref Vector2 output, ImGuiWindowPtr window)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				FindBestWindowPosForPopupNative((Vector2*)poutput, window);
-			}
-		}
-
-		public static Vector2 FindBestWindowPosForPopup(ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				Vector2 ret;
-				FindBestWindowPosForPopupNative(&ret, (ImGuiWindow*)pwindow);
-				return ret;
-			}
-		}
-
-		public static void FindBestWindowPosForPopup(Vector2* output, ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				FindBestWindowPosForPopupNative(output, (ImGuiWindow*)pwindow);
-			}
-		}
-
-		public static void FindBestWindowPosForPopup(ref Vector2 output, ref ImGuiWindow window)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				fixed (ImGuiWindow* pwindow = &window)
+				fixed (byte* pstr = str)
 				{
-					FindBestWindowPosForPopupNative((Vector2*)poutput, (ImGuiWindow*)pwindow);
+					appendNative((ImGuiTextBuffer*)pself, (byte*)pstr, (byte*)(default));
 				}
 			}
 		}
 
-		internal static void FindBestWindowPosForPopupExNative(Vector2* output, Vector2 refPos, Vector2 size, ImGuiDir* lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
+		public static void append(ImGuiTextBufferPtr self, byte* str, ref byte strEnd)
 		{
-			((delegate* unmanaged[Cdecl]<Vector2*, Vector2, Vector2, ImGuiDir*, ImRect, ImRect, ImGuiPopupPositionPolicy, void>)vt[1089])(output, refPos, size, lastDir, rOuter, rAvoid, policy);
-		}
-
-		public static Vector2 FindBestWindowPosForPopupEx(Vector2 refPos, Vector2 size, ImGuiDir* lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
-		{
-			Vector2 ret;
-			FindBestWindowPosForPopupExNative(&ret, refPos, size, lastDir, rOuter, rAvoid, policy);
-			return ret;
-		}
-
-		public static void FindBestWindowPosForPopupEx(Vector2* output, Vector2 refPos, Vector2 size, ImGuiDir* lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
-		{
-			FindBestWindowPosForPopupExNative(output, refPos, size, lastDir, rOuter, rAvoid, policy);
-		}
-
-		public static void FindBestWindowPosForPopupEx(ref Vector2 output, Vector2 refPos, Vector2 size, ImGuiDir* lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
-		{
-			fixed (Vector2* poutput = &output)
+			fixed (byte* pstrEnd = &strEnd)
 			{
-				FindBestWindowPosForPopupExNative((Vector2*)poutput, refPos, size, lastDir, rOuter, rAvoid, policy);
+				appendNative(self, str, (byte*)pstrEnd);
 			}
 		}
 
-		public static Vector2 FindBestWindowPosForPopupEx(Vector2 refPos, Vector2 size, ref ImGuiDir lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
-		{
-			fixed (ImGuiDir* plastDir = &lastDir)
-			{
-				Vector2 ret;
-				FindBestWindowPosForPopupExNative(&ret, refPos, size, (ImGuiDir*)plastDir, rOuter, rAvoid, policy);
-				return ret;
-			}
-		}
-
-		public static void FindBestWindowPosForPopupEx(Vector2* output, Vector2 refPos, Vector2 size, ref ImGuiDir lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
-		{
-			fixed (ImGuiDir* plastDir = &lastDir)
-			{
-				FindBestWindowPosForPopupExNative(output, refPos, size, (ImGuiDir*)plastDir, rOuter, rAvoid, policy);
-			}
-		}
-
-		public static void FindBestWindowPosForPopupEx(ref Vector2 output, Vector2 refPos, Vector2 size, ref ImGuiDir lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				fixed (ImGuiDir* plastDir = &lastDir)
-				{
-					FindBestWindowPosForPopupExNative((Vector2*)poutput, refPos, size, (ImGuiDir*)plastDir, rOuter, rAvoid, policy);
-				}
-			}
-		}
-
-		internal static byte BeginTooltipExNative(ImGuiTooltipFlags tooltipFlags, ImGuiWindowFlags extraWindowFlags)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTooltipFlags, ImGuiWindowFlags, byte>)vt[1090])(tooltipFlags, extraWindowFlags);
-		}
-
-		public static bool BeginTooltipEx(ImGuiTooltipFlags tooltipFlags, ImGuiWindowFlags extraWindowFlags)
-		{
-			byte ret = BeginTooltipExNative(tooltipFlags, extraWindowFlags);
-			return ret != 0;
-		}
-
-		internal static byte BeginTooltipHiddenNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[1091])();
-		}
-
-		public static bool BeginTooltipHidden()
-		{
-			byte ret = BeginTooltipHiddenNative();
-			return ret != 0;
-		}
-
-		internal static byte BeginViewportSideBarNative(byte* name, ImGuiViewport* viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiViewport*, ImGuiDir, float, ImGuiWindowFlags, byte>)vt[1092])(name, viewport, dir, size, windowFlags);
-		}
-
-		public static bool BeginViewportSideBar(byte* name, ImGuiViewportPtr viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
-		{
-			byte ret = BeginViewportSideBarNative(name, viewport, dir, size, windowFlags);
-			return ret != 0;
-		}
-
-		public static bool BeginViewportSideBar(ref byte name, ImGuiViewportPtr viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
-		{
-			fixed (byte* pname = &name)
-			{
-				byte ret = BeginViewportSideBarNative((byte*)pname, viewport, dir, size, windowFlags);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginViewportSideBar(string name, ImGuiViewportPtr viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
+		public static void append(ImGuiTextBufferPtr self, byte* str, string strEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (strEnd != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(strEnd);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -309,95 +64,93 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginViewportSideBarNative(pStr0, viewport, dir, size, windowFlags);
+			appendNative(self, str, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
-			return ret != 0;
 		}
 
-		public static bool BeginViewportSideBar(byte* name, ref ImGuiViewport viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
+		public static void append(ImGuiTextBufferPtr self, byte* str, ReadOnlySpan<byte> strEnd)
 		{
-			fixed (ImGuiViewport* pviewport = &viewport)
+			fixed (byte* pstrEnd = strEnd)
 			{
-				byte ret = BeginViewportSideBarNative(name, (ImGuiViewport*)pviewport, dir, size, windowFlags);
-				return ret != 0;
+				appendNative(self, str, (byte*)pstrEnd);
 			}
 		}
 
-		public static bool BeginViewportSideBar(ref byte name, ref ImGuiViewport viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
+		public static void append(ref ImGuiTextBuffer self, byte* str, ref byte strEnd)
 		{
-			fixed (byte* pname = &name)
+			fixed (ImGuiTextBuffer* pself = &self)
 			{
-				fixed (ImGuiViewport* pviewport = &viewport)
+				fixed (byte* pstrEnd = &strEnd)
 				{
-					byte ret = BeginViewportSideBarNative((byte*)pname, (ImGuiViewport*)pviewport, dir, size, windowFlags);
-					return ret != 0;
+					appendNative((ImGuiTextBuffer*)pself, str, (byte*)pstrEnd);
 				}
 			}
 		}
 
-		public static bool BeginViewportSideBar(string name, ref ImGuiViewport viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
+		public static void append(ref ImGuiTextBuffer self, byte* str, string strEnd)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
+			fixed (ImGuiTextBuffer* pself = &self)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (strEnd != null)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStrSize0 = Utils.GetByteCountUTF8(strEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(strEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImGuiViewport* pviewport = &viewport)
-			{
-				byte ret = BeginViewportSideBarNative(pStr0, (ImGuiViewport*)pviewport, dir, size, windowFlags);
+				appendNative((ImGuiTextBuffer*)pself, str, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
 				}
-				return ret != 0;
 			}
 		}
 
-		internal static byte BeginMenuExNative(byte* label, byte* icon, byte enabled)
+		public static void append(ref ImGuiTextBuffer self, byte* str, ReadOnlySpan<byte> strEnd)
 		{
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte, byte>)vt[1093])(label, icon, enabled);
-		}
-
-		public static bool BeginMenuEx(byte* label, byte* icon, bool enabled)
-		{
-			byte ret = BeginMenuExNative(label, icon, enabled ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		public static bool BeginMenuEx(ref byte label, byte* icon, bool enabled)
-		{
-			fixed (byte* plabel = &label)
+			fixed (ImGuiTextBuffer* pself = &self)
 			{
-				byte ret = BeginMenuExNative((byte*)plabel, icon, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
+				fixed (byte* pstrEnd = strEnd)
+				{
+					appendNative((ImGuiTextBuffer*)pself, str, (byte*)pstrEnd);
+				}
 			}
 		}
 
-		public static bool BeginMenuEx(string label, byte* icon, bool enabled)
+		public static void append(ImGuiTextBufferPtr self, ref byte str, ref byte strEnd)
+		{
+			fixed (byte* pstr = &str)
+			{
+				fixed (byte* pstrEnd = &strEnd)
+				{
+					appendNative(self, (byte*)pstr, (byte*)pstrEnd);
+				}
+			}
+		}
+
+		public static void append(ImGuiTextBufferPtr self, string str, string strEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (str != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(str);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -407,89 +160,14 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginMenuExNative(pStr0, icon, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginMenuEx(byte* label, ref byte icon, bool enabled)
-		{
-			fixed (byte* picon = &icon)
-			{
-				byte ret = BeginMenuExNative(label, (byte*)picon, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginMenuEx(byte* label, string icon, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginMenuExNative(label, pStr0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginMenuEx(ref byte label, ref byte icon, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = BeginMenuExNative((byte*)plabel, (byte*)picon, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool BeginMenuEx(string label, string icon, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (icon != null)
+			if (strEnd != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(icon);
+				pStrSize1 = Utils.GetByteCountUTF8(strEnd);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -499,10 +177,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = BeginMenuExNative(pStr0, pStr1, enabled ? (byte)1 : (byte)0);
+			appendNative(self, pStr0, pStr1);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -511,330 +189,134 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
-			return ret != 0;
 		}
 
-		internal static byte MenuItemExNative(byte* label, byte* icon, byte* shortcut, byte selected, byte enabled)
+		public static void append(ImGuiTextBufferPtr self, ReadOnlySpan<byte> str, ReadOnlySpan<byte> strEnd)
 		{
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, byte, byte, byte>)vt[1094])(label, icon, shortcut, selected, enabled);
-		}
-
-		public static bool MenuItemEx(byte* label, byte* icon, byte* shortcut, bool selected, bool enabled)
-		{
-			byte ret = MenuItemExNative(label, icon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		public static bool MenuItemEx(ref byte label, byte* icon, byte* shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
+			fixed (byte* pstr = str)
 			{
-				byte ret = MenuItemExNative((byte*)plabel, icon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItemEx(string label, byte* icon, byte* shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pstrEnd = strEnd)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, icon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItemEx(byte* label, ref byte icon, byte* shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* picon = &icon)
-			{
-				byte ret = MenuItemExNative(label, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItemEx(byte* label, string icon, byte* shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(label, pStr0, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItemEx(ref byte label, ref byte icon, byte* shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
+					appendNative(self, (byte*)pstr, (byte*)pstrEnd);
 				}
 			}
 		}
 
-		public static bool MenuItemEx(string label, string icon, byte* shortcut, bool selected, bool enabled)
+		public static void append(ref ImGuiTextBuffer self, ref byte str, ref byte strEnd)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (ImGuiTextBuffer* pself = &self)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pstr = &str)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (icon != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, pStr1, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItemEx(byte* label, byte* icon, ref byte shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemExNative(label, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItemEx(byte* label, byte* icon, string shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (shortcut != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemExNative(label, icon, pStr0, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItemEx(ref byte label, byte* icon, ref byte shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool MenuItemEx(string label, byte* icon, string shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (shortcut != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, icon, pStr1, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItemEx(byte* label, ref byte icon, ref byte shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* picon = &icon)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool MenuItemEx(byte* label, string icon, string shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (icon != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (shortcut != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemExNative(label, pStr0, pStr1, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItemEx(ref byte label, ref byte icon, ref byte shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* picon = &icon)
-				{
-					fixed (byte* pshortcut = &shortcut)
+					fixed (byte* pstrEnd = &strEnd)
 					{
-						byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-						return ret != 0;
+						appendNative((ImGuiTextBuffer*)pself, (byte*)pstr, (byte*)pstrEnd);
 					}
 				}
 			}
 		}
 
-		public static bool MenuItemEx(string label, string icon, string shortcut, bool selected, bool enabled)
+		public static void append(ref ImGuiTextBuffer self, string str, string strEnd)
+		{
+			fixed (ImGuiTextBuffer* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (str != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(str);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(str, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (strEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(strEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(strEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				appendNative((ImGuiTextBuffer*)pself, pStr0, pStr1);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void append(ref ImGuiTextBuffer self, ReadOnlySpan<byte> str, ReadOnlySpan<byte> strEnd)
+		{
+			fixed (ImGuiTextBuffer* pself = &self)
+			{
+				fixed (byte* pstr = str)
+				{
+					fixed (byte* pstrEnd = strEnd)
+					{
+						appendNative((ImGuiTextBuffer*)pself, (byte*)pstr, (byte*)pstrEnd);
+					}
+				}
+			}
+		}
+
+		internal static void appendfvNative(ImGuiTextBuffer* self, byte* fmt, nuint args)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiTextBuffer*, byte*, nuint, void>)vt[472])(self, fmt, args);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)vt[472])((nint)self, (nint)fmt, args);
+			#endif
+		}
+
+		public static void appendfv(ImGuiTextBufferPtr self, byte* fmt, nuint args)
+		{
+			appendfvNative(self, fmt, args);
+		}
+
+		public static void appendfv(ref ImGuiTextBuffer self, byte* fmt, nuint args)
+		{
+			fixed (ImGuiTextBuffer* pself = &self)
+			{
+				appendfvNative((ImGuiTextBuffer*)pself, fmt, args);
+			}
+		}
+
+		public static void appendfv(ImGuiTextBufferPtr self, ref byte fmt, nuint args)
+		{
+			fixed (byte* pfmt = &fmt)
+			{
+				appendfvNative(self, (byte*)pfmt, args);
+			}
+		}
+
+		public static void appendfv(ImGuiTextBufferPtr self, string fmt, nuint args)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (label != null)
+			if (fmt != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -844,2114 +326,2558 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (icon != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(icon);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte* pStr2 = null;
-			int pStrSize2 = 0;
-			if (shortcut != null)
-			{
-				pStrSize2 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize2 >= Utils.MaxStackallocSize)
-				{
-					pStr2 = Utils.Alloc<byte>(pStrSize2 + 1);
-				}
-				else
-				{
-					byte* pStrStack2 = stackalloc byte[pStrSize2 + 1];
-					pStr2 = pStrStack2;
-				}
-				int pStrOffset2 = Utils.EncodeStringUTF8(shortcut, pStr2, pStrSize2);
-				pStr2[pStrOffset2] = 0;
-			}
-			byte ret = MenuItemExNative(pStr0, pStr1, pStr2, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize2 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr2);
-			}
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
+			appendfvNative(self, pStr0, args);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
-			return ret != 0;
 		}
 
-		internal static byte BeginComboPopupNative(int popupId, ImRect bb, ImGuiComboFlags flags)
+		public static void appendfv(ImGuiTextBufferPtr self, ReadOnlySpan<byte> fmt, nuint args)
 		{
-			return ((delegate* unmanaged[Cdecl]<int, ImRect, ImGuiComboFlags, byte>)vt[1095])(popupId, bb, flags);
-		}
-
-		public static bool BeginComboPopup(int popupId, ImRect bb, ImGuiComboFlags flags)
-		{
-			byte ret = BeginComboPopupNative(popupId, bb, flags);
-			return ret != 0;
-		}
-
-		internal static byte BeginComboPreviewNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[1096])();
-		}
-
-		public static bool BeginComboPreview()
-		{
-			byte ret = BeginComboPreviewNative();
-			return ret != 0;
-		}
-
-		internal static void EndComboPreviewNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1097])();
-		}
-
-		public static void EndComboPreview()
-		{
-			EndComboPreviewNative();
-		}
-
-		internal static void NavInitWindowNative(ImGuiWindow* window, byte forceReinit)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, byte, void>)vt[1098])(window, forceReinit);
-		}
-
-		public static void NavInitWindow(ImGuiWindowPtr window, bool forceReinit)
-		{
-			NavInitWindowNative(window, forceReinit ? (byte)1 : (byte)0);
-		}
-
-		public static void NavInitWindow(ref ImGuiWindow window, bool forceReinit)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
+			fixed (byte* pfmt = fmt)
 			{
-				NavInitWindowNative((ImGuiWindow*)pwindow, forceReinit ? (byte)1 : (byte)0);
+				appendfvNative(self, (byte*)pfmt, args);
 			}
 		}
 
-		internal static void NavInitRequestApplyResultNative()
+		public static void appendfv(ref ImGuiTextBuffer self, ref byte fmt, nuint args)
 		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1099])();
-		}
-
-		public static void NavInitRequestApplyResult()
-		{
-			NavInitRequestApplyResultNative();
-		}
-
-		internal static byte NavMoveRequestButNoResultYetNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[1100])();
-		}
-
-		public static bool NavMoveRequestButNoResultYet()
-		{
-			byte ret = NavMoveRequestButNoResultYetNative();
-			return ret != 0;
-		}
-
-		internal static void NavMoveRequestSubmitNative(ImGuiDir moveDir, ImGuiDir clipDir, ImGuiNavMoveFlags moveFlags, ImGuiScrollFlags scrollFlags)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiDir, ImGuiDir, ImGuiNavMoveFlags, ImGuiScrollFlags, void>)vt[1101])(moveDir, clipDir, moveFlags, scrollFlags);
-		}
-
-		public static void NavMoveRequestSubmit(ImGuiDir moveDir, ImGuiDir clipDir, ImGuiNavMoveFlags moveFlags, ImGuiScrollFlags scrollFlags)
-		{
-			NavMoveRequestSubmitNative(moveDir, clipDir, moveFlags, scrollFlags);
-		}
-
-		internal static void NavMoveRequestForwardNative(ImGuiDir moveDir, ImGuiDir clipDir, ImGuiNavMoveFlags moveFlags, ImGuiScrollFlags scrollFlags)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiDir, ImGuiDir, ImGuiNavMoveFlags, ImGuiScrollFlags, void>)vt[1102])(moveDir, clipDir, moveFlags, scrollFlags);
-		}
-
-		public static void NavMoveRequestForward(ImGuiDir moveDir, ImGuiDir clipDir, ImGuiNavMoveFlags moveFlags, ImGuiScrollFlags scrollFlags)
-		{
-			NavMoveRequestForwardNative(moveDir, clipDir, moveFlags, scrollFlags);
-		}
-
-		internal static void NavMoveRequestResolveWithLastItemNative(ImGuiNavItemData* result)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiNavItemData*, void>)vt[1103])(result);
-		}
-
-		public static void NavMoveRequestResolveWithLastItem(ImGuiNavItemDataPtr result)
-		{
-			NavMoveRequestResolveWithLastItemNative(result);
-		}
-
-		public static void NavMoveRequestResolveWithLastItem(ref ImGuiNavItemData result)
-		{
-			fixed (ImGuiNavItemData* presult = &result)
+			fixed (ImGuiTextBuffer* pself = &self)
 			{
-				NavMoveRequestResolveWithLastItemNative((ImGuiNavItemData*)presult);
-			}
-		}
-
-		internal static void NavMoveRequestResolveWithPastTreeNodeNative(ImGuiNavItemData* result, ImGuiTreeNodeStackData* treeNodeData)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiNavItemData*, ImGuiTreeNodeStackData*, void>)vt[1104])(result, treeNodeData);
-		}
-
-		public static void NavMoveRequestResolveWithPastTreeNode(ImGuiNavItemDataPtr result, ImGuiTreeNodeStackDataPtr treeNodeData)
-		{
-			NavMoveRequestResolveWithPastTreeNodeNative(result, treeNodeData);
-		}
-
-		public static void NavMoveRequestResolveWithPastTreeNode(ref ImGuiNavItemData result, ImGuiTreeNodeStackDataPtr treeNodeData)
-		{
-			fixed (ImGuiNavItemData* presult = &result)
-			{
-				NavMoveRequestResolveWithPastTreeNodeNative((ImGuiNavItemData*)presult, treeNodeData);
-			}
-		}
-
-		public static void NavMoveRequestResolveWithPastTreeNode(ImGuiNavItemDataPtr result, ref ImGuiTreeNodeStackData treeNodeData)
-		{
-			fixed (ImGuiTreeNodeStackData* ptreeNodeData = &treeNodeData)
-			{
-				NavMoveRequestResolveWithPastTreeNodeNative(result, (ImGuiTreeNodeStackData*)ptreeNodeData);
-			}
-		}
-
-		public static void NavMoveRequestResolveWithPastTreeNode(ref ImGuiNavItemData result, ref ImGuiTreeNodeStackData treeNodeData)
-		{
-			fixed (ImGuiNavItemData* presult = &result)
-			{
-				fixed (ImGuiTreeNodeStackData* ptreeNodeData = &treeNodeData)
+				fixed (byte* pfmt = &fmt)
 				{
-					NavMoveRequestResolveWithPastTreeNodeNative((ImGuiNavItemData*)presult, (ImGuiTreeNodeStackData*)ptreeNodeData);
+					appendfvNative((ImGuiTextBuffer*)pself, (byte*)pfmt, args);
 				}
 			}
 		}
 
-		internal static void NavMoveRequestCancelNative()
+		public static void appendfv(ref ImGuiTextBuffer self, string fmt, nuint args)
 		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1105])();
-		}
-
-		public static void NavMoveRequestCancel()
-		{
-			NavMoveRequestCancelNative();
-		}
-
-		internal static void NavMoveRequestApplyResultNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1106])();
-		}
-
-		public static void NavMoveRequestApplyResult()
-		{
-			NavMoveRequestApplyResultNative();
-		}
-
-		internal static void NavMoveRequestTryWrappingNative(ImGuiWindow* window, ImGuiNavMoveFlags moveFlags)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiNavMoveFlags, void>)vt[1107])(window, moveFlags);
-		}
-
-		public static void NavMoveRequestTryWrapping(ImGuiWindowPtr window, ImGuiNavMoveFlags moveFlags)
-		{
-			NavMoveRequestTryWrappingNative(window, moveFlags);
-		}
-
-		public static void NavMoveRequestTryWrapping(ref ImGuiWindow window, ImGuiNavMoveFlags moveFlags)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
+			fixed (ImGuiTextBuffer* pself = &self)
 			{
-				NavMoveRequestTryWrappingNative((ImGuiWindow*)pwindow, moveFlags);
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (fmt != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(fmt);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				appendfvNative((ImGuiTextBuffer*)pself, pStr0, args);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		internal static void NavHighlightActivatedNative(int id)
+		public static void appendfv(ref ImGuiTextBuffer self, ReadOnlySpan<byte> fmt, nuint args)
 		{
-			((delegate* unmanaged[Cdecl]<int, void>)vt[1108])(id);
-		}
-
-		public static void NavHighlightActivated(int id)
-		{
-			NavHighlightActivatedNative(id);
-		}
-
-		internal static void NavClearPreferredPosForAxisNative(ImGuiAxis axis)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiAxis, void>)vt[1109])(axis);
-		}
-
-		public static void NavClearPreferredPosForAxis(ImGuiAxis axis)
-		{
-			NavClearPreferredPosForAxisNative(axis);
-		}
-
-		internal static void NavRestoreHighlightAfterMoveNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1110])();
-		}
-
-		public static void NavRestoreHighlightAfterMove()
-		{
-			NavRestoreHighlightAfterMoveNative();
-		}
-
-		internal static void NavUpdateCurrentWindowIsScrollPushableXNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1111])();
-		}
-
-		public static void NavUpdateCurrentWindowIsScrollPushableX()
-		{
-			NavUpdateCurrentWindowIsScrollPushableXNative();
-		}
-
-		internal static void SetNavWindowNative(ImGuiWindow* window)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)vt[1112])(window);
-		}
-
-		public static void SetNavWindow(ImGuiWindowPtr window)
-		{
-			SetNavWindowNative(window);
-		}
-
-		public static void SetNavWindow(ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
+			fixed (ImGuiTextBuffer* pself = &self)
 			{
-				SetNavWindowNative((ImGuiWindow*)pwindow);
+				fixed (byte* pfmt = fmt)
+				{
+					appendfvNative((ImGuiTextBuffer*)pself, (byte*)pfmt, args);
+				}
 			}
 		}
 
-		internal static void SetNavIDNative(int id, ImGuiNavLayer navLayer, int focusScopeId, ImRect rectRel)
+		internal static ImGuiStoragePair* ImGuiStoragePairNative(int key, int val)
 		{
-			((delegate* unmanaged[Cdecl]<int, ImGuiNavLayer, int, ImRect, void>)vt[1113])(id, navLayer, focusScopeId, rectRel);
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, int, ImGuiStoragePair*>)vt[473])(key, val);
+			#else
+			return (ImGuiStoragePair*)((delegate* unmanaged[Cdecl]<int, int, nint>)vt[473])(key, val);
+			#endif
 		}
 
-		public static void SetNavID(int id, ImGuiNavLayer navLayer, int focusScopeId, ImRect rectRel)
+		public static ImGuiStoragePairPtr ImGuiStoragePair(int key, int val)
 		{
-			SetNavIDNative(id, navLayer, focusScopeId, rectRel);
-		}
-
-		internal static void SetNavFocusScopeNative(int focusScopeId)
-		{
-			((delegate* unmanaged[Cdecl]<int, void>)vt[1114])(focusScopeId);
-		}
-
-		public static void SetNavFocusScope(int focusScopeId)
-		{
-			SetNavFocusScopeNative(focusScopeId);
-		}
-
-		internal static void FocusItemNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1115])();
-		}
-
-		public static void FocusItem()
-		{
-			FocusItemNative();
-		}
-
-		internal static void ActivateItemByIDNative(int id)
-		{
-			((delegate* unmanaged[Cdecl]<int, void>)vt[1116])(id);
-		}
-
-		public static void ActivateItemByID(int id)
-		{
-			ActivateItemByIDNative(id);
-		}
-
-		internal static byte IsNamedKeyNative(ImGuiKey key)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1117])(key);
-		}
-
-		public static bool IsNamedKey(ImGuiKey key)
-		{
-			byte ret = IsNamedKeyNative(key);
-			return ret != 0;
-		}
-
-		internal static byte IsNamedKeyOrModNative(ImGuiKey key)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1118])(key);
-		}
-
-		public static bool IsNamedKeyOrMod(ImGuiKey key)
-		{
-			byte ret = IsNamedKeyOrModNative(key);
-			return ret != 0;
-		}
-
-		internal static byte IsLegacyKeyNative(ImGuiKey key)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1119])(key);
-		}
-
-		public static bool IsLegacyKey(ImGuiKey key)
-		{
-			byte ret = IsLegacyKeyNative(key);
-			return ret != 0;
-		}
-
-		internal static byte IsKeyboardKeyNative(ImGuiKey key)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1120])(key);
-		}
-
-		public static bool IsKeyboardKey(ImGuiKey key)
-		{
-			byte ret = IsKeyboardKeyNative(key);
-			return ret != 0;
-		}
-
-		internal static byte IsGamepadKeyNative(ImGuiKey key)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1121])(key);
-		}
-
-		public static bool IsGamepadKey(ImGuiKey key)
-		{
-			byte ret = IsGamepadKeyNative(key);
-			return ret != 0;
-		}
-
-		internal static byte IsMouseKeyNative(ImGuiKey key)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1122])(key);
-		}
-
-		public static bool IsMouseKey(ImGuiKey key)
-		{
-			byte ret = IsMouseKeyNative(key);
-			return ret != 0;
-		}
-
-		internal static byte IsAliasKeyNative(ImGuiKey key)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1123])(key);
-		}
-
-		public static bool IsAliasKey(ImGuiKey key)
-		{
-			byte ret = IsAliasKeyNative(key);
-			return ret != 0;
-		}
-
-		internal static byte IsModKeyNative(ImGuiKey key)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1124])(key);
-		}
-
-		public static bool IsModKey(ImGuiKey key)
-		{
-			byte ret = IsModKeyNative(key);
-			return ret != 0;
-		}
-
-		internal static int FixupKeyChordNative(int keyChord)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, int>)vt[1125])(keyChord);
-		}
-
-		public static int FixupKeyChord(int keyChord)
-		{
-			int ret = FixupKeyChordNative(keyChord);
+			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, val);
 			return ret;
 		}
 
-		internal static ImGuiKey ConvertSingleModFlagToKeyNative(ImGuiKey key)
+		internal static void DestroyNative(ImGuiStoragePair* self)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, ImGuiKey>)vt[1126])(key);
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiStoragePair*, void>)vt[474])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[474])((nint)self);
+			#endif
 		}
 
-		public static ImGuiKey ConvertSingleModFlagToKey(ImGuiKey key)
+		public static void Destroy(ImGuiStoragePairPtr self)
 		{
-			ImGuiKey ret = ConvertSingleModFlagToKeyNative(key);
-			return ret;
+			DestroyNative(self);
 		}
 
-		internal static ImGuiKeyData* GetKeyDataContextPtrNative(ImGuiContext* ctx, ImGuiKey key)
+		public static void Destroy(ref ImGuiStoragePair self)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiKey, ImGuiKeyData*>)vt[1127])(ctx, key);
-		}
-
-		public static ImGuiKeyDataPtr GetKeyDataContextPtr(ImGuiContextPtr ctx, ImGuiKey key)
-		{
-			ImGuiKeyDataPtr ret = GetKeyDataContextPtrNative(ctx, key);
-			return ret;
-		}
-
-		public static ImGuiKeyDataPtr GetKeyDataContextPtr(ref ImGuiContext ctx, ImGuiKey key)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
+			fixed (ImGuiStoragePair* pself = &self)
 			{
-				ImGuiKeyDataPtr ret = GetKeyDataContextPtrNative((ImGuiContext*)pctx, key);
+				DestroyNative((ImGuiStoragePair*)pself);
+			}
+		}
+
+		internal static ImGuiStoragePair* ImGuiStoragePairNative(int key, float val)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, float, ImGuiStoragePair*>)vt[475])(key, val);
+			#else
+			return (ImGuiStoragePair*)((delegate* unmanaged[Cdecl]<int, float, nint>)vt[475])(key, val);
+			#endif
+		}
+
+		public static ImGuiStoragePairPtr ImGuiStoragePair(int key, float val)
+		{
+			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, val);
+			return ret;
+		}
+
+		internal static ImGuiStoragePair* ImGuiStoragePairNative(int key, void* val)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, void*, ImGuiStoragePair*>)vt[476])(key, val);
+			#else
+			return (ImGuiStoragePair*)((delegate* unmanaged[Cdecl]<int, nint, nint>)vt[476])(key, (nint)val);
+			#endif
+		}
+
+		public static ImGuiStoragePairPtr ImGuiStoragePair(int key, void* val)
+		{
+			ImGuiStoragePairPtr ret = ImGuiStoragePairNative(key, val);
+			return ret;
+		}
+
+		internal static void ClearNative(ImGuiStorage* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiStorage*, void>)vt[477])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[477])((nint)self);
+			#endif
+		}
+
+		public static void Clear(ImGuiStoragePtr self)
+		{
+			ClearNative(self);
+		}
+
+		public static void Clear(ref ImGuiStorage self)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				ClearNative((ImGuiStorage*)pself);
+			}
+		}
+
+		internal static int GetIntNative(ImGuiStorage* self, int key, int defaultVal)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, int, int, int>)vt[478])(self, key, defaultVal);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int, int>)vt[478])((nint)self, key, defaultVal);
+			#endif
+		}
+
+		public static int GetInt(ImGuiStoragePtr self, int key, int defaultVal)
+		{
+			int ret = GetIntNative(self, key, defaultVal);
+			return ret;
+		}
+
+		public static int GetInt(ImGuiStoragePtr self, int key)
+		{
+			int ret = GetIntNative(self, key, (int)(0));
+			return ret;
+		}
+
+		public static int GetInt(ref ImGuiStorage self, int key, int defaultVal)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				int ret = GetIntNative((ImGuiStorage*)pself, key, defaultVal);
 				return ret;
 			}
 		}
 
-		internal static ImGuiKeyData* GetKeyDataKeyNative(ImGuiKey key)
+		public static int GetInt(ref ImGuiStorage self, int key)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, ImGuiKeyData*>)vt[1128])(key);
+			fixed (ImGuiStorage* pself = &self)
+			{
+				int ret = GetIntNative((ImGuiStorage*)pself, key, (int)(0));
+				return ret;
+			}
 		}
 
-		public static ImGuiKeyDataPtr GetKeyDataKey(ImGuiKey key)
+		internal static void SetIntNative(ImGuiStorage* self, int key, int val)
 		{
-			ImGuiKeyDataPtr ret = GetKeyDataKeyNative(key);
-			return ret;
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiStorage*, int, int, void>)vt[479])(self, key, val);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, int, void>)vt[479])((nint)self, key, val);
+			#endif
 		}
 
-		internal static ImGuiKey MouseButtonToKeyNative(ImGuiMouseButton button)
+		public static void SetInt(ImGuiStoragePtr self, int key, int val)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, ImGuiKey>)vt[1129])(button);
+			SetIntNative(self, key, val);
 		}
 
-		public static ImGuiKey MouseButtonToKey(ImGuiMouseButton button)
+		public static void SetInt(ref ImGuiStorage self, int key, int val)
 		{
-			ImGuiKey ret = MouseButtonToKeyNative(button);
-			return ret;
+			fixed (ImGuiStorage* pself = &self)
+			{
+				SetIntNative((ImGuiStorage*)pself, key, val);
+			}
 		}
 
-		internal static byte IsMouseDragPastThresholdNative(ImGuiMouseButton button, float lockThreshold)
+		internal static byte GetBoolNative(ImGuiStorage* self, int key, byte defaultVal)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)vt[1130])(button, lockThreshold);
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, int, byte, byte>)vt[480])(self, key, defaultVal);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte, byte>)vt[480])((nint)self, key, defaultVal);
+			#endif
 		}
 
-		public static bool IsMouseDragPastThreshold(ImGuiMouseButton button, float lockThreshold)
+		public static bool GetBool(ImGuiStoragePtr self, int key, bool defaultVal)
 		{
-			byte ret = IsMouseDragPastThresholdNative(button, lockThreshold);
+			byte ret = GetBoolNative(self, key, defaultVal ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
-		internal static void GetKeyMagnitude2dNative(Vector2* output, ImGuiKey keyLeft, ImGuiKey keyRight, ImGuiKey keyUp, ImGuiKey keyDown)
+		public static bool GetBool(ImGuiStoragePtr self, int key)
 		{
-			((delegate* unmanaged[Cdecl]<Vector2*, ImGuiKey, ImGuiKey, ImGuiKey, ImGuiKey, void>)vt[1131])(output, keyLeft, keyRight, keyUp, keyDown);
+			byte ret = GetBoolNative(self, key, (byte)(0));
+			return ret != 0;
 		}
 
-		public static Vector2 GetKeyMagnitude2d(ImGuiKey keyLeft, ImGuiKey keyRight, ImGuiKey keyUp, ImGuiKey keyDown)
+		public static bool GetBool(ref ImGuiStorage self, int key, bool defaultVal)
 		{
-			Vector2 ret;
-			GetKeyMagnitude2dNative(&ret, keyLeft, keyRight, keyUp, keyDown);
+			fixed (ImGuiStorage* pself = &self)
+			{
+				byte ret = GetBoolNative((ImGuiStorage*)pself, key, defaultVal ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		public static bool GetBool(ref ImGuiStorage self, int key)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				byte ret = GetBoolNative((ImGuiStorage*)pself, key, (byte)(0));
+				return ret != 0;
+			}
+		}
+
+		internal static void SetBoolNative(ImGuiStorage* self, int key, byte val)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiStorage*, int, byte, void>)vt[481])(self, key, val);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, byte, void>)vt[481])((nint)self, key, val);
+			#endif
+		}
+
+		public static void SetBool(ImGuiStoragePtr self, int key, bool val)
+		{
+			SetBoolNative(self, key, val ? (byte)1 : (byte)0);
+		}
+
+		public static void SetBool(ref ImGuiStorage self, int key, bool val)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				SetBoolNative((ImGuiStorage*)pself, key, val ? (byte)1 : (byte)0);
+			}
+		}
+
+		internal static float GetFloatNative(ImGuiStorage* self, int key, float defaultVal)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, int, float, float>)vt[482])(self, key, defaultVal);
+			#else
+			return (float)((delegate* unmanaged[Cdecl]<nint, int, float, float>)vt[482])((nint)self, key, defaultVal);
+			#endif
+		}
+
+		public static float GetFloat(ImGuiStoragePtr self, int key, float defaultVal)
+		{
+			float ret = GetFloatNative(self, key, defaultVal);
 			return ret;
 		}
 
-		public static void GetKeyMagnitude2d(Vector2* output, ImGuiKey keyLeft, ImGuiKey keyRight, ImGuiKey keyUp, ImGuiKey keyDown)
+		public static float GetFloat(ImGuiStoragePtr self, int key)
 		{
-			GetKeyMagnitude2dNative(output, keyLeft, keyRight, keyUp, keyDown);
+			float ret = GetFloatNative(self, key, (float)(0.0f));
+			return ret;
 		}
 
-		public static void GetKeyMagnitude2d(ref Vector2 output, ImGuiKey keyLeft, ImGuiKey keyRight, ImGuiKey keyUp, ImGuiKey keyDown)
+		public static float GetFloat(ref ImGuiStorage self, int key, float defaultVal)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				float ret = GetFloatNative((ImGuiStorage*)pself, key, defaultVal);
+				return ret;
+			}
+		}
+
+		public static float GetFloat(ref ImGuiStorage self, int key)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				float ret = GetFloatNative((ImGuiStorage*)pself, key, (float)(0.0f));
+				return ret;
+			}
+		}
+
+		internal static void SetFloatNative(ImGuiStorage* self, int key, float val)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiStorage*, int, float, void>)vt[483])(self, key, val);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, float, void>)vt[483])((nint)self, key, val);
+			#endif
+		}
+
+		public static void SetFloat(ImGuiStoragePtr self, int key, float val)
+		{
+			SetFloatNative(self, key, val);
+		}
+
+		public static void SetFloat(ref ImGuiStorage self, int key, float val)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				SetFloatNative((ImGuiStorage*)pself, key, val);
+			}
+		}
+
+		internal static void* GetVoidPtrNative(ImGuiStorage* self, int key)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, int, void*>)vt[484])(self, key);
+			#else
+			return (void*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[484])((nint)self, key);
+			#endif
+		}
+
+		public static void* GetVoidPtr(ImGuiStoragePtr self, int key)
+		{
+			void* ret = GetVoidPtrNative(self, key);
+			return ret;
+		}
+
+		public static void* GetVoidPtr(ref ImGuiStorage self, int key)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				void* ret = GetVoidPtrNative((ImGuiStorage*)pself, key);
+				return ret;
+			}
+		}
+
+		internal static void SetVoidPtrNative(ImGuiStorage* self, int key, void* val)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiStorage*, int, void*, void>)vt[485])(self, key, val);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, nint, void>)vt[485])((nint)self, key, (nint)val);
+			#endif
+		}
+
+		public static void SetVoidPtr(ImGuiStoragePtr self, int key, void* val)
+		{
+			SetVoidPtrNative(self, key, val);
+		}
+
+		public static void SetVoidPtr(ref ImGuiStorage self, int key, void* val)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				SetVoidPtrNative((ImGuiStorage*)pself, key, val);
+			}
+		}
+
+		internal static int* GetIntRefNative(ImGuiStorage* self, int key, int defaultVal)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, int, int, int*>)vt[486])(self, key, defaultVal);
+			#else
+			return (int*)((delegate* unmanaged[Cdecl]<nint, int, int, nint>)vt[486])((nint)self, key, defaultVal);
+			#endif
+		}
+
+		public static int* GetIntRef(ImGuiStoragePtr self, int key, int defaultVal)
+		{
+			int* ret = GetIntRefNative(self, key, defaultVal);
+			return ret;
+		}
+
+		public static int* GetIntRef(ImGuiStoragePtr self, int key)
+		{
+			int* ret = GetIntRefNative(self, key, (int)(0));
+			return ret;
+		}
+
+		public static int* GetIntRef(ref ImGuiStorage self, int key, int defaultVal)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				int* ret = GetIntRefNative((ImGuiStorage*)pself, key, defaultVal);
+				return ret;
+			}
+		}
+
+		public static int* GetIntRef(ref ImGuiStorage self, int key)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				int* ret = GetIntRefNative((ImGuiStorage*)pself, key, (int)(0));
+				return ret;
+			}
+		}
+
+		internal static bool* GetBoolRefNative(ImGuiStorage* self, int key, byte defaultVal)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, int, byte, bool*>)vt[487])(self, key, defaultVal);
+			#else
+			return (bool*)((delegate* unmanaged[Cdecl]<nint, int, byte, nint>)vt[487])((nint)self, key, defaultVal);
+			#endif
+		}
+
+		public static bool* GetBoolRef(ImGuiStoragePtr self, int key, bool defaultVal)
+		{
+			bool* ret = GetBoolRefNative(self, key, defaultVal ? (byte)1 : (byte)0);
+			return ret;
+		}
+
+		public static bool* GetBoolRef(ImGuiStoragePtr self, int key)
+		{
+			bool* ret = GetBoolRefNative(self, key, (byte)(0));
+			return ret;
+		}
+
+		public static bool* GetBoolRef(ref ImGuiStorage self, int key, bool defaultVal)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				bool* ret = GetBoolRefNative((ImGuiStorage*)pself, key, defaultVal ? (byte)1 : (byte)0);
+				return ret;
+			}
+		}
+
+		public static bool* GetBoolRef(ref ImGuiStorage self, int key)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				bool* ret = GetBoolRefNative((ImGuiStorage*)pself, key, (byte)(0));
+				return ret;
+			}
+		}
+
+		internal static float* GetFloatRefNative(ImGuiStorage* self, int key, float defaultVal)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, int, float, float*>)vt[488])(self, key, defaultVal);
+			#else
+			return (float*)((delegate* unmanaged[Cdecl]<nint, int, float, nint>)vt[488])((nint)self, key, defaultVal);
+			#endif
+		}
+
+		public static float* GetFloatRef(ImGuiStoragePtr self, int key, float defaultVal)
+		{
+			float* ret = GetFloatRefNative(self, key, defaultVal);
+			return ret;
+		}
+
+		public static float* GetFloatRef(ImGuiStoragePtr self, int key)
+		{
+			float* ret = GetFloatRefNative(self, key, (float)(0.0f));
+			return ret;
+		}
+
+		public static float* GetFloatRef(ref ImGuiStorage self, int key, float defaultVal)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				float* ret = GetFloatRefNative((ImGuiStorage*)pself, key, defaultVal);
+				return ret;
+			}
+		}
+
+		public static float* GetFloatRef(ref ImGuiStorage self, int key)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				float* ret = GetFloatRefNative((ImGuiStorage*)pself, key, (float)(0.0f));
+				return ret;
+			}
+		}
+
+		internal static void** GetVoidPtrRefNative(ImGuiStorage* self, int key, void* defaultVal)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiStorage*, int, void*, void**>)vt[489])(self, key, defaultVal);
+			#else
+			return (void**)((delegate* unmanaged[Cdecl]<nint, int, nint, nint>)vt[489])((nint)self, key, (nint)defaultVal);
+			#endif
+		}
+
+		public static void** GetVoidPtrRef(ImGuiStoragePtr self, int key, void* defaultVal)
+		{
+			void** ret = GetVoidPtrRefNative(self, key, defaultVal);
+			return ret;
+		}
+
+		public static void** GetVoidPtrRef(ImGuiStoragePtr self, int key)
+		{
+			void** ret = GetVoidPtrRefNative(self, key, (void*)(default));
+			return ret;
+		}
+
+		public static void** GetVoidPtrRef(ref ImGuiStorage self, int key, void* defaultVal)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				void** ret = GetVoidPtrRefNative((ImGuiStorage*)pself, key, defaultVal);
+				return ret;
+			}
+		}
+
+		public static void** GetVoidPtrRef(ref ImGuiStorage self, int key)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				void** ret = GetVoidPtrRefNative((ImGuiStorage*)pself, key, (void*)(default));
+				return ret;
+			}
+		}
+
+		internal static void BuildSortByKeyNative(ImGuiStorage* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiStorage*, void>)vt[490])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[490])((nint)self);
+			#endif
+		}
+
+		public static void BuildSortByKey(ImGuiStoragePtr self)
+		{
+			BuildSortByKeyNative(self);
+		}
+
+		public static void BuildSortByKey(ref ImGuiStorage self)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				BuildSortByKeyNative((ImGuiStorage*)pself);
+			}
+		}
+
+		internal static void SetAllIntNative(ImGuiStorage* self, int val)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiStorage*, int, void>)vt[491])(self, val);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[491])((nint)self, val);
+			#endif
+		}
+
+		public static void SetAllInt(ImGuiStoragePtr self, int val)
+		{
+			SetAllIntNative(self, val);
+		}
+
+		public static void SetAllInt(ref ImGuiStorage self, int val)
+		{
+			fixed (ImGuiStorage* pself = &self)
+			{
+				SetAllIntNative((ImGuiStorage*)pself, val);
+			}
+		}
+
+		internal static ImGuiListClipper* ImGuiListClipperNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiListClipper*>)vt[492])();
+			#else
+			return (ImGuiListClipper*)((delegate* unmanaged[Cdecl]<nint>)vt[492])();
+			#endif
+		}
+
+		public static ImGuiListClipperPtr ImGuiListClipper()
+		{
+			ImGuiListClipperPtr ret = ImGuiListClipperNative();
+			return ret;
+		}
+
+		internal static void DestroyNative(ImGuiListClipper* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiListClipper*, void>)vt[493])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[493])((nint)self);
+			#endif
+		}
+
+		public static void Destroy(ImGuiListClipperPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		public static void Destroy(ref ImGuiListClipper self)
+		{
+			fixed (ImGuiListClipper* pself = &self)
+			{
+				DestroyNative((ImGuiListClipper*)pself);
+			}
+		}
+
+		internal static void BeginNative(ImGuiListClipper* self, int itemsCount, float itemsHeight)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiListClipper*, int, float, void>)vt[494])(self, itemsCount, itemsHeight);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, float, void>)vt[494])((nint)self, itemsCount, itemsHeight);
+			#endif
+		}
+
+		public static void Begin(ImGuiListClipperPtr self, int itemsCount, float itemsHeight)
+		{
+			BeginNative(self, itemsCount, itemsHeight);
+		}
+
+		public static void Begin(ImGuiListClipperPtr self, int itemsCount)
+		{
+			BeginNative(self, itemsCount, (float)(-1.0f));
+		}
+
+		public static void Begin(ref ImGuiListClipper self, int itemsCount, float itemsHeight)
+		{
+			fixed (ImGuiListClipper* pself = &self)
+			{
+				BeginNative((ImGuiListClipper*)pself, itemsCount, itemsHeight);
+			}
+		}
+
+		public static void Begin(ref ImGuiListClipper self, int itemsCount)
+		{
+			fixed (ImGuiListClipper* pself = &self)
+			{
+				BeginNative((ImGuiListClipper*)pself, itemsCount, (float)(-1.0f));
+			}
+		}
+
+		internal static void EndNative(ImGuiListClipper* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiListClipper*, void>)vt[495])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[495])((nint)self);
+			#endif
+		}
+
+		public static void End(ImGuiListClipperPtr self)
+		{
+			EndNative(self);
+		}
+
+		public static void End(ref ImGuiListClipper self)
+		{
+			fixed (ImGuiListClipper* pself = &self)
+			{
+				EndNative((ImGuiListClipper*)pself);
+			}
+		}
+
+		internal static byte StepNative(ImGuiListClipper* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiListClipper*, byte>)vt[496])(self);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[496])((nint)self);
+			#endif
+		}
+
+		public static bool Step(ImGuiListClipperPtr self)
+		{
+			byte ret = StepNative(self);
+			return ret != 0;
+		}
+
+		public static bool Step(ref ImGuiListClipper self)
+		{
+			fixed (ImGuiListClipper* pself = &self)
+			{
+				byte ret = StepNative((ImGuiListClipper*)pself);
+				return ret != 0;
+			}
+		}
+
+		internal static void IncludeItemByIndexNative(ImGuiListClipper* self, int itemIndex)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiListClipper*, int, void>)vt[497])(self, itemIndex);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[497])((nint)self, itemIndex);
+			#endif
+		}
+
+		public static void IncludeItemByIndex(ImGuiListClipperPtr self, int itemIndex)
+		{
+			IncludeItemByIndexNative(self, itemIndex);
+		}
+
+		public static void IncludeItemByIndex(ref ImGuiListClipper self, int itemIndex)
+		{
+			fixed (ImGuiListClipper* pself = &self)
+			{
+				IncludeItemByIndexNative((ImGuiListClipper*)pself, itemIndex);
+			}
+		}
+
+		internal static void IncludeItemsByIndexNative(ImGuiListClipper* self, int itemBegin, int itemEnd)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiListClipper*, int, int, void>)vt[498])(self, itemBegin, itemEnd);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, int, void>)vt[498])((nint)self, itemBegin, itemEnd);
+			#endif
+		}
+
+		public static void IncludeItemsByIndex(ImGuiListClipperPtr self, int itemBegin, int itemEnd)
+		{
+			IncludeItemsByIndexNative(self, itemBegin, itemEnd);
+		}
+
+		public static void IncludeItemsByIndex(ref ImGuiListClipper self, int itemBegin, int itemEnd)
+		{
+			fixed (ImGuiListClipper* pself = &self)
+			{
+				IncludeItemsByIndexNative((ImGuiListClipper*)pself, itemBegin, itemEnd);
+			}
+		}
+
+		internal static void SeekCursorForItemNative(ImGuiListClipper* self, int itemIndex)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiListClipper*, int, void>)vt[499])(self, itemIndex);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[499])((nint)self, itemIndex);
+			#endif
+		}
+
+		public static void SeekCursorForItem(ImGuiListClipperPtr self, int itemIndex)
+		{
+			SeekCursorForItemNative(self, itemIndex);
+		}
+
+		public static void SeekCursorForItem(ref ImGuiListClipper self, int itemIndex)
+		{
+			fixed (ImGuiListClipper* pself = &self)
+			{
+				SeekCursorForItemNative((ImGuiListClipper*)pself, itemIndex);
+			}
+		}
+
+		internal static ImColor* ImColorNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImColor*>)vt[500])();
+			#else
+			return (ImColor*)((delegate* unmanaged[Cdecl]<nint>)vt[500])();
+			#endif
+		}
+
+		public static ImColorPtr ImColor()
+		{
+			ImColorPtr ret = ImColorNative();
+			return ret;
+		}
+
+		internal static void DestroyNative(ImColor* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImColor*, void>)vt[501])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[501])((nint)self);
+			#endif
+		}
+
+		public static void Destroy(ImColorPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		public static void Destroy(ref ImColor self)
+		{
+			fixed (ImColor* pself = &self)
+			{
+				DestroyNative((ImColor*)pself);
+			}
+		}
+
+		internal static ImColor* ImColorNative(float r, float g, float b, float a)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<float, float, float, float, ImColor*>)vt[502])(r, g, b, a);
+			#else
+			return (ImColor*)((delegate* unmanaged[Cdecl]<float, float, float, float, nint>)vt[502])(r, g, b, a);
+			#endif
+		}
+
+		public static ImColorPtr ImColor(float r, float g, float b, float a)
+		{
+			ImColorPtr ret = ImColorNative(r, g, b, a);
+			return ret;
+		}
+
+		public static ImColorPtr ImColor(float r, float g, float b)
+		{
+			ImColorPtr ret = ImColorNative(r, g, b, (float)(1.0f));
+			return ret;
+		}
+
+		internal static ImColor* ImColorNative(Vector4 col)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<Vector4, ImColor*>)vt[503])(col);
+			#else
+			return (ImColor*)((delegate* unmanaged[Cdecl]<Vector4, nint>)vt[503])(col);
+			#endif
+		}
+
+		public static ImColorPtr ImColor(Vector4 col)
+		{
+			ImColorPtr ret = ImColorNative(col);
+			return ret;
+		}
+
+		internal static ImColor* ImColorNative(int r, int g, int b, int a)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, int, int, int, ImColor*>)vt[504])(r, g, b, a);
+			#else
+			return (ImColor*)((delegate* unmanaged[Cdecl]<int, int, int, int, nint>)vt[504])(r, g, b, a);
+			#endif
+		}
+
+		public static ImColorPtr ImColor(int r, int g, int b, int a)
+		{
+			ImColorPtr ret = ImColorNative(r, g, b, a);
+			return ret;
+		}
+
+		public static ImColorPtr ImColor(int r, int g, int b)
+		{
+			ImColorPtr ret = ImColorNative(r, g, b, (int)(255));
+			return ret;
+		}
+
+		internal static ImColor* ImColorNative(uint rgba)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<uint, ImColor*>)vt[505])(rgba);
+			#else
+			return (ImColor*)((delegate* unmanaged[Cdecl]<uint, nint>)vt[505])(rgba);
+			#endif
+		}
+
+		public static ImColorPtr ImColor(uint rgba)
+		{
+			ImColorPtr ret = ImColorNative(rgba);
+			return ret;
+		}
+
+		internal static void SetHSVNative(ImColor* self, float h, float s, float v, float a)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImColor*, float, float, float, float, void>)vt[506])(self, h, s, v, a);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, float, float, float, float, void>)vt[506])((nint)self, h, s, v, a);
+			#endif
+		}
+
+		public static void SetHSV(ImColorPtr self, float h, float s, float v, float a)
+		{
+			SetHSVNative(self, h, s, v, a);
+		}
+
+		public static void SetHSV(ImColorPtr self, float h, float s, float v)
+		{
+			SetHSVNative(self, h, s, v, (float)(1.0f));
+		}
+
+		public static void SetHSV(ref ImColor self, float h, float s, float v, float a)
+		{
+			fixed (ImColor* pself = &self)
+			{
+				SetHSVNative((ImColor*)pself, h, s, v, a);
+			}
+		}
+
+		public static void SetHSV(ref ImColor self, float h, float s, float v)
+		{
+			fixed (ImColor* pself = &self)
+			{
+				SetHSVNative((ImColor*)pself, h, s, v, (float)(1.0f));
+			}
+		}
+
+		internal static void HSVNative(ImColor* output, float h, float s, float v, float a)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImColor*, float, float, float, float, void>)vt[507])(output, h, s, v, a);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, float, float, float, float, void>)vt[507])((nint)output, h, s, v, a);
+			#endif
+		}
+
+		public static ImColor HSV(float h, float s, float v)
+		{
+			ImColor ret;
+			HSVNative(&ret, h, s, v, (float)(1.0f));
+			return ret;
+		}
+
+		public static ImColor HSV(float h, float s, float v, float a)
+		{
+			ImColor ret;
+			HSVNative(&ret, h, s, v, a);
+			return ret;
+		}
+
+		public static void HSV(ImColorPtr output, float h, float s, float v, float a)
+		{
+			HSVNative(output, h, s, v, a);
+		}
+
+		public static void HSV(ImColorPtr output, float h, float s, float v)
+		{
+			HSVNative(output, h, s, v, (float)(1.0f));
+		}
+
+		public static void HSV(ref ImColor output, float h, float s, float v, float a)
+		{
+			fixed (ImColor* poutput = &output)
+			{
+				HSVNative((ImColor*)poutput, h, s, v, a);
+			}
+		}
+
+		public static void HSV(ref ImColor output, float h, float s, float v)
+		{
+			fixed (ImColor* poutput = &output)
+			{
+				HSVNative((ImColor*)poutput, h, s, v, (float)(1.0f));
+			}
+		}
+
+		internal static ImGuiSelectionBasicStorage* ImGuiSelectionBasicStorageNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*>)vt[508])();
+			#else
+			return (ImGuiSelectionBasicStorage*)((delegate* unmanaged[Cdecl]<nint>)vt[508])();
+			#endif
+		}
+
+		public static ImGuiSelectionBasicStoragePtr ImGuiSelectionBasicStorage()
+		{
+			ImGuiSelectionBasicStoragePtr ret = ImGuiSelectionBasicStorageNative();
+			return ret;
+		}
+
+		internal static void DestroyNative(ImGuiSelectionBasicStorage* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, void>)vt[509])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[509])((nint)self);
+			#endif
+		}
+
+		public static void Destroy(ImGuiSelectionBasicStoragePtr self)
+		{
+			DestroyNative(self);
+		}
+
+		public static void Destroy(ref ImGuiSelectionBasicStorage self)
+		{
+			fixed (ImGuiSelectionBasicStorage* pself = &self)
+			{
+				DestroyNative((ImGuiSelectionBasicStorage*)pself);
+			}
+		}
+
+		internal static void ApplyRequestsNative(ImGuiSelectionBasicStorage* self, ImGuiMultiSelectIO* msIo)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, ImGuiMultiSelectIO*, void>)vt[510])(self, msIo);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[510])((nint)self, (nint)msIo);
+			#endif
+		}
+
+		public static void ApplyRequests(ImGuiSelectionBasicStoragePtr self, ImGuiMultiSelectIOPtr msIo)
+		{
+			ApplyRequestsNative(self, msIo);
+		}
+
+		public static void ApplyRequests(ref ImGuiSelectionBasicStorage self, ImGuiMultiSelectIOPtr msIo)
+		{
+			fixed (ImGuiSelectionBasicStorage* pself = &self)
+			{
+				ApplyRequestsNative((ImGuiSelectionBasicStorage*)pself, msIo);
+			}
+		}
+
+		public static void ApplyRequests(ImGuiSelectionBasicStoragePtr self, ref ImGuiMultiSelectIO msIo)
+		{
+			fixed (ImGuiMultiSelectIO* pmsIo = &msIo)
+			{
+				ApplyRequestsNative(self, (ImGuiMultiSelectIO*)pmsIo);
+			}
+		}
+
+		public static void ApplyRequests(ref ImGuiSelectionBasicStorage self, ref ImGuiMultiSelectIO msIo)
+		{
+			fixed (ImGuiSelectionBasicStorage* pself = &self)
+			{
+				fixed (ImGuiMultiSelectIO* pmsIo = &msIo)
+				{
+					ApplyRequestsNative((ImGuiSelectionBasicStorage*)pself, (ImGuiMultiSelectIO*)pmsIo);
+				}
+			}
+		}
+
+		internal static byte ContainsNative(ImGuiSelectionBasicStorage* self, int id)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, int, byte>)vt[511])(self, id);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[511])((nint)self, id);
+			#endif
+		}
+
+		public static bool Contains(ImGuiSelectionBasicStoragePtr self, int id)
+		{
+			byte ret = ContainsNative(self, id);
+			return ret != 0;
+		}
+
+		public static bool Contains(ref ImGuiSelectionBasicStorage self, int id)
+		{
+			fixed (ImGuiSelectionBasicStorage* pself = &self)
+			{
+				byte ret = ContainsNative((ImGuiSelectionBasicStorage*)pself, id);
+				return ret != 0;
+			}
+		}
+
+		internal static void ClearNative(ImGuiSelectionBasicStorage* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, void>)vt[512])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[512])((nint)self);
+			#endif
+		}
+
+		public static void Clear(ImGuiSelectionBasicStoragePtr self)
+		{
+			ClearNative(self);
+		}
+
+		public static void Clear(ref ImGuiSelectionBasicStorage self)
+		{
+			fixed (ImGuiSelectionBasicStorage* pself = &self)
+			{
+				ClearNative((ImGuiSelectionBasicStorage*)pself);
+			}
+		}
+
+		internal static void SwapNative(ImGuiSelectionBasicStorage* self, ImGuiSelectionBasicStorage* r)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, ImGuiSelectionBasicStorage*, void>)vt[513])(self, r);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[513])((nint)self, (nint)r);
+			#endif
+		}
+
+		public static void Swap(ImGuiSelectionBasicStoragePtr self, ImGuiSelectionBasicStoragePtr r)
+		{
+			SwapNative(self, r);
+		}
+
+		public static void Swap(ref ImGuiSelectionBasicStorage self, ImGuiSelectionBasicStoragePtr r)
+		{
+			fixed (ImGuiSelectionBasicStorage* pself = &self)
+			{
+				SwapNative((ImGuiSelectionBasicStorage*)pself, r);
+			}
+		}
+
+		public static void Swap(ImGuiSelectionBasicStoragePtr self, ref ImGuiSelectionBasicStorage r)
+		{
+			fixed (ImGuiSelectionBasicStorage* pr = &r)
+			{
+				SwapNative(self, (ImGuiSelectionBasicStorage*)pr);
+			}
+		}
+
+		public static void Swap(ref ImGuiSelectionBasicStorage self, ref ImGuiSelectionBasicStorage r)
+		{
+			fixed (ImGuiSelectionBasicStorage* pself = &self)
+			{
+				fixed (ImGuiSelectionBasicStorage* pr = &r)
+				{
+					SwapNative((ImGuiSelectionBasicStorage*)pself, (ImGuiSelectionBasicStorage*)pr);
+				}
+			}
+		}
+
+		internal static void SetItemSelectedNative(ImGuiSelectionBasicStorage* self, int id, byte selected)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, int, byte, void>)vt[514])(self, id, selected);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, byte, void>)vt[514])((nint)self, id, selected);
+			#endif
+		}
+
+		public static void SetItemSelected(ImGuiSelectionBasicStoragePtr self, int id, bool selected)
+		{
+			SetItemSelectedNative(self, id, selected ? (byte)1 : (byte)0);
+		}
+
+		public static void SetItemSelected(ref ImGuiSelectionBasicStorage self, int id, bool selected)
+		{
+			fixed (ImGuiSelectionBasicStorage* pself = &self)
+			{
+				SetItemSelectedNative((ImGuiSelectionBasicStorage*)pself, id, selected ? (byte)1 : (byte)0);
+			}
+		}
+
+		internal static byte GetNextSelectedItemNative(ImGuiSelectionBasicStorage* self, void** opaqueIt, int* outId)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, void**, int*, byte>)vt[515])(self, opaqueIt, outId);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, byte>)vt[515])((nint)self, (nint)opaqueIt, (nint)outId);
+			#endif
+		}
+
+		public static bool GetNextSelectedItem(ImGuiSelectionBasicStoragePtr self, void** opaqueIt, int* outId)
+		{
+			byte ret = GetNextSelectedItemNative(self, opaqueIt, outId);
+			return ret != 0;
+		}
+
+		public static bool GetNextSelectedItem(ref ImGuiSelectionBasicStorage self, void** opaqueIt, int* outId)
+		{
+			fixed (ImGuiSelectionBasicStorage* pself = &self)
+			{
+				byte ret = GetNextSelectedItemNative((ImGuiSelectionBasicStorage*)pself, opaqueIt, outId);
+				return ret != 0;
+			}
+		}
+
+		public static bool GetNextSelectedItem(ImGuiSelectionBasicStoragePtr self, void** opaqueIt, ref int outId)
+		{
+			fixed (int* poutId = &outId)
+			{
+				byte ret = GetNextSelectedItemNative(self, opaqueIt, (int*)poutId);
+				return ret != 0;
+			}
+		}
+
+		public static bool GetNextSelectedItem(ref ImGuiSelectionBasicStorage self, void** opaqueIt, ref int outId)
+		{
+			fixed (ImGuiSelectionBasicStorage* pself = &self)
+			{
+				fixed (int* poutId = &outId)
+				{
+					byte ret = GetNextSelectedItemNative((ImGuiSelectionBasicStorage*)pself, opaqueIt, (int*)poutId);
+					return ret != 0;
+				}
+			}
+		}
+
+		internal static int GetStorageIdFromIndexNative(ImGuiSelectionBasicStorage* self, int idx)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiSelectionBasicStorage*, int, int>)vt[516])(self, idx);
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)vt[516])((nint)self, idx);
+			#endif
+		}
+
+		public static int GetStorageIdFromIndex(ImGuiSelectionBasicStoragePtr self, int idx)
+		{
+			int ret = GetStorageIdFromIndexNative(self, idx);
+			return ret;
+		}
+
+		public static int GetStorageIdFromIndex(ref ImGuiSelectionBasicStorage self, int idx)
+		{
+			fixed (ImGuiSelectionBasicStorage* pself = &self)
+			{
+				int ret = GetStorageIdFromIndexNative((ImGuiSelectionBasicStorage*)pself, idx);
+				return ret;
+			}
+		}
+
+		internal static ImGuiSelectionExternalStorage* ImGuiSelectionExternalStorageNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImGuiSelectionExternalStorage*>)vt[517])();
+			#else
+			return (ImGuiSelectionExternalStorage*)((delegate* unmanaged[Cdecl]<nint>)vt[517])();
+			#endif
+		}
+
+		public static ImGuiSelectionExternalStoragePtr ImGuiSelectionExternalStorage()
+		{
+			ImGuiSelectionExternalStoragePtr ret = ImGuiSelectionExternalStorageNative();
+			return ret;
+		}
+
+		internal static void DestroyNative(ImGuiSelectionExternalStorage* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiSelectionExternalStorage*, void>)vt[518])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[518])((nint)self);
+			#endif
+		}
+
+		public static void Destroy(ImGuiSelectionExternalStoragePtr self)
+		{
+			DestroyNative(self);
+		}
+
+		public static void Destroy(ref ImGuiSelectionExternalStorage self)
+		{
+			fixed (ImGuiSelectionExternalStorage* pself = &self)
+			{
+				DestroyNative((ImGuiSelectionExternalStorage*)pself);
+			}
+		}
+
+		internal static void ApplyRequestsNative(ImGuiSelectionExternalStorage* self, ImGuiMultiSelectIO* msIo)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiSelectionExternalStorage*, ImGuiMultiSelectIO*, void>)vt[519])(self, msIo);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[519])((nint)self, (nint)msIo);
+			#endif
+		}
+
+		public static void ApplyRequests(ImGuiSelectionExternalStoragePtr self, ImGuiMultiSelectIOPtr msIo)
+		{
+			ApplyRequestsNative(self, msIo);
+		}
+
+		public static void ApplyRequests(ref ImGuiSelectionExternalStorage self, ImGuiMultiSelectIOPtr msIo)
+		{
+			fixed (ImGuiSelectionExternalStorage* pself = &self)
+			{
+				ApplyRequestsNative((ImGuiSelectionExternalStorage*)pself, msIo);
+			}
+		}
+
+		public static void ApplyRequests(ImGuiSelectionExternalStoragePtr self, ref ImGuiMultiSelectIO msIo)
+		{
+			fixed (ImGuiMultiSelectIO* pmsIo = &msIo)
+			{
+				ApplyRequestsNative(self, (ImGuiMultiSelectIO*)pmsIo);
+			}
+		}
+
+		public static void ApplyRequests(ref ImGuiSelectionExternalStorage self, ref ImGuiMultiSelectIO msIo)
+		{
+			fixed (ImGuiSelectionExternalStorage* pself = &self)
+			{
+				fixed (ImGuiMultiSelectIO* pmsIo = &msIo)
+				{
+					ApplyRequestsNative((ImGuiSelectionExternalStorage*)pself, (ImGuiMultiSelectIO*)pmsIo);
+				}
+			}
+		}
+
+		internal static ImDrawCmd* ImDrawCmdNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImDrawCmd*>)vt[520])();
+			#else
+			return (ImDrawCmd*)((delegate* unmanaged[Cdecl]<nint>)vt[520])();
+			#endif
+		}
+
+		public static ImDrawCmdPtr ImDrawCmd()
+		{
+			ImDrawCmdPtr ret = ImDrawCmdNative();
+			return ret;
+		}
+
+		internal static void DestroyNative(ImDrawCmd* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawCmd*, void>)vt[521])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[521])((nint)self);
+			#endif
+		}
+
+		public static void Destroy(ImDrawCmdPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		public static void Destroy(ref ImDrawCmd self)
+		{
+			fixed (ImDrawCmd* pself = &self)
+			{
+				DestroyNative((ImDrawCmd*)pself);
+			}
+		}
+
+		internal static ImTextureID GetTexIDNative(ImDrawCmd* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImDrawCmd*, ImTextureID>)vt[522])(self);
+			#else
+			return (ImTextureID)((delegate* unmanaged[Cdecl]<nint, ImTextureID>)vt[522])((nint)self);
+			#endif
+		}
+
+		public static ImTextureID GetTexID(ImDrawCmdPtr self)
+		{
+			ImTextureID ret = GetTexIDNative(self);
+			return ret;
+		}
+
+		public static ImTextureID GetTexID(ref ImDrawCmd self)
+		{
+			fixed (ImDrawCmd* pself = &self)
+			{
+				ImTextureID ret = GetTexIDNative((ImDrawCmd*)pself);
+				return ret;
+			}
+		}
+
+		internal static ImDrawListSplitter* ImDrawListSplitterNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImDrawListSplitter*>)vt[523])();
+			#else
+			return (ImDrawListSplitter*)((delegate* unmanaged[Cdecl]<nint>)vt[523])();
+			#endif
+		}
+
+		public static ImDrawListSplitterPtr ImDrawListSplitter()
+		{
+			ImDrawListSplitterPtr ret = ImDrawListSplitterNative();
+			return ret;
+		}
+
+		internal static void DestroyNative(ImDrawListSplitter* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawListSplitter*, void>)vt[524])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[524])((nint)self);
+			#endif
+		}
+
+		public static void Destroy(ImDrawListSplitterPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		public static void Destroy(ref ImDrawListSplitter self)
+		{
+			fixed (ImDrawListSplitter* pself = &self)
+			{
+				DestroyNative((ImDrawListSplitter*)pself);
+			}
+		}
+
+		internal static void ClearNative(ImDrawListSplitter* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawListSplitter*, void>)vt[525])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[525])((nint)self);
+			#endif
+		}
+
+		public static void Clear(ImDrawListSplitterPtr self)
+		{
+			ClearNative(self);
+		}
+
+		public static void Clear(ref ImDrawListSplitter self)
+		{
+			fixed (ImDrawListSplitter* pself = &self)
+			{
+				ClearNative((ImDrawListSplitter*)pself);
+			}
+		}
+
+		internal static void ClearFreeMemoryNative(ImDrawListSplitter* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawListSplitter*, void>)vt[526])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[526])((nint)self);
+			#endif
+		}
+
+		public static void ClearFreeMemory(ImDrawListSplitterPtr self)
+		{
+			ClearFreeMemoryNative(self);
+		}
+
+		public static void ClearFreeMemory(ref ImDrawListSplitter self)
+		{
+			fixed (ImDrawListSplitter* pself = &self)
+			{
+				ClearFreeMemoryNative((ImDrawListSplitter*)pself);
+			}
+		}
+
+		internal static void SplitNative(ImDrawListSplitter* self, ImDrawList* drawList, int count)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawListSplitter*, ImDrawList*, int, void>)vt[527])(self, drawList, count);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, int, void>)vt[527])((nint)self, (nint)drawList, count);
+			#endif
+		}
+
+		public static void Split(ImDrawListSplitterPtr self, ImDrawListPtr drawList, int count)
+		{
+			SplitNative(self, drawList, count);
+		}
+
+		public static void Split(ref ImDrawListSplitter self, ImDrawListPtr drawList, int count)
+		{
+			fixed (ImDrawListSplitter* pself = &self)
+			{
+				SplitNative((ImDrawListSplitter*)pself, drawList, count);
+			}
+		}
+
+		public static void Split(ImDrawListSplitterPtr self, ref ImDrawList drawList, int count)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				SplitNative(self, (ImDrawList*)pdrawList, count);
+			}
+		}
+
+		public static void Split(ref ImDrawListSplitter self, ref ImDrawList drawList, int count)
+		{
+			fixed (ImDrawListSplitter* pself = &self)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					SplitNative((ImDrawListSplitter*)pself, (ImDrawList*)pdrawList, count);
+				}
+			}
+		}
+
+		internal static void MergeNative(ImDrawListSplitter* self, ImDrawList* drawList)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawListSplitter*, ImDrawList*, void>)vt[528])(self, drawList);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[528])((nint)self, (nint)drawList);
+			#endif
+		}
+
+		public static void Merge(ImDrawListSplitterPtr self, ImDrawListPtr drawList)
+		{
+			MergeNative(self, drawList);
+		}
+
+		public static void Merge(ref ImDrawListSplitter self, ImDrawListPtr drawList)
+		{
+			fixed (ImDrawListSplitter* pself = &self)
+			{
+				MergeNative((ImDrawListSplitter*)pself, drawList);
+			}
+		}
+
+		public static void Merge(ImDrawListSplitterPtr self, ref ImDrawList drawList)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				MergeNative(self, (ImDrawList*)pdrawList);
+			}
+		}
+
+		public static void Merge(ref ImDrawListSplitter self, ref ImDrawList drawList)
+		{
+			fixed (ImDrawListSplitter* pself = &self)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					MergeNative((ImDrawListSplitter*)pself, (ImDrawList*)pdrawList);
+				}
+			}
+		}
+
+		internal static void SetCurrentChannelNative(ImDrawListSplitter* self, ImDrawList* drawList, int channelIdx)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawListSplitter*, ImDrawList*, int, void>)vt[529])(self, drawList, channelIdx);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, int, void>)vt[529])((nint)self, (nint)drawList, channelIdx);
+			#endif
+		}
+
+		public static void SetCurrentChannel(ImDrawListSplitterPtr self, ImDrawListPtr drawList, int channelIdx)
+		{
+			SetCurrentChannelNative(self, drawList, channelIdx);
+		}
+
+		public static void SetCurrentChannel(ref ImDrawListSplitter self, ImDrawListPtr drawList, int channelIdx)
+		{
+			fixed (ImDrawListSplitter* pself = &self)
+			{
+				SetCurrentChannelNative((ImDrawListSplitter*)pself, drawList, channelIdx);
+			}
+		}
+
+		public static void SetCurrentChannel(ImDrawListSplitterPtr self, ref ImDrawList drawList, int channelIdx)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				SetCurrentChannelNative(self, (ImDrawList*)pdrawList, channelIdx);
+			}
+		}
+
+		public static void SetCurrentChannel(ref ImDrawListSplitter self, ref ImDrawList drawList, int channelIdx)
+		{
+			fixed (ImDrawListSplitter* pself = &self)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					SetCurrentChannelNative((ImDrawListSplitter*)pself, (ImDrawList*)pdrawList, channelIdx);
+				}
+			}
+		}
+
+		internal static ImDrawList* ImDrawListNative(ImDrawListSharedData* sharedData)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImDrawListSharedData*, ImDrawList*>)vt[530])(sharedData);
+			#else
+			return (ImDrawList*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[530])((nint)sharedData);
+			#endif
+		}
+
+		public static ImDrawListPtr ImDrawList(ImDrawListSharedDataPtr sharedData)
+		{
+			ImDrawListPtr ret = ImDrawListNative(sharedData);
+			return ret;
+		}
+
+		public static ImDrawListPtr ImDrawList(ref ImDrawListSharedData sharedData)
+		{
+			fixed (ImDrawListSharedData* psharedData = &sharedData)
+			{
+				ImDrawListPtr ret = ImDrawListNative((ImDrawListSharedData*)psharedData);
+				return ret;
+			}
+		}
+
+		internal static void DestroyNative(ImDrawList* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[531])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[531])((nint)self);
+			#endif
+		}
+
+		public static void Destroy(ImDrawListPtr self)
+		{
+			DestroyNative(self);
+		}
+
+		public static void Destroy(ref ImDrawList self)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				DestroyNative((ImDrawList*)pself);
+			}
+		}
+
+		internal static void PushClipRectNative(ImDrawList* self, Vector2 clipRectMin, Vector2 clipRectMax, byte intersectWithCurrentClipRect)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, byte, void>)vt[532])(self, clipRectMin, clipRectMax, intersectWithCurrentClipRect);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, byte, void>)vt[532])((nint)self, clipRectMin, clipRectMax, intersectWithCurrentClipRect);
+			#endif
+		}
+
+		public static void PushClipRect(ImDrawListPtr self, Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
+		{
+			PushClipRectNative(self, clipRectMin, clipRectMax, intersectWithCurrentClipRect ? (byte)1 : (byte)0);
+		}
+
+		public static void PushClipRect(ImDrawListPtr self, Vector2 clipRectMin, Vector2 clipRectMax)
+		{
+			PushClipRectNative(self, clipRectMin, clipRectMax, (byte)(0));
+		}
+
+		public static void PushClipRect(ref ImDrawList self, Vector2 clipRectMin, Vector2 clipRectMax, bool intersectWithCurrentClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PushClipRectNative((ImDrawList*)pself, clipRectMin, clipRectMax, intersectWithCurrentClipRect ? (byte)1 : (byte)0);
+			}
+		}
+
+		public static void PushClipRect(ref ImDrawList self, Vector2 clipRectMin, Vector2 clipRectMax)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PushClipRectNative((ImDrawList*)pself, clipRectMin, clipRectMax, (byte)(0));
+			}
+		}
+
+		internal static void PushClipRectFullScreenNative(ImDrawList* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[533])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[533])((nint)self);
+			#endif
+		}
+
+		public static void PushClipRectFullScreen(ImDrawListPtr self)
+		{
+			PushClipRectFullScreenNative(self);
+		}
+
+		public static void PushClipRectFullScreen(ref ImDrawList self)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PushClipRectFullScreenNative((ImDrawList*)pself);
+			}
+		}
+
+		internal static void PopClipRectNative(ImDrawList* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[534])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[534])((nint)self);
+			#endif
+		}
+
+		public static void PopClipRect(ImDrawListPtr self)
+		{
+			PopClipRectNative(self);
+		}
+
+		public static void PopClipRect(ref ImDrawList self)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PopClipRectNative((ImDrawList*)pself);
+			}
+		}
+
+		internal static void PushTextureIDNative(ImDrawList* self, ImTextureID textureId)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, void>)vt[535])(self, textureId);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, ImTextureID, void>)vt[535])((nint)self, textureId);
+			#endif
+		}
+
+		public static void PushTextureID(ImDrawListPtr self, ImTextureID textureId)
+		{
+			PushTextureIDNative(self, textureId);
+		}
+
+		public static void PushTextureID(ref ImDrawList self, ImTextureID textureId)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PushTextureIDNative((ImDrawList*)pself, textureId);
+			}
+		}
+
+		internal static void PopTextureIDNative(ImDrawList* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[536])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[536])((nint)self);
+			#endif
+		}
+
+		public static void PopTextureID(ImDrawListPtr self)
+		{
+			PopTextureIDNative(self);
+		}
+
+		public static void PopTextureID(ref ImDrawList self)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				PopTextureIDNative((ImDrawList*)pself);
+			}
+		}
+
+		internal static void GetClipRectMinNative(Vector2* output, ImDrawList* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2*, ImDrawList*, void>)vt[537])(output, self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[537])((nint)output, (nint)self);
+			#endif
+		}
+
+		public static Vector2 GetClipRectMin(ImDrawListPtr self)
+		{
+			Vector2 ret;
+			GetClipRectMinNative(&ret, self);
+			return ret;
+		}
+
+		public static void GetClipRectMin(Vector2* output, ImDrawListPtr self)
+		{
+			GetClipRectMinNative(output, self);
+		}
+
+		public static void GetClipRectMin(ref Vector2 output, ImDrawListPtr self)
 		{
 			fixed (Vector2* poutput = &output)
 			{
-				GetKeyMagnitude2dNative((Vector2*)poutput, keyLeft, keyRight, keyUp, keyDown);
+				GetClipRectMinNative((Vector2*)poutput, self);
 			}
 		}
 
-		internal static float GetNavTweakPressedAmountNative(ImGuiAxis axis)
+		public static Vector2 GetClipRectMin(ref ImDrawList self)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiAxis, float>)vt[1132])(axis);
-		}
-
-		public static float GetNavTweakPressedAmount(ImGuiAxis axis)
-		{
-			float ret = GetNavTweakPressedAmountNative(axis);
-			return ret;
-		}
-
-		internal static int CalcTypematicRepeatAmountNative(float t0, float t1, float repeatDelay, float repeatRate)
-		{
-			return ((delegate* unmanaged[Cdecl]<float, float, float, float, int>)vt[1133])(t0, t1, repeatDelay, repeatRate);
-		}
-
-		public static int CalcTypematicRepeatAmount(float t0, float t1, float repeatDelay, float repeatRate)
-		{
-			int ret = CalcTypematicRepeatAmountNative(t0, t1, repeatDelay, repeatRate);
-			return ret;
-		}
-
-		internal static void GetTypematicRepeatRateNative(ImGuiInputFlags flags, float* repeatDelay, float* repeatRate)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiInputFlags, float*, float*, void>)vt[1134])(flags, repeatDelay, repeatRate);
-		}
-
-		public static void GetTypematicRepeatRate(ImGuiInputFlags flags, float* repeatDelay, float* repeatRate)
-		{
-			GetTypematicRepeatRateNative(flags, repeatDelay, repeatRate);
-		}
-
-		public static void GetTypematicRepeatRate(ImGuiInputFlags flags, ref float repeatDelay, float* repeatRate)
-		{
-			fixed (float* prepeatDelay = &repeatDelay)
+			fixed (ImDrawList* pself = &self)
 			{
-				GetTypematicRepeatRateNative(flags, (float*)prepeatDelay, repeatRate);
-			}
-		}
-
-		public static void GetTypematicRepeatRate(ImGuiInputFlags flags, float* repeatDelay, ref float repeatRate)
-		{
-			fixed (float* prepeatRate = &repeatRate)
-			{
-				GetTypematicRepeatRateNative(flags, repeatDelay, (float*)prepeatRate);
-			}
-		}
-
-		public static void GetTypematicRepeatRate(ImGuiInputFlags flags, ref float repeatDelay, ref float repeatRate)
-		{
-			fixed (float* prepeatDelay = &repeatDelay)
-			{
-				fixed (float* prepeatRate = &repeatRate)
-				{
-					GetTypematicRepeatRateNative(flags, (float*)prepeatDelay, (float*)prepeatRate);
-				}
-			}
-		}
-
-		internal static void TeleportMousePosNative(Vector2 pos)
-		{
-			((delegate* unmanaged[Cdecl]<Vector2, void>)vt[1135])(pos);
-		}
-
-		public static void TeleportMousePos(Vector2 pos)
-		{
-			TeleportMousePosNative(pos);
-		}
-
-		internal static void SetActiveIdUsingAllKeyboardKeysNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1136])();
-		}
-
-		public static void SetActiveIdUsingAllKeyboardKeys()
-		{
-			SetActiveIdUsingAllKeyboardKeysNative();
-		}
-
-		internal static byte IsActiveIdUsingNavDirNative(ImGuiDir dir)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiDir, byte>)vt[1137])(dir);
-		}
-
-		public static bool IsActiveIdUsingNavDir(ImGuiDir dir)
-		{
-			byte ret = IsActiveIdUsingNavDirNative(dir);
-			return ret != 0;
-		}
-
-		internal static int GetKeyOwnerNative(ImGuiKey key)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, int>)vt[1138])(key);
-		}
-
-		public static int GetKeyOwner(ImGuiKey key)
-		{
-			int ret = GetKeyOwnerNative(key);
-			return ret;
-		}
-
-		internal static void SetKeyOwnerNative(ImGuiKey key, int ownerId, ImGuiInputFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiKey, int, ImGuiInputFlags, void>)vt[1139])(key, ownerId, flags);
-		}
-
-		public static void SetKeyOwner(ImGuiKey key, int ownerId, ImGuiInputFlags flags)
-		{
-			SetKeyOwnerNative(key, ownerId, flags);
-		}
-
-		internal static void SetKeyOwnersForKeyChordNative(int key, int ownerId, ImGuiInputFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<int, int, ImGuiInputFlags, void>)vt[1140])(key, ownerId, flags);
-		}
-
-		public static void SetKeyOwnersForKeyChord(int key, int ownerId, ImGuiInputFlags flags)
-		{
-			SetKeyOwnersForKeyChordNative(key, ownerId, flags);
-		}
-
-		internal static void SetItemKeyOwnerInputFlagsNative(ImGuiKey key, ImGuiInputFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiKey, ImGuiInputFlags, void>)vt[1141])(key, flags);
-		}
-
-		public static void SetItemKeyOwnerInputFlags(ImGuiKey key, ImGuiInputFlags flags)
-		{
-			SetItemKeyOwnerInputFlagsNative(key, flags);
-		}
-
-		internal static byte TestKeyOwnerNative(ImGuiKey key, int ownerId)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, int, byte>)vt[1142])(key, ownerId);
-		}
-
-		public static bool TestKeyOwner(ImGuiKey key, int ownerId)
-		{
-			byte ret = TestKeyOwnerNative(key, ownerId);
-			return ret != 0;
-		}
-
-		internal static ImGuiKeyOwnerData* GetKeyOwnerDataNative(ImGuiContext* ctx, ImGuiKey key)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiKey, ImGuiKeyOwnerData*>)vt[1143])(ctx, key);
-		}
-
-		public static ImGuiKeyOwnerDataPtr GetKeyOwnerData(ImGuiContextPtr ctx, ImGuiKey key)
-		{
-			ImGuiKeyOwnerDataPtr ret = GetKeyOwnerDataNative(ctx, key);
-			return ret;
-		}
-
-		public static ImGuiKeyOwnerDataPtr GetKeyOwnerData(ref ImGuiContext ctx, ImGuiKey key)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				ImGuiKeyOwnerDataPtr ret = GetKeyOwnerDataNative((ImGuiContext*)pctx, key);
+				Vector2 ret;
+				GetClipRectMinNative(&ret, (ImDrawList*)pself);
 				return ret;
 			}
 		}
 
-		internal static byte IsKeyDownIDNative(ImGuiKey key, int ownerId)
+		public static void GetClipRectMin(Vector2* output, ref ImDrawList self)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, int, byte>)vt[1144])(key, ownerId);
+			fixed (ImDrawList* pself = &self)
+			{
+				GetClipRectMinNative(output, (ImDrawList*)pself);
+			}
 		}
 
-		public static bool IsKeyDownID(ImGuiKey key, int ownerId)
+		public static void GetClipRectMin(ref Vector2 output, ref ImDrawList self)
 		{
-			byte ret = IsKeyDownIDNative(key, ownerId);
-			return ret != 0;
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImDrawList* pself = &self)
+				{
+					GetClipRectMinNative((Vector2*)poutput, (ImDrawList*)pself);
+				}
+			}
 		}
 
-		internal static byte IsKeyPressedInputFlagsNative(ImGuiKey key, ImGuiInputFlags flags, int ownerId)
+		internal static void GetClipRectMaxNative(Vector2* output, ImDrawList* self)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, ImGuiInputFlags, int, byte>)vt[1145])(key, flags, ownerId);
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2*, ImDrawList*, void>)vt[538])(output, self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[538])((nint)output, (nint)self);
+			#endif
 		}
 
-		public static bool IsKeyPressedInputFlags(ImGuiKey key, ImGuiInputFlags flags, int ownerId)
+		public static Vector2 GetClipRectMax(ImDrawListPtr self)
 		{
-			byte ret = IsKeyPressedInputFlagsNative(key, flags, ownerId);
-			return ret != 0;
-		}
-
-		internal static byte IsKeyReleasedIDNative(ImGuiKey key, int ownerId)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiKey, int, byte>)vt[1146])(key, ownerId);
-		}
-
-		public static bool IsKeyReleasedID(ImGuiKey key, int ownerId)
-		{
-			byte ret = IsKeyReleasedIDNative(key, ownerId);
-			return ret != 0;
-		}
-
-		internal static byte IsKeyChordPressedInputFlagsNative(int keyChord, ImGuiInputFlags flags, int ownerId)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, int, byte>)vt[1147])(keyChord, flags, ownerId);
-		}
-
-		public static bool IsKeyChordPressedInputFlags(int keyChord, ImGuiInputFlags flags, int ownerId)
-		{
-			byte ret = IsKeyChordPressedInputFlagsNative(keyChord, flags, ownerId);
-			return ret != 0;
-		}
-
-		internal static byte IsMouseDownIDNative(ImGuiMouseButton button, int ownerId)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int, byte>)vt[1148])(button, ownerId);
-		}
-
-		public static bool IsMouseDownID(ImGuiMouseButton button, int ownerId)
-		{
-			byte ret = IsMouseDownIDNative(button, ownerId);
-			return ret != 0;
-		}
-
-		internal static byte IsMouseClickedInputFlagsNative(ImGuiMouseButton button, ImGuiInputFlags flags, int ownerId)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, ImGuiInputFlags, int, byte>)vt[1149])(button, flags, ownerId);
-		}
-
-		public static bool IsMouseClickedInputFlags(ImGuiMouseButton button, ImGuiInputFlags flags, int ownerId)
-		{
-			byte ret = IsMouseClickedInputFlagsNative(button, flags, ownerId);
-			return ret != 0;
-		}
-
-		internal static byte IsMouseReleasedIDNative(ImGuiMouseButton button, int ownerId)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int, byte>)vt[1150])(button, ownerId);
-		}
-
-		public static bool IsMouseReleasedID(ImGuiMouseButton button, int ownerId)
-		{
-			byte ret = IsMouseReleasedIDNative(button, ownerId);
-			return ret != 0;
-		}
-
-		internal static byte IsMouseDoubleClickedIDNative(ImGuiMouseButton button, int ownerId)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int, byte>)vt[1151])(button, ownerId);
-		}
-
-		public static bool IsMouseDoubleClickedID(ImGuiMouseButton button, int ownerId)
-		{
-			byte ret = IsMouseDoubleClickedIDNative(button, ownerId);
-			return ret != 0;
-		}
-
-		internal static byte ShortcutIDNative(int keyChord, ImGuiInputFlags flags, int ownerId)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, int, byte>)vt[1152])(keyChord, flags, ownerId);
-		}
-
-		public static bool ShortcutID(int keyChord, ImGuiInputFlags flags, int ownerId)
-		{
-			byte ret = ShortcutIDNative(keyChord, flags, ownerId);
-			return ret != 0;
-		}
-
-		internal static byte SetShortcutRoutingNative(int keyChord, ImGuiInputFlags flags, int ownerId)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, int, byte>)vt[1153])(keyChord, flags, ownerId);
-		}
-
-		public static bool SetShortcutRouting(int keyChord, ImGuiInputFlags flags, int ownerId)
-		{
-			byte ret = SetShortcutRoutingNative(keyChord, flags, ownerId);
-			return ret != 0;
-		}
-
-		internal static byte TestShortcutRoutingNative(int keyChord, int ownerId)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, int, byte>)vt[1154])(keyChord, ownerId);
-		}
-
-		public static bool TestShortcutRouting(int keyChord, int ownerId)
-		{
-			byte ret = TestShortcutRoutingNative(keyChord, ownerId);
-			return ret != 0;
-		}
-
-		internal static ImGuiKeyRoutingData* GetShortcutRoutingDataNative(int keyChord)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiKeyRoutingData*>)vt[1155])(keyChord);
-		}
-
-		public static ImGuiKeyRoutingDataPtr GetShortcutRoutingData(int keyChord)
-		{
-			ImGuiKeyRoutingDataPtr ret = GetShortcutRoutingDataNative(keyChord);
+			Vector2 ret;
+			GetClipRectMaxNative(&ret, self);
 			return ret;
 		}
 
-		internal static void DockContextInitializeNative(ImGuiContext* ctx)
+		public static void GetClipRectMax(Vector2* output, ImDrawListPtr self)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[1156])(ctx);
+			GetClipRectMaxNative(output, self);
 		}
 
-		public static void DockContextInitialize(ImGuiContextPtr ctx)
+		public static void GetClipRectMax(ref Vector2 output, ImDrawListPtr self)
 		{
-			DockContextInitializeNative(ctx);
-		}
-
-		public static void DockContextInitialize(ref ImGuiContext ctx)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
+			fixed (Vector2* poutput = &output)
 			{
-				DockContextInitializeNative((ImGuiContext*)pctx);
+				GetClipRectMaxNative((Vector2*)poutput, self);
 			}
 		}
 
-		internal static void DockContextShutdownNative(ImGuiContext* ctx)
+		public static Vector2 GetClipRectMax(ref ImDrawList self)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[1157])(ctx);
-		}
-
-		public static void DockContextShutdown(ImGuiContextPtr ctx)
-		{
-			DockContextShutdownNative(ctx);
-		}
-
-		public static void DockContextShutdown(ref ImGuiContext ctx)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
+			fixed (ImDrawList* pself = &self)
 			{
-				DockContextShutdownNative((ImGuiContext*)pctx);
-			}
-		}
-
-		internal static void DockContextClearNodesNative(ImGuiContext* ctx, int rootId, byte clearSettingsRefs)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, int, byte, void>)vt[1158])(ctx, rootId, clearSettingsRefs);
-		}
-
-		public static void DockContextClearNodes(ImGuiContextPtr ctx, int rootId, bool clearSettingsRefs)
-		{
-			DockContextClearNodesNative(ctx, rootId, clearSettingsRefs ? (byte)1 : (byte)0);
-		}
-
-		public static void DockContextClearNodes(ref ImGuiContext ctx, int rootId, bool clearSettingsRefs)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				DockContextClearNodesNative((ImGuiContext*)pctx, rootId, clearSettingsRefs ? (byte)1 : (byte)0);
-			}
-		}
-
-		internal static void DockContextRebuildNodesNative(ImGuiContext* ctx)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[1159])(ctx);
-		}
-
-		public static void DockContextRebuildNodes(ImGuiContextPtr ctx)
-		{
-			DockContextRebuildNodesNative(ctx);
-		}
-
-		public static void DockContextRebuildNodes(ref ImGuiContext ctx)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				DockContextRebuildNodesNative((ImGuiContext*)pctx);
-			}
-		}
-
-		internal static void DockContextNewFrameUpdateUndockingNative(ImGuiContext* ctx)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[1160])(ctx);
-		}
-
-		public static void DockContextNewFrameUpdateUndocking(ImGuiContextPtr ctx)
-		{
-			DockContextNewFrameUpdateUndockingNative(ctx);
-		}
-
-		public static void DockContextNewFrameUpdateUndocking(ref ImGuiContext ctx)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				DockContextNewFrameUpdateUndockingNative((ImGuiContext*)pctx);
-			}
-		}
-
-		internal static void DockContextNewFrameUpdateDockingNative(ImGuiContext* ctx)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[1161])(ctx);
-		}
-
-		public static void DockContextNewFrameUpdateDocking(ImGuiContextPtr ctx)
-		{
-			DockContextNewFrameUpdateDockingNative(ctx);
-		}
-
-		public static void DockContextNewFrameUpdateDocking(ref ImGuiContext ctx)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				DockContextNewFrameUpdateDockingNative((ImGuiContext*)pctx);
-			}
-		}
-
-		internal static void DockContextEndFrameNative(ImGuiContext* ctx)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[1162])(ctx);
-		}
-
-		public static void DockContextEndFrame(ImGuiContextPtr ctx)
-		{
-			DockContextEndFrameNative(ctx);
-		}
-
-		public static void DockContextEndFrame(ref ImGuiContext ctx)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				DockContextEndFrameNative((ImGuiContext*)pctx);
-			}
-		}
-
-		internal static int DockContextGenNodeIDNative(ImGuiContext* ctx)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiContext*, int>)vt[1163])(ctx);
-		}
-
-		public static int DockContextGenNodeID(ImGuiContextPtr ctx)
-		{
-			int ret = DockContextGenNodeIDNative(ctx);
-			return ret;
-		}
-
-		public static int DockContextGenNodeID(ref ImGuiContext ctx)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				int ret = DockContextGenNodeIDNative((ImGuiContext*)pctx);
+				Vector2 ret;
+				GetClipRectMaxNative(&ret, (ImDrawList*)pself);
 				return ret;
 			}
 		}
 
-		internal static void DockContextQueueDockNative(ImGuiContext* ctx, ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payload, ImGuiDir splitDir, float splitRatio, byte splitOuter)
+		public static void GetClipRectMax(Vector2* output, ref ImDrawList self)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiWindow*, ImGuiDockNode*, ImGuiWindow*, ImGuiDir, float, byte, void>)vt[1164])(ctx, target, targetNode, payload, splitDir, splitRatio, splitOuter);
-		}
-
-		public static void DockContextQueueDock(ImGuiContextPtr ctx, ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
-		{
-			DockContextQueueDockNative(ctx, target, targetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
-		}
-
-		public static void DockContextQueueDock(ref ImGuiContext ctx, ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
+			fixed (ImDrawList* pself = &self)
 			{
-				DockContextQueueDockNative((ImGuiContext*)pctx, target, targetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
+				GetClipRectMaxNative(output, (ImDrawList*)pself);
 			}
 		}
 
-		public static void DockContextQueueDock(ImGuiContextPtr ctx, ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
+		public static void GetClipRectMax(ref Vector2 output, ref ImDrawList self)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
+			fixed (Vector2* poutput = &output)
 			{
-				DockContextQueueDockNative(ctx, (ImGuiWindow*)ptarget, targetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
-			}
-		}
-
-		public static void DockContextQueueDock(ref ImGuiContext ctx, ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				fixed (ImGuiWindow* ptarget = &target)
+				fixed (ImDrawList* pself = &self)
 				{
-					DockContextQueueDockNative((ImGuiContext*)pctx, (ImGuiWindow*)ptarget, targetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
+					GetClipRectMaxNative((Vector2*)poutput, (ImDrawList*)pself);
 				}
 			}
 		}
 
-		public static void DockContextQueueDock(ImGuiContextPtr ctx, ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
+		internal static void AddLineNative(ImDrawList* self, Vector2 p1, Vector2 p2, uint col, float thickness)
 		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
-			{
-				DockContextQueueDockNative(ctx, target, (ImGuiDockNode*)ptargetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
-			}
-		}
-
-		public static void DockContextQueueDock(ref ImGuiContext ctx, ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					DockContextQueueDockNative((ImGuiContext*)pctx, target, (ImGuiDockNode*)ptargetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
-				}
-			}
-		}
-
-		public static void DockContextQueueDock(ImGuiContextPtr ctx, ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
-		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					DockContextQueueDockNative(ctx, (ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
-				}
-			}
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, void>)vt[539])(self, p1, p2, col, thickness);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, void>)vt[539])((nint)self, p1, p2, col, thickness);
+			#endif
 		}
 
-		public static void DockContextQueueDock(ref ImGuiContext ctx, ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
+		public static void AddLine(ImDrawListPtr self, Vector2 p1, Vector2 p2, uint col, float thickness)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				fixed (ImGuiWindow* ptarget = &target)
-				{
-					fixed (ImGuiDockNode* ptargetNode = &targetNode)
-					{
-						DockContextQueueDockNative((ImGuiContext*)pctx, (ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
-					}
-				}
-			}
+			AddLineNative(self, p1, p2, col, thickness);
 		}
 
-		public static void DockContextQueueDock(ImGuiContextPtr ctx, ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
+		public static void AddLine(ImDrawListPtr self, Vector2 p1, Vector2 p2, uint col)
 		{
-			fixed (ImGuiWindow* ppayload = &payload)
-			{
-				DockContextQueueDockNative(ctx, target, targetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
-			}
+			AddLineNative(self, p1, p2, col, (float)(1.0f));
 		}
 
-		public static void DockContextQueueDock(ref ImGuiContext ctx, ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
+		public static void AddLine(ref ImDrawList self, Vector2 p1, Vector2 p2, uint col, float thickness)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiWindow* ppayload = &payload)
-				{
-					DockContextQueueDockNative((ImGuiContext*)pctx, target, targetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
-				}
+				AddLineNative((ImDrawList*)pself, p1, p2, col, thickness);
 			}
 		}
 
-		public static void DockContextQueueDock(ImGuiContextPtr ctx, ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
+		public static void AddLine(ref ImDrawList self, Vector2 p1, Vector2 p2, uint col)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiWindow* ppayload = &payload)
-				{
-					DockContextQueueDockNative(ctx, (ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
-				}
+				AddLineNative((ImDrawList*)pself, p1, p2, col, (float)(1.0f));
 			}
 		}
 
-		public static void DockContextQueueDock(ref ImGuiContext ctx, ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
+		internal static void AddRectNative(ImDrawList* self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				fixed (ImGuiWindow* ptarget = &target)
-				{
-					fixed (ImGuiWindow* ppayload = &payload)
-					{
-						DockContextQueueDockNative((ImGuiContext*)pctx, (ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
-					}
-				}
-			}
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, ImDrawFlags, float, void>)vt[540])(self, pMin, pMax, col, rounding, flags, thickness);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, ImDrawFlags, float, void>)vt[540])((nint)self, pMin, pMax, col, rounding, flags, thickness);
+			#endif
 		}
 
-		public static void DockContextQueueDock(ImGuiContextPtr ctx, ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
+		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
 		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
-			{
-				fixed (ImGuiWindow* ppayload = &payload)
-				{
-					DockContextQueueDockNative(ctx, target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
-				}
-			}
+			AddRectNative(self, pMin, pMax, col, rounding, flags, thickness);
 		}
 
-		public static void DockContextQueueDock(ref ImGuiContext ctx, ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
+		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					fixed (ImGuiWindow* ppayload = &payload)
-					{
-						DockContextQueueDockNative((ImGuiContext*)pctx, target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
-					}
-				}
-			}
+			AddRectNative(self, pMin, pMax, col, rounding, flags, (float)(1.0f));
 		}
 
-		public static void DockContextQueueDock(ImGuiContextPtr ctx, ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
+		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					fixed (ImGuiWindow* ppayload = &payload)
-					{
-						DockContextQueueDockNative(ctx, (ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
-					}
-				}
-			}
+			AddRectNative(self, pMin, pMax, col, rounding, (ImDrawFlags)(0), (float)(1.0f));
 		}
 
-		public static void DockContextQueueDock(ref ImGuiContext ctx, ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
+		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				fixed (ImGuiWindow* ptarget = &target)
-				{
-					fixed (ImGuiDockNode* ptargetNode = &targetNode)
-					{
-						fixed (ImGuiWindow* ppayload = &payload)
-						{
-							DockContextQueueDockNative((ImGuiContext*)pctx, (ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayload, splitDir, splitRatio, splitOuter ? (byte)1 : (byte)0);
-						}
-					}
-				}
-			}
+			AddRectNative(self, pMin, pMax, col, (float)(0.0f), (ImDrawFlags)(0), (float)(1.0f));
 		}
 
-		internal static void DockContextQueueUndockWindowNative(ImGuiContext* ctx, ImGuiWindow* window)
+		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiWindow*, void>)vt[1165])(ctx, window);
+			AddRectNative(self, pMin, pMax, col, (float)(0.0f), flags, (float)(1.0f));
 		}
 
-		public static void DockContextQueueUndockWindow(ImGuiContextPtr ctx, ImGuiWindowPtr window)
+		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness)
 		{
-			DockContextQueueUndockWindowNative(ctx, window);
+			AddRectNative(self, pMin, pMax, col, rounding, (ImDrawFlags)(0), thickness);
 		}
 
-		public static void DockContextQueueUndockWindow(ref ImGuiContext ctx, ImGuiWindowPtr window)
+		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags, float thickness)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				DockContextQueueUndockWindowNative((ImGuiContext*)pctx, window);
-			}
+			AddRectNative(self, pMin, pMax, col, (float)(0.0f), flags, thickness);
 		}
 
-		public static void DockContextQueueUndockWindow(ImGuiContextPtr ctx, ref ImGuiWindow window)
+		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
 		{
-			fixed (ImGuiWindow* pwindow = &window)
+			fixed (ImDrawList* pself = &self)
 			{
-				DockContextQueueUndockWindowNative(ctx, (ImGuiWindow*)pwindow);
+				AddRectNative((ImDrawList*)pself, pMin, pMax, col, rounding, flags, thickness);
 			}
 		}
 
-		public static void DockContextQueueUndockWindow(ref ImGuiContext ctx, ref ImGuiWindow window)
+		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiWindow* pwindow = &window)
-				{
-					DockContextQueueUndockWindowNative((ImGuiContext*)pctx, (ImGuiWindow*)pwindow);
-				}
+				AddRectNative((ImDrawList*)pself, pMin, pMax, col, rounding, flags, (float)(1.0f));
 			}
-		}
-
-		internal static void DockContextQueueUndockNodeNative(ImGuiContext* ctx, ImGuiDockNode* node)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiDockNode*, void>)vt[1166])(ctx, node);
-		}
-
-		public static void DockContextQueueUndockNode(ImGuiContextPtr ctx, ImGuiDockNodePtr node)
-		{
-			DockContextQueueUndockNodeNative(ctx, node);
 		}
 
-		public static void DockContextQueueUndockNode(ref ImGuiContext ctx, ImGuiDockNodePtr node)
+		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
+			fixed (ImDrawList* pself = &self)
 			{
-				DockContextQueueUndockNodeNative((ImGuiContext*)pctx, node);
+				AddRectNative((ImDrawList*)pself, pMin, pMax, col, rounding, (ImDrawFlags)(0), (float)(1.0f));
 			}
 		}
 
-		public static void DockContextQueueUndockNode(ImGuiContextPtr ctx, ref ImGuiDockNode node)
+		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col)
 		{
-			fixed (ImGuiDockNode* pnode = &node)
+			fixed (ImDrawList* pself = &self)
 			{
-				DockContextQueueUndockNodeNative(ctx, (ImGuiDockNode*)pnode);
+				AddRectNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), (ImDrawFlags)(0), (float)(1.0f));
 			}
 		}
 
-		public static void DockContextQueueUndockNode(ref ImGuiContext ctx, ref ImGuiDockNode node)
+		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiDockNode* pnode = &node)
-				{
-					DockContextQueueUndockNodeNative((ImGuiContext*)pctx, (ImGuiDockNode*)pnode);
-				}
+				AddRectNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), flags, (float)(1.0f));
 			}
 		}
 
-		internal static void DockContextProcessUndockWindowNative(ImGuiContext* ctx, ImGuiWindow* window, byte clearPersistentDockingRef)
+		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiWindow*, byte, void>)vt[1167])(ctx, window, clearPersistentDockingRef);
-		}
-
-		public static void DockContextProcessUndockWindow(ImGuiContextPtr ctx, ImGuiWindowPtr window, bool clearPersistentDockingRef)
-		{
-			DockContextProcessUndockWindowNative(ctx, window, clearPersistentDockingRef ? (byte)1 : (byte)0);
-		}
-
-		public static void DockContextProcessUndockWindow(ref ImGuiContext ctx, ImGuiWindowPtr window, bool clearPersistentDockingRef)
-		{
-			fixed (ImGuiContext* pctx = &ctx)
+			fixed (ImDrawList* pself = &self)
 			{
-				DockContextProcessUndockWindowNative((ImGuiContext*)pctx, window, clearPersistentDockingRef ? (byte)1 : (byte)0);
+				AddRectNative((ImDrawList*)pself, pMin, pMax, col, rounding, (ImDrawFlags)(0), thickness);
 			}
 		}
 
-		public static void DockContextProcessUndockWindow(ImGuiContextPtr ctx, ref ImGuiWindow window, bool clearPersistentDockingRef)
+		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags, float thickness)
 		{
-			fixed (ImGuiWindow* pwindow = &window)
+			fixed (ImDrawList* pself = &self)
 			{
-				DockContextProcessUndockWindowNative(ctx, (ImGuiWindow*)pwindow, clearPersistentDockingRef ? (byte)1 : (byte)0);
+				AddRectNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), flags, thickness);
 			}
 		}
 
-		public static void DockContextProcessUndockWindow(ref ImGuiContext ctx, ref ImGuiWindow window, bool clearPersistentDockingRef)
+		internal static void AddRectFilledNative(ImDrawList* self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				fixed (ImGuiWindow* pwindow = &window)
-				{
-					DockContextProcessUndockWindowNative((ImGuiContext*)pctx, (ImGuiWindow*)pwindow, clearPersistentDockingRef ? (byte)1 : (byte)0);
-				}
-			}
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, ImDrawFlags, void>)vt[541])(self, pMin, pMax, col, rounding, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, ImDrawFlags, void>)vt[541])((nint)self, pMin, pMax, col, rounding, flags);
+			#endif
 		}
 
-		internal static void DockContextProcessUndockNodeNative(ImGuiContext* ctx, ImGuiDockNode* node)
+		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiDockNode*, void>)vt[1168])(ctx, node);
+			AddRectFilledNative(self, pMin, pMax, col, rounding, flags);
 		}
 
-		public static void DockContextProcessUndockNode(ImGuiContextPtr ctx, ImGuiDockNodePtr node)
+		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
-			DockContextProcessUndockNodeNative(ctx, node);
+			AddRectFilledNative(self, pMin, pMax, col, rounding, (ImDrawFlags)(0));
 		}
 
-		public static void DockContextProcessUndockNode(ref ImGuiContext ctx, ImGuiDockNodePtr node)
+		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				DockContextProcessUndockNodeNative((ImGuiContext*)pctx, node);
-			}
+			AddRectFilledNative(self, pMin, pMax, col, (float)(0.0f), (ImDrawFlags)(0));
 		}
 
-		public static void DockContextProcessUndockNode(ImGuiContextPtr ctx, ref ImGuiDockNode node)
+		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
-			fixed (ImGuiDockNode* pnode = &node)
-			{
-				DockContextProcessUndockNodeNative(ctx, (ImGuiDockNode*)pnode);
-			}
+			AddRectFilledNative(self, pMin, pMax, col, (float)(0.0f), flags);
 		}
 
-		public static void DockContextProcessUndockNode(ref ImGuiContext ctx, ref ImGuiDockNode node)
+		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiDockNode* pnode = &node)
-				{
-					DockContextProcessUndockNodeNative((ImGuiContext*)pctx, (ImGuiDockNode*)pnode);
-				}
+				AddRectFilledNative((ImDrawList*)pself, pMin, pMax, col, rounding, flags);
 			}
-		}
-
-		internal static byte DockContextCalcDropPosForDockingNative(ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payloadWindow, ImGuiDockNode* payloadNode, ImGuiDir splitDir, byte splitOuter, Vector2* outPos)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiDockNode*, ImGuiWindow*, ImGuiDockNode*, ImGuiDir, byte, Vector2*, byte>)vt[1169])(target, targetNode, payloadWindow, payloadNode, splitDir, splitOuter, outPos);
-		}
-
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
-		{
-			byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-			return ret != 0;
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
+			fixed (ImDrawList* pself = &self)
 			{
-				byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-				return ret != 0;
+				AddRectFilledNative((ImDrawList*)pself, pMin, pMax, col, rounding, (ImDrawFlags)(0));
 			}
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col)
 		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			fixed (ImDrawList* pself = &self)
 			{
-				byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-				return ret != 0;
+				AddRectFilledNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), (ImDrawFlags)(0));
 			}
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-					return ret != 0;
-				}
+				AddRectFilledNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), flags);
 			}
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		internal static void AddRectFilledMultiColorNative(ImDrawList* self, Vector2 pMin, Vector2 pMax, uint colUprLeft, uint colUprRight, uint colBotRight, uint colBotLeft)
 		{
-			fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-			{
-				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-				return ret != 0;
-			}
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, uint, uint, uint, void>)vt[542])(self, pMin, pMax, colUprLeft, colUprRight, colBotRight, colBotLeft);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, uint, uint, uint, void>)vt[542])((nint)self, pMin, pMax, colUprLeft, colUprRight, colBotRight, colBotLeft);
+			#endif
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		public static void AddRectFilledMultiColor(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint colUprLeft, uint colUprRight, uint colBotRight, uint colBotLeft)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-				{
-					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-					return ret != 0;
-				}
-			}
+			AddRectFilledMultiColorNative(self, pMin, pMax, colUprLeft, colUprRight, colBotRight, colBotLeft);
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		public static void AddRectFilledMultiColor(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint colUprLeft, uint colUprRight, uint colBotRight, uint colBotLeft)
 		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-				{
-					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-					return ret != 0;
-				}
+				AddRectFilledMultiColorNative((ImDrawList*)pself, pMin, pMax, colUprLeft, colUprRight, colBotRight, colBotLeft);
 			}
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		internal static void AddQuadNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-						return ret != 0;
-					}
-				}
-			}
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, float, void>)vt[543])(self, p1, p2, p3, p4, col, thickness);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, uint, float, void>)vt[543])((nint)self, p1, p2, p3, p4, col, thickness);
+			#endif
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		public static void AddQuad(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
 		{
-			fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-			{
-				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-				return ret != 0;
-			}
+			AddQuadNative(self, p1, p2, p3, p4, col, thickness);
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		public static void AddQuad(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-				{
-					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-					return ret != 0;
-				}
-			}
+			AddQuadNative(self, p1, p2, p3, p4, col, (float)(1.0f));
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		public static void AddQuad(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
 		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-				{
-					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-					return ret != 0;
-				}
+				AddQuadNative((ImDrawList*)pself, p1, p2, p3, p4, col, thickness);
 			}
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		public static void AddQuad(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-						return ret != 0;
-					}
-				}
+				AddQuadNative((ImDrawList*)pself, p1, p2, p3, p4, col, (float)(1.0f));
 			}
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		internal static void AddQuadFilledNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
 		{
-			fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-			{
-				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-				{
-					byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-					return ret != 0;
-				}
-			}
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[544])(self, p1, p2, p3, p4, col);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[544])((nint)self, p1, p2, p3, p4, col);
+			#endif
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		public static void AddQuadFilled(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-				{
-					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-						return ret != 0;
-					}
-				}
-			}
+			AddQuadFilledNative(self, p1, p2, p3, p4, col);
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		public static void AddQuadFilled(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
 		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-				{
-					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-						return ret != 0;
-					}
-				}
+				AddQuadFilledNative((ImDrawList*)pself, p1, p2, p3, p4, col);
 			}
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
+		internal static void AddTriangleNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-					{
-						fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-						{
-							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, outPos);
-							return ret != 0;
-						}
-					}
-				}
-			}
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, uint, float, void>)vt[545])(self, p1, p2, p3, col, thickness);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, uint, float, void>)vt[545])((nint)self, p1, p2, p3, col, thickness);
+			#endif
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		public static void AddTriangle(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
 		{
-			fixed (Vector2* poutPos = &outPos)
-			{
-				byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-				return ret != 0;
-			}
+			AddTriangleNative(self, p1, p2, p3, col, thickness);
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		public static void AddTriangle(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (Vector2* poutPos = &outPos)
-				{
-					byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-					return ret != 0;
-				}
-			}
+			AddTriangleNative(self, p1, p2, p3, col, (float)(1.0f));
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		public static void AddTriangle(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
 		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (Vector2* poutPos = &outPos)
-				{
-					byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-					return ret != 0;
-				}
+				AddTriangleNative((ImDrawList*)pself, p1, p2, p3, col, thickness);
 			}
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		public static void AddTriangle(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					fixed (Vector2* poutPos = &outPos)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-						return ret != 0;
-					}
-				}
+				AddTriangleNative((ImDrawList*)pself, p1, p2, p3, col, (float)(1.0f));
 			}
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		internal static void AddTriangleFilledNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
 		{
-			fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-			{
-				fixed (Vector2* poutPos = &outPos)
-				{
-					byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-					return ret != 0;
-				}
-			}
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, uint, void>)vt[546])(self, p1, p2, p3, col);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, Vector2, uint, void>)vt[546])((nint)self, p1, p2, p3, col);
+			#endif
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		public static void AddTriangleFilled(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-				{
-					fixed (Vector2* poutPos = &outPos)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-						return ret != 0;
-					}
-				}
-			}
+			AddTriangleFilledNative(self, p1, p2, p3, col);
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		public static void AddTriangleFilled(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
 		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-				{
-					fixed (Vector2* poutPos = &outPos)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-						return ret != 0;
-					}
-				}
+				AddTriangleFilledNative((ImDrawList*)pself, p1, p2, p3, col);
 			}
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		internal static void AddCircleNative(ImDrawList* self, Vector2 center, float radius, uint col, int numSegments, float thickness)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-					{
-						fixed (Vector2* poutPos = &outPos)
-						{
-							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, payloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-							return ret != 0;
-						}
-					}
-				}
-			}
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, int, float, void>)vt[547])(self, center, radius, col, numSegments, thickness);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, uint, int, float, void>)vt[547])((nint)self, center, radius, col, numSegments, thickness);
+			#endif
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		public static void AddCircle(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments, float thickness)
 		{
-			fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-			{
-				fixed (Vector2* poutPos = &outPos)
-				{
-					byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-					return ret != 0;
-				}
-			}
+			AddCircleNative(self, center, radius, col, numSegments, thickness);
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		public static void AddCircle(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-				{
-					fixed (Vector2* poutPos = &outPos)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-						return ret != 0;
-					}
-				}
-			}
+			AddCircleNative(self, center, radius, col, numSegments, (float)(1.0f));
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		public static void AddCircle(ImDrawListPtr self, Vector2 center, float radius, uint col)
 		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
-			{
-				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-				{
-					fixed (Vector2* poutPos = &outPos)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-						return ret != 0;
-					}
-				}
-			}
+			AddCircleNative(self, center, radius, col, (int)(0), (float)(1.0f));
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ImGuiWindowPtr payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		public static void AddCircle(ImDrawListPtr self, Vector2 center, float radius, uint col, float thickness)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
-			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-					{
-						fixed (Vector2* poutPos = &outPos)
-						{
-							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, payloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-							return ret != 0;
-						}
-					}
-				}
-			}
+			AddCircleNative(self, center, radius, col, (int)(0), thickness);
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		public static void AddCircle(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments, float thickness)
 		{
-			fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-				{
-					fixed (Vector2* poutPos = &outPos)
-					{
-						byte ret = DockContextCalcDropPosForDockingNative(target, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-						return ret != 0;
-					}
-				}
+				AddCircleNative((ImDrawList*)pself, center, radius, col, numSegments, thickness);
 			}
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ImGuiDockNodePtr targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		public static void AddCircle(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-				{
-					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-					{
-						fixed (Vector2* poutPos = &outPos)
-						{
-							byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, targetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-							return ret != 0;
-						}
-					}
-				}
+				AddCircleNative((ImDrawList*)pself, center, radius, col, numSegments, (float)(1.0f));
 			}
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		public static void AddCircle(ref ImDrawList self, Vector2 center, float radius, uint col)
 		{
-			fixed (ImGuiDockNode* ptargetNode = &targetNode)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-				{
-					fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-					{
-						fixed (Vector2* poutPos = &outPos)
-						{
-							byte ret = DockContextCalcDropPosForDockingNative(target, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-							return ret != 0;
-						}
-					}
-				}
+				AddCircleNative((ImDrawList*)pself, center, radius, col, (int)(0), (float)(1.0f));
 			}
 		}
 
-		public static bool DockContextCalcDropPosForDocking(ref ImGuiWindow target, ref ImGuiDockNode targetNode, ref ImGuiWindow payloadWindow, ref ImGuiDockNode payloadNode, ImGuiDir splitDir, bool splitOuter, ref Vector2 outPos)
+		public static void AddCircle(ref ImDrawList self, Vector2 center, float radius, uint col, float thickness)
 		{
-			fixed (ImGuiWindow* ptarget = &target)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiDockNode* ptargetNode = &targetNode)
-				{
-					fixed (ImGuiWindow* ppayloadWindow = &payloadWindow)
-					{
-						fixed (ImGuiDockNode* ppayloadNode = &payloadNode)
-						{
-							fixed (Vector2* poutPos = &outPos)
-							{
-								byte ret = DockContextCalcDropPosForDockingNative((ImGuiWindow*)ptarget, (ImGuiDockNode*)ptargetNode, (ImGuiWindow*)ppayloadWindow, (ImGuiDockNode*)ppayloadNode, splitDir, splitOuter ? (byte)1 : (byte)0, (Vector2*)poutPos);
-								return ret != 0;
-							}
-						}
-					}
-				}
+				AddCircleNative((ImDrawList*)pself, center, radius, col, (int)(0), thickness);
 			}
 		}
 
-		internal static ImGuiDockNode* DockContextFindNodeByIDNative(ImGuiContext* ctx, int id)
+		internal static void AddCircleFilledNative(ImDrawList* self, Vector2 center, float radius, uint col, int numSegments)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiContext*, int, ImGuiDockNode*>)vt[1170])(ctx, id);
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, int, void>)vt[548])(self, center, radius, col, numSegments);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, uint, int, void>)vt[548])((nint)self, center, radius, col, numSegments);
+			#endif
 		}
 
-		public static ImGuiDockNodePtr DockContextFindNodeByID(ImGuiContextPtr ctx, int id)
+		public static void AddCircleFilled(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments)
 		{
-			ImGuiDockNodePtr ret = DockContextFindNodeByIDNative(ctx, id);
-			return ret;
+			AddCircleFilledNative(self, center, radius, col, numSegments);
 		}
 
-		public static ImGuiDockNodePtr DockContextFindNodeByID(ref ImGuiContext ctx, int id)
+		public static void AddCircleFilled(ImDrawListPtr self, Vector2 center, float radius, uint col)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				ImGuiDockNodePtr ret = DockContextFindNodeByIDNative((ImGuiContext*)pctx, id);
-				return ret;
-			}
-		}
-
-		internal static void DockNodeWindowMenuHandlerDefaultNative(ImGuiContext* ctx, ImGuiDockNode* node, ImGuiTabBar* tabBar)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiDockNode*, ImGuiTabBar*, void>)vt[1171])(ctx, node, tabBar);
-		}
-
-		public static void DockNodeWindowMenuHandlerDefault(ImGuiContextPtr ctx, ImGuiDockNodePtr node, ImGuiTabBarPtr tabBar)
-		{
-			DockNodeWindowMenuHandlerDefaultNative(ctx, node, tabBar);
+			AddCircleFilledNative(self, center, radius, col, (int)(0));
 		}
 
-		public static void DockNodeWindowMenuHandlerDefault(ref ImGuiContext ctx, ImGuiDockNodePtr node, ImGuiTabBarPtr tabBar)
+		public static void AddCircleFilled(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
+			fixed (ImDrawList* pself = &self)
 			{
-				DockNodeWindowMenuHandlerDefaultNative((ImGuiContext*)pctx, node, tabBar);
+				AddCircleFilledNative((ImDrawList*)pself, center, radius, col, numSegments);
 			}
 		}
 
-		public static void DockNodeWindowMenuHandlerDefault(ImGuiContextPtr ctx, ref ImGuiDockNode node, ImGuiTabBarPtr tabBar)
+		public static void AddCircleFilled(ref ImDrawList self, Vector2 center, float radius, uint col)
 		{
-			fixed (ImGuiDockNode* pnode = &node)
+			fixed (ImDrawList* pself = &self)
 			{
-				DockNodeWindowMenuHandlerDefaultNative(ctx, (ImGuiDockNode*)pnode, tabBar);
+				AddCircleFilledNative((ImDrawList*)pself, center, radius, col, (int)(0));
 			}
 		}
 
-		public static void DockNodeWindowMenuHandlerDefault(ref ImGuiContext ctx, ref ImGuiDockNode node, ImGuiTabBarPtr tabBar)
+		internal static void AddNgonNative(ImDrawList* self, Vector2 center, float radius, uint col, int numSegments, float thickness)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				fixed (ImGuiDockNode* pnode = &node)
-				{
-					DockNodeWindowMenuHandlerDefaultNative((ImGuiContext*)pctx, (ImGuiDockNode*)pnode, tabBar);
-				}
-			}
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, int, float, void>)vt[549])(self, center, radius, col, numSegments, thickness);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, uint, int, float, void>)vt[549])((nint)self, center, radius, col, numSegments, thickness);
+			#endif
 		}
 
-		public static void DockNodeWindowMenuHandlerDefault(ImGuiContextPtr ctx, ImGuiDockNodePtr node, ref ImGuiTabBar tabBar)
+		public static void AddNgon(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments, float thickness)
 		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				DockNodeWindowMenuHandlerDefaultNative(ctx, node, (ImGuiTabBar*)ptabBar);
-			}
+			AddNgonNative(self, center, radius, col, numSegments, thickness);
 		}
 
-		public static void DockNodeWindowMenuHandlerDefault(ref ImGuiContext ctx, ImGuiDockNodePtr node, ref ImGuiTabBar tabBar)
+		public static void AddNgon(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
-			{
-				fixed (ImGuiTabBar* ptabBar = &tabBar)
-				{
-					DockNodeWindowMenuHandlerDefaultNative((ImGuiContext*)pctx, node, (ImGuiTabBar*)ptabBar);
-				}
-			}
+			AddNgonNative(self, center, radius, col, numSegments, (float)(1.0f));
 		}
 
-		public static void DockNodeWindowMenuHandlerDefault(ImGuiContextPtr ctx, ref ImGuiDockNode node, ref ImGuiTabBar tabBar)
+		public static void AddNgon(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments, float thickness)
 		{
-			fixed (ImGuiDockNode* pnode = &node)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiTabBar* ptabBar = &tabBar)
-				{
-					DockNodeWindowMenuHandlerDefaultNative(ctx, (ImGuiDockNode*)pnode, (ImGuiTabBar*)ptabBar);
-				}
+				AddNgonNative((ImDrawList*)pself, center, radius, col, numSegments, thickness);
 			}
 		}
 
-		public static void DockNodeWindowMenuHandlerDefault(ref ImGuiContext ctx, ref ImGuiDockNode node, ref ImGuiTabBar tabBar)
+		public static void AddNgon(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments)
 		{
-			fixed (ImGuiContext* pctx = &ctx)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiDockNode* pnode = &node)
-				{
-					fixed (ImGuiTabBar* ptabBar = &tabBar)
-					{
-						DockNodeWindowMenuHandlerDefaultNative((ImGuiContext*)pctx, (ImGuiDockNode*)pnode, (ImGuiTabBar*)ptabBar);
-					}
-				}
+				AddNgonNative((ImDrawList*)pself, center, radius, col, numSegments, (float)(1.0f));
 			}
 		}
 
-		internal static byte DockNodeBeginAmendTabBarNative(ImGuiDockNode* node)
+		internal static void AddNgonFilledNative(ImDrawList* self, Vector2 center, float radius, uint col, int numSegments)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)vt[1172])(node);
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, int, void>)vt[550])(self, center, radius, col, numSegments);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, float, uint, int, void>)vt[550])((nint)self, center, radius, col, numSegments);
+			#endif
 		}
 
-		public static bool DockNodeBeginAmendTabBar(ImGuiDockNodePtr node)
+		public static void AddNgonFilled(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments)
 		{
-			byte ret = DockNodeBeginAmendTabBarNative(node);
-			return ret != 0;
+			AddNgonFilledNative(self, center, radius, col, numSegments);
 		}
 
-		public static bool DockNodeBeginAmendTabBar(ref ImGuiDockNode node)
+		public static void AddNgonFilled(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments)
 		{
-			fixed (ImGuiDockNode* pnode = &node)
+			fixed (ImDrawList* pself = &self)
 			{
-				byte ret = DockNodeBeginAmendTabBarNative((ImGuiDockNode*)pnode);
-				return ret != 0;
+				AddNgonFilledNative((ImDrawList*)pself, center, radius, col, numSegments);
 			}
 		}
 
-		internal static void DockNodeEndAmendTabBarNative()
+		internal static void AddEllipseNative(ImDrawList* self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments, float thickness)
 		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1173])();
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, int, float, void>)vt[551])(self, center, radius, col, rot, numSegments, thickness);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, int, float, void>)vt[551])((nint)self, center, radius, col, rot, numSegments, thickness);
+			#endif
 		}
 
-		public static void DockNodeEndAmendTabBar()
+		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments, float thickness)
 		{
-			DockNodeEndAmendTabBarNative();
+			AddEllipseNative(self, center, radius, col, rot, numSegments, thickness);
 		}
 
-		internal static ImGuiDockNode* DockNodeGetRootNodeNative(ImGuiDockNode* node)
+		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, ImGuiDockNode*>)vt[1174])(node);
+			AddEllipseNative(self, center, radius, col, rot, numSegments, (float)(1.0f));
 		}
 
-		public static ImGuiDockNodePtr DockNodeGetRootNode(ImGuiDockNodePtr node)
+		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot)
 		{
-			ImGuiDockNodePtr ret = DockNodeGetRootNodeNative(node);
-			return ret;
+			AddEllipseNative(self, center, radius, col, rot, (int)(0), (float)(1.0f));
 		}
 
-		public static ImGuiDockNodePtr DockNodeGetRootNode(ref ImGuiDockNode node)
+		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col)
 		{
-			fixed (ImGuiDockNode* pnode = &node)
-			{
-				ImGuiDockNodePtr ret = DockNodeGetRootNodeNative((ImGuiDockNode*)pnode);
-				return ret;
-			}
+			AddEllipseNative(self, center, radius, col, (float)(0.0f), (int)(0), (float)(1.0f));
 		}
 
-		internal static byte DockNodeIsInHierarchyOfNative(ImGuiDockNode* node, ImGuiDockNode* parent)
+		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, int numSegments)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, ImGuiDockNode*, byte>)vt[1175])(node, parent);
+			AddEllipseNative(self, center, radius, col, (float)(0.0f), numSegments, (float)(1.0f));
 		}
 
-		public static bool DockNodeIsInHierarchyOf(ImGuiDockNodePtr node, ImGuiDockNodePtr parent)
+		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot, float thickness)
 		{
-			byte ret = DockNodeIsInHierarchyOfNative(node, parent);
-			return ret != 0;
+			AddEllipseNative(self, center, radius, col, rot, (int)(0), thickness);
 		}
 
-		public static bool DockNodeIsInHierarchyOf(ref ImGuiDockNode node, ImGuiDockNodePtr parent)
+		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, int numSegments, float thickness)
 		{
-			fixed (ImGuiDockNode* pnode = &node)
-			{
-				byte ret = DockNodeIsInHierarchyOfNative((ImGuiDockNode*)pnode, parent);
-				return ret != 0;
-			}
+			AddEllipseNative(self, center, radius, col, (float)(0.0f), numSegments, thickness);
 		}
 
-		public static bool DockNodeIsInHierarchyOf(ImGuiDockNodePtr node, ref ImGuiDockNode parent)
+		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments, float thickness)
 		{
-			fixed (ImGuiDockNode* pparent = &parent)
+			fixed (ImDrawList* pself = &self)
 			{
-				byte ret = DockNodeIsInHierarchyOfNative(node, (ImGuiDockNode*)pparent);
-				return ret != 0;
+				AddEllipseNative((ImDrawList*)pself, center, radius, col, rot, numSegments, thickness);
 			}
 		}
 
-		public static bool DockNodeIsInHierarchyOf(ref ImGuiDockNode node, ref ImGuiDockNode parent)
+		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
 		{
-			fixed (ImGuiDockNode* pnode = &node)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiDockNode* pparent = &parent)
-				{
-					byte ret = DockNodeIsInHierarchyOfNative((ImGuiDockNode*)pnode, (ImGuiDockNode*)pparent);
-					return ret != 0;
-				}
+				AddEllipseNative((ImDrawList*)pself, center, radius, col, rot, numSegments, (float)(1.0f));
 			}
 		}
 
-		internal static int DockNodeGetDepthNative(ImGuiDockNode* node)
+		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, int>)vt[1176])(node);
-		}
-
-		public static int DockNodeGetDepth(ImGuiDockNodePtr node)
-		{
-			int ret = DockNodeGetDepthNative(node);
-			return ret;
-		}
-
-		public static int DockNodeGetDepth(ref ImGuiDockNode node)
-		{
-			fixed (ImGuiDockNode* pnode = &node)
+			fixed (ImDrawList* pself = &self)
 			{
-				int ret = DockNodeGetDepthNative((ImGuiDockNode*)pnode);
-				return ret;
+				AddEllipseNative((ImDrawList*)pself, center, radius, col, rot, (int)(0), (float)(1.0f));
 			}
-		}
-
-		internal static int DockNodeGetWindowMenuButtonIdNative(ImGuiDockNode* node)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, int>)vt[1177])(node);
 		}
 
-		public static int DockNodeGetWindowMenuButtonId(ImGuiDockNodePtr node)
+		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col)
 		{
-			int ret = DockNodeGetWindowMenuButtonIdNative(node);
-			return ret;
+			fixed (ImDrawList* pself = &self)
+			{
+				AddEllipseNative((ImDrawList*)pself, center, radius, col, (float)(0.0f), (int)(0), (float)(1.0f));
+			}
 		}
 
-		public static int DockNodeGetWindowMenuButtonId(ref ImGuiDockNode node)
+		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, int numSegments)
 		{
-			fixed (ImGuiDockNode* pnode = &node)
+			fixed (ImDrawList* pself = &self)
 			{
-				int ret = DockNodeGetWindowMenuButtonIdNative((ImGuiDockNode*)pnode);
-				return ret;
+				AddEllipseNative((ImDrawList*)pself, center, radius, col, (float)(0.0f), numSegments, (float)(1.0f));
 			}
 		}
 
-		internal static ImGuiDockNode* GetWindowDockNodeNative()
+		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot, float thickness)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*>)vt[1178])();
+			fixed (ImDrawList* pself = &self)
+			{
+				AddEllipseNative((ImDrawList*)pself, center, radius, col, rot, (int)(0), thickness);
+			}
 		}
 
-		public static ImGuiDockNodePtr GetWindowDockNode()
+		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, int numSegments, float thickness)
 		{
-			ImGuiDockNodePtr ret = GetWindowDockNodeNative();
-			return ret;
+			fixed (ImDrawList* pself = &self)
+			{
+				AddEllipseNative((ImDrawList*)pself, center, radius, col, (float)(0.0f), numSegments, thickness);
+			}
 		}
 
-		internal static byte GetWindowAlwaysWantOwnTabBarNative(ImGuiWindow* window)
+		internal static void AddEllipseFilledNative(ImDrawList* self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, byte>)vt[1179])(window);
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, int, void>)vt[552])(self, center, radius, col, rot, numSegments);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, int, void>)vt[552])((nint)self, center, radius, col, rot, numSegments);
+			#endif
 		}
 
-		public static bool GetWindowAlwaysWantOwnTabBar(ImGuiWindowPtr window)
+		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
 		{
-			byte ret = GetWindowAlwaysWantOwnTabBarNative(window);
-			return ret != 0;
+			AddEllipseFilledNative(self, center, radius, col, rot, numSegments);
 		}
 
-		public static bool GetWindowAlwaysWantOwnTabBar(ref ImGuiWindow window)
+		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot)
 		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				byte ret = GetWindowAlwaysWantOwnTabBarNative((ImGuiWindow*)pwindow);
-				return ret != 0;
-			}
+			AddEllipseFilledNative(self, center, radius, col, rot, (int)(0));
 		}
 
-		internal static void BeginDockedNative(ImGuiWindow* window, bool* pOpen)
+		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, bool*, void>)vt[1180])(window, pOpen);
+			AddEllipseFilledNative(self, center, radius, col, (float)(0.0f), (int)(0));
 		}
 
-		public static void BeginDocked(ImGuiWindowPtr window, bool* pOpen)
+		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, int numSegments)
 		{
-			BeginDockedNative(window, pOpen);
+			AddEllipseFilledNative(self, center, radius, col, (float)(0.0f), numSegments);
 		}
 
-		public static void BeginDocked(ref ImGuiWindow window, bool* pOpen)
+		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
 		{
-			fixed (ImGuiWindow* pwindow = &window)
+			fixed (ImDrawList* pself = &self)
 			{
-				BeginDockedNative((ImGuiWindow*)pwindow, pOpen);
+				AddEllipseFilledNative((ImDrawList*)pself, center, radius, col, rot, numSegments);
 			}
 		}
 
-		public static void BeginDocked(ImGuiWindowPtr window, ref bool pOpen)
+		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot)
 		{
-			fixed (bool* ppOpen = &pOpen)
+			fixed (ImDrawList* pself = &self)
 			{
-				BeginDockedNative(window, (bool*)ppOpen);
+				AddEllipseFilledNative((ImDrawList*)pself, center, radius, col, rot, (int)(0));
 			}
 		}
 
-		public static void BeginDocked(ref ImGuiWindow window, ref bool pOpen)
+		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, Vector2 radius, uint col)
 		{
-			fixed (ImGuiWindow* pwindow = &window)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					BeginDockedNative((ImGuiWindow*)pwindow, (bool*)ppOpen);
-				}
+				AddEllipseFilledNative((ImDrawList*)pself, center, radius, col, (float)(0.0f), (int)(0));
 			}
 		}
 
-		internal static void BeginDockableDragDropSourceNative(ImGuiWindow* window)
+		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, int numSegments)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)vt[1181])(window);
-		}
-
-		public static void BeginDockableDragDropSource(ImGuiWindowPtr window)
-		{
-			BeginDockableDragDropSourceNative(window);
-		}
-
-		public static void BeginDockableDragDropSource(ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
+			fixed (ImDrawList* pself = &self)
 			{
-				BeginDockableDragDropSourceNative((ImGuiWindow*)pwindow);
+				AddEllipseFilledNative((ImDrawList*)pself, center, radius, col, (float)(0.0f), numSegments);
 			}
-		}
-
-		internal static void BeginDockableDragDropTargetNative(ImGuiWindow* window)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)vt[1182])(window);
 		}
 
-		public static void BeginDockableDragDropTarget(ImGuiWindowPtr window)
+		internal static void AddTextNative(ImDrawList* self, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
 		{
-			BeginDockableDragDropTargetNative(window);
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, byte*, byte*, void>)vt[553])(self, pos, col, textBegin, textEnd);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, nint, nint, void>)vt[553])((nint)self, pos, col, (nint)textBegin, (nint)textEnd);
+			#endif
 		}
 
-		public static void BeginDockableDragDropTarget(ref ImGuiWindow window)
+		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
 		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				BeginDockableDragDropTargetNative((ImGuiWindow*)pwindow);
-			}
-		}
-
-		internal static void SetWindowDockNative(ImGuiWindow* window, int dockId, ImGuiCond cond)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, int, ImGuiCond, void>)vt[1183])(window, dockId, cond);
+			AddTextNative(self, pos, col, textBegin, textEnd);
 		}
 
-		public static void SetWindowDock(ImGuiWindowPtr window, int dockId, ImGuiCond cond)
+		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, byte* textBegin)
 		{
-			SetWindowDockNative(window, dockId, cond);
+			AddTextNative(self, pos, col, textBegin, (byte*)(default));
 		}
 
-		public static void SetWindowDock(ref ImGuiWindow window, int dockId, ImGuiCond cond)
+		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
 		{
-			fixed (ImGuiWindow* pwindow = &window)
+			fixed (ImDrawList* pself = &self)
 			{
-				SetWindowDockNative((ImGuiWindow*)pwindow, dockId, cond);
+				AddTextNative((ImDrawList*)pself, pos, col, textBegin, textEnd);
 			}
 		}
 
-		internal static void DockBuilderDockWindowNative(byte* windowName, int nodeId)
+		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, byte* textBegin)
 		{
-			((delegate* unmanaged[Cdecl]<byte*, int, void>)vt[1184])(windowName, nodeId);
+			fixed (ImDrawList* pself = &self)
+			{
+				AddTextNative((ImDrawList*)pself, pos, col, textBegin, (byte*)(default));
+			}
 		}
 
-		public static void DockBuilderDockWindow(byte* windowName, int nodeId)
+		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
 		{
-			DockBuilderDockWindowNative(windowName, nodeId);
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, pos, col, (byte*)ptextBegin, textEnd);
+			}
 		}
 
-		public static void DockBuilderDockWindow(ref byte windowName, int nodeId)
+		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, ref byte textBegin)
 		{
-			fixed (byte* pwindowName = &windowName)
+			fixed (byte* ptextBegin = &textBegin)
 			{
-				DockBuilderDockWindowNative((byte*)pwindowName, nodeId);
+				AddTextNative(self, pos, col, (byte*)ptextBegin, (byte*)(default));
 			}
 		}
 
-		public static void DockBuilderDockWindow(string windowName, int nodeId)
+		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, string textBegin, byte* textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (windowName != null)
+			if (textBegin != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(windowName);
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2961,201 +2887,23 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(windowName, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			DockBuilderDockWindowNative(pStr0, nodeId);
+			AddTextNative(self, pos, col, pStr0, textEnd);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		internal static ImGuiDockNode* DockBuilderGetNodeNative(int nodeId)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiDockNode*>)vt[1185])(nodeId);
-		}
-
-		public static ImGuiDockNodePtr DockBuilderGetNode(int nodeId)
-		{
-			ImGuiDockNodePtr ret = DockBuilderGetNodeNative(nodeId);
-			return ret;
-		}
-
-		internal static ImGuiDockNode* DockBuilderGetCentralNodeNative(int nodeId)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiDockNode*>)vt[1186])(nodeId);
-		}
-
-		public static ImGuiDockNodePtr DockBuilderGetCentralNode(int nodeId)
-		{
-			ImGuiDockNodePtr ret = DockBuilderGetCentralNodeNative(nodeId);
-			return ret;
-		}
-
-		internal static int DockBuilderAddNodeNative(int nodeId, ImGuiDockNodeFlags flags)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiDockNodeFlags, int>)vt[1187])(nodeId, flags);
-		}
-
-		public static int DockBuilderAddNode(int nodeId, ImGuiDockNodeFlags flags)
-		{
-			int ret = DockBuilderAddNodeNative(nodeId, flags);
-			return ret;
-		}
-
-		internal static void DockBuilderRemoveNodeNative(int nodeId)
-		{
-			((delegate* unmanaged[Cdecl]<int, void>)vt[1188])(nodeId);
-		}
-
-		public static void DockBuilderRemoveNode(int nodeId)
-		{
-			DockBuilderRemoveNodeNative(nodeId);
-		}
-
-		internal static void DockBuilderRemoveNodeDockedWindowsNative(int nodeId, byte clearSettingsRefs)
-		{
-			((delegate* unmanaged[Cdecl]<int, byte, void>)vt[1189])(nodeId, clearSettingsRefs);
-		}
-
-		public static void DockBuilderRemoveNodeDockedWindows(int nodeId, bool clearSettingsRefs)
-		{
-			DockBuilderRemoveNodeDockedWindowsNative(nodeId, clearSettingsRefs ? (byte)1 : (byte)0);
-		}
-
-		internal static void DockBuilderRemoveNodeChildNodesNative(int nodeId)
-		{
-			((delegate* unmanaged[Cdecl]<int, void>)vt[1190])(nodeId);
-		}
-
-		public static void DockBuilderRemoveNodeChildNodes(int nodeId)
-		{
-			DockBuilderRemoveNodeChildNodesNative(nodeId);
-		}
-
-		internal static void DockBuilderSetNodePosNative(int nodeId, Vector2 pos)
-		{
-			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[1191])(nodeId, pos);
-		}
-
-		public static void DockBuilderSetNodePos(int nodeId, Vector2 pos)
-		{
-			DockBuilderSetNodePosNative(nodeId, pos);
-		}
-
-		internal static void DockBuilderSetNodeSizeNative(int nodeId, Vector2 size)
-		{
-			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[1192])(nodeId, size);
-		}
-
-		public static void DockBuilderSetNodeSize(int nodeId, Vector2 size)
-		{
-			DockBuilderSetNodeSizeNative(nodeId, size);
-		}
-
-		internal static int DockBuilderSplitNodeNative(int nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, int* outIdAtDir, int* outIdAtOppositeDir)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiDir, float, int*, int*, int>)vt[1193])(nodeId, splitDir, sizeRatioForNodeAtDir, outIdAtDir, outIdAtOppositeDir);
-		}
-
-		public static int DockBuilderSplitNode(int nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, int* outIdAtDir, int* outIdAtOppositeDir)
-		{
-			int ret = DockBuilderSplitNodeNative(nodeId, splitDir, sizeRatioForNodeAtDir, outIdAtDir, outIdAtOppositeDir);
-			return ret;
-		}
-
-		public static int DockBuilderSplitNode(int nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, ref int outIdAtDir, int* outIdAtOppositeDir)
-		{
-			fixed (int* poutIdAtDir = &outIdAtDir)
-			{
-				int ret = DockBuilderSplitNodeNative(nodeId, splitDir, sizeRatioForNodeAtDir, (int*)poutIdAtDir, outIdAtOppositeDir);
-				return ret;
-			}
-		}
-
-		public static int DockBuilderSplitNode(int nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, int* outIdAtDir, ref int outIdAtOppositeDir)
-		{
-			fixed (int* poutIdAtOppositeDir = &outIdAtOppositeDir)
-			{
-				int ret = DockBuilderSplitNodeNative(nodeId, splitDir, sizeRatioForNodeAtDir, outIdAtDir, (int*)poutIdAtOppositeDir);
-				return ret;
-			}
-		}
-
-		public static int DockBuilderSplitNode(int nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, ref int outIdAtDir, ref int outIdAtOppositeDir)
-		{
-			fixed (int* poutIdAtDir = &outIdAtDir)
-			{
-				fixed (int* poutIdAtOppositeDir = &outIdAtOppositeDir)
-				{
-					int ret = DockBuilderSplitNodeNative(nodeId, splitDir, sizeRatioForNodeAtDir, (int*)poutIdAtDir, (int*)poutIdAtOppositeDir);
-					return ret;
-				}
-			}
-		}
-
-		internal static void DockBuilderCopyDockSpaceNative(int srcDockspaceId, int dstDockspaceId, ImVectorConstCharPtr* inWindowRemapPairs)
-		{
-			((delegate* unmanaged[Cdecl]<int, int, ImVectorConstCharPtr*, void>)vt[1194])(srcDockspaceId, dstDockspaceId, inWindowRemapPairs);
-		}
-
-		public static void DockBuilderCopyDockSpace(int srcDockspaceId, int dstDockspaceId, ImVectorConstCharPtrPtr inWindowRemapPairs)
-		{
-			DockBuilderCopyDockSpaceNative(srcDockspaceId, dstDockspaceId, inWindowRemapPairs);
-		}
-
-		public static void DockBuilderCopyDockSpace(int srcDockspaceId, int dstDockspaceId, ref ImVectorConstCharPtr inWindowRemapPairs)
-		{
-			fixed (ImVectorConstCharPtr* pinWindowRemapPairs = &inWindowRemapPairs)
-			{
-				DockBuilderCopyDockSpaceNative(srcDockspaceId, dstDockspaceId, (ImVectorConstCharPtr*)pinWindowRemapPairs);
-			}
-		}
-
-		internal static void DockBuilderCopyNodeNative(int srcNodeId, int dstNodeId, ImVectorImGuiID* outNodeRemapPairs)
-		{
-			((delegate* unmanaged[Cdecl]<int, int, ImVectorImGuiID*, void>)vt[1195])(srcNodeId, dstNodeId, outNodeRemapPairs);
-		}
-
-		public static void DockBuilderCopyNode(int srcNodeId, int dstNodeId, ImVectorImGuiIDPtr outNodeRemapPairs)
-		{
-			DockBuilderCopyNodeNative(srcNodeId, dstNodeId, outNodeRemapPairs);
-		}
-
-		public static void DockBuilderCopyNode(int srcNodeId, int dstNodeId, ref ImVectorImGuiID outNodeRemapPairs)
-		{
-			fixed (ImVectorImGuiID* poutNodeRemapPairs = &outNodeRemapPairs)
-			{
-				DockBuilderCopyNodeNative(srcNodeId, dstNodeId, (ImVectorImGuiID*)poutNodeRemapPairs);
-			}
-		}
-
-		internal static void DockBuilderCopyWindowSettingsNative(byte* srcName, byte* dstName)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[1196])(srcName, dstName);
-		}
-
-		public static void DockBuilderCopyWindowSettings(byte* srcName, byte* dstName)
-		{
-			DockBuilderCopyWindowSettingsNative(srcName, dstName);
-		}
-
-		public static void DockBuilderCopyWindowSettings(ref byte srcName, byte* dstName)
-		{
-			fixed (byte* psrcName = &srcName)
-			{
-				DockBuilderCopyWindowSettingsNative((byte*)psrcName, dstName);
-			}
-		}
-
-		public static void DockBuilderCopyWindowSettings(string srcName, byte* dstName)
+		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, string textBegin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (srcName != null)
+			if (textBegin != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(srcName);
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3165,31 +2913,149 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(srcName, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			DockBuilderCopyWindowSettingsNative(pStr0, dstName);
+			AddTextNative(self, pos, col, pStr0, (byte*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void DockBuilderCopyWindowSettings(byte* srcName, ref byte dstName)
+		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
 		{
-			fixed (byte* pdstName = &dstName)
+			fixed (byte* ptextBegin = textBegin)
 			{
-				DockBuilderCopyWindowSettingsNative(srcName, (byte*)pdstName);
+				AddTextNative(self, pos, col, (byte*)ptextBegin, textEnd);
 			}
 		}
 
-		public static void DockBuilderCopyWindowSettings(byte* srcName, string dstName)
+		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				AddTextNative(self, pos, col, (byte*)ptextBegin, (byte*)(default));
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, pos, col, (byte*)ptextBegin, textEnd);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, ref byte textBegin)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, pos, col, (byte*)ptextBegin, (byte*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, string textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, pos, col, pStr0, textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, string textBegin)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, pos, col, pStr0, (byte*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, pos, col, (byte*)ptextBegin, textEnd);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, pos, col, (byte*)ptextBegin, (byte*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				AddTextNative(self, pos, col, textBegin, (byte*)ptextEnd);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, byte* textBegin, string textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (dstName != null)
+			if (textEnd != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(dstName);
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3199,34 +3065,93 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(dstName, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			DockBuilderCopyWindowSettingsNative(srcName, pStr0);
+			AddTextNative(self, pos, col, textBegin, pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void DockBuilderCopyWindowSettings(ref byte srcName, ref byte dstName)
+		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
 		{
-			fixed (byte* psrcName = &srcName)
+			fixed (byte* ptextEnd = textEnd)
 			{
-				fixed (byte* pdstName = &dstName)
+				AddTextNative(self, pos, col, textBegin, (byte*)ptextEnd);
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
 				{
-					DockBuilderCopyWindowSettingsNative((byte*)psrcName, (byte*)pdstName);
+					AddTextNative((ImDrawList*)pself, pos, col, textBegin, (byte*)ptextEnd);
 				}
 			}
 		}
 
-		public static void DockBuilderCopyWindowSettings(string srcName, string dstName)
+		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, byte* textBegin, string textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, pos, col, textBegin, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					AddTextNative((ImDrawList*)pself, pos, col, textBegin, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					AddTextNative(self, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, string textBegin, string textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (srcName != null)
+			if (textBegin != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(srcName);
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3236,14 +3161,14 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(srcName, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (dstName != null)
+			if (textEnd != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(dstName);
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -3253,10 +3178,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(dstName, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			DockBuilderCopyWindowSettingsNative(pStr0, pStr1);
+			AddTextNative(self, pos, col, pStr0, pStr1);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3267,376 +3192,431 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		internal static void DockBuilderFinishNative(int nodeId)
+		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
 		{
-			((delegate* unmanaged[Cdecl]<int, void>)vt[1197])(nodeId);
-		}
-
-		public static void DockBuilderFinish(int nodeId)
-		{
-			DockBuilderFinishNative(nodeId);
-		}
-
-		internal static void PushFocusScopeNative(int id)
-		{
-			((delegate* unmanaged[Cdecl]<int, void>)vt[1198])(id);
-		}
-
-		public static void PushFocusScope(int id)
-		{
-			PushFocusScopeNative(id);
-		}
-
-		internal static void PopFocusScopeNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1199])();
-		}
-
-		public static void PopFocusScope()
-		{
-			PopFocusScopeNative();
-		}
-
-		internal static int GetCurrentFocusScopeNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<int>)vt[1200])();
-		}
-
-		public static int GetCurrentFocusScope()
-		{
-			int ret = GetCurrentFocusScopeNative();
-			return ret;
-		}
-
-		internal static byte IsDragDropActiveNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[1201])();
-		}
-
-		public static bool IsDragDropActive()
-		{
-			byte ret = IsDragDropActiveNative();
-			return ret != 0;
-		}
-
-		internal static byte BeginDragDropTargetCustomNative(ImRect bb, int id)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImRect, int, byte>)vt[1202])(bb, id);
-		}
-
-		public static bool BeginDragDropTargetCustom(ImRect bb, int id)
-		{
-			byte ret = BeginDragDropTargetCustomNative(bb, id);
-			return ret != 0;
-		}
-
-		internal static void ClearDragDropNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1203])();
-		}
-
-		public static void ClearDragDrop()
-		{
-			ClearDragDropNative();
-		}
-
-		internal static byte IsDragDropPayloadBeingAcceptedNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[1204])();
-		}
-
-		public static bool IsDragDropPayloadBeingAccepted()
-		{
-			byte ret = IsDragDropPayloadBeingAcceptedNative();
-			return ret != 0;
-		}
-
-		internal static void RenderDragDropTargetRectNative(ImRect bb, ImRect itemClipRect)
-		{
-			((delegate* unmanaged[Cdecl]<ImRect, ImRect, void>)vt[1205])(bb, itemClipRect);
-		}
-
-		public static void RenderDragDropTargetRect(ImRect bb, ImRect itemClipRect)
-		{
-			RenderDragDropTargetRectNative(bb, itemClipRect);
-		}
-
-		internal static ImGuiTypingSelectRequest* GetTypingSelectRequestNative(ImGuiTypingSelectFlags flags)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectFlags, ImGuiTypingSelectRequest*>)vt[1206])(flags);
-		}
-
-		public static ImGuiTypingSelectRequestPtr GetTypingSelectRequest(ImGuiTypingSelectFlags flags)
-		{
-			ImGuiTypingSelectRequestPtr ret = GetTypingSelectRequestNative(flags);
-			return ret;
-		}
-
-		internal static int TypingSelectFindMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int> getItemNameFunc, void* userData, int navItemIdx)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int>, void*, int, int>)vt[1207])(req, itemsCount, getItemNameFunc, userData, navItemIdx);
-		}
-
-		public static int TypingSelectFindMatch(ImGuiTypingSelectRequestPtr req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int> getItemNameFunc, void* userData, int navItemIdx)
-		{
-			int ret = TypingSelectFindMatchNative(req, itemsCount, getItemNameFunc, userData, navItemIdx);
-			return ret;
-		}
-
-		public static int TypingSelectFindMatch(ref ImGuiTypingSelectRequest req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int> getItemNameFunc, void* userData, int navItemIdx)
-		{
-			fixed (ImGuiTypingSelectRequest* preq = &req)
+			fixed (byte* ptextBegin = textBegin)
 			{
-				int ret = TypingSelectFindMatchNative((ImGuiTypingSelectRequest*)preq, itemsCount, getItemNameFunc, userData, navItemIdx);
-				return ret;
-			}
-		}
-
-		internal static int TypingSelectFindNextSingleCharMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int> getItemNameFunc, void* userData, int navItemIdx)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int>, void*, int, int>)vt[1208])(req, itemsCount, getItemNameFunc, userData, navItemIdx);
-		}
-
-		public static int TypingSelectFindNextSingleCharMatch(ImGuiTypingSelectRequestPtr req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int> getItemNameFunc, void* userData, int navItemIdx)
-		{
-			int ret = TypingSelectFindNextSingleCharMatchNative(req, itemsCount, getItemNameFunc, userData, navItemIdx);
-			return ret;
-		}
-
-		public static int TypingSelectFindNextSingleCharMatch(ref ImGuiTypingSelectRequest req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int> getItemNameFunc, void* userData, int navItemIdx)
-		{
-			fixed (ImGuiTypingSelectRequest* preq = &req)
-			{
-				int ret = TypingSelectFindNextSingleCharMatchNative((ImGuiTypingSelectRequest*)preq, itemsCount, getItemNameFunc, userData, navItemIdx);
-				return ret;
-			}
-		}
-
-		internal static int TypingSelectFindBestLeadingMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*> getItemNameFunc, void* userData)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*>, void*, int>)vt[1209])(req, itemsCount, getItemNameFunc, userData);
-		}
-
-		public static int TypingSelectFindBestLeadingMatch(ImGuiTypingSelectRequestPtr req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*> getItemNameFunc, void* userData)
-		{
-			int ret = TypingSelectFindBestLeadingMatchNative(req, itemsCount, getItemNameFunc, userData);
-			return ret;
-		}
-
-		public static int TypingSelectFindBestLeadingMatch(ref ImGuiTypingSelectRequest req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*> getItemNameFunc, void* userData)
-		{
-			fixed (ImGuiTypingSelectRequest* preq = &req)
-			{
-				int ret = TypingSelectFindBestLeadingMatchNative((ImGuiTypingSelectRequest*)preq, itemsCount, getItemNameFunc, userData);
-				return ret;
-			}
-		}
-
-		internal static byte BeginBoxSelectNative(ImRect scopeRect, ImGuiWindow* window, int boxSelectId, ImGuiMultiSelectFlags msFlags)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImRect, ImGuiWindow*, int, ImGuiMultiSelectFlags, byte>)vt[1210])(scopeRect, window, boxSelectId, msFlags);
-		}
-
-		public static bool BeginBoxSelect(ImRect scopeRect, ImGuiWindowPtr window, int boxSelectId, ImGuiMultiSelectFlags msFlags)
-		{
-			byte ret = BeginBoxSelectNative(scopeRect, window, boxSelectId, msFlags);
-			return ret != 0;
-		}
-
-		public static bool BeginBoxSelect(ImRect scopeRect, ref ImGuiWindow window, int boxSelectId, ImGuiMultiSelectFlags msFlags)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				byte ret = BeginBoxSelectNative(scopeRect, (ImGuiWindow*)pwindow, boxSelectId, msFlags);
-				return ret != 0;
-			}
-		}
-
-		internal static void EndBoxSelectNative(ImRect scopeRect, ImGuiMultiSelectFlags msFlags)
-		{
-			((delegate* unmanaged[Cdecl]<ImRect, ImGuiMultiSelectFlags, void>)vt[1211])(scopeRect, msFlags);
-		}
-
-		public static void EndBoxSelect(ImRect scopeRect, ImGuiMultiSelectFlags msFlags)
-		{
-			EndBoxSelectNative(scopeRect, msFlags);
-		}
-
-		internal static void MultiSelectItemHeaderNative(int id, bool* pSelected, ImGuiButtonFlags* pButtonFlags)
-		{
-			((delegate* unmanaged[Cdecl]<int, bool*, ImGuiButtonFlags*, void>)vt[1212])(id, pSelected, pButtonFlags);
-		}
-
-		public static void MultiSelectItemHeader(int id, bool* pSelected, ImGuiButtonFlags* pButtonFlags)
-		{
-			MultiSelectItemHeaderNative(id, pSelected, pButtonFlags);
-		}
-
-		public static void MultiSelectItemHeader(int id, ref bool pSelected, ImGuiButtonFlags* pButtonFlags)
-		{
-			fixed (bool* ppSelected = &pSelected)
-			{
-				MultiSelectItemHeaderNative(id, (bool*)ppSelected, pButtonFlags);
-			}
-		}
-
-		public static void MultiSelectItemHeader(int id, bool* pSelected, ref ImGuiButtonFlags pButtonFlags)
-		{
-			fixed (ImGuiButtonFlags* ppButtonFlags = &pButtonFlags)
-			{
-				MultiSelectItemHeaderNative(id, pSelected, (ImGuiButtonFlags*)ppButtonFlags);
-			}
-		}
-
-		public static void MultiSelectItemHeader(int id, ref bool pSelected, ref ImGuiButtonFlags pButtonFlags)
-		{
-			fixed (bool* ppSelected = &pSelected)
-			{
-				fixed (ImGuiButtonFlags* ppButtonFlags = &pButtonFlags)
+				fixed (byte* ptextEnd = textEnd)
 				{
-					MultiSelectItemHeaderNative(id, (bool*)ppSelected, (ImGuiButtonFlags*)ppButtonFlags);
+					AddTextNative(self, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
 				}
 			}
 		}
 
-		internal static void MultiSelectItemFooterNative(int id, bool* pSelected, bool* pPressed)
+		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
 		{
-			((delegate* unmanaged[Cdecl]<int, bool*, bool*, void>)vt[1213])(id, pSelected, pPressed);
-		}
-
-		public static void MultiSelectItemFooter(int id, bool* pSelected, bool* pPressed)
-		{
-			MultiSelectItemFooterNative(id, pSelected, pPressed);
-		}
-
-		public static void MultiSelectItemFooter(int id, ref bool pSelected, bool* pPressed)
-		{
-			fixed (bool* ppSelected = &pSelected)
+			fixed (ImDrawList* pself = &self)
 			{
-				MultiSelectItemFooterNative(id, (bool*)ppSelected, pPressed);
-			}
-		}
-
-		public static void MultiSelectItemFooter(int id, bool* pSelected, ref bool pPressed)
-		{
-			fixed (bool* ppPressed = &pPressed)
-			{
-				MultiSelectItemFooterNative(id, pSelected, (bool*)ppPressed);
-			}
-		}
-
-		public static void MultiSelectItemFooter(int id, ref bool pSelected, ref bool pPressed)
-		{
-			fixed (bool* ppSelected = &pSelected)
-			{
-				fixed (bool* ppPressed = &pPressed)
+				fixed (byte* ptextBegin = &textBegin)
 				{
-					MultiSelectItemFooterNative(id, (bool*)ppSelected, (bool*)ppPressed);
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
+					}
 				}
 			}
 		}
 
-		internal static void MultiSelectAddSetAllNative(ImGuiMultiSelectTempData* ms, byte selected)
+		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, string textBegin, string textEnd)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, byte, void>)vt[1214])(ms, selected);
-		}
-
-		public static void MultiSelectAddSetAll(ImGuiMultiSelectTempDataPtr ms, bool selected)
-		{
-			MultiSelectAddSetAllNative(ms, selected ? (byte)1 : (byte)0);
-		}
-
-		public static void MultiSelectAddSetAll(ref ImGuiMultiSelectTempData ms, bool selected)
-		{
-			fixed (ImGuiMultiSelectTempData* pms = &ms)
+			fixed (ImDrawList* pself = &self)
 			{
-				MultiSelectAddSetAllNative((ImGuiMultiSelectTempData*)pms, selected ? (byte)1 : (byte)0);
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, pos, col, pStr0, pStr1);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		internal static void MultiSelectAddSetRangeNative(ImGuiMultiSelectTempData* ms, byte selected, int rangeDir, long firstItem, long lastItem)
+		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, byte, int, long, long, void>)vt[1215])(ms, selected, rangeDir, firstItem, lastItem);
-		}
-
-		public static void MultiSelectAddSetRange(ImGuiMultiSelectTempDataPtr ms, bool selected, int rangeDir, long firstItem, long lastItem)
-		{
-			MultiSelectAddSetRangeNative(ms, selected ? (byte)1 : (byte)0, rangeDir, firstItem, lastItem);
-		}
-
-		public static void MultiSelectAddSetRange(ref ImGuiMultiSelectTempData ms, bool selected, int rangeDir, long firstItem, long lastItem)
-		{
-			fixed (ImGuiMultiSelectTempData* pms = &ms)
+			fixed (ImDrawList* pself = &self)
 			{
-				MultiSelectAddSetRangeNative((ImGuiMultiSelectTempData*)pms, selected ? (byte)1 : (byte)0, rangeDir, firstItem, lastItem);
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						AddTextNative((ImDrawList*)pself, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
+					}
+				}
 			}
 		}
 
-		internal static ImGuiBoxSelectState* GetBoxSelectStateNative(int id)
+		internal static void AddTextNative(ImDrawList* self, ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiBoxSelectState*>)vt[1216])(id);
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImFont*, float, Vector2, uint, byte*, byte*, float, Vector4*, void>)vt[554])(self, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, float, Vector2, uint, nint, nint, float, nint, void>)vt[554])((nint)self, (nint)font, fontSize, pos, col, (nint)textBegin, (nint)textEnd, wrapWidth, (nint)cpuFineClipRect);
+			#endif
 		}
 
-		public static ImGuiBoxSelectStatePtr GetBoxSelectState(int id)
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
-			ImGuiBoxSelectStatePtr ret = GetBoxSelectStateNative(id);
-			return ret;
+			AddTextNative(self, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
 		}
 
-		internal static ImGuiMultiSelectState* GetMultiSelectStateNative(int id)
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth)
 		{
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiMultiSelectState*>)vt[1217])(id);
+			AddTextNative(self, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)(default));
 		}
 
-		public static ImGuiMultiSelectStatePtr GetMultiSelectState(int id)
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
 		{
-			ImGuiMultiSelectStatePtr ret = GetMultiSelectStateNative(id);
-			return ret;
+			AddTextNative(self, font, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)(default));
 		}
 
-		internal static void SetWindowClipRectBeforeSetChannelNative(ImGuiWindow* window, ImRect clipRect)
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect, void>)vt[1218])(window, clipRect);
+			AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
 		}
 
-		public static void SetWindowClipRectBeforeSetChannel(ImGuiWindowPtr window, ImRect clipRect)
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth)
 		{
-			SetWindowClipRectBeforeSetChannelNative(window, clipRect);
+			AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
 		}
 
-		public static void SetWindowClipRectBeforeSetChannel(ref ImGuiWindow window, ImRect clipRect)
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, Vector4* cpuFineClipRect)
 		{
-			fixed (ImGuiWindow* pwindow = &window)
+			AddTextNative(self, font, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, Vector4* cpuFineClipRect)
+		{
+			AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
 			{
-				SetWindowClipRectBeforeSetChannelNative((ImGuiWindow*)pwindow, clipRect);
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
 			}
 		}
 
-		internal static void BeginColumnsNative(byte* strId, int count, ImGuiOldColumnFlags flags)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth)
 		{
-			((delegate* unmanaged[Cdecl]<byte*, int, ImGuiOldColumnFlags, void>)vt[1219])(strId, count, flags);
-		}
-
-		public static void BeginColumns(byte* strId, int count, ImGuiOldColumnFlags flags)
-		{
-			BeginColumnsNative(strId, count, flags);
-		}
-
-		public static void BeginColumns(ref byte strId, int count, ImGuiOldColumnFlags flags)
-		{
-			fixed (byte* pstrId = &strId)
+			fixed (ImDrawList* pself = &self)
 			{
-				BeginColumnsNative((byte*)pstrId, count, flags);
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)(default));
 			}
 		}
 
-		public static void BeginColumns(string strId, int count, ImGuiOldColumnFlags flags)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (strId != null)
+			if (textBegin != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3646,83 +3626,23 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			BeginColumnsNative(pStr0, count, flags);
+			AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		internal static void EndColumnsNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1220])();
-		}
-
-		public static void EndColumns()
-		{
-			EndColumnsNative();
-		}
-
-		internal static void PushColumnClipRectNative(int columnIndex)
-		{
-			((delegate* unmanaged[Cdecl]<int, void>)vt[1221])(columnIndex);
-		}
-
-		public static void PushColumnClipRect(int columnIndex)
-		{
-			PushColumnClipRectNative(columnIndex);
-		}
-
-		internal static void PushColumnsBackgroundNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1222])();
-		}
-
-		public static void PushColumnsBackground()
-		{
-			PushColumnsBackgroundNative();
-		}
-
-		internal static void PopColumnsBackgroundNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1223])();
-		}
-
-		public static void PopColumnsBackground()
-		{
-			PopColumnsBackgroundNative();
-		}
-
-		internal static int GetColumnsIDNative(byte* strId, int count)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, int, int>)vt[1224])(strId, count);
-		}
-
-		public static int GetColumnsID(byte* strId, int count)
-		{
-			int ret = GetColumnsIDNative(strId, count);
-			return ret;
-		}
-
-		public static int GetColumnsID(ref byte strId, int count)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				int ret = GetColumnsIDNative((byte*)pstrId, count);
-				return ret;
-			}
-		}
-
-		public static int GetColumnsID(string strId, int count)
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (strId != null)
+			if (textBegin != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3732,227 +3652,23 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = GetColumnsIDNative(pStr0, count);
+			AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
-			return ret;
 		}
 
-		internal static ImGuiOldColumns* FindOrCreateColumnsNative(ImGuiWindow* window, int id)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, int, ImGuiOldColumns*>)vt[1225])(window, id);
-		}
-
-		public static ImGuiOldColumnsPtr FindOrCreateColumns(ImGuiWindowPtr window, int id)
-		{
-			ImGuiOldColumnsPtr ret = FindOrCreateColumnsNative(window, id);
-			return ret;
-		}
-
-		public static ImGuiOldColumnsPtr FindOrCreateColumns(ref ImGuiWindow window, int id)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				ImGuiOldColumnsPtr ret = FindOrCreateColumnsNative((ImGuiWindow*)pwindow, id);
-				return ret;
-			}
-		}
-
-		internal static float GetColumnOffsetFromNormNative(ImGuiOldColumns* columns, float offsetNorm)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, float, float>)vt[1226])(columns, offsetNorm);
-		}
-
-		public static float GetColumnOffsetFromNorm(ImGuiOldColumnsPtr columns, float offsetNorm)
-		{
-			float ret = GetColumnOffsetFromNormNative(columns, offsetNorm);
-			return ret;
-		}
-
-		public static float GetColumnOffsetFromNorm(ref ImGuiOldColumns columns, float offsetNorm)
-		{
-			fixed (ImGuiOldColumns* pcolumns = &columns)
-			{
-				float ret = GetColumnOffsetFromNormNative((ImGuiOldColumns*)pcolumns, offsetNorm);
-				return ret;
-			}
-		}
-
-		internal static float GetColumnNormFromOffsetNative(ImGuiOldColumns* columns, float offset)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, float, float>)vt[1227])(columns, offset);
-		}
-
-		public static float GetColumnNormFromOffset(ImGuiOldColumnsPtr columns, float offset)
-		{
-			float ret = GetColumnNormFromOffsetNative(columns, offset);
-			return ret;
-		}
-
-		public static float GetColumnNormFromOffset(ref ImGuiOldColumns columns, float offset)
-		{
-			fixed (ImGuiOldColumns* pcolumns = &columns)
-			{
-				float ret = GetColumnNormFromOffsetNative((ImGuiOldColumns*)pcolumns, offset);
-				return ret;
-			}
-		}
-
-		internal static void TableOpenContextMenuNative(int columnN)
-		{
-			((delegate* unmanaged[Cdecl]<int, void>)vt[1228])(columnN);
-		}
-
-		public static void TableOpenContextMenu(int columnN)
-		{
-			TableOpenContextMenuNative(columnN);
-		}
-
-		internal static void TableSetColumnWidthNative(int columnN, float width)
-		{
-			((delegate* unmanaged[Cdecl]<int, float, void>)vt[1229])(columnN, width);
-		}
-
-		public static void TableSetColumnWidth(int columnN, float width)
-		{
-			TableSetColumnWidthNative(columnN, width);
-		}
-
-		internal static void TableSetColumnSortDirectionNative(int columnN, ImGuiSortDirection sortDirection, byte appendToSortSpecs)
-		{
-			((delegate* unmanaged[Cdecl]<int, ImGuiSortDirection, byte, void>)vt[1230])(columnN, sortDirection, appendToSortSpecs);
-		}
-
-		public static void TableSetColumnSortDirection(int columnN, ImGuiSortDirection sortDirection, bool appendToSortSpecs)
-		{
-			TableSetColumnSortDirectionNative(columnN, sortDirection, appendToSortSpecs ? (byte)1 : (byte)0);
-		}
-
-		internal static int TableGetHoveredRowNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<int>)vt[1231])();
-		}
-
-		public static int TableGetHoveredRow()
-		{
-			int ret = TableGetHoveredRowNative();
-			return ret;
-		}
-
-		internal static float TableGetHeaderRowHeightNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<float>)vt[1232])();
-		}
-
-		public static float TableGetHeaderRowHeight()
-		{
-			float ret = TableGetHeaderRowHeightNative();
-			return ret;
-		}
-
-		internal static float TableGetHeaderAngledMaxLabelWidthNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<float>)vt[1233])();
-		}
-
-		public static float TableGetHeaderAngledMaxLabelWidth()
-		{
-			float ret = TableGetHeaderAngledMaxLabelWidthNative();
-			return ret;
-		}
-
-		internal static void TablePushBackgroundChannelNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1234])();
-		}
-
-		public static void TablePushBackgroundChannel()
-		{
-			TablePushBackgroundChannelNative();
-		}
-
-		internal static void TablePopBackgroundChannelNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1235])();
-		}
-
-		public static void TablePopBackgroundChannel()
-		{
-			TablePopBackgroundChannelNative();
-		}
-
-		internal static void TableAngledHeadersRowExNative(int rowId, float angle, float maxLabelWidth, ImGuiTableHeaderData* data, int dataCount)
-		{
-			((delegate* unmanaged[Cdecl]<int, float, float, ImGuiTableHeaderData*, int, void>)vt[1236])(rowId, angle, maxLabelWidth, data, dataCount);
-		}
-
-		public static void TableAngledHeadersRowEx(int rowId, float angle, float maxLabelWidth, ImGuiTableHeaderDataPtr data, int dataCount)
-		{
-			TableAngledHeadersRowExNative(rowId, angle, maxLabelWidth, data, dataCount);
-		}
-
-		public static void TableAngledHeadersRowEx(int rowId, float angle, float maxLabelWidth, ref ImGuiTableHeaderData data, int dataCount)
-		{
-			fixed (ImGuiTableHeaderData* pdata = &data)
-			{
-				TableAngledHeadersRowExNative(rowId, angle, maxLabelWidth, (ImGuiTableHeaderData*)pdata, dataCount);
-			}
-		}
-
-		internal static ImGuiTable* GetCurrentTableNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*>)vt[1237])();
-		}
-
-		public static ImGuiTablePtr GetCurrentTable()
-		{
-			ImGuiTablePtr ret = GetCurrentTableNative();
-			return ret;
-		}
-
-		internal static ImGuiTable* TableFindByIDNative(int id)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiTable*>)vt[1238])(id);
-		}
-
-		public static ImGuiTablePtr TableFindByID(int id)
-		{
-			ImGuiTablePtr ret = TableFindByIDNative(id);
-			return ret;
-		}
-
-		internal static byte BeginTableExNative(byte* name, int id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, int, int, ImGuiTableFlags, Vector2, float, byte>)vt[1239])(name, id, columnsCount, flags, outerSize, innerWidth);
-		}
-
-		public static bool BeginTableEx(byte* name, int id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
-		{
-			byte ret = BeginTableExNative(name, id, columnsCount, flags, outerSize, innerWidth);
-			return ret != 0;
-		}
-
-		public static bool BeginTableEx(ref byte name, int id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
-		{
-			fixed (byte* pname = &name)
-			{
-				byte ret = BeginTableExNative((byte*)pname, id, columnsCount, flags, outerSize, innerWidth);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginTableEx(string name, int id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (textBegin != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3962,1061 +3678,1359 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = BeginTableExNative(pStr0, id, columnsCount, flags, outerSize, innerWidth);
+			AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)(default));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
-			return ret != 0;
 		}
 
-		internal static void TableBeginInitMemoryNative(ImGuiTable* table, int columnsCount)
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)vt[1240])(table, columnsCount);
-		}
-
-		public static void TableBeginInitMemory(ImGuiTablePtr table, int columnsCount)
-		{
-			TableBeginInitMemoryNative(table, columnsCount);
-		}
-
-		public static void TableBeginInitMemory(ref ImGuiTable table, int columnsCount)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
 			{
-				TableBeginInitMemoryNative((ImGuiTable*)ptable, columnsCount);
-			}
-		}
-
-		internal static void TableBeginApplyRequestsNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1241])(table);
-		}
-
-		public static void TableBeginApplyRequests(ImGuiTablePtr table)
-		{
-			TableBeginApplyRequestsNative(table);
-		}
-
-		public static void TableBeginApplyRequests(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableBeginApplyRequestsNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableSetupDrawChannelsNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1242])(table);
-		}
-
-		public static void TableSetupDrawChannels(ImGuiTablePtr table)
-		{
-			TableSetupDrawChannelsNative(table);
-		}
-
-		public static void TableSetupDrawChannels(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableSetupDrawChannelsNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableUpdateLayoutNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1243])(table);
-		}
-
-		public static void TableUpdateLayout(ImGuiTablePtr table)
-		{
-			TableUpdateLayoutNative(table);
-		}
-
-		public static void TableUpdateLayout(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableUpdateLayoutNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableUpdateBordersNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1244])(table);
-		}
-
-		public static void TableUpdateBorders(ImGuiTablePtr table)
-		{
-			TableUpdateBordersNative(table);
-		}
-
-		public static void TableUpdateBorders(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableUpdateBordersNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableUpdateColumnsWeightFromWidthNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1245])(table);
-		}
-
-		public static void TableUpdateColumnsWeightFromWidth(ImGuiTablePtr table)
-		{
-			TableUpdateColumnsWeightFromWidthNative(table);
-		}
-
-		public static void TableUpdateColumnsWeightFromWidth(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableUpdateColumnsWeightFromWidthNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableDrawBordersNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1246])(table);
-		}
-
-		public static void TableDrawBorders(ImGuiTablePtr table)
-		{
-			TableDrawBordersNative(table);
-		}
-
-		public static void TableDrawBorders(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableDrawBordersNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableDrawDefaultContextMenuNative(ImGuiTable* table, ImGuiTableFlags flagsForSectionToDisplay)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableFlags, void>)vt[1247])(table, flagsForSectionToDisplay);
-		}
-
-		public static void TableDrawDefaultContextMenu(ImGuiTablePtr table, ImGuiTableFlags flagsForSectionToDisplay)
-		{
-			TableDrawDefaultContextMenuNative(table, flagsForSectionToDisplay);
-		}
-
-		public static void TableDrawDefaultContextMenu(ref ImGuiTable table, ImGuiTableFlags flagsForSectionToDisplay)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableDrawDefaultContextMenuNative((ImGuiTable*)ptable, flagsForSectionToDisplay);
-			}
-		}
-
-		internal static byte TableBeginContextMenuPopupNative(ImGuiTable* table)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, byte>)vt[1248])(table);
-		}
-
-		public static bool TableBeginContextMenuPopup(ImGuiTablePtr table)
-		{
-			byte ret = TableBeginContextMenuPopupNative(table);
-			return ret != 0;
-		}
-
-		public static bool TableBeginContextMenuPopup(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				byte ret = TableBeginContextMenuPopupNative((ImGuiTable*)ptable);
-				return ret != 0;
-			}
-		}
-
-		internal static void TableMergeDrawChannelsNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1249])(table);
-		}
-
-		public static void TableMergeDrawChannels(ImGuiTablePtr table)
-		{
-			TableMergeDrawChannelsNative(table);
-		}
-
-		public static void TableMergeDrawChannels(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableMergeDrawChannelsNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static ImGuiTableInstanceData* TableGetInstanceDataNative(ImGuiTable* table, int instanceNo)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, ImGuiTableInstanceData*>)vt[1250])(table, instanceNo);
-		}
-
-		public static ImGuiTableInstanceDataPtr TableGetInstanceData(ImGuiTablePtr table, int instanceNo)
-		{
-			ImGuiTableInstanceDataPtr ret = TableGetInstanceDataNative(table, instanceNo);
-			return ret;
-		}
-
-		public static ImGuiTableInstanceDataPtr TableGetInstanceData(ref ImGuiTable table, int instanceNo)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				ImGuiTableInstanceDataPtr ret = TableGetInstanceDataNative((ImGuiTable*)ptable, instanceNo);
-				return ret;
-			}
-		}
-
-		internal static int TableGetInstanceIDNative(ImGuiTable* table, int instanceNo)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, int>)vt[1251])(table, instanceNo);
-		}
-
-		public static int TableGetInstanceID(ImGuiTablePtr table, int instanceNo)
-		{
-			int ret = TableGetInstanceIDNative(table, instanceNo);
-			return ret;
-		}
-
-		public static int TableGetInstanceID(ref ImGuiTable table, int instanceNo)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				int ret = TableGetInstanceIDNative((ImGuiTable*)ptable, instanceNo);
-				return ret;
-			}
-		}
-
-		internal static void TableSortSpecsSanitizeNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1252])(table);
-		}
-
-		public static void TableSortSpecsSanitize(ImGuiTablePtr table)
-		{
-			TableSortSpecsSanitizeNative(table);
-		}
-
-		public static void TableSortSpecsSanitize(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableSortSpecsSanitizeNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableSortSpecsBuildNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1253])(table);
-		}
-
-		public static void TableSortSpecsBuild(ImGuiTablePtr table)
-		{
-			TableSortSpecsBuildNative(table);
-		}
-
-		public static void TableSortSpecsBuild(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableSortSpecsBuildNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static ImGuiSortDirection TableGetColumnNextSortDirectionNative(ImGuiTableColumn* column)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTableColumn*, ImGuiSortDirection>)vt[1254])(column);
-		}
-
-		public static ImGuiSortDirection TableGetColumnNextSortDirection(ImGuiTableColumnPtr column)
-		{
-			ImGuiSortDirection ret = TableGetColumnNextSortDirectionNative(column);
-			return ret;
-		}
-
-		public static ImGuiSortDirection TableGetColumnNextSortDirection(ref ImGuiTableColumn column)
-		{
-			fixed (ImGuiTableColumn* pcolumn = &column)
-			{
-				ImGuiSortDirection ret = TableGetColumnNextSortDirectionNative((ImGuiTableColumn*)pcolumn);
-				return ret;
-			}
-		}
-
-		internal static void TableFixColumnSortDirectionNative(ImGuiTable* table, ImGuiTableColumn* column)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableColumn*, void>)vt[1255])(table, column);
-		}
-
-		public static void TableFixColumnSortDirection(ImGuiTablePtr table, ImGuiTableColumnPtr column)
-		{
-			TableFixColumnSortDirectionNative(table, column);
-		}
-
-		public static void TableFixColumnSortDirection(ref ImGuiTable table, ImGuiTableColumnPtr column)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableFixColumnSortDirectionNative((ImGuiTable*)ptable, column);
-			}
-		}
-
-		public static void TableFixColumnSortDirection(ImGuiTablePtr table, ref ImGuiTableColumn column)
-		{
-			fixed (ImGuiTableColumn* pcolumn = &column)
-			{
-				TableFixColumnSortDirectionNative(table, (ImGuiTableColumn*)pcolumn);
-			}
-		}
-
-		public static void TableFixColumnSortDirection(ref ImGuiTable table, ref ImGuiTableColumn column)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				fixed (ImGuiTableColumn* pcolumn = &column)
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					TableFixColumnSortDirectionNative((ImGuiTable*)ptable, (ImGuiTableColumn*)pcolumn);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), cpuFineClipRect);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, Vector4* cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, cpuFineClipRect);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
 				}
 			}
 		}
 
-		internal static float TableGetColumnWidthAutoNative(ImGuiTable* table, ImGuiTableColumn* column)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableColumn*, float>)vt[1256])(table, column);
-		}
-
-		public static float TableGetColumnWidthAuto(ImGuiTablePtr table, ImGuiTableColumnPtr column)
-		{
-			float ret = TableGetColumnWidthAutoNative(table, column);
-			return ret;
-		}
-
-		public static float TableGetColumnWidthAuto(ref ImGuiTable table, ImGuiTableColumnPtr column)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			fixed (ImDrawList* pself = &self)
 			{
-				float ret = TableGetColumnWidthAutoNative((ImGuiTable*)ptable, column);
-				return ret;
-			}
-		}
-
-		public static float TableGetColumnWidthAuto(ImGuiTablePtr table, ref ImGuiTableColumn column)
-		{
-			fixed (ImGuiTableColumn* pcolumn = &column)
-			{
-				float ret = TableGetColumnWidthAutoNative(table, (ImGuiTableColumn*)pcolumn);
-				return ret;
-			}
-		}
-
-		public static float TableGetColumnWidthAuto(ref ImGuiTable table, ref ImGuiTableColumn column)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				fixed (ImGuiTableColumn* pcolumn = &column)
+				fixed (byte* ptextBegin = &textBegin)
 				{
-					float ret = TableGetColumnWidthAutoNative((ImGuiTable*)ptable, (ImGuiTableColumn*)pcolumn);
-					return ret;
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
 				}
 			}
 		}
 
-		internal static void TableBeginRowNative(ImGuiTable* table)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1257])(table);
-		}
-
-		public static void TableBeginRow(ImGuiTablePtr table)
-		{
-			TableBeginRowNative(table);
-		}
-
-		public static void TableBeginRow(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			fixed (ImDrawList* pself = &self)
 			{
-				TableBeginRowNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableEndRowNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1258])(table);
-		}
-
-		public static void TableEndRow(ImGuiTablePtr table)
-		{
-			TableEndRowNative(table);
-		}
-
-		public static void TableEndRow(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableEndRowNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableBeginCellNative(ImGuiTable* table, int columnN)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)vt[1259])(table, columnN);
-		}
-
-		public static void TableBeginCell(ImGuiTablePtr table, int columnN)
-		{
-			TableBeginCellNative(table, columnN);
-		}
-
-		public static void TableBeginCell(ref ImGuiTable table, int columnN)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableBeginCellNative((ImGuiTable*)ptable, columnN);
-			}
-		}
-
-		internal static void TableEndCellNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1260])(table);
-		}
-
-		public static void TableEndCell(ImGuiTablePtr table)
-		{
-			TableEndCellNative(table);
-		}
-
-		public static void TableEndCell(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableEndCellNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableGetCellBgRectNative(ImRect* output, ImGuiTable* table, int columnN)
-		{
-			((delegate* unmanaged[Cdecl]<ImRect*, ImGuiTable*, int, void>)vt[1261])(output, table, columnN);
-		}
-
-		public static ImRect TableGetCellBgRect(ImGuiTablePtr table, int columnN)
-		{
-			ImRect ret;
-			TableGetCellBgRectNative(&ret, table, columnN);
-			return ret;
-		}
-
-		public static void TableGetCellBgRect(ImRectPtr output, ImGuiTablePtr table, int columnN)
-		{
-			TableGetCellBgRectNative(output, table, columnN);
-		}
-
-		public static void TableGetCellBgRect(ref ImRect output, ImGuiTablePtr table, int columnN)
-		{
-			fixed (ImRect* poutput = &output)
-			{
-				TableGetCellBgRectNative((ImRect*)poutput, table, columnN);
-			}
-		}
-
-		public static ImRect TableGetCellBgRect(ref ImGuiTable table, int columnN)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				ImRect ret;
-				TableGetCellBgRectNative(&ret, (ImGuiTable*)ptable, columnN);
-				return ret;
-			}
-		}
-
-		public static void TableGetCellBgRect(ImRectPtr output, ref ImGuiTable table, int columnN)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableGetCellBgRectNative(output, (ImGuiTable*)ptable, columnN);
-			}
-		}
-
-		public static void TableGetCellBgRect(ref ImRect output, ref ImGuiTable table, int columnN)
-		{
-			fixed (ImRect* poutput = &output)
-			{
-				fixed (ImGuiTable* ptable = &table)
+				fixed (byte* ptextBegin = &textBegin)
 				{
-					TableGetCellBgRectNative((ImRect*)poutput, (ImGuiTable*)ptable, columnN);
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
 				}
 			}
 		}
 
-		internal static byte* TableGetColumnNameTablePtrNative(ImGuiTable* table, int columnN)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, byte*>)vt[1262])(table, columnN);
-		}
-
-		public static byte* TableGetColumnNameTablePtr(ImGuiTablePtr table, int columnN)
-		{
-			byte* ret = TableGetColumnNameTablePtrNative(table, columnN);
-			return ret;
-		}
-
-		public static string TableGetColumnNameTablePtrS(ImGuiTablePtr table, int columnN)
-		{
-			string ret = Utils.DecodeStringUTF8(TableGetColumnNameTablePtrNative(table, columnN));
-			return ret;
-		}
-
-		public static byte* TableGetColumnNameTablePtr(ref ImGuiTable table, int columnN)
-		{
-			fixed (ImGuiTable* ptable = &table)
+			fixed (ImDrawList* pself = &self)
 			{
-				byte* ret = TableGetColumnNameTablePtrNative((ImGuiTable*)ptable, columnN);
-				return ret;
-			}
-		}
-
-		public static string TableGetColumnNameTablePtrS(ref ImGuiTable table, int columnN)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				string ret = Utils.DecodeStringUTF8(TableGetColumnNameTablePtrNative((ImGuiTable*)ptable, columnN));
-				return ret;
-			}
-		}
-
-		internal static int TableGetColumnResizeIDNative(ImGuiTable* table, int columnN, int instanceNo)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, int, int>)vt[1263])(table, columnN, instanceNo);
-		}
-
-		public static int TableGetColumnResizeID(ImGuiTablePtr table, int columnN, int instanceNo)
-		{
-			int ret = TableGetColumnResizeIDNative(table, columnN, instanceNo);
-			return ret;
-		}
-
-		public static int TableGetColumnResizeID(ref ImGuiTable table, int columnN, int instanceNo)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				int ret = TableGetColumnResizeIDNative((ImGuiTable*)ptable, columnN, instanceNo);
-				return ret;
-			}
-		}
-
-		internal static float TableGetMaxColumnWidthNative(ImGuiTable* table, int columnN)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, float>)vt[1264])(table, columnN);
-		}
-
-		public static float TableGetMaxColumnWidth(ImGuiTablePtr table, int columnN)
-		{
-			float ret = TableGetMaxColumnWidthNative(table, columnN);
-			return ret;
-		}
-
-		public static float TableGetMaxColumnWidth(ref ImGuiTable table, int columnN)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				float ret = TableGetMaxColumnWidthNative((ImGuiTable*)ptable, columnN);
-				return ret;
-			}
-		}
-
-		internal static void TableSetColumnWidthAutoSingleNative(ImGuiTable* table, int columnN)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)vt[1265])(table, columnN);
-		}
-
-		public static void TableSetColumnWidthAutoSingle(ImGuiTablePtr table, int columnN)
-		{
-			TableSetColumnWidthAutoSingleNative(table, columnN);
-		}
-
-		public static void TableSetColumnWidthAutoSingle(ref ImGuiTable table, int columnN)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableSetColumnWidthAutoSingleNative((ImGuiTable*)ptable, columnN);
-			}
-		}
-
-		internal static void TableSetColumnWidthAutoAllNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1266])(table);
-		}
-
-		public static void TableSetColumnWidthAutoAll(ImGuiTablePtr table)
-		{
-			TableSetColumnWidthAutoAllNative(table);
-		}
-
-		public static void TableSetColumnWidthAutoAll(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableSetColumnWidthAutoAllNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableRemoveNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1267])(table);
-		}
-
-		public static void TableRemove(ImGuiTablePtr table)
-		{
-			TableRemoveNative(table);
-		}
-
-		public static void TableRemove(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableRemoveNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableGcCompactTransientBuffersTablePtrNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1268])(table);
-		}
-
-		public static void TableGcCompactTransientBuffersTablePtr(ImGuiTablePtr table)
-		{
-			TableGcCompactTransientBuffersTablePtrNative(table);
-		}
-
-		public static void TableGcCompactTransientBuffersTablePtr(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableGcCompactTransientBuffersTablePtrNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableGcCompactTransientBuffersTableTempDataPtrNative(ImGuiTableTempData* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTableTempData*, void>)vt[1269])(table);
-		}
-
-		public static void TableGcCompactTransientBuffersTableTempDataPtr(ImGuiTableTempDataPtr table)
-		{
-			TableGcCompactTransientBuffersTableTempDataPtrNative(table);
-		}
-
-		public static void TableGcCompactTransientBuffersTableTempDataPtr(ref ImGuiTableTempData table)
-		{
-			fixed (ImGuiTableTempData* ptable = &table)
-			{
-				TableGcCompactTransientBuffersTableTempDataPtrNative((ImGuiTableTempData*)ptable);
-			}
-		}
-
-		internal static void TableGcCompactSettingsNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1270])();
-		}
-
-		public static void TableGcCompactSettings()
-		{
-			TableGcCompactSettingsNative();
-		}
-
-		internal static void TableLoadSettingsNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1271])(table);
-		}
-
-		public static void TableLoadSettings(ImGuiTablePtr table)
-		{
-			TableLoadSettingsNative(table);
-		}
-
-		public static void TableLoadSettings(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableLoadSettingsNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableSaveSettingsNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1272])(table);
-		}
-
-		public static void TableSaveSettings(ImGuiTablePtr table)
-		{
-			TableSaveSettingsNative(table);
-		}
-
-		public static void TableSaveSettings(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableSaveSettingsNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static void TableResetSettingsNative(ImGuiTable* table)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1273])(table);
-		}
-
-		public static void TableResetSettings(ImGuiTablePtr table)
-		{
-			TableResetSettingsNative(table);
-		}
-
-		public static void TableResetSettings(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				TableResetSettingsNative((ImGuiTable*)ptable);
-			}
-		}
-
-		internal static ImGuiTableSettings* TableGetBoundSettingsNative(ImGuiTable* table)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableSettings*>)vt[1274])(table);
-		}
-
-		public static ImGuiTableSettingsPtr TableGetBoundSettings(ImGuiTablePtr table)
-		{
-			ImGuiTableSettingsPtr ret = TableGetBoundSettingsNative(table);
-			return ret;
-		}
-
-		public static ImGuiTableSettingsPtr TableGetBoundSettings(ref ImGuiTable table)
-		{
-			fixed (ImGuiTable* ptable = &table)
-			{
-				ImGuiTableSettingsPtr ret = TableGetBoundSettingsNative((ImGuiTable*)ptable);
-				return ret;
-			}
-		}
-
-		internal static void TableSettingsAddSettingsHandlerNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[1275])();
-		}
-
-		public static void TableSettingsAddSettingsHandler()
-		{
-			TableSettingsAddSettingsHandlerNative();
-		}
-
-		internal static ImGuiTableSettings* TableSettingsCreateNative(int id, int columnsCount)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, int, ImGuiTableSettings*>)vt[1276])(id, columnsCount);
-		}
-
-		public static ImGuiTableSettingsPtr TableSettingsCreate(int id, int columnsCount)
-		{
-			ImGuiTableSettingsPtr ret = TableSettingsCreateNative(id, columnsCount);
-			return ret;
-		}
-
-		internal static ImGuiTableSettings* TableSettingsFindByIDNative(int id)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiTableSettings*>)vt[1277])(id);
-		}
-
-		public static ImGuiTableSettingsPtr TableSettingsFindByID(int id)
-		{
-			ImGuiTableSettingsPtr ret = TableSettingsFindByIDNative(id);
-			return ret;
-		}
-
-		internal static ImGuiTabBar* GetCurrentTabBarNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*>)vt[1278])();
-		}
-
-		public static ImGuiTabBarPtr GetCurrentTabBar()
-		{
-			ImGuiTabBarPtr ret = GetCurrentTabBarNative();
-			return ret;
-		}
-
-		internal static byte BeginTabBarExNative(ImGuiTabBar* tabBar, ImRect bb, ImGuiTabBarFlags flags)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImRect, ImGuiTabBarFlags, byte>)vt[1279])(tabBar, bb, flags);
-		}
-
-		public static bool BeginTabBarEx(ImGuiTabBarPtr tabBar, ImRect bb, ImGuiTabBarFlags flags)
-		{
-			byte ret = BeginTabBarExNative(tabBar, bb, flags);
-			return ret != 0;
-		}
-
-		public static bool BeginTabBarEx(ref ImGuiTabBar tabBar, ImRect bb, ImGuiTabBarFlags flags)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte ret = BeginTabBarExNative((ImGuiTabBar*)ptabBar, bb, flags);
-				return ret != 0;
-			}
-		}
-
-		internal static ImGuiTabItem* TabBarFindTabByIDNative(ImGuiTabBar* tabBar, int tabId)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, int, ImGuiTabItem*>)vt[1280])(tabBar, tabId);
-		}
-
-		public static ImGuiTabItemPtr TabBarFindTabByID(ImGuiTabBarPtr tabBar, int tabId)
-		{
-			ImGuiTabItemPtr ret = TabBarFindTabByIDNative(tabBar, tabId);
-			return ret;
-		}
-
-		public static ImGuiTabItemPtr TabBarFindTabByID(ref ImGuiTabBar tabBar, int tabId)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				ImGuiTabItemPtr ret = TabBarFindTabByIDNative((ImGuiTabBar*)ptabBar, tabId);
-				return ret;
-			}
-		}
-
-		internal static ImGuiTabItem* TabBarFindTabByOrderNative(ImGuiTabBar* tabBar, int order)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, int, ImGuiTabItem*>)vt[1281])(tabBar, order);
-		}
-
-		public static ImGuiTabItemPtr TabBarFindTabByOrder(ImGuiTabBarPtr tabBar, int order)
-		{
-			ImGuiTabItemPtr ret = TabBarFindTabByOrderNative(tabBar, order);
-			return ret;
-		}
-
-		public static ImGuiTabItemPtr TabBarFindTabByOrder(ref ImGuiTabBar tabBar, int order)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				ImGuiTabItemPtr ret = TabBarFindTabByOrderNative((ImGuiTabBar*)ptabBar, order);
-				return ret;
-			}
-		}
-
-		internal static ImGuiTabItem* TabBarFindMostRecentlySelectedTabForActiveWindowNative(ImGuiTabBar* tabBar)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*>)vt[1282])(tabBar);
-		}
-
-		public static ImGuiTabItemPtr TabBarFindMostRecentlySelectedTabForActiveWindow(ImGuiTabBarPtr tabBar)
-		{
-			ImGuiTabItemPtr ret = TabBarFindMostRecentlySelectedTabForActiveWindowNative(tabBar);
-			return ret;
-		}
-
-		public static ImGuiTabItemPtr TabBarFindMostRecentlySelectedTabForActiveWindow(ref ImGuiTabBar tabBar)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				ImGuiTabItemPtr ret = TabBarFindMostRecentlySelectedTabForActiveWindowNative((ImGuiTabBar*)ptabBar);
-				return ret;
-			}
-		}
-
-		internal static ImGuiTabItem* TabBarGetCurrentTabNative(ImGuiTabBar* tabBar)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*>)vt[1283])(tabBar);
-		}
-
-		public static ImGuiTabItemPtr TabBarGetCurrentTab(ImGuiTabBarPtr tabBar)
-		{
-			ImGuiTabItemPtr ret = TabBarGetCurrentTabNative(tabBar);
-			return ret;
-		}
-
-		public static ImGuiTabItemPtr TabBarGetCurrentTab(ref ImGuiTabBar tabBar)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				ImGuiTabItemPtr ret = TabBarGetCurrentTabNative((ImGuiTabBar*)ptabBar);
-				return ret;
-			}
-		}
-
-		internal static int TabBarGetTabOrderNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab)
-		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*, int>)vt[1284])(tabBar, tab);
-		}
-
-		public static int TabBarGetTabOrder(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab)
-		{
-			int ret = TabBarGetTabOrderNative(tabBar, tab);
-			return ret;
-		}
-
-		public static int TabBarGetTabOrder(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				int ret = TabBarGetTabOrderNative((ImGuiTabBar*)ptabBar, tab);
-				return ret;
-			}
-		}
-
-		public static int TabBarGetTabOrder(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				int ret = TabBarGetTabOrderNative(tabBar, (ImGuiTabItem*)ptab);
-				return ret;
-			}
-		}
-
-		public static int TabBarGetTabOrder(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
+				fixed (byte* ptextBegin = &textBegin)
 				{
-					int ret = TabBarGetTabOrderNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab);
-					return ret;
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
 				}
 			}
 		}
 
-		internal static byte* TabBarGetTabNameNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*, byte*>)vt[1285])(tabBar, tab);
-		}
-
-		public static byte* TabBarGetTabName(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab)
-		{
-			byte* ret = TabBarGetTabNameNative(tabBar, tab);
-			return ret;
-		}
-
-		public static string TabBarGetTabNameS(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab)
-		{
-			string ret = Utils.DecodeStringUTF8(TabBarGetTabNameNative(tabBar, tab));
-			return ret;
-		}
-
-		public static byte* TabBarGetTabName(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			fixed (ImDrawList* pself = &self)
 			{
-				byte* ret = TabBarGetTabNameNative((ImGuiTabBar*)ptabBar, tab);
-				return ret;
-			}
-		}
-
-		public static string TabBarGetTabNameS(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				string ret = Utils.DecodeStringUTF8(TabBarGetTabNameNative((ImGuiTabBar*)ptabBar, tab));
-				return ret;
-			}
-		}
-
-		public static byte* TabBarGetTabName(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				byte* ret = TabBarGetTabNameNative(tabBar, (ImGuiTabItem*)ptab);
-				return ret;
-			}
-		}
-
-		public static string TabBarGetTabNameS(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				string ret = Utils.DecodeStringUTF8(TabBarGetTabNameNative(tabBar, (ImGuiTabItem*)ptab));
-				return ret;
-			}
-		}
-
-		public static byte* TabBarGetTabName(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
+				fixed (byte* ptextBegin = &textBegin)
 				{
-					byte* ret = TabBarGetTabNameNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab);
-					return ret;
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
 				}
 			}
 		}
 
-		public static string TabBarGetTabNameS(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
 		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			fixed (ImDrawList* pself = &self)
 			{
-				fixed (ImGuiTabItem* ptab = &tab)
+				fixed (byte* ptextBegin = &textBegin)
 				{
-					string ret = Utils.DecodeStringUTF8(TabBarGetTabNameNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab));
-					return ret;
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
 				}
 			}
 		}
 
-		internal static void TabBarAddTabNative(ImGuiTabBar* tabBar, ImGuiTabItemFlags tabFlags, ImGuiWindow* window)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItemFlags, ImGuiWindow*, void>)vt[1286])(tabBar, tabFlags, window);
-		}
-
-		public static void TabBarAddTab(ImGuiTabBarPtr tabBar, ImGuiTabItemFlags tabFlags, ImGuiWindowPtr window)
-		{
-			TabBarAddTabNative(tabBar, tabFlags, window);
-		}
-
-		public static void TabBarAddTab(ref ImGuiTabBar tabBar, ImGuiTabItemFlags tabFlags, ImGuiWindowPtr window)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			fixed (ImDrawList* pself = &self)
 			{
-				TabBarAddTabNative((ImGuiTabBar*)ptabBar, tabFlags, window);
-			}
-		}
-
-		public static void TabBarAddTab(ImGuiTabBarPtr tabBar, ImGuiTabItemFlags tabFlags, ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				TabBarAddTabNative(tabBar, tabFlags, (ImGuiWindow*)pwindow);
-			}
-		}
-
-		public static void TabBarAddTab(ref ImGuiTabBar tabBar, ImGuiTabItemFlags tabFlags, ref ImGuiWindow window)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiWindow* pwindow = &window)
+				fixed (byte* ptextBegin = &textBegin)
 				{
-					TabBarAddTabNative((ImGuiTabBar*)ptabBar, tabFlags, (ImGuiWindow*)pwindow);
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
 				}
 			}
 		}
 
-		internal static void TabBarRemoveTabNative(ImGuiTabBar* tabBar, int tabId)
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, int, void>)vt[1287])(tabBar, tabId);
-		}
-
-		public static void TabBarRemoveTab(ImGuiTabBarPtr tabBar, int tabId)
-		{
-			TabBarRemoveTabNative(tabBar, tabId);
-		}
-
-		public static void TabBarRemoveTab(ref ImGuiTabBar tabBar, int tabId)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
+			fixed (ImDrawList* pself = &self)
 			{
-				TabBarRemoveTabNative((ImGuiTabBar*)ptabBar, tabId);
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), cpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, cpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), cpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, cpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = &textBegin)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)(default));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), cpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
 			}
 		}
 	}

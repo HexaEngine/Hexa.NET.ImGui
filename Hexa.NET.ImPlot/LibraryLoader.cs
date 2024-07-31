@@ -1,36 +1,10 @@
 ﻿namespace Hexa.NET.ImPlot
 {
     using System;
-    using System.Reflection;
     using System.Runtime.InteropServices;
 
     public static class LibraryLoader
     {
-        public static void SetImportResolver()
-        {
-            NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), DllImportResolver);
-        }
-
-        private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
-        {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return LoadLocalLibrary("cimplot");
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                return LoadLocalLibrary("cimplot");
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                return LoadLocalLibrary("cimplot");
-            }
-            else
-            {
-                return LoadLocalLibrary("cimplot");
-            }
-        }
-
         public static nint LoadLibrary()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

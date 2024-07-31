@@ -19,7 +19,122 @@ namespace Hexa.NET.ImPlot
 	public unsafe partial class ImPlot
 	{
 
-		public static void PlotScatter(string labelId, byte* values, int count, double xscale, ImPlotScatterFlags flags)
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (long* pxs = &xs)
+				{
+					fixed (long* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(long)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (long* pxs = &xs)
+				{
+					fixed (long* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		internal static void PlotLineNative(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, ulong*, ulong*, int, ImPlotLineFlags, int, int, void>)vt[73])(labelId, xs, ys, count, flags, offset, stride);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotLineFlags, int, int, void>)vt[73])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
+			#endif
+		}
+
+		public static void PlotLine(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			PlotLineNative(labelId, xs, ys, count, flags, offset, stride);
+		}
+
+		public static void PlotLine(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			PlotLineNative(labelId, xs, ys, count, flags, offset, (int)(sizeof(ulong)));
+		}
+
+		public static void PlotLine(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotLineFlags flags)
+		{
+			PlotLineNative(labelId, xs, ys, count, flags, (int)(0), (int)(sizeof(ulong)));
+		}
+
+		public static void PlotLine(byte* labelId, ulong* xs, ulong* ys, int count)
+		{
+			PlotLineNative(labelId, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+		}
+
+		public static void PlotLine(byte* labelId, ulong* xs, ulong* ys, int count, int offset)
+		{
+			PlotLineNative(labelId, xs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+		}
+
+		public static void PlotLine(byte* labelId, ulong* xs, ulong* ys, int count, int offset, int stride)
+		{
+			PlotLineNative(labelId, xs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+		}
+
+		public static void PlotLine(ref byte labelId, ulong* xs, ulong* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ulong* xs, ulong* ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ulong* xs, ulong* ys, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ulong* xs, ulong* ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ulong* xs, ulong* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ulong* xs, ulong* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotLine(string labelId, ulong* xs, ulong* ys, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -38,14 +153,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(byte)));
+			PlotLineNative(pStr0, xs, ys, count, flags, offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, byte* values, int count, ImPlotScatterFlags flags)
+		public static void PlotLine(string labelId, ulong* xs, ulong* ys, int count, ImPlotLineFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -64,14 +179,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(byte)));
+			PlotLineNative(pStr0, xs, ys, count, flags, offset, (int)(sizeof(ulong)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, byte* values, int count, double xscale, double xstart, int offset)
+		public static void PlotLine(string labelId, ulong* xs, ulong* ys, int count, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -90,14 +205,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(byte)));
+			PlotLineNative(pStr0, xs, ys, count, flags, (int)(0), (int)(sizeof(ulong)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, byte* values, int count, double xscale, int offset)
+		public static void PlotLine(string labelId, ulong* xs, ulong* ys, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -116,14 +231,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(byte)));
+			PlotLineNative(pStr0, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, byte* values, int count, int offset)
+		public static void PlotLine(string labelId, ulong* xs, ulong* ys, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -142,14 +257,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(byte)));
+			PlotLineNative(pStr0, xs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, byte* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		public static void PlotLine(string labelId, ulong* xs, ulong* ys, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -168,14 +283,176 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(byte)));
+			PlotLineNative(pStr0, xs, ys, count, (ImPlotLineFlags)(0), offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, byte* values, int count, ImPlotScatterFlags flags, int offset)
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, xs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ref ulong xs, ulong* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				PlotLineNative(labelId, (ulong*)pxs, ys, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ref ulong xs, ulong* ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				PlotLineNative(labelId, (ulong*)pxs, ys, count, flags, offset, (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ref ulong xs, ulong* ys, int count, ImPlotLineFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				PlotLineNative(labelId, (ulong*)pxs, ys, count, flags, (int)(0), (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ref ulong xs, ulong* ys, int count)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				PlotLineNative(labelId, (ulong*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ref ulong xs, ulong* ys, int count, int offset)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				PlotLineNative(labelId, (ulong*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ref ulong xs, ulong* ys, int count, int offset, int stride)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				PlotLineNative(labelId, (ulong*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ref ulong xs, ulong* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (ulong*)pxs, ys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ref ulong xs, ulong* ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (ulong*)pxs, ys, count, flags, offset, (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ref ulong xs, ulong* ys, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (ulong*)pxs, ys, count, flags, (int)(0), (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ref ulong xs, ulong* ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (ulong*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ref ulong xs, ulong* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (ulong*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ref ulong xs, ulong* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (ulong*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ref ulong xs, ulong* ys, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -194,14 +471,1069 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(byte)));
+			fixed (ulong* pxs = &xs)
+			{
+				PlotLineNative(pStr0, (ulong*)pxs, ys, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ref ulong xs, ulong* ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				PlotLineNative(pStr0, (ulong*)pxs, ys, count, flags, offset, (int)(sizeof(ulong)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ref ulong xs, ulong* ys, int count, ImPlotLineFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				PlotLineNative(pStr0, (ulong*)pxs, ys, count, flags, (int)(0), (int)(sizeof(ulong)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ref ulong xs, ulong* ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				PlotLineNative(pStr0, (ulong*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ref ulong xs, ulong* ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				PlotLineNative(pStr0, (ulong*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ref ulong xs, ulong* ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				PlotLineNative(pStr0, (ulong*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (ulong*)pxs, ys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (ulong*)pxs, ys, count, flags, offset, (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (ulong*)pxs, ys, count, flags, (int)(0), (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (ulong*)pxs, ys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (ulong*)pxs, ys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					PlotLineNative((byte*)plabelId, (ulong*)pxs, ys, count, (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotLineNative(labelId, xs, (ulong*)pys, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotLineNative(labelId, xs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotLineFlags flags)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotLineNative(labelId, xs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ulong* xs, ref ulong ys, int count)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotLineNative(labelId, xs, (ulong*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ulong* xs, ref ulong ys, int count, int offset)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotLineNative(labelId, xs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ulong* xs, ref ulong ys, int count, int offset, int stride)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				PlotLineNative(labelId, xs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ulong* xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (ulong*)pys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ulong* xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ulong* xs, ref ulong ys, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ulong* xs, ref ulong ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (ulong*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ulong* xs, ref ulong ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ulong* xs, ref ulong ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ulong* xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				PlotLineNative(pStr0, xs, (ulong*)pys, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ulong* xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				PlotLineNative(pStr0, xs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ulong* xs, ref ulong ys, int count, ImPlotLineFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				PlotLineNative(pStr0, xs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ulong* xs, ref ulong ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				PlotLineNative(pStr0, xs, (ulong*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ulong* xs, ref ulong ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				PlotLineNative(pStr0, xs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ulong* xs, ref ulong ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				PlotLineNative(pStr0, xs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (ulong*)pys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (ulong*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ref ulong xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative(labelId, (ulong*)pxs, (ulong*)pys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ref ulong xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative(labelId, (ulong*)pxs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ref ulong xs, ref ulong ys, int count, ImPlotLineFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative(labelId, (ulong*)pxs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ref ulong xs, ref ulong ys, int count)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative(labelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ref ulong xs, ref ulong ys, int count, int offset)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative(labelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+				}
+			}
+		}
+
+		public static void PlotLine(byte* labelId, ref ulong xs, ref ulong ys, int count, int offset, int stride)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative(labelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ref ulong xs, ref ulong ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ref ulong xs, ref ulong ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, ref ulong xs, ref ulong ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative(pStr0, (ulong*)pxs, (ulong*)pys, count, flags, offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative(pStr0, (ulong*)pxs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotLineFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative(pStr0, (ulong*)pxs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ref ulong xs, ref ulong ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ref ulong xs, ref ulong ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, ref ulong xs, ref ulong ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					PlotLineNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, flags, offset, (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, flags, (int)(0), (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						PlotLineNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		internal static void PlotLineGNative(byte* labelId, ImPlotPointGetter getter, void* data, int count, ImPlotLineFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, delegate*<void*, int, ImPlotPoint*, void*>, void*, int, ImPlotLineFlags, void>)vt[74])(labelId, (delegate*<void*, int, ImPlotPoint*, void*>)Utils.GetFunctionPointerForDelegate(getter), data, count, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotLineFlags, void>)vt[74])((nint)labelId, (nint)Utils.GetFunctionPointerForDelegate(getter), (nint)data, count, flags);
+			#endif
+		}
+
+		public static void PlotLineG(byte* labelId, ImPlotPointGetter getter, void* data, int count, ImPlotLineFlags flags)
+		{
+			PlotLineGNative(labelId, getter, data, count, flags);
+		}
+
+		public static void PlotLineG(byte* labelId, ImPlotPointGetter getter, void* data, int count)
+		{
+			PlotLineGNative(labelId, getter, data, count, (ImPlotLineFlags)(0));
+		}
+
+		public static void PlotLineG(ref byte labelId, ImPlotPointGetter getter, void* data, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineGNative((byte*)plabelId, getter, data, count, flags);
+			}
+		}
+
+		public static void PlotLineG(ref byte labelId, ImPlotPointGetter getter, void* data, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotLineGNative((byte*)plabelId, getter, data, count, (ImPlotLineFlags)(0));
+			}
+		}
+
+		public static void PlotLineG(string labelId, ImPlotPointGetter getter, void* data, int count, ImPlotLineFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotLineGNative(pStr0, getter, data, count, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, byte* values, int count, double xscale, double xstart, int offset, int stride)
+		public static void PlotLineG(string labelId, ImPlotPointGetter getter, void* data, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -220,1077 +1552,129 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
+			PlotLineGNative(pStr0, getter, data, count, (ImPlotLineFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, byte* values, int count, double xscale, int offset, int stride)
+		public static void PlotLineG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter, void* data, int count, ImPlotLineFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotLineGNative((byte*)plabelId, getter, data, count, flags);
 			}
 		}
 
-		public static void PlotScatter(string labelId, byte* values, int count, int offset, int stride)
+		public static void PlotLineG(ReadOnlySpan<byte> labelId, ImPlotPointGetter getter, void* data, int count)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotLineGNative((byte*)plabelId, getter, data, count, (ImPlotLineFlags)(0));
 			}
 		}
 
-		public static void PlotScatter(string labelId, byte* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		internal static void PlotScatterNative(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, float*, int, double, double, ImPlotScatterFlags, int, int, void>)vt[75])(labelId, values, count, xscale, xstart, flags, offset, stride);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotScatterFlags, int, int, void>)vt[75])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
+			#endif
 		}
 
-		public static void PlotScatter(string labelId, byte* values, int count, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, xscale, xstart, flags, offset, stride);
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(byte)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, double xscale, double xstart)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, double xscale)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, double xscale, ImPlotScatterFlags flags)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, ImPlotScatterFlags flags)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(byte)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(byte)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, double xscale, int offset)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(byte)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, int offset)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(byte)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, double xscale, ImPlotScatterFlags flags, int offset)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(byte)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, ImPlotScatterFlags flags, int offset)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(byte)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, double xscale, int offset, int stride)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, int offset, int stride)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, xscale, (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref byte values, int count, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, double xscale, double xstart)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, double xscale)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, double xscale, ImPlotScatterFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, ImPlotScatterFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, double xscale, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, double xscale, ImPlotScatterFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, ImPlotScatterFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, double xscale, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref byte values, int count, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, xscale, xstart, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(byte)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(byte)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, double xscale, double xstart)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(byte)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, double xscale)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(byte)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(byte)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, double xscale, ImPlotScatterFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(byte)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, ImPlotScatterFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(byte)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, double xscale, double xstart, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(byte)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, double xscale, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(byte)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(byte)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, double xscale, ImPlotScatterFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(byte)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, ImPlotScatterFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(byte)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, double xscale, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, xscale, (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref byte values, int count, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		internal static void PlotScatterNative(byte* labelId, short* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, short*, int, double, double, ImPlotScatterFlags, int, int, void>)vt[79])(labelId, values, count, xscale, xstart, flags, offset, stride);
-		}
-
-		public static void PlotScatter(byte* labelId, short* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			PlotScatterNative(labelId, values, count, xscale, xstart, flags, offset, stride);
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
 		{
-			PlotScatterNative(labelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(short)));
+			PlotScatterNative(labelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		public static void PlotScatter(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
 		{
-			PlotScatterNative(labelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(short)));
+			PlotScatterNative(labelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, double xscale, double xstart)
+		public static void PlotScatter(byte* labelId, float* values, int count, double xscale, double xstart)
 		{
-			PlotScatterNative(labelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+			PlotScatterNative(labelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, double xscale)
+		public static void PlotScatter(byte* labelId, float* values, int count, double xscale)
 		{
-			PlotScatterNative(labelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+			PlotScatterNative(labelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count)
+		public static void PlotScatter(byte* labelId, float* values, int count)
 		{
-			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, double xscale, ImPlotScatterFlags flags)
+		public static void PlotScatter(byte* labelId, float* values, int count, double xscale, ImPlotScatterFlags flags)
 		{
-			PlotScatterNative(labelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(short)));
+			PlotScatterNative(labelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, ImPlotScatterFlags flags)
+		public static void PlotScatter(byte* labelId, float* values, int count, ImPlotScatterFlags flags)
 		{
-			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(short)));
+			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, double xscale, double xstart, int offset)
+		public static void PlotScatter(byte* labelId, float* values, int count, double xscale, double xstart, int offset)
 		{
-			PlotScatterNative(labelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+			PlotScatterNative(labelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, double xscale, int offset)
+		public static void PlotScatter(byte* labelId, float* values, int count, double xscale, int offset)
 		{
-			PlotScatterNative(labelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+			PlotScatterNative(labelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, int offset)
+		public static void PlotScatter(byte* labelId, float* values, int count, int offset)
 		{
-			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(byte* labelId, float* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
 		{
-			PlotScatterNative(labelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(short)));
+			PlotScatterNative(labelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(byte* labelId, float* values, int count, ImPlotScatterFlags flags, int offset)
 		{
-			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(short)));
+			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, double xscale, double xstart, int offset, int stride)
+		public static void PlotScatter(byte* labelId, float* values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			PlotScatterNative(labelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, double xscale, int offset, int stride)
+		public static void PlotScatter(byte* labelId, float* values, int count, double xscale, int offset, int stride)
 		{
 			PlotScatterNative(labelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, int offset, int stride)
+		public static void PlotScatter(byte* labelId, float* values, int count, int offset, int stride)
 		{
 			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(byte* labelId, float* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			PlotScatterNative(labelId, values, count, xscale, (double)(0), flags, offset, stride);
 		}
 
-		public static void PlotScatter(byte* labelId, short* values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(byte* labelId, float* values, int count, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), flags, offset, stride);
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, float* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1298,103 +1682,103 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ref byte labelId, float* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		public static void PlotScatter(ref byte labelId, float* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, double xscale, double xstart)
+		public static void PlotScatter(ref byte labelId, float* values, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, double xscale)
+		public static void PlotScatter(ref byte labelId, float* values, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count)
+		public static void PlotScatter(ref byte labelId, float* values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, double xscale, ImPlotScatterFlags flags)
+		public static void PlotScatter(ref byte labelId, float* values, int count, double xscale, ImPlotScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, ImPlotScatterFlags flags)
+		public static void PlotScatter(ref byte labelId, float* values, int count, ImPlotScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, double xscale, double xstart, int offset)
+		public static void PlotScatter(ref byte labelId, float* values, int count, double xscale, double xstart, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, double xscale, int offset)
+		public static void PlotScatter(ref byte labelId, float* values, int count, double xscale, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, int offset)
+		public static void PlotScatter(ref byte labelId, float* values, int count, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ref byte labelId, float* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ref byte labelId, float* values, int count, ImPlotScatterFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, double xscale, double xstart, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, float* values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1402,7 +1786,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, double xscale, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, float* values, int count, double xscale, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1410,7 +1794,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, float* values, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1418,7 +1802,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, float* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1426,7 +1810,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, short* values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, float* values, int count, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -1434,7 +1818,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(string labelId, float* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1460,7 +1844,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(string labelId, float* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1479,14 +1863,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, flags, offset, (int)(sizeof(short)));
+			PlotScatterNative(pStr0, values, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		public static void PlotScatter(string labelId, float* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1505,14 +1889,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(short)));
+			PlotScatterNative(pStr0, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, double xscale, double xstart)
+		public static void PlotScatter(string labelId, float* values, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1531,14 +1915,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+			PlotScatterNative(pStr0, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, double xscale)
+		public static void PlotScatter(string labelId, float* values, int count, double xscale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1557,14 +1941,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+			PlotScatterNative(pStr0, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count)
+		public static void PlotScatter(string labelId, float* values, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1583,14 +1967,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, double xscale, ImPlotScatterFlags flags)
+		public static void PlotScatter(string labelId, float* values, int count, double xscale, ImPlotScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1609,14 +1993,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(short)));
+			PlotScatterNative(pStr0, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, ImPlotScatterFlags flags)
+		public static void PlotScatter(string labelId, float* values, int count, ImPlotScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1635,14 +2019,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(short)));
+			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, double xscale, double xstart, int offset)
+		public static void PlotScatter(string labelId, float* values, int count, double xscale, double xstart, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1661,14 +2045,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+			PlotScatterNative(pStr0, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, double xscale, int offset)
+		public static void PlotScatter(string labelId, float* values, int count, double xscale, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1687,14 +2071,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+			PlotScatterNative(pStr0, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, int offset)
+		public static void PlotScatter(string labelId, float* values, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1713,14 +2097,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(string labelId, float* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1739,14 +2123,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(short)));
+			PlotScatterNative(pStr0, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(string labelId, float* values, int count, ImPlotScatterFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1765,14 +2149,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(short)));
+			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, double xscale, double xstart, int offset, int stride)
+		public static void PlotScatter(string labelId, float* values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1798,7 +2182,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, double xscale, int offset, int stride)
+		public static void PlotScatter(string labelId, float* values, int count, double xscale, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1824,7 +2208,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, int offset, int stride)
+		public static void PlotScatter(string labelId, float* values, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1850,7 +2234,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(string labelId, float* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1876,7 +2260,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, short* values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(string labelId, float* values, int count, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1902,349 +2286,493 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, xscale, xstart, flags, offset, stride);
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, stride);
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, double xscale, double xstart)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, double xscale)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, double xscale)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, double xscale, ImPlotScatterFlags flags)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, ImPlotScatterFlags flags)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, ImPlotScatterFlags flags)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotScatterFlags flags)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, double xscale, double xstart, int offset)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, int offset)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, double xscale, int offset)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, int offset)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, int offset)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, int offset)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotScatterFlags flags, int offset)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(short)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, double xscale, double xstart, int offset, int stride)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, int offset, int stride)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, double xscale, int offset, int stride)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, int offset, int stride)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, int offset, int stride)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, int offset, int stride)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, xscale, (double)(0), flags, offset, stride);
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, stride);
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref short values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotScatterFlags flags, int offset, int stride)
 		{
-			fixed (short* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative(labelId, (short*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, stride);
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(byte* labelId, ref float values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, xscale, xstart, flags, offset, stride);
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, double xscale, double xstart)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, double xscale)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, double xscale, ImPlotScatterFlags flags)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, ImPlotScatterFlags flags)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, double xscale, double xstart, int offset)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, double xscale, int offset)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, int offset)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, ImPlotScatterFlags flags, int offset)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, double xscale, double xstart, int offset, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, double xscale, int offset, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, int offset, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, xscale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotScatter(byte* labelId, ref float values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (float*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref float values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, flags, offset, stride);
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, flags, offset, stride);
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(short)));
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(short)));
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, double xscale, double xstart)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, double xscale)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count)
+		public static void PlotScatter(ref byte labelId, ref float values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, double xscale, ImPlotScatterFlags flags)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, double xscale, ImPlotScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(short)));
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, ImPlotScatterFlags flags)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, ImPlotScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(short)));
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, double xscale, double xstart, int offset)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, double xscale, double xstart, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, double xscale, int offset)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, double xscale, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, int offset)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, double xscale, ImPlotScatterFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(short)));
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, ImPlotScatterFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(short)));
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, double xscale, double xstart, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, double xscale, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, double xscale, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), flags, offset, stride);
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), flags, offset, stride);
 				}
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ref short values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, ref float values, int count, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (short* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotScatterNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
 				}
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(string labelId, ref float values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2263,9 +2791,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, xscale, xstart, flags, offset, stride);
+				PlotScatterNative(pStr0, (float*)pvalues, count, xscale, xstart, flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2273,7 +2801,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(string labelId, ref float values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2292,9 +2820,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(short)));
+				PlotScatterNative(pStr0, (float*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2302,7 +2830,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		public static void PlotScatter(string labelId, ref float values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2321,9 +2849,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(short)));
+				PlotScatterNative(pStr0, (float*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2331,7 +2859,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, double xscale, double xstart)
+		public static void PlotScatter(string labelId, ref float values, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2350,9 +2878,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+				PlotScatterNative(pStr0, (float*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2360,7 +2888,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, double xscale)
+		public static void PlotScatter(string labelId, ref float values, int count, double xscale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2379,9 +2907,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+				PlotScatterNative(pStr0, (float*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2389,7 +2917,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count)
+		public static void PlotScatter(string labelId, ref float values, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2408,9 +2936,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(short)));
+				PlotScatterNative(pStr0, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2418,7 +2946,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, double xscale, ImPlotScatterFlags flags)
+		public static void PlotScatter(string labelId, ref float values, int count, double xscale, ImPlotScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2437,9 +2965,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(short)));
+				PlotScatterNative(pStr0, (float*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2447,7 +2975,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, ImPlotScatterFlags flags)
+		public static void PlotScatter(string labelId, ref float values, int count, ImPlotScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2466,9 +2994,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(short)));
+				PlotScatterNative(pStr0, (float*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2476,7 +3004,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, double xscale, double xstart, int offset)
+		public static void PlotScatter(string labelId, ref float values, int count, double xscale, double xstart, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2495,9 +3023,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+				PlotScatterNative(pStr0, (float*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2505,7 +3033,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, double xscale, int offset)
+		public static void PlotScatter(string labelId, ref float values, int count, double xscale, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2524,9 +3052,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+				PlotScatterNative(pStr0, (float*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2534,7 +3062,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, int offset)
+		public static void PlotScatter(string labelId, ref float values, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2553,9 +3081,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(short)));
+				PlotScatterNative(pStr0, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2563,7 +3091,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(string labelId, ref float values, int count, double xscale, ImPlotScatterFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2582,9 +3110,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(short)));
+				PlotScatterNative(pStr0, (float*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2592,7 +3120,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(string labelId, ref float values, int count, ImPlotScatterFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2611,9 +3139,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(short)));
+				PlotScatterNative(pStr0, (float*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2621,7 +3149,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, double xscale, double xstart, int offset, int stride)
+		public static void PlotScatter(string labelId, ref float values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2640,9 +3168,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
+				PlotScatterNative(pStr0, (float*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2650,7 +3178,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, double xscale, int offset, int stride)
+		public static void PlotScatter(string labelId, ref float values, int count, double xscale, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2669,9 +3197,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
+				PlotScatterNative(pStr0, (float*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2679,7 +3207,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, int offset, int stride)
+		public static void PlotScatter(string labelId, ref float values, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2698,9 +3226,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
+				PlotScatterNative(pStr0, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2708,7 +3236,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(string labelId, ref float values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2727,9 +3255,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, xscale, (double)(0), flags, offset, stride);
+				PlotScatterNative(pStr0, (float*)pvalues, count, xscale, (double)(0), flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2737,7 +3265,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ref short values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(string labelId, ref float values, int count, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2756,9 +3284,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (short* pvalues = &values)
+			fixed (float* pvalues = &values)
 			{
-				PlotScatterNative(pStr0, (short*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
+				PlotScatterNative(pStr0, (float*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2766,102 +3294,304 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		internal static void PlotScatterNative(byte* labelId, ushort* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
 		{
-			((delegate* unmanaged[Cdecl]<byte*, ushort*, int, double, double, ImPlotScatterFlags, int, int, void>)vt[80])(labelId, values, count, xscale, xstart, flags, offset, stride);
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, flags, offset, stride);
+				}
+			}
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, ImPlotScatterFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, ImPlotScatterFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, double xstart, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, ImPlotScatterFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, double xstart, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, ref float values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		internal static void PlotScatterNative(byte* labelId, double* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, double*, int, double, double, ImPlotScatterFlags, int, int, void>)vt[76])(labelId, values, count, xscale, xstart, flags, offset, stride);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotScatterFlags, int, int, void>)vt[76])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
+			#endif
+		}
+
+		public static void PlotScatter(byte* labelId, double* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			PlotScatterNative(labelId, values, count, xscale, xstart, flags, offset, stride);
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(byte* labelId, double* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
 		{
-			PlotScatterNative(labelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(ushort)));
+			PlotScatterNative(labelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(double)));
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		public static void PlotScatter(byte* labelId, double* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
 		{
-			PlotScatterNative(labelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(ushort)));
+			PlotScatterNative(labelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(double)));
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, double xscale, double xstart)
+		public static void PlotScatter(byte* labelId, double* values, int count, double xscale, double xstart)
 		{
-			PlotScatterNative(labelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			PlotScatterNative(labelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, double xscale)
+		public static void PlotScatter(byte* labelId, double* values, int count, double xscale)
 		{
-			PlotScatterNative(labelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			PlotScatterNative(labelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count)
+		public static void PlotScatter(byte* labelId, double* values, int count)
 		{
-			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, double xscale, ImPlotScatterFlags flags)
+		public static void PlotScatter(byte* labelId, double* values, int count, double xscale, ImPlotScatterFlags flags)
 		{
-			PlotScatterNative(labelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+			PlotScatterNative(labelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, ImPlotScatterFlags flags)
+		public static void PlotScatter(byte* labelId, double* values, int count, ImPlotScatterFlags flags)
 		{
-			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, double xscale, double xstart, int offset)
+		public static void PlotScatter(byte* labelId, double* values, int count, double xscale, double xstart, int offset)
 		{
-			PlotScatterNative(labelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
+			PlotScatterNative(labelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, double xscale, int offset)
+		public static void PlotScatter(byte* labelId, double* values, int count, double xscale, int offset)
 		{
-			PlotScatterNative(labelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
+			PlotScatterNative(labelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, int offset)
+		public static void PlotScatter(byte* labelId, double* values, int count, int offset)
 		{
-			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
+			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(byte* labelId, double* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
 		{
-			PlotScatterNative(labelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(ushort)));
+			PlotScatterNative(labelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(double)));
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(byte* labelId, double* values, int count, ImPlotScatterFlags flags, int offset)
 		{
-			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
+			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, double xscale, double xstart, int offset, int stride)
+		public static void PlotScatter(byte* labelId, double* values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			PlotScatterNative(labelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, double xscale, int offset, int stride)
+		public static void PlotScatter(byte* labelId, double* values, int count, double xscale, int offset, int stride)
 		{
 			PlotScatterNative(labelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, int offset, int stride)
+		public static void PlotScatter(byte* labelId, double* values, int count, int offset, int stride)
 		{
 			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(byte* labelId, double* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			PlotScatterNative(labelId, values, count, xscale, (double)(0), flags, offset, stride);
 		}
 
-		public static void PlotScatter(byte* labelId, ushort* values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(byte* labelId, double* values, int count, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), flags, offset, stride);
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, double* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2869,103 +3599,103 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ref byte labelId, double* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(ushort)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		public static void PlotScatter(ref byte labelId, double* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(ushort)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, double xscale, double xstart)
+		public static void PlotScatter(ref byte labelId, double* values, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, double xscale)
+		public static void PlotScatter(ref byte labelId, double* values, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count)
+		public static void PlotScatter(ref byte labelId, double* values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, double xscale, ImPlotScatterFlags flags)
+		public static void PlotScatter(ref byte labelId, double* values, int count, double xscale, ImPlotScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, ImPlotScatterFlags flags)
+		public static void PlotScatter(ref byte labelId, double* values, int count, ImPlotScatterFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, double xscale, double xstart, int offset)
+		public static void PlotScatter(ref byte labelId, double* values, int count, double xscale, double xstart, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, double xscale, int offset)
+		public static void PlotScatter(ref byte labelId, double* values, int count, double xscale, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, int offset)
+		public static void PlotScatter(ref byte labelId, double* values, int count, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ref byte labelId, double* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(ushort)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ref byte labelId, double* values, int count, ImPlotScatterFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, double xscale, double xstart, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, double* values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2973,7 +3703,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, double xscale, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, double* values, int count, double xscale, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2981,7 +3711,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, double* values, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2989,7 +3719,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, double* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -2997,7 +3727,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, ushort* values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ref byte labelId, double* values, int count, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
@@ -3005,7 +3735,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(string labelId, double* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3031,7 +3761,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(string labelId, double* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3050,14 +3780,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, flags, offset, (int)(sizeof(ushort)));
+			PlotScatterNative(pStr0, values, count, xscale, xstart, flags, offset, (int)(sizeof(double)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		public static void PlotScatter(string labelId, double* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3076,14 +3806,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(ushort)));
+			PlotScatterNative(pStr0, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(double)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, double xscale, double xstart)
+		public static void PlotScatter(string labelId, double* values, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3102,14 +3832,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			PlotScatterNative(pStr0, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, double xscale)
+		public static void PlotScatter(string labelId, double* values, int count, double xscale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3128,14 +3858,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			PlotScatterNative(pStr0, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count)
+		public static void PlotScatter(string labelId, double* values, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3154,14 +3884,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, double xscale, ImPlotScatterFlags flags)
+		public static void PlotScatter(string labelId, double* values, int count, double xscale, ImPlotScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3180,14 +3910,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+			PlotScatterNative(pStr0, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, ImPlotScatterFlags flags)
+		public static void PlotScatter(string labelId, double* values, int count, ImPlotScatterFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3206,14 +3936,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, double xscale, double xstart, int offset)
+		public static void PlotScatter(string labelId, double* values, int count, double xscale, double xstart, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3232,14 +3962,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
+			PlotScatterNative(pStr0, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, double xscale, int offset)
+		public static void PlotScatter(string labelId, double* values, int count, double xscale, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3258,14 +3988,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
+			PlotScatterNative(pStr0, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, int offset)
+		public static void PlotScatter(string labelId, double* values, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3284,14 +4014,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
+			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(string labelId, double* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3310,14 +4040,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(ushort)));
+			PlotScatterNative(pStr0, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(double)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(string labelId, double* values, int count, ImPlotScatterFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3336,14 +4066,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
+			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, double xscale, double xstart, int offset, int stride)
+		public static void PlotScatter(string labelId, double* values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3369,7 +4099,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, double xscale, int offset, int stride)
+		public static void PlotScatter(string labelId, double* values, int count, double xscale, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3395,7 +4125,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, int offset, int stride)
+		public static void PlotScatter(string labelId, double* values, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3421,7 +4151,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(string labelId, double* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3447,7 +4177,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(string labelId, ushort* values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(string labelId, double* values, int count, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3473,1552 +4203,493 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
 		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, xscale, xstart, flags, offset, stride);
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, double xscale, double xstart)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, double xscale)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, double xscale, ImPlotScatterFlags flags)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, ImPlotScatterFlags flags)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, double xscale, int offset)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, int offset)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, double xscale, ImPlotScatterFlags flags, int offset)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, ImPlotScatterFlags flags, int offset)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, double xscale, int offset, int stride)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, int offset, int stride)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, xscale, (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotScatter(byte* labelId, ref ushort values, int count, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(labelId, (ushort*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, double xscale, double xstart)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, double xscale)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, double xscale, ImPlotScatterFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, ImPlotScatterFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, double xscale, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, double xscale, ImPlotScatterFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, ImPlotScatterFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, double xscale, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotScatter(ref byte labelId, ref ushort values, int count, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotScatterNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, xscale, xstart, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, double xscale, double xstart)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, double xscale)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, double xscale, ImPlotScatterFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, ImPlotScatterFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, double xscale, double xstart, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, double xscale, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, double xscale, ImPlotScatterFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, ImPlotScatterFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, double xscale, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, xscale, (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotScatter(string labelId, ref ushort values, int count, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotScatterNative(pStr0, (ushort*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		internal static void PlotScatterNative(byte* labelId, int* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, int*, int, double, double, ImPlotScatterFlags, int, int, void>)vt[81])(labelId, values, count, xscale, xstart, flags, offset, stride);
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			PlotScatterNative(labelId, values, count, xscale, xstart, flags, offset, stride);
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
-		{
-			PlotScatterNative(labelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(int)));
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
-		{
-			PlotScatterNative(labelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(int)));
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, double xscale, double xstart)
-		{
-			PlotScatterNative(labelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(int)));
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, double xscale)
-		{
-			PlotScatterNative(labelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(int)));
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count)
-		{
-			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(int)));
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, double xscale, ImPlotScatterFlags flags)
-		{
-			PlotScatterNative(labelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(int)));
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, ImPlotScatterFlags flags)
-		{
-			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, double xscale, double xstart, int offset)
-		{
-			PlotScatterNative(labelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(int)));
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, double xscale, int offset)
-		{
-			PlotScatterNative(labelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(int)));
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, int offset)
-		{
-			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(int)));
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
-		{
-			PlotScatterNative(labelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(int)));
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, ImPlotScatterFlags flags, int offset)
-		{
-			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			PlotScatterNative(labelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, double xscale, int offset, int stride)
-		{
-			PlotScatterNative(labelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, int offset, int stride)
-		{
-			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			PlotScatterNative(labelId, values, count, xscale, (double)(0), flags, offset, stride);
-		}
-
-		public static void PlotScatter(byte* labelId, int* values, int count, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			PlotScatterNative(labelId, values, count, (double)(1), (double)(0), flags, offset, stride);
-		}
-
-		public static void PlotScatter(ref byte labelId, int* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
 				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, stride);
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(int)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(int)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, double xscale, double xstart)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, double xscale, double xstart)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(int)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, double xscale)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, double xscale)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(int)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(int)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, double xscale, ImPlotScatterFlags flags)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, double xscale, ImPlotScatterFlags flags)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(int)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, ImPlotScatterFlags flags)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, ImPlotScatterFlags flags)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, double xscale, double xstart, int offset)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, double xscale, double xstart, int offset)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(int)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, double xscale, int offset)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, double xscale, int offset)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(int)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, int offset)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, int offset)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(int)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(int)));
+				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, ImPlotScatterFlags flags, int offset)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
+				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, double xscale, double xstart, int offset, int stride)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, double xscale, double xstart, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
 				PlotScatterNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, double xscale, int offset, int stride)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, double xscale, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
 				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, int offset, int stride)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
 				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
 				PlotScatterNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, stride);
 			}
 		}
 
-		public static void PlotScatter(ref byte labelId, int* values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(ReadOnlySpan<byte> labelId, double* values, int count, ImPlotScatterFlags flags, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
 				PlotScatterNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, stride);
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(byte* labelId, ref double values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, xscale, xstart, flags, offset, stride);
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(byte* labelId, ref double values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, flags, offset, (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		public static void PlotScatter(byte* labelId, ref double values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, double xscale, double xstart)
+		public static void PlotScatter(byte* labelId, ref double values, int count, double xscale, double xstart)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, double xscale)
+		public static void PlotScatter(byte* labelId, ref double values, int count, double xscale)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count)
+		public static void PlotScatter(byte* labelId, ref double values, int count)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, double xscale, ImPlotScatterFlags flags)
+		public static void PlotScatter(byte* labelId, ref double values, int count, double xscale, ImPlotScatterFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, ImPlotScatterFlags flags)
+		public static void PlotScatter(byte* labelId, ref double values, int count, ImPlotScatterFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, double xscale, double xstart, int offset)
+		public static void PlotScatter(byte* labelId, ref double values, int count, double xscale, double xstart, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, double xscale, int offset)
+		public static void PlotScatter(byte* labelId, ref double values, int count, double xscale, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, int offset)
+		public static void PlotScatter(byte* labelId, ref double values, int count, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(byte* labelId, ref double values, int count, double xscale, ImPlotScatterFlags flags, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, ImPlotScatterFlags flags, int offset)
+		public static void PlotScatter(byte* labelId, ref double values, int count, ImPlotScatterFlags flags, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, double xscale, double xstart, int offset, int stride)
+		public static void PlotScatter(byte* labelId, ref double values, int count, double xscale, double xstart, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, double xscale, int offset, int stride)
+		public static void PlotScatter(byte* labelId, ref double values, int count, double xscale, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, int offset, int stride)
+		public static void PlotScatter(byte* labelId, ref double values, int count, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(byte* labelId, ref double values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (double* pvalues = &values)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotScatterNative(pStr0, values, count, xscale, (double)(0), flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotScatterNative(labelId, (double*)pvalues, count, xscale, (double)(0), flags, offset, stride);
 			}
 		}
 
-		public static void PlotScatter(string labelId, int* values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		public static void PlotScatter(byte* labelId, ref double values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotScatterNative(labelId, (double*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, xscale, xstart, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, double xscale)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, double xscale, ImPlotScatterFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, ImPlotScatterFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, double xscale, double xstart, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, double xscale, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, ImPlotScatterFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, double xscale, double xstart, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, double xscale, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, double xscale, ImPlotScatterFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, xscale, (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotScatter(ref byte labelId, ref double values, int count, ImPlotScatterFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pvalues = &values)
+				{
+					PlotScatterNative((byte*)plabelId, (double*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotScatter(string labelId, ref double values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5037,10 +4708,332 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotScatterNative(pStr0, values, count, (double)(1), (double)(0), flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (double* pvalues = &values)
 			{
-				Utils.Free(pStr0);
+				PlotScatterNative(pStr0, (double*)pvalues, count, xscale, xstart, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotScatter(string labelId, ref double values, int count, double xscale, double xstart, ImPlotScatterFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pvalues = &values)
+			{
+				PlotScatterNative(pStr0, (double*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(double)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotScatter(string labelId, ref double values, int count, double xscale, double xstart, ImPlotScatterFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pvalues = &values)
+			{
+				PlotScatterNative(pStr0, (double*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(double)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotScatter(string labelId, ref double values, int count, double xscale, double xstart)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pvalues = &values)
+			{
+				PlotScatterNative(pStr0, (double*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotScatter(string labelId, ref double values, int count, double xscale)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pvalues = &values)
+			{
+				PlotScatterNative(pStr0, (double*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotScatter(string labelId, ref double values, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pvalues = &values)
+			{
+				PlotScatterNative(pStr0, (double*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), (int)(0), (int)(sizeof(double)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotScatter(string labelId, ref double values, int count, double xscale, ImPlotScatterFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pvalues = &values)
+			{
+				PlotScatterNative(pStr0, (double*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotScatter(string labelId, ref double values, int count, ImPlotScatterFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pvalues = &values)
+			{
+				PlotScatterNative(pStr0, (double*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotScatter(string labelId, ref double values, int count, double xscale, double xstart, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pvalues = &values)
+			{
+				PlotScatterNative(pStr0, (double*)pvalues, count, xscale, xstart, (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotScatter(string labelId, ref double values, int count, double xscale, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pvalues = &values)
+			{
+				PlotScatterNative(pStr0, (double*)pvalues, count, xscale, (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotScatter(string labelId, ref double values, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pvalues = &values)
+			{
+				PlotScatterNative(pStr0, (double*)pvalues, count, (double)(1), (double)(0), (ImPlotScatterFlags)(0), offset, (int)(sizeof(double)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotScatter(string labelId, ref double values, int count, double xscale, ImPlotScatterFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pvalues = &values)
+			{
+				PlotScatterNative(pStr0, (double*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(double)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 	}

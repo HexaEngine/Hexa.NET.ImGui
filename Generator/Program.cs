@@ -24,6 +24,14 @@
             GenerateImPlot();
         }
 
+        public static void Thing( ReadOnlySpan<byte> bytes)
+        {
+            fixed (byte* ptr = bytes)
+            {
+                var p = ptr;
+            }
+        }
+
         private static int GenerateImPlot()
         {
             CsCodeGeneratorSettings.Load("cimplot/generator.json");

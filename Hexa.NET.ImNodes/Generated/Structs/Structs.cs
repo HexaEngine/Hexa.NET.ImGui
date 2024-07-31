@@ -11,6 +11,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
@@ -22,7 +23,9 @@ namespace Hexa.NET.ImNodes
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImNodesContextPtr : IEquatable<ImNodesContextPtr>
 	{
 		public ImNodesContextPtr(ImNodesContext* handle) { Handle = handle; }
@@ -53,7 +56,9 @@ namespace Hexa.NET.ImNodes
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImNodesContextPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -62,7 +67,9 @@ namespace Hexa.NET.ImNodes
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImNodesEditorContextPtr : IEquatable<ImNodesEditorContextPtr>
 	{
 		public ImNodesEditorContextPtr(ImNodesEditorContext* handle) { Handle = handle; }
@@ -93,7 +100,9 @@ namespace Hexa.NET.ImNodes
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImNodesEditorContextPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -116,7 +125,9 @@ namespace Hexa.NET.ImNodes
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImNodesIOPtr : IEquatable<ImNodesIOPtr>
 	{
 		public ImNodesIOPtr(ImNodesIO* handle) { Handle = handle; }
@@ -147,7 +158,9 @@ namespace Hexa.NET.ImNodes
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImNodesIOPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref EmulateThreeButtonMouse EmulateThreeButtonMouse => ref Unsafe.AsRef<EmulateThreeButtonMouse>(&Handle->EmulateThreeButtonMouse);
 		public ref LinkDetachWithModifierClick LinkDetachWithModifierClick => ref Unsafe.AsRef<LinkDetachWithModifierClick>(&Handle->LinkDetachWithModifierClick);
 		public ref MultipleSelectModifier MultipleSelectModifier => ref Unsafe.AsRef<MultipleSelectModifier>(&Handle->MultipleSelectModifier);
@@ -177,7 +190,9 @@ namespace Hexa.NET.ImNodes
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct EmulateThreeButtonMousePtr : IEquatable<EmulateThreeButtonMousePtr>
 	{
 		public EmulateThreeButtonMousePtr(EmulateThreeButtonMouse* handle) { Handle = handle; }
@@ -208,7 +223,9 @@ namespace Hexa.NET.ImNodes
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("EmulateThreeButtonMousePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public bool* Modifier { get => Handle->Modifier; set => Handle->Modifier = value; }
 
 		public unsafe void Destroy()
@@ -234,7 +251,9 @@ namespace Hexa.NET.ImNodes
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct LinkDetachWithModifierClickPtr : IEquatable<LinkDetachWithModifierClickPtr>
 	{
 		public LinkDetachWithModifierClickPtr(LinkDetachWithModifierClick* handle) { Handle = handle; }
@@ -265,7 +284,9 @@ namespace Hexa.NET.ImNodes
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("LinkDetachWithModifierClickPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public bool* Modifier { get => Handle->Modifier; set => Handle->Modifier = value; }
 
 		public unsafe void Destroy()
@@ -291,7 +312,9 @@ namespace Hexa.NET.ImNodes
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct MultipleSelectModifierPtr : IEquatable<MultipleSelectModifierPtr>
 	{
 		public MultipleSelectModifierPtr(MultipleSelectModifier* handle) { Handle = handle; }
@@ -322,7 +345,9 @@ namespace Hexa.NET.ImNodes
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("MultipleSelectModifierPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public bool* Modifier { get => Handle->Modifier; set => Handle->Modifier = value; }
 
 		public unsafe void Destroy()
@@ -392,7 +417,9 @@ namespace Hexa.NET.ImNodes
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImNodesStylePtr : IEquatable<ImNodesStylePtr>
 	{
 		public ImNodesStylePtr(ImNodesStyle* handle) { Handle = handle; }
@@ -423,7 +450,9 @@ namespace Hexa.NET.ImNodes
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImNodesStylePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref float GridSpacing => ref Unsafe.AsRef<float>(&Handle->GridSpacing);
 		public ref float NodeCornerRounding => ref Unsafe.AsRef<float>(&Handle->NodeCornerRounding);
 		public ref Vector2 NodePadding => ref Unsafe.AsRef<Vector2>(&Handle->NodePadding);

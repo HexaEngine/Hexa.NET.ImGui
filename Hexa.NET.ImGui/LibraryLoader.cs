@@ -1,36 +1,11 @@
 ﻿namespace Hexa.NET.ImGui
 {
     using System;
-    using System.Reflection;
     using System.Runtime.InteropServices;
+    using HexaGen.Runtime;
 
     public static class LibraryLoader
     {
-        public static void SetImportResolver()
-        {
-            NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), DllImportResolver);
-        }
-
-        private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
-        {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return LoadLocalLibrary("cimgui");
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                return LoadLocalLibrary("cimgui");
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                return LoadLocalLibrary("cimgui");
-            }
-            else
-            {
-                return LoadLocalLibrary("cimgui");
-            }
-        }
-
         public static nint LoadLibrary()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

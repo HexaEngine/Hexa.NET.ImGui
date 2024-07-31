@@ -14,7 +14,7 @@
 
         public static void GenerateEnums(CppCompilation compilation, string outputPath)
         {
-            string[] usings = { "System" };
+            string[] usings = { "System", "HexaGen.Runtime" };
 
             string outDir = Path.Combine(outputPath, "Enums");
             string fileName = Path.Combine(outDir, "Enums.cs");

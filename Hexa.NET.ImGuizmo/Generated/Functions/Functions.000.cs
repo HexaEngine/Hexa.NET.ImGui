@@ -22,7 +22,11 @@ namespace Hexa.NET.ImGuizmo
 
 		internal static void SetDrawlistNative(ImDrawList* drawlist)
 		{
+			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[0])(drawlist);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[0])((nint)drawlist);
+			#endif
 		}
 
 		public static void SetDrawlist(ImDrawListPtr drawlist)
@@ -45,7 +49,11 @@ namespace Hexa.NET.ImGuizmo
 
 		internal static void BeginFrameNative()
 		{
+			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<void>)vt[1])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[1])();
+			#endif
 		}
 
 		public static void BeginFrame()
@@ -55,7 +63,11 @@ namespace Hexa.NET.ImGuizmo
 
 		internal static void SetImGuiContextNative(ImGuiContext* ctx)
 		{
+			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[2])(ctx);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[2])((nint)ctx);
+			#endif
 		}
 
 		public static void SetImGuiContext(ImGuiContextPtr ctx)
@@ -73,7 +85,11 @@ namespace Hexa.NET.ImGuizmo
 
 		internal static byte IsOverNative()
 		{
+			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<byte>)vt[3])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[3])();
+			#endif
 		}
 
 		public static bool IsOver()
@@ -84,7 +100,11 @@ namespace Hexa.NET.ImGuizmo
 
 		internal static byte IsUsingNative()
 		{
+			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<byte>)vt[4])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[4])();
+			#endif
 		}
 
 		public static bool IsUsing()
@@ -95,7 +115,11 @@ namespace Hexa.NET.ImGuizmo
 
 		internal static byte IsUsingAnyNative()
 		{
+			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<byte>)vt[5])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[5])();
+			#endif
 		}
 
 		public static bool IsUsingAny()
@@ -106,7 +130,11 @@ namespace Hexa.NET.ImGuizmo
 
 		internal static void EnableNative(byte enable)
 		{
+			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<byte, void>)vt[6])(enable);
+			#else
+			((delegate* unmanaged[Cdecl]<byte, void>)vt[6])(enable);
+			#endif
 		}
 
 		public static void Enable(bool enable)
@@ -116,7 +144,11 @@ namespace Hexa.NET.ImGuizmo
 
 		internal static void DecomposeMatrixToComponentsNative(float* matrix, float* translation, float* rotation, float* scale)
 		{
+			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<float*, float*, float*, float*, void>)vt[7])(matrix, translation, rotation, scale);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, void>)vt[7])((nint)matrix, (nint)translation, (nint)rotation, (nint)scale);
+			#endif
 		}
 
 		public static void DecomposeMatrixToComponents(float* matrix, float* translation, float* rotation, float* scale)
@@ -468,7 +500,11 @@ namespace Hexa.NET.ImGuizmo
 
 		internal static void RecomposeMatrixFromComponentsNative(float* translation, float* rotation, float* scale, float* matrix)
 		{
+			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<float*, float*, float*, float*, void>)vt[8])(translation, rotation, scale, matrix);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, void>)vt[8])((nint)translation, (nint)rotation, (nint)scale, (nint)matrix);
+			#endif
 		}
 
 		public static void RecomposeMatrixFromComponents(float* translation, float* rotation, float* scale, float* matrix)
@@ -820,7 +856,11 @@ namespace Hexa.NET.ImGuizmo
 
 		internal static void SetRectNative(float x, float y, float width, float height)
 		{
+			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<float, float, float, float, void>)vt[9])(x, y, width, height);
+			#else
+			((delegate* unmanaged[Cdecl]<float, float, float, float, void>)vt[9])(x, y, width, height);
+			#endif
 		}
 
 		public static void SetRect(float x, float y, float width, float height)
@@ -830,7 +870,11 @@ namespace Hexa.NET.ImGuizmo
 
 		internal static void SetOrthographicNative(byte isOrthographic)
 		{
+			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<byte, void>)vt[10])(isOrthographic);
+			#else
+			((delegate* unmanaged[Cdecl]<byte, void>)vt[10])(isOrthographic);
+			#endif
 		}
 
 		public static void SetOrthographic(bool isOrthographic)
@@ -840,7 +884,11 @@ namespace Hexa.NET.ImGuizmo
 
 		internal static void DrawCubesNative(float* view, float* projection, float* matrices, int matrixCount)
 		{
+			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<float*, float*, float*, int, void>)vt[11])(view, projection, matrices, matrixCount);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, void>)vt[11])((nint)view, (nint)projection, (nint)matrices, matrixCount);
+			#endif
 		}
 
 		public static void DrawCubes(float* view, float* projection, float* matrices, int matrixCount)
@@ -1036,7 +1084,11 @@ namespace Hexa.NET.ImGuizmo
 
 		internal static void DrawGridNative(float* view, float* projection, float* matrix, float gridSize)
 		{
+			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<float*, float*, float*, float, void>)vt[12])(view, projection, matrix, gridSize);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, float, void>)vt[12])((nint)view, (nint)projection, (nint)matrix, gridSize);
+			#endif
 		}
 
 		public static void DrawGrid(float* view, float* projection, float* matrix, float gridSize)
@@ -1188,7 +1240,11 @@ namespace Hexa.NET.ImGuizmo
 
 		internal static byte ManipulateNative(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
+			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<float*, float*, ImGuizmoOperation, ImGuizmoMode, float*, float*, float*, float*, float*, byte>)vt[13])(view, projection, operation, mode, matrix, deltaMatrix, snap, localBounds, boundsSnap);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuizmoOperation, ImGuizmoMode, nint, nint, nint, nint, nint, byte>)vt[13])((nint)view, (nint)projection, operation, mode, (nint)matrix, (nint)deltaMatrix, (nint)snap, (nint)localBounds, (nint)boundsSnap);
+			#endif
 		}
 
 		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
@@ -4967,60 +5023,6 @@ namespace Hexa.NET.ImGuizmo
 							return ret != 0;
 						}
 					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* plocalBounds = &localBounds)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (float* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* plocalBounds = &localBounds)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* plocalBounds = &localBounds)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-					return ret != 0;
 				}
 			}
 		}

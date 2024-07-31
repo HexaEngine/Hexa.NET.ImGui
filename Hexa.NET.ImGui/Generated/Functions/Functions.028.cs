@@ -18,729 +18,7 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* poverlayText = &overlayText)
-			{
-				PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* poverlayText = &overlayText)
-			{
-				PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin)
-		{
-			fixed (byte* poverlayText = &overlayText)
-			{
-				PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, ref byte overlayText)
-		{
-			fixed (byte* poverlayText = &overlayText)
-			{
-				PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, ref byte overlayText)
-		{
-			fixed (byte* poverlayText = &overlayText)
-			{
-				PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, ref byte overlayText, float scaleMin)
-		{
-			fixed (byte* poverlayText = &overlayText)
-			{
-				PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* poverlayText = &overlayText)
-			{
-				PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* poverlayText = &overlayText)
-			{
-				PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize)
-		{
-			fixed (byte* poverlayText = &overlayText)
-			{
-				PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, ref byte overlayText, Vector2 graphSize)
-		{
-			fixed (byte* poverlayText = &overlayText)
-			{
-				PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* poverlayText = &overlayText)
-			{
-				PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* poverlayText = &overlayText)
-			{
-				PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, string overlayText)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, float scaleMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, string overlayText, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, ref byte overlayText)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, ref byte overlayText)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, ref byte overlayText, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, ref byte overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static bool InputDouble(string label, double* v, double step, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -761,9 +39,9 @@ namespace Hexa.NET.ImGui
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (overlayText != null)
+			if (format != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				pStrSize1 = Utils.GetByteCountUTF8(format);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -773,10 +51,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, graphSize);
+			byte ret = InputDoubleNative(pStr0, v, step, (double)(0.0), pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -785,9 +63,10 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
+		public static bool InputDouble(string label, double* v, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -808,9 +87,9 @@ namespace Hexa.NET.ImGui
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (overlayText != null)
+			if (format != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				pStrSize1 = Utils.GetByteCountUTF8(format);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -820,10 +99,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+			byte ret = InputDoubleNative(pStr0, v, (double)(0.0), (double)(0.0), pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -832,1969 +111,496 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, string overlayText)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, float scaleMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), graphSize);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, string overlayText, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), graphSize);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, graphSize);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		internal static void ValueNative(byte* prefix, byte b)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, byte, void>)vt[238])(prefix, b);
-		}
-
-		public static void Value(byte* prefix, bool b)
-		{
-			ValueNative(prefix, b ? (byte)1 : (byte)0);
-		}
-
-		public static void Value(ref byte prefix, bool b)
-		{
-			fixed (byte* pprefix = &prefix)
-			{
-				ValueNative((byte*)pprefix, b ? (byte)1 : (byte)0);
-			}
-		}
-
-		public static void Value(string prefix, bool b)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (prefix != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(prefix);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ValueNative(pStr0, b ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		internal static void ValueNative(byte* prefix, int v)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, int, void>)vt[239])(prefix, v);
-		}
-
-		public static void Value(byte* prefix, int v)
-		{
-			ValueNative(prefix, v);
-		}
-
-		public static void Value(ref byte prefix, int v)
-		{
-			fixed (byte* pprefix = &prefix)
-			{
-				ValueNative((byte*)pprefix, v);
-			}
-		}
-
-		public static void Value(string prefix, int v)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (prefix != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(prefix);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ValueNative(pStr0, v);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		internal static void ValueNative(byte* prefix, uint v)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, uint, void>)vt[240])(prefix, v);
-		}
-
-		public static void Value(byte* prefix, uint v)
-		{
-			ValueNative(prefix, v);
-		}
-
-		public static void Value(ref byte prefix, uint v)
-		{
-			fixed (byte* pprefix = &prefix)
-			{
-				ValueNative((byte*)pprefix, v);
-			}
-		}
-
-		public static void Value(string prefix, uint v)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (prefix != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(prefix);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ValueNative(pStr0, v);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		internal static void ValueNative(byte* prefix, float v, byte* floatFormat)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, float, byte*, void>)vt[241])(prefix, v, floatFormat);
-		}
-
-		public static void Value(byte* prefix, float v, byte* floatFormat)
-		{
-			ValueNative(prefix, v, floatFormat);
-		}
-
-		public static void Value(byte* prefix, float v)
-		{
-			ValueNative(prefix, v, (byte*)(default));
-		}
-
-		public static void Value(ref byte prefix, float v, byte* floatFormat)
-		{
-			fixed (byte* pprefix = &prefix)
-			{
-				ValueNative((byte*)pprefix, v, floatFormat);
-			}
-		}
-
-		public static void Value(ref byte prefix, float v)
-		{
-			fixed (byte* pprefix = &prefix)
-			{
-				ValueNative((byte*)pprefix, v, (byte*)(default));
-			}
-		}
-
-		public static void Value(string prefix, float v, byte* floatFormat)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (prefix != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(prefix);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ValueNative(pStr0, v, floatFormat);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void Value(string prefix, float v)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (prefix != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(prefix);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ValueNative(pStr0, v, (byte*)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void Value(byte* prefix, float v, ref byte floatFormat)
-		{
-			fixed (byte* pfloatFormat = &floatFormat)
-			{
-				ValueNative(prefix, v, (byte*)pfloatFormat);
-			}
-		}
-
-		public static void Value(byte* prefix, float v, string floatFormat)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (floatFormat != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(floatFormat);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(floatFormat, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ValueNative(prefix, v, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void Value(ref byte prefix, float v, ref byte floatFormat)
-		{
-			fixed (byte* pprefix = &prefix)
-			{
-				fixed (byte* pfloatFormat = &floatFormat)
-				{
-					ValueNative((byte*)pprefix, v, (byte*)pfloatFormat);
-				}
-			}
-		}
-
-		public static void Value(string prefix, float v, string floatFormat)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (prefix != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(prefix);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(prefix, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (floatFormat != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(floatFormat);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(floatFormat, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			ValueNative(pStr0, v, pStr1);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		internal static byte BeginMenuBarNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[242])();
-		}
-
-		public static bool BeginMenuBar()
-		{
-			byte ret = BeginMenuBarNative();
 			return ret != 0;
 		}
 
-		internal static void EndMenuBarNative()
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
-			((delegate* unmanaged[Cdecl]<void>)vt[243])();
-		}
-
-		public static void EndMenuBar()
-		{
-			EndMenuBarNative();
-		}
-
-		internal static byte BeginMainMenuBarNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[244])();
-		}
-
-		public static bool BeginMainMenuBar()
-		{
-			byte ret = BeginMainMenuBarNative();
-			return ret != 0;
-		}
-
-		internal static void EndMainMenuBarNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[245])();
-		}
-
-		public static void EndMainMenuBar()
-		{
-			EndMainMenuBarNative();
-		}
-
-		internal static byte BeginMenuNative(byte* label, byte enabled)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, byte, byte>)vt[246])(label, enabled);
-		}
-
-		public static bool BeginMenu(byte* label, bool enabled)
-		{
-			byte ret = BeginMenuNative(label, enabled ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		public static bool BeginMenu(byte* label)
-		{
-			byte ret = BeginMenuNative(label, (byte)(1));
-			return ret != 0;
-		}
-
-		public static bool BeginMenu(ref byte label, bool enabled)
-		{
-			fixed (byte* plabel = &label)
+			fixed (byte* plabel = label)
 			{
-				byte ret = BeginMenuNative((byte*)plabel, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginMenu(ref byte label)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = BeginMenuNative((byte*)plabel, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginMenu(string label, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pformat = format)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginMenuNative(pStr0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginMenu(string label)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginMenuNative(pStr0, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		internal static void EndMenuNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[247])();
-		}
-
-		public static void EndMenu()
-		{
-			EndMenuNative();
-		}
-
-		internal static byte MenuItemNative(byte* label, byte* shortcut, byte selected, byte enabled)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte, byte, byte>)vt[248])(label, shortcut, selected, enabled);
-		}
-
-		public static bool MenuItem(byte* label, byte* shortcut, bool selected, bool enabled)
-		{
-			byte ret = MenuItemNative(label, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		public static bool MenuItem(byte* label, byte* shortcut, bool selected)
-		{
-			byte ret = MenuItemNative(label, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-			return ret != 0;
-		}
-
-		public static bool MenuItem(byte* label, byte* shortcut)
-		{
-			byte ret = MenuItemNative(label, shortcut, (byte)(0), (byte)(1));
-			return ret != 0;
-		}
-
-		public static bool MenuItem(byte* label)
-		{
-			byte ret = MenuItemNative(label, (byte*)(default), (byte)(0), (byte)(1));
-			return ret != 0;
-		}
-
-		public static bool MenuItem(byte* label, bool selected)
-		{
-			byte ret = MenuItemNative(label, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-			return ret != 0;
-		}
-
-		public static bool MenuItem(byte* label, bool selected, bool enabled)
-		{
-			byte ret = MenuItemNative(label, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		public static bool MenuItem(ref byte label, byte* shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = MenuItemNative((byte*)plabel, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(ref byte label, byte* shortcut, bool selected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = MenuItemNative((byte*)plabel, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(ref byte label, byte* shortcut)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = MenuItemNative((byte*)plabel, shortcut, (byte)(0), (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(ref byte label)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = MenuItemNative((byte*)plabel, (byte*)(default), (byte)(0), (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(ref byte label, bool selected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = MenuItemNative((byte*)plabel, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(ref byte label, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = MenuItemNative((byte*)plabel, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(string label, byte* shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemNative(pStr0, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(string label, byte* shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemNative(pStr0, shortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(string label, byte* shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemNative(pStr0, shortcut, (byte)(0), (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(string label)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemNative(pStr0, (byte*)(default), (byte)(0), (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(string label, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemNative(pStr0, (byte*)(default), selected ? (byte)1 : (byte)0, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(string label, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemNative(pStr0, (byte*)(default), selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(byte* label, ref byte shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemNative(label, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(byte* label, ref byte shortcut, bool selected)
-		{
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemNative(label, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(byte* label, ref byte shortcut)
-		{
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemNative(label, (byte*)pshortcut, (byte)(0), (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(byte* label, string shortcut, bool selected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (shortcut != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemNative(label, pStr0, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(byte* label, string shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (shortcut != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemNative(label, pStr0, selected ? (byte)1 : (byte)0, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(byte* label, string shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (shortcut != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemNative(label, pStr0, (byte)(0), (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(ref byte label, ref byte shortcut, bool selected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+					byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool MenuItem(ref byte label, ref byte shortcut, bool selected)
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast, ReadOnlySpan<byte> format)
 		{
-			fixed (byte* plabel = &label)
+			fixed (byte* plabel = label)
 			{
-				fixed (byte* pshortcut = &shortcut)
+				fixed (byte* pformat = format)
 				{
-					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, selected ? (byte)1 : (byte)0, (byte)(1));
+					byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool MenuItem(ref byte label, ref byte shortcut)
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, ReadOnlySpan<byte> format)
 		{
-			fixed (byte* plabel = &label)
+			fixed (byte* plabel = label)
 			{
-				fixed (byte* pshortcut = &shortcut)
+				fixed (byte* pformat = format)
 				{
-					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (byte)(0), (byte)(1));
+					byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool MenuItem(string label, string shortcut, bool selected, bool enabled)
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, ReadOnlySpan<byte> format)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (byte* plabel = label)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pformat = format)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (shortcut != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemNative(pStr0, pStr1, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(string label, string shortcut, bool selected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (shortcut != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemNative(pStr0, pStr1, selected ? (byte)1 : (byte)0, (byte)(1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(string label, string shortcut)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (shortcut != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemNative(pStr0, pStr1, (byte)(0), (byte)(1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		internal static byte MenuItemNative(byte* label, byte* shortcut, bool* pSelected, byte enabled)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, bool*, byte, byte>)vt[249])(label, shortcut, pSelected, enabled);
-		}
-
-		public static bool MenuItem(byte* label, byte* shortcut, bool* pSelected, bool enabled)
-		{
-			byte ret = MenuItemNative(label, shortcut, pSelected, enabled ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		public static bool MenuItem(byte* label, byte* shortcut, bool* pSelected)
-		{
-			byte ret = MenuItemNative(label, shortcut, pSelected, (byte)(1));
-			return ret != 0;
-		}
-
-		public static bool MenuItem(ref byte label, byte* shortcut, bool* pSelected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = MenuItemNative((byte*)plabel, shortcut, pSelected, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(ref byte label, byte* shortcut, bool* pSelected)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = MenuItemNative((byte*)plabel, shortcut, pSelected, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(string label, byte* shortcut, bool* pSelected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemNative(pStr0, shortcut, pSelected, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(string label, byte* shortcut, bool* pSelected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemNative(pStr0, shortcut, pSelected, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(byte* label, ref byte shortcut, bool* pSelected, bool enabled)
-		{
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemNative(label, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(byte* label, ref byte shortcut, bool* pSelected)
-		{
-			fixed (byte* pshortcut = &shortcut)
-			{
-				byte ret = MenuItemNative(label, (byte*)pshortcut, pSelected, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(byte* label, string shortcut, bool* pSelected, bool enabled)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (shortcut != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemNative(label, pStr0, pSelected, enabled ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(byte* label, string shortcut, bool* pSelected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (shortcut != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = MenuItemNative(label, pStr0, pSelected, (byte)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(ref byte label, ref byte shortcut, bool* pSelected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pshortcut = &shortcut)
-				{
-					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, enabled ? (byte)1 : (byte)0);
+					byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool MenuItem(ref byte label, ref byte shortcut, bool* pSelected)
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
-			fixed (byte* plabel = &label)
+			fixed (byte* plabel = label)
 			{
-				fixed (byte* pshortcut = &shortcut)
+				fixed (byte* pformat = format)
 				{
-					byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, pSelected, (byte)(1));
+					byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool MenuItem(string label, string shortcut, bool* pSelected, bool enabled)
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (byte* plabel = label)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pformat = format)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (shortcut != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemNative(pStr0, pStr1, pSelected, enabled ? (byte)1 : (byte)0);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(string label, string shortcut, bool* pSelected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (shortcut != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			byte ret = MenuItemNative(pStr0, pStr1, pSelected, (byte)(1));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool MenuItem(byte* label, byte* shortcut, ref bool pSelected, bool enabled)
-		{
-			fixed (bool* ppSelected = &pSelected)
-			{
-				byte ret = MenuItemNative(label, shortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(byte* label, byte* shortcut, ref bool pSelected)
-		{
-			fixed (bool* ppSelected = &pSelected)
-			{
-				byte ret = MenuItemNative(label, shortcut, (bool*)ppSelected, (byte)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(ref byte label, byte* shortcut, ref bool pSelected, bool enabled)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (bool* ppSelected = &pSelected)
-				{
-					byte ret = MenuItemNative((byte*)plabel, shortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool MenuItem(ref byte label, byte* shortcut, ref bool pSelected)
+		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, ref byte format, ImGuiInputTextFlags flags)
 		{
-			fixed (byte* plabel = &label)
+			fixed (double* pv = &v)
 			{
-				fixed (bool* ppSelected = &pSelected)
+				fixed (byte* pformat = &format)
 				{
-					byte ret = MenuItemNative((byte*)plabel, shortcut, (bool*)ppSelected, (byte)(1));
+					byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool MenuItem(string label, byte* shortcut, ref bool pSelected, bool enabled)
+		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, ref byte format)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (double* pv = &v)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pformat = &format)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* ppSelected = &pSelected)
-			{
-				byte ret = MenuItemNative(pStr0, shortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(string label, byte* shortcut, ref bool pSelected)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* ppSelected = &pSelected)
-			{
-				byte ret = MenuItemNative(pStr0, shortcut, (bool*)ppSelected, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool MenuItem(byte* label, ref byte shortcut, ref bool pSelected, bool enabled)
-		{
-			fixed (byte* pshortcut = &shortcut)
-			{
-				fixed (bool* ppSelected = &pSelected)
-				{
-					byte ret = MenuItemNative(label, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+					byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool MenuItem(byte* label, ref byte shortcut, ref bool pSelected)
+		public static bool InputDouble(byte* label, ref double v, double step, ref byte format)
 		{
-			fixed (byte* pshortcut = &shortcut)
+			fixed (double* pv = &v)
 			{
-				fixed (bool* ppSelected = &pSelected)
+				fixed (byte* pformat = &format)
 				{
-					byte ret = MenuItemNative(label, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+					byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool MenuItem(byte* label, string shortcut, ref bool pSelected, bool enabled)
+		public static bool InputDouble(byte* label, ref double v, ref byte format)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (shortcut != null)
+			fixed (double* pv = &v)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pformat = &format)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* ppSelected = &pSelected)
-			{
-				byte ret = MenuItemNative(label, pStr0, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
 			}
 		}
 
-		public static bool MenuItem(byte* label, string shortcut, ref bool pSelected)
+		public static bool InputDouble(byte* label, ref double v, double step, ref byte format, ImGuiInputTextFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (shortcut != null)
+			fixed (double* pv = &v)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pformat = &format)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), (byte*)pformat, flags);
+					return ret != 0;
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* ppSelected = &pSelected)
-			{
-				byte ret = MenuItemNative(label, pStr0, (bool*)ppSelected, (byte)(1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
 			}
 		}
 
-		public static bool MenuItem(ref byte label, ref byte shortcut, ref bool pSelected, bool enabled)
+		public static bool InputDouble(byte* label, ref double v, ref byte format, ImGuiInputTextFlags flags)
 		{
-			fixed (byte* plabel = &label)
+			fixed (double* pv = &v)
 			{
-				fixed (byte* pshortcut = &shortcut)
+				fixed (byte* pformat = &format)
 				{
-					fixed (bool* ppSelected = &pSelected)
+					byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (double* pv = &v)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, string format)
+		{
+			fixed (double* pv = &v)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, string format)
+		{
+			fixed (double* pv = &v)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, string format)
+		{
+			fixed (double* pv = &v)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (double* pv = &v)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (double* pv = &v)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (double* pv = &v)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (double* pv = &v)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, ReadOnlySpan<byte> format)
+		{
+			fixed (double* pv = &v)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, ReadOnlySpan<byte> format)
+		{
+			fixed (double* pv = &v)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (double* pv = &v)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (double* pv = &v)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, double step, double stepFast, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, (byte*)pformat, flags);
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool MenuItem(ref byte label, ref byte shortcut, ref bool pSelected)
+		public static bool InputDouble(ref byte label, ref double v, double step, double stepFast, ref byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (byte* pshortcut = &shortcut)
+				fixed (double* pv = &v)
 				{
-					fixed (bool* ppSelected = &pSelected)
+					fixed (byte* pformat = &format)
 					{
-						byte ret = MenuItemNative((byte*)plabel, (byte*)pshortcut, (bool*)ppSelected, (byte)(1));
+						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 						return ret != 0;
 					}
 				}
 			}
 		}
 
-		public static bool MenuItem(string label, string shortcut, ref bool pSelected, bool enabled)
+		public static bool InputDouble(ref byte label, ref double v, double step, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, double step, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, double step, double stepFast, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2813,26 +619,26 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (shortcut != null)
+			fixed (double* pv = &v)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
 				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
 				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			fixed (bool* ppSelected = &pSelected)
-			{
-				byte ret = MenuItemNative(pStr0, pStr1, (bool*)ppSelected, enabled ? (byte)1 : (byte)0);
+				byte ret = InputDoubleNative(pStr0, (double*)pv, step, stepFast, pStr1, flags);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);
@@ -2845,7 +651,1315 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static bool MenuItem(string label, string shortcut, ref bool pSelected)
+		public static bool InputDouble(string label, ref double v, double step, double stepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = InputDoubleNative(pStr0, (double*)pv, step, stepFast, pStr1, (ImGuiInputTextFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, double step, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = InputDoubleNative(pStr0, (double*)pv, step, (double)(0.0), pStr1, (ImGuiInputTextFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = InputDoubleNative(pStr0, (double*)pv, (double)(0.0), (double)(0.0), pStr1, (ImGuiInputTextFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, double step, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = InputDoubleNative(pStr0, (double*)pv, step, (double)(0.0), pStr1, flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = InputDoubleNative(pStr0, (double*)pv, (double)(0.0), (double)(0.0), pStr1, flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, double stepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, double stepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		internal static byte InputScalarNative(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDataType, void*, void*, void*, byte*, ImGuiInputTextFlags, byte>)vt[198])(label, dataType, pData, pStep, pStepFast, format, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDataType, nint, nint, nint, nint, ImGuiInputTextFlags, byte>)vt[198])((nint)label, dataType, (nint)pData, (nint)pStep, (nint)pStepFast, (nint)format, flags);
+			#endif
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, format, flags);
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, byte* format)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, byte* format)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, byte* format)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), format, flags);
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), format, flags);
+			return ret != 0;
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, pStepFast, format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, pStepFast, format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, (void*)(default), (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)(default), format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, (void*)(default), (void*)(default), format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, pStepFast, (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)(default), (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, (void*)(default), (void*)(default), (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)(default), format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, (void*)(default), (void*)(default), format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNative(label, dataType, pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNative(label, dataType, pData, pStep, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(byte* label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNative(label, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, void* pStep, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalar(ref byte label, ImGuiDataType dataType, void* pData, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2866,9 +1980,9 @@ namespace Hexa.NET.ImGui
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (shortcut != null)
+			if (format != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
+				pStrSize1 = Utils.GetByteCountUTF8(format);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -2878,70 +1992,76 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			fixed (bool* ppSelected = &pSelected)
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, pStepFast, pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
-				byte ret = MenuItemNative(pStr0, pStr1, (bool*)ppSelected, (byte)(1));
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr1);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				else
 				{
-					Utils.Free(pStr0);
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
 				}
-				return ret != 0;
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
 			}
-		}
-
-		internal static byte BeginTooltipNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[250])();
-		}
-
-		public static bool BeginTooltip()
-		{
-			byte ret = BeginTooltipNative();
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, pStepFast, pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
 			return ret != 0;
 		}
 
-		internal static void EndTooltipNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[251])();
-		}
-
-		public static void EndTooltip()
-		{
-			EndTooltipNative();
-		}
-
-		internal static void SetTooltipNative(byte* fmt)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[252])(fmt);
-		}
-
-		public static void SetTooltip(byte* fmt)
-		{
-			SetTooltipNative(fmt);
-		}
-
-		public static void SetTooltip(ref byte fmt)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				SetTooltipNative((byte*)pfmt);
-			}
-		}
-
-		public static void SetTooltip(string fmt)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (fmt != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2951,41 +2071,45 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			SetTooltipNative(pStr0);
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		internal static void SetTooltipVNative(byte* fmt, nuint args)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[253])(fmt, args);
-		}
-
-		public static void SetTooltipV(byte* fmt, nuint args)
-		{
-			SetTooltipVNative(fmt, args);
-		}
-
-		public static void SetTooltipV(ref byte fmt, nuint args)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				SetTooltipVNative((byte*)pfmt, args);
-			}
-		}
-
-		public static void SetTooltipV(string fmt, nuint args)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (fmt != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2995,52 +2119,45 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			SetTooltipVNative(pStr0, args);
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, (void*)(default), (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
-		}
-
-		internal static byte BeginItemTooltipNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[254])();
-		}
-
-		public static bool BeginItemTooltip()
-		{
-			byte ret = BeginItemTooltipNative();
 			return ret != 0;
 		}
 
-		internal static void SetItemTooltipNative(byte* fmt)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[255])(fmt);
-		}
-
-		public static void SetItemTooltip(byte* fmt)
-		{
-			SetItemTooltipNative(fmt);
-		}
-
-		public static void SetItemTooltip(ref byte fmt)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				SetItemTooltipNative((byte*)pfmt);
-			}
-		}
-
-		public static void SetItemTooltip(string fmt)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, void* pStep, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (fmt != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3050,41 +2167,45 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			SetItemTooltipNative(pStr0);
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNative(pStr0, dataType, pData, pStep, (void*)(default), pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		internal static void SetItemTooltipVNative(byte* fmt, nuint args)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[256])(fmt, args);
-		}
-
-		public static void SetItemTooltipV(byte* fmt, nuint args)
-		{
-			SetItemTooltipVNative(fmt, args);
-		}
-
-		public static void SetItemTooltipV(ref byte fmt, nuint args)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				SetItemTooltipVNative((byte*)pfmt, args);
-			}
-		}
-
-		public static void SetItemTooltipV(string fmt, nuint args)
+		public static bool InputScalar(string label, ImGuiDataType dataType, void* pData, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (fmt != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3094,71 +2215,31 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			SetItemTooltipVNative(pStr0, args);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		internal static byte BeginPopupNative(byte* strId, ImGuiWindowFlags flags)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiWindowFlags, byte>)vt[257])(strId, flags);
-		}
-
-		public static bool BeginPopup(byte* strId, ImGuiWindowFlags flags)
-		{
-			byte ret = BeginPopupNative(strId, flags);
-			return ret != 0;
-		}
-
-		public static bool BeginPopup(byte* strId)
-		{
-			byte ret = BeginPopupNative(strId, (ImGuiWindowFlags)(0));
-			return ret != 0;
-		}
-
-		public static bool BeginPopup(ref byte strId, ImGuiWindowFlags flags)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginPopupNative((byte*)pstrId, flags);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginPopup(ref byte strId)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginPopupNative((byte*)pstrId, (ImGuiWindowFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginPopup(string strId, ImGuiWindowFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
 				else
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
 			}
-			byte ret = BeginPopupNative(pStr0, flags);
+			byte ret = InputScalarNative(pStr0, dataType, pData, (void*)(default), (void*)(default), pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3166,255 +2247,274 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool BeginPopup(string strId)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
+			fixed (byte* plabel = label)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (byte* pformat = format)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginPopupNative(pStr0, (ImGuiWindowFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		internal static byte BeginPopupModalNative(byte* name, bool* pOpen, ImGuiWindowFlags flags)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, bool*, ImGuiWindowFlags, byte>)vt[258])(name, pOpen, flags);
-		}
-
-		public static bool BeginPopupModal(byte* name, bool* pOpen, ImGuiWindowFlags flags)
-		{
-			byte ret = BeginPopupModalNative(name, pOpen, flags);
-			return ret != 0;
-		}
-
-		public static bool BeginPopupModal(byte* name, bool* pOpen)
-		{
-			byte ret = BeginPopupModalNative(name, pOpen, (ImGuiWindowFlags)(0));
-			return ret != 0;
-		}
-
-		public static bool BeginPopupModal(byte* name)
-		{
-			byte ret = BeginPopupModalNative(name, (bool*)(default), (ImGuiWindowFlags)(0));
-			return ret != 0;
-		}
-
-		public static bool BeginPopupModal(byte* name, ImGuiWindowFlags flags)
-		{
-			byte ret = BeginPopupModalNative(name, (bool*)(default), flags);
-			return ret != 0;
-		}
-
-		public static bool BeginPopupModal(ref byte name, bool* pOpen, ImGuiWindowFlags flags)
-		{
-			fixed (byte* pname = &name)
-			{
-				byte ret = BeginPopupModalNative((byte*)pname, pOpen, flags);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginPopupModal(ref byte name, bool* pOpen)
-		{
-			fixed (byte* pname = &name)
-			{
-				byte ret = BeginPopupModalNative((byte*)pname, pOpen, (ImGuiWindowFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginPopupModal(ref byte name)
-		{
-			fixed (byte* pname = &name)
-			{
-				byte ret = BeginPopupModalNative((byte*)pname, (bool*)(default), (ImGuiWindowFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginPopupModal(ref byte name, ImGuiWindowFlags flags)
-		{
-			fixed (byte* pname = &name)
-			{
-				byte ret = BeginPopupModalNative((byte*)pname, (bool*)(default), flags);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginPopupModal(string name, bool* pOpen, ImGuiWindowFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginPopupModalNative(pStr0, pOpen, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginPopupModal(string name, bool* pOpen)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginPopupModalNative(pStr0, pOpen, (ImGuiWindowFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginPopupModal(string name)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginPopupModalNative(pStr0, (bool*)(default), (ImGuiWindowFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginPopupModal(string name, ImGuiWindowFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginPopupModalNative(pStr0, (bool*)(default), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginPopupModal(byte* name, ref bool pOpen, ImGuiWindowFlags flags)
-		{
-			fixed (bool* ppOpen = &pOpen)
-			{
-				byte ret = BeginPopupModalNative(name, (bool*)ppOpen, flags);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginPopupModal(byte* name, ref bool pOpen)
-		{
-			fixed (bool* ppOpen = &pOpen)
-			{
-				byte ret = BeginPopupModalNative(name, (bool*)ppOpen, (ImGuiWindowFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginPopupModal(ref byte name, ref bool pOpen, ImGuiWindowFlags flags)
-		{
-			fixed (byte* pname = &name)
-			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					byte ret = BeginPopupModalNative((byte*)pname, (bool*)ppOpen, flags);
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)pformat, flags);
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool BeginPopupModal(ref byte name, ref bool pOpen)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
 		{
-			fixed (byte* pname = &name)
+			fixed (byte* plabel = label)
 			{
-				fixed (bool* ppOpen = &pOpen)
+				fixed (byte* pformat = format)
 				{
-					byte ret = BeginPopupModalNative((byte*)pname, (bool*)ppOpen, (ImGuiWindowFlags)(0));
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
 					return ret != 0;
 				}
 			}
 		}
 
-		public static bool BeginPopupModal(string name, ref bool pOpen, ImGuiWindowFlags flags)
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalar(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNative((byte*)plabel, dataType, pData, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		internal static byte InputScalarNNative(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDataType, void*, int, void*, void*, byte*, ImGuiInputTextFlags, byte>)vt[199])(label, dataType, pData, components, pStep, pStepFast, format, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDataType, nint, int, nint, nint, nint, ImGuiInputTextFlags, byte>)vt[199])((nint)label, dataType, (nint)pData, components, (nint)pStep, (nint)pStepFast, (nint)format, flags);
+			#endif
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, pStepFast, format, flags);
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, byte* format)
+		{
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, pStepFast, format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast)
+		{
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep)
+		{
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components)
+		{
+			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)(default), (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, byte* format)
+		{
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)(default), format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, byte* format)
+		{
+			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)(default), (void*)(default), format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, pStepFast, (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)(default), (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)(default), (void*)(default), (byte*)(default), flags);
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)(default), format, flags);
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)(default), (void*)(default), format, flags);
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3424,12 +2524,1335 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (bool* ppOpen = &pOpen)
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, pStepFast, format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				byte ret = BeginPopupModalNative(pStr0, (bool*)ppOpen, flags);
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, pStepFast, format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)(default), (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)(default), format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)(default), (void*)(default), format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, pStepFast, (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)(default), (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)(default), (void*)(default), (byte*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)(default), format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)(default), (void*)(default), format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)(default), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, pStep, pStepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, pStepFast, pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, pStepFast, pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)(default), (void*)(default), pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)(default), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputScalarNNative(label, dataType, pData, components, (void*)(default), (void*)(default), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, pStep, pStepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(byte* label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputScalarNNative(label, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, pStepFast, pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, pStepFast, pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)(default), (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)(default), pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)(default), (void*)(default), pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, pStepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, void* pStep, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalarN(ReadOnlySpan<byte> label, ImGuiDataType dataType, void* pData, int components, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		internal static byte ColorEdit3Native(byte* label, float* col, ImGuiColorEditFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)vt[200])(label, col, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)vt[200])((nint)label, (nint)col, flags);
+			#endif
+		}
+
+		public static bool ColorEdit3(byte* label, float* col, ImGuiColorEditFlags flags)
+		{
+			byte ret = ColorEdit3Native(label, col, flags);
+			return ret != 0;
+		}
+
+		public static bool ColorEdit3(byte* label, float* col)
+		{
+			byte ret = ColorEdit3Native(label, col, (ImGuiColorEditFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool ColorEdit3(ref byte label, float* col, ImGuiColorEditFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = ColorEdit3Native((byte*)plabel, col, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorEdit3(ref byte label, float* col)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = ColorEdit3Native((byte*)plabel, col, (ImGuiColorEditFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorEdit3(string label, float* col, ImGuiColorEditFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ColorEdit3Native(pStr0, col, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool ColorEdit3(string label, float* col)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ColorEdit3Native(pStr0, col, (ImGuiColorEditFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool ColorEdit3(ReadOnlySpan<byte> label, float* col, ImGuiColorEditFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = ColorEdit3Native((byte*)plabel, col, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorEdit3(ReadOnlySpan<byte> label, float* col)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = ColorEdit3Native((byte*)plabel, col, (ImGuiColorEditFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorEdit3(byte* label, ref float col, ImGuiColorEditFlags flags)
+		{
+			fixed (float* pcol = &col)
+			{
+				byte ret = ColorEdit3Native(label, (float*)pcol, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorEdit3(byte* label, ref float col)
+		{
+			fixed (float* pcol = &col)
+			{
+				byte ret = ColorEdit3Native(label, (float*)pcol, (ImGuiColorEditFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorEdit3(byte* label, ref Vector3 col, ImGuiColorEditFlags flags)
+		{
+			fixed (Vector3* pcol = &col)
+			{
+				byte ret = ColorEdit3Native(label, (float*)pcol, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorEdit3(byte* label, ref Vector3 col)
+		{
+			fixed (Vector3* pcol = &col)
+			{
+				byte ret = ColorEdit3Native(label, (float*)pcol, (ImGuiColorEditFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorEdit3(byte* label, ReadOnlySpan<float> col, ImGuiColorEditFlags flags)
+		{
+			fixed (float* pcol = col)
+			{
+				byte ret = ColorEdit3Native(label, (float*)pcol, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorEdit3(byte* label, ReadOnlySpan<float> col)
+		{
+			fixed (float* pcol = col)
+			{
+				byte ret = ColorEdit3Native(label, (float*)pcol, (ImGuiColorEditFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorEdit3(ref byte label, ref float col, ImGuiColorEditFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pcol = &col)
+				{
+					byte ret = ColorEdit3Native((byte*)plabel, (float*)pcol, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool ColorEdit3(ref byte label, ref float col)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pcol = &col)
+				{
+					byte ret = ColorEdit3Native((byte*)plabel, (float*)pcol, (ImGuiColorEditFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool ColorEdit3(string label, ref Vector3 col, ImGuiColorEditFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector3* pcol = &col)
+			{
+				byte ret = ColorEdit3Native(pStr0, (float*)pcol, flags);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3438,13 +3861,13 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static bool BeginPopupModal(string name, ref bool pOpen)
+		public static bool ColorEdit3(string label, ref Vector3 col)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (name != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3454,12 +3877,12 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (bool* ppOpen = &pOpen)
+			fixed (Vector3* pcol = &col)
 			{
-				byte ret = BeginPopupModalNative(pStr0, (bool*)ppOpen, (ImGuiWindowFlags)(0));
+				byte ret = ColorEdit3Native(pStr0, (float*)pcol, (ImGuiColorEditFlags)(0));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3468,1117 +3891,70 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		internal static void EndPopupNative()
+		public static bool ColorEdit3(ReadOnlySpan<byte> label, ReadOnlySpan<float> col, ImGuiColorEditFlags flags)
 		{
-			((delegate* unmanaged[Cdecl]<void>)vt[259])();
-		}
-
-		public static void EndPopup()
-		{
-			EndPopupNative();
-		}
-
-		internal static void OpenPopupNative(byte* strId, ImGuiPopupFlags popupFlags)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, void>)vt[260])(strId, popupFlags);
-		}
-
-		public static void OpenPopup(byte* strId, ImGuiPopupFlags popupFlags)
-		{
-			OpenPopupNative(strId, popupFlags);
-		}
-
-		public static void OpenPopup(byte* strId)
-		{
-			OpenPopupNative(strId, (ImGuiPopupFlags)(0));
-		}
-
-		public static void OpenPopup(ref byte strId, ImGuiPopupFlags popupFlags)
-		{
-			fixed (byte* pstrId = &strId)
+			fixed (byte* plabel = label)
 			{
-				OpenPopupNative((byte*)pstrId, popupFlags);
-			}
-		}
-
-		public static void OpenPopup(ref byte strId)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				OpenPopupNative((byte*)pstrId, (ImGuiPopupFlags)(0));
-			}
-		}
-
-		public static void OpenPopup(string strId, ImGuiPopupFlags popupFlags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (float* pcol = col)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					byte ret = ColorEdit3Native((byte*)plabel, (float*)pcol, flags);
+					return ret != 0;
 				}
-				else
+			}
+		}
+
+		public static bool ColorEdit3(ReadOnlySpan<byte> label, ReadOnlySpan<float> col)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pcol = col)
 				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
+					byte ret = ColorEdit3Native((byte*)plabel, (float*)pcol, (ImGuiColorEditFlags)(0));
+					return ret != 0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			OpenPopupNative(pStr0, popupFlags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
 			}
 		}
 
-		public static void OpenPopup(string strId)
+		internal static byte ColorEdit4Native(byte* label, float* col, ImGuiColorEditFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			OpenPopupNative(pStr0, (ImGuiPopupFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)vt[201])(label, col, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)vt[201])((nint)label, (nint)col, flags);
+			#endif
 		}
 
-		internal static void OpenPopupNative(int id, ImGuiPopupFlags popupFlags)
+		public static bool ColorEdit4(byte* label, float* col, ImGuiColorEditFlags flags)
 		{
-			((delegate* unmanaged[Cdecl]<int, ImGuiPopupFlags, void>)vt[261])(id, popupFlags);
-		}
-
-		public static void OpenPopup(int id, ImGuiPopupFlags popupFlags)
-		{
-			OpenPopupNative(id, popupFlags);
-		}
-
-		public static void OpenPopup(int id)
-		{
-			OpenPopupNative(id, (ImGuiPopupFlags)(0));
-		}
-
-		internal static void OpenPopupOnItemClickNative(byte* strId, ImGuiPopupFlags popupFlags)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, void>)vt[262])(strId, popupFlags);
-		}
-
-		public static void OpenPopupOnItemClick(byte* strId, ImGuiPopupFlags popupFlags)
-		{
-			OpenPopupOnItemClickNative(strId, popupFlags);
-		}
-
-		public static void OpenPopupOnItemClick(byte* strId)
-		{
-			OpenPopupOnItemClickNative(strId, (ImGuiPopupFlags)(1));
-		}
-
-		public static void OpenPopupOnItemClick()
-		{
-			OpenPopupOnItemClickNative((byte*)(default), (ImGuiPopupFlags)(1));
-		}
-
-		public static void OpenPopupOnItemClick(ImGuiPopupFlags popupFlags)
-		{
-			OpenPopupOnItemClickNative((byte*)(default), popupFlags);
-		}
-
-		public static void OpenPopupOnItemClick(ref byte strId, ImGuiPopupFlags popupFlags)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				OpenPopupOnItemClickNative((byte*)pstrId, popupFlags);
-			}
-		}
-
-		public static void OpenPopupOnItemClick(ref byte strId)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				OpenPopupOnItemClickNative((byte*)pstrId, (ImGuiPopupFlags)(1));
-			}
-		}
-
-		public static void OpenPopupOnItemClick(string strId, ImGuiPopupFlags popupFlags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			OpenPopupOnItemClickNative(pStr0, popupFlags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void OpenPopupOnItemClick(string strId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			OpenPopupOnItemClickNative(pStr0, (ImGuiPopupFlags)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		internal static void CloseCurrentPopupNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[263])();
-		}
-
-		public static void CloseCurrentPopup()
-		{
-			CloseCurrentPopupNative();
-		}
-
-		internal static byte BeginPopupContextItemNative(byte* strId, ImGuiPopupFlags popupFlags)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)vt[264])(strId, popupFlags);
-		}
-
-		public static bool BeginPopupContextItem(byte* strId, ImGuiPopupFlags popupFlags)
-		{
-			byte ret = BeginPopupContextItemNative(strId, popupFlags);
+			byte ret = ColorEdit4Native(label, col, flags);
 			return ret != 0;
 		}
 
-		public static bool BeginPopupContextItem(byte* strId)
+		public static bool ColorEdit4(byte* label, float* col)
 		{
-			byte ret = BeginPopupContextItemNative(strId, (ImGuiPopupFlags)(1));
+			byte ret = ColorEdit4Native(label, col, (ImGuiColorEditFlags)(0));
 			return ret != 0;
 		}
 
-		public static bool BeginPopupContextItem()
-		{
-			byte ret = BeginPopupContextItemNative((byte*)(default), (ImGuiPopupFlags)(1));
-			return ret != 0;
-		}
-
-		public static bool BeginPopupContextItem(ImGuiPopupFlags popupFlags)
-		{
-			byte ret = BeginPopupContextItemNative((byte*)(default), popupFlags);
-			return ret != 0;
-		}
-
-		public static bool BeginPopupContextItem(ref byte strId, ImGuiPopupFlags popupFlags)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginPopupContextItemNative((byte*)pstrId, popupFlags);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginPopupContextItem(ref byte strId)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginPopupContextItemNative((byte*)pstrId, (ImGuiPopupFlags)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginPopupContextItem(string strId, ImGuiPopupFlags popupFlags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginPopupContextItemNative(pStr0, popupFlags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginPopupContextItem(string strId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginPopupContextItemNative(pStr0, (ImGuiPopupFlags)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		internal static byte BeginPopupContextWindowNative(byte* strId, ImGuiPopupFlags popupFlags)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)vt[265])(strId, popupFlags);
-		}
-
-		public static bool BeginPopupContextWindow(byte* strId, ImGuiPopupFlags popupFlags)
-		{
-			byte ret = BeginPopupContextWindowNative(strId, popupFlags);
-			return ret != 0;
-		}
-
-		public static bool BeginPopupContextWindow(byte* strId)
-		{
-			byte ret = BeginPopupContextWindowNative(strId, (ImGuiPopupFlags)(1));
-			return ret != 0;
-		}
-
-		public static bool BeginPopupContextWindow()
-		{
-			byte ret = BeginPopupContextWindowNative((byte*)(default), (ImGuiPopupFlags)(1));
-			return ret != 0;
-		}
-
-		public static bool BeginPopupContextWindow(ImGuiPopupFlags popupFlags)
-		{
-			byte ret = BeginPopupContextWindowNative((byte*)(default), popupFlags);
-			return ret != 0;
-		}
-
-		public static bool BeginPopupContextWindow(ref byte strId, ImGuiPopupFlags popupFlags)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginPopupContextWindowNative((byte*)pstrId, popupFlags);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginPopupContextWindow(ref byte strId)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginPopupContextWindowNative((byte*)pstrId, (ImGuiPopupFlags)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginPopupContextWindow(string strId, ImGuiPopupFlags popupFlags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginPopupContextWindowNative(pStr0, popupFlags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginPopupContextWindow(string strId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginPopupContextWindowNative(pStr0, (ImGuiPopupFlags)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		internal static byte BeginPopupContextVoidNative(byte* strId, ImGuiPopupFlags popupFlags)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)vt[266])(strId, popupFlags);
-		}
-
-		public static bool BeginPopupContextVoid(byte* strId, ImGuiPopupFlags popupFlags)
-		{
-			byte ret = BeginPopupContextVoidNative(strId, popupFlags);
-			return ret != 0;
-		}
-
-		public static bool BeginPopupContextVoid(byte* strId)
-		{
-			byte ret = BeginPopupContextVoidNative(strId, (ImGuiPopupFlags)(1));
-			return ret != 0;
-		}
-
-		public static bool BeginPopupContextVoid()
-		{
-			byte ret = BeginPopupContextVoidNative((byte*)(default), (ImGuiPopupFlags)(1));
-			return ret != 0;
-		}
-
-		public static bool BeginPopupContextVoid(ImGuiPopupFlags popupFlags)
-		{
-			byte ret = BeginPopupContextVoidNative((byte*)(default), popupFlags);
-			return ret != 0;
-		}
-
-		public static bool BeginPopupContextVoid(ref byte strId, ImGuiPopupFlags popupFlags)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginPopupContextVoidNative((byte*)pstrId, popupFlags);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginPopupContextVoid(ref byte strId)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginPopupContextVoidNative((byte*)pstrId, (ImGuiPopupFlags)(1));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginPopupContextVoid(string strId, ImGuiPopupFlags popupFlags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginPopupContextVoidNative(pStr0, popupFlags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginPopupContextVoid(string strId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginPopupContextVoidNative(pStr0, (ImGuiPopupFlags)(1));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		internal static byte IsPopupOpenNative(byte* strId, ImGuiPopupFlags flags)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiPopupFlags, byte>)vt[267])(strId, flags);
-		}
-
-		public static bool IsPopupOpen(byte* strId, ImGuiPopupFlags flags)
-		{
-			byte ret = IsPopupOpenNative(strId, flags);
-			return ret != 0;
-		}
-
-		public static bool IsPopupOpen(byte* strId)
-		{
-			byte ret = IsPopupOpenNative(strId, (ImGuiPopupFlags)(0));
-			return ret != 0;
-		}
-
-		public static bool IsPopupOpen(ref byte strId, ImGuiPopupFlags flags)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = IsPopupOpenNative((byte*)pstrId, flags);
-				return ret != 0;
-			}
-		}
-
-		public static bool IsPopupOpen(ref byte strId)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = IsPopupOpenNative((byte*)pstrId, (ImGuiPopupFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		public static bool IsPopupOpen(string strId, ImGuiPopupFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = IsPopupOpenNative(pStr0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool IsPopupOpen(string strId)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = IsPopupOpenNative(pStr0, (ImGuiPopupFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		internal static byte BeginTableNative(byte* strId, int columns, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
-		{
-			return ((delegate* unmanaged[Cdecl]<byte*, int, ImGuiTableFlags, Vector2, float, byte>)vt[268])(strId, columns, flags, outerSize, innerWidth);
-		}
-
-		public static bool BeginTable(byte* strId, int columns, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
-		{
-			byte ret = BeginTableNative(strId, columns, flags, outerSize, innerWidth);
-			return ret != 0;
-		}
-
-		public static bool BeginTable(byte* strId, int columns, ImGuiTableFlags flags, Vector2 outerSize)
-		{
-			byte ret = BeginTableNative(strId, columns, flags, outerSize, (float)(0.0f));
-			return ret != 0;
-		}
-
-		public static bool BeginTable(byte* strId, int columns, ImGuiTableFlags flags)
-		{
-			byte ret = BeginTableNative(strId, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
-			return ret != 0;
-		}
-
-		public static bool BeginTable(byte* strId, int columns)
-		{
-			byte ret = BeginTableNative(strId, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
-			return ret != 0;
-		}
-
-		public static bool BeginTable(byte* strId, int columns, Vector2 outerSize)
-		{
-			byte ret = BeginTableNative(strId, columns, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
-			return ret != 0;
-		}
-
-		public static bool BeginTable(byte* strId, int columns, ImGuiTableFlags flags, float innerWidth)
-		{
-			byte ret = BeginTableNative(strId, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
-			return ret != 0;
-		}
-
-		public static bool BeginTable(byte* strId, int columns, float innerWidth)
-		{
-			byte ret = BeginTableNative(strId, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
-			return ret != 0;
-		}
-
-		public static bool BeginTable(byte* strId, int columns, Vector2 outerSize, float innerWidth)
-		{
-			byte ret = BeginTableNative(strId, columns, (ImGuiTableFlags)(0), outerSize, innerWidth);
-			return ret != 0;
-		}
-
-		public static bool BeginTable(ref byte strId, int columns, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginTableNative((byte*)pstrId, columns, flags, outerSize, innerWidth);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginTable(ref byte strId, int columns, ImGuiTableFlags flags, Vector2 outerSize)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginTableNative((byte*)pstrId, columns, flags, outerSize, (float)(0.0f));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginTable(ref byte strId, int columns, ImGuiTableFlags flags)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginTableNative((byte*)pstrId, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginTable(ref byte strId, int columns)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginTable(ref byte strId, int columns, Vector2 outerSize)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginTable(ref byte strId, int columns, ImGuiTableFlags flags, float innerWidth)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginTableNative((byte*)pstrId, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginTable(ref byte strId, int columns, float innerWidth)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginTable(ref byte strId, int columns, Vector2 outerSize, float innerWidth)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = BeginTableNative((byte*)pstrId, columns, (ImGuiTableFlags)(0), outerSize, innerWidth);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginTable(string strId, int columns, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginTableNative(pStr0, columns, flags, outerSize, innerWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginTable(string strId, int columns, ImGuiTableFlags flags, Vector2 outerSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginTableNative(pStr0, columns, flags, outerSize, (float)(0.0f));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginTable(string strId, int columns, ImGuiTableFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginTableNative(pStr0, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginTable(string strId, int columns)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginTableNative(pStr0, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), (float)(0.0f));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginTable(string strId, int columns, Vector2 outerSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginTableNative(pStr0, columns, (ImGuiTableFlags)(0), outerSize, (float)(0.0f));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginTable(string strId, int columns, ImGuiTableFlags flags, float innerWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginTableNative(pStr0, columns, flags, (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginTable(string strId, int columns, float innerWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginTableNative(pStr0, columns, (ImGuiTableFlags)(0), (Vector2)(new Vector2(0.0f,0.0f)), innerWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool BeginTable(string strId, int columns, Vector2 outerSize, float innerWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = BeginTableNative(pStr0, columns, (ImGuiTableFlags)(0), outerSize, innerWidth);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		internal static void EndTableNative()
-		{
-			((delegate* unmanaged[Cdecl]<void>)vt[269])();
-		}
-
-		public static void EndTable()
-		{
-			EndTableNative();
-		}
-
-		internal static void TableNextRowNative(ImGuiTableRowFlags rowFlags, float minRowHeight)
-		{
-			((delegate* unmanaged[Cdecl]<ImGuiTableRowFlags, float, void>)vt[270])(rowFlags, minRowHeight);
-		}
-
-		public static void TableNextRow(ImGuiTableRowFlags rowFlags, float minRowHeight)
-		{
-			TableNextRowNative(rowFlags, minRowHeight);
-		}
-
-		public static void TableNextRow(ImGuiTableRowFlags rowFlags)
-		{
-			TableNextRowNative(rowFlags, (float)(0.0f));
-		}
-
-		public static void TableNextRow()
-		{
-			TableNextRowNative((ImGuiTableRowFlags)(0), (float)(0.0f));
-		}
-
-		public static void TableNextRow(float minRowHeight)
-		{
-			TableNextRowNative((ImGuiTableRowFlags)(0), minRowHeight);
-		}
-
-		internal static byte TableNextColumnNative()
-		{
-			return ((delegate* unmanaged[Cdecl]<byte>)vt[271])();
-		}
-
-		public static bool TableNextColumn()
-		{
-			byte ret = TableNextColumnNative();
-			return ret != 0;
-		}
-
-		internal static byte TableSetColumnIndexNative(int columnN)
-		{
-			return ((delegate* unmanaged[Cdecl]<int, byte>)vt[272])(columnN);
-		}
-
-		public static bool TableSetColumnIndex(int columnN)
-		{
-			byte ret = TableSetColumnIndexNative(columnN);
-			return ret != 0;
-		}
-
-		internal static void TableSetupColumnNative(byte* label, ImGuiTableColumnFlags flags, float initWidthOrWeight, int userId)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, ImGuiTableColumnFlags, float, int, void>)vt[273])(label, flags, initWidthOrWeight, userId);
-		}
-
-		public static void TableSetupColumn(byte* label, ImGuiTableColumnFlags flags, float initWidthOrWeight, int userId)
-		{
-			TableSetupColumnNative(label, flags, initWidthOrWeight, userId);
-		}
-
-		public static void TableSetupColumn(byte* label, ImGuiTableColumnFlags flags, float initWidthOrWeight)
-		{
-			TableSetupColumnNative(label, flags, initWidthOrWeight, (int)(0));
-		}
-
-		public static void TableSetupColumn(byte* label, ImGuiTableColumnFlags flags)
-		{
-			TableSetupColumnNative(label, flags, (float)(0.0f), (int)(0));
-		}
-
-		public static void TableSetupColumn(byte* label)
-		{
-			TableSetupColumnNative(label, (ImGuiTableColumnFlags)(0), (float)(0.0f), (int)(0));
-		}
-
-		public static void TableSetupColumn(byte* label, float initWidthOrWeight)
-		{
-			TableSetupColumnNative(label, (ImGuiTableColumnFlags)(0), initWidthOrWeight, (int)(0));
-		}
-
-		public static void TableSetupColumn(byte* label, ImGuiTableColumnFlags flags, int userId)
-		{
-			TableSetupColumnNative(label, flags, (float)(0.0f), userId);
-		}
-
-		public static void TableSetupColumn(byte* label, int userId)
-		{
-			TableSetupColumnNative(label, (ImGuiTableColumnFlags)(0), (float)(0.0f), userId);
-		}
-
-		public static void TableSetupColumn(byte* label, float initWidthOrWeight, int userId)
-		{
-			TableSetupColumnNative(label, (ImGuiTableColumnFlags)(0), initWidthOrWeight, userId);
-		}
-
-		public static void TableSetupColumn(ref byte label, ImGuiTableColumnFlags flags, float initWidthOrWeight, int userId)
+		public static bool ColorEdit4(ref byte label, float* col, ImGuiColorEditFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				TableSetupColumnNative((byte*)plabel, flags, initWidthOrWeight, userId);
+				byte ret = ColorEdit4Native((byte*)plabel, col, flags);
+				return ret != 0;
 			}
 		}
 
-		public static void TableSetupColumn(ref byte label, ImGuiTableColumnFlags flags, float initWidthOrWeight)
+		public static bool ColorEdit4(ref byte label, float* col)
 		{
 			fixed (byte* plabel = &label)
 			{
-				TableSetupColumnNative((byte*)plabel, flags, initWidthOrWeight, (int)(0));
+				byte ret = ColorEdit4Native((byte*)plabel, col, (ImGuiColorEditFlags)(0));
+				return ret != 0;
 			}
 		}
 
-		public static void TableSetupColumn(ref byte label, ImGuiTableColumnFlags flags)
-		{
-			fixed (byte* plabel = &label)
-			{
-				TableSetupColumnNative((byte*)plabel, flags, (float)(0.0f), (int)(0));
-			}
-		}
-
-		public static void TableSetupColumn(ref byte label)
-		{
-			fixed (byte* plabel = &label)
-			{
-				TableSetupColumnNative((byte*)plabel, (ImGuiTableColumnFlags)(0), (float)(0.0f), (int)(0));
-			}
-		}
-
-		public static void TableSetupColumn(ref byte label, float initWidthOrWeight)
-		{
-			fixed (byte* plabel = &label)
-			{
-				TableSetupColumnNative((byte*)plabel, (ImGuiTableColumnFlags)(0), initWidthOrWeight, (int)(0));
-			}
-		}
-
-		public static void TableSetupColumn(ref byte label, ImGuiTableColumnFlags flags, int userId)
-		{
-			fixed (byte* plabel = &label)
-			{
-				TableSetupColumnNative((byte*)plabel, flags, (float)(0.0f), userId);
-			}
-		}
-
-		public static void TableSetupColumn(ref byte label, int userId)
-		{
-			fixed (byte* plabel = &label)
-			{
-				TableSetupColumnNative((byte*)plabel, (ImGuiTableColumnFlags)(0), (float)(0.0f), userId);
-			}
-		}
-
-		public static void TableSetupColumn(ref byte label, float initWidthOrWeight, int userId)
-		{
-			fixed (byte* plabel = &label)
-			{
-				TableSetupColumnNative((byte*)plabel, (ImGuiTableColumnFlags)(0), initWidthOrWeight, userId);
-			}
-		}
-
-		public static void TableSetupColumn(string label, ImGuiTableColumnFlags flags, float initWidthOrWeight, int userId)
+		public static bool ColorEdit4(string label, float* col, ImGuiColorEditFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4597,14 +3973,15 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			TableSetupColumnNative(pStr0, flags, initWidthOrWeight, userId);
+			byte ret = ColorEdit4Native(pStr0, col, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		public static void TableSetupColumn(string label, ImGuiTableColumnFlags flags, float initWidthOrWeight)
+		public static bool ColorEdit4(string label, float* col)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4623,198 +4000,111 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			TableSetupColumnNative(pStr0, flags, initWidthOrWeight, (int)(0));
+			byte ret = ColorEdit4Native(pStr0, col, (ImGuiColorEditFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		public static void TableSetupColumn(string label, ImGuiTableColumnFlags flags)
+		public static bool ColorEdit4(ReadOnlySpan<byte> label, float* col, ImGuiColorEditFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (byte* plabel = label)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TableSetupColumnNative(pStr0, flags, (float)(0.0f), (int)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				byte ret = ColorEdit4Native((byte*)plabel, col, flags);
+				return ret != 0;
 			}
 		}
 
-		public static void TableSetupColumn(string label)
+		public static bool ColorEdit4(ReadOnlySpan<byte> label, float* col)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (byte* plabel = label)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TableSetupColumnNative(pStr0, (ImGuiTableColumnFlags)(0), (float)(0.0f), (int)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				byte ret = ColorEdit4Native((byte*)plabel, col, (ImGuiColorEditFlags)(0));
+				return ret != 0;
 			}
 		}
 
-		public static void TableSetupColumn(string label, float initWidthOrWeight)
+		public static bool ColorEdit4(byte* label, ref float col, ImGuiColorEditFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (float* pcol = &col)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TableSetupColumnNative(pStr0, (ImGuiTableColumnFlags)(0), initWidthOrWeight, (int)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				byte ret = ColorEdit4Native(label, (float*)pcol, flags);
+				return ret != 0;
 			}
 		}
 
-		public static void TableSetupColumn(string label, ImGuiTableColumnFlags flags, int userId)
+		public static bool ColorEdit4(byte* label, ref float col)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (float* pcol = &col)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TableSetupColumnNative(pStr0, flags, (float)(0.0f), userId);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				byte ret = ColorEdit4Native(label, (float*)pcol, (ImGuiColorEditFlags)(0));
+				return ret != 0;
 			}
 		}
 
-		public static void TableSetupColumn(string label, int userId)
+		public static bool ColorEdit4(byte* label, ref Vector4 col, ImGuiColorEditFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (Vector4* pcol = &col)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TableSetupColumnNative(pStr0, (ImGuiTableColumnFlags)(0), (float)(0.0f), userId);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				byte ret = ColorEdit4Native(label, (float*)pcol, flags);
+				return ret != 0;
 			}
 		}
 
-		public static void TableSetupColumn(string label, float initWidthOrWeight, int userId)
+		public static bool ColorEdit4(byte* label, ref Vector4 col)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
+			fixed (Vector4* pcol = &col)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TableSetupColumnNative(pStr0, (ImGuiTableColumnFlags)(0), initWidthOrWeight, userId);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				byte ret = ColorEdit4Native(label, (float*)pcol, (ImGuiColorEditFlags)(0));
+				return ret != 0;
 			}
 		}
 
-		internal static void TableSetupScrollFreezeNative(int cols, int rows)
+		public static bool ColorEdit4(byte* label, ReadOnlySpan<float> col, ImGuiColorEditFlags flags)
 		{
-			((delegate* unmanaged[Cdecl]<int, int, void>)vt[274])(cols, rows);
+			fixed (float* pcol = col)
+			{
+				byte ret = ColorEdit4Native(label, (float*)pcol, flags);
+				return ret != 0;
+			}
 		}
 
-		public static void TableSetupScrollFreeze(int cols, int rows)
+		public static bool ColorEdit4(byte* label, ReadOnlySpan<float> col)
 		{
-			TableSetupScrollFreezeNative(cols, rows);
+			fixed (float* pcol = col)
+			{
+				byte ret = ColorEdit4Native(label, (float*)pcol, (ImGuiColorEditFlags)(0));
+				return ret != 0;
+			}
 		}
 
-		internal static void TableHeaderNative(byte* label)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[275])(label);
-		}
-
-		public static void TableHeader(byte* label)
-		{
-			TableHeaderNative(label);
-		}
-
-		public static void TableHeader(ref byte label)
+		public static bool ColorEdit4(ref byte label, ref float col, ImGuiColorEditFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				TableHeaderNative((byte*)plabel);
+				fixed (float* pcol = &col)
+				{
+					byte ret = ColorEdit4Native((byte*)plabel, (float*)pcol, flags);
+					return ret != 0;
+				}
 			}
 		}
 
-		public static void TableHeader(string label)
+		public static bool ColorEdit4(ref byte label, ref float col)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pcol = &col)
+				{
+					byte ret = ColorEdit4Native((byte*)plabel, (float*)pcol, (ImGuiColorEditFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool ColorEdit4(string label, ref Vector4 col, ImGuiColorEditFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4833,192 +4123,909 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			TableHeaderNative(pStr0);
+			fixed (Vector4* pcol = &col)
+			{
+				byte ret = ColorEdit4Native(pStr0, (float*)pcol, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorEdit4(string label, ref Vector4 col)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcol = &col)
+			{
+				byte ret = ColorEdit4Native(pStr0, (float*)pcol, (ImGuiColorEditFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorEdit4(ReadOnlySpan<byte> label, ReadOnlySpan<float> col, ImGuiColorEditFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pcol = col)
+				{
+					byte ret = ColorEdit4Native((byte*)plabel, (float*)pcol, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool ColorEdit4(ReadOnlySpan<byte> label, ReadOnlySpan<float> col)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pcol = col)
+				{
+					byte ret = ColorEdit4Native((byte*)plabel, (float*)pcol, (ImGuiColorEditFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		internal static byte ColorPicker3Native(byte* label, float* col, ImGuiColorEditFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)vt[202])(label, col, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, byte>)vt[202])((nint)label, (nint)col, flags);
+			#endif
+		}
+
+		public static bool ColorPicker3(byte* label, float* col, ImGuiColorEditFlags flags)
+		{
+			byte ret = ColorPicker3Native(label, col, flags);
+			return ret != 0;
+		}
+
+		public static bool ColorPicker3(byte* label, float* col)
+		{
+			byte ret = ColorPicker3Native(label, col, (ImGuiColorEditFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool ColorPicker3(ref byte label, float* col, ImGuiColorEditFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = ColorPicker3Native((byte*)plabel, col, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker3(ref byte label, float* col)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = ColorPicker3Native((byte*)plabel, col, (ImGuiColorEditFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker3(string label, float* col, ImGuiColorEditFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ColorPicker3Native(pStr0, col, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		internal static void TableHeadersRowNative()
+		public static bool ColorPicker3(string label, float* col)
 		{
-			((delegate* unmanaged[Cdecl]<void>)vt[276])();
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ColorPicker3Native(pStr0, col, (ImGuiColorEditFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
 		}
 
-		public static void TableHeadersRow()
+		public static bool ColorPicker3(ReadOnlySpan<byte> label, float* col, ImGuiColorEditFlags flags)
 		{
-			TableHeadersRowNative();
+			fixed (byte* plabel = label)
+			{
+				byte ret = ColorPicker3Native((byte*)plabel, col, flags);
+				return ret != 0;
+			}
 		}
 
-		internal static void TableAngledHeadersRowNative()
+		public static bool ColorPicker3(ReadOnlySpan<byte> label, float* col)
 		{
-			((delegate* unmanaged[Cdecl]<void>)vt[277])();
+			fixed (byte* plabel = label)
+			{
+				byte ret = ColorPicker3Native((byte*)plabel, col, (ImGuiColorEditFlags)(0));
+				return ret != 0;
+			}
 		}
 
-		public static void TableAngledHeadersRow()
+		public static bool ColorPicker3(byte* label, ref float col, ImGuiColorEditFlags flags)
 		{
-			TableAngledHeadersRowNative();
+			fixed (float* pcol = &col)
+			{
+				byte ret = ColorPicker3Native(label, (float*)pcol, flags);
+				return ret != 0;
+			}
 		}
 
-		internal static ImGuiTableSortSpecs* TableGetSortSpecsNative()
+		public static bool ColorPicker3(byte* label, ref float col)
 		{
-			return ((delegate* unmanaged[Cdecl]<ImGuiTableSortSpecs*>)vt[278])();
+			fixed (float* pcol = &col)
+			{
+				byte ret = ColorPicker3Native(label, (float*)pcol, (ImGuiColorEditFlags)(0));
+				return ret != 0;
+			}
 		}
 
-		public static ImGuiTableSortSpecsPtr TableGetSortSpecs()
+		public static bool ColorPicker3(byte* label, ref Vector3 col, ImGuiColorEditFlags flags)
 		{
-			ImGuiTableSortSpecsPtr ret = TableGetSortSpecsNative();
-			return ret;
+			fixed (Vector3* pcol = &col)
+			{
+				byte ret = ColorPicker3Native(label, (float*)pcol, flags);
+				return ret != 0;
+			}
 		}
 
-		internal static int TableGetColumnCountNative()
+		public static bool ColorPicker3(byte* label, ref Vector3 col)
 		{
-			return ((delegate* unmanaged[Cdecl]<int>)vt[279])();
+			fixed (Vector3* pcol = &col)
+			{
+				byte ret = ColorPicker3Native(label, (float*)pcol, (ImGuiColorEditFlags)(0));
+				return ret != 0;
+			}
 		}
 
-		public static int TableGetColumnCount()
+		public static bool ColorPicker3(byte* label, ReadOnlySpan<float> col, ImGuiColorEditFlags flags)
 		{
-			int ret = TableGetColumnCountNative();
-			return ret;
+			fixed (float* pcol = col)
+			{
+				byte ret = ColorPicker3Native(label, (float*)pcol, flags);
+				return ret != 0;
+			}
 		}
 
-		internal static int TableGetColumnIndexNative()
+		public static bool ColorPicker3(byte* label, ReadOnlySpan<float> col)
 		{
-			return ((delegate* unmanaged[Cdecl]<int>)vt[280])();
+			fixed (float* pcol = col)
+			{
+				byte ret = ColorPicker3Native(label, (float*)pcol, (ImGuiColorEditFlags)(0));
+				return ret != 0;
+			}
 		}
 
-		public static int TableGetColumnIndex()
+		public static bool ColorPicker3(ref byte label, ref float col, ImGuiColorEditFlags flags)
 		{
-			int ret = TableGetColumnIndexNative();
-			return ret;
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pcol = &col)
+				{
+					byte ret = ColorPicker3Native((byte*)plabel, (float*)pcol, flags);
+					return ret != 0;
+				}
+			}
 		}
 
-		internal static int TableGetRowIndexNative()
+		public static bool ColorPicker3(ref byte label, ref float col)
 		{
-			return ((delegate* unmanaged[Cdecl]<int>)vt[281])();
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pcol = &col)
+				{
+					byte ret = ColorPicker3Native((byte*)plabel, (float*)pcol, (ImGuiColorEditFlags)(0));
+					return ret != 0;
+				}
+			}
 		}
 
-		public static int TableGetRowIndex()
+		public static bool ColorPicker3(string label, ref Vector3 col, ImGuiColorEditFlags flags)
 		{
-			int ret = TableGetRowIndexNative();
-			return ret;
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector3* pcol = &col)
+			{
+				byte ret = ColorPicker3Native(pStr0, (float*)pcol, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
 		}
 
-		internal static byte* TableGetColumnNameNative(int columnN)
+		public static bool ColorPicker3(string label, ref Vector3 col)
 		{
-			return ((delegate* unmanaged[Cdecl]<int, byte*>)vt[282])(columnN);
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector3* pcol = &col)
+			{
+				byte ret = ColorPicker3Native(pStr0, (float*)pcol, (ImGuiColorEditFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
 		}
 
-		public static byte* TableGetColumnName(int columnN)
+		public static bool ColorPicker3(ReadOnlySpan<byte> label, ReadOnlySpan<float> col, ImGuiColorEditFlags flags)
 		{
-			byte* ret = TableGetColumnNameNative(columnN);
-			return ret;
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pcol = col)
+				{
+					byte ret = ColorPicker3Native((byte*)plabel, (float*)pcol, flags);
+					return ret != 0;
+				}
+			}
 		}
 
-		public static byte* TableGetColumnName()
+		public static bool ColorPicker3(ReadOnlySpan<byte> label, ReadOnlySpan<float> col)
 		{
-			byte* ret = TableGetColumnNameNative((int)(-1));
-			return ret;
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pcol = col)
+				{
+					byte ret = ColorPicker3Native((byte*)plabel, (float*)pcol, (ImGuiColorEditFlags)(0));
+					return ret != 0;
+				}
+			}
 		}
 
-		public static string TableGetColumnNameS()
+		internal static byte ColorPicker4Native(byte* label, float* col, ImGuiColorEditFlags flags, float* refCol)
 		{
-			string ret = Utils.DecodeStringUTF8(TableGetColumnNameNative((int)(-1)));
-			return ret;
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, float*, byte>)vt[203])(label, col, flags, refCol);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiColorEditFlags, nint, byte>)vt[203])((nint)label, (nint)col, flags, (nint)refCol);
+			#endif
 		}
 
-		public static string TableGetColumnNameS(int columnN)
+		public static bool ColorPicker4(byte* label, float* col, ImGuiColorEditFlags flags, float* refCol)
 		{
-			string ret = Utils.DecodeStringUTF8(TableGetColumnNameNative(columnN));
-			return ret;
+			byte ret = ColorPicker4Native(label, col, flags, refCol);
+			return ret != 0;
 		}
 
-		internal static ImGuiTableColumnFlags TableGetColumnFlagsNative(int columnN)
+		public static bool ColorPicker4(byte* label, float* col, ImGuiColorEditFlags flags)
 		{
-			return ((delegate* unmanaged[Cdecl]<int, ImGuiTableColumnFlags>)vt[283])(columnN);
+			byte ret = ColorPicker4Native(label, col, flags, (float*)(default));
+			return ret != 0;
 		}
 
-		public static ImGuiTableColumnFlags TableGetColumnFlags(int columnN)
+		public static bool ColorPicker4(byte* label, float* col)
 		{
-			ImGuiTableColumnFlags ret = TableGetColumnFlagsNative(columnN);
-			return ret;
+			byte ret = ColorPicker4Native(label, col, (ImGuiColorEditFlags)(0), (float*)(default));
+			return ret != 0;
 		}
 
-		public static ImGuiTableColumnFlags TableGetColumnFlags()
+		public static bool ColorPicker4(byte* label, float* col, float* refCol)
 		{
-			ImGuiTableColumnFlags ret = TableGetColumnFlagsNative((int)(-1));
-			return ret;
+			byte ret = ColorPicker4Native(label, col, (ImGuiColorEditFlags)(0), refCol);
+			return ret != 0;
 		}
 
-		internal static void TableSetColumnEnabledNative(int columnN, byte v)
+		public static bool ColorPicker4(ref byte label, float* col, ImGuiColorEditFlags flags, float* refCol)
 		{
-			((delegate* unmanaged[Cdecl]<int, byte, void>)vt[284])(columnN, v);
+			fixed (byte* plabel = &label)
+			{
+				byte ret = ColorPicker4Native((byte*)plabel, col, flags, refCol);
+				return ret != 0;
+			}
 		}
 
-		public static void TableSetColumnEnabled(int columnN, bool v)
+		public static bool ColorPicker4(ref byte label, float* col, ImGuiColorEditFlags flags)
 		{
-			TableSetColumnEnabledNative(columnN, v ? (byte)1 : (byte)0);
+			fixed (byte* plabel = &label)
+			{
+				byte ret = ColorPicker4Native((byte*)plabel, col, flags, (float*)(default));
+				return ret != 0;
+			}
 		}
 
-		internal static int TableGetHoveredColumnNative()
+		public static bool ColorPicker4(ref byte label, float* col)
 		{
-			return ((delegate* unmanaged[Cdecl]<int>)vt[285])();
+			fixed (byte* plabel = &label)
+			{
+				byte ret = ColorPicker4Native((byte*)plabel, col, (ImGuiColorEditFlags)(0), (float*)(default));
+				return ret != 0;
+			}
 		}
 
-		public static int TableGetHoveredColumn()
+		public static bool ColorPicker4(ref byte label, float* col, float* refCol)
 		{
-			int ret = TableGetHoveredColumnNative();
-			return ret;
+			fixed (byte* plabel = &label)
+			{
+				byte ret = ColorPicker4Native((byte*)plabel, col, (ImGuiColorEditFlags)(0), refCol);
+				return ret != 0;
+			}
 		}
 
-		internal static void TableSetBgColorNative(ImGuiTableBgTarget target, uint color, int columnN)
+		public static bool ColorPicker4(string label, float* col, ImGuiColorEditFlags flags, float* refCol)
 		{
-			((delegate* unmanaged[Cdecl]<ImGuiTableBgTarget, uint, int, void>)vt[286])(target, color, columnN);
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ColorPicker4Native(pStr0, col, flags, refCol);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
 		}
 
-		public static void TableSetBgColor(ImGuiTableBgTarget target, uint color, int columnN)
+		public static bool ColorPicker4(string label, float* col, ImGuiColorEditFlags flags)
 		{
-			TableSetBgColorNative(target, color, columnN);
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ColorPicker4Native(pStr0, col, flags, (float*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
 		}
 
-		public static void TableSetBgColor(ImGuiTableBgTarget target, uint color)
+		public static bool ColorPicker4(string label, float* col)
 		{
-			TableSetBgColorNative(target, color, (int)(-1));
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ColorPicker4Native(pStr0, col, (ImGuiColorEditFlags)(0), (float*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
 		}
 
-		internal static void ColumnsNative(int count, byte* id, byte border)
+		public static bool ColorPicker4(string label, float* col, float* refCol)
 		{
-			((delegate* unmanaged[Cdecl]<int, byte*, byte, void>)vt[287])(count, id, border);
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = ColorPicker4Native(pStr0, col, (ImGuiColorEditFlags)(0), refCol);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
 		}
 
-		public static void Columns(int count, byte* id, bool border)
+		public static bool ColorPicker4(ReadOnlySpan<byte> label, float* col, ImGuiColorEditFlags flags, float* refCol)
 		{
-			ColumnsNative(count, id, border ? (byte)1 : (byte)0);
+			fixed (byte* plabel = label)
+			{
+				byte ret = ColorPicker4Native((byte*)plabel, col, flags, refCol);
+				return ret != 0;
+			}
 		}
 
-		public static void Columns(int count, byte* id)
+		public static bool ColorPicker4(ReadOnlySpan<byte> label, float* col, ImGuiColorEditFlags flags)
 		{
-			ColumnsNative(count, id, (byte)(1));
+			fixed (byte* plabel = label)
+			{
+				byte ret = ColorPicker4Native((byte*)plabel, col, flags, (float*)(default));
+				return ret != 0;
+			}
 		}
 
-		public static void Columns(int count)
+		public static bool ColorPicker4(ReadOnlySpan<byte> label, float* col)
 		{
-			ColumnsNative(count, (byte*)(default), (byte)(1));
+			fixed (byte* plabel = label)
+			{
+				byte ret = ColorPicker4Native((byte*)plabel, col, (ImGuiColorEditFlags)(0), (float*)(default));
+				return ret != 0;
+			}
 		}
 
-		public static void Columns()
+		public static bool ColorPicker4(ReadOnlySpan<byte> label, float* col, float* refCol)
 		{
-			ColumnsNative((int)(1), (byte*)(default), (byte)(1));
+			fixed (byte* plabel = label)
+			{
+				byte ret = ColorPicker4Native((byte*)plabel, col, (ImGuiColorEditFlags)(0), refCol);
+				return ret != 0;
+			}
 		}
 
-		public static void Columns(byte* id)
+		public static bool ColorPicker4(byte* label, ref float col, ImGuiColorEditFlags flags, float* refCol)
 		{
-			ColumnsNative((int)(1), id, (byte)(1));
+			fixed (float* pcol = &col)
+			{
+				byte ret = ColorPicker4Native(label, (float*)pcol, flags, refCol);
+				return ret != 0;
+			}
 		}
 
-		public static void Columns(int count, bool border)
+		public static bool ColorPicker4(byte* label, ref float col, ImGuiColorEditFlags flags)
 		{
-			ColumnsNative(count, (byte*)(default), border ? (byte)1 : (byte)0);
+			fixed (float* pcol = &col)
+			{
+				byte ret = ColorPicker4Native(label, (float*)pcol, flags, (float*)(default));
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(byte* label, ref float col)
+		{
+			fixed (float* pcol = &col)
+			{
+				byte ret = ColorPicker4Native(label, (float*)pcol, (ImGuiColorEditFlags)(0), (float*)(default));
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(byte* label, ref float col, float* refCol)
+		{
+			fixed (float* pcol = &col)
+			{
+				byte ret = ColorPicker4Native(label, (float*)pcol, (ImGuiColorEditFlags)(0), refCol);
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(byte* label, ref Vector4 col, ImGuiColorEditFlags flags, float* refCol)
+		{
+			fixed (Vector4* pcol = &col)
+			{
+				byte ret = ColorPicker4Native(label, (float*)pcol, flags, refCol);
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(byte* label, ref Vector4 col, ImGuiColorEditFlags flags)
+		{
+			fixed (Vector4* pcol = &col)
+			{
+				byte ret = ColorPicker4Native(label, (float*)pcol, flags, (float*)(default));
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(byte* label, ref Vector4 col)
+		{
+			fixed (Vector4* pcol = &col)
+			{
+				byte ret = ColorPicker4Native(label, (float*)pcol, (ImGuiColorEditFlags)(0), (float*)(default));
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(byte* label, ref Vector4 col, float* refCol)
+		{
+			fixed (Vector4* pcol = &col)
+			{
+				byte ret = ColorPicker4Native(label, (float*)pcol, (ImGuiColorEditFlags)(0), refCol);
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(byte* label, ReadOnlySpan<float> col, ImGuiColorEditFlags flags, float* refCol)
+		{
+			fixed (float* pcol = col)
+			{
+				byte ret = ColorPicker4Native(label, (float*)pcol, flags, refCol);
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(byte* label, ReadOnlySpan<float> col, ImGuiColorEditFlags flags)
+		{
+			fixed (float* pcol = col)
+			{
+				byte ret = ColorPicker4Native(label, (float*)pcol, flags, (float*)(default));
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(byte* label, ReadOnlySpan<float> col)
+		{
+			fixed (float* pcol = col)
+			{
+				byte ret = ColorPicker4Native(label, (float*)pcol, (ImGuiColorEditFlags)(0), (float*)(default));
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(byte* label, ReadOnlySpan<float> col, float* refCol)
+		{
+			fixed (float* pcol = col)
+			{
+				byte ret = ColorPicker4Native(label, (float*)pcol, (ImGuiColorEditFlags)(0), refCol);
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(ref byte label, ref float col, ImGuiColorEditFlags flags, float* refCol)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pcol = &col)
+				{
+					byte ret = ColorPicker4Native((byte*)plabel, (float*)pcol, flags, refCol);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool ColorPicker4(ref byte label, ref float col, ImGuiColorEditFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pcol = &col)
+				{
+					byte ret = ColorPicker4Native((byte*)plabel, (float*)pcol, flags, (float*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool ColorPicker4(ref byte label, ref float col)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pcol = &col)
+				{
+					byte ret = ColorPicker4Native((byte*)plabel, (float*)pcol, (ImGuiColorEditFlags)(0), (float*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool ColorPicker4(ref byte label, ref float col, float* refCol)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pcol = &col)
+				{
+					byte ret = ColorPicker4Native((byte*)plabel, (float*)pcol, (ImGuiColorEditFlags)(0), refCol);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool ColorPicker4(string label, ref Vector4 col, ImGuiColorEditFlags flags, float* refCol)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcol = &col)
+			{
+				byte ret = ColorPicker4Native(pStr0, (float*)pcol, flags, refCol);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(string label, ref Vector4 col, ImGuiColorEditFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcol = &col)
+			{
+				byte ret = ColorPicker4Native(pStr0, (float*)pcol, flags, (float*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(string label, ref Vector4 col)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcol = &col)
+			{
+				byte ret = ColorPicker4Native(pStr0, (float*)pcol, (ImGuiColorEditFlags)(0), (float*)(default));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(string label, ref Vector4 col, float* refCol)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcol = &col)
+			{
+				byte ret = ColorPicker4Native(pStr0, (float*)pcol, (ImGuiColorEditFlags)(0), refCol);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(ReadOnlySpan<byte> label, ReadOnlySpan<float> col, ImGuiColorEditFlags flags, float* refCol)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pcol = col)
+				{
+					byte ret = ColorPicker4Native((byte*)plabel, (float*)pcol, flags, refCol);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool ColorPicker4(ReadOnlySpan<byte> label, ReadOnlySpan<float> col, ImGuiColorEditFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pcol = col)
+				{
+					byte ret = ColorPicker4Native((byte*)plabel, (float*)pcol, flags, (float*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool ColorPicker4(ReadOnlySpan<byte> label, ReadOnlySpan<float> col)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pcol = col)
+				{
+					byte ret = ColorPicker4Native((byte*)plabel, (float*)pcol, (ImGuiColorEditFlags)(0), (float*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool ColorPicker4(ReadOnlySpan<byte> label, ReadOnlySpan<float> col, float* refCol)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pcol = col)
+				{
+					byte ret = ColorPicker4Native((byte*)plabel, (float*)pcol, (ImGuiColorEditFlags)(0), refCol);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool ColorPicker4(byte* label, float* col, ImGuiColorEditFlags flags, ref float refCol)
+		{
+			fixed (float* prefCol = &refCol)
+			{
+				byte ret = ColorPicker4Native(label, col, flags, (float*)prefCol);
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(byte* label, float* col, ref float refCol)
+		{
+			fixed (float* prefCol = &refCol)
+			{
+				byte ret = ColorPicker4Native(label, col, (ImGuiColorEditFlags)(0), (float*)prefCol);
+				return ret != 0;
+			}
+		}
+
+		public static bool ColorPicker4(ref byte label, float* col, ImGuiColorEditFlags flags, ref float refCol)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* prefCol = &refCol)
+				{
+					byte ret = ColorPicker4Native((byte*)plabel, col, flags, (float*)prefCol);
+					return ret != 0;
+				}
+			}
 		}
 	}
 }

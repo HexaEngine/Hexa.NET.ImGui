@@ -19,54 +19,2791 @@ namespace Hexa.NET.ImPlot
 	public unsafe partial class ImPlot
 	{
 
-		public static void PlotPieChart(string[] labelIds, ref sbyte values, int count, double x, double y, double radius, string labelFmt)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			fixed (byte* plabelId = labelId)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				fixed (ulong* pxs = &xs)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, ys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, ys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, ys, (ulong*)pneg, (ulong*)ppos, count, flags, (int)(0), (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, ref ulong neg, ref ulong pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, ys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, ref ulong neg, ref ulong pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, ys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, ref ulong neg, ref ulong pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, ys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				fixed (ulong* pneg = &neg)
+				{
+					fixed (ulong* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				fixed (ulong* pneg = &neg)
+				{
+					fixed (ulong* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				fixed (ulong* pneg = &neg)
+				{
+					fixed (ulong* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, (int)(0), (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				fixed (ulong* pneg = &neg)
+				{
+					fixed (ulong* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				fixed (ulong* pneg = &neg)
+				{
+					fixed (ulong* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ulong)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset, int stride)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				fixed (ulong* pneg = &neg)
+				{
+					fixed (ulong* ppos = &pos)
+					{
+						PlotErrorBarsNative(labelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, (int)(0), (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				fixed (ulong* pneg = &neg)
+				{
+					fixed (ulong* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, stride);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
 				}
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+		}
+
+		public static void PlotErrorBars(string labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			fixed (sbyte* pvalues = &values)
+			fixed (ulong* pys = &ys)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
+				fixed (ulong* pneg = &neg)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					fixed (ulong* ppos = &pos)
 					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						PlotErrorBarsNative(pStr0, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, (int)(sizeof(ulong)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
 					}
-					else
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				fixed (ulong* pneg = &neg)
+				{
+					fixed (ulong* ppos = &pos)
 					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
+						PlotErrorBarsNative(pStr0, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, (int)(0), (int)(sizeof(ulong)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
 				}
-				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStrArray0[i]);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				else
 				{
-					Utils.Free(pStrArray0);
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				fixed (ulong* pneg = &neg)
+				{
+					fixed (ulong* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				fixed (ulong* pneg = &neg)
+				{
+					fixed (ulong* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ulong)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				fixed (ulong* pneg = &neg)
+				{
+					fixed (ulong* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, (int)(0), (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, (int)(0), (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ulong)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset, int stride)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pneg = &neg)
+						{
+							fixed (ulong* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, stride);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pneg = &neg)
+						{
+							fixed (ulong* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, (int)(sizeof(ulong)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pneg = &neg)
+						{
+							fixed (ulong* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, (int)(0), (int)(sizeof(ulong)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pneg = &neg)
+						{
+							fixed (ulong* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pneg = &neg)
+						{
+							fixed (ulong* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ulong)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pneg = &neg)
+						{
+							fixed (ulong* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, stride);
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, (int)(sizeof(ulong)));
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, (int)(0), (int)(sizeof(ulong)));
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ulong)));
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					fixed (ulong* pneg = &neg)
+					{
+						fixed (ulong* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pneg = &neg)
+						{
+							fixed (ulong* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, stride);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pneg = &neg)
+						{
+							fixed (ulong* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, offset, (int)(sizeof(ulong)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pneg = &neg)
+						{
+							fixed (ulong* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, flags, (int)(0), (int)(sizeof(ulong)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pneg = &neg)
+						{
+							fixed (ulong* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pneg = &neg)
+						{
+							fixed (ulong* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(ulong)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, ref ulong neg, ref ulong pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						fixed (ulong* pneg = &neg)
+						{
+							fixed (ulong* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, (ulong*)pneg, (ulong*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		internal static void PlotStemsNative(byte* labelId, float* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, float*, int, double, double, double, ImPlotStemsFlags, int, int, void>)vt[199])(labelId, values, count, reference, scale, start, flags, offset, stride);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, ImPlotStemsFlags, int, int, void>)vt[199])((nint)labelId, (nint)values, count, reference, scale, start, flags, offset, stride);
+			#endif
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, flags, offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, flags, offset, (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, double scale, double start)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, double scale)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, ImPlotStemsFlags flags)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, double scale, double start, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, double scale, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, int offset)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, double scale, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), flags, offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, float* values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, double scale, double start)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, double scale)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, double scale, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, float* values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, flags, offset, (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, double scale, double start)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, double scale)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, ImPlotStemsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, double scale, double start, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, double scale, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, double scale, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, float* values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, double scale, double start)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, double scale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, double scale, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, scale, start, flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, scale, start, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, scale, start, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, double scale, double start)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, double scale)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, double scale, int offset)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, int offset)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, int offset)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, int offset, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, int offset, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, scale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref float values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, start, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, start, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, start, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, double scale, double start)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, double scale)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, double scale, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref float values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref float values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, scale, start, flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -74,54 +2811,28 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(string[] labelIds, ref sbyte values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
+		public static void PlotStems(string labelId, ref float values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
 		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
 				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-			for (int i = 0; i < labelIds.Length; i++)
+			fixed (float* pvalues = &values)
 			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (sbyte* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(pStrArray0, (sbyte*)pvalues, count, x, y, radius, pStr0, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, scale, start, flags, offset, (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -129,674 +2840,13 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		internal static void PlotPieChartNative(byte** labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<byte**, byte*, int, double, double, double, byte*, double, ImPlotPieChartFlags, void>)vt[242])(labelIds, values, count, x, y, radius, labelFmt, angle0, flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, angle0, flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, double angle0)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, (double)(90), flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", angle0, flags);
-		}
-
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, labelFmt, angle0, flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (byte*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, double angle0)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (byte*)pvalues, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, labelFmt, (double)(90), flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (byte*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (byte*)pvalues, count, x, y, radius, (string)"%.1f", angle0, flags);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, labelFmt, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (byte*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (byte*)pvalues, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, labelFmt, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (byte*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (byte*)pvalues, count, x, y, radius, (string)"%.1f", angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ref byte labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, angle0, flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ref byte labelFmt, double angle0)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ref byte labelFmt)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ref byte labelFmt, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, (double)(90), flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
+		public static void PlotStems(string labelId, ref float values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (labelFmt != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -806,368 +2856,12 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, angle0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (float* pvalues = &values)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, string labelFmt, double angle0)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, angle0, (ImPlotPieChartFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, string labelFmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, (double)(90), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, pStr0, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, string labelFmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, pStr0, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, string labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, pStr0, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, ref byte labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (byte*)plabelFmt, angle0, flags);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, ref byte labelFmt, double angle0)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (byte*)plabelFmt, angle0, (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, ref byte labelFmt)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (byte*)plabelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, ref byte labelFmt, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, (byte*)plabelFmt, (double)(90), flags);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, pStr0, angle0, flags);
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, scale, start, flags, (int)(0), (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1175,981 +2869,13 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, string labelFmt, double angle0)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, pStr0, angle0, (ImPlotPieChartFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, string labelFmt)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref byte values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(labelIds, (byte*)pvalues, count, x, y, radius, pStr0, (double)(90), flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, pStr0, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, string labelFmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, pStr0, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, string labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (byte* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(pStrArray0, (byte*)pvalues, count, x, y, radius, pStr0, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		internal static void PlotPieChartNative(byte** labelIds, short* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<byte**, short*, int, double, double, double, byte*, double, ImPlotPieChartFlags, void>)vt[243])(labelIds, values, count, x, y, radius, labelFmt, angle0, flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, angle0, flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, double angle0)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, (double)(90), flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", angle0, flags);
-		}
-
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, labelFmt, angle0, flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (short*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, double angle0)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (short*)pvalues, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, labelFmt, (double)(90), flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (short*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (short*)pvalues, count, x, y, radius, (string)"%.1f", angle0, flags);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref short values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, labelFmt, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref short values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref short values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref short values, int count, double x, double y, double radius)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (short*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref short values, int count, double x, double y, double radius, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (short*)pvalues, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref short values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, labelFmt, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref short values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (short*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref short values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (short*)pvalues, count, x, y, radius, (string)"%.1f", angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ref byte labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, angle0, flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ref byte labelFmt, double angle0)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ref byte labelFmt)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ref byte labelFmt, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, (double)(90), flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
+		public static void PlotStems(string labelId, ref float values, int count, double reference, double scale, double start)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (labelFmt != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -2159,368 +2885,12 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, angle0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (float* pvalues = &values)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, string labelFmt, double angle0)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, angle0, (ImPlotPieChartFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, string labelFmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, (double)(90), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, pStr0, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, string labelFmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, pStr0, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, string labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, short* values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, pStr0, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, ref byte labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (byte*)plabelFmt, angle0, flags);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, ref byte labelFmt, double angle0)
-		{
-			fixed (short* pvalues = &values)
-			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (byte*)plabelFmt, angle0, (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, ref byte labelFmt)
-		{
-			fixed (short* pvalues = &values)
-			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (byte*)plabelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, ref byte labelFmt, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, (byte*)plabelFmt, (double)(90), flags);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, pStr0, angle0, flags);
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2528,981 +2898,13 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, string labelFmt, double angle0)
-		{
-			fixed (short* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, pStr0, angle0, (ImPlotPieChartFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, string labelFmt)
-		{
-			fixed (short* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref short values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
-		{
-			fixed (short* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(labelIds, (short*)pvalues, count, x, y, radius, pStr0, (double)(90), flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref short values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, pStr0, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref short values, int count, double x, double y, double radius, string labelFmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, pStr0, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref short values, int count, double x, double y, double radius, string labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref short values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (short* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(pStrArray0, (short*)pvalues, count, x, y, radius, pStr0, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		internal static void PlotPieChartNative(byte** labelIds, ushort* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<byte**, ushort*, int, double, double, double, byte*, double, ImPlotPieChartFlags, void>)vt[244])(labelIds, values, count, x, y, radius, labelFmt, angle0, flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, angle0, flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, double angle0)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, (double)(90), flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", angle0, flags);
-		}
-
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, labelFmt, angle0, flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (ushort*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, double angle0)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (ushort*)pvalues, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, labelFmt, (double)(90), flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (ushort*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (ushort*)pvalues, count, x, y, radius, (string)"%.1f", angle0, flags);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref ushort values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, labelFmt, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref ushort values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref ushort values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref ushort values, int count, double x, double y, double radius)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (ushort*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref ushort values, int count, double x, double y, double radius, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (ushort*)pvalues, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref ushort values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, labelFmt, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref ushort values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (ushort*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref ushort values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (ushort*)pvalues, count, x, y, radius, (string)"%.1f", angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, ref byte labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, angle0, flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, ref byte labelFmt, double angle0)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, ref byte labelFmt)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, ref byte labelFmt, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, (double)(90), flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
+		public static void PlotStems(string labelId, ref float values, int count, double reference, double scale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (labelFmt != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3512,368 +2914,12 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, angle0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (float* pvalues = &values)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, string labelFmt, double angle0)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, angle0, (ImPlotPieChartFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, string labelFmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, (double)(90), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, pStr0, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, string labelFmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, pStr0, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, string labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ushort* values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, pStr0, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, ref byte labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, (byte*)plabelFmt, angle0, flags);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, ref byte labelFmt, double angle0)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, (byte*)plabelFmt, angle0, (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, ref byte labelFmt)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, (byte*)plabelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, ref byte labelFmt, ImPlotPieChartFlags flags)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, (byte*)plabelFmt, (double)(90), flags);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, pStr0, angle0, flags);
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3881,981 +2927,13 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, string labelFmt, double angle0)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, pStr0, angle0, (ImPlotPieChartFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, string labelFmt)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref ushort values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(labelIds, (ushort*)pvalues, count, x, y, radius, pStr0, (double)(90), flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref ushort values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, pStr0, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref ushort values, int count, double x, double y, double radius, string labelFmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, pStr0, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref ushort values, int count, double x, double y, double radius, string labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref ushort values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotPieChartNative(pStrArray0, (ushort*)pvalues, count, x, y, radius, pStr0, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		internal static void PlotPieChartNative(byte** labelIds, int* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<byte**, int*, int, double, double, double, byte*, double, ImPlotPieChartFlags, void>)vt[245])(labelIds, values, count, x, y, radius, labelFmt, angle0, flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, angle0, flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, double angle0)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-		}
-
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			PlotPieChartNative(labelIds, values, count, x, y, radius, labelFmt, (double)(90), flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-		}
-
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			PlotPieChart(labelIds, values, count, x, y, radius, (string)"%.1f", angle0, flags);
-		}
-
-		public static void PlotPieChart(string[] labelIds, int* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, int* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, int* values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, int* values, int count, double x, double y, double radius)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, int* values, int count, double x, double y, double radius, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, int* values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, labelFmt, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, int* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, int* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChart(pStrArray0, values, count, x, y, radius, (string)"%.1f", angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref int values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (int*)pvalues, count, x, y, radius, labelFmt, angle0, flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref int values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (int*)pvalues, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref int values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (int*)pvalues, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref int values, int count, double x, double y, double radius)
-		{
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (int*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref int values, int count, double x, double y, double radius, double angle0)
-		{
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (int*)pvalues, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref int values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (int*)pvalues, count, x, y, radius, labelFmt, (double)(90), flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref int values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (int*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref int values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChart(labelIds, (int*)pvalues, count, x, y, radius, (string)"%.1f", angle0, flags);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref int values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (int*)pvalues, count, x, y, radius, labelFmt, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref int values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (int*)pvalues, count, x, y, radius, labelFmt, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref int values, int count, double x, double y, double radius, byte* labelFmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (int*)pvalues, count, x, y, radius, labelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref int values, int count, double x, double y, double radius)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (int*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref int values, int count, double x, double y, double radius, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (int*)pvalues, count, x, y, radius, (string)"%.1f", angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref int values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (int*)pvalues, count, x, y, radius, labelFmt, (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref int values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (int*)pvalues, count, x, y, radius, (string)"%.1f", (double)(90), flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref int values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (int* pvalues = &values)
-			{
-				PlotPieChart(pStrArray0, (int*)pvalues, count, x, y, radius, (string)"%.1f", angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, ref byte labelFmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, angle0, flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, ref byte labelFmt, double angle0)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, ref byte labelFmt)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, ref byte labelFmt, ImPlotPieChartFlags flags)
-		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotPieChartNative(labelIds, values, count, x, y, radius, (byte*)plabelFmt, (double)(90), flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
+		public static void PlotStems(string labelId, ref float values, int count, double reference)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (labelFmt != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4865,23 +2943,26 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, angle0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (float* pvalues = &values)
 			{
-				Utils.Free(pStr0);
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, string labelFmt, double angle0)
+		public static void PlotStems(string labelId, ref float values, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (labelFmt != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4891,23 +2972,26 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, angle0, (ImPlotPieChartFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (float* pvalues = &values)
 			{
-				Utils.Free(pStr0);
+				PlotStemsNative(pStr0, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, string labelFmt)
+		public static void PlotStems(string labelId, ref float values, int count, double reference, double scale, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (labelFmt != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4917,23 +3001,26 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, (double)(90), (ImPlotPieChartFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (float* pvalues = &values)
 			{
-				Utils.Free(pStr0);
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
+		public static void PlotStems(string labelId, ref float values, int count, double reference, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (labelFmt != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4943,41 +3030,26 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotPieChartNative(labelIds, values, count, x, y, radius, pStr0, (double)(90), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (float* pvalues = &values)
 			{
-				Utils.Free(pStr0);
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		public static void PlotPieChart(string[] labelIds, int* values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
+		public static void PlotStems(string labelId, ref float values, int count, ImPlotStemsFlags flags)
 		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (labelFmt != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4987,49 +3059,26 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, pStr0, angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
+			fixed (float* pvalues = &values)
 			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				PlotStemsNative(pStr0, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
 		}
 
-		public static void PlotPieChart(string[] labelIds, int* values, int count, double x, double y, double radius, string labelFmt, double angle0)
+		public static void PlotStems(string labelId, ref float values, int count, double reference, double scale, double start, int offset)
 		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (labelFmt != null)
+			if (labelId != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -5039,21 +3088,1938 @@ namespace Hexa.NET.ImPlot
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, pStr0, angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
+			fixed (float* pvalues = &values)
 			{
-				Utils.Free(pStrArray0[i]);
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+		}
+
+		public static void PlotStems(string labelId, ref float values, int count, double reference, double scale, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				Utils.Free(pStrArray0);
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref float values, int count, double reference, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref float values, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref float values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref float values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref float values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref float values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref float values, int count, double reference, double scale, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref float values, int count, double reference, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref float values, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref float values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, scale, (double)(0), flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref float values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (float*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref float values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, start, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, start, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, start, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, double scale, double start)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, double scale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, double scale, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, scale, (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref float values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (float*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		internal static void PlotStemsNative(byte* labelId, double* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, double*, int, double, double, double, ImPlotStemsFlags, int, int, void>)vt[200])(labelId, values, count, reference, scale, start, flags, offset, stride);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, ImPlotStemsFlags, int, int, void>)vt[200])((nint)labelId, (nint)values, count, reference, scale, start, flags, offset, stride);
+			#endif
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, flags, offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, flags, offset, (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, double scale, double start)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, double scale)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, ImPlotStemsFlags flags)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, double scale, double start, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, double scale, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, int offset)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, double scale, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), flags, offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, double* values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, double scale, double start)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, double scale)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, double scale, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, double* values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, flags, offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, flags, offset, (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, double scale, double start)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, double scale)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, ImPlotStemsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, double scale, double start, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, double scale, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, double scale, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, double* values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, double scale, double start)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, double scale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, double scale, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, double* values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, reference, scale, start, flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, reference, scale, start, flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, reference, scale, start, flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, double reference, double scale, double start)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, double reference, double scale)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, double reference)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, double reference, double scale, int offset)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, double reference, int offset)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, int offset)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref double values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (double* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (double*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
 			}
 		}
 	}

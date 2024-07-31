@@ -19,288 +19,527 @@ namespace Hexa.NET.ImPlot
 	public unsafe partial class ImPlot
 	{
 
-		public static void PlotHeatmap(byte* labelId, ref float values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ushort* values, int count, ImPlotStemsFlags flags, int offset)
 		{
-			fixed (float* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHeatmapNative(labelId, (float*)pvalues, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, boundsMax, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ushort* values, int count, double reference, double scale, double start, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, flags);
-					}
-				}
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ushort* values, int count, double reference, double scale, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-					}
-				}
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ushort* values, int count, double reference, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-					}
-				}
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ushort* values, int count, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-					}
-				}
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, double scaleMin, ref byte labelFmt)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ushort* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-					}
-				}
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, stride);
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, ref byte labelFmt)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ushort* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-					}
-				}
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ushort* values, int count, ImPlotStemsFlags flags, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-					}
-				}
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-					}
-				}
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, scale, start, flags, offset, stride);
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-					}
-				}
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, scale, start, flags, offset, (int)(sizeof(ushort)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-					}
-				}
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, scale, start, flags, (int)(0), (int)(sizeof(ushort)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, double scale, double start)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-					}
-				}
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, double scale)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-					}
-				}
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-					}
-				}
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, ref ushort values, int count)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-					}
-				}
+				PlotStemsNative(labelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, double scale, ImPlotStemsFlags flags)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-					}
-				}
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, ImPlotStemsFlags flags)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-					}
-				}
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, ref ushort values, int count, ImPlotStemsFlags flags)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (ushort* pvalues = &values)
 			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
-					}
-				}
+				PlotStemsNative(labelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, ref float values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, double scale, int offset)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, int offset)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref ushort values, int count, int offset)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref ushort values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, int offset, int stride)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref ushort values, int count, int offset, int stride)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, scale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref ushort values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref ushort values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (float* pvalues = &values)
+				fixed (ushort* pvalues = &values)
 				{
-					fixed (byte* plabelFmt = &labelFmt)
-					{
-						PlotHeatmapNative((byte*)plabelId, (float*)pvalues, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
-					}
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, start, flags, offset, stride);
 				}
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, start, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, start, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, double scale, double start)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, double scale)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, double scale, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref ushort values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -319,30 +558,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, boundsMax, flags);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, scale, start, flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -350,7 +568,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -369,30 +587,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, scale, start, flags, offset, (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -400,7 +597,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -419,30 +616,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, scale, start, flags, (int)(0), (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -450,7 +626,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt)
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, double scale, double start)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -469,30 +645,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -500,7 +655,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, double scaleMin, string labelFmt)
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, double scale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -519,30 +674,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -550,7 +684,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, string labelFmt)
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -569,30 +703,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -600,7 +713,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, ref ushort values, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -619,30 +732,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -650,7 +742,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, double scale, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -669,30 +761,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -700,7 +771,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -719,30 +790,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -750,7 +800,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, ref ushort values, int count, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -769,30 +819,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -800,7 +829,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, double scale, double start, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -819,30 +848,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -850,7 +858,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, double scale, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -869,30 +877,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, scaleMin, scaleMax, pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -900,7 +887,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, double scaleMin, string labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -919,30 +906,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -950,7 +916,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, string labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, ref ushort values, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -969,30 +935,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1000,7 +945,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1019,30 +964,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1050,7 +974,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, ImPlotStemsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1069,30 +993,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1100,7 +1003,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, ref ushort values, int count, ImPlotStemsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1119,30 +1022,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, scaleMin, (double)(0), pStr1, boundsMin, boundsMax, flags);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1150,7 +1032,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref float values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, double scale, double start, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1169,30 +1051,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (ushort* pvalues = &values)
 			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (labelFmt != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(labelFmt);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(labelFmt, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHeatmapNative(pStr0, (float*)pvalues, rows, cols, (double)(0), (double)(0), pStr1, boundsMin, boundsMax, flags);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1200,480 +1061,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		internal static void PlotHeatmapNative(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, double*, int, int, double, double, byte*, ImPlotPoint, ImPlotPoint, ImPlotHeatmapFlags, void>)vt[250])(labelId, values, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax)
-		{
-			PlotHeatmap(labelId, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin)
-		{
-			PlotHeatmap(labelId, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols)
-		{
-			PlotHeatmap(labelId, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, byte* labelFmt)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin)
-		{
-			PlotHeatmap(labelId, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin)
-		{
-			PlotHeatmap(labelId, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, ImPlotPoint boundsMin)
-		{
-			PlotHeatmap(labelId, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			PlotHeatmap(labelId, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			PlotHeatmap(labelId, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			PlotHeatmap(labelId, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmap(labelId, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmap(labelId, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmap(labelId, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmap(labelId, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmap(labelId, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmap(labelId, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmap(labelId, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmap(labelId, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmap(labelId, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, flags);
-		}
-
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, flags);
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, byte* labelFmt)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, ImPlotPoint boundsMin)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmap((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, flags);
-			}
-		}
-
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, double scale, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1692,14 +1080,773 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, flags);
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref ushort values, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, scale, (double)(0), flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref ushort values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref ushort values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ushort* pvalues = &values)
+			{
+				PlotStemsNative(pStr0, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, start, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, start, flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, start, flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, double scale, double start)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, double scale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, double scale, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, scale, (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref ushort values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ushort* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (ushort*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		internal static void PlotStemsNative(byte* labelId, int* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, int*, int, double, double, double, ImPlotStemsFlags, int, int, void>)vt[205])(labelId, values, count, reference, scale, start, flags, offset, stride);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, ImPlotStemsFlags, int, int, void>)vt[205])((nint)labelId, (nint)values, count, reference, scale, start, flags, offset, stride);
+			#endif
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, flags, offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, flags, offset, (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, double scale, double start)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, double scale)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, ImPlotStemsFlags flags)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, double scale, double start, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, double scale, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, int offset)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, double scale, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), flags, offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
+		}
+
+		public static void PlotStems(byte* labelId, int* values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, double scale, double start)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, double scale)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, double scale, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, int* values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(string labelId, int* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, flags, offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, int* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1718,14 +1865,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, reference, scale, start, flags, offset, (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, int* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1744,14 +1891,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt)
+		public static void PlotStems(string labelId, int* values, int count, double reference, double scale, double start)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1770,14 +1917,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax)
+		public static void PlotStems(string labelId, int* values, int count, double reference, double scale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1796,14 +1943,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmap(pStr0, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin)
+		public static void PlotStems(string labelId, int* values, int count, double reference)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1822,14 +1969,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmap(pStr0, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols)
+		public static void PlotStems(string labelId, int* values, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1848,14 +1995,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmap(pStr0, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt)
+		public static void PlotStems(string labelId, int* values, int count, double reference, double scale, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1874,14 +2021,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, byte* labelFmt)
+		public static void PlotStems(string labelId, int* values, int count, double reference, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1900,14 +2047,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, int* values, int count, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1926,14 +2073,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmap(pStr0, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, int* values, int count, double reference, double scale, double start, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1952,14 +2099,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmap(pStr0, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, int* values, int count, double reference, double scale, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1978,14 +2125,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmap(pStr0, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, int* values, int count, double reference, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2004,14 +2151,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, int* values, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2030,14 +2177,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, int* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2056,14 +2203,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmap(pStr0, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, int* values, int count, double reference, ImPlotStemsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2082,14 +2229,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmap(pStr0, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, int* values, int count, ImPlotStemsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2108,14 +2255,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmap(pStr0, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, int* values, int count, double reference, double scale, double start, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2134,14 +2281,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, int* values, int count, double reference, double scale, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2160,14 +2307,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, int* values, int count, double reference, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2186,14 +2333,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, int* values, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2212,14 +2359,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, int* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2238,14 +2385,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmap(pStr0, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), flags, offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, int* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2264,14 +2411,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmap(pStr0, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, int* values, int count, ImPlotStemsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2290,14 +2437,662 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmap(pStr0, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, double scale, double start)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, double scale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, double scale, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, int* values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, scale, start, flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, scale, start, flags, offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, scale, start, flags, (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, double scale, double start)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, double scale)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, double scale, int offset)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, int offset)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, int offset)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, int offset, int stride)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, int offset, int stride)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, scale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(byte* labelId, ref int values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (int* pvalues = &values)
+			{
+				PlotStemsNative(labelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, start, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, start, flags, offset, (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, start, flags, (int)(0), (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, double scale, double start)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, double scale)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, double scale, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, ref int values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotStems(string labelId, ref int values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2316,1005 +3111,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (int* pvalues = &values)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotHeatmapFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmap(pStr0, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmap(pStr0, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmap(pStr0, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmap(pStr0, values, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmap(pStr0, values, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmap(pStr0, values, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(pStr0, values, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHeatmap(string labelId, double* values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(pStr0, values, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, byte* labelFmt)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, ImPlotPoint boundsMin)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, flags);
-			}
-		}
-
-		public static void PlotHeatmap(byte* labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(labelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, flags);
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, byte* labelFmt)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, ImPlotPoint boundsMin)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmap((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(ref byte labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotHeatmapNative((byte*)plabelId, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, flags);
-				}
-			}
-		}
-
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, flags);
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, scale, start, flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3322,7 +3121,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3341,9 +3140,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, scale, start, flags, offset, (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3351,7 +3150,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3370,9 +3169,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, scale, start, flags, (int)(0), (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3380,7 +3179,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, double scale, double start)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3399,9 +3198,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3409,7 +3208,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, double scale)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3428,9 +3227,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3438,7 +3237,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin)
+		public static void PlotStems(string labelId, ref int values, int count, double reference)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3457,9 +3256,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3467,7 +3266,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols)
+		public static void PlotStems(string labelId, ref int values, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3486,9 +3285,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3496,7 +3295,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, double scale, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3515,9 +3314,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3525,7 +3324,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, byte* labelFmt)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3544,9 +3343,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3554,7 +3353,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, ref int values, int count, ImPlotStemsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3573,9 +3372,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3583,7 +3382,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, double scale, double start, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3602,9 +3401,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3612,7 +3411,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, double scale, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3631,9 +3430,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3641,7 +3440,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3660,9 +3459,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3670,7 +3469,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(string labelId, ref int values, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3689,9 +3488,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3699,7 +3498,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3718,9 +3517,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3728,7 +3527,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, ImPlotStemsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3747,9 +3546,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3757,7 +3556,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, ref int values, int count, ImPlotStemsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3776,9 +3575,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3786,7 +3585,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, double scale, double start, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3805,9 +3604,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3815,7 +3614,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, double scale, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3834,9 +3633,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3844,7 +3643,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3863,9 +3662,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3873,7 +3672,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, byte* labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, ref int values, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3892,9 +3691,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotStemsNative(pStr0, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3902,7 +3701,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3921,9 +3720,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, scale, (double)(0), flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3931,7 +3730,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, ref int values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3950,9 +3749,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotStemsNative(pStr0, (int*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3960,7 +3759,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, ImPlotHeatmapFlags flags)
+		public static void PlotStems(string labelId, ref int values, int count, ImPlotStemsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3979,9 +3778,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (double* pvalues = &values)
+			fixed (int* pvalues = &values)
 			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				PlotStemsNative(pStr0, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3989,1040 +3788,1236 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (int* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, start, flags, offset, stride);
 				}
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (int* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, start, flags, offset, (int)(sizeof(int)));
 				}
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (int* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, start, flags, (int)(0), (int)(sizeof(int)));
 				}
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, double scale, double start)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (int* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
 				}
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, double scale)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (int* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
 				}
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (int* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
 				}
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (int* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(int)));
 				}
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, double scaleMax, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, double scale, ImPlotStemsFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (int* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, scaleMin, scaleMax, (string)"%.1f", boundsMin, boundsMax, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(int)));
 				}
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, ImPlotStemsFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (int* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
 				}
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, ImPlotStemsFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (int* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmap(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), (string)"%.1f", boundsMin, boundsMax, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
 				}
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, double scaleMin, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, double scale, double start, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (int* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, scaleMin, (double)(0), labelFmt, boundsMin, boundsMax, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
 				}
 			}
 		}
 
-		public static void PlotHeatmap(string labelId, ref double values, int rows, int cols, byte* labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, double scale, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (int* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (double* pvalues = &values)
-			{
-				PlotHeatmapNative(pStr0, (double*)pvalues, rows, cols, (double)(0), (double)(0), labelFmt, boundsMin, boundsMax, flags);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
 				}
 			}
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, int offset)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, flags);
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+				}
 			}
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, int offset)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(int)));
+				}
 			}
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(int)));
+				}
 			}
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, ImPlotStemsFlags flags, int offset)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
+				}
 			}
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, ref byte labelFmt)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, ImPlotStemsFlags flags, int offset)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
+				}
 			}
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, ref byte labelFmt)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, double scale, double start, int offset, int stride)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+				}
 			}
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, double scale, int offset, int stride)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
 			}
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, int offset, int stride)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
 			}
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, int offset, int stride)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+				}
 			}
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, scale, (double)(0), flags, offset, stride);
+				}
 			}
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, reference, (double)(1), (double)(0), flags, offset, stride);
+				}
 			}
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(ReadOnlySpan<byte> labelId, ref int values, int count, ImPlotStemsFlags flags, int offset, int stride)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
+				fixed (int* pvalues = &values)
+				{
+					PlotStemsNative((byte*)plabelId, (int*)pvalues, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+				}
 			}
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		internal static void PlotStemsNative(byte* labelId, uint* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, uint*, int, double, double, double, ImPlotStemsFlags, int, int, void>)vt[206])(labelId, values, count, reference, scale, start, flags, offset, stride);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, double, ImPlotStemsFlags, int, int, void>)vt[206])((nint)labelId, (nint)values, count, reference, scale, start, flags, offset, stride);
+			#endif
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, ref byte labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
+			PlotStemsNative(labelId, values, count, reference, scale, start, flags, offset, stride);
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
+			PlotStemsNative(labelId, values, count, reference, scale, start, flags, offset, (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			}
+			PlotStemsNative(labelId, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, double scale, double start)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
-			}
+			PlotStemsNative(labelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, double scale)
 		{
-			fixed (byte* plabelFmt = &labelFmt)
-			{
-				PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, boundsMin, boundsMax, flags);
-			}
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, boundsMax, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(byte* labelId, uint* values, int count)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, double scale, ImPlotStemsFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, ImPlotStemsFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, string labelFmt)
+		public static void PlotStems(byte* labelId, uint* values, int count, ImPlotStemsFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, string labelFmt)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, double scale, double start, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, double scale, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(byte* labelId, uint* values, int count, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, ImPlotStemsFlags flags, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, string labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, ImPlotStemsFlags flags, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, scaleMax, pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(uint)));
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, double scale, double start, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, string labelFmt, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, double scale, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), pStr0, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, double scaleMin, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, scaleMin, (double)(0), pStr0, boundsMin, boundsMax, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, reference, scale, (double)(0), flags, offset, stride);
 		}
 
-		public static void PlotHeatmap(byte* labelId, double* values, int rows, int cols, string labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelFmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelFmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelFmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHeatmapNative(labelId, values, rows, cols, (double)(0), (double)(0), pStr0, boundsMin, boundsMax, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			PlotStemsNative(labelId, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
 		}
 
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax, ImPlotHeatmapFlags flags)
+		public static void PlotStems(byte* labelId, uint* values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			PlotStemsNative(labelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, flags);
-				}
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, stride);
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin, ImPlotPoint boundsMax)
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, boundsMax, (ImPlotHeatmapFlags)(0));
-				}
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, (int)(sizeof(uint)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(uint)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, double scaleMax, ref byte labelFmt)
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, double scale, double start)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, scaleMax, (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(uint)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, ref byte labelFmt)
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, double scale)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(uint)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, ref byte labelFmt)
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (byte* plabelFmt = &labelFmt)
-				{
-					PlotHeatmapNative((byte*)plabelId, values, rows, cols, (double)(0), (double)(0), (byte*)plabelFmt, (ImPlotPoint)(*ImPlotPointNative(0,0)), (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
-				}
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(uint)));
 			}
 		}
 
-		public static void PlotHeatmap(ref byte labelId, double* values, int rows, int cols, double scaleMin, ref byte labelFmt, ImPlotPoint boundsMin)
+		public static void PlotStems(ref byte labelId, uint* values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (byte* plabelFmt = &labelFmt)
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, double scale, double start, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, double scale, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, double scale, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ref byte labelId, uint* values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					PlotHeatmapNative((byte*)plabelId, values, rows, cols, scaleMin, (double)(0), (byte*)plabelFmt, boundsMin, (ImPlotPoint)(*ImPlotPointNative(1,1)), (ImPlotHeatmapFlags)(0));
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
 				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, flags, offset, (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, double scale, double start)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, double scale)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, double scale, ImPlotStemsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), flags, (int)(0), (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, ImPlotStemsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, ImPlotStemsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, double scale, double start, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, double scale, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), flags, offset, (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), flags, offset, (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, ImPlotStemsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), flags, offset, (int)(sizeof(uint)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, double scale, double start, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, start, (ImPlotStemsFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, double scale, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, double scale, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, scale, (double)(0), flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, reference, (double)(1), (double)(0), flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(string labelId, uint* values, int count, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotStemsNative(pStr0, values, count, (double)(0), (double)(1), (double)(0), flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, uint* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, stride);
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, uint* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotStems(ReadOnlySpan<byte> labelId, uint* values, int count, double reference, double scale, double start, ImPlotStemsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotStemsNative((byte*)plabelId, values, count, reference, scale, start, flags, (int)(0), (int)(sizeof(uint)));
 			}
 		}
 	}

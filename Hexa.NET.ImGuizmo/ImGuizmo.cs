@@ -4,7 +4,6 @@ namespace Hexa.NET.ImGuizmo
     {
         static ImGuizmo()
         {
-            LibraryLoader.SetImportResolver();
             InitApi();
         }
 

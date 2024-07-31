@@ -4,7 +4,6 @@ namespace Hexa.NET.ImNodes
     {
         static ImNodes()
         {
-            LibraryLoader.SetImportResolver();
             InitApi();
         }
 

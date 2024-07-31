@@ -18,619 +18,285 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
-		internal static void AddRectNative(ImDrawList* self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
+		public static void PlotLines(byte* label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
 		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, ImDrawFlags, float, void>)vt[540])(self, pMin, pMax, col, rounding, flags, thickness);
-		}
-
-		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
-		{
-			AddRectNative(self, pMin, pMax, col, rounding, flags, thickness);
-		}
-
-		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
-		{
-			AddRectNative(self, pMin, pMax, col, rounding, flags, (float)(1.0f));
-		}
-
-		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
-		{
-			AddRectNative(self, pMin, pMax, col, rounding, (ImDrawFlags)(0), (float)(1.0f));
-		}
-
-		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col)
-		{
-			AddRectNative(self, pMin, pMax, col, (float)(0.0f), (ImDrawFlags)(0), (float)(1.0f));
-		}
-
-		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
-		{
-			AddRectNative(self, pMin, pMax, col, (float)(0.0f), flags, (float)(1.0f));
-		}
-
-		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness)
-		{
-			AddRectNative(self, pMin, pMax, col, rounding, (ImDrawFlags)(0), thickness);
-		}
-
-		public static void AddRect(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags, float thickness)
-		{
-			AddRectNative(self, pMin, pMax, col, (float)(0.0f), flags, thickness);
-		}
-
-		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* poverlayText = overlayText)
 			{
-				AddRectNative((ImDrawList*)pself, pMin, pMax, col, rounding, flags, thickness);
+				PlotLinesNative(label, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
 			}
 		}
 
-		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddRectNative((ImDrawList*)pself, pMin, pMax, col, rounding, flags, (float)(1.0f));
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+				}
 			}
 		}
 
-		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddRectNative((ImDrawList*)pself, pMin, pMax, col, rounding, (ImDrawFlags)(0), (float)(1.0f));
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				}
 			}
 		}
 
-		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddRectNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), (ImDrawFlags)(0), (float)(1.0f));
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
 			}
 		}
 
-		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddRectNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), flags, (float)(1.0f));
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
 			}
 		}
 
-		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, float thickness)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddRectNative((ImDrawList*)pself, pMin, pMax, col, rounding, (ImDrawFlags)(0), thickness);
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
 			}
 		}
 
-		public static void AddRect(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags, float thickness)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, ref byte overlayText)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddRectNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), flags, thickness);
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
 			}
 		}
 
-		internal static void AddRectFilledNative(ImDrawList* self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin)
 		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, ImDrawFlags, void>)vt[541])(self, pMin, pMax, col, rounding, flags);
-		}
-
-		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
-		{
-			AddRectFilledNative(self, pMin, pMax, col, rounding, flags);
-		}
-
-		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
-		{
-			AddRectFilledNative(self, pMin, pMax, col, rounding, (ImDrawFlags)(0));
-		}
-
-		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col)
-		{
-			AddRectFilledNative(self, pMin, pMax, col, (float)(0.0f), (ImDrawFlags)(0));
-		}
-
-		public static void AddRectFilled(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
-		{
-			AddRectFilledNative(self, pMin, pMax, col, (float)(0.0f), flags);
-		}
-
-		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding, ImDrawFlags flags)
-		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddRectFilledNative((ImDrawList*)pself, pMin, pMax, col, rounding, flags);
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
 			}
 		}
 
-		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, float rounding)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddRectFilledNative((ImDrawList*)pself, pMin, pMax, col, rounding, (ImDrawFlags)(0));
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
 			}
 		}
 
-		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddRectFilledNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), (ImDrawFlags)(0));
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
 			}
 		}
 
-		public static void AddRectFilled(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint col, ImDrawFlags flags)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddRectFilledNative((ImDrawList*)pself, pMin, pMax, col, (float)(0.0f), flags);
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
 			}
 		}
 
-		internal static void AddRectFilledMultiColorNative(ImDrawList* self, Vector2 pMin, Vector2 pMax, uint colUprLeft, uint colUprRight, uint colBotRight, uint colBotLeft)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, ref byte overlayText, Vector2 graphSize)
 		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, uint, uint, uint, void>)vt[542])(self, pMin, pMax, colUprLeft, colUprRight, colBotRight, colBotLeft);
-		}
-
-		public static void AddRectFilledMultiColor(ImDrawListPtr self, Vector2 pMin, Vector2 pMax, uint colUprLeft, uint colUprRight, uint colBotRight, uint colBotLeft)
-		{
-			AddRectFilledMultiColorNative(self, pMin, pMax, colUprLeft, colUprRight, colBotRight, colBotLeft);
-		}
-
-		public static void AddRectFilledMultiColor(ref ImDrawList self, Vector2 pMin, Vector2 pMax, uint colUprLeft, uint colUprRight, uint colBotRight, uint colBotLeft)
-		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddRectFilledMultiColorNative((ImDrawList*)pself, pMin, pMax, colUprLeft, colUprRight, colBotRight, colBotLeft);
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
 			}
 		}
 
-		internal static void AddQuadNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize)
 		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, float, void>)vt[543])(self, p1, p2, p3, p4, col, thickness);
-		}
-
-		public static void AddQuad(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
-		{
-			AddQuadNative(self, p1, p2, p3, p4, col, thickness);
-		}
-
-		public static void AddQuad(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
-		{
-			AddQuadNative(self, p1, p2, p3, p4, col, (float)(1.0f));
-		}
-
-		public static void AddQuad(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddQuadNative((ImDrawList*)pself, p1, p2, p3, p4, col, thickness);
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
 			}
 		}
 
-		public static void AddQuad(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddQuadNative((ImDrawList*)pself, p1, p2, p3, p4, col, (float)(1.0f));
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				}
 			}
 		}
 
-		internal static void AddQuadFilledNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, int stride)
 		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[544])(self, p1, p2, p3, p4, col);
-		}
-
-		public static void AddQuadFilled(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
-		{
-			AddQuadFilledNative(self, p1, p2, p3, p4, col);
-		}
-
-		public static void AddQuadFilled(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddQuadFilledNative((ImDrawList*)pself, p1, p2, p3, p4, col);
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+				}
 			}
 		}
 
-		internal static void AddTriangleNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, int stride)
 		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, uint, float, void>)vt[545])(self, p1, p2, p3, col, thickness);
-		}
-
-		public static void AddTriangle(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
-		{
-			AddTriangleNative(self, p1, p2, p3, col, thickness);
-		}
-
-		public static void AddTriangle(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
-		{
-			AddTriangleNative(self, p1, p2, p3, col, (float)(1.0f));
-		}
-
-		public static void AddTriangle(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddTriangleNative((ImDrawList*)pself, p1, p2, p3, col, thickness);
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
 			}
 		}
 
-		public static void AddTriangle(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, int stride)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddTriangleNative((ImDrawList*)pself, p1, p2, p3, col, (float)(1.0f));
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
 			}
 		}
 
-		internal static void AddTriangleFilledNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, ref byte overlayText, int stride)
 		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, uint, void>)vt[546])(self, p1, p2, p3, col);
-		}
-
-		public static void AddTriangleFilled(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
-		{
-			AddTriangleFilledNative(self, p1, p2, p3, col);
-		}
-
-		public static void AddTriangleFilled(ref ImDrawList self, Vector2 p1, Vector2 p2, Vector2 p3, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddTriangleFilledNative((ImDrawList*)pself, p1, p2, p3, col);
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
 			}
 		}
 
-		internal static void AddCircleNative(ImDrawList* self, Vector2 center, float radius, uint col, int numSegments, float thickness)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin, int stride)
 		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, int, float, void>)vt[547])(self, center, radius, col, numSegments, thickness);
-		}
-
-		public static void AddCircle(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments, float thickness)
-		{
-			AddCircleNative(self, center, radius, col, numSegments, thickness);
-		}
-
-		public static void AddCircle(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			AddCircleNative(self, center, radius, col, numSegments, (float)(1.0f));
-		}
-
-		public static void AddCircle(ImDrawListPtr self, Vector2 center, float radius, uint col)
-		{
-			AddCircleNative(self, center, radius, col, (int)(0), (float)(1.0f));
-		}
-
-		public static void AddCircle(ImDrawListPtr self, Vector2 center, float radius, uint col, float thickness)
-		{
-			AddCircleNative(self, center, radius, col, (int)(0), thickness);
-		}
-
-		public static void AddCircle(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddCircleNative((ImDrawList*)pself, center, radius, col, numSegments, thickness);
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
 			}
 		}
 
-		public static void AddCircle(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, int stride)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddCircleNative((ImDrawList*)pself, center, radius, col, numSegments, (float)(1.0f));
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+				}
 			}
 		}
 
-		public static void AddCircle(ref ImDrawList self, Vector2 center, float radius, uint col)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize, int stride)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddCircleNative((ImDrawList*)pself, center, radius, col, (int)(0), (float)(1.0f));
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
+				}
 			}
 		}
 
-		public static void AddCircle(ref ImDrawList self, Vector2 center, float radius, uint col, float thickness)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize, int stride)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddCircleNative((ImDrawList*)pself, center, radius, col, (int)(0), thickness);
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+				}
 			}
 		}
 
-		internal static void AddCircleFilledNative(ImDrawList* self, Vector2 center, float radius, uint col, int numSegments)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, ref byte overlayText, Vector2 graphSize, int stride)
 		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, int, void>)vt[548])(self, center, radius, col, numSegments);
-		}
-
-		public static void AddCircleFilled(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			AddCircleFilledNative(self, center, radius, col, numSegments);
-		}
-
-		public static void AddCircleFilled(ImDrawListPtr self, Vector2 center, float radius, uint col)
-		{
-			AddCircleFilledNative(self, center, radius, col, (int)(0));
-		}
-
-		public static void AddCircleFilled(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddCircleFilledNative((ImDrawList*)pself, center, radius, col, numSegments);
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+				}
 			}
 		}
 
-		public static void AddCircleFilled(ref ImDrawList self, Vector2 center, float radius, uint col)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize, int stride)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddCircleFilledNative((ImDrawList*)pself, center, radius, col, (int)(0));
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
+				}
 			}
 		}
 
-		internal static void AddNgonNative(ImDrawList* self, Vector2 center, float radius, uint col, int numSegments, float thickness)
+		public static void PlotLines(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
 		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, int, float, void>)vt[549])(self, center, radius, col, numSegments, thickness);
-		}
-
-		public static void AddNgon(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments, float thickness)
-		{
-			AddNgonNative(self, center, radius, col, numSegments, thickness);
-		}
-
-		public static void AddNgon(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			AddNgonNative(self, center, radius, col, numSegments, (float)(1.0f));
-		}
-
-		public static void AddNgon(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				AddNgonNative((ImDrawList*)pself, center, radius, col, numSegments, thickness);
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+				}
 			}
 		}
 
-		public static void AddNgon(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddNgonNative((ImDrawList*)pself, center, radius, col, numSegments, (float)(1.0f));
-			}
-		}
-
-		internal static void AddNgonFilledNative(ImDrawList* self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, int, void>)vt[550])(self, center, radius, col, numSegments);
-		}
-
-		public static void AddNgonFilled(ImDrawListPtr self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			AddNgonFilledNative(self, center, radius, col, numSegments);
-		}
-
-		public static void AddNgonFilled(ref ImDrawList self, Vector2 center, float radius, uint col, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddNgonFilledNative((ImDrawList*)pself, center, radius, col, numSegments);
-			}
-		}
-
-		internal static void AddEllipseNative(ImDrawList* self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments, float thickness)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, int, float, void>)vt[551])(self, center, radius, col, rot, numSegments, thickness);
-		}
-
-		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments, float thickness)
-		{
-			AddEllipseNative(self, center, radius, col, rot, numSegments, thickness);
-		}
-
-		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
-		{
-			AddEllipseNative(self, center, radius, col, rot, numSegments, (float)(1.0f));
-		}
-
-		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot)
-		{
-			AddEllipseNative(self, center, radius, col, rot, (int)(0), (float)(1.0f));
-		}
-
-		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col)
-		{
-			AddEllipseNative(self, center, radius, col, (float)(0.0f), (int)(0), (float)(1.0f));
-		}
-
-		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, int numSegments)
-		{
-			AddEllipseNative(self, center, radius, col, (float)(0.0f), numSegments, (float)(1.0f));
-		}
-
-		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot, float thickness)
-		{
-			AddEllipseNative(self, center, radius, col, rot, (int)(0), thickness);
-		}
-
-		public static void AddEllipse(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, int numSegments, float thickness)
-		{
-			AddEllipseNative(self, center, radius, col, (float)(0.0f), numSegments, thickness);
-		}
-
-		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseNative((ImDrawList*)pself, center, radius, col, rot, numSegments, thickness);
-			}
-		}
-
-		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseNative((ImDrawList*)pself, center, radius, col, rot, numSegments, (float)(1.0f));
-			}
-		}
-
-		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseNative((ImDrawList*)pself, center, radius, col, rot, (int)(0), (float)(1.0f));
-			}
-		}
-
-		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseNative((ImDrawList*)pself, center, radius, col, (float)(0.0f), (int)(0), (float)(1.0f));
-			}
-		}
-
-		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseNative((ImDrawList*)pself, center, radius, col, (float)(0.0f), numSegments, (float)(1.0f));
-			}
-		}
-
-		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseNative((ImDrawList*)pself, center, radius, col, rot, (int)(0), thickness);
-			}
-		}
-
-		public static void AddEllipse(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, int numSegments, float thickness)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseNative((ImDrawList*)pself, center, radius, col, (float)(0.0f), numSegments, thickness);
-			}
-		}
-
-		internal static void AddEllipseFilledNative(ImDrawList* self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, int, void>)vt[552])(self, center, radius, col, rot, numSegments);
-		}
-
-		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
-		{
-			AddEllipseFilledNative(self, center, radius, col, rot, numSegments);
-		}
-
-		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, float rot)
-		{
-			AddEllipseFilledNative(self, center, radius, col, rot, (int)(0));
-		}
-
-		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col)
-		{
-			AddEllipseFilledNative(self, center, radius, col, (float)(0.0f), (int)(0));
-		}
-
-		public static void AddEllipseFilled(ImDrawListPtr self, Vector2 center, Vector2 radius, uint col, int numSegments)
-		{
-			AddEllipseFilledNative(self, center, radius, col, (float)(0.0f), numSegments);
-		}
-
-		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseFilledNative((ImDrawList*)pself, center, radius, col, rot, numSegments);
-			}
-		}
-
-		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, float rot)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseFilledNative((ImDrawList*)pself, center, radius, col, rot, (int)(0));
-			}
-		}
-
-		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, Vector2 radius, uint col)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseFilledNative((ImDrawList*)pself, center, radius, col, (float)(0.0f), (int)(0));
-			}
-		}
-
-		public static void AddEllipseFilled(ref ImDrawList self, Vector2 center, Vector2 radius, uint col, int numSegments)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddEllipseFilledNative((ImDrawList*)pself, center, radius, col, (float)(0.0f), numSegments);
-			}
-		}
-
-		internal static void AddTextNative(ImDrawList* self, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, byte*, byte*, void>)vt[553])(self, pos, col, textBegin, textEnd);
-		}
-
-		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
-		{
-			AddTextNative(self, pos, col, textBegin, textEnd);
-		}
-
-		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, byte* textBegin)
-		{
-			AddTextNative(self, pos, col, textBegin, (byte*)(default));
-		}
-
-		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddTextNative((ImDrawList*)pself, pos, col, textBegin, textEnd);
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, byte* textBegin)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddTextNative((ImDrawList*)pself, pos, col, textBegin, (byte*)(default));
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				AddTextNative(self, pos, col, (byte*)ptextBegin, textEnd);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, ref byte textBegin)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				AddTextNative(self, pos, col, (byte*)ptextBegin, (byte*)(default));
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, string textBegin, byte* textEnd)
+		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (textBegin != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -640,231 +306,14 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, pos, col, pStr0, textEnd);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, string textBegin)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, pos, col, pStr0, (byte*)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, pos, col, (byte*)ptextBegin, textEnd);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, ref byte textBegin)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, pos, col, (byte*)ptextBegin, (byte*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, string textBegin, byte* textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, pos, col, pStr0, textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, string textBegin)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, pos, col, pStr0, (byte*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				AddTextNative(self, pos, col, textBegin, (byte*)ptextEnd);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, byte* textBegin, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, pos, col, textBegin, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextNative((ImDrawList*)pself, pos, col, textBegin, (byte*)ptextEnd);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, byte* textBegin, string textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, pos, col, textBegin, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextNative(self, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, Vector2 pos, uint col, string textBegin, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (textEnd != null)
+			if (overlayText != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -874,10 +323,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			AddTextNative(self, pos, col, pStr0, pStr1);
+			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, graphSize, stride);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -888,402 +337,13 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						AddTextNative((ImDrawList*)pself, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, Vector2 pos, uint col, string textBegin, string textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, pos, col, pStr0, pStr1);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		internal static void AddTextNative(ImDrawList* self, ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImFont*, float, Vector2, uint, byte*, byte*, float, Vector4*, void>)vt[554])(self, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			AddTextNative(self, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth)
-		{
-			AddTextNative(self, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)(default));
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
-		{
-			AddTextNative(self, font, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)(default));
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin)
-		{
-			AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth)
-		{
-			AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, Vector4* cpuFineClipRect)
-		{
-			AddTextNative(self, font, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), cpuFineClipRect);
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, Vector4* cpuFineClipRect)
-		{
-			AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)(default));
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)(default));
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), cpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)(default));
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)(default));
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), cpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (textBegin != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -1293,1914 +353,14 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, Vector4* cpuFineClipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), cpuFineClipRect);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, Vector4* cpuFineClipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), cpuFineClipRect);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, cpuFineClipRect);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), cpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), cpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, cpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), cpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), cpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, cpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, cpuFineClipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), cpuFineClipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), cpuFineClipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, cpuFineClipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, cpuFineClipRect);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, font, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, Vector4* cpuFineClipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			AddTextNative(self, font, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), cpuFineClipRect);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, cpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), cpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, cpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)(default));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textEnd != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), cpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, cpuFineClipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)(default));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textEnd != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), cpuFineClipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (textEnd != null)
+			if (overlayText != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -3210,10 +370,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			AddTextNative(self, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, cpuFineClipRect);
+			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3224,13 +384,13 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth)
+		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (textBegin != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3240,14 +400,14 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (textEnd != null)
+			if (overlayText != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -3257,10 +417,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			AddTextNative(self, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, (Vector4*)(default));
+			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3271,13 +431,13 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd)
+		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (textBegin != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3287,14 +447,14 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (textEnd != null)
+			if (overlayText != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -3304,10 +464,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			AddTextNative(self, font, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), (Vector4*)(default));
+			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3318,13 +478,13 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, Vector4* cpuFineClipRect)
+		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, string overlayText)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (textBegin != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -3334,14 +494,14 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (textEnd != null)
+			if (overlayText != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -3351,10 +511,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			AddTextNative(self, font, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), cpuFineClipRect);
+			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -3365,1025 +525,13 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, cpuFineClipRect);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, (Vector4*)(default));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), (Vector4*)(default));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), cpuFineClipRect);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
-					}
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
-					}
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (byte* ptextEnd = &textEnd)
-					{
-						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, cpuFineClipRect);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, (Vector4*)(default));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), (Vector4*)(default));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (textBegin != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (textEnd != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), cpuFineClipRect);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						fixed (byte* ptextEnd = &textEnd)
-						{
-							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
-						}
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						fixed (byte* ptextEnd = &textEnd)
-						{
-							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
-						}
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						fixed (byte* ptextEnd = &textEnd)
-						{
-							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
-						}
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (byte* ptextBegin = &textBegin)
-					{
-						fixed (byte* ptextEnd = &textEnd)
-						{
-							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
-						}
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (textEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, cpuFineClipRect);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (textEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, wrapWidth, (Vector4*)(default));
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (textEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), (Vector4*)(default));
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, Vector4* cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
-					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					byte* pStr1 = null;
-					int pStrSize1 = 0;
-					if (textEnd != null)
-					{
-						pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-						if (pStrSize1 >= Utils.MaxStackallocSize)
-						{
-							pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-						}
-						else
-						{
-							byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-							pStr1 = pStrStack1;
-						}
-						int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-						pStr1[pStrOffset1] = 0;
-					}
-					AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), cpuFineClipRect);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr1);
-					}
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
-		{
-			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-			{
-				AddTextNative(self, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
-		{
-			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-			{
-				AddTextNative(self, font, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref Vector4 cpuFineClipRect)
-		{
-			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-			{
-				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
-		{
-			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-			{
-				AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (ImFont* pfont = &font)
-				{
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-				{
-					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-				{
-					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-				{
-					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
-		{
-			fixed (byte* ptextBegin = &textBegin)
-			{
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-				{
-					AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(string label, float* values, int valuesCount, string overlayText)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (textBegin != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4393,26 +541,44 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(string label, float* values, int valuesCount, string overlayText, float scaleMin)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (textBegin != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4422,26 +588,44 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				AddTextNative(self, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(string label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (textBegin != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4451,26 +635,44 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
-					Utils.Free(pStr0);
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
 				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
-		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (textBegin != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4480,12 +682,1292 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
 			{
-				AddTextNative(self, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, string overlayText, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, string overlayText, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, string overlayText, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, string overlayText, float scaleMin, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), graphSize, stride);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, string overlayText, Vector2 graphSize, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), graphSize, stride);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(string label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (overlayText != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			PlotLinesNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, graphSize, stride);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, float* values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ref byte overlayText)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ref byte overlayText, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ref byte overlayText, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ref byte overlayText, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = &overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4493,71 +1975,15 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImDrawList* pself = &self)
+			fixed (float* pvalues = &values)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (textBegin != null)
+				if (overlayText != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4567,29 +1993,26 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (float* pvalues = &values)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (textBegin != null)
+				if (overlayText != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4599,29 +2022,26 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (float* pvalues = &values)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (textBegin != null)
+				if (overlayText != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4631,29 +2051,26 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (float* pvalues = &values)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (textBegin != null)
+				if (overlayText != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4663,85 +2080,26 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(byte* label, ref float values, int valuesCount, string overlayText)
 		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
-			{
-				fixed (byte* ptextBegin = &textBegin)
-				{
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
-					}
-				}
-			}
-		}
-
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
-		{
-			fixed (ImFont* pfont = &font)
+			fixed (float* pvalues = &values)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (textBegin != null)
+				if (overlayText != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4751,29 +2109,26 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin)
 		{
-			fixed (ImFont* pfont = &font)
+			fixed (float* pvalues = &values)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (textBegin != null)
+				if (overlayText != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4783,29 +2138,26 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax)
 		{
-			fixed (ImFont* pfont = &font)
+			fixed (float* pvalues = &values)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (textBegin != null)
+				if (overlayText != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4815,29 +2167,26 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
+					Utils.Free(pStr0);
 				}
 			}
 		}
 
-		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
 		{
-			fixed (ImFont* pfont = &font)
+			fixed (float* pvalues = &values)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
-				if (textBegin != null)
+				if (overlayText != null)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -4847,190 +2196,2826 @@ namespace Hexa.NET.ImGui
 						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 						pStr0 = pStrStack0;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						Utils.Free(pStr0);
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, string overlayText, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, string overlayText, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, string overlayText, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (overlayText != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(byte* label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			fixed (float* pvalues = &values)
+			{
+				fixed (byte* poverlayText = overlayText)
+				{
+					PlotLinesNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
 					}
 				}
 			}
 		}
 
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				fixed (ImFont* pfont = &font)
+				fixed (float* pvalues = &values)
 				{
-					fixed (byte* ptextBegin = &textBegin)
+					fixed (byte* poverlayText = &overlayText)
 					{
-						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-						{
-							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
-						}
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
 					}
 				}
 			}
 		}
 
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				fixed (ImFont* pfont = &font)
+				fixed (float* pvalues = &values)
 				{
-					fixed (byte* ptextBegin = &textBegin)
+					fixed (byte* poverlayText = &overlayText)
 					{
-						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-						{
-							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
-						}
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
 					}
 				}
 			}
 		}
 
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				fixed (ImFont* pfont = &font)
+				fixed (float* pvalues = &values)
 				{
-					fixed (byte* ptextBegin = &textBegin)
+					fixed (byte* poverlayText = &overlayText)
 					{
-						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-						{
-							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
-						}
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
 					}
 				}
 			}
 		}
 
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				fixed (ImFont* pfont = &font)
+				fixed (float* pvalues = &values)
 				{
-					fixed (byte* ptextBegin = &textBegin)
+					fixed (byte* poverlayText = &overlayText)
 					{
-						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-						{
-							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
-						}
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
 					}
 				}
 			}
 		}
 
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, ref byte overlayText)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				fixed (ImFont* pfont = &font)
+				fixed (float* pvalues = &values)
 				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
+					fixed (byte* poverlayText = &overlayText)
 					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
 					}
 				}
 			}
 		}
 
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				fixed (ImFont* pfont = &font)
+				fixed (float* pvalues = &values)
 				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
+					fixed (byte* poverlayText = &overlayText)
 					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
 					}
 				}
 			}
 		}
 
-		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, ref Vector4 cpuFineClipRect)
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax)
 		{
-			fixed (ImDrawList* pself = &self)
+			fixed (byte* plabel = &label)
 			{
-				fixed (ImFont* pfont = &font)
+				fixed (float* pvalues = &values)
 				{
-					byte* pStr0 = null;
-					int pStrSize0 = 0;
-					if (textBegin != null)
+					fixed (byte* poverlayText = &overlayText)
 					{
-						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-						}
-						else
-						{
-							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-							pStr0 = pStrStack0;
-						}
-						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
-						pStr0[pStrOffset0] = 0;
-					}
-					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
-					{
-						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
 					}
 				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, ref byte overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, int stride)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, int stride)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, ref byte overlayText, int stride)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, int stride)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, ref byte overlayText, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = &overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, graphSize, stride);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, int valuesOffset, string overlayText)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, string overlayText)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, string overlayText, float scaleMin)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, string overlayText, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, string overlayText, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, string overlayText, float scaleMin, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), graphSize, stride);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, string overlayText, Vector2 graphSize, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), graphSize, stride);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(string label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pvalues = &values)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (overlayText != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				PlotLinesNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, graphSize, stride);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, int valuesOffset, ReadOnlySpan<byte> overlayText, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotLines(ReadOnlySpan<byte> label, ref float values, int valuesCount, ReadOnlySpan<byte> overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pvalues = &values)
+				{
+					fixed (byte* poverlayText = overlayText)
+					{
+						PlotLinesNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+					}
+				}
+			}
+		}
+
+		internal static void PlotLinesNative(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2>, void*, int, int, byte*, float, float, Vector2, void>)vt[235])(label, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, int, nint, float, float, Vector2, void>)vt[235])((nint)label, (nint)valuesGetter, (nint)data, valuesCount, valuesOffset, (nint)overlayText, scaleMin, scaleMax, graphSize);
+			#endif
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize);
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin, float scaleMax)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin, float scaleMax)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin, float scaleMax)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize);
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, Vector2 graphSize)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, Vector2 graphSize)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, Vector2 graphSize)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize);
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin, Vector2 graphSize)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize);
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize);
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize);
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize);
+		}
+
+		public static void PlotLines(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			PlotLinesNative(label, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize);
+		}
+
+		public static void PlotLines(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize);
+			}
+		}
+
+		public static void PlotLines(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		public static void PlotLines(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		public static void PlotLines(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText)
+		{
+			fixed (byte* plabel = &label)
+			{
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		public static void PlotLines(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset)
+		{
+			fixed (byte* plabel = &label)
+			{
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		public static void PlotLines(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount)
+		{
+			fixed (byte* plabel = &label)
+			{
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		public static void PlotLines(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText)
+		{
+			fixed (byte* plabel = &label)
+			{
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		public static void PlotLines(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		public static void PlotLines(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		public static void PlotLines(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin)
+		{
+			fixed (byte* plabel = &label)
+			{
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		public static void PlotLines(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		public static void PlotLines(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		public static void PlotLines(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin, float scaleMax)
+		{
+			fixed (byte* plabel = &label)
+			{
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
+			}
+		}
+
+		public static void PlotLines(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize)
+		{
+			fixed (byte* plabel = &label)
+			{
+				PlotLinesNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize);
 			}
 		}
 	}

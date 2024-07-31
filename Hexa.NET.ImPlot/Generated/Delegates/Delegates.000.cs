@@ -11,42 +11,116 @@ using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
 namespace Hexa.NET.ImPlot
 {
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate int Formatter(double value, byte* buff, int size, void* userData);
 
+	#else
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void Locator(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData);
+	public unsafe delegate int Formatter(double value, nint buff, int size, nint userData);
 
+	#endif
+
+	#if NET5_0_OR_GREATER
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void Locator(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, delegate*<double, byte*, int, void*, int> formatter, void* formatterData);
+
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void Locator(nint ticker, ImPlotRange range, float pixels, byte vertical, nint formatter, nint formatterData);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate double TransformForward(double value, void* userData);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate double TransformForward(double value, nint userData);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate double TransformInverse(double value, void* userData);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate double TransformInverse(double value, nint userData);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate int UserFormatter(double value, byte* buff, int size, void* userData);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate int UserFormatter(double value, nint buff, int size, nint userData);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate int ImPlotFormatter(double value, byte* buff, int size, void* userData);
 
+	#else
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImPlotLocator(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData);
+	public unsafe delegate int ImPlotFormatter(double value, nint buff, int size, nint userData);
 
+	#endif
+
+	#if NET5_0_OR_GREATER
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImPlotLocator(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, delegate*<double, byte*, int, void*, int> formatter, void* formatterData);
+
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void ImPlotLocator(nint ticker, ImPlotRange range, float pixels, byte vertical, nint formatter, nint formatterData);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate double ImPlotTransform(double value, void* userData);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate double ImPlotTransform(double value, nint userData);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate ImPlotPoint ImPlotGetter(int idx, void* userData);
 
+	#else
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate ImPlotPoint ImPlotGetter(int idx, nint userData);
+
+	#endif
+
+	#if NET5_0_OR_GREATER
 	/// <summary>
 	/// ImPlotPoint getters manually wrapped use this
 	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void* ImPlotPointGetter(void* data, int idx, ImPlotPoint* point);
+
+	#else
+	/// <summary>
+	/// ImPlotPoint getters manually wrapped use this
+	/// </summary>
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate nint ImPlotPointGetter(nint data, int idx, nint point);
+
+	#endif
 
 }

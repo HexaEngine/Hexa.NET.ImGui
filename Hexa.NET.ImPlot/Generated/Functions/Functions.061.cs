@@ -19,138 +19,7 @@ namespace Hexa.NET.ImPlot
 	public unsafe partial class ImPlot
 	{
 
-		public static void PlotStems(byte* labelId, long* xs, long* ys, int count, ImPlotStemsFlags flags)
-		{
-			PlotStemsNative(labelId, xs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(long)));
-		}
-
-		public static void PlotStems(byte* labelId, long* xs, long* ys, int count, double reference, int offset)
-		{
-			PlotStemsNative(labelId, xs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-		}
-
-		public static void PlotStems(byte* labelId, long* xs, long* ys, int count, int offset)
-		{
-			PlotStemsNative(labelId, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-		}
-
-		public static void PlotStems(byte* labelId, long* xs, long* ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			PlotStemsNative(labelId, xs, ys, count, (double)(0), flags, offset, (int)(sizeof(long)));
-		}
-
-		public static void PlotStems(byte* labelId, long* xs, long* ys, int count, double reference, int offset, int stride)
-		{
-			PlotStemsNative(labelId, xs, ys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-		}
-
-		public static void PlotStems(byte* labelId, long* xs, long* ys, int count, int offset, int stride)
-		{
-			PlotStemsNative(labelId, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-		}
-
-		public static void PlotStems(byte* labelId, long* xs, long* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			PlotStemsNative(labelId, xs, ys, count, (double)(0), flags, offset, stride);
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, long* ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, reference, flags, offset, stride);
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, long* ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, reference, flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, long* ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, reference, flags, (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, long* ys, int count, double reference)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, long* ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, long* ys, int count, ImPlotStemsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, long* ys, int count, double reference, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, long* ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, long* ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, (double)(0), flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, long* ys, int count, double reference, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, long* ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, long* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotStems(string labelId, long* xs, long* ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static void PlotErrorBars(string labelId, int* xs, ref int ys, ref int neg, ref int pos, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -169,14 +38,843 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotStemsNative(pStr0, xs, ys, count, reference, flags, offset, stride);
+			fixed (int* pys = &ys)
+			{
+				fixed (int* pneg = &neg)
+				{
+					fixed (int* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, xs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(int)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, int* xs, ref int ys, ref int neg, ref int pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pys = &ys)
+			{
+				fixed (int* pneg = &neg)
+				{
+					fixed (int* ppos = &pos)
+					{
+						PlotErrorBarsNative(pStr0, xs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, int* xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, int* xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, offset, (int)(sizeof(int)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, int* xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, (int)(0), (int)(sizeof(int)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, int* xs, ref int ys, ref int neg, ref int pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(int)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, int* xs, ref int ys, ref int neg, ref int pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(int)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, int* xs, ref int ys, ref int neg, ref int pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative((byte*)plabelId, xs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, offset, (int)(sizeof(int)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, (int)(0), (int)(sizeof(int)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count)
+		{
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(int)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, int offset)
+		{
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(int)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, int offset, int stride)
+		{
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative(labelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						fixed (int* pneg = &neg)
+						{
+							fixed (int* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, offset, stride);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						fixed (int* pneg = &neg)
+						{
+							fixed (int* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, offset, (int)(sizeof(int)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						fixed (int* pneg = &neg)
+						{
+							fixed (int* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, (int)(0), (int)(sizeof(int)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						fixed (int* pneg = &neg)
+						{
+							fixed (int* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(int)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						fixed (int* pneg = &neg)
+						{
+							fixed (int* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(int)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						fixed (int* pneg = &neg)
+						{
+							fixed (int* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, offset, stride);
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, offset, (int)(sizeof(int)));
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, (int)(0), (int)(sizeof(int)));
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(int)));
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(int)));
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pxs = &xs)
+			{
+				fixed (int* pys = &ys)
+				{
+					fixed (int* pneg = &neg)
+					{
+						fixed (int* ppos = &pos)
+						{
+							PlotErrorBarsNative(pStr0, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+							if (pStrSize0 >= Utils.MaxStackallocSize)
+							{
+								Utils.Free(pStr0);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						fixed (int* pneg = &neg)
+						{
+							fixed (int* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, offset, stride);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						fixed (int* pneg = &neg)
+						{
+							fixed (int* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, offset, (int)(sizeof(int)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						fixed (int* pneg = &neg)
+						{
+							fixed (int* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, flags, (int)(0), (int)(sizeof(int)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						fixed (int* pneg = &neg)
+						{
+							fixed (int* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(int)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						fixed (int* pneg = &neg)
+						{
+							fixed (int* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(int)));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref int xs, ref int ys, ref int neg, ref int pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (int* pxs = &xs)
+				{
+					fixed (int* pys = &ys)
+					{
+						fixed (int* pneg = &neg)
+						{
+							fixed (int* ppos = &pos)
+							{
+								PlotErrorBarsNative((byte*)plabelId, (int*)pxs, (int*)pys, (int*)pneg, (int*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		internal static void PlotErrorBarsNative(byte* labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, uint*, uint*, uint*, uint*, int, ImPlotErrorBarsFlags, int, int, void>)vt[196])(labelId, xs, ys, neg, pos, count, flags, offset, stride);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, int, ImPlotErrorBarsFlags, int, int, void>)vt[196])((nint)labelId, (nint)xs, (nint)ys, (nint)neg, (nint)pos, count, flags, offset, stride);
+			#endif
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, flags, offset, stride);
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count)
+		{
+			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, int offset)
+		{
+			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, int offset, int stride)
+		{
+			PlotErrorBarsNative(labelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, flags, offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, long* ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -195,14 +893,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotStemsNative(pStr0, xs, ys, count, reference, flags, offset, (int)(sizeof(long)));
+			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, long* ys, int count, double reference, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -221,14 +919,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotStemsNative(pStr0, xs, ys, count, reference, flags, (int)(0), (int)(sizeof(long)));
+			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, long* ys, int count, double reference)
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -247,14 +945,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotStemsNative(pStr0, xs, ys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, long* ys, int count)
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -273,14 +971,14 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotStemsNative(pStr0, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, long* ys, int count, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -299,14 +997,176 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotStemsNative(pStr0, xs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(long)));
+			PlotErrorBarsNative(pStr0, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, long* ys, int count, double reference, int offset)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, uint* neg, uint* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				PlotErrorBarsNative(labelId, (uint*)pxs, ys, neg, pos, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				PlotErrorBarsNative(labelId, (uint*)pxs, ys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				PlotErrorBarsNative(labelId, (uint*)pxs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				PlotErrorBarsNative(labelId, (uint*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, int offset)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				PlotErrorBarsNative(labelId, (uint*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, int offset, int stride)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				PlotErrorBarsNative(labelId, (uint*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -325,393 +1185,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotStemsNative(pStr0, xs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (uint* pxs = &xs)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, long* xs, long* ys, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, long* xs, long* ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, (double)(0), flags, offset, (int)(sizeof(long)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, long* xs, long* ys, int count, double reference, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, long* xs, long* ys, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, long* xs, long* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, (double)(0), flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, long* ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (long*)pxs, ys, count, reference, flags, offset, stride);
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, long* ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (long*)pxs, ys, count, reference, flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, long* ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (long*)pxs, ys, count, reference, flags, (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, long* ys, int count, double reference)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (long*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, long* ys, int count)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (long*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, long* ys, int count, ImPlotStemsFlags flags)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (long*)pxs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, long* ys, int count, double reference, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (long*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, long* ys, int count, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (long*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, long* ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (long*)pxs, ys, count, (double)(0), flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, long* ys, int count, double reference, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (long*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, long* ys, int count, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (long*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, long* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (long*)pxs, ys, count, (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, long* ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (long*)pxs, ys, count, reference, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, long* ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (long*)pxs, ys, count, reference, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, long* ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (long*)pxs, ys, count, reference, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, long* ys, int count, double reference)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (long*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, long* ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (long*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, long* ys, int count, ImPlotStemsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (long*)pxs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, long* ys, int count, double reference, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (long*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, long* ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (long*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, long* ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (long*)pxs, ys, count, (double)(0), flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, long* ys, int count, double reference, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (long*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, long* ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (long*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, long* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (long*)pxs, ys, count, (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ref long xs, long* ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (long*)pxs, ys, count, reference, flags, offset, stride);
+				PlotErrorBarsNative(pStr0, (uint*)pxs, ys, neg, pos, count, flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -719,7 +1195,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, long* ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -738,9 +1214,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				PlotStemsNative(pStr0, (long*)pxs, ys, count, reference, flags, offset, (int)(sizeof(long)));
+				PlotErrorBarsNative(pStr0, (uint*)pxs, ys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -748,7 +1224,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, long* ys, int count, double reference, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -767,9 +1243,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				PlotStemsNative(pStr0, (long*)pxs, ys, count, reference, flags, (int)(0), (int)(sizeof(long)));
+				PlotErrorBarsNative(pStr0, (uint*)pxs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -777,7 +1253,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, long* ys, int count, double reference)
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -796,9 +1272,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				PlotStemsNative(pStr0, (long*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+				PlotErrorBarsNative(pStr0, (uint*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -806,7 +1282,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, long* ys, int count)
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -825,9 +1301,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				PlotStemsNative(pStr0, (long*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+				PlotErrorBarsNative(pStr0, (uint*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -835,7 +1311,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, long* ys, int count, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -854,9 +1330,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				PlotStemsNative(pStr0, (long*)pxs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(long)));
+				PlotErrorBarsNative(pStr0, (uint*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -864,409 +1340,187 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, long* ys, int count, double reference, int offset)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pxs = &xs)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (long*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, pos, count, flags, offset, stride);
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, long* ys, int count, int offset)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pxs = &xs)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (long*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, long* ys, int count, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pxs = &xs)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (long*)pxs, ys, count, (double)(0), flags, offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, long* ys, int count, double reference, int offset, int stride)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pxs = &xs)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (long*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, long* ys, int count, int offset, int stride)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pxs = &xs)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (long*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, long* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, uint* neg, uint* pos, int count, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pxs = &xs)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (long*)pxs, ys, count, (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 				}
 			}
 		}
 
-		public static void PlotStems(byte* labelId, long* xs, ref long ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
-			fixed (long* pys = &ys)
+			fixed (uint* pys = &ys)
 			{
-				PlotStemsNative(labelId, xs, (long*)pys, count, reference, flags, offset, stride);
+				PlotErrorBarsNative(labelId, xs, (uint*)pys, neg, pos, count, flags, offset, stride);
 			}
 		}
 
-		public static void PlotStems(byte* labelId, long* xs, ref long ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
-			fixed (long* pys = &ys)
+			fixed (uint* pys = &ys)
 			{
-				PlotStemsNative(labelId, xs, (long*)pys, count, reference, flags, offset, (int)(sizeof(long)));
+				PlotErrorBarsNative(labelId, xs, (uint*)pys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
 			}
 		}
 
-		public static void PlotStems(byte* labelId, long* xs, ref long ys, int count, double reference, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
-			fixed (long* pys = &ys)
+			fixed (uint* pys = &ys)
 			{
-				PlotStemsNative(labelId, xs, (long*)pys, count, reference, flags, (int)(0), (int)(sizeof(long)));
+				PlotErrorBarsNative(labelId, xs, (uint*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 			}
 		}
 
-		public static void PlotStems(byte* labelId, long* xs, ref long ys, int count, double reference)
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count)
 		{
-			fixed (long* pys = &ys)
+			fixed (uint* pys = &ys)
 			{
-				PlotStemsNative(labelId, xs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+				PlotErrorBarsNative(labelId, xs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 			}
 		}
 
-		public static void PlotStems(byte* labelId, long* xs, ref long ys, int count)
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, int offset)
 		{
-			fixed (long* pys = &ys)
+			fixed (uint* pys = &ys)
 			{
-				PlotStemsNative(labelId, xs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+				PlotErrorBarsNative(labelId, xs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 			}
 		}
 
-		public static void PlotStems(byte* labelId, long* xs, ref long ys, int count, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, int offset, int stride)
 		{
-			fixed (long* pys = &ys)
+			fixed (uint* pys = &ys)
 			{
-				PlotStemsNative(labelId, xs, (long*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(long)));
+				PlotErrorBarsNative(labelId, xs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 			}
 		}
 
-		public static void PlotStems(byte* labelId, long* xs, ref long ys, int count, double reference, int offset)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, long* xs, ref long ys, int count, int offset)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, long* xs, ref long ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (long*)pys, count, (double)(0), flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, long* xs, ref long ys, int count, double reference, int offset, int stride)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotStems(byte* labelId, long* xs, ref long ys, int count, int offset, int stride)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotStems(byte* labelId, long* xs, ref long ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (long*)pys, count, (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, ref long ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (long*)pys, count, reference, flags, offset, stride);
+					PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, pos, count, flags, offset, stride);
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, long* xs, ref long ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (long*)pys, count, reference, flags, offset, (int)(sizeof(long)));
+					PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, long* xs, ref long ys, int count, double reference, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (long*)pys, count, reference, flags, (int)(0), (int)(sizeof(long)));
+					PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, long* xs, ref long ys, int count, double reference)
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+					PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, long* xs, ref long ys, int count)
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+					PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, long* xs, ref long ys, int count, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative((byte*)plabelId, xs, (long*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(long)));
+					PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, long* xs, ref long ys, int count, double reference, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, ref long ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, ref long ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (long*)pys, count, (double)(0), flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, ref long ys, int count, double reference, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, ref long ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, long* xs, ref long ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (long*)pys, count, (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, long* xs, ref long ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1285,9 +1539,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pys = &ys)
+			fixed (uint* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (long*)pys, count, reference, flags, offset, stride);
+				PlotErrorBarsNative(pStr0, xs, (uint*)pys, neg, pos, count, flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1295,7 +1549,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, ref long ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1314,9 +1568,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pys = &ys)
+			fixed (uint* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (long*)pys, count, reference, flags, offset, (int)(sizeof(long)));
+				PlotErrorBarsNative(pStr0, xs, (uint*)pys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1324,7 +1578,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, ref long ys, int count, double reference, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1343,9 +1597,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pys = &ys)
+			fixed (uint* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (long*)pys, count, reference, flags, (int)(0), (int)(sizeof(long)));
+				PlotErrorBarsNative(pStr0, xs, (uint*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1353,7 +1607,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, ref long ys, int count, double reference)
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1372,9 +1626,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pys = &ys)
+			fixed (uint* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+				PlotErrorBarsNative(pStr0, xs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1382,7 +1636,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, ref long ys, int count)
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1401,9 +1655,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pys = &ys)
+			fixed (uint* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+				PlotErrorBarsNative(pStr0, xs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1411,7 +1665,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, ref long ys, int count, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1430,9 +1684,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pys = &ys)
+			fixed (uint* pys = &ys)
 			{
-				PlotStemsNative(pStr0, xs, (long*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(long)));
+				PlotErrorBarsNative(pStr0, xs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -1440,481 +1694,223 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, ref long ys, int count, double reference, int offset)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pys = &ys)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, pos, count, flags, offset, stride);
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, ref long ys, int count, int offset)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pys = &ys)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, ref long ys, int count, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pys = &ys)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (long*)pys, count, (double)(0), flags, offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, ref long ys, int count, double reference, int offset, int stride)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pys = &ys)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, ref long ys, int count, int offset, int stride)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pys = &ys)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, long* xs, ref long ys, int count, ImPlotStemsFlags flags, int offset, int stride)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, uint* neg, uint* pos, int count, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pys = &ys)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (long*)pys, count, (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
+					PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 				}
 			}
 		}
 
-		public static void PlotStems(byte* labelId, ref long xs, ref long ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative(labelId, (long*)pxs, (long*)pys, count, reference, flags, offset, stride);
+					PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, neg, pos, count, flags, offset, stride);
 				}
 			}
 		}
 
-		public static void PlotStems(byte* labelId, ref long xs, ref long ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative(labelId, (long*)pxs, (long*)pys, count, reference, flags, offset, (int)(sizeof(long)));
+					PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(byte* labelId, ref long xs, ref long ys, int count, double reference, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative(labelId, (long*)pxs, (long*)pys, count, reference, flags, (int)(0), (int)(sizeof(long)));
+					PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(byte* labelId, ref long xs, ref long ys, int count, double reference)
+		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count)
 		{
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative(labelId, (long*)pxs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+					PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(byte* labelId, ref long xs, ref long ys, int count)
+		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, int offset)
 		{
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative(labelId, (long*)pxs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+					PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 				}
 			}
 		}
 
-		public static void PlotStems(byte* labelId, ref long xs, ref long ys, int count, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, int offset, int stride)
 		{
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative(labelId, (long*)pxs, (long*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(long)));
+					PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 				}
 			}
 		}
 
-		public static void PlotStems(byte* labelId, ref long xs, ref long ys, int count, double reference, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStemsNative(labelId, (long*)pxs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, ref long ys, int count, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStemsNative(labelId, (long*)pxs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, ref long ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStemsNative(labelId, (long*)pxs, (long*)pys, count, (double)(0), flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, ref long ys, int count, double reference, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStemsNative(labelId, (long*)pxs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, ref long ys, int count, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStemsNative(labelId, (long*)pxs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref long xs, ref long ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotStemsNative(labelId, (long*)pxs, (long*)pys, count, (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, ref long ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pxs = &xs)
+				fixed (uint* pxs = &xs)
 				{
-					fixed (long* pys = &ys)
+					fixed (uint* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (long*)pxs, (long*)pys, count, reference, flags, offset, stride);
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, neg, pos, count, flags, offset, stride);
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref long xs, ref long ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pxs = &xs)
+				fixed (uint* pxs = &xs)
 				{
-					fixed (long* pys = &ys)
+					fixed (uint* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (long*)pxs, (long*)pys, count, reference, flags, offset, (int)(sizeof(long)));
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref long xs, ref long ys, int count, double reference, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pxs = &xs)
+				fixed (uint* pxs = &xs)
 				{
-					fixed (long* pys = &ys)
+					fixed (uint* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (long*)pxs, (long*)pys, count, reference, flags, (int)(0), (int)(sizeof(long)));
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref long xs, ref long ys, int count, double reference)
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pxs = &xs)
+				fixed (uint* pxs = &xs)
 				{
-					fixed (long* pys = &ys)
+					fixed (uint* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (long*)pxs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref long xs, ref long ys, int count)
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pxs = &xs)
+				fixed (uint* pxs = &xs)
 				{
-					fixed (long* pys = &ys)
+					fixed (uint* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref long xs, ref long ys, int count, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (long* pxs = &xs)
+				fixed (uint* pxs = &xs)
 				{
-					fixed (long* pys = &ys)
+					fixed (uint* pys = &ys)
 					{
-						PlotStemsNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(long)));
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref long xs, ref long ys, int count, double reference, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotStemsNative((byte*)plabelId, (long*)pxs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, ref long ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotStemsNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, ref long ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotStemsNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (double)(0), flags, offset, (int)(sizeof(long)));
-					}
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, ref long ys, int count, double reference, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotStemsNative((byte*)plabelId, (long*)pxs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, ref long ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotStemsNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref long xs, ref long ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					fixed (long* pys = &ys)
-					{
-						PlotStemsNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (double)(0), flags, offset, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ref long xs, ref long ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1933,11 +1929,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (long*)pxs, (long*)pys, count, reference, flags, offset, stride);
+					PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, neg, pos, count, flags, offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1946,7 +1942,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, ref long ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1965,11 +1961,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (long*)pxs, (long*)pys, count, reference, flags, offset, (int)(sizeof(long)));
+					PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1978,7 +1974,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, ref long ys, int count, double reference, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -1997,11 +1993,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (long*)pxs, (long*)pys, count, reference, flags, (int)(0), (int)(sizeof(long)));
+					PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2010,7 +2006,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, ref long ys, int count, double reference)
+		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2029,11 +2025,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (long*)pxs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+					PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2042,7 +2038,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, ref long ys, int count)
+		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2061,11 +2057,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (long*)pxs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(long)));
+					PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2074,7 +2070,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, ref long ys, int count, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2093,11 +2089,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pys = &ys)
 				{
-					PlotStemsNative(pStr0, (long*)pxs, (long*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(long)));
+					PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2106,7 +2102,205 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, ref long ys, int count, double reference, int offset)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, neg, pos, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, neg, pos, count, flags, offset, (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, neg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, uint* neg, uint* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, neg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (uint* pneg = &neg)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, (uint*)pneg, pos, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (uint* pneg = &neg)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (uint* pneg = &neg)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count)
+		{
+			fixed (uint* pneg = &neg)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, int offset)
+		{
+			fixed (uint* pneg = &neg)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, int offset, int stride)
+		{
+			fixed (uint* pneg = &neg)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2125,11 +2319,401 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pneg = &neg)
 			{
-				fixed (long* pys = &ys)
+				PlotErrorBarsNative(pStr0, xs, ys, (uint*)pneg, pos, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					PlotStemsNative(pStr0, (long*)pxs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pneg = &neg)
+			{
+				PlotErrorBarsNative(pStr0, xs, ys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pneg = &neg)
+			{
+				PlotErrorBarsNative(pStr0, xs, ys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pneg = &neg)
+			{
+				PlotErrorBarsNative(pStr0, xs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pneg = &neg)
+			{
+				PlotErrorBarsNative(pStr0, xs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pneg = &neg)
+			{
+				PlotErrorBarsNative(pStr0, xs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, ref uint neg, uint* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, (uint*)pxs, ys, (uint*)pneg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, (uint*)pxs, ys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, (uint*)pxs, ys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, (uint*)pxs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, int offset)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, (uint*)pxs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, int offset, int stride)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, (uint*)pxs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, pos, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative(pStr0, (uint*)pxs, ys, (uint*)pneg, pos, count, flags, offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2138,7 +2722,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, ref long ys, int count, int offset)
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2157,11 +2741,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pneg = &neg)
 				{
-					PlotStemsNative(pStr0, (long*)pxs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(long)));
+					PlotErrorBarsNative(pStr0, (uint*)pxs, ys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2170,7 +2754,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, ref long ys, int count, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2189,11 +2773,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pneg = &neg)
 				{
-					PlotStemsNative(pStr0, (long*)pxs, (long*)pys, count, (double)(0), flags, offset, (int)(sizeof(long)));
+					PlotErrorBarsNative(pStr0, (uint*)pxs, ys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2202,7 +2786,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, ref long ys, int count, double reference, int offset, int stride)
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2221,11 +2805,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pneg = &neg)
 				{
-					PlotStemsNative(pStr0, (long*)pxs, (long*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
+					PlotErrorBarsNative(pStr0, (uint*)pxs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2234,7 +2818,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, ref long ys, int count, int offset, int stride)
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2253,11 +2837,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pneg = &neg)
 				{
-					PlotStemsNative(pStr0, (long*)pxs, (long*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+					PlotErrorBarsNative(pStr0, (uint*)pxs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2266,7 +2850,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref long xs, ref long ys, int count, ImPlotStemsFlags flags, int offset, int stride)
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2285,11 +2869,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (long* pxs = &xs)
+			fixed (uint* pxs = &xs)
 			{
-				fixed (long* pys = &ys)
+				fixed (uint* pneg = &neg)
 				{
-					PlotStemsNative(pStr0, (long*)pxs, (long*)pys, count, (double)(0), flags, offset, stride);
+					PlotErrorBarsNative(pStr0, (uint*)pxs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2298,1932 +2882,241 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		internal static void PlotStemsNative(byte* labelId, ulong* xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
-			((delegate* unmanaged[Cdecl]<byte*, ulong*, ulong*, int, double, ImPlotStemsFlags, int, int, void>)vt[218])(labelId, xs, ys, count, reference, flags, offset, stride);
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			PlotStemsNative(labelId, xs, ys, count, reference, flags, offset, stride);
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			PlotStemsNative(labelId, xs, ys, count, reference, flags, offset, (int)(sizeof(ulong)));
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			PlotStemsNative(labelId, xs, ys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ulong* ys, int count, double reference)
-		{
-			PlotStemsNative(labelId, xs, ys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ulong* ys, int count)
-		{
-			PlotStemsNative(labelId, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotStemsFlags flags)
-		{
-			PlotStemsNative(labelId, xs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ulong* ys, int count, double reference, int offset)
-		{
-			PlotStemsNative(labelId, xs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ulong* ys, int count, int offset)
-		{
-			PlotStemsNative(labelId, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			PlotStemsNative(labelId, xs, ys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ulong* ys, int count, double reference, int offset, int stride)
-		{
-			PlotStemsNative(labelId, xs, ys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ulong* ys, int count, int offset, int stride)
-		{
-			PlotStemsNative(labelId, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			PlotStemsNative(labelId, xs, ys, count, (double)(0), flags, offset, stride);
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, reference, flags, offset, stride);
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, reference, flags, offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ulong* ys, int count, double reference)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ulong* ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ulong* ys, int count, ImPlotStemsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ulong* ys, int count, double reference, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ulong* ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ulong* ys, int count, double reference, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ulong* ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotStemsNative((byte*)plabelId, xs, ys, count, (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, reference, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, reference, flags, offset, (int)(sizeof(ulong)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ulong* ys, int count, double reference)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ulong* ys, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ulong* ys, int count, ImPlotStemsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ulong* ys, int count, double reference, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ulong* ys, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ulong* ys, int count, double reference, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ulong* ys, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotStemsNative(pStr0, xs, ys, count, (double)(0), flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (ulong*)pxs, ys, count, reference, flags, offset, stride);
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (ulong*)pxs, ys, count, reference, flags, offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (ulong*)pxs, ys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ulong* ys, int count, double reference)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ulong* ys, int count)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ulong* ys, int count, ImPlotStemsFlags flags)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (ulong*)pxs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ulong* ys, int count, double reference, int offset)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ulong* ys, int count, int offset)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (ulong*)pxs, ys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ulong* ys, int count, double reference, int offset, int stride)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ulong* ys, int count, int offset, int stride)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(labelId, (ulong*)pxs, ys, count, (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, flags, offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref ulong xs, ulong* ys, int count, double reference)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref ulong xs, ulong* ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref ulong xs, ulong* ys, int count, ImPlotStemsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref ulong xs, ulong* ys, int count, double reference, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref ulong xs, ulong* ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref ulong xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref ulong xs, ulong* ys, int count, double reference, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref ulong xs, ulong* ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref ulong xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pxs = &xs)
-				{
-					PlotStemsNative((byte*)plabelId, (ulong*)pxs, ys, count, (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ref ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, reference, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ref ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, reference, flags, offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ref ulong xs, ulong* ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ref ulong xs, ulong* ys, int count, double reference)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ref ulong xs, ulong* ys, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ref ulong xs, ulong* ys, int count, ImPlotStemsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ref ulong xs, ulong* ys, int count, double reference, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ref ulong xs, ulong* ys, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ref ulong xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ref ulong xs, ulong* ys, int count, double reference, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ref ulong xs, ulong* ys, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ref ulong xs, ulong* ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				PlotStemsNative(pStr0, (ulong*)pxs, ys, count, (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, flags, offset, stride);
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, double reference)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotStemsFlags flags)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, double reference, int offset)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, int offset)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, double reference, int offset, int stride)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, int offset, int stride)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(labelId, xs, (ulong*)pys, count, (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count, double reference)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count, ImPlotStemsFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count, double reference, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count, double reference, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ulong* xs, ref ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative((byte*)plabelId, xs, (ulong*)pys, count, (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, reference, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ref ulong ys, int count, double reference)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ref ulong ys, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ref ulong ys, int count, ImPlotStemsFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ref ulong ys, int count, double reference, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ref ulong ys, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ref ulong ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ref ulong ys, int count, double reference, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ref ulong ys, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(string labelId, ulong* xs, ref ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pys = &ys)
-			{
-				PlotStemsNative(pStr0, xs, (ulong*)pys, count, (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ref ulong ys, int count, double reference)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ref ulong ys, int count)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ref ulong ys, int count, ImPlotStemsFlags flags)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ref ulong ys, int count, double reference, int offset)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ref ulong ys, int count, int offset)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ref ulong ys, int count, ImPlotStemsFlags flags, int offset)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ref ulong ys, int count, double reference, int offset, int stride)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ref ulong ys, int count, int offset, int stride)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(byte* labelId, ref ulong xs, ref ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(labelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotStems(ref byte labelId, ref ulong xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (uint* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (uint* pneg = &neg)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, offset, stride);
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, pos, count, flags, offset, stride);
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref ulong xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (uint* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (uint* pneg = &neg)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref ulong xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (uint* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (uint* pneg = &neg)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref ulong xs, ref ulong ys, int count, double reference)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (uint* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (uint* pneg = &neg)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref ulong xs, ref ulong ys, int count)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, int offset)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (uint* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (uint* pneg = &neg)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, ref uint neg, uint* pos, int count, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (uint* pxs = &xs)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (uint* pneg = &neg)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref ulong xs, ref ulong ys, int count, double reference, int offset)
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (uint*)pys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count)
+		{
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, int offset)
+		{
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, int offset, int stride)
+		{
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* pneg = &neg)
+				{
+					PlotErrorBarsNative(labelId, xs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (uint* pys = &ys)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (uint* pneg = &neg)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, stride);
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref ulong xs, ref ulong ys, int count, int offset)
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (uint* pys = &ys)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (uint* pneg = &neg)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (uint* pys = &ys)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (uint* pneg = &neg)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref ulong xs, ref ulong ys, int count, double reference, int offset, int stride)
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (uint* pys = &ys)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (uint* pneg = &neg)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref ulong xs, ref ulong ys, int count, int offset, int stride)
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (uint* pys = &ys)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (uint* pneg = &neg)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				fixed (ulong* pxs = &xs)
+				fixed (uint* pys = &ys)
 				{
-					fixed (ulong* pys = &ys)
+					fixed (uint* pneg = &neg)
 					{
-						PlotStemsNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, offset, stride);
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, ref ulong xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset, int stride)
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4242,11 +3135,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (uint* pys = &ys)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (uint* pneg = &neg)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, reference, flags, offset, stride);
+					PlotErrorBarsNative(pStr0, xs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4255,7 +3148,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref ulong xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4274,11 +3167,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (uint* pys = &ys)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (uint* pneg = &neg)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, reference, flags, offset, (int)(sizeof(ulong)));
+					PlotErrorBarsNative(pStr0, xs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4287,7 +3180,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref ulong xs, ref ulong ys, int count, double reference, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4306,11 +3199,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (uint* pys = &ys)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (uint* pneg = &neg)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, reference, flags, (int)(0), (int)(sizeof(ulong)));
+					PlotErrorBarsNative(pStr0, xs, (uint*)pys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4319,7 +3212,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref ulong xs, ref ulong ys, int count, double reference)
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4338,11 +3231,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (uint* pys = &ys)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (uint* pneg = &neg)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					PlotErrorBarsNative(pStr0, xs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4351,7 +3244,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref ulong xs, ref ulong ys, int count)
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4370,11 +3263,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (uint* pys = &ys)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (uint* pneg = &neg)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), (int)(0), (int)(sizeof(ulong)));
+					PlotErrorBarsNative(pStr0, xs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4383,7 +3276,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotStemsFlags flags)
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4402,11 +3295,11 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (ulong* pxs = &xs)
+			fixed (uint* pys = &ys)
 			{
-				fixed (ulong* pys = &ys)
+				fixed (uint* pneg = &neg)
 				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, (int)(0), (int)(sizeof(ulong)));
+					PlotErrorBarsNative(pStr0, xs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -4415,282 +3308,277 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotStems(string labelId, ref ulong xs, ref ulong ys, int count, double reference, int offset)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pys = &ys)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					fixed (uint* pneg = &neg)
 					{
-						Utils.Free(pStr0);
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, stride);
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, ref ulong xs, ref ulong ys, int count, int offset)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pys = &ys)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, (int)(sizeof(ulong)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					fixed (uint* pneg = &neg)
 					{
-						Utils.Free(pStr0);
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotStemsFlags flags, int offset)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pys = &ys)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, offset, (int)(sizeof(ulong)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					fixed (uint* pneg = &neg)
 					{
-						Utils.Free(pStr0);
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, ref ulong xs, ref ulong ys, int count, double reference, int offset, int stride)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pys = &ys)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, reference, (ImPlotStemsFlags)(0), offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					fixed (uint* pneg = &neg)
 					{
-						Utils.Free(pStr0);
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, ref ulong xs, ref ulong ys, int count, int offset, int stride)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, int offset)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pys = &ys)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (double)(0), (ImPlotStemsFlags)(0), offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					fixed (uint* pneg = &neg)
 					{
-						Utils.Free(pStr0);
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
 					}
 				}
 			}
 		}
 
-		public static void PlotStems(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotStemsFlags flags, int offset, int stride)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, ref uint neg, uint* pos, int count, int offset, int stride)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (uint* pys = &ys)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ulong* pxs = &xs)
-			{
-				fixed (ulong* pys = &ys)
-				{
-					PlotStemsNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (double)(0), flags, offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					fixed (uint* pneg = &neg)
 					{
-						Utils.Free(pStr0);
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
 					}
 				}
 			}
 		}
 
-		internal static void PlotInfLinesNative(byte* labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
-			((delegate* unmanaged[Cdecl]<byte*, float*, int, ImPlotInfLinesFlags, int, int, void>)vt[219])(labelId, values, count, flags, offset, stride);
-		}
-
-		public static void PlotInfLines(byte* labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			PlotInfLinesNative(labelId, values, count, flags, offset, stride);
-		}
-
-		public static void PlotInfLines(byte* labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			PlotInfLinesNative(labelId, values, count, flags, offset, (int)(sizeof(float)));
-		}
-
-		public static void PlotInfLines(byte* labelId, float* values, int count, ImPlotInfLinesFlags flags)
-		{
-			PlotInfLinesNative(labelId, values, count, flags, (int)(0), (int)(sizeof(float)));
-		}
-
-		public static void PlotInfLines(byte* labelId, float* values, int count)
-		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(float)));
-		}
-
-		public static void PlotInfLines(byte* labelId, float* values, int count, int offset)
-		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(float)));
-		}
-
-		public static void PlotInfLines(byte* labelId, float* values, int count, int offset, int stride)
-		{
-			PlotInfLinesNative(labelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
-		}
-
-		public static void PlotInfLines(ref byte labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, stride);
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, stride);
+					}
+				}
 			}
 		}
 
-		public static void PlotInfLines(ref byte labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, offset, (int)(sizeof(float)));
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
+					}
+				}
 			}
 		}
 
-		public static void PlotInfLines(ref byte labelId, float* values, int count, ImPlotInfLinesFlags flags)
+		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, flags, (int)(0), (int)(sizeof(float)));
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+					}
+				}
 			}
 		}
 
-		public static void PlotInfLines(ref byte labelId, float* values, int count)
+		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(float)));
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+					}
+				}
 			}
 		}
 
-		public static void PlotInfLines(ref byte labelId, float* values, int count, int offset)
+		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, int offset)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(float)));
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+					}
+				}
 			}
 		}
 
-		public static void PlotInfLines(ref byte labelId, float* values, int count, int offset, int stride)
+		public static void PlotErrorBars(byte* labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (uint* pxs = &xs)
 			{
-				PlotInfLinesNative((byte*)plabelId, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative(labelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
 			}
 		}
 
-		public static void PlotInfLines(string labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						fixed (uint* pneg = &neg)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						fixed (uint* pneg = &neg)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						fixed (uint* pneg = &neg)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						fixed (uint* pneg = &neg)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						fixed (uint* pneg = &neg)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						fixed (uint* pneg = &neg)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4709,14 +3597,23 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (uint* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, stride);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
 			}
 		}
 
-		public static void PlotInfLines(string labelId, float* values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4735,14 +3632,23 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, flags, offset, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (uint* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
 			}
 		}
 
-		public static void PlotInfLines(string labelId, float* values, int count, ImPlotInfLinesFlags flags)
+		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4761,14 +3667,23 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, flags, (int)(0), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (uint* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
 			}
 		}
 
-		public static void PlotInfLines(string labelId, float* values, int count)
+		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4787,14 +3702,23 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (uint* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
 			}
 		}
 
-		public static void PlotInfLines(string labelId, float* values, int count, int offset)
+		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4813,14 +3737,23 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (uint* pxs = &xs)
 			{
-				Utils.Free(pStr0);
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
 			}
 		}
 
-		public static void PlotInfLines(string labelId, float* values, int count, int offset, int stride)
+		public static void PlotErrorBars(string labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4839,128 +3772,239 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotInfLinesNative(pStr0, values, count, (ImPlotInfLinesFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (uint* pxs = &xs)
 			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotInfLines(byte* labelId, ref float values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (float*)pvalues, count, flags, offset, stride);
-			}
-		}
-
-		public static void PlotInfLines(byte* labelId, ref float values, int count, ImPlotInfLinesFlags flags, int offset)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (float*)pvalues, count, flags, offset, (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotInfLines(byte* labelId, ref float values, int count, ImPlotInfLinesFlags flags)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (float*)pvalues, count, flags, (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotInfLines(byte* labelId, ref float values, int count)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotInfLines(byte* labelId, ref float values, int count, int offset)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotInfLines(byte* labelId, ref float values, int count, int offset, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				PlotInfLinesNative(labelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotInfLines(ref byte labelId, ref float values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (float* pvalues = &values)
+				fixed (uint* pys = &ys)
 				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, flags, offset, stride);
+					fixed (uint* pneg = &neg)
+					{
+						PlotErrorBarsNative(pStr0, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
 				}
 			}
 		}
 
-		public static void PlotInfLines(ref byte labelId, ref float values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (float* pvalues = &values)
+				fixed (uint* pxs = &xs)
 				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, flags, offset, (int)(sizeof(float)));
+					fixed (uint* pys = &ys)
+					{
+						fixed (uint* pneg = &neg)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, stride);
+						}
+					}
 				}
 			}
 		}
 
-		public static void PlotInfLines(ref byte labelId, ref float values, int count, ImPlotInfLinesFlags flags)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (float* pvalues = &values)
+				fixed (uint* pxs = &xs)
 				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, flags, (int)(0), (int)(sizeof(float)));
+					fixed (uint* pys = &ys)
+					{
+						fixed (uint* pneg = &neg)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, flags, offset, (int)(sizeof(uint)));
+						}
+					}
 				}
 			}
 		}
 
-		public static void PlotInfLines(ref byte labelId, ref float values, int count)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, ImPlotErrorBarsFlags flags)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (float* pvalues = &values)
+				fixed (uint* pxs = &xs)
 				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), (int)(0), (int)(sizeof(float)));
+					fixed (uint* pys = &ys)
+					{
+						fixed (uint* pneg = &neg)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, flags, (int)(0), (int)(sizeof(uint)));
+						}
+					}
 				}
 			}
 		}
 
-		public static void PlotInfLines(ref byte labelId, ref float values, int count, int offset)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (float* pvalues = &values)
+				fixed (uint* pxs = &xs)
 				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, (int)(sizeof(float)));
+					fixed (uint* pys = &ys)
+					{
+						fixed (uint* pneg = &neg)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+						}
+					}
 				}
 			}
 		}
 
-		public static void PlotInfLines(ref byte labelId, ref float values, int count, int offset, int stride)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, int offset)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (float* pvalues = &values)
+				fixed (uint* pxs = &xs)
 				{
-					PlotInfLinesNative((byte*)plabelId, (float*)pvalues, count, (ImPlotInfLinesFlags)(0), offset, stride);
+					fixed (uint* pys = &ys)
+					{
+						fixed (uint* pneg = &neg)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+						}
+					}
 				}
 			}
 		}
 
-		public static void PlotInfLines(string labelId, ref float values, int count, ImPlotInfLinesFlags flags, int offset, int stride)
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, ref uint ys, ref uint neg, uint* pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* pys = &ys)
+					{
+						fixed (uint* pneg = &neg)
+						{
+							PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, (uint*)pys, (uint*)pneg, pos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+						}
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (uint* ppos = &pos)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, neg, (uint*)ppos, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (uint* ppos = &pos)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, neg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (uint* ppos = &pos)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, neg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count)
+		{
+			fixed (uint* ppos = &pos)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, int offset)
+		{
+			fixed (uint* ppos = &pos)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, int offset, int stride)
+		{
+			fixed (uint* ppos = &pos)
+			{
+				PlotErrorBarsNative(labelId, xs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, (uint*)ppos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4979,9 +4023,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (uint* ppos = &pos)
 			{
-				PlotInfLinesNative(pStr0, (float*)pvalues, count, flags, offset, stride);
+				PlotErrorBarsNative(pStr0, xs, ys, neg, (uint*)ppos, count, flags, offset, stride);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4989,7 +4033,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotInfLines(string labelId, ref float values, int count, ImPlotInfLinesFlags flags, int offset)
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5008,9 +4052,9 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (uint* ppos = &pos)
 			{
-				PlotInfLinesNative(pStr0, (float*)pvalues, count, flags, offset, (int)(sizeof(float)));
+				PlotErrorBarsNative(pStr0, xs, ys, neg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -5018,7 +4062,7 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotInfLines(string labelId, ref float values, int count, ImPlotInfLinesFlags flags)
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5037,12 +4081,947 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			fixed (float* pvalues = &values)
+			fixed (uint* ppos = &pos)
 			{
-				PlotInfLinesNative(pStr0, (float*)pvalues, count, flags, (int)(0), (int)(sizeof(float)));
+				PlotErrorBarsNative(pStr0, xs, ys, neg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* ppos = &pos)
+			{
+				PlotErrorBarsNative(pStr0, xs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* ppos = &pos)
+			{
+				PlotErrorBarsNative(pStr0, xs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* ppos = &pos)
+			{
+				PlotErrorBarsNative(pStr0, xs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, (uint*)ppos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, uint* ys, uint* neg, ref uint pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative((byte*)plabelId, xs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(labelId, (uint*)pxs, ys, neg, (uint*)ppos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(labelId, (uint*)pxs, ys, neg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(labelId, (uint*)pxs, ys, neg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(labelId, (uint*)pxs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, int offset)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(labelId, (uint*)pxs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, int offset, int stride)
+		{
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(labelId, (uint*)pxs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, (uint*)ppos, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, (uint*)pxs, ys, neg, (uint*)ppos, count, flags, offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, (uint*)pxs, ys, neg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, (uint*)pxs, ys, neg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, (uint*)pxs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, (uint*)pxs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pxs = &xs)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, (uint*)pxs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, (uint*)ppos, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, ref uint xs, uint* ys, uint* neg, ref uint pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pxs = &xs)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, (uint*)pxs, ys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(labelId, xs, (uint*)pys, neg, (uint*)ppos, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(labelId, xs, (uint*)pys, neg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(labelId, xs, (uint*)pys, neg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count)
+		{
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(labelId, xs, (uint*)pys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, int offset)
+		{
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(labelId, xs, (uint*)pys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+				}
+			}
+		}
+
+		public static void PlotErrorBars(byte* labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, int offset, int stride)
+		{
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(labelId, xs, (uint*)pys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, (uint*)ppos, count, flags, offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ref byte labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, xs, (uint*)pys, neg, (uint*)ppos, count, flags, offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, xs, (uint*)pys, neg, (uint*)ppos, count, flags, offset, (int)(sizeof(uint)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, xs, (uint*)pys, neg, (uint*)ppos, count, flags, (int)(0), (int)(sizeof(uint)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, xs, (uint*)pys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), (int)(0), (int)(sizeof(uint)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, xs, (uint*)pys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, (int)(sizeof(uint)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(string labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (uint* pys = &ys)
+			{
+				fixed (uint* ppos = &pos)
+				{
+					PlotErrorBarsNative(pStr0, xs, (uint*)pys, neg, (uint*)ppos, count, (ImPlotErrorBarsFlags)(0), offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotErrorBars(ReadOnlySpan<byte> labelId, uint* xs, ref uint ys, uint* neg, ref uint pos, int count, ImPlotErrorBarsFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (uint* pys = &ys)
+				{
+					fixed (uint* ppos = &pos)
+					{
+						PlotErrorBarsNative((byte*)plabelId, xs, (uint*)pys, neg, (uint*)ppos, count, flags, offset, stride);
+					}
 				}
 			}
 		}

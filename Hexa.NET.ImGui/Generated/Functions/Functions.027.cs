@@ -18,13 +18,13 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
-		public static void PlotHistogram(byte* label, float* values, int valuesCount, string overlayText, Vector2 graphSize)
+		public static bool InputFloat3(string label, ref Vector3 v)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (overlayText != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -34,23 +34,27 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHistogramNative(label, values, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (Vector3* pv = &v)
 			{
-				Utils.Free(pStr0);
+				bool ret = InputFloat3(pStr0, (float*)pv, (string)"%.3f", (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
 			}
 		}
 
-		public static void PlotHistogram(byte* label, float* values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
+		public static bool InputFloat3(string label, ref Vector3 v, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (overlayText != null)
+			if (label != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				pStrSize0 = Utils.GetByteCountUTF8(label);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -60,23 +64,93 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHistogramNative(label, values, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
+			fixed (Vector3* pv = &v)
 			{
-				Utils.Free(pStr0);
+				bool ret = InputFloat3(pStr0, (float*)pv, (string)"%.3f", flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
 			}
 		}
 
-		public static void PlotHistogram(byte* label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static bool InputFloat3(ReadOnlySpan<byte> label, ReadOnlySpan<float> v, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = v)
+				{
+					byte ret = InputFloat3Native((byte*)plabel, (float*)pv, format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat3(ReadOnlySpan<byte> label, ReadOnlySpan<float> v, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = v)
+				{
+					byte ret = InputFloat3Native((byte*)plabel, (float*)pv, format, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat3(ReadOnlySpan<byte> label, ReadOnlySpan<float> v)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = v)
+				{
+					bool ret = InputFloat3((byte*)plabel, (float*)pv, (string)"%.3f", (ImGuiInputTextFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputFloat3(ReadOnlySpan<byte> label, ReadOnlySpan<float> v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = v)
+				{
+					bool ret = InputFloat3((byte*)plabel, (float*)pv, (string)"%.3f", flags);
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputFloat3(byte* label, float* v, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputFloat3Native(label, v, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat3(byte* label, float* v, ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputFloat3Native(label, v, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat3(byte* label, float* v, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (overlayText != null)
+			if (format != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				pStrSize0 = Utils.GetByteCountUTF8(format);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -86,23 +160,24 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHistogramNative(label, values, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+			byte ret = InputFloat3Native(label, v, pStr0, flags);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		public static void PlotHistogram(byte* label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, int stride)
+		public static bool InputFloat3(byte* label, float* v, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
-			if (overlayText != null)
+			if (format != null)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
+				pStrSize0 = Utils.GetByteCountUTF8(format);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
@@ -112,541 +187,60 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
 					pStr0 = pStrStack0;
 				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			PlotHistogramNative(label, values, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
+			byte ret = InputFloat3Native(label, v, pStr0, (ImGuiInputTextFlags)(0));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		public static void PlotHistogram(byte* label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, int stride)
+		public static bool InputFloat3(byte* label, float* v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
+			fixed (byte* pformat = format)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, values, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				byte ret = InputFloat3Native(label, v, (byte*)pformat, flags);
+				return ret != 0;
 			}
 		}
 
-		public static void PlotHistogram(byte* label, float* values, int valuesCount, int valuesOffset, string overlayText, int stride)
+		public static bool InputFloat3(byte* label, float* v, ReadOnlySpan<byte> format)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
+			fixed (byte* pformat = format)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, values, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
+				byte ret = InputFloat3Native(label, v, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
 			}
 		}
 
-		public static void PlotHistogram(byte* label, float* values, int valuesCount, string overlayText, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, values, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, float* values, int valuesCount, string overlayText, float scaleMin, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, values, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, values, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, values, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, float* values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, values, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, float* values, int valuesCount, string overlayText, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, values, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, float* values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, values, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (overlayText != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(label, values, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static bool InputFloat3(ref byte label, float* v, ref byte format, ImGuiInputTextFlags flags)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (byte* poverlayText = &overlayText)
+				fixed (byte* pformat = &format)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
+					byte ret = InputFloat3Native((byte*)plabel, v, (byte*)pformat, flags);
+					return ret != 0;
 				}
 			}
 		}
 
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static bool InputFloat3(ref byte label, float* v, ref byte format)
 		{
 			fixed (byte* plabel = &label)
 			{
-				fixed (byte* poverlayText = &overlayText)
+				fixed (byte* pformat = &format)
 				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+					byte ret = InputFloat3Native((byte*)plabel, v, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
 				}
 			}
 		}
 
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, ref byte overlayText)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, ref byte overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, ref byte overlayText, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, ref byte overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, float* values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		public static bool InputFloat3(string label, float* v, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -667,9 +261,9 @@ namespace Hexa.NET.ImGui
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (overlayText != null)
+			if (format != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				pStrSize1 = Utils.GetByteCountUTF8(format);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -679,10 +273,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, graphSize, stride);
+			byte ret = InputFloat3Native(pStr0, v, pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -691,9 +285,10 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
+		public static bool InputFloat3(string label, float* v, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -714,9 +309,9 @@ namespace Hexa.NET.ImGui
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (overlayText != null)
+			if (format != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				pStrSize1 = Utils.GetByteCountUTF8(format);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -726,10 +321,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
+			byte ret = InputFloat3Native(pStr0, v, pStr1, (ImGuiInputTextFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -738,9 +333,955 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
+		public static bool InputFloat3(ReadOnlySpan<byte> label, float* v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputFloat3Native((byte*)plabel, v, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat3(ReadOnlySpan<byte> label, float* v, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputFloat3Native((byte*)plabel, v, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat3(byte* label, ref float v, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (float* pv = &v)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputFloat3Native(label, (float*)pv, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat3(byte* label, ref float v, ref byte format)
+		{
+			fixed (float* pv = &v)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputFloat3Native(label, (float*)pv, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat3(byte* label, ref Vector3 v, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (Vector3* pv = &v)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputFloat3Native(label, (float*)pv, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat3(byte* label, ref Vector3 v, string format)
+		{
+			fixed (Vector3* pv = &v)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputFloat3Native(label, (float*)pv, pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat3(byte* label, ReadOnlySpan<float> v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (float* pv = v)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputFloat3Native(label, (float*)pv, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat3(byte* label, ReadOnlySpan<float> v, ReadOnlySpan<byte> format)
+		{
+			fixed (float* pv = v)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputFloat3Native(label, (float*)pv, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat3(ref byte label, ref float v, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pv = &v)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = InputFloat3Native((byte*)plabel, (float*)pv, (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputFloat3(ref byte label, ref float v, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pv = &v)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = InputFloat3Native((byte*)plabel, (float*)pv, (byte*)pformat, (ImGuiInputTextFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputFloat3(string label, ref Vector3 v, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector3* pv = &v)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = InputFloat3Native(pStr0, (float*)pv, pStr1, flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat3(string label, ref Vector3 v, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector3* pv = &v)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = InputFloat3Native(pStr0, (float*)pv, pStr1, (ImGuiInputTextFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat3(ReadOnlySpan<byte> label, ReadOnlySpan<float> v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = v)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = InputFloat3Native((byte*)plabel, (float*)pv, (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputFloat3(ReadOnlySpan<byte> label, ReadOnlySpan<float> v, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = v)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = InputFloat3Native((byte*)plabel, (float*)pv, (byte*)pformat, (ImGuiInputTextFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		internal static byte InputFloat4Native(byte* label, float* v, byte* format, ImGuiInputTextFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, byte*, ImGuiInputTextFlags, byte>)vt[192])(label, v, format, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, ImGuiInputTextFlags, byte>)vt[192])((nint)label, (nint)v, (nint)format, flags);
+			#endif
+		}
+
+		public static bool InputFloat4(byte* label, float* v, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputFloat4Native(label, v, format, flags);
+			return ret != 0;
+		}
+
+		public static bool InputFloat4(byte* label, float* v, byte* format)
+		{
+			byte ret = InputFloat4Native(label, v, format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputFloat4(byte* label, float* v)
+		{
+			bool ret = InputFloat4(label, v, (string)"%.3f", (ImGuiInputTextFlags)(0));
+			return ret;
+		}
+
+		public static bool InputFloat4(byte* label, float* v, ImGuiInputTextFlags flags)
+		{
+			bool ret = InputFloat4(label, v, (string)"%.3f", flags);
+			return ret;
+		}
+
+		public static bool InputFloat4(ref byte label, float* v, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputFloat4Native((byte*)plabel, v, format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(ref byte label, float* v, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputFloat4Native((byte*)plabel, v, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(ref byte label, float* v)
+		{
+			fixed (byte* plabel = &label)
+			{
+				bool ret = InputFloat4((byte*)plabel, v, (string)"%.3f", (ImGuiInputTextFlags)(0));
+				return ret;
+			}
+		}
+
+		public static bool InputFloat4(ref byte label, float* v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				bool ret = InputFloat4((byte*)plabel, v, (string)"%.3f", flags);
+				return ret;
+			}
+		}
+
+		public static bool InputFloat4(string label, float* v, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputFloat4Native(pStr0, v, format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputFloat4(string label, float* v, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputFloat4Native(pStr0, v, format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputFloat4(string label, float* v)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			bool ret = InputFloat4(pStr0, v, (string)"%.3f", (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static bool InputFloat4(string label, float* v, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			bool ret = InputFloat4(pStr0, v, (string)"%.3f", flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static bool InputFloat4(ReadOnlySpan<byte> label, float* v, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputFloat4Native((byte*)plabel, v, format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(ReadOnlySpan<byte> label, float* v, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputFloat4Native((byte*)plabel, v, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(ReadOnlySpan<byte> label, float* v)
+		{
+			fixed (byte* plabel = label)
+			{
+				bool ret = InputFloat4((byte*)plabel, v, (string)"%.3f", (ImGuiInputTextFlags)(0));
+				return ret;
+			}
+		}
+
+		public static bool InputFloat4(ReadOnlySpan<byte> label, float* v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				bool ret = InputFloat4((byte*)plabel, v, (string)"%.3f", flags);
+				return ret;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ref float v, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (float* pv = &v)
+			{
+				byte ret = InputFloat4Native(label, (float*)pv, format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ref float v, byte* format)
+		{
+			fixed (float* pv = &v)
+			{
+				byte ret = InputFloat4Native(label, (float*)pv, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ref float v)
+		{
+			fixed (float* pv = &v)
+			{
+				bool ret = InputFloat4(label, (float*)pv, (string)"%.3f", (ImGuiInputTextFlags)(0));
+				return ret;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ref float v, ImGuiInputTextFlags flags)
+		{
+			fixed (float* pv = &v)
+			{
+				bool ret = InputFloat4(label, (float*)pv, (string)"%.3f", flags);
+				return ret;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ref Vector4 v, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (Vector4* pv = &v)
+			{
+				byte ret = InputFloat4Native(label, (float*)pv, format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ref Vector4 v, byte* format)
+		{
+			fixed (Vector4* pv = &v)
+			{
+				byte ret = InputFloat4Native(label, (float*)pv, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ref Vector4 v)
+		{
+			fixed (Vector4* pv = &v)
+			{
+				bool ret = InputFloat4(label, (float*)pv, (string)"%.3f", (ImGuiInputTextFlags)(0));
+				return ret;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ref Vector4 v, ImGuiInputTextFlags flags)
+		{
+			fixed (Vector4* pv = &v)
+			{
+				bool ret = InputFloat4(label, (float*)pv, (string)"%.3f", flags);
+				return ret;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ReadOnlySpan<float> v, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (float* pv = v)
+			{
+				byte ret = InputFloat4Native(label, (float*)pv, format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ReadOnlySpan<float> v, byte* format)
+		{
+			fixed (float* pv = v)
+			{
+				byte ret = InputFloat4Native(label, (float*)pv, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ReadOnlySpan<float> v)
+		{
+			fixed (float* pv = v)
+			{
+				bool ret = InputFloat4(label, (float*)pv, (string)"%.3f", (ImGuiInputTextFlags)(0));
+				return ret;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ReadOnlySpan<float> v, ImGuiInputTextFlags flags)
+		{
+			fixed (float* pv = v)
+			{
+				bool ret = InputFloat4(label, (float*)pv, (string)"%.3f", flags);
+				return ret;
+			}
+		}
+
+		public static bool InputFloat4(ref byte label, ref float v, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pv = &v)
+				{
+					byte ret = InputFloat4Native((byte*)plabel, (float*)pv, format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat4(ref byte label, ref float v, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pv = &v)
+				{
+					byte ret = InputFloat4Native((byte*)plabel, (float*)pv, format, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat4(ref byte label, ref float v)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pv = &v)
+				{
+					bool ret = InputFloat4((byte*)plabel, (float*)pv, (string)"%.3f", (ImGuiInputTextFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputFloat4(ref byte label, ref float v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pv = &v)
+				{
+					bool ret = InputFloat4((byte*)plabel, (float*)pv, (string)"%.3f", flags);
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputFloat4(string label, ref Vector4 v, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pv = &v)
+			{
+				byte ret = InputFloat4Native(pStr0, (float*)pv, format, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(string label, ref Vector4 v, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pv = &v)
+			{
+				byte ret = InputFloat4Native(pStr0, (float*)pv, format, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(string label, ref Vector4 v)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pv = &v)
+			{
+				bool ret = InputFloat4(pStr0, (float*)pv, (string)"%.3f", (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		public static bool InputFloat4(string label, ref Vector4 v, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pv = &v)
+			{
+				bool ret = InputFloat4(pStr0, (float*)pv, (string)"%.3f", flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		public static bool InputFloat4(ReadOnlySpan<byte> label, ReadOnlySpan<float> v, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = v)
+				{
+					byte ret = InputFloat4Native((byte*)plabel, (float*)pv, format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat4(ReadOnlySpan<byte> label, ReadOnlySpan<float> v, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = v)
+				{
+					byte ret = InputFloat4Native((byte*)plabel, (float*)pv, format, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat4(ReadOnlySpan<byte> label, ReadOnlySpan<float> v)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = v)
+				{
+					bool ret = InputFloat4((byte*)plabel, (float*)pv, (string)"%.3f", (ImGuiInputTextFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputFloat4(ReadOnlySpan<byte> label, ReadOnlySpan<float> v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = v)
+				{
+					bool ret = InputFloat4((byte*)plabel, (float*)pv, (string)"%.3f", flags);
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputFloat4(byte* label, float* v, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputFloat4Native(label, v, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, float* v, ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputFloat4Native(label, v, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, float* v, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputFloat4Native(label, v, pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputFloat4(byte* label, float* v, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputFloat4Native(label, v, pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputFloat4(byte* label, float* v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputFloat4Native(label, v, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, float* v, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputFloat4Native(label, v, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(ref byte label, float* v, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputFloat4Native((byte*)plabel, v, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat4(ref byte label, float* v, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputFloat4Native((byte*)plabel, v, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat4(string label, float* v, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -761,9 +1302,9 @@ namespace Hexa.NET.ImGui
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (overlayText != null)
+			if (format != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				pStrSize1 = Utils.GetByteCountUTF8(format);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -773,10 +1314,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			byte ret = InputFloat4Native(pStr0, v, pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -785,9 +1326,10 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
+		public static bool InputFloat4(string label, float* v, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -808,9 +1350,9 @@ namespace Hexa.NET.ImGui
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (overlayText != null)
+			if (format != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				pStrSize1 = Utils.GetByteCountUTF8(format);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -820,10 +1362,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			byte ret = InputFloat4Native(pStr0, v, pStr1, (ImGuiInputTextFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -832,9 +1374,3481 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText)
+		public static bool InputFloat4(ReadOnlySpan<byte> label, float* v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputFloat4Native((byte*)plabel, v, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat4(ReadOnlySpan<byte> label, float* v, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputFloat4Native((byte*)plabel, v, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ref float v, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (float* pv = &v)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputFloat4Native(label, (float*)pv, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ref float v, ref byte format)
+		{
+			fixed (float* pv = &v)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputFloat4Native(label, (float*)pv, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ref Vector4 v, string format, ImGuiInputTextFlags flags)
+		{
+			fixed (Vector4* pv = &v)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputFloat4Native(label, (float*)pv, pStr0, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ref Vector4 v, string format)
+		{
+			fixed (Vector4* pv = &v)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (format != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(format);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte ret = InputFloat4Native(label, (float*)pv, pStr0, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ReadOnlySpan<float> v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (float* pv = v)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputFloat4Native(label, (float*)pv, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat4(byte* label, ReadOnlySpan<float> v, ReadOnlySpan<byte> format)
+		{
+			fixed (float* pv = v)
+			{
+				fixed (byte* pformat = format)
+				{
+					byte ret = InputFloat4Native(label, (float*)pv, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputFloat4(ref byte label, ref float v, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pv = &v)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = InputFloat4Native((byte*)plabel, (float*)pv, (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputFloat4(ref byte label, ref float v, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (float* pv = &v)
+				{
+					fixed (byte* pformat = &format)
+					{
+						byte ret = InputFloat4Native((byte*)plabel, (float*)pv, (byte*)pformat, (ImGuiInputTextFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputFloat4(string label, ref Vector4 v, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pv = &v)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = InputFloat4Native(pStr0, (float*)pv, pStr1, flags);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(string label, ref Vector4 v, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pv = &v)
+			{
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (format != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(format);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				byte ret = InputFloat4Native(pStr0, (float*)pv, pStr1, (ImGuiInputTextFlags)(0));
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputFloat4(ReadOnlySpan<byte> label, ReadOnlySpan<float> v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = v)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = InputFloat4Native((byte*)plabel, (float*)pv, (byte*)pformat, flags);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool InputFloat4(ReadOnlySpan<byte> label, ReadOnlySpan<float> v, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (float* pv = v)
+				{
+					fixed (byte* pformat = format)
+					{
+						byte ret = InputFloat4Native((byte*)plabel, (float*)pv, (byte*)pformat, (ImGuiInputTextFlags)(0));
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		internal static byte InputIntNative(byte* label, int* v, int step, int stepFast, ImGuiInputTextFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, int, ImGuiInputTextFlags, byte>)vt[193])(label, v, step, stepFast, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, int, ImGuiInputTextFlags, byte>)vt[193])((nint)label, (nint)v, step, stepFast, flags);
+			#endif
+		}
+
+		public static bool InputInt(byte* label, int* v, int step, int stepFast, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputIntNative(label, v, step, stepFast, flags);
+			return ret != 0;
+		}
+
+		public static bool InputInt(byte* label, int* v, int step, int stepFast)
+		{
+			byte ret = InputIntNative(label, v, step, stepFast, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputInt(byte* label, int* v, int step)
+		{
+			byte ret = InputIntNative(label, v, step, (int)(100), (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputInt(byte* label, int* v)
+		{
+			byte ret = InputIntNative(label, v, (int)(1), (int)(100), (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputInt(byte* label, int* v, int step, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputIntNative(label, v, step, (int)(100), flags);
+			return ret != 0;
+		}
+
+		public static bool InputInt(byte* label, int* v, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputIntNative(label, v, (int)(1), (int)(100), flags);
+			return ret != 0;
+		}
+
+		public static bool InputInt(ref byte label, int* v, int step, int stepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputIntNative((byte*)plabel, v, step, stepFast, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(ref byte label, int* v, int step, int stepFast)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputIntNative((byte*)plabel, v, step, stepFast, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(ref byte label, int* v, int step)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputIntNative((byte*)plabel, v, step, (int)(100), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(ref byte label, int* v)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputIntNative((byte*)plabel, v, (int)(1), (int)(100), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(ref byte label, int* v, int step, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputIntNative((byte*)plabel, v, step, (int)(100), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(ref byte label, int* v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputIntNative((byte*)plabel, v, (int)(1), (int)(100), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(string label, int* v, int step, int stepFast, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputIntNative(pStr0, v, step, stepFast, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputInt(string label, int* v, int step, int stepFast)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputIntNative(pStr0, v, step, stepFast, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputInt(string label, int* v, int step)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputIntNative(pStr0, v, step, (int)(100), (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputInt(string label, int* v)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputIntNative(pStr0, v, (int)(1), (int)(100), (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputInt(string label, int* v, int step, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputIntNative(pStr0, v, step, (int)(100), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputInt(string label, int* v, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputIntNative(pStr0, v, (int)(1), (int)(100), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputInt(ReadOnlySpan<byte> label, int* v, int step, int stepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputIntNative((byte*)plabel, v, step, stepFast, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(ReadOnlySpan<byte> label, int* v, int step, int stepFast)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputIntNative((byte*)plabel, v, step, stepFast, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(ReadOnlySpan<byte> label, int* v, int step)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputIntNative((byte*)plabel, v, step, (int)(100), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(ReadOnlySpan<byte> label, int* v)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputIntNative((byte*)plabel, v, (int)(1), (int)(100), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(ReadOnlySpan<byte> label, int* v, int step, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputIntNative((byte*)plabel, v, step, (int)(100), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(ReadOnlySpan<byte> label, int* v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputIntNative((byte*)plabel, v, (int)(1), (int)(100), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(byte* label, ref int v, int step, int stepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(label, (int*)pv, step, stepFast, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(byte* label, ref int v, int step, int stepFast)
+		{
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(label, (int*)pv, step, stepFast, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(byte* label, ref int v, int step)
+		{
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(label, (int*)pv, step, (int)(100), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(byte* label, ref int v)
+		{
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(label, (int*)pv, (int)(1), (int)(100), (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(byte* label, ref int v, int step, ImGuiInputTextFlags flags)
+		{
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(label, (int*)pv, step, (int)(100), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(byte* label, ref int v, ImGuiInputTextFlags flags)
+		{
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(label, (int*)pv, (int)(1), (int)(100), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(ref byte label, ref int v, int step, int stepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputIntNative((byte*)plabel, (int*)pv, step, stepFast, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt(ref byte label, ref int v, int step, int stepFast)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputIntNative((byte*)plabel, (int*)pv, step, stepFast, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt(ref byte label, ref int v, int step)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputIntNative((byte*)plabel, (int*)pv, step, (int)(100), (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt(ref byte label, ref int v)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputIntNative((byte*)plabel, (int*)pv, (int)(1), (int)(100), (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt(ref byte label, ref int v, int step, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputIntNative((byte*)plabel, (int*)pv, step, (int)(100), flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt(ref byte label, ref int v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputIntNative((byte*)plabel, (int*)pv, (int)(1), (int)(100), flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt(string label, ref int v, int step, int stepFast, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(pStr0, (int*)pv, step, stepFast, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(string label, ref int v, int step, int stepFast)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(pStr0, (int*)pv, step, stepFast, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(string label, ref int v, int step)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(pStr0, (int*)pv, step, (int)(100), (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(string label, ref int v)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(pStr0, (int*)pv, (int)(1), (int)(100), (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(string label, ref int v, int step, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(pStr0, (int*)pv, step, (int)(100), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(string label, ref int v, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputIntNative(pStr0, (int*)pv, (int)(1), (int)(100), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt(ReadOnlySpan<byte> label, ref int v, int step, int stepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputIntNative((byte*)plabel, (int*)pv, step, stepFast, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt(ReadOnlySpan<byte> label, ref int v, int step, int stepFast)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputIntNative((byte*)plabel, (int*)pv, step, stepFast, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt(ReadOnlySpan<byte> label, ref int v, int step)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputIntNative((byte*)plabel, (int*)pv, step, (int)(100), (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt(ReadOnlySpan<byte> label, ref int v)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputIntNative((byte*)plabel, (int*)pv, (int)(1), (int)(100), (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt(ReadOnlySpan<byte> label, ref int v, int step, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputIntNative((byte*)plabel, (int*)pv, step, (int)(100), flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt(ReadOnlySpan<byte> label, ref int v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputIntNative((byte*)plabel, (int*)pv, (int)(1), (int)(100), flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		internal static byte InputInt2Native(byte* label, int* v, ImGuiInputTextFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImGuiInputTextFlags, byte>)vt[194])(label, v, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiInputTextFlags, byte>)vt[194])((nint)label, (nint)v, flags);
+			#endif
+		}
+
+		public static bool InputInt2(byte* label, int* v, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputInt2Native(label, v, flags);
+			return ret != 0;
+		}
+
+		public static bool InputInt2(byte* label, int* v)
+		{
+			byte ret = InputInt2Native(label, v, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputInt2(ref byte label, int* v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputInt2Native((byte*)plabel, v, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt2(ref byte label, int* v)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputInt2Native((byte*)plabel, v, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt2(string label, int* v, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputInt2Native(pStr0, v, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputInt2(string label, int* v)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputInt2Native(pStr0, v, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputInt2(ReadOnlySpan<byte> label, int* v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputInt2Native((byte*)plabel, v, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt2(ReadOnlySpan<byte> label, int* v)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputInt2Native((byte*)plabel, v, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt2(byte* label, ref int v, ImGuiInputTextFlags flags)
+		{
+			fixed (int* pv = &v)
+			{
+				byte ret = InputInt2Native(label, (int*)pv, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt2(byte* label, ref int v)
+		{
+			fixed (int* pv = &v)
+			{
+				byte ret = InputInt2Native(label, (int*)pv, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt2(byte* label, ReadOnlySpan<int> v, ImGuiInputTextFlags flags)
+		{
+			fixed (int* pv = v)
+			{
+				byte ret = InputInt2Native(label, (int*)pv, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt2(byte* label, ReadOnlySpan<int> v)
+		{
+			fixed (int* pv = v)
+			{
+				byte ret = InputInt2Native(label, (int*)pv, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt2(ref byte label, ref int v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputInt2Native((byte*)plabel, (int*)pv, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt2(ref byte label, ref int v)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputInt2Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt2(string label, ref int v, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputInt2Native(pStr0, (int*)pv, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt2(string label, ref int v)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputInt2Native(pStr0, (int*)pv, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt2(ReadOnlySpan<byte> label, ReadOnlySpan<int> v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pv = v)
+				{
+					byte ret = InputInt2Native((byte*)plabel, (int*)pv, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt2(ReadOnlySpan<byte> label, ReadOnlySpan<int> v)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pv = v)
+				{
+					byte ret = InputInt2Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		internal static byte InputInt3Native(byte* label, int* v, ImGuiInputTextFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImGuiInputTextFlags, byte>)vt[195])(label, v, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiInputTextFlags, byte>)vt[195])((nint)label, (nint)v, flags);
+			#endif
+		}
+
+		public static bool InputInt3(byte* label, int* v, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputInt3Native(label, v, flags);
+			return ret != 0;
+		}
+
+		public static bool InputInt3(byte* label, int* v)
+		{
+			byte ret = InputInt3Native(label, v, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputInt3(ref byte label, int* v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputInt3Native((byte*)plabel, v, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt3(ref byte label, int* v)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputInt3Native((byte*)plabel, v, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt3(string label, int* v, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputInt3Native(pStr0, v, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputInt3(string label, int* v)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputInt3Native(pStr0, v, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputInt3(ReadOnlySpan<byte> label, int* v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputInt3Native((byte*)plabel, v, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt3(ReadOnlySpan<byte> label, int* v)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputInt3Native((byte*)plabel, v, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt3(byte* label, ref int v, ImGuiInputTextFlags flags)
+		{
+			fixed (int* pv = &v)
+			{
+				byte ret = InputInt3Native(label, (int*)pv, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt3(byte* label, ref int v)
+		{
+			fixed (int* pv = &v)
+			{
+				byte ret = InputInt3Native(label, (int*)pv, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt3(byte* label, ReadOnlySpan<int> v, ImGuiInputTextFlags flags)
+		{
+			fixed (int* pv = v)
+			{
+				byte ret = InputInt3Native(label, (int*)pv, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt3(byte* label, ReadOnlySpan<int> v)
+		{
+			fixed (int* pv = v)
+			{
+				byte ret = InputInt3Native(label, (int*)pv, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt3(ref byte label, ref int v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputInt3Native((byte*)plabel, (int*)pv, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt3(ref byte label, ref int v)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputInt3Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt3(string label, ref int v, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputInt3Native(pStr0, (int*)pv, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt3(string label, ref int v)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputInt3Native(pStr0, (int*)pv, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt3(ReadOnlySpan<byte> label, ReadOnlySpan<int> v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pv = v)
+				{
+					byte ret = InputInt3Native((byte*)plabel, (int*)pv, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt3(ReadOnlySpan<byte> label, ReadOnlySpan<int> v)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pv = v)
+				{
+					byte ret = InputInt3Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		internal static byte InputInt4Native(byte* label, int* v, ImGuiInputTextFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImGuiInputTextFlags, byte>)vt[196])(label, v, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiInputTextFlags, byte>)vt[196])((nint)label, (nint)v, flags);
+			#endif
+		}
+
+		public static bool InputInt4(byte* label, int* v, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputInt4Native(label, v, flags);
+			return ret != 0;
+		}
+
+		public static bool InputInt4(byte* label, int* v)
+		{
+			byte ret = InputInt4Native(label, v, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputInt4(ref byte label, int* v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputInt4Native((byte*)plabel, v, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt4(ref byte label, int* v)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputInt4Native((byte*)plabel, v, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt4(string label, int* v, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputInt4Native(pStr0, v, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputInt4(string label, int* v)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputInt4Native(pStr0, v, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputInt4(ReadOnlySpan<byte> label, int* v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputInt4Native((byte*)plabel, v, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt4(ReadOnlySpan<byte> label, int* v)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputInt4Native((byte*)plabel, v, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt4(byte* label, ref int v, ImGuiInputTextFlags flags)
+		{
+			fixed (int* pv = &v)
+			{
+				byte ret = InputInt4Native(label, (int*)pv, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt4(byte* label, ref int v)
+		{
+			fixed (int* pv = &v)
+			{
+				byte ret = InputInt4Native(label, (int*)pv, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt4(byte* label, ReadOnlySpan<int> v, ImGuiInputTextFlags flags)
+		{
+			fixed (int* pv = v)
+			{
+				byte ret = InputInt4Native(label, (int*)pv, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt4(byte* label, ReadOnlySpan<int> v)
+		{
+			fixed (int* pv = v)
+			{
+				byte ret = InputInt4Native(label, (int*)pv, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt4(ref byte label, ref int v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputInt4Native((byte*)plabel, (int*)pv, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt4(ref byte label, ref int v)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (int* pv = &v)
+				{
+					byte ret = InputInt4Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt4(string label, ref int v, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputInt4Native(pStr0, (int*)pv, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt4(string label, ref int v)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (int* pv = &v)
+			{
+				byte ret = InputInt4Native(pStr0, (int*)pv, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputInt4(ReadOnlySpan<byte> label, ReadOnlySpan<int> v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pv = v)
+				{
+					byte ret = InputInt4Native((byte*)plabel, (int*)pv, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputInt4(ReadOnlySpan<byte> label, ReadOnlySpan<int> v)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (int* pv = v)
+				{
+					byte ret = InputInt4Native((byte*)plabel, (int*)pv, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		internal static byte InputDoubleNative(byte* label, double* v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, double*, double, double, byte*, ImGuiInputTextFlags, byte>)vt[197])(label, v, step, stepFast, format, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, double, double, nint, ImGuiInputTextFlags, byte>)vt[197])((nint)label, (nint)v, step, stepFast, (nint)format, flags);
+			#endif
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputDoubleNative(label, v, step, stepFast, format, flags);
+			return ret != 0;
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, double stepFast, byte* format)
+		{
+			byte ret = InputDoubleNative(label, v, step, stepFast, format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, double stepFast)
+		{
+			bool ret = InputDouble(label, v, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+			return ret;
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step)
+		{
+			bool ret = InputDouble(label, v, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+			return ret;
+		}
+
+		public static bool InputDouble(byte* label, double* v)
+		{
+			bool ret = InputDouble(label, v, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+			return ret;
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, byte* format)
+		{
+			byte ret = InputDoubleNative(label, v, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputDouble(byte* label, double* v, byte* format)
+		{
+			byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, double stepFast, ImGuiInputTextFlags flags)
+		{
+			bool ret = InputDouble(label, v, step, stepFast, (string)"%.6f", flags);
+			return ret;
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, ImGuiInputTextFlags flags)
+		{
+			bool ret = InputDouble(label, v, step, (double)(0.0), (string)"%.6f", flags);
+			return ret;
+		}
+
+		public static bool InputDouble(byte* label, double* v, ImGuiInputTextFlags flags)
+		{
+			bool ret = InputDouble(label, v, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+			return ret;
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputDoubleNative(label, v, step, (double)(0.0), format, flags);
+			return ret != 0;
+		}
+
+		public static bool InputDouble(byte* label, double* v, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), format, flags);
+			return ret != 0;
+		}
+
+		public static bool InputDouble(ref byte label, double* v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, double step, double stepFast, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, double step, double stepFast)
+		{
+			fixed (byte* plabel = &label)
+			{
+				bool ret = InputDouble((byte*)plabel, v, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, double step)
+		{
+			fixed (byte* plabel = &label)
+			{
+				bool ret = InputDouble((byte*)plabel, v, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v)
+		{
+			fixed (byte* plabel = &label)
+			{
+				bool ret = InputDouble((byte*)plabel, v, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, double step, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, double step, double stepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				bool ret = InputDouble((byte*)plabel, v, step, stepFast, (string)"%.6f", flags);
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, double step, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				bool ret = InputDouble((byte*)plabel, v, step, (double)(0.0), (string)"%.6f", flags);
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				bool ret = InputDouble((byte*)plabel, v, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, double step, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(string label, double* v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputDoubleNative(pStr0, v, step, stepFast, format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputDouble(string label, double* v, double step, double stepFast, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputDoubleNative(pStr0, v, step, stepFast, format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputDouble(string label, double* v, double step, double stepFast)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			bool ret = InputDouble(pStr0, v, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static bool InputDouble(string label, double* v, double step)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			bool ret = InputDouble(pStr0, v, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static bool InputDouble(string label, double* v)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			bool ret = InputDouble(pStr0, v, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static bool InputDouble(string label, double* v, double step, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputDoubleNative(pStr0, v, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputDouble(string label, double* v, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputDoubleNative(pStr0, v, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputDouble(string label, double* v, double step, double stepFast, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			bool ret = InputDouble(pStr0, v, step, stepFast, (string)"%.6f", flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static bool InputDouble(string label, double* v, double step, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			bool ret = InputDouble(pStr0, v, step, (double)(0.0), (string)"%.6f", flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static bool InputDouble(string label, double* v, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			bool ret = InputDouble(pStr0, v, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static bool InputDouble(string label, double* v, double step, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputDoubleNative(pStr0, v, step, (double)(0.0), format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputDouble(string label, double* v, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputDoubleNative(pStr0, v, (double)(0.0), (double)(0.0), format, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast)
+		{
+			fixed (byte* plabel = label)
+			{
+				bool ret = InputDouble((byte*)plabel, v, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step)
+		{
+			fixed (byte* plabel = label)
+			{
+				bool ret = InputDouble((byte*)plabel, v, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v)
+		{
+			fixed (byte* plabel = label)
+			{
+				bool ret = InputDouble((byte*)plabel, v, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, double stepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				bool ret = InputDouble((byte*)plabel, v, step, stepFast, (string)"%.6f", flags);
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				bool ret = InputDouble((byte*)plabel, v, step, (double)(0.0), (string)"%.6f", flags);
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				bool ret = InputDouble((byte*)plabel, v, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, double step, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, double* v, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (double* pv = &v)
+			{
+				byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, byte* format)
+		{
+			fixed (double* pv = &v)
+			{
+				byte ret = InputDoubleNative(label, (double*)pv, step, stepFast, format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, double stepFast)
+		{
+			fixed (double* pv = &v)
+			{
+				bool ret = InputDouble(label, (double*)pv, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step)
+		{
+			fixed (double* pv = &v)
+			{
+				bool ret = InputDouble(label, (double*)pv, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v)
+		{
+			fixed (double* pv = &v)
+			{
+				bool ret = InputDouble(label, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, byte* format)
+		{
+			fixed (double* pv = &v)
+			{
+				byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, byte* format)
+		{
+			fixed (double* pv = &v)
+			{
+				byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, double stepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (double* pv = &v)
+			{
+				bool ret = InputDouble(label, (double*)pv, step, stepFast, (string)"%.6f", flags);
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, ImGuiInputTextFlags flags)
+		{
+			fixed (double* pv = &v)
+			{
+				bool ret = InputDouble(label, (double*)pv, step, (double)(0.0), (string)"%.6f", flags);
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, ImGuiInputTextFlags flags)
+		{
+			fixed (double* pv = &v)
+			{
+				bool ret = InputDouble(label, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, double step, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (double* pv = &v)
+			{
+				byte ret = InputDoubleNative(label, (double*)pv, step, (double)(0.0), format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, ref double v, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (double* pv = &v)
+			{
+				byte ret = InputDoubleNative(label, (double*)pv, (double)(0.0), (double)(0.0), format, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, double step, double stepFast, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, format, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, double step, double stepFast)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					bool ret = InputDouble((byte*)plabel, (double*)pv, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, double step)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					bool ret = InputDouble((byte*)plabel, (double*)pv, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					bool ret = InputDouble((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, double step, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, byte* format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, double step, double stepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					bool ret = InputDouble((byte*)plabel, (double*)pv, step, stepFast, (string)"%.6f", flags);
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, double step, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					bool ret = InputDouble((byte*)plabel, (double*)pv, step, (double)(0.0), (string)"%.6f", flags);
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					bool ret = InputDouble((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, double step, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, ref double v, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (double* pv = &v)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				byte ret = InputDoubleNative(pStr0, (double*)pv, step, stepFast, format, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, double step, double stepFast, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				byte ret = InputDoubleNative(pStr0, (double*)pv, step, stepFast, format, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, double step, double stepFast)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				bool ret = InputDouble(pStr0, (double*)pv, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, double step)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				bool ret = InputDouble(pStr0, (double*)pv, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				bool ret = InputDouble(pStr0, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, double step, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				byte ret = InputDoubleNative(pStr0, (double*)pv, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, byte* format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				byte ret = InputDoubleNative(pStr0, (double*)pv, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, double step, double stepFast, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				bool ret = InputDouble(pStr0, (double*)pv, step, stepFast, (string)"%.6f", flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, double step, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				bool ret = InputDouble(pStr0, (double*)pv, step, (double)(0.0), (string)"%.6f", flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				bool ret = InputDouble(pStr0, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, double step, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				byte ret = InputDoubleNative(pStr0, (double*)pv, step, (double)(0.0), format, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(string label, ref double v, byte* format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pv = &v)
+			{
+				byte ret = InputDoubleNative(pStr0, (double*)pv, (double)(0.0), (double)(0.0), format, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, double stepFast, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, double stepFast, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, stepFast, format, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, double stepFast)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					bool ret = InputDouble((byte*)plabel, (double*)pv, step, stepFast, (string)"%.6f", (ImGuiInputTextFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					bool ret = InputDouble((byte*)plabel, (double*)pv, step, (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					bool ret = InputDouble((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", (ImGuiInputTextFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), format, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, byte* format)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), format, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, double stepFast, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					bool ret = InputDouble((byte*)plabel, (double*)pv, step, stepFast, (string)"%.6f", flags);
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					bool ret = InputDouble((byte*)plabel, (double*)pv, step, (double)(0.0), (string)"%.6f", flags);
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					bool ret = InputDouble((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), (string)"%.6f", flags);
+					return ret;
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, double step, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, step, (double)(0.0), format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ReadOnlySpan<byte> label, ref double v, byte* format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (double* pv = &v)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, (double*)pv, (double)(0.0), (double)(0.0), format, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, double stepFast, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputDoubleNative(label, v, step, stepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, double stepFast, ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputDoubleNative(label, v, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputDoubleNative(label, v, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, double* v, ref byte format)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputDoubleNative(label, v, step, (double)(0.0), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, double* v, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, double stepFast, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputDoubleNative(label, v, step, stepFast, pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, double stepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputDoubleNative(label, v, step, stepFast, pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputDoubleNative(label, v, step, (double)(0.0), pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputDouble(byte* label, double* v, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), pStr0, (ImGuiInputTextFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputDoubleNative(label, v, step, (double)(0.0), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputDouble(byte* label, double* v, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (format != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(format);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(format, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), pStr0, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, double stepFast, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputDoubleNative(label, v, step, stepFast, (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, double stepFast, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputDoubleNative(label, v, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputDoubleNative(label, v, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, double* v, ReadOnlySpan<byte> format)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, double* v, double step, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputDoubleNative(label, v, step, (double)(0.0), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(byte* label, double* v, ReadOnlySpan<byte> format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* pformat = format)
+			{
+				byte ret = InputDoubleNative(label, v, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, double step, double stepFast, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, double step, double stepFast, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, v, step, stepFast, (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, double step, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, double step, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, v, step, (double)(0.0), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(ref byte label, double* v, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputDoubleNative((byte*)plabel, v, (double)(0.0), (double)(0.0), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputDouble(string label, double* v, double step, double stepFast, string format, ImGuiInputTextFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -855,9 +4869,9 @@ namespace Hexa.NET.ImGui
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (overlayText != null)
+			if (format != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				pStrSize1 = Utils.GetByteCountUTF8(format);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -867,10 +4881,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			byte ret = InputDoubleNative(pStr0, v, step, stepFast, pStr1, flags);
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -879,9 +4893,10 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText)
+		public static bool InputDouble(string label, double* v, double step, double stepFast, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -902,9 +4917,9 @@ namespace Hexa.NET.ImGui
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (overlayText != null)
+			if (format != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				pStrSize1 = Utils.GetByteCountUTF8(format);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -914,10 +4929,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			byte ret = InputDoubleNative(pStr0, v, step, stepFast, pStr1, (ImGuiInputTextFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -926,9 +4941,10 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, float scaleMin)
+		public static bool InputDouble(string label, double* v, double step, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -949,9 +4965,9 @@ namespace Hexa.NET.ImGui
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (overlayText != null)
+			if (format != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				pStrSize1 = Utils.GetByteCountUTF8(format);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -961,10 +4977,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			byte ret = InputDoubleNative(pStr0, v, step, (double)(0.0), pStr1, (ImGuiInputTextFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -973,9 +4989,10 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
+			return ret != 0;
 		}
 
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax)
+		public static bool InputDouble(string label, double* v, string format)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -996,9 +5013,9 @@ namespace Hexa.NET.ImGui
 			}
 			byte* pStr1 = null;
 			int pStrSize1 = 0;
-			if (overlayText != null)
+			if (format != null)
 			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
+				pStrSize1 = Utils.GetByteCountUTF8(format);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
@@ -1008,10 +5025,10 @@ namespace Hexa.NET.ImGui
 					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
 					pStr1 = pStrStack1;
 				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
 				pStr1[pStrOffset1] = 0;
 			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
+			byte ret = InputDoubleNative(pStr0, v, (double)(0.0), (double)(0.0), pStr1, (ImGuiInputTextFlags)(0));
 			if (pStrSize1 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr1);
@@ -1020,4013 +5037,7 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStr0);
 			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, float scaleMin, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, float* values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (overlayText != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			PlotHistogramNative(pStr0, values, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, graphSize, stride);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, ref byte overlayText)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, ref byte overlayText, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, ref byte overlayText, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, ref byte overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				fixed (byte* poverlayText = &overlayText)
-				{
-					PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, string overlayText)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, string overlayText, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, string overlayText, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, valuesOffset, pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, string overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(byte* label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (overlayText != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(overlayText, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				PlotHistogramNative(label, (float*)pvalues, valuesCount, (int)(0), pStr0, scaleMin, scaleMax, graphSize, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, ref byte overlayText)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, ref byte overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, ref byte overlayText, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, int valuesOffset, ref byte overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, valuesOffset, (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, ref byte overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, ref float values, int valuesCount, ref byte overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pvalues = &values)
-				{
-					fixed (byte* poverlayText = &overlayText)
-					{
-						PlotHistogramNative((byte*)plabel, (float*)pvalues, valuesCount, (int)(0), (byte*)poverlayText, scaleMin, scaleMax, graphSize, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, graphSize, stride);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, int valuesOffset, string overlayText)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, string overlayText)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, string overlayText, float scaleMin)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, string overlayText, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, string overlayText, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, string overlayText, float scaleMin, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, int valuesOffset, string overlayText, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, valuesOffset, pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, string overlayText, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, string overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, (float)(float.MaxValue), graphSize, stride);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotHistogram(string label, ref float values, int valuesCount, string overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pvalues = &values)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (overlayText != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(overlayText);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(overlayText, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				PlotHistogramNative(pStr0, (float*)pvalues, valuesCount, (int)(0), pStr1, scaleMin, scaleMax, graphSize, stride);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		internal static void PlotHistogramNative(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			((delegate* unmanaged[Cdecl]<byte*, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2>, void*, int, int, byte*, float, float, Vector2, void>)vt[237])(label, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize);
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize);
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin, float scaleMax)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin, float scaleMax)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize);
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, Vector2 graphSize)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, Vector2 graphSize)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, Vector2 graphSize)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize);
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin, Vector2 graphSize)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize);
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize);
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize);
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize);
-		}
-
-		public static void PlotHistogram(byte* label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			PlotHistogramNative(label, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize);
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize);
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize);
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize);
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize);
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize);
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize);
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize);
-			}
-		}
-
-		public static void PlotHistogram(ref byte label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotHistogramNative((byte*)plabel, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, float scaleMin, float scaleMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, float scaleMin, float scaleMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, int valuesOffset, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotHistogram(string label, delegate*<byte*, delegate*<void*, int>, void*, int, int, byte*, float, float, Vector2> valuesGetter, void* data, int valuesCount, Vector2 graphSize)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotHistogramNative(pStr0, valuesGetter, data, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
+			return ret != 0;
 		}
 	}
 }

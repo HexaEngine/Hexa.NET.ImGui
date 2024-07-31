@@ -11,6 +11,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
@@ -65,7 +66,9 @@ namespace Hexa.NET.ImGuizmo
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct StylePtr : IEquatable<StylePtr>
 	{
 		public StylePtr(Style* handle) { Handle = handle; }
@@ -96,7 +99,9 @@ namespace Hexa.NET.ImGuizmo
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("StylePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref float TranslationLineThickness => ref Unsafe.AsRef<float>(&Handle->TranslationLineThickness);
 		public ref float TranslationLineArrowSize => ref Unsafe.AsRef<float>(&Handle->TranslationLineArrowSize);
 		public ref float RotationLineThickness => ref Unsafe.AsRef<float>(&Handle->RotationLineThickness);

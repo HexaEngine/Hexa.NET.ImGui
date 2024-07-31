@@ -1,0 +1,1 @@
+﻿global using static ExampleD3D11.Utils;

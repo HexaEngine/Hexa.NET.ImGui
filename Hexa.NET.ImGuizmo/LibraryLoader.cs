@@ -1,36 +1,10 @@
 ﻿namespace Hexa.NET.ImGuizmo
 {
     using System;
-    using System.Reflection;
     using System.Runtime.InteropServices;
 
     public static class LibraryLoader
     {
-        public static void SetImportResolver()
-        {
-            NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), DllImportResolver);
-        }
-
-        private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
-        {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return LoadLocalLibrary("cimguizmo");
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                return LoadLocalLibrary("cimguizmo");
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                return LoadLocalLibrary("cimguizmo");
-            }
-            else
-            {
-                return LoadLocalLibrary("cimguizmo");
-            }
-        }
-
         public static nint LoadLibrary()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

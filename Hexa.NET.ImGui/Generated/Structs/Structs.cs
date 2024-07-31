@@ -11,6 +11,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 
 namespace Hexa.NET.ImGui
@@ -23,7 +24,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImDrawChannelPtr : IEquatable<ImDrawChannelPtr>
 	{
 		public ImDrawChannelPtr(ImDrawChannel* handle) { Handle = handle; }
@@ -54,7 +57,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImDrawChannelPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorImDrawCmd CmdBuffer => ref Unsafe.AsRef<ImVectorImDrawCmd>(&Handle->CmdBuffer);
 		public ref ImVectorImDrawIdx IdxBuffer => ref Unsafe.AsRef<ImVectorImDrawIdx>(&Handle->IdxBuffer);
 	}
@@ -99,7 +104,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImDrawCmdPtr : IEquatable<ImDrawCmdPtr>
 	{
 		public ImDrawCmdPtr(ImDrawCmd* handle) { Handle = handle; }
@@ -130,7 +137,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImDrawCmdPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref Vector4 ClipRect => ref Unsafe.AsRef<Vector4>(&Handle->ClipRect);
 		public ref ImTextureID TextureId => ref Unsafe.AsRef<ImTextureID>(&Handle->TextureId);
 		public ref uint VtxOffset => ref Unsafe.AsRef<uint>(&Handle->VtxOffset);
@@ -894,6 +903,28 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddText(Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(@this, pos, col, (byte*)ptextBegin, textEnd);
+				}
+			}
+		}
+
+		public unsafe void AddText(Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(@this, pos, col, (byte*)ptextBegin, (byte*)(default));
+				}
+			}
+		}
+
 		public unsafe void AddText(Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
 		{
 			fixed (ImDrawList* @this = &this)
@@ -930,6 +961,17 @@ namespace Hexa.NET.ImGui
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public unsafe void AddText(Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(@this, pos, col, textBegin, (byte*)ptextEnd);
 				}
 			}
 		}
@@ -994,6 +1036,20 @@ namespace Hexa.NET.ImGui
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public unsafe void AddText(Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(@this, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
+					}
 				}
 			}
 		}
@@ -1470,6 +1526,94 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
 		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
@@ -1838,6 +1982,118 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
 		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
@@ -1994,6 +2250,50 @@ namespace Hexa.NET.ImGui
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(@this, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
 				}
 			}
 		}
@@ -2177,6 +2477,62 @@ namespace Hexa.NET.ImGui
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
 					}
 				}
 			}
@@ -2434,6 +2790,62 @@ namespace Hexa.NET.ImGui
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+					}
 				}
 			}
 		}
@@ -2713,6 +3125,74 @@ namespace Hexa.NET.ImGui
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+						}
 					}
 				}
 			}
@@ -3002,6 +3482,62 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
 		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
@@ -3210,6 +3746,74 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
 		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
 		{
 			fixed (ImDrawList* @this = &this)
@@ -3297,6 +3901,34 @@ namespace Hexa.NET.ImGui
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddTextNative(@this, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddTextNative(@this, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
 					}
 				}
 			}
@@ -3400,6 +4032,40 @@ namespace Hexa.NET.ImGui
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
 							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
 						}
 					}
 				}
@@ -3541,6 +4207,40 @@ namespace Hexa.NET.ImGui
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							ImGui.AddTextNative(@this, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
 					}
 				}
 			}
@@ -3692,6 +4392,46 @@ namespace Hexa.NET.ImGui
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
 							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+							{
+								ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+							{
+								ImGui.AddTextNative(@this, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+							}
 						}
 					}
 				}
@@ -4053,7 +4793,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImDrawListPtr : IEquatable<ImDrawListPtr>
 	{
 		public ImDrawListPtr(ImDrawList* handle) { Handle = handle; }
@@ -4084,7 +4826,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImDrawListPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorImDrawCmd CmdBuffer => ref Unsafe.AsRef<ImVectorImDrawCmd>(&Handle->CmdBuffer);
 		public ref ImVectorImDrawIdx IdxBuffer => ref Unsafe.AsRef<ImVectorImDrawIdx>(&Handle->IdxBuffer);
 		public ref ImVectorImDrawVert VtxBuffer => ref Unsafe.AsRef<ImVectorImDrawVert>(&Handle->VtxBuffer);
@@ -4574,6 +5318,22 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddText(Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				ImGui.AddTextNative(Handle, pos, col, (byte*)ptextBegin, textEnd);
+			}
+		}
+
+		public unsafe void AddText(Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				ImGui.AddTextNative(Handle, pos, col, (byte*)ptextBegin, (byte*)(default));
+			}
+		}
+
 		public unsafe void AddText(Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
@@ -4605,6 +5365,14 @@ namespace Hexa.NET.ImGui
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
+			}
+		}
+
+		public unsafe void AddText(Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				ImGui.AddTextNative(Handle, pos, col, textBegin, (byte*)ptextEnd);
 			}
 		}
 
@@ -4663,6 +5431,17 @@ namespace Hexa.NET.ImGui
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
+			}
+		}
+
+		public unsafe void AddText(Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(Handle, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
+				}
 			}
 		}
 
@@ -5042,6 +5821,70 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+			}
+		}
+
 		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
@@ -5362,6 +6205,94 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), cpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
 		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, Vector4* cpuFineClipRect)
 		{
 			fixed (byte* ptextEnd = &textEnd)
@@ -5495,6 +6426,38 @@ namespace Hexa.NET.ImGui
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				ImGui.AddTextNative(Handle, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				ImGui.AddTextNative(Handle, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				ImGui.AddTextNative(Handle, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				ImGui.AddTextNative(Handle, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
 			}
 		}
 
@@ -5654,6 +6617,50 @@ namespace Hexa.NET.ImGui
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
 				}
 			}
 		}
@@ -5887,6 +6894,50 @@ namespace Hexa.NET.ImGui
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+				}
 			}
 		}
 
@@ -6146,6 +7197,62 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)(default));
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, Vector4* cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClipRect);
+					}
+				}
+			}
+		}
+
 		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
 		{
 			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
@@ -6382,6 +7489,50 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
 		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ref byte textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
 		{
 			fixed (ImFont* pfont = &font)
@@ -6566,6 +7717,62 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, textEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
 		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
 		{
 			fixed (byte* ptextEnd = &textEnd)
@@ -6642,6 +7849,28 @@ namespace Hexa.NET.ImGui
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					ImGui.AddTextNative(Handle, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					ImGui.AddTextNative(Handle, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
 				}
 			}
 		}
@@ -6733,6 +7962,34 @@ namespace Hexa.NET.ImGui
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
 					}
 				}
 			}
@@ -6862,6 +8119,34 @@ namespace Hexa.NET.ImGui
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ImFont* font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						ImGui.AddTextNative(Handle, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
 				}
 			}
 		}
@@ -7001,6 +8286,40 @@ namespace Hexa.NET.ImGui
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void AddText(ref ImFont font, float fontSize, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							ImGui.AddTextNative(Handle, (ImFont*)pfont, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
 					}
 				}
 			}
@@ -7229,7 +8548,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImDrawListPtrPtr : IEquatable<ImDrawListPtrPtr>
 	{
 		public ImDrawListPtrPtr(ImDrawList** handle) { Handle = handle; }
@@ -7260,7 +8581,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImDrawListPtrPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ImDrawListPtr this[int index]
 		{
 			get => Handle[index]; set => Handle[index] = value;
@@ -7294,7 +8617,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImDrawVertPtr : IEquatable<ImDrawVertPtr>
 	{
 		public ImDrawVertPtr(ImDrawVert* handle) { Handle = handle; }
@@ -7325,7 +8650,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImDrawVertPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref Vector2 Pos => ref Unsafe.AsRef<Vector2>(&Handle->Pos);
 		public ref Vector2 Uv => ref Unsafe.AsRef<Vector2>(&Handle->Uv);
 		public ref uint Col => ref Unsafe.AsRef<uint>(&Handle->Col);
@@ -7471,7 +8798,9 @@ namespace Hexa.NET.ImGui
 		}
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImDrawListSharedDataPtr : IEquatable<ImDrawListSharedDataPtr>
 	{
 		public ImDrawListSharedDataPtr(ImDrawListSharedData* handle) { Handle = handle; }
@@ -7502,7 +8831,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImDrawListSharedDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref Vector2 TexUvWhitePixel => ref Unsafe.AsRef<Vector2>(&Handle->TexUvWhitePixel);
 		public ref ImFontPtr Font => ref Unsafe.AsRef<ImFontPtr>(&Handle->Font);
 		public ref float FontSize => ref Unsafe.AsRef<float>(&Handle->FontSize);
@@ -7703,6 +9034,30 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe byte* CalcWordWrapPositionA(float scale, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, textEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, textEnd, wrapWidth));
+					return ret;
+				}
+			}
+		}
+
 		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (ImFont* @this = &this)
@@ -7784,6 +9139,30 @@ namespace Hexa.NET.ImGui
 					Utils.Free(pStr0);
 				}
 				return ret;
+			}
+		}
+
+		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, text, (byte*)ptextEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, text, (byte*)ptextEnd, wrapWidth));
+					return ret;
+				}
 			}
 		}
 
@@ -7916,6 +9295,36 @@ namespace Hexa.NET.ImGui
 					Utils.Free(pStr0);
 				}
 				return ret;
+			}
+		}
+
+		public unsafe byte* CalcWordWrapPositionA(float scale, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						byte* ret = ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(@this, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+						return ret;
+					}
+				}
 			}
 		}
 
@@ -8261,6 +9670,50 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (byte)(0));
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (byte)(0));
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
 		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
 		{
 			fixed (ImFont* @this = &this)
@@ -8445,6 +9898,62 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (byte)(0));
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (byte)(0));
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
+					}
+				}
+			}
+		}
+
 		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, float wrapWidth, bool cpuFineClip)
 		{
 			fixed (ImFont* @this = &this)
@@ -8601,6 +10110,50 @@ namespace Hexa.NET.ImGui
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -8784,6 +10337,62 @@ namespace Hexa.NET.ImGui
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
 					}
 				}
 			}
@@ -9041,6 +10650,62 @@ namespace Hexa.NET.ImGui
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.RenderTextNative(@this, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
+					}
 				}
 			}
 		}
@@ -9325,6 +10990,74 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, bool cpuFineClip)
+		{
+			fixed (ImFont* @this = &this)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					fixed (byte* ptextBegin = textBegin)
+					{
+						fixed (byte* ptextEnd = textEnd)
+						{
+							ImGui.RenderTextNative(@this, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
+						}
+					}
+				}
+			}
+		}
+
 		public unsafe void SetGlyphVisible(char c, bool visible)
 		{
 			fixed (ImFont* @this = &this)
@@ -9335,7 +11068,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImFontPtr : IEquatable<ImFontPtr>
 	{
 		public ImFontPtr(ImFont* handle) { Handle = handle; }
@@ -9366,7 +11101,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImFontPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorFloat IndexAdvanceX => ref Unsafe.AsRef<ImVectorFloat>(&Handle->IndexAdvanceX);
 		public ref float FallbackAdvanceX => ref Unsafe.AsRef<float>(&Handle->FallbackAdvanceX);
 		public ref float FontSize => ref Unsafe.AsRef<float>(&Handle->FontSize);
@@ -9507,6 +11244,24 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
+		public unsafe byte* CalcWordWrapPositionA(float scale, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, textEnd, wrapWidth);
+				return ret;
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, ReadOnlySpan<byte> text, byte* textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, textEnd, wrapWidth));
+				return ret;
+			}
+		}
+
 		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, ref byte textEnd, float wrapWidth)
 		{
 			fixed (byte* ptextEnd = &textEnd)
@@ -9577,6 +11332,24 @@ namespace Hexa.NET.ImGui
 				Utils.Free(pStr0);
 			}
 			return ret;
+		}
+
+		public unsafe byte* CalcWordWrapPositionA(float scale, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, text, (byte*)ptextEnd, wrapWidth);
+				return ret;
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, byte* text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, text, (byte*)ptextEnd, wrapWidth));
+				return ret;
+			}
 		}
 
 		public unsafe byte* CalcWordWrapPositionA(float scale, ref byte text, ref byte textEnd, float wrapWidth)
@@ -9697,6 +11470,30 @@ namespace Hexa.NET.ImGui
 				Utils.Free(pStr0);
 			}
 			return ret;
+		}
+
+		public unsafe byte* CalcWordWrapPositionA(float scale, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					byte* ret = ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe string CalcWordWrapPositionAS(float scale, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					string ret = Utils.DecodeStringUTF8(ImGui.CalcWordWrapPositionANative(Handle, scale, (byte*)ptext, (byte*)ptextEnd, wrapWidth));
+					return ret;
+				}
+			}
 		}
 
 		public unsafe void ClearOutputData()
@@ -9957,6 +11754,38 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (byte)(0));
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (byte)(0));
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd, bool cpuFineClip)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
+			}
+		}
+
 		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ref byte textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
@@ -10117,6 +11946,50 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, wrapWidth, (byte)(0));
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), (byte)(0));
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, byte* textEnd, bool cpuFineClip)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, textEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
 		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ref byte textEnd, float wrapWidth, bool cpuFineClip)
 		{
 			fixed (byte* ptextEnd = &textEnd)
@@ -10250,6 +12123,38 @@ namespace Hexa.NET.ImGui
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd, bool cpuFineClip)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
 			}
 		}
 
@@ -10409,6 +12314,50 @@ namespace Hexa.NET.ImGui
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, byte* textBegin, ReadOnlySpan<byte> textEnd, bool cpuFineClip)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, textBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -10642,6 +12591,50 @@ namespace Hexa.NET.ImGui
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
+				}
+			}
+		}
+
+		public unsafe void RenderText(ImDrawListPtr drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, bool cpuFineClip)
+		{
+			fixed (byte* ptextBegin = textBegin)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.RenderTextNative(Handle, drawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
+				}
 			}
 		}
 
@@ -10901,6 +12894,62 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth, bool cpuFineClip)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, cpuFineClip ? (byte)1 : (byte)0);
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, float wrapWidth)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (byte)(0));
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (byte)(0));
+					}
+				}
+			}
+		}
+
+		public unsafe void RenderText(ref ImDrawList drawList, float size, Vector2 pos, uint col, Vector4 clipRect, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd, bool cpuFineClip)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = textBegin)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.RenderTextNative(Handle, (ImDrawList*)pdrawList, size, pos, col, clipRect, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), cpuFineClip ? (byte)1 : (byte)0);
+					}
+				}
+			}
+		}
+
 		public unsafe void SetGlyphVisible(char c, bool visible)
 		{
 			ImGui.SetGlyphVisibleNative(Handle, c, visible ? (byte)1 : (byte)0);
@@ -10908,7 +12957,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImFontPtrPtr : IEquatable<ImFontPtrPtr>
 	{
 		public ImFontPtrPtr(ImFont** handle) { Handle = handle; }
@@ -10939,7 +12990,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImFontPtrPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ImFontPtr this[int index]
 		{
 			get => Handle[index]; set => Handle[index] = value;
@@ -10964,7 +13017,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVectorImWcharPtr : IEquatable<ImVectorImWcharPtr>
 	{
 		public ImVectorImWcharPtr(ImVectorImWchar* handle) { Handle = handle; }
@@ -10995,7 +13050,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVectorImWcharPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
 		public char* Data { get => Handle->Data; set => Handle->Data = value; }
@@ -11028,7 +13085,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImFontGlyphPtr : IEquatable<ImFontGlyphPtr>
 	{
 		public ImFontGlyphPtr(ImFontGlyph* handle) { Handle = handle; }
@@ -11059,7 +13118,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImFontGlyphPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref uint Colored => ref Unsafe.AsRef<uint>(&Handle->Colored);
 		public ref uint Visible => ref Unsafe.AsRef<uint>(&Handle->Visible);
 		public ref uint Codepoint => ref Unsafe.AsRef<uint>(&Handle->Codepoint);
@@ -11481,6 +13542,54 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, fontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, fontCfg, (char*)(default));
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (char*)(default));
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), glyphRanges);
+					return ret;
+				}
+			}
+		}
+
 		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
@@ -11597,6 +13706,36 @@ namespace Hexa.NET.ImGui
 						Utils.Free(pStr0);
 					}
 					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ref ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+						return ret;
+					}
 				}
 			}
 		}
@@ -11721,6 +13860,36 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					fixed (char* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, fontCfg, (char*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					fixed (char* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
 		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
@@ -11785,6 +13954,24 @@ namespace Hexa.NET.ImGui
 							Utils.Free(pStr0);
 						}
 						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pfilename = filename)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						fixed (char* pglyphRanges = &glyphRanges)
+						{
+							ImFontPtr ret = ImGui.AddFontFromFileTTFNative(@this, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+							return ret;
+						}
 					}
 				}
 			}
@@ -11994,6 +14181,54 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, (char*)(default));
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)(default), (char*)(default));
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)(default), glyphRanges);
+					return ret;
+				}
+			}
+		}
+
 		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
@@ -12110,6 +14345,36 @@ namespace Hexa.NET.ImGui
 						Utils.Free(pStr0);
 					}
 					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+						return ret;
+					}
 				}
 			}
 		}
@@ -12234,6 +14499,36 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+				{
+					fixed (char* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, (char*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+				{
+					fixed (char* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
+						return ret;
+					}
+				}
+			}
+		}
+
 		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontAtlas* @this = &this)
@@ -12298,6 +14593,24 @@ namespace Hexa.NET.ImGui
 							Utils.Free(pStr0);
 						}
 						return ret;
+					}
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+				{
+					fixed (ImFontConfig* pfontCfg = &fontCfg)
+					{
+						fixed (char* pglyphRanges = &glyphRanges)
+						{
+							ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(@this, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+							return ret;
+						}
 					}
 				}
 			}
@@ -12800,6 +15113,18 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutUvBorder = outUvBorder)
+				{
+					byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
+					return ret != 0;
+				}
+			}
+		}
+
 		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, Vector2* outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
 		{
 			fixed (ImFontAtlas* @this = &this)
@@ -12815,6 +15140,21 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutOffset = &outOffset)
+				{
+					fixed (Vector2* poutUvBorder = outUvBorder)
+					{
+						byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
 		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
 		{
 			fixed (ImFontAtlas* @this = &this)
@@ -12822,6 +15162,21 @@ namespace Hexa.NET.ImGui
 				fixed (Vector2* poutSize = &outSize)
 				{
 					fixed (Vector2* poutUvBorder = &outUvBorder)
+					{
+						byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutSize = &outSize)
+				{
+					fixed (Vector2* poutUvBorder = outUvBorder)
 					{
 						byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
 						return ret != 0;
@@ -12848,11 +15203,41 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutOffset = &outOffset)
+				{
+					fixed (Vector2* poutSize = &outSize)
+					{
+						fixed (Vector2* poutUvBorder = outUvBorder)
+						{
+							byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
 		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
 		{
 			fixed (ImFontAtlas* @this = &this)
 			{
 				fixed (Vector2* poutUvFill = &outUvFill)
+				{
+					byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
+					return ret != 0;
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutUvFill = outUvFill)
 				{
 					byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
 					return ret != 0;
@@ -12875,6 +15260,21 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutOffset = &outOffset)
+				{
+					fixed (Vector2* poutUvFill = outUvFill)
+					{
+						byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
 		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
 		{
 			fixed (ImFontAtlas* @this = &this)
@@ -12882,6 +15282,21 @@ namespace Hexa.NET.ImGui
 				fixed (Vector2* poutSize = &outSize)
 				{
 					fixed (Vector2* poutUvFill = &outUvFill)
+					{
+						byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutSize = &outSize)
+				{
+					fixed (Vector2* poutUvFill = outUvFill)
 					{
 						byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
 						return ret != 0;
@@ -12908,6 +15323,24 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, ref Vector2 outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutOffset = &outOffset)
+				{
+					fixed (Vector2* poutSize = &outSize)
+					{
+						fixed (Vector2* poutUvFill = outUvFill)
+						{
+							byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
 		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
 		{
 			fixed (ImFontAtlas* @this = &this)
@@ -12915,6 +15348,21 @@ namespace Hexa.NET.ImGui
 				fixed (Vector2* poutUvBorder = &outUvBorder)
 				{
 					fixed (Vector2* poutUvFill = &outUvFill)
+					{
+						byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutUvBorder = outUvBorder)
+				{
+					fixed (Vector2* poutUvFill = outUvFill)
 					{
 						byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
 						return ret != 0;
@@ -12932,6 +15380,24 @@ namespace Hexa.NET.ImGui
 					fixed (Vector2* poutUvBorder = &outUvBorder)
 					{
 						fixed (Vector2* poutUvFill = &outUvFill)
+						{
+							byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutOffset = &outOffset)
+				{
+					fixed (Vector2* poutUvBorder = outUvBorder)
+					{
+						fixed (Vector2* poutUvFill = outUvFill)
 						{
 							byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
 							return ret != 0;
@@ -12959,6 +15425,24 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutSize = &outSize)
+				{
+					fixed (Vector2* poutUvBorder = outUvBorder)
+					{
+						fixed (Vector2* poutUvFill = outUvFill)
+						{
+							byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
 		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
 		{
 			fixed (ImFontAtlas* @this = &this)
@@ -12970,6 +15454,27 @@ namespace Hexa.NET.ImGui
 						fixed (Vector2* poutUvBorder = &outUvBorder)
 						{
 							fixed (Vector2* poutUvFill = &outUvFill)
+							{
+								byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (ImFontAtlas* @this = &this)
+			{
+				fixed (Vector2* poutOffset = &outOffset)
+				{
+					fixed (Vector2* poutSize = &outSize)
+					{
+						fixed (Vector2* poutUvBorder = outUvBorder)
+						{
+							fixed (Vector2* poutUvFill = outUvFill)
 							{
 								byte ret = ImGui.GetMouseCursorTexDataNative(@this, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
 								return ret != 0;
@@ -13647,7 +16152,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImFontAtlasPtr : IEquatable<ImFontAtlasPtr>
 	{
 		public ImFontAtlasPtr(ImFontAtlas* handle) { Handle = handle; }
@@ -13678,7 +16185,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImFontAtlasPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImFontAtlasFlags Flags => ref Unsafe.AsRef<ImFontAtlasFlags>(&Handle->Flags);
 		public ref ImTextureID TexID => ref Unsafe.AsRef<ImTextureID>(&Handle->TexID);
 		public ref int TexDesiredWidth => ref Unsafe.AsRef<int>(&Handle->TexDesiredWidth);
@@ -13949,6 +16458,42 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, fontCfg, (char*)(default));
+				return ret;
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (char*)(default));
+				return ret;
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, char* glyphRanges)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
 		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
@@ -14048,6 +16593,30 @@ namespace Hexa.NET.ImGui
 					Utils.Free(pStr0);
 				}
 				return ret;
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ref ImFontConfig fontCfg)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+					return ret;
+				}
 			}
 		}
 
@@ -14153,6 +16722,30 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				fixed (char* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, fontCfg, (char*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ref char glyphRanges)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				fixed (char* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
 		public unsafe ImFontPtr AddFontFromFileTTF(byte* filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
@@ -14209,6 +16802,21 @@ namespace Hexa.NET.ImGui
 						Utils.Free(pStr0);
 					}
 					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromFileTTF(ReadOnlySpan<byte> filename, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		{
+			fixed (byte* pfilename = filename)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (char* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromFileTTFNative(Handle, (byte*)pfilename, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+						return ret;
+					}
 				}
 			}
 		}
@@ -14381,6 +16989,42 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
+				return ret;
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg)
+		{
+			fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, (char*)(default));
+				return ret;
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels)
+		{
+			fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)(default), (char*)(default));
+				return ret;
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, char* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+			{
+				ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)(default), glyphRanges);
+				return ret;
+			}
+		}
+
 		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
@@ -14480,6 +17124,30 @@ namespace Hexa.NET.ImGui
 					Utils.Free(pStr0);
 				}
 				return ret;
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, char* glyphRanges)
+		{
+			fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, glyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg)
+		{
+			fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)(default));
+					return ret;
+				}
 			}
 		}
 
@@ -14585,6 +17253,30 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, ref char glyphRanges)
+		{
+			fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+			{
+				fixed (char* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, (char*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, ref char glyphRanges)
+		{
+			fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+			{
+				fixed (char* pglyphRanges = &glyphRanges)
+				{
+					ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
+					return ret;
+				}
+			}
+		}
+
 		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
 		{
 			fixed (ImFontConfig* pfontCfg = &fontCfg)
@@ -14641,6 +17333,21 @@ namespace Hexa.NET.ImGui
 						Utils.Free(pStr0);
 					}
 					return ret;
+				}
+			}
+		}
+
+		public unsafe ImFontPtr AddFontFromMemoryCompressedBase85TTF(ReadOnlySpan<byte> compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
+		{
+			fixed (byte* pcompressedFontDataBase85 = compressedFontDataBase85)
+			{
+				fixed (ImFontConfig* pfontCfg = &fontCfg)
+				{
+					fixed (char* pglyphRanges = &glyphRanges)
+					{
+						ImFontPtr ret = ImGui.AddFontFromMemoryCompressedBase85TTFNative(Handle, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
+						return ret;
+					}
 				}
 			}
 		}
@@ -15001,6 +17708,15 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
+		{
+			fixed (Vector2* poutUvBorder = outUvBorder)
+			{
+				byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, outOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
+				return ret != 0;
+			}
+		}
+
 		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, Vector2* outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
 		{
 			fixed (Vector2* poutOffset = &outOffset)
@@ -15013,11 +17729,35 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
+		{
+			fixed (Vector2* poutOffset = &outOffset)
+			{
+				fixed (Vector2* poutUvBorder = outUvBorder)
+				{
+					byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, outUvFill);
+					return ret != 0;
+				}
+			}
+		}
+
 		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, Vector2* outUvFill)
 		{
 			fixed (Vector2* poutSize = &outSize)
 			{
 				fixed (Vector2* poutUvBorder = &outUvBorder)
+				{
+					byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
+					return ret != 0;
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
+		{
+			fixed (Vector2* poutSize = &outSize)
+			{
+				fixed (Vector2* poutUvBorder = outUvBorder)
 				{
 					byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
 					return ret != 0;
@@ -15040,9 +17780,33 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, Vector2* outUvFill)
+		{
+			fixed (Vector2* poutOffset = &outOffset)
+			{
+				fixed (Vector2* poutSize = &outSize)
+				{
+					fixed (Vector2* poutUvBorder = outUvBorder)
+					{
+						byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, outUvFill);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
 		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
 		{
 			fixed (Vector2* poutUvFill = &outUvFill)
+			{
+				byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, outOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
+				return ret != 0;
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (Vector2* poutUvFill = outUvFill)
 			{
 				byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, outOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
 				return ret != 0;
@@ -15061,11 +17825,35 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, Vector2* outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (Vector2* poutOffset = &outOffset)
+			{
+				fixed (Vector2* poutUvFill = outUvFill)
+				{
+					byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, (Vector2*)poutOffset, outSize, outUvBorder, (Vector2*)poutUvFill);
+					return ret != 0;
+				}
+			}
+		}
+
 		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, ref Vector2 outUvFill)
 		{
 			fixed (Vector2* poutSize = &outSize)
 			{
 				fixed (Vector2* poutUvFill = &outUvFill)
+				{
+					byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, outOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
+					return ret != 0;
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, ref Vector2 outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (Vector2* poutSize = &outSize)
+			{
+				fixed (Vector2* poutUvFill = outUvFill)
 				{
 					byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, outOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
 					return ret != 0;
@@ -15088,11 +17876,38 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, ref Vector2 outSize, Vector2* outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (Vector2* poutOffset = &outOffset)
+			{
+				fixed (Vector2* poutSize = &outSize)
+				{
+					fixed (Vector2* poutUvFill = outUvFill)
+					{
+						byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, outUvBorder, (Vector2*)poutUvFill);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
 		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
 		{
 			fixed (Vector2* poutUvBorder = &outUvBorder)
 			{
 				fixed (Vector2* poutUvFill = &outUvFill)
+				{
+					byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, outOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
+					return ret != 0;
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (Vector2* poutUvBorder = outUvBorder)
+			{
+				fixed (Vector2* poutUvFill = outUvFill)
 				{
 					byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, outOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
 					return ret != 0;
@@ -15107,6 +17922,21 @@ namespace Hexa.NET.ImGui
 				fixed (Vector2* poutUvBorder = &outUvBorder)
 				{
 					fixed (Vector2* poutUvFill = &outUvFill)
+					{
+						byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, Vector2* outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (Vector2* poutOffset = &outOffset)
+			{
+				fixed (Vector2* poutUvBorder = outUvBorder)
+				{
+					fixed (Vector2* poutUvFill = outUvFill)
 					{
 						byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, (Vector2*)poutOffset, outSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
 						return ret != 0;
@@ -15130,6 +17960,21 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, Vector2* outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (Vector2* poutSize = &outSize)
+			{
+				fixed (Vector2* poutUvBorder = outUvBorder)
+				{
+					fixed (Vector2* poutUvFill = outUvFill)
+					{
+						byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, outOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
 		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, ref Vector2 outSize, ref Vector2 outUvBorder, ref Vector2 outUvFill)
 		{
 			fixed (Vector2* poutOffset = &outOffset)
@@ -15139,6 +17984,24 @@ namespace Hexa.NET.ImGui
 					fixed (Vector2* poutUvBorder = &outUvBorder)
 					{
 						fixed (Vector2* poutUvFill = &outUvFill)
+						{
+							byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public unsafe bool GetMouseCursorTexData(ImGuiMouseCursor cursor, ref Vector2 outOffset, ref Vector2 outSize, ReadOnlySpan<Vector2> outUvBorder, ReadOnlySpan<Vector2> outUvFill)
+		{
+			fixed (Vector2* poutOffset = &outOffset)
+			{
+				fixed (Vector2* poutSize = &outSize)
+				{
+					fixed (Vector2* poutUvBorder = outUvBorder)
+					{
+						fixed (Vector2* poutUvFill = outUvFill)
 						{
 							byte ret = ImGui.GetMouseCursorTexDataNative(Handle, cursor, (Vector2*)poutOffset, (Vector2*)poutSize, (Vector2*)poutUvBorder, (Vector2*)poutUvFill);
 							return ret != 0;
@@ -15715,7 +18578,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImFontAtlasCustomRectPtr : IEquatable<ImFontAtlasCustomRectPtr>
 	{
 		public ImFontAtlasCustomRectPtr(ImFontAtlasCustomRect* handle) { Handle = handle; }
@@ -15746,7 +18611,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImFontAtlasCustomRectPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ushort Width => ref Unsafe.AsRef<ushort>(&Handle->Width);
 		public ref ushort Height => ref Unsafe.AsRef<ushort>(&Handle->Height);
 		public ref ushort X => ref Unsafe.AsRef<ushort>(&Handle->X);
@@ -15852,7 +18719,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImFontConfigPtr : IEquatable<ImFontConfigPtr>
 	{
 		public ImFontConfigPtr(ImFontConfig* handle) { Handle = handle; }
@@ -15883,7 +18752,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImFontConfigPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public void* FontData { get => Handle->FontData; set => Handle->FontData = value; }
 		public ref int FontDataSize => ref Unsafe.AsRef<int>(&Handle->FontDataSize);
 		public ref bool FontDataOwnedByAtlas => ref Unsafe.AsRef<bool>(&Handle->FontDataOwnedByAtlas);
@@ -15926,7 +18797,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImFontBuilderIOPtr : IEquatable<ImFontBuilderIOPtr>
 	{
 		public ImFontBuilderIOPtr(ImFontBuilderIO* handle) { Handle = handle; }
@@ -15957,7 +18830,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImFontBuilderIOPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public void* FontBuilderBuild { get => Handle->FontBuilderBuild; set => Handle->FontBuilderBuild = value; }
 	}
 
@@ -16070,7 +18945,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImDrawListSplitterPtr : IEquatable<ImDrawListSplitterPtr>
 	{
 		public ImDrawListSplitterPtr(ImDrawListSplitter* handle) { Handle = handle; }
@@ -16101,7 +18978,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImDrawListSplitterPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Current => ref Unsafe.AsRef<int>(&Handle->Current);
 		public ref int Count => ref Unsafe.AsRef<int>(&Handle->Count);
 		public ref ImVectorImDrawChannel Channels => ref Unsafe.AsRef<ImVectorImDrawChannel>(&Handle->Channels);
@@ -16256,7 +19135,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImDrawDataPtr : IEquatable<ImDrawDataPtr>
 	{
 		public ImDrawDataPtr(ImDrawData* handle) { Handle = handle; }
@@ -16287,7 +19168,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImDrawDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref bool Valid => ref Unsafe.AsRef<bool>(&Handle->Valid);
 		public ref int CmdListsCount => ref Unsafe.AsRef<int>(&Handle->CmdListsCount);
 		public ref int TotalIdxCount => ref Unsafe.AsRef<int>(&Handle->TotalIdxCount);
@@ -16342,7 +19225,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVectorImDrawListPtrPtr : IEquatable<ImVectorImDrawListPtrPtr>
 	{
 		public ImVectorImDrawListPtrPtr(ImVectorImDrawListPtr* handle) { Handle = handle; }
@@ -16373,7 +19258,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVectorImDrawListPtrPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
 		public ref ImDrawListPtrPtr Data => ref Unsafe.AsRef<ImDrawListPtrPtr>(&Handle->Data);
@@ -16411,7 +19298,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiViewportPtr : IEquatable<ImGuiViewportPtr>
 	{
 		public ImGuiViewportPtr(ImGuiViewport* handle) { Handle = handle; }
@@ -16442,7 +19331,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiViewportPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImGuiViewportFlags Flags => ref Unsafe.AsRef<ImGuiViewportFlags>(&Handle->Flags);
 		public ref Vector2 Pos => ref Unsafe.AsRef<Vector2>(&Handle->Pos);
@@ -16468,7 +19359,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiViewportPtrPtr : IEquatable<ImGuiViewportPtrPtr>
 	{
 		public ImGuiViewportPtrPtr(ImGuiViewport** handle) { Handle = handle; }
@@ -16499,7 +19392,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiViewportPtrPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ImGuiViewportPtr this[int index]
 		{
 			get => Handle[index]; set => Handle[index] = value;
@@ -16635,6 +19530,28 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddText(ReadOnlySpan<byte> text, byte* textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					ImGui.AddTextNative(@this, (byte*)ptext, textEnd);
+				}
+			}
+		}
+
+		public unsafe void AddText(ReadOnlySpan<byte> text)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					ImGui.AddTextNative(@this, (byte*)ptext, (byte*)(default));
+				}
+			}
+		}
+
 		public unsafe void AddText(byte* text, ref byte textEnd)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
@@ -16671,6 +19588,17 @@ namespace Hexa.NET.ImGui
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public unsafe void AddText(byte* text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(@this, text, (byte*)ptextEnd);
 				}
 			}
 		}
@@ -16739,6 +19667,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddText(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImFontGlyphRangesBuilder* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.AddTextNative(@this, (byte*)ptext, (byte*)ptextEnd);
+					}
+				}
+			}
+		}
+
 		public unsafe void BuildRanges(ImVectorImWcharPtr outRanges)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
@@ -16793,7 +19735,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImFontGlyphRangesBuilderPtr : IEquatable<ImFontGlyphRangesBuilderPtr>
 	{
 		public ImFontGlyphRangesBuilderPtr(ImFontGlyphRangesBuilder* handle) { Handle = handle; }
@@ -16824,7 +19768,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImFontGlyphRangesBuilderPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorImU32 UsedChars => ref Unsafe.AsRef<ImVectorImU32>(&Handle->UsedChars);
 
 		public unsafe void AddChar(char c)
@@ -16923,6 +19869,22 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddText(ReadOnlySpan<byte> text, byte* textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				ImGui.AddTextNative(Handle, (byte*)ptext, textEnd);
+			}
+		}
+
+		public unsafe void AddText(ReadOnlySpan<byte> text)
+		{
+			fixed (byte* ptext = text)
+			{
+				ImGui.AddTextNative(Handle, (byte*)ptext, (byte*)(default));
+			}
+		}
+
 		public unsafe void AddText(byte* text, ref byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
@@ -16954,6 +19916,14 @@ namespace Hexa.NET.ImGui
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
+			}
+		}
+
+		public unsafe void AddText(byte* text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				ImGui.AddTextNative(Handle, text, (byte*)ptextEnd);
 			}
 		}
 
@@ -17012,6 +19982,17 @@ namespace Hexa.NET.ImGui
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
+			}
+		}
+
+		public unsafe void AddText(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.AddTextNative(Handle, (byte*)ptext, (byte*)ptextEnd);
+				}
 			}
 		}
 
@@ -17108,7 +20089,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImColorPtr : IEquatable<ImColorPtr>
 	{
 		public ImColorPtr(ImColor* handle) { Handle = handle; }
@@ -17139,7 +20122,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImColorPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref Vector4 Value => ref Unsafe.AsRef<Vector4>(&Handle->Value);
 
 		public unsafe void Destroy()
@@ -17803,7 +20788,9 @@ namespace Hexa.NET.ImGui
 		}
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiContextPtr : IEquatable<ImGuiContextPtr>
 	{
 		public ImGuiContextPtr(ImGuiContext* handle) { Handle = handle; }
@@ -17834,7 +20821,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiContextPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref bool Initialized => ref Unsafe.AsRef<bool>(&Handle->Initialized);
 		public ref bool FontAtlasOwnedByContext => ref Unsafe.AsRef<bool>(&Handle->FontAtlasOwnedByContext);
 		public ref ImGuiIO IO => ref Unsafe.AsRef<ImGuiIO>(&Handle->IO);
@@ -18586,6 +21575,17 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddInputCharactersUTF8(ReadOnlySpan<byte> str)
+		{
+			fixed (ImGuiIO* @this = &this)
+			{
+				fixed (byte* pstr = str)
+				{
+					ImGui.AddInputCharactersUTF8Native(@this, (byte*)pstr);
+				}
+			}
+		}
+
 		public unsafe void AddInputCharacterUTF16(char c)
 		{
 			fixed (ImGuiIO* @this = &this)
@@ -18708,7 +21708,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiIOPtr : IEquatable<ImGuiIOPtr>
 	{
 		public ImGuiIOPtr(ImGuiIO* handle) { Handle = handle; }
@@ -18739,7 +21741,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiIOPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiConfigFlags ConfigFlags => ref Unsafe.AsRef<ImGuiConfigFlags>(&Handle->ConfigFlags);
 		public ref ImGuiBackendFlags BackendFlags => ref Unsafe.AsRef<ImGuiBackendFlags>(&Handle->BackendFlags);
 		public ref Vector2 DisplaySize => ref Unsafe.AsRef<Vector2>(&Handle->DisplaySize);
@@ -18998,6 +22002,14 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void AddInputCharactersUTF8(ReadOnlySpan<byte> str)
+		{
+			fixed (byte* pstr = str)
+			{
+				ImGui.AddInputCharactersUTF8Native(Handle, (byte*)pstr);
+			}
+		}
+
 		public unsafe void AddInputCharacterUTF16(char c)
 		{
 			ImGui.AddInputCharacterUTF16Native(Handle, c);
@@ -19093,7 +22105,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiPlatformImeDataPtr : IEquatable<ImGuiPlatformImeDataPtr>
 	{
 		public ImGuiPlatformImeDataPtr(ImGuiPlatformImeData* handle) { Handle = handle; }
@@ -19124,7 +22138,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiPlatformImeDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref bool WantVisible => ref Unsafe.AsRef<bool>(&Handle->WantVisible);
 		public ref Vector2 InputPos => ref Unsafe.AsRef<Vector2>(&Handle->InputPos);
 		public ref float InputLineHeight => ref Unsafe.AsRef<float>(&Handle->InputLineHeight);
@@ -19146,7 +22162,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiKeyDataPtr : IEquatable<ImGuiKeyDataPtr>
 	{
 		public ImGuiKeyDataPtr(ImGuiKeyData* handle) { Handle = handle; }
@@ -19177,7 +22195,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiKeyDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref bool Down => ref Unsafe.AsRef<bool>(&Handle->Down);
 		public ref float DownDuration => ref Unsafe.AsRef<float>(&Handle->DownDuration);
 		public ref float DownDurationPrev => ref Unsafe.AsRef<float>(&Handle->DownDurationPrev);
@@ -19224,7 +22244,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiPlatformIOPtr : IEquatable<ImGuiPlatformIOPtr>
 	{
 		public ImGuiPlatformIOPtr(ImGuiPlatformIO* handle) { Handle = handle; }
@@ -19255,7 +22277,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiPlatformIOPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public void* PlatformCreateWindow { get => Handle->PlatformCreateWindow; set => Handle->PlatformCreateWindow = value; }
 		public void* PlatformDestroyWindow { get => Handle->PlatformDestroyWindow; set => Handle->PlatformDestroyWindow = value; }
 		public void* PlatformShowWindow { get => Handle->PlatformShowWindow; set => Handle->PlatformShowWindow = value; }
@@ -19319,7 +22343,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiPlatformMonitorPtr : IEquatable<ImGuiPlatformMonitorPtr>
 	{
 		public ImGuiPlatformMonitorPtr(ImGuiPlatformMonitor* handle) { Handle = handle; }
@@ -19350,7 +22376,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiPlatformMonitorPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref Vector2 MainPos => ref Unsafe.AsRef<Vector2>(&Handle->MainPos);
 		public ref Vector2 MainSize => ref Unsafe.AsRef<Vector2>(&Handle->MainSize);
 		public ref Vector2 WorkPos => ref Unsafe.AsRef<Vector2>(&Handle->WorkPos);
@@ -19519,7 +22547,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiStylePtr : IEquatable<ImGuiStylePtr>
 	{
 		public ImGuiStylePtr(ImGuiStyle* handle) { Handle = handle; }
@@ -19550,7 +22580,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiStylePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref float Alpha => ref Unsafe.AsRef<float>(&Handle->Alpha);
 		public ref float DisabledAlpha => ref Unsafe.AsRef<float>(&Handle->DisabledAlpha);
 		public ref Vector2 WindowPadding => ref Unsafe.AsRef<Vector2>(&Handle->WindowPadding);
@@ -19665,7 +22697,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiInputEventPtr : IEquatable<ImGuiInputEventPtr>
 	{
 		public ImGuiInputEventPtr(ImGuiInputEvent* handle) { Handle = handle; }
@@ -19696,7 +22730,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiInputEventPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiInputEventType Type => ref Unsafe.AsRef<ImGuiInputEventType>(&Handle->Type);
 		public ref ImGuiInputSource Source => ref Unsafe.AsRef<ImGuiInputSource>(&Handle->Source);
 		public ref uint EventId => ref Unsafe.AsRef<uint>(&Handle->EventId);
@@ -19770,7 +22806,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVectorImGuiWindowPtrPtr : IEquatable<ImVectorImGuiWindowPtrPtr>
 	{
 		public ImVectorImGuiWindowPtrPtr(ImVectorImGuiWindowPtr* handle) { Handle = handle; }
@@ -19801,7 +22839,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVectorImGuiWindowPtrPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
 		public ref ImGuiWindowPtrPtr Data => ref Unsafe.AsRef<ImGuiWindowPtrPtr>(&Handle->Data);
@@ -19962,7 +23002,9 @@ namespace Hexa.NET.ImGui
 		}
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiWindowPtr : IEquatable<ImGuiWindowPtr>
 	{
 		public ImGuiWindowPtr(ImGuiWindow* handle) { Handle = handle; }
@@ -19993,7 +23035,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiWindowPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiContextPtr Ctx => ref Unsafe.AsRef<ImGuiContextPtr>(&Handle->Ctx);
 		public byte* Name { get => Handle->Name; set => Handle->Name = value; }
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
@@ -20141,7 +23185,9 @@ namespace Hexa.NET.ImGui
 		public ref ImRect DockTabItemRect => ref Unsafe.AsRef<ImRect>(&Handle->DockTabItemRect);
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiWindowPtrPtr : IEquatable<ImGuiWindowPtrPtr>
 	{
 		public ImGuiWindowPtrPtr(ImGuiWindow** handle) { Handle = handle; }
@@ -20172,7 +23218,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiWindowPtrPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ImGuiWindowPtr this[int index]
 		{
 			get => Handle[index]; set => Handle[index] = value;
@@ -20203,7 +23251,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiWindowClassPtr : IEquatable<ImGuiWindowClassPtr>
 	{
 		public ImGuiWindowClassPtr(ImGuiWindowClass* handle) { Handle = handle; }
@@ -20234,7 +23284,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiWindowClassPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ClassId => ref Unsafe.AsRef<int>(&Handle->ClassId);
 		public ref int ParentViewportId => ref Unsafe.AsRef<int>(&Handle->ParentViewportId);
 		public ref int FocusRouteParentWindowId => ref Unsafe.AsRef<int>(&Handle->FocusRouteParentWindowId);
@@ -20282,7 +23334,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiViewportPPtr : IEquatable<ImGuiViewportPPtr>
 	{
 		public ImGuiViewportPPtr(ImGuiViewportP* handle) { Handle = handle; }
@@ -20313,7 +23367,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiViewportPPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiViewport ImGuiViewport => ref Unsafe.AsRef<ImGuiViewport>(&Handle->ImGuiViewport);
 		public ref ImGuiWindowPtr Window => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->Window);
 		public ref int Idx => ref Unsafe.AsRef<int>(&Handle->Idx);
@@ -20344,7 +23400,9 @@ namespace Hexa.NET.ImGui
 		public ref Vector2 BuildWorkOffsetMax => ref Unsafe.AsRef<Vector2>(&Handle->BuildWorkOffsetMax);
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiViewportPPtrPtr : IEquatable<ImGuiViewportPPtrPtr>
 	{
 		public ImGuiViewportPPtrPtr(ImGuiViewportP** handle) { Handle = handle; }
@@ -20375,7 +23433,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiViewportPPtrPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ImGuiViewportPPtr this[int index]
 		{
 			get => Handle[index]; set => Handle[index] = value;
@@ -20391,7 +23451,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImDrawDataBuilderPtr : IEquatable<ImDrawDataBuilderPtr>
 	{
 		public ImDrawDataBuilderPtr(ImDrawDataBuilder* handle) { Handle = handle; }
@@ -20422,7 +23484,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImDrawDataBuilderPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorImDrawListPtr LayerData1 => ref Unsafe.AsRef<ImVectorImDrawListPtr>(&Handle->LayerData1);
 	}
 
@@ -20435,7 +23499,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVectorImGuiIDPtr : IEquatable<ImVectorImGuiIDPtr>
 	{
 		public ImVectorImGuiIDPtr(ImVectorImGuiID* handle) { Handle = handle; }
@@ -20466,7 +23532,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVectorImGuiIDPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
 		public int* Data { get => Handle->Data; set => Handle->Data = value; }
@@ -20522,7 +23590,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVec1Ptr : IEquatable<ImVec1Ptr>
 	{
 		public ImVec1Ptr(ImVec1* handle) { Handle = handle; }
@@ -20553,7 +23623,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVec1Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref float X => ref Unsafe.AsRef<float>(&Handle->X);
 	}
 
@@ -20574,7 +23646,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiMenuColumnsPtr : IEquatable<ImGuiMenuColumnsPtr>
 	{
 		public ImGuiMenuColumnsPtr(ImGuiMenuColumns* handle) { Handle = handle; }
@@ -20605,7 +23679,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiMenuColumnsPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref uint TotalWidth => ref Unsafe.AsRef<uint>(&Handle->TotalWidth);
 		public ref uint NextTotalWidth => ref Unsafe.AsRef<uint>(&Handle->NextTotalWidth);
 		public ref ushort Spacing => ref Unsafe.AsRef<ushort>(&Handle->Spacing);
@@ -20822,7 +23898,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiStoragePtr : IEquatable<ImGuiStoragePtr>
 	{
 		public ImGuiStoragePtr(ImGuiStorage* handle) { Handle = handle; }
@@ -20853,7 +23931,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiStoragePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorImGuiStoragePair Data => ref Unsafe.AsRef<ImVectorImGuiStoragePair>(&Handle->Data);
 
 		public unsafe void BuildSortByKey()
@@ -21021,7 +24101,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiStoragePairPtr : IEquatable<ImGuiStoragePairPtr>
 	{
 		public ImGuiStoragePairPtr(ImGuiStoragePair* handle) { Handle = handle; }
@@ -21052,7 +24134,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiStoragePairPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Key => ref Unsafe.AsRef<int>(&Handle->Key);
 		public ref ImGuiStoragePairUnion ImGuiStoragePairUnion => ref Unsafe.AsRef<ImGuiStoragePairUnion>(&Handle->ImGuiStoragePairUnion);
 
@@ -21086,7 +24170,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiOldColumnsPtr : IEquatable<ImGuiOldColumnsPtr>
 	{
 		public ImGuiOldColumnsPtr(ImGuiOldColumns* handle) { Handle = handle; }
@@ -21117,7 +24203,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiOldColumnsPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImGuiOldColumnFlags Flags => ref Unsafe.AsRef<ImGuiOldColumnFlags>(&Handle->Flags);
 		public ref bool IsFirstFrame => ref Unsafe.AsRef<bool>(&Handle->IsFirstFrame);
@@ -21145,7 +24233,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImRectPtr : IEquatable<ImRectPtr>
 	{
 		public ImRectPtr(ImRect* handle) { Handle = handle; }
@@ -21176,7 +24266,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImRectPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref Vector2 Min => ref Unsafe.AsRef<Vector2>(&Handle->Min);
 		public ref Vector2 Max => ref Unsafe.AsRef<Vector2>(&Handle->Max);
 	}
@@ -21200,7 +24292,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiOldColumnDataPtr : IEquatable<ImGuiOldColumnDataPtr>
 	{
 		public ImGuiOldColumnDataPtr(ImGuiOldColumnData* handle) { Handle = handle; }
@@ -21231,7 +24325,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiOldColumnDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref float OffsetNorm => ref Unsafe.AsRef<float>(&Handle->OffsetNorm);
 		public ref float OffsetNormBeforeResize => ref Unsafe.AsRef<float>(&Handle->OffsetNormBeforeResize);
 		public ref ImGuiOldColumnFlags Flags => ref Unsafe.AsRef<ImGuiOldColumnFlags>(&Handle->Flags);
@@ -21246,7 +24342,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVec2ihPtr : IEquatable<ImVec2ihPtr>
 	{
 		public ImVec2ihPtr(ImVec2ih* handle) { Handle = handle; }
@@ -21277,7 +24375,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVec2ihPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref short X => ref Unsafe.AsRef<short>(&Handle->X);
 		public ref short Y => ref Unsafe.AsRef<short>(&Handle->Y);
 	}
@@ -21354,7 +24454,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiDockNodePtr : IEquatable<ImGuiDockNodePtr>
 	{
 		public ImGuiDockNodePtr(ImGuiDockNode* handle) { Handle = handle; }
@@ -21385,7 +24487,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiDockNodePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImGuiDockNodeFlags SharedFlags => ref Unsafe.AsRef<ImGuiDockNodeFlags>(&Handle->SharedFlags);
 		public ref ImGuiDockNodeFlags LocalFlags => ref Unsafe.AsRef<ImGuiDockNodeFlags>(&Handle->LocalFlags);
@@ -21468,7 +24572,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTabBarPtr : IEquatable<ImGuiTabBarPtr>
 	{
 		public ImGuiTabBarPtr(ImGuiTabBar* handle) { Handle = handle; }
@@ -21499,7 +24605,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTabBarPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorImGuiTabItem Tabs => ref Unsafe.AsRef<ImVectorImGuiTabItem>(&Handle->Tabs);
 		public ref ImGuiTabBarFlags Flags => ref Unsafe.AsRef<ImGuiTabBarFlags>(&Handle->Flags);
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
@@ -21563,7 +24671,9 @@ namespace Hexa.NET.ImGui
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTabItemPtr : IEquatable<ImGuiTabItemPtr>
 	{
 		public ImGuiTabItemPtr(ImGuiTabItem* handle) { Handle = handle; }
@@ -21594,7 +24704,9 @@ namespace Hexa.NET.ImGui
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTabItemPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImGuiTabItemFlags Flags => ref Unsafe.AsRef<ImGuiTabItemFlags>(&Handle->Flags);
 		public ref ImGuiWindowPtr Window => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->Window);
@@ -21712,6 +24824,28 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void append(ReadOnlySpan<byte> str, byte* strEnd)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				fixed (byte* pstr = str)
+				{
+					ImGui.appendNative(@this, (byte*)pstr, strEnd);
+				}
+			}
+		}
+
+		public unsafe void append(ReadOnlySpan<byte> str)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				fixed (byte* pstr = str)
+				{
+					ImGui.appendNative(@this, (byte*)pstr, (byte*)(default));
+				}
+			}
+		}
+
 		public unsafe void append(byte* str, ref byte strEnd)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
@@ -21748,6 +24882,17 @@ namespace Hexa.NET.ImGui
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public unsafe void append(byte* str, ReadOnlySpan<byte> strEnd)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				fixed (byte* pstrEnd = strEnd)
+				{
+					ImGui.appendNative(@this, str, (byte*)pstrEnd);
 				}
 			}
 		}
@@ -21816,6 +24961,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		public unsafe void append(ReadOnlySpan<byte> str, ReadOnlySpan<byte> strEnd)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				fixed (byte* pstr = str)
+				{
+					fixed (byte* pstrEnd = strEnd)
+					{
+						ImGui.appendNative(@this, (byte*)pstr, (byte*)pstrEnd);
+					}
+				}
+			}
+		}
+
 		/// <summary>
 /// no appendfV
 /// </summary>
@@ -21873,6 +25032,20 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
+		/// <summary>
+/// no appendfV
+/// </summary>
+public unsafe void appendf(ReadOnlySpan<byte> fmt)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				fixed (byte* pfmt = fmt)
+				{
+					ImGui.appendfNative(@this, (byte*)pfmt);
+				}
+			}
+		}
+
 		public unsafe void appendfv(byte* fmt, nuint args)
 		{
 			fixed (ImGuiTextBuffer* @this = &this)
@@ -21917,6 +25090,17 @@ public unsafe void appendf(string fmt)
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public unsafe void appendfv(ReadOnlySpan<byte> fmt, nuint args)
+		{
+			fixed (ImGuiTextBuffer* @this = &this)
+			{
+				fixed (byte* pfmt = fmt)
+				{
+					ImGui.appendfvNative(@this, (byte*)pfmt, args);
 				}
 			}
 		}
@@ -22019,7 +25203,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTextBufferPtr : IEquatable<ImGuiTextBufferPtr>
 	{
 		public ImGuiTextBufferPtr(ImGuiTextBuffer* handle) { Handle = handle; }
@@ -22050,7 +25236,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTextBufferPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorChar Buf => ref Unsafe.AsRef<ImVectorChar>(&Handle->Buf);
 
 		public unsafe void append(byte* str, byte* strEnd)
@@ -22131,6 +25319,22 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
+		public unsafe void append(ReadOnlySpan<byte> str, byte* strEnd)
+		{
+			fixed (byte* pstr = str)
+			{
+				ImGui.appendNative(Handle, (byte*)pstr, strEnd);
+			}
+		}
+
+		public unsafe void append(ReadOnlySpan<byte> str)
+		{
+			fixed (byte* pstr = str)
+			{
+				ImGui.appendNative(Handle, (byte*)pstr, (byte*)(default));
+			}
+		}
+
 		public unsafe void append(byte* str, ref byte strEnd)
 		{
 			fixed (byte* pstrEnd = &strEnd)
@@ -22162,6 +25366,14 @@ public unsafe void appendf(string fmt)
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
+			}
+		}
+
+		public unsafe void append(byte* str, ReadOnlySpan<byte> strEnd)
+		{
+			fixed (byte* pstrEnd = strEnd)
+			{
+				ImGui.appendNative(Handle, str, (byte*)pstrEnd);
 			}
 		}
 
@@ -22223,6 +25435,17 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
+		public unsafe void append(ReadOnlySpan<byte> str, ReadOnlySpan<byte> strEnd)
+		{
+			fixed (byte* pstr = str)
+			{
+				fixed (byte* pstrEnd = strEnd)
+				{
+					ImGui.appendNative(Handle, (byte*)pstr, (byte*)pstrEnd);
+				}
+			}
+		}
+
 		/// <summary>
 /// no appendfV
 /// </summary>
@@ -22271,6 +25494,17 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
+		/// <summary>
+/// no appendfV
+/// </summary>
+public unsafe void appendf(ReadOnlySpan<byte> fmt)
+		{
+			fixed (byte* pfmt = fmt)
+			{
+				ImGui.appendfNative(Handle, (byte*)pfmt);
+			}
+		}
+
 		public unsafe void appendfv(byte* fmt, nuint args)
 		{
 			ImGui.appendfvNative(Handle, fmt, args);
@@ -22307,6 +25541,14 @@ public unsafe void appendf(string fmt)
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
+			}
+		}
+
+		public unsafe void appendfv(ReadOnlySpan<byte> fmt, nuint args)
+		{
+			fixed (byte* pfmt = fmt)
+			{
+				ImGui.appendfvNative(Handle, (byte*)pfmt, args);
 			}
 		}
 
@@ -22403,7 +25645,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiWindowStackDataPtr : IEquatable<ImGuiWindowStackDataPtr>
 	{
 		public ImGuiWindowStackDataPtr(ImGuiWindowStackData* handle) { Handle = handle; }
@@ -22434,7 +25678,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiWindowStackDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiWindowPtr Window => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->Window);
 		public ref ImGuiLastItemData ParentLastItemDataBackup => ref Unsafe.AsRef<ImGuiLastItemData>(&Handle->ParentLastItemDataBackup);
 		public ref ImGuiStackSizes StackSizesOnBegin => ref Unsafe.AsRef<ImGuiStackSizes>(&Handle->StackSizesOnBegin);
@@ -22455,7 +25701,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiLastItemDataPtr : IEquatable<ImGuiLastItemDataPtr>
 	{
 		public ImGuiLastItemDataPtr(ImGuiLastItemData* handle) { Handle = handle; }
@@ -22486,7 +25734,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiLastItemDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImGuiItemFlags InFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->InFlags);
 		public ref ImGuiItemStatusFlags StatusFlags => ref Unsafe.AsRef<ImGuiItemStatusFlags>(&Handle->StatusFlags);
@@ -22512,7 +25762,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiStackSizesPtr : IEquatable<ImGuiStackSizesPtr>
 	{
 		public ImGuiStackSizesPtr(ImGuiStackSizes* handle) { Handle = handle; }
@@ -22543,7 +25795,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiStackSizesPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref short SizeOfIDStack => ref Unsafe.AsRef<short>(&Handle->SizeOfIDStack);
 		public ref short SizeOfColorStack => ref Unsafe.AsRef<short>(&Handle->SizeOfColorStack);
 		public ref short SizeOfStyleVarStack => ref Unsafe.AsRef<short>(&Handle->SizeOfStyleVarStack);
@@ -22576,7 +25830,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiKeyOwnerDataPtr : IEquatable<ImGuiKeyOwnerDataPtr>
 	{
 		public ImGuiKeyOwnerDataPtr(ImGuiKeyOwnerData* handle) { Handle = handle; }
@@ -22607,7 +25863,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiKeyOwnerDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int OwnerCurr => ref Unsafe.AsRef<int>(&Handle->OwnerCurr);
 		public ref int OwnerNext => ref Unsafe.AsRef<int>(&Handle->OwnerNext);
 		public ref bool LockThisFrame => ref Unsafe.AsRef<bool>(&Handle->LockThisFrame);
@@ -22776,7 +26034,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiKeyRoutingTablePtr : IEquatable<ImGuiKeyRoutingTablePtr>
 	{
 		public ImGuiKeyRoutingTablePtr(ImGuiKeyRoutingTable* handle) { Handle = handle; }
@@ -22807,7 +26067,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiKeyRoutingTablePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public unsafe Span<short> Index
 		
 		{
@@ -22841,7 +26103,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiKeyRoutingDataPtr : IEquatable<ImGuiKeyRoutingDataPtr>
 	{
 		public ImGuiKeyRoutingDataPtr(ImGuiKeyRoutingData* handle) { Handle = handle; }
@@ -22872,7 +26136,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiKeyRoutingDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref short NextEntryIndex => ref Unsafe.AsRef<short>(&Handle->NextEntryIndex);
 		public ref ushort Mods => ref Unsafe.AsRef<ushort>(&Handle->Mods);
 		public ref byte RoutingCurrScore => ref Unsafe.AsRef<byte>(&Handle->RoutingCurrScore);
@@ -22898,7 +26164,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiNextItemDataPtr : IEquatable<ImGuiNextItemDataPtr>
 	{
 		public ImGuiNextItemDataPtr(ImGuiNextItemData* handle) { Handle = handle; }
@@ -22929,7 +26197,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiNextItemDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiNextItemDataFlags Flags => ref Unsafe.AsRef<ImGuiNextItemDataFlags>(&Handle->Flags);
 		public ref ImGuiItemFlags ItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->ItemFlags);
 		public ref int FocusScopeId => ref Unsafe.AsRef<int>(&Handle->FocusScopeId);
@@ -22985,7 +26255,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiNextWindowDataPtr : IEquatable<ImGuiNextWindowDataPtr>
 	{
 		public ImGuiNextWindowDataPtr(ImGuiNextWindowData* handle) { Handle = handle; }
@@ -23016,7 +26288,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiNextWindowDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiNextWindowDataFlags Flags => ref Unsafe.AsRef<ImGuiNextWindowDataFlags>(&Handle->Flags);
 		public ref ImGuiCond PosCond => ref Unsafe.AsRef<ImGuiCond>(&Handle->PosCond);
 		public ref ImGuiCond SizeCond => ref Unsafe.AsRef<ImGuiCond>(&Handle->SizeCond);
@@ -23068,7 +26342,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiColorModPtr : IEquatable<ImGuiColorModPtr>
 	{
 		public ImGuiColorModPtr(ImGuiColorMod* handle) { Handle = handle; }
@@ -23099,7 +26375,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiColorModPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiCol Col => ref Unsafe.AsRef<ImGuiCol>(&Handle->Col);
 		public ref Vector4 BackupValue => ref Unsafe.AsRef<Vector4>(&Handle->BackupValue);
 	}
@@ -23135,7 +26413,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiStyleModPtr : IEquatable<ImGuiStyleModPtr>
 	{
 		public ImGuiStyleModPtr(ImGuiStyleMod* handle) { Handle = handle; }
@@ -23166,7 +26446,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiStyleModPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiStyleVar VarIdx => ref Unsafe.AsRef<ImGuiStyleVar>(&Handle->VarIdx);
 		public ref ImGuiStyleModUnion ImGuiStyleModUnion => ref Unsafe.AsRef<ImGuiStyleModUnion>(&Handle->ImGuiStyleModUnion);
 	}
@@ -23188,7 +26470,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiFocusScopeDataPtr : IEquatable<ImGuiFocusScopeDataPtr>
 	{
 		public ImGuiFocusScopeDataPtr(ImGuiFocusScopeData* handle) { Handle = handle; }
@@ -23219,7 +26503,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiFocusScopeDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref int WindowID => ref Unsafe.AsRef<int>(&Handle->WindowID);
 	}
@@ -23261,7 +26547,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiGroupDataPtr : IEquatable<ImGuiGroupDataPtr>
 	{
 		public ImGuiGroupDataPtr(ImGuiGroupData* handle) { Handle = handle; }
@@ -23292,7 +26580,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiGroupDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int WindowID => ref Unsafe.AsRef<int>(&Handle->WindowID);
 		public ref Vector2 BackupCursorPos => ref Unsafe.AsRef<Vector2>(&Handle->BackupCursorPos);
 		public ref Vector2 BackupCursorMaxPos => ref Unsafe.AsRef<Vector2>(&Handle->BackupCursorMaxPos);
@@ -23331,7 +26621,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiPopupDataPtr : IEquatable<ImGuiPopupDataPtr>
 	{
 		public ImGuiPopupDataPtr(ImGuiPopupData* handle) { Handle = handle; }
@@ -23362,7 +26654,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiPopupDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int PopupId => ref Unsafe.AsRef<int>(&Handle->PopupId);
 		public ref ImGuiWindowPtr Window => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->Window);
 		public ref ImGuiWindowPtr RestoreNavWindow => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->RestoreNavWindow);
@@ -23392,7 +26686,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTreeNodeStackDataPtr : IEquatable<ImGuiTreeNodeStackDataPtr>
 	{
 		public ImGuiTreeNodeStackDataPtr(ImGuiTreeNodeStackData* handle) { Handle = handle; }
@@ -23423,7 +26719,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTreeNodeStackDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImGuiTreeNodeFlags TreeFlags => ref Unsafe.AsRef<ImGuiTreeNodeFlags>(&Handle->TreeFlags);
 		public ref ImGuiItemFlags InFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->InFlags);
@@ -23454,7 +26752,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiNavItemDataPtr : IEquatable<ImGuiNavItemDataPtr>
 	{
 		public ImGuiNavItemDataPtr(ImGuiNavItemData* handle) { Handle = handle; }
@@ -23485,7 +26785,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiNavItemDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiWindowPtr Window => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->Window);
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref int FocusScopeId => ref Unsafe.AsRef<int>(&Handle->FocusScopeId);
@@ -23609,6 +26911,18 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
+		public unsafe bool IsDataType(ReadOnlySpan<byte> type)
+		{
+			fixed (ImGuiPayload* @this = &this)
+			{
+				fixed (byte* ptype = type)
+				{
+					byte ret = ImGui.IsDataTypeNative(@this, (byte*)ptype);
+					return ret != 0;
+				}
+			}
+		}
+
 		public unsafe bool IsDelivery()
 		{
 			fixed (ImGuiPayload* @this = &this)
@@ -23629,7 +26943,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiPayloadPtr : IEquatable<ImGuiPayloadPtr>
 	{
 		public ImGuiPayloadPtr(ImGuiPayload* handle) { Handle = handle; }
@@ -23660,7 +26976,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiPayloadPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public void* Data { get => Handle->Data; set => Handle->Data = value; }
 		public ref int DataSize => ref Unsafe.AsRef<int>(&Handle->DataSize);
 		public ref int SourceId => ref Unsafe.AsRef<int>(&Handle->SourceId);
@@ -23729,6 +27047,15 @@ public unsafe void appendf(string fmt)
 			return ret != 0;
 		}
 
+		public unsafe bool IsDataType(ReadOnlySpan<byte> type)
+		{
+			fixed (byte* ptype = type)
+			{
+				byte ret = ImGui.IsDataTypeNative(Handle, (byte*)ptype);
+				return ret != 0;
+			}
+		}
+
 		public unsafe bool IsDelivery()
 		{
 			byte ret = ImGui.IsDeliveryNative(Handle);
@@ -23772,7 +27099,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiListClipperDataPtr : IEquatable<ImGuiListClipperDataPtr>
 	{
 		public ImGuiListClipperDataPtr(ImGuiListClipperData* handle) { Handle = handle; }
@@ -23803,7 +27132,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiListClipperDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiListClipperPtr ListClipper => ref Unsafe.AsRef<ImGuiListClipperPtr>(&Handle->ListClipper);
 		public ref float LossynessOffset => ref Unsafe.AsRef<float>(&Handle->LossynessOffset);
 		public ref int StepNo => ref Unsafe.AsRef<int>(&Handle->StepNo);
@@ -23891,7 +27222,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiListClipperPtr : IEquatable<ImGuiListClipperPtr>
 	{
 		public ImGuiListClipperPtr(ImGuiListClipper* handle) { Handle = handle; }
@@ -23922,7 +27255,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiListClipperPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiContextPtr Ctx => ref Unsafe.AsRef<ImGuiContextPtr>(&Handle->Ctx);
 		public ref int DisplayStart => ref Unsafe.AsRef<int>(&Handle->DisplayStart);
 		public ref int DisplayEnd => ref Unsafe.AsRef<int>(&Handle->DisplayEnd);
@@ -23995,7 +27330,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiListClipperRangePtr : IEquatable<ImGuiListClipperRangePtr>
 	{
 		public ImGuiListClipperRangePtr(ImGuiListClipperRange* handle) { Handle = handle; }
@@ -24026,7 +27363,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiListClipperRangePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Min => ref Unsafe.AsRef<int>(&Handle->Min);
 		public ref int Max => ref Unsafe.AsRef<int>(&Handle->Max);
 		public ref bool PosToIndexConvert => ref Unsafe.AsRef<bool>(&Handle->PosToIndexConvert);
@@ -24153,7 +27492,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTablePtr : IEquatable<ImGuiTablePtr>
 	{
 		public ImGuiTablePtr(ImGuiTable* handle) { Handle = handle; }
@@ -24184,7 +27525,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTablePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImGuiTableFlags Flags => ref Unsafe.AsRef<ImGuiTableFlags>(&Handle->Flags);
 		public void* RawData { get => Handle->RawData; set => Handle->RawData = value; }
@@ -24326,7 +27669,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTableTempDataPtr : IEquatable<ImGuiTableTempDataPtr>
 	{
 		public ImGuiTableTempDataPtr(ImGuiTableTempData* handle) { Handle = handle; }
@@ -24357,7 +27702,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTableTempDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int TableIndex => ref Unsafe.AsRef<int>(&Handle->TableIndex);
 		public ref float LastTimeActive => ref Unsafe.AsRef<float>(&Handle->LastTimeActive);
 		public ref float AngledHeadersExtraWidth => ref Unsafe.AsRef<float>(&Handle->AngledHeadersExtraWidth);
@@ -24393,7 +27740,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTableHeaderDataPtr : IEquatable<ImGuiTableHeaderDataPtr>
 	{
 		public ImGuiTableHeaderDataPtr(ImGuiTableHeaderData* handle) { Handle = handle; }
@@ -24424,7 +27773,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTableHeaderDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref sbyte Index => ref Unsafe.AsRef<sbyte>(&Handle->Index);
 		public ref uint TextColor => ref Unsafe.AsRef<uint>(&Handle->TextColor);
 		public ref uint BgColor0 => ref Unsafe.AsRef<uint>(&Handle->BgColor0);
@@ -24486,7 +27837,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTableColumnPtr : IEquatable<ImGuiTableColumnPtr>
 	{
 		public ImGuiTableColumnPtr(ImGuiTableColumn* handle) { Handle = handle; }
@@ -24517,7 +27870,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTableColumnPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiTableColumnFlags Flags => ref Unsafe.AsRef<ImGuiTableColumnFlags>(&Handle->Flags);
 		public ref float WidthGiven => ref Unsafe.AsRef<float>(&Handle->WidthGiven);
 		public ref float MinX => ref Unsafe.AsRef<float>(&Handle->MinX);
@@ -24585,7 +27940,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTableCellDataPtr : IEquatable<ImGuiTableCellDataPtr>
 	{
 		public ImGuiTableCellDataPtr(ImGuiTableCellData* handle) { Handle = handle; }
@@ -24616,7 +27973,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTableCellDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref uint BgColor => ref Unsafe.AsRef<uint>(&Handle->BgColor);
 		public ref sbyte Column => ref Unsafe.AsRef<sbyte>(&Handle->Column);
 	}
@@ -24633,7 +27992,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTableInstanceDataPtr : IEquatable<ImGuiTableInstanceDataPtr>
 	{
 		public ImGuiTableInstanceDataPtr(ImGuiTableInstanceData* handle) { Handle = handle; }
@@ -24664,7 +28025,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTableInstanceDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int TableInstanceID => ref Unsafe.AsRef<int>(&Handle->TableInstanceID);
 		public ref float LastOuterHeight => ref Unsafe.AsRef<float>(&Handle->LastOuterHeight);
 		public ref float LastTopHeadersRowHeight => ref Unsafe.AsRef<float>(&Handle->LastTopHeadersRowHeight);
@@ -24701,7 +28064,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTableColumnSortSpecsPtr : IEquatable<ImGuiTableColumnSortSpecsPtr>
 	{
 		public ImGuiTableColumnSortSpecsPtr(ImGuiTableColumnSortSpecs* handle) { Handle = handle; }
@@ -24732,7 +28097,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTableColumnSortSpecsPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ColumnUserID => ref Unsafe.AsRef<int>(&Handle->ColumnUserID);
 		public ref short ColumnIndex => ref Unsafe.AsRef<short>(&Handle->ColumnIndex);
 		public ref short SortOrder => ref Unsafe.AsRef<short>(&Handle->SortOrder);
@@ -24772,7 +28139,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTableSortSpecsPtr : IEquatable<ImGuiTableSortSpecsPtr>
 	{
 		public ImGuiTableSortSpecsPtr(ImGuiTableSortSpecs* handle) { Handle = handle; }
@@ -24803,7 +28172,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTableSortSpecsPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiTableColumnSortSpecsPtr Specs => ref Unsafe.AsRef<ImGuiTableColumnSortSpecsPtr>(&Handle->Specs);
 		public ref int SpecsCount => ref Unsafe.AsRef<int>(&Handle->SpecsCount);
 		public ref bool SpecsDirty => ref Unsafe.AsRef<bool>(&Handle->SpecsDirty);
@@ -24879,7 +28250,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiPtrOrIndexPtr : IEquatable<ImGuiPtrOrIndexPtr>
 	{
 		public ImGuiPtrOrIndexPtr(ImGuiPtrOrIndex* handle) { Handle = handle; }
@@ -24910,7 +28283,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiPtrOrIndexPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public void* Ptr { get => Handle->Ptr; set => Handle->Ptr = value; }
 		public ref int Index => ref Unsafe.AsRef<int>(&Handle->Index);
 	}
@@ -24933,7 +28308,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiShrinkWidthItemPtr : IEquatable<ImGuiShrinkWidthItemPtr>
 	{
 		public ImGuiShrinkWidthItemPtr(ImGuiShrinkWidthItem* handle) { Handle = handle; }
@@ -24964,7 +28341,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiShrinkWidthItemPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Index => ref Unsafe.AsRef<int>(&Handle->Index);
 		public ref float Width => ref Unsafe.AsRef<float>(&Handle->Width);
 		public ref float InitialWidth => ref Unsafe.AsRef<float>(&Handle->InitialWidth);
@@ -24991,7 +28370,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiBoxSelectStatePtr : IEquatable<ImGuiBoxSelectStatePtr>
 	{
 		public ImGuiBoxSelectStatePtr(ImGuiBoxSelectState* handle) { Handle = handle; }
@@ -25022,7 +28403,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiBoxSelectStatePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref bool IsActive => ref Unsafe.AsRef<bool>(&Handle->IsActive);
 		public ref bool IsStarting => ref Unsafe.AsRef<bool>(&Handle->IsStarting);
@@ -25062,7 +28445,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiMultiSelectTempDataPtr : IEquatable<ImGuiMultiSelectTempDataPtr>
 	{
 		public ImGuiMultiSelectTempDataPtr(ImGuiMultiSelectTempData* handle) { Handle = handle; }
@@ -25093,7 +28478,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiMultiSelectTempDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiMultiSelectIO IO => ref Unsafe.AsRef<ImGuiMultiSelectIO>(&Handle->IO);
 		public ref ImGuiMultiSelectStatePtr Storage => ref Unsafe.AsRef<ImGuiMultiSelectStatePtr>(&Handle->Storage);
 		public ref int FocusScopeId => ref Unsafe.AsRef<int>(&Handle->FocusScopeId);
@@ -25124,7 +28511,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiMultiSelectIOPtr : IEquatable<ImGuiMultiSelectIOPtr>
 	{
 		public ImGuiMultiSelectIOPtr(ImGuiMultiSelectIO* handle) { Handle = handle; }
@@ -25155,7 +28544,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiMultiSelectIOPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorImGuiSelectionRequest Requests => ref Unsafe.AsRef<ImVectorImGuiSelectionRequest>(&Handle->Requests);
 		public ref long RangeSrcItem => ref Unsafe.AsRef<long>(&Handle->RangeSrcItem);
 		public ref long NavIdItem => ref Unsafe.AsRef<long>(&Handle->NavIdItem);
@@ -25184,7 +28575,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiSelectionRequestPtr : IEquatable<ImGuiSelectionRequestPtr>
 	{
 		public ImGuiSelectionRequestPtr(ImGuiSelectionRequest* handle) { Handle = handle; }
@@ -25215,7 +28608,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiSelectionRequestPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiSelectionRequestType Type => ref Unsafe.AsRef<ImGuiSelectionRequestType>(&Handle->Type);
 		public ref bool Selected => ref Unsafe.AsRef<bool>(&Handle->Selected);
 		public ref sbyte RangeDirection => ref Unsafe.AsRef<sbyte>(&Handle->RangeDirection);
@@ -25237,7 +28632,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiMultiSelectStatePtr : IEquatable<ImGuiMultiSelectStatePtr>
 	{
 		public ImGuiMultiSelectStatePtr(ImGuiMultiSelectState* handle) { Handle = handle; }
@@ -25268,7 +28665,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiMultiSelectStatePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiWindowPtr Window => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->Window);
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref int LastFrameActive => ref Unsafe.AsRef<int>(&Handle->LastFrameActive);
@@ -25332,7 +28731,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiInputTextStatePtr : IEquatable<ImGuiInputTextStatePtr>
 	{
 		public ImGuiInputTextStatePtr(ImGuiInputTextState* handle) { Handle = handle; }
@@ -25363,7 +28764,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiInputTextStatePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiContextPtr Ctx => ref Unsafe.AsRef<ImGuiContextPtr>(&Handle->Ctx);
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref int CurLenW => ref Unsafe.AsRef<int>(&Handle->CurLenW);
@@ -26542,7 +29945,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiInputTextDeactivatedStatePtr : IEquatable<ImGuiInputTextDeactivatedStatePtr>
 	{
 		public ImGuiInputTextDeactivatedStatePtr(ImGuiInputTextDeactivatedState* handle) { Handle = handle; }
@@ -26573,7 +29978,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiInputTextDeactivatedStatePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImVectorChar TextA => ref Unsafe.AsRef<ImVectorChar>(&Handle->TextA);
 	}
@@ -26590,7 +29997,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiComboPreviewDataPtr : IEquatable<ImGuiComboPreviewDataPtr>
 	{
 		public ImGuiComboPreviewDataPtr(ImGuiComboPreviewData* handle) { Handle = handle; }
@@ -26621,7 +30030,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiComboPreviewDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImRect PreviewRect => ref Unsafe.AsRef<ImRect>(&Handle->PreviewRect);
 		public ref Vector2 BackupCursorPos => ref Unsafe.AsRef<Vector2>(&Handle->BackupCursorPos);
 		public ref Vector2 BackupCursorMaxPos => ref Unsafe.AsRef<Vector2>(&Handle->BackupCursorMaxPos);
@@ -26705,7 +30116,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTypingSelectStatePtr : IEquatable<ImGuiTypingSelectStatePtr>
 	{
 		public ImGuiTypingSelectStatePtr(ImGuiTypingSelectState* handle) { Handle = handle; }
@@ -26736,7 +30149,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTypingSelectStatePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiTypingSelectRequest Request => ref Unsafe.AsRef<ImGuiTypingSelectRequest>(&Handle->Request);
 		public unsafe Span<byte> SearchBuffer
 		
@@ -26764,7 +30179,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTypingSelectRequestPtr : IEquatable<ImGuiTypingSelectRequestPtr>
 	{
 		public ImGuiTypingSelectRequestPtr(ImGuiTypingSelectRequest* handle) { Handle = handle; }
@@ -26795,7 +30212,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTypingSelectRequestPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiTypingSelectFlags Flags => ref Unsafe.AsRef<ImGuiTypingSelectFlags>(&Handle->Flags);
 		public ref int SearchBufferLen => ref Unsafe.AsRef<int>(&Handle->SearchBufferLen);
 		public byte* SearchBuffer { get => Handle->SearchBuffer; set => Handle->SearchBuffer = value; }
@@ -26814,7 +30233,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiDockContextPtr : IEquatable<ImGuiDockContextPtr>
 	{
 		public ImGuiDockContextPtr(ImGuiDockContext* handle) { Handle = handle; }
@@ -26845,7 +30266,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiDockContextPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiStorage Nodes => ref Unsafe.AsRef<ImGuiStorage>(&Handle->Nodes);
 		public ref ImVectorImGuiDockRequest Requests => ref Unsafe.AsRef<ImVectorImGuiDockRequest>(&Handle->Requests);
 		public ref ImVectorImGuiDockNodeSettings NodesSettings => ref Unsafe.AsRef<ImVectorImGuiDockNodeSettings>(&Handle->NodesSettings);
@@ -26867,7 +30290,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiDockRequestPtr : IEquatable<ImGuiDockRequestPtr>
 	{
 		public ImGuiDockRequestPtr(ImGuiDockRequest* handle) { Handle = handle; }
@@ -26898,7 +30323,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiDockRequestPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -26916,7 +30343,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiDockNodeSettingsPtr : IEquatable<ImGuiDockNodeSettingsPtr>
 	{
 		public ImGuiDockNodeSettingsPtr(ImGuiDockNodeSettings* handle) { Handle = handle; }
@@ -26947,7 +30376,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiDockNodeSettingsPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -26974,7 +30405,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiSettingsHandlerPtr : IEquatable<ImGuiSettingsHandlerPtr>
 	{
 		public ImGuiSettingsHandlerPtr(ImGuiSettingsHandler* handle) { Handle = handle; }
@@ -27005,7 +30438,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiSettingsHandlerPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public byte* TypeName { get => Handle->TypeName; set => Handle->TypeName = value; }
 		public ref int TypeHash => ref Unsafe.AsRef<int>(&Handle->TypeHash);
 		public void* ClearAllFn { get => Handle->ClearAllFn; set => Handle->ClearAllFn = value; }
@@ -27051,7 +30486,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiContextHookPtr : IEquatable<ImGuiContextHookPtr>
 	{
 		public ImGuiContextHookPtr(ImGuiContextHook* handle) { Handle = handle; }
@@ -27082,7 +30519,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiContextHookPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int HookId => ref Unsafe.AsRef<int>(&Handle->HookId);
 		public ref ImGuiContextHookType Type => ref Unsafe.AsRef<ImGuiContextHookType>(&Handle->Type);
 		public ref int Owner => ref Unsafe.AsRef<int>(&Handle->Owner);
@@ -27098,7 +30537,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTextIndexPtr : IEquatable<ImGuiTextIndexPtr>
 	{
 		public ImGuiTextIndexPtr(ImGuiTextIndex* handle) { Handle = handle; }
@@ -27129,7 +30570,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTextIndexPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorInt LineOffsets => ref Unsafe.AsRef<ImVectorInt>(&Handle->LineOffsets);
 		public ref int EndOffset => ref Unsafe.AsRef<int>(&Handle->EndOffset);
 	}
@@ -27175,7 +30618,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiIDStackToolPtr : IEquatable<ImGuiIDStackToolPtr>
 	{
 		public ImGuiIDStackToolPtr(ImGuiIDStackTool* handle) { Handle = handle; }
@@ -27206,7 +30651,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiIDStackToolPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int LastActiveFrame => ref Unsafe.AsRef<int>(&Handle->LastActiveFrame);
 		public ref int StackLevel => ref Unsafe.AsRef<int>(&Handle->StackLevel);
 		public ref int QueryId => ref Unsafe.AsRef<int>(&Handle->QueryId);
@@ -27291,7 +30738,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiStackLevelInfoPtr : IEquatable<ImGuiStackLevelInfoPtr>
 	{
 		public ImGuiStackLevelInfoPtr(ImGuiStackLevelInfo* handle) { Handle = handle; }
@@ -27322,7 +30771,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiStackLevelInfoPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref sbyte QueryFrameCount => ref Unsafe.AsRef<sbyte>(&Handle->QueryFrameCount);
 		public ref bool QuerySuccess => ref Unsafe.AsRef<bool>(&Handle->QuerySuccess);
@@ -27363,7 +30814,9 @@ public unsafe void appendf(string fmt)
 		}
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiDebugAllocInfoPtr : IEquatable<ImGuiDebugAllocInfoPtr>
 	{
 		public ImGuiDebugAllocInfoPtr(ImGuiDebugAllocInfo* handle) { Handle = handle; }
@@ -27394,7 +30847,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiDebugAllocInfoPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int TotalAllocCount => ref Unsafe.AsRef<int>(&Handle->TotalAllocCount);
 		public ref int TotalFreeCount => ref Unsafe.AsRef<int>(&Handle->TotalFreeCount);
 		public ref short LastEntriesIdx => ref Unsafe.AsRef<short>(&Handle->LastEntriesIdx);
@@ -27564,6 +31019,28 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
+		public unsafe void InsertChars(int pos, ReadOnlySpan<byte> text, byte* textEnd)
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					ImGui.InsertCharsNative(@this, pos, (byte*)ptext, textEnd);
+				}
+			}
+		}
+
+		public unsafe void InsertChars(int pos, ReadOnlySpan<byte> text)
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					ImGui.InsertCharsNative(@this, pos, (byte*)ptext, (byte*)(default));
+				}
+			}
+		}
+
 		public unsafe void InsertChars(int pos, byte* text, ref byte textEnd)
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
@@ -27600,6 +31077,17 @@ public unsafe void appendf(string fmt)
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public unsafe void InsertChars(int pos, byte* text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.InsertCharsNative(@this, pos, text, (byte*)ptextEnd);
 				}
 			}
 		}
@@ -27668,6 +31156,20 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
+		public unsafe void InsertChars(int pos, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImGuiInputTextCallbackData* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						ImGui.InsertCharsNative(@this, pos, (byte*)ptext, (byte*)ptextEnd);
+					}
+				}
+			}
+		}
+
 		public unsafe void SelectAll()
 		{
 			fixed (ImGuiInputTextCallbackData* @this = &this)
@@ -27678,7 +31180,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiInputTextCallbackDataPtr : IEquatable<ImGuiInputTextCallbackDataPtr>
 	{
 		public ImGuiInputTextCallbackDataPtr(ImGuiInputTextCallbackData* handle) { Handle = handle; }
@@ -27709,7 +31213,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiInputTextCallbackDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiContextPtr Ctx => ref Unsafe.AsRef<ImGuiContextPtr>(&Handle->Ctx);
 		public ref ImGuiInputTextFlags EventFlag => ref Unsafe.AsRef<ImGuiInputTextFlags>(&Handle->EventFlag);
 		public ref ImGuiInputTextFlags Flags => ref Unsafe.AsRef<ImGuiInputTextFlags>(&Handle->Flags);
@@ -27823,6 +31329,22 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
+		public unsafe void InsertChars(int pos, ReadOnlySpan<byte> text, byte* textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				ImGui.InsertCharsNative(Handle, pos, (byte*)ptext, textEnd);
+			}
+		}
+
+		public unsafe void InsertChars(int pos, ReadOnlySpan<byte> text)
+		{
+			fixed (byte* ptext = text)
+			{
+				ImGui.InsertCharsNative(Handle, pos, (byte*)ptext, (byte*)(default));
+			}
+		}
+
 		public unsafe void InsertChars(int pos, byte* text, ref byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
@@ -27854,6 +31376,14 @@ public unsafe void appendf(string fmt)
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
+			}
+		}
+
+		public unsafe void InsertChars(int pos, byte* text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				ImGui.InsertCharsNative(Handle, pos, text, (byte*)ptextEnd);
 			}
 		}
 
@@ -27915,6 +31445,17 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
+		public unsafe void InsertChars(int pos, ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					ImGui.InsertCharsNative(Handle, pos, (byte*)ptext, (byte*)ptextEnd);
+				}
+			}
+		}
+
 		public unsafe void SelectAll()
 		{
 			ImGui.SelectAllNative(Handle);
@@ -27938,7 +31479,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiOnceUponAFramePtr : IEquatable<ImGuiOnceUponAFramePtr>
 	{
 		public ImGuiOnceUponAFramePtr(ImGuiOnceUponAFrame* handle) { Handle = handle; }
@@ -27969,7 +31512,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiOnceUponAFramePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int RefFrame => ref Unsafe.AsRef<int>(&Handle->RefFrame);
 
 		public unsafe void Destroy()
@@ -28093,7 +31638,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiSelectionBasicStoragePtr : IEquatable<ImGuiSelectionBasicStoragePtr>
 	{
 		public ImGuiSelectionBasicStoragePtr(ImGuiSelectionBasicStorage* handle) { Handle = handle; }
@@ -28124,7 +31671,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiSelectionBasicStoragePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref bool PreserveOrder => ref Unsafe.AsRef<bool>(&Handle->PreserveOrder);
 		public void* UserData { get => Handle->UserData; set => Handle->UserData = value; }
@@ -28238,7 +31787,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiSelectionExternalStoragePtr : IEquatable<ImGuiSelectionExternalStoragePtr>
 	{
 		public ImGuiSelectionExternalStoragePtr(ImGuiSelectionExternalStorage* handle) { Handle = handle; }
@@ -28269,7 +31820,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiSelectionExternalStoragePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public void* UserData { get => Handle->UserData; set => Handle->UserData = value; }
 		public void* AdapterSetItemSelected { get => Handle->AdapterSetItemSelected; set => Handle->AdapterSetItemSelected = value; }
 
@@ -28700,6 +32253,30 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
+		public unsafe bool Draw(ReadOnlySpan<byte> label, float width)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				fixed (byte* plabel = label)
+				{
+					byte ret = ImGui.DrawNative(@this, (byte*)plabel, width);
+					return ret != 0;
+				}
+			}
+		}
+
+		public unsafe bool Draw(ReadOnlySpan<byte> label)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				fixed (byte* plabel = label)
+				{
+					byte ret = ImGui.DrawNative(@this, (byte*)plabel, (float)(0.0f));
+					return ret != 0;
+				}
+			}
+		}
+
 		public unsafe bool IsActive()
 		{
 			fixed (ImGuiTextFilter* @this = &this)
@@ -28811,6 +32388,30 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
+		public unsafe bool PassFilter(ReadOnlySpan<byte> text, byte* textEnd)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					byte ret = ImGui.PassFilterNative(@this, (byte*)ptext, textEnd);
+					return ret != 0;
+				}
+			}
+		}
+
+		public unsafe bool PassFilter(ReadOnlySpan<byte> text)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					byte ret = ImGui.PassFilterNative(@this, (byte*)ptext, (byte*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
 		public unsafe bool PassFilter(byte* text, ref byte textEnd)
 		{
 			fixed (ImGuiTextFilter* @this = &this)
@@ -28850,6 +32451,18 @@ public unsafe void appendf(string fmt)
 					Utils.Free(pStr0);
 				}
 				return ret != 0;
+			}
+		}
+
+		public unsafe bool PassFilter(byte* text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					byte ret = ImGui.PassFilterNative(@this, text, (byte*)ptextEnd);
+					return ret != 0;
+				}
 			}
 		}
 
@@ -28919,9 +32532,26 @@ public unsafe void appendf(string fmt)
 			}
 		}
 
+		public unsafe bool PassFilter(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (ImGuiTextFilter* @this = &this)
+			{
+				fixed (byte* ptext = text)
+				{
+					fixed (byte* ptextEnd = textEnd)
+					{
+						byte ret = ImGui.PassFilterNative(@this, (byte*)ptext, (byte*)ptextEnd);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTextFilterPtr : IEquatable<ImGuiTextFilterPtr>
 	{
 		public ImGuiTextFilterPtr(ImGuiTextFilter* handle) { Handle = handle; }
@@ -28952,7 +32582,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTextFilterPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public unsafe Span<byte> InputBuf
 		
 		{
@@ -29075,6 +32707,24 @@ public unsafe void appendf(string fmt)
 			return ret != 0;
 		}
 
+		public unsafe bool Draw(ReadOnlySpan<byte> label, float width)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = ImGui.DrawNative(Handle, (byte*)plabel, width);
+				return ret != 0;
+			}
+		}
+
+		public unsafe bool Draw(ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = ImGui.DrawNative(Handle, (byte*)plabel, (float)(0.0f));
+				return ret != 0;
+			}
+		}
+
 		public unsafe bool IsActive()
 		{
 			byte ret = ImGui.IsActiveNative(Handle);
@@ -29165,6 +32815,24 @@ public unsafe void appendf(string fmt)
 			return ret != 0;
 		}
 
+		public unsafe bool PassFilter(ReadOnlySpan<byte> text, byte* textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte ret = ImGui.PassFilterNative(Handle, (byte*)ptext, textEnd);
+				return ret != 0;
+			}
+		}
+
+		public unsafe bool PassFilter(ReadOnlySpan<byte> text)
+		{
+			fixed (byte* ptext = text)
+			{
+				byte ret = ImGui.PassFilterNative(Handle, (byte*)ptext, (byte*)(default));
+				return ret != 0;
+			}
+		}
+
 		public unsafe bool PassFilter(byte* text, ref byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
@@ -29199,6 +32867,15 @@ public unsafe void appendf(string fmt)
 				Utils.Free(pStr0);
 			}
 			return ret != 0;
+		}
+
+		public unsafe bool PassFilter(byte* text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptextEnd = textEnd)
+			{
+				byte ret = ImGui.PassFilterNative(Handle, text, (byte*)ptextEnd);
+				return ret != 0;
+			}
 		}
 
 		public unsafe bool PassFilter(ref byte text, ref byte textEnd)
@@ -29261,6 +32938,18 @@ public unsafe void appendf(string fmt)
 			return ret != 0;
 		}
 
+		public unsafe bool PassFilter(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
+		{
+			fixed (byte* ptext = text)
+			{
+				fixed (byte* ptextEnd = textEnd)
+				{
+					byte ret = ImGui.PassFilterNative(Handle, (byte*)ptext, (byte*)ptextEnd);
+					return ret != 0;
+				}
+			}
+		}
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -29272,7 +32961,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVectorImGuiTextRangePtr : IEquatable<ImVectorImGuiTextRangePtr>
 	{
 		public ImVectorImGuiTextRangePtr(ImVectorImGuiTextRange* handle) { Handle = handle; }
@@ -29303,7 +32994,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVectorImGuiTextRangePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
 		public ref ImGuiTextRangePtr Data => ref Unsafe.AsRef<ImGuiTextRangePtr>(&Handle->Data);
@@ -29354,7 +33047,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTextRangePtr : IEquatable<ImGuiTextRangePtr>
 	{
 		public ImGuiTextRangePtr(ImGuiTextRange* handle) { Handle = handle; }
@@ -29385,7 +33080,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTextRangePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public byte* B { get => Handle->B; set => Handle->B = value; }
 		public byte* E { get => Handle->E; set => Handle->E = value; }
 
@@ -29422,7 +33119,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImBitVectorPtr : IEquatable<ImBitVectorPtr>
 	{
 		public ImBitVectorPtr(ImBitVector* handle) { Handle = handle; }
@@ -29453,7 +33152,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImBitVectorPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorImU32 Storage => ref Unsafe.AsRef<ImVectorImU32>(&Handle->Storage);
 	}
 
@@ -29466,7 +33167,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiDataVarInfoPtr : IEquatable<ImGuiDataVarInfoPtr>
 	{
 		public ImGuiDataVarInfoPtr(ImGuiDataVarInfo* handle) { Handle = handle; }
@@ -29497,7 +33200,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiDataVarInfoPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiDataType Type => ref Unsafe.AsRef<ImGuiDataType>(&Handle->Type);
 		public ref uint Count => ref Unsafe.AsRef<uint>(&Handle->Count);
 		public ref uint Offset => ref Unsafe.AsRef<uint>(&Handle->Offset);
@@ -29513,7 +33218,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiDataTypeInfoPtr : IEquatable<ImGuiDataTypeInfoPtr>
 	{
 		public ImGuiDataTypeInfoPtr(ImGuiDataTypeInfo* handle) { Handle = handle; }
@@ -29544,7 +33251,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiDataTypeInfoPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref nuint Size => ref Unsafe.AsRef<nuint>(&Handle->Size);
 		public byte* Name { get => Handle->Name; set => Handle->Name = value; }
 		public byte* PrintFmt { get => Handle->PrintFmt; set => Handle->PrintFmt = value; }
@@ -29565,7 +33274,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiLocEntryPtr : IEquatable<ImGuiLocEntryPtr>
 	{
 		public ImGuiLocEntryPtr(ImGuiLocEntry* handle) { Handle = handle; }
@@ -29596,7 +33307,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiLocEntryPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiLocKey Key => ref Unsafe.AsRef<ImGuiLocKey>(&Handle->Key);
 		public byte* Text { get => Handle->Text; set => Handle->Text = value; }
 	}
@@ -29613,7 +33326,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTableSettingsPtr : IEquatable<ImGuiTableSettingsPtr>
 	{
 		public ImGuiTableSettingsPtr(ImGuiTableSettings* handle) { Handle = handle; }
@@ -29644,7 +33359,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTableSettingsPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImGuiTableFlags SaveFlags => ref Unsafe.AsRef<ImGuiTableFlags>(&Handle->SaveFlags);
 		public ref float RefScale => ref Unsafe.AsRef<float>(&Handle->RefScale);
@@ -29677,7 +33394,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiWindowSettingsPtr : IEquatable<ImGuiWindowSettingsPtr>
 	{
 		public ImGuiWindowSettingsPtr(ImGuiWindowSettings* handle) { Handle = handle; }
@@ -29708,7 +33427,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiWindowSettingsPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImVec2ih Pos => ref Unsafe.AsRef<ImVec2ih>(&Handle->Pos);
 		public ref ImVec2ih Size => ref Unsafe.AsRef<ImVec2ih>(&Handle->Size);
@@ -29732,7 +33453,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVectorConstCharPtrPtr : IEquatable<ImVectorConstCharPtrPtr>
 	{
 		public ImVectorConstCharPtrPtr(ImVectorConstCharPtr* handle) { Handle = handle; }
@@ -29763,7 +33486,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVectorConstCharPtrPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
 		public byte** Data { get => Handle->Data; set => Handle->Data = value; }
@@ -29795,7 +33520,9 @@ public unsafe void appendf(string fmt)
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImGuiTableColumnSettingsPtr : IEquatable<ImGuiTableColumnSettingsPtr>
 	{
 		public ImGuiTableColumnSettingsPtr(ImGuiTableColumnSettings* handle) { Handle = handle; }
@@ -29826,7 +33553,9 @@ public unsafe void appendf(string fmt)
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTableColumnSettingsPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref float WidthOrWeight => ref Unsafe.AsRef<float>(&Handle->WidthOrWeight);
 		public ref int UserID => ref Unsafe.AsRef<int>(&Handle->UserID);
 		public ref sbyte Index => ref Unsafe.AsRef<sbyte>(&Handle->Index);
