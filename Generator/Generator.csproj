@@ -40,6 +40,9 @@
 		<None Update="cimgui\definitions.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="cimgui\generator.manual.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="cimgui\generator.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>

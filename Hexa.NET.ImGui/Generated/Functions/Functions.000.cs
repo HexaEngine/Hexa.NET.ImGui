@@ -17,8 +17,6 @@ namespace Hexa.NET.ImGui
 {
 	public unsafe partial class ImGui
 	{
-		internal const string LibName = "cimgui";
-
 		internal static Vector2* ImVec2Native()
 		{
 			#if NET5_0_OR_GREATER

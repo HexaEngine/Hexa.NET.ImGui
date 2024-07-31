@@ -2,8 +2,9 @@
 {
     using System;
     using System.Runtime.InteropServices;
+#if !NET5_0_OR_GREATER
     using HexaGen.Runtime;
-
+#endif
     public static class LibraryLoader
     {
         public static nint LoadLibrary()

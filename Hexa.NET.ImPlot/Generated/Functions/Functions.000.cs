@@ -18,8 +18,6 @@ namespace Hexa.NET.ImPlot
 {
 	public unsafe partial class ImPlot
 	{
-		internal const string LibName = "cimplot";
-
 		internal static ImPlotPoint* ImPlotPointNative()
 		{
 			#if NET5_0_OR_GREATER

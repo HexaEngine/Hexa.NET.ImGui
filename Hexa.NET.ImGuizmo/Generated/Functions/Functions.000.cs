@@ -18,8 +18,6 @@ namespace Hexa.NET.ImGuizmo
 {
 	public unsafe partial class ImGuizmo
 	{
-		internal const string LibName = "cimguizmo";
-
 		internal static void SetDrawlistNative(ImDrawList* drawlist)
 		{
 			#if NET5_0_OR_GREATER

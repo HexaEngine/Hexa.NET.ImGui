@@ -18,8 +18,6 @@ namespace Hexa.NET.ImNodes
 {
 	public unsafe partial class ImNodes
 	{
-		internal const string LibName = "cimnodes";
-
 		internal static EmulateThreeButtonMouse* EmulateThreeButtonMouseNative()
 		{
 			#if NET5_0_OR_GREATER

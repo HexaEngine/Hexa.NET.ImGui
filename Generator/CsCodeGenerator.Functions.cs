@@ -5,8 +5,6 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Reflection.Metadata.Ecma335;
-    using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
     using System.Text;
 
@@ -14,6 +12,14 @@
     {
         private readonly StringBuilder sb = new();
         private int index;
+        public VTableBuilder()
+        {
+        }
+
+        public VTableBuilder(int vTableStart)
+        {
+            this.index = vTableStart;
+        }
 
         public int Add(string name)
         {
@@ -62,10 +68,14 @@
 
             using var writer = new SplitCodeWriter(filePath, settings.Namespace, 2, usings.Concat(settings.Usings).ToArray());
 
-            VTableBuilder vTableBuilder = new();
+            VTableBuilder vTableBuilder = new(settings.VTableStart);
             using (writer.PushBlock($"public unsafe partial class {settings.ApiName}"))
             {
-                writer.WriteLine($"internal const string LibName = \"{settings.LibName}\";\n");
+                if (!settings.UseVTable)
+                {
+                    writer.WriteLine($"internal const string LibName = \"{settings.LibName}\";\n");
+                }
+
                 List<CsFunction> commands = new();
                 for (int i = 0; i < compilation.Functions.Count; i++)
                 {
@@ -256,6 +266,7 @@
                         writerVt.WriteLine("vt.Free();");
                     }
                 }
+                CsCodeGeneratorSettings.Default.VTableLength = count;
             }
         }
 
@@ -1131,7 +1142,7 @@
                                             spanParameterList[j] = new(paramCsName, new(GetCsWrapperTypeName(cppParameter.Type, false), kind), direction);
                                             break;
                                     }
-                                   
+
                                     stringParameterList[j] = new(paramCsName, new(direction == Direction.InOut ? "ref string" : "string", kind), direction);
                                 }
                                 else

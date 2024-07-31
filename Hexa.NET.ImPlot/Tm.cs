@@ -69,6 +69,7 @@
 
         public override int GetHashCode()
         {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
             HashCode hash = new HashCode();
             hash.Add(Sec);
             hash.Add(Min);
@@ -80,6 +81,19 @@
             hash.Add(YDay);
             hash.Add(IsDst);
             return hash.ToHashCode();
+#else
+            int hash = 17;
+            hash = hash * 31 + Sec.GetHashCode();
+            hash = hash * 31 + Min.GetHashCode();
+            hash = hash * 31 + Hour.GetHashCode();
+            hash = hash * 31 + MDay.GetHashCode();
+            hash = hash * 31 + Mon.GetHashCode();
+            hash = hash * 31 + Year.GetHashCode();
+            hash = hash * 31 + WDay.GetHashCode();
+            hash = hash * 31 + YDay.GetHashCode();
+            hash = hash * 31 + IsDst.GetHashCode();
+            return hash;
+#endif
         }
 
         public static bool operator ==(Tm left, Tm right)

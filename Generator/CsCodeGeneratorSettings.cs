@@ -53,9 +53,21 @@
 
         public bool GenerateSizeOfStructs { get; set; } = false;
 
-        public bool DelegatesAsVoidPointer { get; set; } = true;
+        public bool DelegatesAsVoidPointer { get; set; } = true;  
 
-        public bool GenerateDelegates { get; set; } = true;
+        public bool GenerateConstants { get; set; } = true;
+
+        public bool GenerateEnums { get; set; } = true;
+
+        public bool GenerateExtensions { get; set; } = false;
+
+        public bool GenerateFunctions { get; set; } = true;
+
+        public bool GenerateStructs { get; set; } = true;
+
+        public bool GenerateHandles { get; set; } = true;
+
+        public bool GenerateDelegates { get; set; } = true;     
 
         public bool UseDllImport => ImportType == ImportType.DllImport;
 
@@ -129,6 +141,10 @@
         public List<string> AllowedDelegates { get; set; } = new();
 
         public List<string> Usings { get; set; } = new();
+
+        public int VTableStart { get; set; }
+
+        public int VTableLength { get; internal set; }
 
         public void Save()
         {
