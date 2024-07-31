@@ -18,6 +18,7 @@
 		<PackageReference Include="Silk.NET.Direct3D11.Extensions.D3D11On12" Version="2.20.0" />
 		<PackageReference Include="Silk.NET.Direct3D12" Version="2.20.0" />
 		<PackageReference Include="Silk.NET.DXGI" Version="2.20.0" />
+		<PackageReference Include="Hexa.NET.Utilities" Version="2.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>

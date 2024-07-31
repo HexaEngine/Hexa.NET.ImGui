@@ -17,6 +17,102 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
+		public static bool DragFloatRange2(byte* label, float* vCurrentMin, float* vCurrentMax, float vSpeed, float vMin, float vMax, ref byte format, ref byte formatMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				fixed (byte* pformatMax = &formatMax)
+				{
+					byte ret = DragFloatRange2Native(label, vCurrentMin, vCurrentMax, vSpeed, vMin, vMax, (byte*)pformat, (byte*)pformatMax, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragFloatRange2(byte* label, float* vCurrentMin, float* vCurrentMax, float vSpeed, float vMin, float vMax, ref byte format, ref byte formatMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				fixed (byte* pformatMax = &formatMax)
+				{
+					byte ret = DragFloatRange2Native(label, vCurrentMin, vCurrentMax, vSpeed, vMin, vMax, (byte*)pformat, (byte*)pformatMax, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragFloatRange2(byte* label, float* vCurrentMin, float* vCurrentMax, float vSpeed, float vMin, ref byte format, ref byte formatMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				fixed (byte* pformatMax = &formatMax)
+				{
+					byte ret = DragFloatRange2Native(label, vCurrentMin, vCurrentMax, vSpeed, vMin, (float)(0.0f), (byte*)pformat, (byte*)pformatMax, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragFloatRange2(byte* label, float* vCurrentMin, float* vCurrentMax, float vSpeed, ref byte format, ref byte formatMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				fixed (byte* pformatMax = &formatMax)
+				{
+					byte ret = DragFloatRange2Native(label, vCurrentMin, vCurrentMax, vSpeed, (float)(0.0f), (float)(0.0f), (byte*)pformat, (byte*)pformatMax, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragFloatRange2(byte* label, float* vCurrentMin, float* vCurrentMax, ref byte format, ref byte formatMax)
+		{
+			fixed (byte* pformat = &format)
+			{
+				fixed (byte* pformatMax = &formatMax)
+				{
+					byte ret = DragFloatRange2Native(label, vCurrentMin, vCurrentMax, (float)(1.0f), (float)(0.0f), (float)(0.0f), (byte*)pformat, (byte*)pformatMax, (ImGuiSliderFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragFloatRange2(byte* label, float* vCurrentMin, float* vCurrentMax, float vSpeed, float vMin, ref byte format, ref byte formatMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				fixed (byte* pformatMax = &formatMax)
+				{
+					byte ret = DragFloatRange2Native(label, vCurrentMin, vCurrentMax, vSpeed, vMin, (float)(0.0f), (byte*)pformat, (byte*)pformatMax, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragFloatRange2(byte* label, float* vCurrentMin, float* vCurrentMax, float vSpeed, ref byte format, ref byte formatMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				fixed (byte* pformatMax = &formatMax)
+				{
+					byte ret = DragFloatRange2Native(label, vCurrentMin, vCurrentMax, vSpeed, (float)(0.0f), (float)(0.0f), (byte*)pformat, (byte*)pformatMax, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragFloatRange2(byte* label, float* vCurrentMin, float* vCurrentMax, ref byte format, ref byte formatMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* pformat = &format)
+			{
+				fixed (byte* pformatMax = &formatMax)
+				{
+					byte ret = DragFloatRange2Native(label, vCurrentMin, vCurrentMax, (float)(1.0f), (float)(0.0f), (float)(0.0f), (byte*)pformat, (byte*)pformatMax, flags);
+					return ret != 0;
+				}
+			}
+		}
+
 		public static bool DragFloatRange2(byte* label, float* vCurrentMin, float* vCurrentMax, float vSpeed, float vMin, float vMax, string format, string formatMax, ImGuiSliderFlags flags)
 		{
 			byte* pStr0 = null;
@@ -4921,102 +5017,6 @@ namespace Hexa.NET.ImGui
 		{
 			byte ret = DragIntNative(label, v, vSpeed, vMin, vMax, format, flags);
 			return ret != 0;
-		}
-
-		public static bool DragInt(byte* label, int* v, float vSpeed, int vMin, int vMax, byte* format)
-		{
-			byte ret = DragIntNative(label, v, vSpeed, vMin, vMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		public static bool DragInt(byte* label, int* v, float vSpeed, int vMin, int vMax)
-		{
-			bool ret = DragInt(label, v, vSpeed, vMin, vMax, (string)"%d", (ImGuiSliderFlags)(0));
-			return ret;
-		}
-
-		public static bool DragInt(byte* label, int* v, float vSpeed, int vMin)
-		{
-			bool ret = DragInt(label, v, vSpeed, vMin, (int)(0), (string)"%d", (ImGuiSliderFlags)(0));
-			return ret;
-		}
-
-		public static bool DragInt(byte* label, int* v, float vSpeed)
-		{
-			bool ret = DragInt(label, v, vSpeed, (int)(0), (int)(0), (string)"%d", (ImGuiSliderFlags)(0));
-			return ret;
-		}
-
-		public static bool DragInt(byte* label, int* v)
-		{
-			bool ret = DragInt(label, v, (float)(1.0f), (int)(0), (int)(0), (string)"%d", (ImGuiSliderFlags)(0));
-			return ret;
-		}
-
-		public static bool DragInt(byte* label, int* v, int vMin)
-		{
-			bool ret = DragInt(label, v, (float)(1.0f), vMin, (int)(0), (string)"%d", (ImGuiSliderFlags)(0));
-			return ret;
-		}
-
-		public static bool DragInt(byte* label, int* v, int vMin, int vMax)
-		{
-			bool ret = DragInt(label, v, (float)(1.0f), vMin, vMax, (string)"%d", (ImGuiSliderFlags)(0));
-			return ret;
-		}
-
-		public static bool DragInt(byte* label, int* v, float vSpeed, int vMin, byte* format)
-		{
-			byte ret = DragIntNative(label, v, vSpeed, vMin, (int)(0), format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		public static bool DragInt(byte* label, int* v, float vSpeed, byte* format)
-		{
-			byte ret = DragIntNative(label, v, vSpeed, (int)(0), (int)(0), format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		public static bool DragInt(byte* label, int* v, byte* format)
-		{
-			byte ret = DragIntNative(label, v, (float)(1.0f), (int)(0), (int)(0), format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		public static bool DragInt(byte* label, int* v, int vMin, byte* format)
-		{
-			byte ret = DragIntNative(label, v, (float)(1.0f), vMin, (int)(0), format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		public static bool DragInt(byte* label, int* v, int vMin, int vMax, byte* format)
-		{
-			byte ret = DragIntNative(label, v, (float)(1.0f), vMin, vMax, format, (ImGuiSliderFlags)(0));
-			return ret != 0;
-		}
-
-		public static bool DragInt(byte* label, int* v, float vSpeed, int vMin, int vMax, ImGuiSliderFlags flags)
-		{
-			bool ret = DragInt(label, v, vSpeed, vMin, vMax, (string)"%d", flags);
-			return ret;
-		}
-
-		public static bool DragInt(byte* label, int* v, float vSpeed, int vMin, ImGuiSliderFlags flags)
-		{
-			bool ret = DragInt(label, v, vSpeed, vMin, (int)(0), (string)"%d", flags);
-			return ret;
-		}
-
-		public static bool DragInt(byte* label, int* v, float vSpeed, ImGuiSliderFlags flags)
-		{
-			bool ret = DragInt(label, v, vSpeed, (int)(0), (int)(0), (string)"%d", flags);
-			return ret;
-		}
-
-		public static bool DragInt(byte* label, int* v, ImGuiSliderFlags flags)
-		{
-			bool ret = DragInt(label, v, (float)(1.0f), (int)(0), (int)(0), (string)"%d", flags);
-			return ret;
 		}
 	}
 }

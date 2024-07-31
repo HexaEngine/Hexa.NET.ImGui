@@ -6,7 +6,7 @@
     using System.Runtime.InteropServices;
     using System.Text;
 
-    public static unsafe partial class Utils
+    public static unsafe class Utils
     {
         public static readonly Guid D3DDebugObjectName = new(0x429b8c22, 0x9188, 0x4b0c, 0x87, 0x42, 0xac, 0xb0, 0xbf, 0x85, 0xc2, 0x00);
 
@@ -28,7 +28,7 @@
 
             byte* pName = (byte*)Marshal.AllocHGlobal((nint)len);
             child->GetPrivateData(&guid, &len, pName);
-            string str = ToStr(pName, len);
+            string str = Encoding.UTF8.GetString(new Span<byte>(pName, (int)len));
             Marshal.FreeHGlobal((nint)pName);
             return str;
         }
@@ -76,22 +76,6 @@
             {
                 throw new D3D11Exception(resultCode);
             }
-        }
-
-        internal static string ToStr(byte* name)
-        {
-            var bytes = MemoryMarshal.CreateReadOnlySpanFromNullTerminated(name);
-            return Encoding.UTF8.GetString(bytes);
-        }
-
-        internal static string ToStr(byte* name, int length)
-        {
-            return Encoding.UTF8.GetString(new Span<byte>(name, length));
-        }
-
-        internal static string ToStr(byte* name, uint length)
-        {
-            return Encoding.UTF8.GetString(new Span<byte>(name, (int)length));
         }
     }
 }

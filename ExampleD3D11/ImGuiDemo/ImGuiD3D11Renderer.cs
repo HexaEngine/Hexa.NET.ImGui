@@ -353,9 +353,9 @@ namespace ExampleD3D11.ImGuiDemo
             }
 ";
 
-                byte* pVertexShaderCode = vertexShaderCode.ToUTF8();
-                byte* pEntryPoint = "main".ToUTF8();
-                byte* pProfile = "vs_4_0".ToUTF8();
+                byte* pVertexShaderCode = vertexShaderCode.ToUTF8Ptr();
+                byte* pEntryPoint = "main".ToUTF8Ptr();
+                byte* pProfile = "vs_4_0".ToUTF8Ptr();
 
                 ID3D10Blob* vertexShaderBlob;
 
@@ -379,9 +379,9 @@ namespace ExampleD3D11.ImGuiDemo
                 // Create the input layout
                 InputElementDesc[] local_layout =
                 {
-                    new("POSITION".ToUTF8(), 0, Format.FormatR32G32Float,   0, 0,  InputClassification.PerVertexData, 0 )  ,
-                    new("TEXCOORD".ToUTF8(), 0, Format.FormatR32G32Float,   0, 8,  InputClassification.PerVertexData, 0 ),
-                    new("COLOR".ToUTF8(),    0, Format.FormatR8G8B8A8Unorm, 0, 16, InputClassification.PerVertexData, 0),
+                    new("POSITION".ToUTF8Ptr(), 0, Format.FormatR32G32Float,   0, 0,  InputClassification.PerVertexData, 0 )  ,
+                    new("TEXCOORD".ToUTF8Ptr(), 0, Format.FormatR32G32Float,   0, 8,  InputClassification.PerVertexData, 0 ),
+                    new("COLOR".ToUTF8Ptr(),    0, Format.FormatR8G8B8A8Unorm, 0, 16, InputClassification.PerVertexData, 0),
                 };
 
                 fixed (InputElementDesc* pLocal_layout = local_layout)
@@ -433,9 +433,9 @@ namespace ExampleD3D11.ImGuiDemo
             }
                 ";
 
-                byte* pPixelShaderCode = pixelShaderCode.ToUTF8();
-                byte* pEntryPoint = "main".ToUTF8();
-                byte* pProfile = "ps_4_0".ToUTF8();
+                byte* pPixelShaderCode = pixelShaderCode.ToUTF8Ptr();
+                byte* pEntryPoint = "main".ToUTF8Ptr();
+                byte* pProfile = "ps_4_0".ToUTF8Ptr();
 
                 ID3D10Blob* pixelShaderBlob;
                 HResult result = D3DCompiler.Compile(pPixelShaderCode, (nuint)pixelShaderCode.Length, (byte*)null, (D3DShaderMacro*)null, (ID3DInclude*)null, pEntryPoint, pProfile, 0, 0, &pixelShaderBlob, null);
@@ -591,9 +591,9 @@ namespace ExampleD3D11.ImGuiDemo
             Trace.Assert(io.BackendRendererUserData == null, "Already initialized a renderer backend!");
 
             // Setup backend capabilities flags
-            var bd = Alloc<RendererData>();
+            var bd = AllocT<RendererData>();
             io.BackendRendererUserData = bd;
-            io.BackendRendererName = "imgui_impl_dx11".ToUTF8();
+            io.BackendRendererName = "imgui_impl_dx11".ToUTF8Ptr();
             io.BackendFlags |= ImGuiBackendFlags.RendererHasVtxOffset; // We can honor the ImDrawCmd::VtxOffset field, allowing for large meshes.
             io.BackendFlags |= ImGuiBackendFlags.RendererHasViewports; // We can create multi-viewports on the Renderer side (optional)
 
@@ -676,7 +676,7 @@ namespace ExampleD3D11.ImGuiDemo
         private static unsafe void CreateWindow(ImGuiViewport* viewport)
         {
             RendererData* bd = GetBackendData();
-            ViewportData* vd = Alloc<ViewportData>();
+            ViewportData* vd = AllocT<ViewportData>();
             viewport->RendererUserData = vd;
 
             // PlatformHandleRaw should always be a HWND, whereas PlatformHandle might be a higher-level handle (e.g. GLFWWindow*, SDL_Window*).

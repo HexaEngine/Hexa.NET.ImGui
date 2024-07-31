@@ -5,7 +5,10 @@
   "UseLibraryImport": true,
   "GenerateSizeOfStructs": false,
   "KnownConstantNames": {},
-  "KnownEnumValueNames": { "": "" },
+  "KnownEnumValueNames": {
+    "ImGuiInputFlags_Repeat": "ImGuiInputFlags.Repeat",
+    "ImGuiItemFlags_AutoClosePopups": "ImGuiItemFlags.AutoClosePopups"
+  },
   "KnownEnumPrefixes": {},
   "KnownExtensionPrefixes": {},
   "KnownExtensionNames": {},

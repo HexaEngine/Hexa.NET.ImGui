@@ -7337,6 +7337,7 @@ namespace Hexa.NET.ImGui
 		public Vector2 TexUvWhitePixel;
 		public unsafe ImFont* Font;
 		public float FontSize;
+		public float FontScale;
 		public float CurveTessellationTol;
 		public float CircleSegmentMaxError;
 		public Vector4 ClipRectFullscreen;
@@ -7505,6 +7506,7 @@ namespace Hexa.NET.ImGui
 		public ref Vector2 TexUvWhitePixel => ref Unsafe.AsRef<Vector2>(&Handle->TexUvWhitePixel);
 		public ref ImFontPtr Font => ref Unsafe.AsRef<ImFontPtr>(&Handle->Font);
 		public ref float FontSize => ref Unsafe.AsRef<float>(&Handle->FontSize);
+		public ref float FontScale => ref Unsafe.AsRef<float>(&Handle->FontScale);
 		public ref float CurveTessellationTol => ref Unsafe.AsRef<float>(&Handle->CurveTessellationTol);
 		public ref float CircleSegmentMaxError => ref Unsafe.AsRef<float>(&Handle->CircleSegmentMaxError);
 		public ref Vector4 ClipRectFullscreen => ref Unsafe.AsRef<Vector4>(&Handle->ClipRectFullscreen);
@@ -17180,6 +17182,7 @@ namespace Hexa.NET.ImGui
 		public unsafe ImFont* Font;
 		public float FontSize;
 		public float FontBaseSize;
+		public float FontScale;
 		public float CurrentDpiScale;
 		public ImDrawListSharedData DrawListSharedData;
 		public double Time;
@@ -17439,7 +17442,7 @@ namespace Hexa.NET.ImGui
 		public ImVectorImGuiGroupData GroupStack;
 		public ImVectorImGuiPopupData OpenPopupStack;
 		public ImVectorImGuiPopupData BeginPopupStack;
-		public ImVectorImGuiNavTreeNodeData NavTreeNodeStack;
+		public ImVectorImGuiTreeNodeStackData TreeNodeStack;
 		public ImVectorImGuiViewportPPtr Viewports;
 		public unsafe ImGuiViewportP* CurrentViewport;
 		public unsafe ImGuiViewportP* MouseViewport;
@@ -17555,6 +17558,11 @@ namespace Hexa.NET.ImGui
 		public ImPoolImGuiTabBar TabBars;
 		public ImVectorImGuiPtrOrIndex CurrentTabBarStack;
 		public ImVectorImGuiShrinkWidthItem ShrinkWidthBuffer;
+		public ImGuiBoxSelectState BoxSelectState;
+		public unsafe ImGuiMultiSelectTempData* CurrentMultiSelect;
+		public int MultiSelectTempDataStacked;
+		public ImVectorImGuiMultiSelectTempData MultiSelectTempData;
+		public ImPoolImGuiMultiSelectState MultiSelectStorage;
 		public int HoverItemDelayId;
 		public int HoverItemDelayIdPreviousFrame;
 		public float HoverItemDelayTimer;
@@ -17620,6 +17628,7 @@ namespace Hexa.NET.ImGui
 		public unsafe byte* LocalizationTable_8;
 		public unsafe byte* LocalizationTable_9;
 		public unsafe byte* LocalizationTable_10;
+		public unsafe byte* LocalizationTable_11;
 		public byte LogEnabled;
 		public ImGuiLogType LogType;
 		public ImFileHandle LogFile;
@@ -17836,6 +17845,7 @@ namespace Hexa.NET.ImGui
 		public ref ImFontPtr Font => ref Unsafe.AsRef<ImFontPtr>(&Handle->Font);
 		public ref float FontSize => ref Unsafe.AsRef<float>(&Handle->FontSize);
 		public ref float FontBaseSize => ref Unsafe.AsRef<float>(&Handle->FontBaseSize);
+		public ref float FontScale => ref Unsafe.AsRef<float>(&Handle->FontScale);
 		public ref float CurrentDpiScale => ref Unsafe.AsRef<float>(&Handle->CurrentDpiScale);
 		public ref ImDrawListSharedData DrawListSharedData => ref Unsafe.AsRef<ImDrawListSharedData>(&Handle->DrawListSharedData);
 		public ref double Time => ref Unsafe.AsRef<double>(&Handle->Time);
@@ -17941,7 +17951,7 @@ namespace Hexa.NET.ImGui
 		public ref ImVectorImGuiGroupData GroupStack => ref Unsafe.AsRef<ImVectorImGuiGroupData>(&Handle->GroupStack);
 		public ref ImVectorImGuiPopupData OpenPopupStack => ref Unsafe.AsRef<ImVectorImGuiPopupData>(&Handle->OpenPopupStack);
 		public ref ImVectorImGuiPopupData BeginPopupStack => ref Unsafe.AsRef<ImVectorImGuiPopupData>(&Handle->BeginPopupStack);
-		public ref ImVectorImGuiNavTreeNodeData NavTreeNodeStack => ref Unsafe.AsRef<ImVectorImGuiNavTreeNodeData>(&Handle->NavTreeNodeStack);
+		public ref ImVectorImGuiTreeNodeStackData TreeNodeStack => ref Unsafe.AsRef<ImVectorImGuiTreeNodeStackData>(&Handle->TreeNodeStack);
 		public ref ImVectorImGuiViewportPPtr Viewports => ref Unsafe.AsRef<ImVectorImGuiViewportPPtr>(&Handle->Viewports);
 		public ref ImGuiViewportPPtr CurrentViewport => ref Unsafe.AsRef<ImGuiViewportPPtr>(&Handle->CurrentViewport);
 		public ref ImGuiViewportPPtr MouseViewport => ref Unsafe.AsRef<ImGuiViewportPPtr>(&Handle->MouseViewport);
@@ -18049,6 +18059,11 @@ namespace Hexa.NET.ImGui
 		public ref ImPoolImGuiTabBar TabBars => ref Unsafe.AsRef<ImPoolImGuiTabBar>(&Handle->TabBars);
 		public ref ImVectorImGuiPtrOrIndex CurrentTabBarStack => ref Unsafe.AsRef<ImVectorImGuiPtrOrIndex>(&Handle->CurrentTabBarStack);
 		public ref ImVectorImGuiShrinkWidthItem ShrinkWidthBuffer => ref Unsafe.AsRef<ImVectorImGuiShrinkWidthItem>(&Handle->ShrinkWidthBuffer);
+		public ref ImGuiBoxSelectState BoxSelectState => ref Unsafe.AsRef<ImGuiBoxSelectState>(&Handle->BoxSelectState);
+		public ref ImGuiMultiSelectTempDataPtr CurrentMultiSelect => ref Unsafe.AsRef<ImGuiMultiSelectTempDataPtr>(&Handle->CurrentMultiSelect);
+		public ref int MultiSelectTempDataStacked => ref Unsafe.AsRef<int>(&Handle->MultiSelectTempDataStacked);
+		public ref ImVectorImGuiMultiSelectTempData MultiSelectTempData => ref Unsafe.AsRef<ImVectorImGuiMultiSelectTempData>(&Handle->MultiSelectTempData);
+		public ref ImPoolImGuiMultiSelectState MultiSelectStorage => ref Unsafe.AsRef<ImPoolImGuiMultiSelectState>(&Handle->MultiSelectStorage);
 		public ref int HoverItemDelayId => ref Unsafe.AsRef<int>(&Handle->HoverItemDelayId);
 		public ref int HoverItemDelayIdPreviousFrame => ref Unsafe.AsRef<int>(&Handle->HoverItemDelayIdPreviousFrame);
 		public ref float HoverItemDelayTimer => ref Unsafe.AsRef<float>(&Handle->HoverItemDelayTimer);
@@ -18183,6 +18198,7 @@ namespace Hexa.NET.ImGui
 		public byte ConfigViewportsNoDefaultParent;
 		public byte MouseDrawCursor;
 		public byte ConfigMacOSXBehaviors;
+		public byte ConfigNavSwapGamepadButtons;
 		public byte ConfigInputTrickleEventQueue;
 		public byte ConfigInputTextCursorBlink;
 		public byte ConfigInputTextEnterKeepActive;
@@ -18208,7 +18224,9 @@ namespace Hexa.NET.ImGui
 		public unsafe void* GetClipboardTextFn;
 		public unsafe void* SetClipboardTextFn;
 		public unsafe void* ClipboardUserData;
-		public unsafe void* SetPlatformImeDataFn;
+		public unsafe void* PlatformOpenInShellFn;
+		public unsafe void* PlatformOpenInShellUserData;
+		public unsafe void* PlatformSetImeDataFn;
 		public char PlatformLocaleDecimalPoint;
 		public byte WantCaptureMouse;
 		public byte WantCaptureKeyboard;
@@ -18745,6 +18763,7 @@ namespace Hexa.NET.ImGui
 		public ref bool ConfigViewportsNoDefaultParent => ref Unsafe.AsRef<bool>(&Handle->ConfigViewportsNoDefaultParent);
 		public ref bool MouseDrawCursor => ref Unsafe.AsRef<bool>(&Handle->MouseDrawCursor);
 		public ref bool ConfigMacOSXBehaviors => ref Unsafe.AsRef<bool>(&Handle->ConfigMacOSXBehaviors);
+		public ref bool ConfigNavSwapGamepadButtons => ref Unsafe.AsRef<bool>(&Handle->ConfigNavSwapGamepadButtons);
 		public ref bool ConfigInputTrickleEventQueue => ref Unsafe.AsRef<bool>(&Handle->ConfigInputTrickleEventQueue);
 		public ref bool ConfigInputTextCursorBlink => ref Unsafe.AsRef<bool>(&Handle->ConfigInputTextCursorBlink);
 		public ref bool ConfigInputTextEnterKeepActive => ref Unsafe.AsRef<bool>(&Handle->ConfigInputTextEnterKeepActive);
@@ -18770,7 +18789,9 @@ namespace Hexa.NET.ImGui
 		public void* GetClipboardTextFn { get => Handle->GetClipboardTextFn; set => Handle->GetClipboardTextFn = value; }
 		public void* SetClipboardTextFn { get => Handle->SetClipboardTextFn; set => Handle->SetClipboardTextFn = value; }
 		public void* ClipboardUserData { get => Handle->ClipboardUserData; set => Handle->ClipboardUserData = value; }
-		public void* SetPlatformImeDataFn { get => Handle->SetPlatformImeDataFn; set => Handle->SetPlatformImeDataFn = value; }
+		public void* PlatformOpenInShellFn { get => Handle->PlatformOpenInShellFn; set => Handle->PlatformOpenInShellFn = value; }
+		public void* PlatformOpenInShellUserData { get => Handle->PlatformOpenInShellUserData; set => Handle->PlatformOpenInShellUserData = value; }
+		public void* PlatformSetImeDataFn { get => Handle->PlatformSetImeDataFn; set => Handle->PlatformSetImeDataFn = value; }
 		public ref char PlatformLocaleDecimalPoint => ref Unsafe.AsRef<char>(&Handle->PlatformLocaleDecimalPoint);
 		public ref bool WantCaptureMouse => ref Unsafe.AsRef<bool>(&Handle->WantCaptureMouse);
 		public ref bool WantCaptureKeyboard => ref Unsafe.AsRef<bool>(&Handle->WantCaptureKeyboard);
@@ -19386,6 +19407,7 @@ namespace Hexa.NET.ImGui
 		public float TabBorderSize;
 		public float TabMinWidthForCloseButton;
 		public float TabBarBorderSize;
+		public float TabBarOverlineSize;
 		public float TableAngledHeadersAngle;
 		public Vector2 TableAngledHeadersTextAlign;
 		public ImGuiDir ColorButtonPosition;
@@ -19460,6 +19482,7 @@ namespace Hexa.NET.ImGui
 		public Vector4 Colors_54;
 		public Vector4 Colors_55;
 		public Vector4 Colors_56;
+		public Vector4 Colors_57;
 		public float HoverStationaryDelay;
 		public float HoverDelayShort;
 		public float HoverDelayNormal;
@@ -19473,7 +19496,7 @@ namespace Hexa.NET.ImGui
 			{
 				fixed (Vector4* p = &this.Colors_0)
 				{
-					return new Span<Vector4>(p, 57);
+					return new Span<Vector4>(p, 58);
 				}
 			}
 		}
@@ -19558,6 +19581,7 @@ namespace Hexa.NET.ImGui
 		public ref float TabBorderSize => ref Unsafe.AsRef<float>(&Handle->TabBorderSize);
 		public ref float TabMinWidthForCloseButton => ref Unsafe.AsRef<float>(&Handle->TabMinWidthForCloseButton);
 		public ref float TabBarBorderSize => ref Unsafe.AsRef<float>(&Handle->TabBarBorderSize);
+		public ref float TabBarOverlineSize => ref Unsafe.AsRef<float>(&Handle->TabBarOverlineSize);
 		public ref float TableAngledHeadersAngle => ref Unsafe.AsRef<float>(&Handle->TableAngledHeadersAngle);
 		public ref Vector2 TableAngledHeadersTextAlign => ref Unsafe.AsRef<Vector2>(&Handle->TableAngledHeadersTextAlign);
 		public ref ImGuiDir ColorButtonPosition => ref Unsafe.AsRef<ImGuiDir>(&Handle->ColorButtonPosition);
@@ -19580,7 +19604,7 @@ namespace Hexa.NET.ImGui
 		{
 			get
 			{
-				return new Span<Vector4>(&Handle->Colors_0, 57);
+				return new Span<Vector4>(&Handle->Colors_0, 58);
 			}
 		}
 		public ref float HoverStationaryDelay => ref Unsafe.AsRef<float>(&Handle->HoverStationaryDelay);
@@ -20476,7 +20500,7 @@ namespace Hexa.NET.ImGui
 		public Vector2 MenuBarOffset;
 		public ImGuiMenuColumns MenuColumns;
 		public int TreeDepth;
-		public uint TreeJumpToParentOnPopMask;
+		public uint TreeHasStackDataDepthMask;
 		public ImVectorImGuiWindowPtr ChildWindows;
 		public unsafe ImGuiStorage* StateStorage;
 		public unsafe ImGuiOldColumns* CurrentColumns;
@@ -22862,6 +22886,7 @@ public unsafe void appendf(string fmt)
 	{
 		public ImGuiNextItemDataFlags Flags;
 		public ImGuiItemFlags ItemFlags;
+		public int FocusScopeId;
 		public long SelectionUserData;
 		public float Width;
 		public int Shortcut;
@@ -22869,6 +22894,7 @@ public unsafe void appendf(string fmt)
 		public byte OpenVal;
 		public byte OpenCond;
 		public ImGuiDataTypeStorage RefVal;
+		public int StorageId;
 
 	}
 
@@ -22906,6 +22932,7 @@ public unsafe void appendf(string fmt)
 		private string DebuggerDisplay => string.Format("ImGuiNextItemDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		public ref ImGuiNextItemDataFlags Flags => ref Unsafe.AsRef<ImGuiNextItemDataFlags>(&Handle->Flags);
 		public ref ImGuiItemFlags ItemFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->ItemFlags);
+		public ref int FocusScopeId => ref Unsafe.AsRef<int>(&Handle->FocusScopeId);
 		public ref long SelectionUserData => ref Unsafe.AsRef<long>(&Handle->SelectionUserData);
 		public ref float Width => ref Unsafe.AsRef<float>(&Handle->Width);
 		public ref int Shortcut => ref Unsafe.AsRef<int>(&Handle->Shortcut);
@@ -22913,6 +22940,7 @@ public unsafe void appendf(string fmt)
 		public ref bool OpenVal => ref Unsafe.AsRef<bool>(&Handle->OpenVal);
 		public ref byte OpenCond => ref Unsafe.AsRef<byte>(&Handle->OpenCond);
 		public ref ImGuiDataTypeStorage RefVal => ref Unsafe.AsRef<ImGuiDataTypeStorage>(&Handle->RefVal);
+		public ref int StorageId => ref Unsafe.AsRef<int>(&Handle->StorageId);
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -23346,56 +23374,58 @@ public unsafe void appendf(string fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiNavTreeNodeData
+	public partial struct ImVectorImGuiTreeNodeStackData
 	{
 		public int Size;
 		public int Capacity;
-		public unsafe ImGuiNavTreeNodeData* Data;
+		public unsafe ImGuiTreeNodeStackData* Data;
 
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImGuiNavTreeNodeData
+	public partial struct ImGuiTreeNodeStackData
 	{
 		public int ID;
+		public ImGuiTreeNodeFlags TreeFlags;
 		public ImGuiItemFlags InFlags;
 		public ImRect NavRect;
 
 	}
 
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	public unsafe struct ImGuiNavTreeNodeDataPtr : IEquatable<ImGuiNavTreeNodeDataPtr>
+	public unsafe struct ImGuiTreeNodeStackDataPtr : IEquatable<ImGuiTreeNodeStackDataPtr>
 	{
-		public ImGuiNavTreeNodeDataPtr(ImGuiNavTreeNodeData* handle) { Handle = handle; }
+		public ImGuiTreeNodeStackDataPtr(ImGuiTreeNodeStackData* handle) { Handle = handle; }
 
-		public ImGuiNavTreeNodeData* Handle;
+		public ImGuiTreeNodeStackData* Handle;
 
 		public bool IsNull => Handle == null;
 
-		public static ImGuiNavTreeNodeDataPtr Null => new ImGuiNavTreeNodeDataPtr(null);
+		public static ImGuiTreeNodeStackDataPtr Null => new ImGuiTreeNodeStackDataPtr(null);
 
-		public static implicit operator ImGuiNavTreeNodeDataPtr(ImGuiNavTreeNodeData* handle) => new ImGuiNavTreeNodeDataPtr(handle);
+		public static implicit operator ImGuiTreeNodeStackDataPtr(ImGuiTreeNodeStackData* handle) => new ImGuiTreeNodeStackDataPtr(handle);
 
-		public static implicit operator ImGuiNavTreeNodeData*(ImGuiNavTreeNodeDataPtr handle) => handle.Handle;
+		public static implicit operator ImGuiTreeNodeStackData*(ImGuiTreeNodeStackDataPtr handle) => handle.Handle;
 
-		public static bool operator ==(ImGuiNavTreeNodeDataPtr left, ImGuiNavTreeNodeDataPtr right) => left.Handle == right.Handle;
+		public static bool operator ==(ImGuiTreeNodeStackDataPtr left, ImGuiTreeNodeStackDataPtr right) => left.Handle == right.Handle;
 
-		public static bool operator !=(ImGuiNavTreeNodeDataPtr left, ImGuiNavTreeNodeDataPtr right) => left.Handle != right.Handle;
+		public static bool operator !=(ImGuiTreeNodeStackDataPtr left, ImGuiTreeNodeStackDataPtr right) => left.Handle != right.Handle;
 
-		public static bool operator ==(ImGuiNavTreeNodeDataPtr left, ImGuiNavTreeNodeData* right) => left.Handle == right;
+		public static bool operator ==(ImGuiTreeNodeStackDataPtr left, ImGuiTreeNodeStackData* right) => left.Handle == right;
 
-		public static bool operator !=(ImGuiNavTreeNodeDataPtr left, ImGuiNavTreeNodeData* right) => left.Handle != right;
+		public static bool operator !=(ImGuiTreeNodeStackDataPtr left, ImGuiTreeNodeStackData* right) => left.Handle != right;
 
-		public bool Equals(ImGuiNavTreeNodeDataPtr other) => Handle == other.Handle;
+		public bool Equals(ImGuiTreeNodeStackDataPtr other) => Handle == other.Handle;
 
 		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImGuiNavTreeNodeDataPtr handle && Equals(handle);
+		public override bool Equals(object obj) => obj is ImGuiTreeNodeStackDataPtr handle && Equals(handle);
 
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
-		private string DebuggerDisplay => string.Format("ImGuiNavTreeNodeDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		private string DebuggerDisplay => string.Format("ImGuiTreeNodeStackDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
+		public ref ImGuiTreeNodeFlags TreeFlags => ref Unsafe.AsRef<ImGuiTreeNodeFlags>(&Handle->TreeFlags);
 		public ref ImGuiItemFlags InFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->InFlags);
 		public ref ImRect NavRect => ref Unsafe.AsRef<ImRect>(&Handle->NavRect);
 	}
@@ -23790,6 +23820,7 @@ public unsafe void appendf(string fmt)
 		public int ItemsCount;
 		public float ItemsHeight;
 		public float StartPosY;
+		public double StartSeekOffsetY;
 		public unsafe void* TempData;
 
 
@@ -23838,6 +23869,14 @@ public unsafe void appendf(string fmt)
 			fixed (ImGuiListClipper* @this = &this)
 			{
 				ImGui.IncludeItemsByIndexNative(@this, itemBegin, itemEnd);
+			}
+		}
+
+		public unsafe void SeekCursorForItem(int itemIndex)
+		{
+			fixed (ImGuiListClipper* @this = &this)
+			{
+				ImGui.SeekCursorForItemNative(@this, itemIndex);
 			}
 		}
 
@@ -23890,6 +23929,7 @@ public unsafe void appendf(string fmt)
 		public ref int ItemsCount => ref Unsafe.AsRef<int>(&Handle->ItemsCount);
 		public ref float ItemsHeight => ref Unsafe.AsRef<float>(&Handle->ItemsHeight);
 		public ref float StartPosY => ref Unsafe.AsRef<float>(&Handle->StartPosY);
+		public ref double StartSeekOffsetY => ref Unsafe.AsRef<double>(&Handle->StartSeekOffsetY);
 		public void* TempData { get => Handle->TempData; set => Handle->TempData = value; }
 
 		public unsafe void Begin(int itemsCount, float itemsHeight)
@@ -23920,6 +23960,11 @@ public unsafe void appendf(string fmt)
 		public unsafe void IncludeItemsByIndex(int itemBegin, int itemEnd)
 		{
 			ImGui.IncludeItemsByIndexNative(Handle, itemBegin, itemEnd);
+		}
+
+		public unsafe void SeekCursorForItem(int itemIndex)
+		{
+			ImGui.SeekCursorForItemNative(Handle, itemIndex);
 		}
 
 		public unsafe bool Step()
@@ -24923,6 +24968,343 @@ public unsafe void appendf(string fmt)
 		public ref int Index => ref Unsafe.AsRef<int>(&Handle->Index);
 		public ref float Width => ref Unsafe.AsRef<float>(&Handle->Width);
 		public ref float InitialWidth => ref Unsafe.AsRef<float>(&Handle->InitialWidth);
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiBoxSelectState
+	{
+		public int ID;
+		public byte IsActive;
+		public byte IsStarting;
+		public byte IsStartedFromVoid;
+		public byte IsStartedSetNavIdOnce;
+		public byte RequestClear;
+		public int KeyMods;
+		public Vector2 StartPosRel;
+		public Vector2 EndPosRel;
+		public Vector2 ScrollAccum;
+		public unsafe ImGuiWindow* Window;
+		public byte UnclipMode;
+		public ImRect UnclipRect;
+		public ImRect BoxSelectRectPrev;
+		public ImRect BoxSelectRectCurr;
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImGuiBoxSelectStatePtr : IEquatable<ImGuiBoxSelectStatePtr>
+	{
+		public ImGuiBoxSelectStatePtr(ImGuiBoxSelectState* handle) { Handle = handle; }
+
+		public ImGuiBoxSelectState* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImGuiBoxSelectStatePtr Null => new ImGuiBoxSelectStatePtr(null);
+
+		public static implicit operator ImGuiBoxSelectStatePtr(ImGuiBoxSelectState* handle) => new ImGuiBoxSelectStatePtr(handle);
+
+		public static implicit operator ImGuiBoxSelectState*(ImGuiBoxSelectStatePtr handle) => handle.Handle;
+
+		public static bool operator ==(ImGuiBoxSelectStatePtr left, ImGuiBoxSelectStatePtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImGuiBoxSelectStatePtr left, ImGuiBoxSelectStatePtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImGuiBoxSelectStatePtr left, ImGuiBoxSelectState* right) => left.Handle == right;
+
+		public static bool operator !=(ImGuiBoxSelectStatePtr left, ImGuiBoxSelectState* right) => left.Handle != right;
+
+		public bool Equals(ImGuiBoxSelectStatePtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImGuiBoxSelectStatePtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImGuiBoxSelectStatePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
+		public ref bool IsActive => ref Unsafe.AsRef<bool>(&Handle->IsActive);
+		public ref bool IsStarting => ref Unsafe.AsRef<bool>(&Handle->IsStarting);
+		public ref bool IsStartedFromVoid => ref Unsafe.AsRef<bool>(&Handle->IsStartedFromVoid);
+		public ref bool IsStartedSetNavIdOnce => ref Unsafe.AsRef<bool>(&Handle->IsStartedSetNavIdOnce);
+		public ref bool RequestClear => ref Unsafe.AsRef<bool>(&Handle->RequestClear);
+		public ref int KeyMods => ref Unsafe.AsRef<int>(&Handle->KeyMods);
+		public ref Vector2 StartPosRel => ref Unsafe.AsRef<Vector2>(&Handle->StartPosRel);
+		public ref Vector2 EndPosRel => ref Unsafe.AsRef<Vector2>(&Handle->EndPosRel);
+		public ref Vector2 ScrollAccum => ref Unsafe.AsRef<Vector2>(&Handle->ScrollAccum);
+		public ref ImGuiWindowPtr Window => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->Window);
+		public ref bool UnclipMode => ref Unsafe.AsRef<bool>(&Handle->UnclipMode);
+		public ref ImRect UnclipRect => ref Unsafe.AsRef<ImRect>(&Handle->UnclipRect);
+		public ref ImRect BoxSelectRectPrev => ref Unsafe.AsRef<ImRect>(&Handle->BoxSelectRectPrev);
+		public ref ImRect BoxSelectRectCurr => ref Unsafe.AsRef<ImRect>(&Handle->BoxSelectRectCurr);
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiMultiSelectTempData
+	{
+		public ImGuiMultiSelectIO IO;
+		public unsafe ImGuiMultiSelectState* Storage;
+		public int FocusScopeId;
+		public ImGuiMultiSelectFlags Flags;
+		public Vector2 ScopeRectMin;
+		public Vector2 BackupCursorMaxPos;
+		public long LastSubmittedItem;
+		public int BoxSelectId;
+		public int KeyMods;
+		public sbyte LoopRequestSetAll;
+		public byte IsEndIO;
+		public byte IsFocused;
+		public byte IsKeyboardSetRange;
+		public byte NavIdPassedBy;
+		public byte RangeSrcPassedBy;
+		public byte RangeDstPassedBy;
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImGuiMultiSelectTempDataPtr : IEquatable<ImGuiMultiSelectTempDataPtr>
+	{
+		public ImGuiMultiSelectTempDataPtr(ImGuiMultiSelectTempData* handle) { Handle = handle; }
+
+		public ImGuiMultiSelectTempData* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImGuiMultiSelectTempDataPtr Null => new ImGuiMultiSelectTempDataPtr(null);
+
+		public static implicit operator ImGuiMultiSelectTempDataPtr(ImGuiMultiSelectTempData* handle) => new ImGuiMultiSelectTempDataPtr(handle);
+
+		public static implicit operator ImGuiMultiSelectTempData*(ImGuiMultiSelectTempDataPtr handle) => handle.Handle;
+
+		public static bool operator ==(ImGuiMultiSelectTempDataPtr left, ImGuiMultiSelectTempDataPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImGuiMultiSelectTempDataPtr left, ImGuiMultiSelectTempDataPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImGuiMultiSelectTempDataPtr left, ImGuiMultiSelectTempData* right) => left.Handle == right;
+
+		public static bool operator !=(ImGuiMultiSelectTempDataPtr left, ImGuiMultiSelectTempData* right) => left.Handle != right;
+
+		public bool Equals(ImGuiMultiSelectTempDataPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImGuiMultiSelectTempDataPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImGuiMultiSelectTempDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref ImGuiMultiSelectIO IO => ref Unsafe.AsRef<ImGuiMultiSelectIO>(&Handle->IO);
+		public ref ImGuiMultiSelectStatePtr Storage => ref Unsafe.AsRef<ImGuiMultiSelectStatePtr>(&Handle->Storage);
+		public ref int FocusScopeId => ref Unsafe.AsRef<int>(&Handle->FocusScopeId);
+		public ref ImGuiMultiSelectFlags Flags => ref Unsafe.AsRef<ImGuiMultiSelectFlags>(&Handle->Flags);
+		public ref Vector2 ScopeRectMin => ref Unsafe.AsRef<Vector2>(&Handle->ScopeRectMin);
+		public ref Vector2 BackupCursorMaxPos => ref Unsafe.AsRef<Vector2>(&Handle->BackupCursorMaxPos);
+		public ref long LastSubmittedItem => ref Unsafe.AsRef<long>(&Handle->LastSubmittedItem);
+		public ref int BoxSelectId => ref Unsafe.AsRef<int>(&Handle->BoxSelectId);
+		public ref int KeyMods => ref Unsafe.AsRef<int>(&Handle->KeyMods);
+		public ref sbyte LoopRequestSetAll => ref Unsafe.AsRef<sbyte>(&Handle->LoopRequestSetAll);
+		public ref bool IsEndIO => ref Unsafe.AsRef<bool>(&Handle->IsEndIO);
+		public ref bool IsFocused => ref Unsafe.AsRef<bool>(&Handle->IsFocused);
+		public ref bool IsKeyboardSetRange => ref Unsafe.AsRef<bool>(&Handle->IsKeyboardSetRange);
+		public ref bool NavIdPassedBy => ref Unsafe.AsRef<bool>(&Handle->NavIdPassedBy);
+		public ref bool RangeSrcPassedBy => ref Unsafe.AsRef<bool>(&Handle->RangeSrcPassedBy);
+		public ref bool RangeDstPassedBy => ref Unsafe.AsRef<bool>(&Handle->RangeDstPassedBy);
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiMultiSelectIO
+	{
+		public ImVectorImGuiSelectionRequest Requests;
+		public long RangeSrcItem;
+		public long NavIdItem;
+		public byte NavIdSelected;
+		public byte RangeSrcReset;
+		public int ItemsCount;
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImGuiMultiSelectIOPtr : IEquatable<ImGuiMultiSelectIOPtr>
+	{
+		public ImGuiMultiSelectIOPtr(ImGuiMultiSelectIO* handle) { Handle = handle; }
+
+		public ImGuiMultiSelectIO* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImGuiMultiSelectIOPtr Null => new ImGuiMultiSelectIOPtr(null);
+
+		public static implicit operator ImGuiMultiSelectIOPtr(ImGuiMultiSelectIO* handle) => new ImGuiMultiSelectIOPtr(handle);
+
+		public static implicit operator ImGuiMultiSelectIO*(ImGuiMultiSelectIOPtr handle) => handle.Handle;
+
+		public static bool operator ==(ImGuiMultiSelectIOPtr left, ImGuiMultiSelectIOPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImGuiMultiSelectIOPtr left, ImGuiMultiSelectIOPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImGuiMultiSelectIOPtr left, ImGuiMultiSelectIO* right) => left.Handle == right;
+
+		public static bool operator !=(ImGuiMultiSelectIOPtr left, ImGuiMultiSelectIO* right) => left.Handle != right;
+
+		public bool Equals(ImGuiMultiSelectIOPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImGuiMultiSelectIOPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImGuiMultiSelectIOPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref ImVectorImGuiSelectionRequest Requests => ref Unsafe.AsRef<ImVectorImGuiSelectionRequest>(&Handle->Requests);
+		public ref long RangeSrcItem => ref Unsafe.AsRef<long>(&Handle->RangeSrcItem);
+		public ref long NavIdItem => ref Unsafe.AsRef<long>(&Handle->NavIdItem);
+		public ref bool NavIdSelected => ref Unsafe.AsRef<bool>(&Handle->NavIdSelected);
+		public ref bool RangeSrcReset => ref Unsafe.AsRef<bool>(&Handle->RangeSrcReset);
+		public ref int ItemsCount => ref Unsafe.AsRef<int>(&Handle->ItemsCount);
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImVectorImGuiSelectionRequest
+	{
+		public int Size;
+		public int Capacity;
+		public unsafe ImGuiSelectionRequest* Data;
+
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiSelectionRequest
+	{
+		public ImGuiSelectionRequestType Type;
+		public byte Selected;
+		public sbyte RangeDirection;
+		public long RangeFirstItem;
+		public long RangeLastItem;
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImGuiSelectionRequestPtr : IEquatable<ImGuiSelectionRequestPtr>
+	{
+		public ImGuiSelectionRequestPtr(ImGuiSelectionRequest* handle) { Handle = handle; }
+
+		public ImGuiSelectionRequest* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImGuiSelectionRequestPtr Null => new ImGuiSelectionRequestPtr(null);
+
+		public static implicit operator ImGuiSelectionRequestPtr(ImGuiSelectionRequest* handle) => new ImGuiSelectionRequestPtr(handle);
+
+		public static implicit operator ImGuiSelectionRequest*(ImGuiSelectionRequestPtr handle) => handle.Handle;
+
+		public static bool operator ==(ImGuiSelectionRequestPtr left, ImGuiSelectionRequestPtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImGuiSelectionRequestPtr left, ImGuiSelectionRequestPtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImGuiSelectionRequestPtr left, ImGuiSelectionRequest* right) => left.Handle == right;
+
+		public static bool operator !=(ImGuiSelectionRequestPtr left, ImGuiSelectionRequest* right) => left.Handle != right;
+
+		public bool Equals(ImGuiSelectionRequestPtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImGuiSelectionRequestPtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImGuiSelectionRequestPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref ImGuiSelectionRequestType Type => ref Unsafe.AsRef<ImGuiSelectionRequestType>(&Handle->Type);
+		public ref bool Selected => ref Unsafe.AsRef<bool>(&Handle->Selected);
+		public ref sbyte RangeDirection => ref Unsafe.AsRef<sbyte>(&Handle->RangeDirection);
+		public ref long RangeFirstItem => ref Unsafe.AsRef<long>(&Handle->RangeFirstItem);
+		public ref long RangeLastItem => ref Unsafe.AsRef<long>(&Handle->RangeLastItem);
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiMultiSelectState
+	{
+		public unsafe ImGuiWindow* Window;
+		public int ID;
+		public int LastFrameActive;
+		public int LastSelectionSize;
+		public sbyte RangeSelected;
+		public sbyte NavIdSelected;
+		public long RangeSrcItem;
+		public long NavIdItem;
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImGuiMultiSelectStatePtr : IEquatable<ImGuiMultiSelectStatePtr>
+	{
+		public ImGuiMultiSelectStatePtr(ImGuiMultiSelectState* handle) { Handle = handle; }
+
+		public ImGuiMultiSelectState* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImGuiMultiSelectStatePtr Null => new ImGuiMultiSelectStatePtr(null);
+
+		public static implicit operator ImGuiMultiSelectStatePtr(ImGuiMultiSelectState* handle) => new ImGuiMultiSelectStatePtr(handle);
+
+		public static implicit operator ImGuiMultiSelectState*(ImGuiMultiSelectStatePtr handle) => handle.Handle;
+
+		public static bool operator ==(ImGuiMultiSelectStatePtr left, ImGuiMultiSelectStatePtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImGuiMultiSelectStatePtr left, ImGuiMultiSelectStatePtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImGuiMultiSelectStatePtr left, ImGuiMultiSelectState* right) => left.Handle == right;
+
+		public static bool operator !=(ImGuiMultiSelectStatePtr left, ImGuiMultiSelectState* right) => left.Handle != right;
+
+		public bool Equals(ImGuiMultiSelectStatePtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImGuiMultiSelectStatePtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImGuiMultiSelectStatePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref ImGuiWindowPtr Window => ref Unsafe.AsRef<ImGuiWindowPtr>(&Handle->Window);
+		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
+		public ref int LastFrameActive => ref Unsafe.AsRef<int>(&Handle->LastFrameActive);
+		public ref int LastSelectionSize => ref Unsafe.AsRef<int>(&Handle->LastSelectionSize);
+		public ref sbyte RangeSelected => ref Unsafe.AsRef<sbyte>(&Handle->RangeSelected);
+		public ref sbyte NavIdSelected => ref Unsafe.AsRef<sbyte>(&Handle->NavIdSelected);
+		public ref long RangeSrcItem => ref Unsafe.AsRef<long>(&Handle->RangeSrcItem);
+		public ref long NavIdItem => ref Unsafe.AsRef<long>(&Handle->NavIdItem);
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImVectorImGuiMultiSelectTempData
+	{
+		public int Size;
+		public int Capacity;
+		public unsafe ImGuiMultiSelectTempData* Data;
+
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImPoolImGuiMultiSelectState
+	{
+		public ImVectorImGuiMultiSelectState Buf;
+		public ImGuiStorage Map;
+		public int FreeIdx;
+		public int AliveCount;
+
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImVectorImGuiMultiSelectState
+	{
+		public int Size;
+		public int Capacity;
+		public unsafe ImGuiMultiSelectState* Data;
+
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -27589,6 +27971,320 @@ public unsafe void appendf(string fmt)
 
 		private string DebuggerDisplay => string.Format("ImGuiOnceUponAFramePtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		public ref int RefFrame => ref Unsafe.AsRef<int>(&Handle->RefFrame);
+
+		public unsafe void Destroy()
+		{
+			ImGui.DestroyNative(Handle);
+		}
+
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiSelectionBasicStorage
+	{
+		public int Size;
+		public byte PreserveOrder;
+		public unsafe void* UserData;
+		public unsafe void* AdapterIndexToStorageId;
+		public int SelectionOrder;
+		public ImGuiStorage Storage;
+
+
+		public unsafe void ApplyRequests(ImGuiMultiSelectIOPtr msIo)
+		{
+			fixed (ImGuiSelectionBasicStorage* @this = &this)
+			{
+				ImGui.ApplyRequestsNative(@this, msIo);
+			}
+		}
+
+		public unsafe void ApplyRequests(ref ImGuiMultiSelectIO msIo)
+		{
+			fixed (ImGuiSelectionBasicStorage* @this = &this)
+			{
+				fixed (ImGuiMultiSelectIO* pmsIo = &msIo)
+				{
+					ImGui.ApplyRequestsNative(@this, (ImGuiMultiSelectIO*)pmsIo);
+				}
+			}
+		}
+
+		public unsafe void Clear()
+		{
+			fixed (ImGuiSelectionBasicStorage* @this = &this)
+			{
+				ImGui.ClearNative(@this);
+			}
+		}
+
+		public unsafe bool Contains(int id)
+		{
+			fixed (ImGuiSelectionBasicStorage* @this = &this)
+			{
+				byte ret = ImGui.ContainsNative(@this, id);
+				return ret != 0;
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiSelectionBasicStorage* @this = &this)
+			{
+				ImGui.DestroyNative(@this);
+			}
+		}
+
+		public unsafe bool GetNextSelectedItem(void** opaqueIt, int* outId)
+		{
+			fixed (ImGuiSelectionBasicStorage* @this = &this)
+			{
+				byte ret = ImGui.GetNextSelectedItemNative(@this, opaqueIt, outId);
+				return ret != 0;
+			}
+		}
+
+		public unsafe bool GetNextSelectedItem(void** opaqueIt, ref int outId)
+		{
+			fixed (ImGuiSelectionBasicStorage* @this = &this)
+			{
+				fixed (int* poutId = &outId)
+				{
+					byte ret = ImGui.GetNextSelectedItemNative(@this, opaqueIt, (int*)poutId);
+					return ret != 0;
+				}
+			}
+		}
+
+		public unsafe int GetStorageIdFromIndex(int idx)
+		{
+			fixed (ImGuiSelectionBasicStorage* @this = &this)
+			{
+				int ret = ImGui.GetStorageIdFromIndexNative(@this, idx);
+				return ret;
+			}
+		}
+
+		public unsafe void SetItemSelected(int id, bool selected)
+		{
+			fixed (ImGuiSelectionBasicStorage* @this = &this)
+			{
+				ImGui.SetItemSelectedNative(@this, id, selected ? (byte)1 : (byte)0);
+			}
+		}
+
+		public unsafe void Swap(ImGuiSelectionBasicStorage* r)
+		{
+			fixed (ImGuiSelectionBasicStorage* @this = &this)
+			{
+				ImGui.SwapNative(@this, r);
+			}
+		}
+
+		public unsafe void Swap(ref ImGuiSelectionBasicStorage r)
+		{
+			fixed (ImGuiSelectionBasicStorage* @this = &this)
+			{
+				fixed (ImGuiSelectionBasicStorage* pr = &r)
+				{
+					ImGui.SwapNative(@this, (ImGuiSelectionBasicStorage*)pr);
+				}
+			}
+		}
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImGuiSelectionBasicStoragePtr : IEquatable<ImGuiSelectionBasicStoragePtr>
+	{
+		public ImGuiSelectionBasicStoragePtr(ImGuiSelectionBasicStorage* handle) { Handle = handle; }
+
+		public ImGuiSelectionBasicStorage* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImGuiSelectionBasicStoragePtr Null => new ImGuiSelectionBasicStoragePtr(null);
+
+		public static implicit operator ImGuiSelectionBasicStoragePtr(ImGuiSelectionBasicStorage* handle) => new ImGuiSelectionBasicStoragePtr(handle);
+
+		public static implicit operator ImGuiSelectionBasicStorage*(ImGuiSelectionBasicStoragePtr handle) => handle.Handle;
+
+		public static bool operator ==(ImGuiSelectionBasicStoragePtr left, ImGuiSelectionBasicStoragePtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImGuiSelectionBasicStoragePtr left, ImGuiSelectionBasicStoragePtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImGuiSelectionBasicStoragePtr left, ImGuiSelectionBasicStorage* right) => left.Handle == right;
+
+		public static bool operator !=(ImGuiSelectionBasicStoragePtr left, ImGuiSelectionBasicStorage* right) => left.Handle != right;
+
+		public bool Equals(ImGuiSelectionBasicStoragePtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImGuiSelectionBasicStoragePtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImGuiSelectionBasicStoragePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
+		public ref bool PreserveOrder => ref Unsafe.AsRef<bool>(&Handle->PreserveOrder);
+		public void* UserData { get => Handle->UserData; set => Handle->UserData = value; }
+		public void* AdapterIndexToStorageId { get => Handle->AdapterIndexToStorageId; set => Handle->AdapterIndexToStorageId = value; }
+		public ref int SelectionOrder => ref Unsafe.AsRef<int>(&Handle->SelectionOrder);
+		public ref ImGuiStorage Storage => ref Unsafe.AsRef<ImGuiStorage>(&Handle->Storage);
+
+		public unsafe void ApplyRequests(ImGuiMultiSelectIOPtr msIo)
+		{
+			ImGui.ApplyRequestsNative(Handle, msIo);
+		}
+
+		public unsafe void ApplyRequests(ref ImGuiMultiSelectIO msIo)
+		{
+			fixed (ImGuiMultiSelectIO* pmsIo = &msIo)
+			{
+				ImGui.ApplyRequestsNative(Handle, (ImGuiMultiSelectIO*)pmsIo);
+			}
+		}
+
+		public unsafe void Clear()
+		{
+			ImGui.ClearNative(Handle);
+		}
+
+		public unsafe bool Contains(int id)
+		{
+			byte ret = ImGui.ContainsNative(Handle, id);
+			return ret != 0;
+		}
+
+		public unsafe void Destroy()
+		{
+			ImGui.DestroyNative(Handle);
+		}
+
+		public unsafe bool GetNextSelectedItem(void** opaqueIt, int* outId)
+		{
+			byte ret = ImGui.GetNextSelectedItemNative(Handle, opaqueIt, outId);
+			return ret != 0;
+		}
+
+		public unsafe bool GetNextSelectedItem(void** opaqueIt, ref int outId)
+		{
+			fixed (int* poutId = &outId)
+			{
+				byte ret = ImGui.GetNextSelectedItemNative(Handle, opaqueIt, (int*)poutId);
+				return ret != 0;
+			}
+		}
+
+		public unsafe int GetStorageIdFromIndex(int idx)
+		{
+			int ret = ImGui.GetStorageIdFromIndexNative(Handle, idx);
+			return ret;
+		}
+
+		public unsafe void SetItemSelected(int id, bool selected)
+		{
+			ImGui.SetItemSelectedNative(Handle, id, selected ? (byte)1 : (byte)0);
+		}
+
+		public unsafe void Swap(ImGuiSelectionBasicStorage* r)
+		{
+			ImGui.SwapNative(Handle, r);
+		}
+
+		public unsafe void Swap(ref ImGuiSelectionBasicStorage r)
+		{
+			fixed (ImGuiSelectionBasicStorage* pr = &r)
+			{
+				ImGui.SwapNative(Handle, (ImGuiSelectionBasicStorage*)pr);
+			}
+		}
+
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	public partial struct ImGuiSelectionExternalStorage
+	{
+		public unsafe void* UserData;
+		public unsafe void* AdapterSetItemSelected;
+
+
+		public unsafe void ApplyRequests(ImGuiMultiSelectIOPtr msIo)
+		{
+			fixed (ImGuiSelectionExternalStorage* @this = &this)
+			{
+				ImGui.ApplyRequestsNative(@this, msIo);
+			}
+		}
+
+		public unsafe void ApplyRequests(ref ImGuiMultiSelectIO msIo)
+		{
+			fixed (ImGuiSelectionExternalStorage* @this = &this)
+			{
+				fixed (ImGuiMultiSelectIO* pmsIo = &msIo)
+				{
+					ImGui.ApplyRequestsNative(@this, (ImGuiMultiSelectIO*)pmsIo);
+				}
+			}
+		}
+
+		public unsafe void Destroy()
+		{
+			fixed (ImGuiSelectionExternalStorage* @this = &this)
+			{
+				ImGui.DestroyNative(@this);
+			}
+		}
+
+	}
+
+	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	public unsafe struct ImGuiSelectionExternalStoragePtr : IEquatable<ImGuiSelectionExternalStoragePtr>
+	{
+		public ImGuiSelectionExternalStoragePtr(ImGuiSelectionExternalStorage* handle) { Handle = handle; }
+
+		public ImGuiSelectionExternalStorage* Handle;
+
+		public bool IsNull => Handle == null;
+
+		public static ImGuiSelectionExternalStoragePtr Null => new ImGuiSelectionExternalStoragePtr(null);
+
+		public static implicit operator ImGuiSelectionExternalStoragePtr(ImGuiSelectionExternalStorage* handle) => new ImGuiSelectionExternalStoragePtr(handle);
+
+		public static implicit operator ImGuiSelectionExternalStorage*(ImGuiSelectionExternalStoragePtr handle) => handle.Handle;
+
+		public static bool operator ==(ImGuiSelectionExternalStoragePtr left, ImGuiSelectionExternalStoragePtr right) => left.Handle == right.Handle;
+
+		public static bool operator !=(ImGuiSelectionExternalStoragePtr left, ImGuiSelectionExternalStoragePtr right) => left.Handle != right.Handle;
+
+		public static bool operator ==(ImGuiSelectionExternalStoragePtr left, ImGuiSelectionExternalStorage* right) => left.Handle == right;
+
+		public static bool operator !=(ImGuiSelectionExternalStoragePtr left, ImGuiSelectionExternalStorage* right) => left.Handle != right;
+
+		public bool Equals(ImGuiSelectionExternalStoragePtr other) => Handle == other.Handle;
+
+		/// <inheritdoc/>
+		public override bool Equals(object obj) => obj is ImGuiSelectionExternalStoragePtr handle && Equals(handle);
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
+
+		private string DebuggerDisplay => string.Format("ImGuiSelectionExternalStoragePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		public void* UserData { get => Handle->UserData; set => Handle->UserData = value; }
+		public void* AdapterSetItemSelected { get => Handle->AdapterSetItemSelected; set => Handle->AdapterSetItemSelected = value; }
+
+		public unsafe void ApplyRequests(ImGuiMultiSelectIOPtr msIo)
+		{
+			ImGui.ApplyRequestsNative(Handle, msIo);
+		}
+
+		public unsafe void ApplyRequests(ref ImGuiMultiSelectIO msIo)
+		{
+			fixed (ImGuiMultiSelectIO* pmsIo = &msIo)
+			{
+				ImGui.ApplyRequestsNative(Handle, (ImGuiMultiSelectIO*)pmsIo);
+			}
+		}
 
 		public unsafe void Destroy()
 		{

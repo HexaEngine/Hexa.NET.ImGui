@@ -252,6 +252,13 @@ namespace Hexa.NET.ImGui
 		Descending = unchecked(2),
 	}
 
+	public enum ImGuiSelectionRequestType
+	{
+		None = unchecked(0),
+		SetAll = unchecked(1),
+		SetRange = unchecked(2),
+	}
+
 	public enum ImGuiContextHookType
 	{
 		NewFramePre = unchecked(0),
@@ -283,10 +290,11 @@ namespace Hexa.NET.ImGui
 		WindowingMainMenuBar = unchecked(5),
 		WindowingPopup = unchecked(6),
 		WindowingUntitled = unchecked(7),
-		DockingHideTabBar = unchecked(8),
-		DockingHoldShiftToDock = unchecked(9),
-		DockingDragToUndockOrMoveNode = unchecked(10),
-		Count = unchecked(11),
+		CopyLink = unchecked(8),
+		DockingHideTabBar = unchecked(9),
+		DockingHoldShiftToDock = unchecked(10),
+		DockingDragToUndockOrMoveNode = unchecked(11),
+		Count = unchecked(12),
 	}
 
 	public enum ImGuiWindowFlags
@@ -335,6 +343,16 @@ namespace Hexa.NET.ImGui
 		AlwaysAutoResize = unchecked(64),
 		FrameStyle = unchecked(128),
 		NavFlattened = unchecked(256),
+	}
+
+	public enum ImGuiItemFlags
+	{
+		None = unchecked(0),
+		NoTabStop = unchecked(1),
+		NoNav = unchecked(2),
+		NoNavDefaultFocus = unchecked(4),
+		ButtonRepeat = unchecked(8),
+		AutoClosePopups = unchecked(16),
 	}
 
 	public enum ImGuiInputTextFlags
@@ -406,11 +424,12 @@ namespace Hexa.NET.ImGui
 	public enum ImGuiSelectableFlags
 	{
 		None = unchecked(0),
-		DontClosePopups = unchecked(1),
+		NoAutoClosePopups = unchecked(1),
 		SpanAllColumns = unchecked(2),
 		AllowDoubleClick = unchecked(4),
 		Disabled = unchecked(8),
 		AllowOverlap = unchecked(16),
+		Highlight = unchecked(32),
 	}
 
 	public enum ImGuiComboFlags
@@ -534,7 +553,8 @@ namespace Hexa.NET.ImGui
 		U64 = unchecked(7),
 		Float = unchecked(8),
 		Double = unchecked(9),
-		Count = unchecked(10),
+		Bool = unchecked(10),
+		Count = unchecked(11),
 	}
 
 	public enum ImGuiInputFlags
@@ -635,13 +655,14 @@ namespace Hexa.NET.ImGui
 		TableBorderLight = unchecked(48),
 		TableRowBg = unchecked(49),
 		TableRowBgAlt = unchecked(50),
-		TextSelectedBg = unchecked(51),
-		DragDropTarget = unchecked(52),
-		NavHighlight = unchecked(53),
-		NavWindowingHighlight = unchecked(54),
-		NavWindowingDimBg = unchecked(55),
-		ModalWindowDimBg = unchecked(56),
-		Count = unchecked(57),
+		TextLink = unchecked(51),
+		TextSelectedBg = unchecked(52),
+		DragDropTarget = unchecked(53),
+		NavHighlight = unchecked(54),
+		NavWindowingHighlight = unchecked(55),
+		NavWindowingDimBg = unchecked(56),
+		ModalWindowDimBg = unchecked(57),
+		Count = unchecked(58),
 	}
 
 	public enum ImGuiStyleVar
@@ -671,15 +692,16 @@ namespace Hexa.NET.ImGui
 		TabRounding = unchecked(22),
 		TabBorderSize = unchecked(23),
 		TabBarBorderSize = unchecked(24),
-		TableAngledHeadersAngle = unchecked(25),
-		TableAngledHeadersTextAlign = unchecked(26),
-		ButtonTextAlign = unchecked(27),
-		SelectableTextAlign = unchecked(28),
-		SeparatorTextBorderSize = unchecked(29),
-		SeparatorTextAlign = unchecked(30),
-		SeparatorTextPadding = unchecked(31),
-		DockingSeparatorSize = unchecked(32),
-		Count = unchecked(33),
+		TabBarOverlineSize = unchecked(25),
+		TableAngledHeadersAngle = unchecked(26),
+		TableAngledHeadersTextAlign = unchecked(27),
+		ButtonTextAlign = unchecked(28),
+		SelectableTextAlign = unchecked(29),
+		SeparatorTextBorderSize = unchecked(30),
+		SeparatorTextAlign = unchecked(31),
+		SeparatorTextPadding = unchecked(32),
+		DockingSeparatorSize = unchecked(33),
+		Count = unchecked(34),
 	}
 
 	public enum ImGuiButtonFlags
@@ -854,6 +876,27 @@ namespace Hexa.NET.ImGui
 		CellBg = unchecked(3),
 	}
 
+	public enum ImGuiMultiSelectFlags
+	{
+		None = unchecked(0),
+		SingleSelect = unchecked(1),
+		NoSelectAll = unchecked(2),
+		NoRangeSelect = unchecked(4),
+		NoAutoSelect = unchecked(8),
+		NoAutoClear = unchecked(16),
+		NoAutoClearOnReselect = unchecked(32),
+		BoxSelect1D = unchecked(64),
+		BoxSelect2D = unchecked(128),
+		BoxSelectNoScroll = unchecked(256),
+		ClearOnEscape = unchecked(512),
+		ClearOnClickVoid = unchecked(1024),
+		ScopeWindow = unchecked(2048),
+		ScopeRect = unchecked(4096),
+		OnClick = unchecked(8192),
+		OnClickRelease = unchecked(16384),
+		NavWrapX = unchecked(65536),
+	}
+
 	public enum ImDrawFlags
 	{
 		None = unchecked(0),
@@ -910,26 +953,22 @@ namespace Hexa.NET.ImGui
 
 	public enum ImGuiDataTypePrivate
 	{
-		String = unchecked(11),
-		Pointer = unchecked(12),
-		Id = unchecked(13),
+		String = unchecked(12),
+		Pointer = unchecked(13),
+		Id = unchecked(14),
 	}
 
-	public enum ImGuiItemFlags
+	public enum ImGuiItemFlagsPrivate
 	{
-		None = unchecked(0),
-		NoTabStop = unchecked(1),
-		ButtonRepeat = unchecked(2),
-		Disabled = unchecked(4),
-		NoNav = unchecked(8),
-		NoNavDefaultFocus = unchecked(16),
-		SelectableDontClosePopup = unchecked(32),
-		MixedValue = unchecked(64),
-		ReadOnly = unchecked(128),
-		NoWindowHoverableCheck = unchecked(256),
-		AllowOverlap = unchecked(512),
-		Inputable = unchecked(1024),
-		HasSelectionUserData = unchecked(2048),
+		Disabled = unchecked(1024),
+		ReadOnly = unchecked(2048),
+		MixedValue = unchecked(4096),
+		NoWindowHoverableCheck = unchecked(8192),
+		AllowOverlap = unchecked(16384),
+		Inputable = unchecked(1048576),
+		HasSelectionUserData = unchecked(2097152),
+		IsMultiSelect = unchecked(4194304),
+		Default = unchecked((int)ImGuiItemFlags.AutoClosePopups),
 	}
 
 	public enum ImGuiItemStatusFlags
@@ -1011,8 +1050,8 @@ namespace Hexa.NET.ImGui
 
 	public enum ImGuiTreeNodeFlagsPrivate
 	{
-		ClipLabelForTrailingButton = unchecked(1048576),
-		UpsideDownArrow = unchecked(2097152),
+		ClipLabelForTrailingButton = unchecked(268435456),
+		UpsideDownArrow = unchecked(536870912),
 	}
 
 	public enum ImGuiSeparatorFlags
@@ -1087,6 +1126,7 @@ namespace Hexa.NET.ImGui
 		HasOpen = unchecked(2),
 		HasShortcut = unchecked(4),
 		HasRefVal = unchecked(8),
+		HasStorageId = unchecked(16),
 	}
 
 	public enum ImGuiPopupPositionPolicy
@@ -1117,7 +1157,7 @@ namespace Hexa.NET.ImGui
 		RouteTypeMask = unchecked(15360),
 		RouteOptionsMask = unchecked(245760),
 		SupportedByIsKeyPressed = RepeatMask,
-		SupportedByIsMouseClicked = unchecked((int)Repeat),
+		SupportedByIsMouseClicked = unchecked((int)ImGuiInputFlags.Repeat),
 		SupportedByShortcut = unchecked(261375),
 		SupportedBySetNextItemShortcut = unchecked(523519),
 		SupportedBySetKeyOwner = unchecked(3145728),

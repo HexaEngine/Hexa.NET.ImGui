@@ -1839,102 +1839,6 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetContentRegionAvail")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetContentRegionAvailNative(Vector2* output);
-
-		public static Vector2 GetContentRegionAvail()
-		{
-			Vector2 ret;
-			GetContentRegionAvailNative(&ret);
-			return ret;
-		}
-
-		public static void GetContentRegionAvail(Vector2* output)
-		{
-			GetContentRegionAvailNative(output);
-		}
-
-		public static void GetContentRegionAvail(ref Vector2 output)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				GetContentRegionAvailNative((Vector2*)poutput);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igGetContentRegionMax")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetContentRegionMaxNative(Vector2* output);
-
-		public static Vector2 GetContentRegionMax()
-		{
-			Vector2 ret;
-			GetContentRegionMaxNative(&ret);
-			return ret;
-		}
-
-		public static void GetContentRegionMax(Vector2* output)
-		{
-			GetContentRegionMaxNative(output);
-		}
-
-		public static void GetContentRegionMax(ref Vector2 output)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				GetContentRegionMaxNative((Vector2*)poutput);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igGetWindowContentRegionMin")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetWindowContentRegionMinNative(Vector2* output);
-
-		public static Vector2 GetWindowContentRegionMin()
-		{
-			Vector2 ret;
-			GetWindowContentRegionMinNative(&ret);
-			return ret;
-		}
-
-		public static void GetWindowContentRegionMin(Vector2* output)
-		{
-			GetWindowContentRegionMinNative(output);
-		}
-
-		public static void GetWindowContentRegionMin(ref Vector2 output)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				GetWindowContentRegionMinNative((Vector2*)poutput);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igGetWindowContentRegionMax")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetWindowContentRegionMaxNative(Vector2* output);
-
-		public static Vector2 GetWindowContentRegionMax()
-		{
-			Vector2 ret;
-			GetWindowContentRegionMaxNative(&ret);
-			return ret;
-		}
-
-		public static void GetWindowContentRegionMax(Vector2* output)
-		{
-			GetWindowContentRegionMaxNative(output);
-		}
-
-		public static void GetWindowContentRegionMax(ref Vector2 output)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				GetWindowContentRegionMaxNative((Vector2*)poutput);
-			}
-		}
-
 		[LibraryImport(LibName, EntryPoint = "igGetScrollX")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial float GetScrollXNative();
@@ -2139,40 +2043,22 @@ namespace Hexa.NET.ImGui
 			PopStyleVarNative((int)(1));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushTabStop")]
+		[LibraryImport(LibName, EntryPoint = "igPushItemFlag")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushTabStopNative(byte tabStop);
+		internal static partial void PushItemFlagNative(ImGuiItemFlags option, byte enabled);
 
-		public static void PushTabStop(bool tabStop)
+		public static void PushItemFlag(ImGuiItemFlags option, bool enabled)
 		{
-			PushTabStopNative(tabStop ? (byte)1 : (byte)0);
+			PushItemFlagNative(option, enabled ? (byte)1 : (byte)0);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPopTabStop")]
+		[LibraryImport(LibName, EntryPoint = "igPopItemFlag")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopTabStopNative();
+		internal static partial void PopItemFlagNative();
 
-		public static void PopTabStop()
+		public static void PopItemFlag()
 		{
-			PopTabStopNative();
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igPushButtonRepeat")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushButtonRepeatNative(byte repeat);
-
-		public static void PushButtonRepeat(bool repeat)
-		{
-			PushButtonRepeatNative(repeat ? (byte)1 : (byte)0);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igPopButtonRepeat")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopButtonRepeatNative();
-
-		public static void PopButtonRepeat()
-		{
-			PopButtonRepeatNative();
+			PopItemFlagNative();
 		}
 
 		[LibraryImport(LibName, EntryPoint = "igPushItemWidth")]
@@ -2362,6 +2248,30 @@ namespace Hexa.NET.ImGui
 		public static void SetCursorScreenPos(Vector2 pos)
 		{
 			SetCursorScreenPosNative(pos);
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igGetContentRegionAvail")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void GetContentRegionAvailNative(Vector2* output);
+
+		public static Vector2 GetContentRegionAvail()
+		{
+			Vector2 ret;
+			GetContentRegionAvailNative(&ret);
+			return ret;
+		}
+
+		public static void GetContentRegionAvail(Vector2* output)
+		{
+			GetContentRegionAvailNative(output);
+		}
+
+		public static void GetContentRegionAvail(ref Vector2 output)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				GetContentRegionAvailNative((Vector2*)poutput);
+			}
 		}
 
 		[LibraryImport(LibName, EntryPoint = "igGetCursorPos")]
@@ -3009,6 +2919,16 @@ namespace Hexa.NET.ImGui
 		public static int GetID(void* ptrId)
 		{
 			int ret = GetIDNative(ptrId);
+			return ret;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igGetID_Int")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial int GetIDNative(int intId);
+
+		public static int GetID(int intId)
+		{
+			int ret = GetIDNative(intId);
 			return ret;
 		}
 
@@ -4732,6 +4652,226 @@ namespace Hexa.NET.ImGui
 			BulletNative();
 		}
 
+		[LibraryImport(LibName, EntryPoint = "igTextLink")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial byte TextLinkNative(byte* label);
+
+		public static bool TextLink(byte* label)
+		{
+			byte ret = TextLinkNative(label);
+			return ret != 0;
+		}
+
+		public static bool TextLink(ref byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = TextLinkNative((byte*)plabel);
+				return ret != 0;
+			}
+		}
+
+		public static bool TextLink(string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = TextLinkNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		[LibraryImport(LibName, EntryPoint = "igTextLinkOpenURL")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void TextLinkOpenURLNative(byte* label, byte* url);
+
+		public static void TextLinkOpenURL(byte* label, byte* url)
+		{
+			TextLinkOpenURLNative(label, url);
+		}
+
+		public static void TextLinkOpenURL(byte* label)
+		{
+			TextLinkOpenURLNative(label, (byte*)(default));
+		}
+
+		public static void TextLinkOpenURL(ref byte label, byte* url)
+		{
+			fixed (byte* plabel = &label)
+			{
+				TextLinkOpenURLNative((byte*)plabel, url);
+			}
+		}
+
+		public static void TextLinkOpenURL(ref byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				TextLinkOpenURLNative((byte*)plabel, (byte*)(default));
+			}
+		}
+
+		public static void TextLinkOpenURL(string label, byte* url)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			TextLinkOpenURLNative(pStr0, url);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void TextLinkOpenURL(string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			TextLinkOpenURLNative(pStr0, (byte*)(default));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void TextLinkOpenURL(byte* label, ref byte url)
+		{
+			fixed (byte* purl = &url)
+			{
+				TextLinkOpenURLNative(label, (byte*)purl);
+			}
+		}
+
+		public static void TextLinkOpenURL(byte* label, string url)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (url != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(url);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(url, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			TextLinkOpenURLNative(label, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void TextLinkOpenURL(ref byte label, ref byte url)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* purl = &url)
+				{
+					TextLinkOpenURLNative((byte*)plabel, (byte*)purl);
+				}
+			}
+		}
+
+		public static void TextLinkOpenURL(string label, string url)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (url != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(url);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(url, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			TextLinkOpenURLNative(pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
 		[LibraryImport(LibName, EntryPoint = "igImage")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial void ImageNative(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 tintCol, Vector4 borderCol);
@@ -4873,159 +5013,6 @@ namespace Hexa.NET.ImGui
 				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
 				return ret != 0;
 			}
-		}
-
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
-				return ret != 0;
-			}
-		}
-
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
-				return ret != 0;
-			}
-		}
-
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
-				return ret != 0;
-			}
-		}
-
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
-				return ret != 0;
-			}
-		}
-
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
-				return ret != 0;
-			}
-		}
-
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool ImageButton(string strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = ImageButtonNative(pStr0, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
 		}
 	}
 }

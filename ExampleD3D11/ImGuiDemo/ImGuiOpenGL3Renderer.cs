@@ -8,8 +8,8 @@
 
 namespace ExampleD3D11.ImGuiDemo
 {
-    using ExampleD3D11.Unsafes;
     using Hexa.NET.ImGui;
+    using Hexa.NET.Utilities;
     using Silk.NET.OpenGL;
     using System.Diagnostics;
     using System.Numerics;
@@ -83,9 +83,9 @@ namespace ExampleD3D11.ImGuiDemo
             ImGuiIOPtr io = ImGui.GetIO();
             Debug.Assert(io.BackendRendererUserData == null, "Already initialized a renderer backend!");
 
-            RenderData* bd = Alloc<RenderData>();
+            RenderData* bd = AllocT<RenderData>();
             io.BackendRendererUserData = bd;
-            io.BackendRendererName = "imgui_impl_opengl3".ToUTF8();
+            io.BackendRendererName = "imgui_impl_opengl3".ToUTF8Ptr();
 
 #if IMGUI_IMPL_OPENGL_ES2
     // GLES 2
@@ -153,7 +153,7 @@ namespace ExampleD3D11.ImGuiDemo
                 gl_version_str = "#version 130";
 #endif
             }
-            bd->GlslVersionString = (gl_version_str + "\n").ToUTF8();
+            bd->GlslVersionString = (gl_version_str + "\n").ToUTF8Ptr();
 
             // Make an arbitrary GL call (we don't actually need the result)
             // IF YOU GET A CRASH HERE: it probably means the OpenGL function loader didn't do its job. Let us know!
@@ -622,16 +622,16 @@ namespace ExampleD3D11.ImGuiDemo
             GL.GetShader(handle, GLEnum.InfoLogLength, &log_length);
             if (status == 0)
             {
-                Debug.WriteLine($"ERROR: ImGui_ImplOpenGL3_CreateDeviceObjects: failed to compile {desc}! With GLSL: {ToStr(bd->GlslVersionString)}");
+                Debug.WriteLine($"ERROR: ImGui_ImplOpenGL3_CreateDeviceObjects: failed to compile {desc}! With GLSL: {ToStringFromUTF8(bd->GlslVersionString)}");
             }
 
             if (log_length > 1)
             {
                 UnsafeList<byte> buf = default;
-                buf.Resize(log_length + 1);
+                buf.Resize((uint)log_length + 1);
                 GL.GetShaderInfoLog(handle, (uint)log_length, null, buf.Data);
-                Debug.WriteLine(ToStr(buf.Data));
-                buf.Free();
+                Debug.WriteLine(ToStringFromUTF8(buf.Data));
+                buf.Release();
             }
             return status != 0;
         }
@@ -645,16 +645,16 @@ namespace ExampleD3D11.ImGuiDemo
             GL.GetProgram(handle, GLEnum.InfoLogLength, &log_length);
             if (status == 0)
             {
-                Debug.WriteLine($"ERROR: ImGui_ImplOpenGL3_CreateDeviceObjects: failed to link {desc}! With GLSL {ToStr(bd->GlslVersionString)}");
+                Debug.WriteLine($"ERROR: ImGui_ImplOpenGL3_CreateDeviceObjects: failed to link {desc}! With GLSL {ToStringFromUTF8(bd->GlslVersionString)}");
             }
 
             if (log_length > 1)
             {
                 UnsafeList<byte> buf = default;
-                buf.Resize(log_length + 1);
+                buf.Resize((uint)log_length + 1);
                 GL.GetShaderInfoLog(handle, (uint)log_length, null, buf.Data);
-                Debug.WriteLine(ToStr(buf.Data));
-                buf.Free();
+                Debug.WriteLine(ToStringFromUTF8(buf.Data));
+                buf.Release();
             }
             return status != 0;
         }
@@ -679,7 +679,7 @@ namespace ExampleD3D11.ImGuiDemo
             // Parse GLSL version string
             int glsl_version = 130;
 
-            if (bd->GlslVersionString != null && int.TryParse(ToStr(bd->GlslVersionString + 9), out var version))
+            if (bd->GlslVersionString != null && int.TryParse(ToStringFromUTF8(bd->GlslVersionString + 9), out var version))
             {
                 glsl_version = version;
             }
@@ -817,13 +817,13 @@ namespace ExampleD3D11.ImGuiDemo
             }
 
             // Create shaders
-            string vertex_shader_with_version = $"{ToStr(bd->GlslVersionString)}\n{vertex_shader}";
+            string vertex_shader_with_version = $"{ToStringFromUTF8(bd->GlslVersionString)}\n{vertex_shader}";
             uint vert_handle = GL.CreateShader(GLEnum.VertexShader);
             GL.ShaderSource(vert_handle, vertex_shader_with_version);
             GL.CompileShader(vert_handle);
             CheckShader(vert_handle, "vertex shader");
 
-            string fragment_shader_with_version = $"{ToStr(bd->GlslVersionString)}\n{fragment_shader}";
+            string fragment_shader_with_version = $"{ToStringFromUTF8(bd->GlslVersionString)}\n{fragment_shader}";
             uint frag_handle = GL.CreateShader(GLEnum.FragmentShader);
             GL.ShaderSource(frag_handle, fragment_shader_with_version);
             GL.CompileShader(frag_handle);

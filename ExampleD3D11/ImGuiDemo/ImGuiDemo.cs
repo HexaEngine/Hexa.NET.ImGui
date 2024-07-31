@@ -125,11 +125,11 @@
                 IMGUI_DEMO_MARKER("Widgets/Basic/Buttons (Repeating)");
 
                 float spacing = ImGui.GetStyle().ItemInnerSpacing.X;
-                ImGui.PushButtonRepeat(true);
+
                 if (ImGui.ArrowButton("##left", ImGuiDir.Left)) { counter--; }
                 ImGui.SameLine(0.0f, spacing);
                 if (ImGui.ArrowButton("##right", ImGuiDir.Right)) { counter++; }
-                ImGui.PopButtonRepeat();
+
                 ImGui.SameLine();
                 ImGui.Text($"{counter}");
 

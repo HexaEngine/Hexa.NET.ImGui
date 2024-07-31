@@ -1,11 +1,12 @@
 ﻿namespace ExampleD3D11.ImGuiDemo
 {
     using ExampleD3D11;
-    using ExampleD3D11.Unsafes;
     using Hexa.NET.ImGui;
+    using Hexa.NET.Utilities;
     using Silk.NET.Core.Native;
     using Silk.NET.Maths;
     using Silk.NET.SDL;
+    using System;
     using System.Diagnostics;
     using System.Numerics;
     using System.Runtime.CompilerServices;
@@ -78,13 +79,40 @@
         /// </summary>
         /// <param name="vp"></param>
         /// <param name="data"></param>
-        private static unsafe void SetPlatformImeData(ImGuiViewport* vp, ImGuiPlatformImeData* data)
+        private static unsafe void SetPlatformImeData(ImGuiContext* context, ImGuiViewport* vp, ImGuiPlatformImeData* data)
         {
             if (data->WantVisible == 1)
             {
                 Rectangle<int> r = new(new((int)data->InputPos.X, (int)data->InputPos.Y), new(1, (int)data->InputLineHeight));
                 sdl.SetTextInputRect(&r);
             }
+        }
+
+        private static unsafe byte OpenPlatformInShell(ImGuiContext* ctx, byte* path)
+        {
+            string url = ToStringFromUTF8(path);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                Process.Start("open", url);
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                Process.Start("xdg-open", url);
+            }
+            else
+            {
+                return 0;
+            }
+
+            return 1;
         }
 
         private static ImGuiKey KeycodeToImGuiKey(int keycode)
@@ -364,10 +392,10 @@
                 if (sdl_backend == global_mouse_whitelist[n])
                     mouse_can_use_global_state = true;
 
-            BackendData* bd = Alloc<BackendData>();
-            ZeroMemory(bd);
+            BackendData* bd = AllocT<BackendData>();
+            ZeroMemoryT(bd);
             io.BackendPlatformUserData = bd;
-            io.BackendPlatformName = "ImGui_SDL2_Platform".ToUTF8();
+            io.BackendPlatformName = "ImGui_SDL2_Platform".ToUTF8Ptr();
             io.BackendFlags |= ImGuiBackendFlags.HasMouseCursors | ImGuiBackendFlags.HasSetMousePos;
 
             if (mouse_can_use_global_state)
@@ -389,7 +417,9 @@
             io.SetClipboardTextFn = (void*)Marshal.GetFunctionPointerForDelegate<SetClipboardTextFn>(SetClipboardText);
             io.GetClipboardTextFn = (void*)Marshal.GetFunctionPointerForDelegate<GetClipboardTextFn>(GetClipboardText);
             io.ClipboardUserData = null;
-            io.SetPlatformImeDataFn = (void*)Marshal.GetFunctionPointerForDelegate<SetPlatformImeDataFn>(SetPlatformImeData);
+
+            io.PlatformSetImeDataFn = (void*)Marshal.GetFunctionPointerForDelegate<PlatformSetImeDataFn>(SetPlatformImeData);
+            io.PlatformOpenInShellFn = (void*)Marshal.GetFunctionPointerForDelegate<PlatformOpenInShellFn>(OpenPlatformInShell);
 
             bd->MouseCursors = (Cursor**)AllocArray((uint)ImGuiMouseCursor.Count);
             bd->MouseCursors[(int)ImGuiMouseCursor.Arrow] = sdl.CreateSystemCursor(SystemCursor.SystemCursorArrow);
@@ -818,8 +848,8 @@
         private static unsafe void CreateWindow(ImGuiViewport* viewport)
         {
             BackendData* bd = GetBackendData();
-            ViewportData* vd = Alloc<ViewportData>();
-            ZeroMemory(vd);
+            ViewportData* vd = AllocT<ViewportData>();
+            ZeroMemoryT(vd);
             viewport->PlatformUserData = vd;
 
             ImGuiViewport* main_viewport = ImGui.GetMainViewport();
@@ -1001,8 +1031,8 @@
             platform_io->PlatformCreateVkSurface = (void*)Marshal.GetFunctionPointerForDelegate<PlatformCreateVkSurface>(CreateVkSurface);
 
             ImGuiViewport* main_viewport = ImGui.GetMainViewport().Handle;
-            ViewportData* vd = Alloc<ViewportData>();
-            ZeroMemory(vd);
+            ViewportData* vd = AllocT<ViewportData>();
+            ZeroMemoryT(vd);
             vd->Window = window;
             vd->WindowID = sdl.GetWindowID(window);
             vd->WindowOwned = false;

@@ -31,7 +31,10 @@ namespace Hexa.NET.ImGui
 	public unsafe delegate void SetClipboardTextFn(void* userData, byte* text);
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void SetPlatformImeDataFn(ImGuiViewport* viewport, ImGuiPlatformImeData* data);
+	public unsafe delegate byte PlatformOpenInShellFn(ImGuiContext* ctx, byte* path);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void PlatformSetImeDataFn(ImGuiContext* ctx, ImGuiViewport* viewport, ImGuiPlatformImeData* data);
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void PlatformCreateWindow(ImGuiViewport* vp);
@@ -125,6 +128,12 @@ namespace Hexa.NET.ImGui
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void Callback(ImGuiContext* ctx, ImGuiContextHook* hook);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate int AdapterIndexToStorageId(ImGuiSelectionBasicStorage* self, int idx);
+
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+	public unsafe delegate void AdapterSetItemSelected(ImGuiSelectionExternalStorage* self, int idx, byte selected);
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public unsafe delegate void ImDrawCallback(ImDrawList* parentList, ImDrawCmd* cmd);

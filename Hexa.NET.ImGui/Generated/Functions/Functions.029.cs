@@ -17,6 +17,210 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
+		public static bool BeginTabItem(byte* label, bool* pOpen)
+		{
+			byte ret = BeginTabItemNative(label, pOpen, (ImGuiTabItemFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool BeginTabItem(byte* label)
+		{
+			byte ret = BeginTabItemNative(label, (bool*)(default), (ImGuiTabItemFlags)(0));
+			return ret != 0;
+		}
+
+		public static bool BeginTabItem(byte* label, ImGuiTabItemFlags flags)
+		{
+			byte ret = BeginTabItemNative(label, (bool*)(default), flags);
+			return ret != 0;
+		}
+
+		public static bool BeginTabItem(ref byte label, bool* pOpen, ImGuiTabItemFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = BeginTabItemNative((byte*)plabel, pOpen, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginTabItem(ref byte label, bool* pOpen)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = BeginTabItemNative((byte*)plabel, pOpen, (ImGuiTabItemFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginTabItem(ref byte label)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = BeginTabItemNative((byte*)plabel, (bool*)(default), (ImGuiTabItemFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginTabItem(ref byte label, ImGuiTabItemFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = BeginTabItemNative((byte*)plabel, (bool*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginTabItem(string label, bool* pOpen, ImGuiTabItemFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTabItemNative(pStr0, pOpen, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool BeginTabItem(string label, bool* pOpen)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTabItemNative(pStr0, pOpen, (ImGuiTabItemFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool BeginTabItem(string label)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTabItemNative(pStr0, (bool*)(default), (ImGuiTabItemFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool BeginTabItem(string label, ImGuiTabItemFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginTabItemNative(pStr0, (bool*)(default), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool BeginTabItem(byte* label, ref bool pOpen, ImGuiTabItemFlags flags)
+		{
+			fixed (bool* ppOpen = &pOpen)
+			{
+				byte ret = BeginTabItemNative(label, (bool*)ppOpen, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginTabItem(byte* label, ref bool pOpen)
+		{
+			fixed (bool* ppOpen = &pOpen)
+			{
+				byte ret = BeginTabItemNative(label, (bool*)ppOpen, (ImGuiTabItemFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginTabItem(ref byte label, ref bool pOpen, ImGuiTabItemFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (bool* ppOpen = &pOpen)
+				{
+					byte ret = BeginTabItemNative((byte*)plabel, (bool*)ppOpen, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool BeginTabItem(ref byte label, ref bool pOpen)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (bool* ppOpen = &pOpen)
+				{
+					byte ret = BeginTabItemNative((byte*)plabel, (bool*)ppOpen, (ImGuiTabItemFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
 		public static bool BeginTabItem(string label, ref bool pOpen, ImGuiTabItemFlags flags)
 		{
 			byte* pStr0 = null;
@@ -4058,6 +4262,15 @@ namespace Hexa.NET.ImGui
 			SetNextItemShortcutNative(keyChord, (ImGuiInputFlags)(0));
 		}
 
+		[LibraryImport(LibName, EntryPoint = "igSetItemKeyOwner_Nil")]
+		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
+		internal static partial void SetItemKeyOwnerNative(ImGuiKey key);
+
+		public static void SetItemKeyOwner(ImGuiKey key)
+		{
+			SetItemKeyOwnerNative(key);
+		}
+
 		[LibraryImport(LibName, EntryPoint = "igIsMouseDown_Nil")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
 		internal static partial byte IsMouseDownNative(ImGuiMouseButton button);
@@ -4735,288 +4948,90 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetAllocatorFunctions")]
+		[LibraryImport(LibName, EntryPoint = "igDebugLog")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetAllocatorFunctionsNative(ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc, void* userData);
+		internal static partial void DebugLogNative(byte* fmt);
 
-		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc, void* userData)
+		public static void DebugLog(byte* fmt)
 		{
-			SetAllocatorFunctionsNative(allocFunc, freeFunc, userData);
+			DebugLogNative(fmt);
 		}
 
-		public static void SetAllocatorFunctions(ImGuiMemAllocFunc allocFunc, ImGuiMemFreeFunc freeFunc)
+		public static void DebugLog(ref byte fmt)
 		{
-			SetAllocatorFunctionsNative(allocFunc, freeFunc, (void*)(default));
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igGetAllocatorFunctions")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetAllocatorFunctionsNative(ImGuiMemAllocFunc pAllocFunc, ImGuiMemFreeFunc pFreeFunc, void** pUserData);
-
-		public static void GetAllocatorFunctions(ImGuiMemAllocFunc pAllocFunc, ImGuiMemFreeFunc pFreeFunc, void** pUserData)
-		{
-			GetAllocatorFunctionsNative(pAllocFunc, pFreeFunc, pUserData);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igMemAlloc")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void* MemAllocNative(nuint size);
-
-		public static void* MemAlloc(nuint size)
-		{
-			void* ret = MemAllocNative(size);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igMemFree")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void MemFreeNative(void* ptr);
-
-		public static void MemFree(void* ptr)
-		{
-			MemFreeNative(ptr);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igGetPlatformIO")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiPlatformIO* GetPlatformIONative();
-
-		public static ImGuiPlatformIOPtr GetPlatformIO()
-		{
-			ImGuiPlatformIOPtr ret = GetPlatformIONative();
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igUpdatePlatformWindows")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void UpdatePlatformWindowsNative();
-
-		public static void UpdatePlatformWindows()
-		{
-			UpdatePlatformWindowsNative();
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igRenderPlatformWindowsDefault")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void RenderPlatformWindowsDefaultNative(void* platformRenderArg, void* rendererRenderArg);
-
-		public static void RenderPlatformWindowsDefault(void* platformRenderArg, void* rendererRenderArg)
-		{
-			RenderPlatformWindowsDefaultNative(platformRenderArg, rendererRenderArg);
-		}
-
-		public static void RenderPlatformWindowsDefault(void* platformRenderArg)
-		{
-			RenderPlatformWindowsDefaultNative(platformRenderArg, (void*)(default));
-		}
-
-		public static void RenderPlatformWindowsDefault()
-		{
-			RenderPlatformWindowsDefaultNative((void*)(default), (void*)(default));
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igDestroyPlatformWindows")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyPlatformWindowsNative();
-
-		public static void DestroyPlatformWindows()
-		{
-			DestroyPlatformWindowsNative();
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igFindViewportByID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiViewport* FindViewportByIDNative(int id);
-
-		public static ImGuiViewportPtr FindViewportByID(int id)
-		{
-			ImGuiViewportPtr ret = FindViewportByIDNative(id);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igFindViewportByPlatformHandle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiViewport* FindViewportByPlatformHandleNative(void* platformHandle);
-
-		public static ImGuiViewportPtr FindViewportByPlatformHandle(void* platformHandle)
-		{
-			ImGuiViewportPtr ret = FindViewportByPlatformHandleNative(platformHandle);
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiTableSortSpecs_ImGuiTableSortSpecs")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTableSortSpecs* ImGuiTableSortSpecsNative();
-
-		public static ImGuiTableSortSpecsPtr ImGuiTableSortSpecs()
-		{
-			ImGuiTableSortSpecsPtr ret = ImGuiTableSortSpecsNative();
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiTableSortSpecs_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImGuiTableSortSpecs* self);
-
-		public static void Destroy(ImGuiTableSortSpecsPtr self)
-		{
-			DestroyNative(self);
-		}
-
-		public static void Destroy(ref ImGuiTableSortSpecs self)
-		{
-			fixed (ImGuiTableSortSpecs* pself = &self)
+			fixed (byte* pfmt = &fmt)
 			{
-				DestroyNative((ImGuiTableSortSpecs*)pself);
+				DebugLogNative((byte*)pfmt);
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuiTableColumnSortSpecs_ImGuiTableColumnSortSpecs")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTableColumnSortSpecs* ImGuiTableColumnSortSpecsNative();
-
-		public static ImGuiTableColumnSortSpecsPtr ImGuiTableColumnSortSpecs()
+		public static void DebugLog(string fmt)
 		{
-			ImGuiTableColumnSortSpecsPtr ret = ImGuiTableColumnSortSpecsNative();
-			return ret;
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiTableColumnSortSpecs_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImGuiTableColumnSortSpecs* self);
-
-		public static void Destroy(ImGuiTableColumnSortSpecsPtr self)
-		{
-			DestroyNative(self);
-		}
-
-		public static void Destroy(ref ImGuiTableColumnSortSpecs self)
-		{
-			fixed (ImGuiTableColumnSortSpecs* pself = &self)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmt != null)
 			{
-				DestroyNative((ImGuiTableColumnSortSpecs*)pself);
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			DebugLogNative(pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuiStyle_ImGuiStyle")]
+		[LibraryImport(LibName, EntryPoint = "igDebugLogV")]
 		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiStyle* ImGuiStyleNative();
+		internal static partial void DebugLogVNative(byte* fmt, nuint args);
 
-		public static ImGuiStylePtr ImGuiStyle()
+		public static void DebugLogV(byte* fmt, nuint args)
 		{
-			ImGuiStylePtr ret = ImGuiStyleNative();
-			return ret;
+			DebugLogVNative(fmt, args);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuiStyle_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImGuiStyle* self);
-
-		public static void Destroy(ImGuiStylePtr self)
+		public static void DebugLogV(ref byte fmt, nuint args)
 		{
-			DestroyNative(self);
-		}
-
-		public static void Destroy(ref ImGuiStyle self)
-		{
-			fixed (ImGuiStyle* pself = &self)
+			fixed (byte* pfmt = &fmt)
 			{
-				DestroyNative((ImGuiStyle*)pself);
+				DebugLogVNative((byte*)pfmt, args);
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuiStyle_ScaleAllSizes")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ScaleAllSizesNative(ImGuiStyle* self, float scaleFactor);
-
-		public static void ScaleAllSizes(ImGuiStylePtr self, float scaleFactor)
+		public static void DebugLogV(string fmt, nuint args)
 		{
-			ScaleAllSizesNative(self, scaleFactor);
-		}
-
-		public static void ScaleAllSizes(ref ImGuiStyle self, float scaleFactor)
-		{
-			fixed (ImGuiStyle* pself = &self)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (fmt != null)
 			{
-				ScaleAllSizesNative((ImGuiStyle*)pself, scaleFactor);
+				pStrSize0 = Utils.GetByteCountUTF8(fmt);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
 			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_AddKeyEvent")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddKeyEventNative(ImGuiIO* self, ImGuiKey key, byte down);
-
-		public static void AddKeyEvent(ImGuiIOPtr self, ImGuiKey key, bool down)
-		{
-			AddKeyEventNative(self, key, down ? (byte)1 : (byte)0);
-		}
-
-		public static void AddKeyEvent(ref ImGuiIO self, ImGuiKey key, bool down)
-		{
-			fixed (ImGuiIO* pself = &self)
+			DebugLogVNative(pStr0, args);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
-				AddKeyEventNative((ImGuiIO*)pself, key, down ? (byte)1 : (byte)0);
+				Utils.Free(pStr0);
 			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_AddKeyAnalogEvent")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddKeyAnalogEventNative(ImGuiIO* self, ImGuiKey key, byte down, float v);
-
-		public static void AddKeyAnalogEvent(ImGuiIOPtr self, ImGuiKey key, bool down, float v)
-		{
-			AddKeyAnalogEventNative(self, key, down ? (byte)1 : (byte)0, v);
-		}
-
-		public static void AddKeyAnalogEvent(ref ImGuiIO self, ImGuiKey key, bool down, float v)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				AddKeyAnalogEventNative((ImGuiIO*)pself, key, down ? (byte)1 : (byte)0, v);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_AddMousePosEvent")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddMousePosEventNative(ImGuiIO* self, float x, float y);
-
-		public static void AddMousePosEvent(ImGuiIOPtr self, float x, float y)
-		{
-			AddMousePosEventNative(self, x, y);
-		}
-
-		public static void AddMousePosEvent(ref ImGuiIO self, float x, float y)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				AddMousePosEventNative((ImGuiIO*)pself, x, y);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_AddMouseButtonEvent")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddMouseButtonEventNative(ImGuiIO* self, int button, byte down);
-
-		public static void AddMouseButtonEvent(ImGuiIOPtr self, int button, bool down)
-		{
-			AddMouseButtonEventNative(self, button, down ? (byte)1 : (byte)0);
-		}
-
-		public static void AddMouseButtonEvent(ref ImGuiIO self, int button, bool down)
-		{
-			fixed (ImGuiIO* pself = &self)
-			{
-				AddMouseButtonEventNative((ImGuiIO*)pself, button, down ? (byte)1 : (byte)0);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImGuiIO_AddMouseWheelEvent")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddMouseWheelEventNative(ImGuiIO* self, float wheelX, float wheelY);
-
-		public static void AddMouseWheelEvent(ImGuiIOPtr self, float wheelX, float wheelY)
-		{
-			AddMouseWheelEventNative(self, wheelX, wheelY);
 		}
 	}
 }

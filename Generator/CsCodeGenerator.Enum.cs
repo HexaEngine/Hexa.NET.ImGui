@@ -1,6 +1,7 @@
 ﻿namespace Generator
 {
     using CppAst;
+    using Newtonsoft.Json.Linq;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -71,6 +72,11 @@
                         if (enumItem.ValueExpression is CppRawExpression rawExpression)
                         {
                             string enumValueName = GetEnumItemName(cppEnum, rawExpression.Text, enumNamePrefix);
+
+                            if (CsCodeGeneratorSettings.Default.KnownEnumValueNames.TryGetValue(rawExpression.Text, out string? knownName))
+                            {
+                                enumValueName = knownName;
+                            }
 
                             if (enumItem.Name == rawExpression.Text)
                             {
@@ -160,11 +166,6 @@
 
         private static string GetPrettyEnumName(string value, string enumPrefix)
         {
-            if (CsCodeGeneratorSettings.Default.KnownEnumValueNames.TryGetValue(value, out string? knownName))
-            {
-                return knownName;
-            }
-
             if (value.StartsWith("0x"))
                 return value;
 
