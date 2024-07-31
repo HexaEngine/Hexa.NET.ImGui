@@ -12,6 +12,8 @@
 
         private static void GenerateConstants(CppCompilation compilation, string outputPath)
         {
+            string[] usings = ["System", "HexaGen.Runtime"];
+
             string outDir = Path.Combine(outputPath, "Constants");
             string fileName = Path.Combine(outDir, "Constants.cs");
 
@@ -19,7 +21,7 @@
                 Directory.Delete(outDir, true);
             Directory.CreateDirectory(outDir);
 
-            using SplitCodeWriter writer = new(fileName, CsCodeGeneratorSettings.Default.Namespace, 2, "System");
+            using SplitCodeWriter writer = new(fileName, CsCodeGeneratorSettings.Default.Namespace, 2, usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
 
             using (writer.PushBlock($"public unsafe partial class {CsCodeGeneratorSettings.Default.ApiName}"))
             {

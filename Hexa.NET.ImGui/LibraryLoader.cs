@@ -1,17 +1,13 @@
 ﻿namespace Hexa.NET.ImGui
 {
     using System;
-    using System.Reflection;
     using System.Runtime.InteropServices;
-
+#if !NET5_0_OR_GREATER
+    using HexaGen.Runtime;
+#endif
     public static class LibraryLoader
     {
-        public static void SetImportResolver()
-        {
-            NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), DllImportResolver);
-        }
-
-        private static IntPtr DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
+        public static nint LoadLibrary()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {

@@ -8,6 +8,9 @@
 // ------------------------------------------------------------------------------
 
 using System;
+using HexaGen.Runtime;
+using System.Numerics;
+using Hexa.NET.ImGui;
 
 namespace Hexa.NET.ImNodes
 {

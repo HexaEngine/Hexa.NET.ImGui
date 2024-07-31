@@ -11,7 +11,7 @@
 
         private static void GenerateExtensions(CppCompilation compilation, string outputPath)
         {
-            string[] usings = { "System", "System.Runtime.CompilerServices", "System.Runtime.InteropServices" };
+            string[] usings = { "System", "System.Runtime.CompilerServices", "System.Runtime.InteropServices", "HexaGen.Runtime" };
 
             string outDir = Path.Combine(outputPath, "Extensions");
             string fileName = Path.Combine(outDir, "Extensions.cs");

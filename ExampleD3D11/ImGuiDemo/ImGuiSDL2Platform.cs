@@ -83,7 +83,11 @@
         {
             if (data->WantVisible == 1)
             {
-                Rectangle<int> r = new(new((int)data->InputPos.X, (int)data->InputPos.Y), new(1, (int)data->InputLineHeight));
+                Rectangle<int> r;
+                r.Origin.X = (int)(data->InputPos.X - vp->Pos.X);
+                r.Origin.Y = (int)(data->InputPos.Y - vp->Pos.Y + data->InputLineHeight);
+                r.Size.X = 1;
+                r.Size.Y = (int)data->InputLineHeight;
                 sdl.SetTextInputRect(&r);
             }
         }

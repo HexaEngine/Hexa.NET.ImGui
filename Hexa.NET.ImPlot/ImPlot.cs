@@ -4,7 +4,12 @@ namespace Hexa.NET.ImPlot
     {
         static ImPlot()
         {
-            LibraryLoader.SetImportResolver();
+            InitApi();
+        }
+
+        public static nint GetLibraryName()
+        {
+            return LibraryLoader.LoadLibrary();
         }
     }
 }

@@ -10,11 +10,14 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 
 namespace Hexa.NET.ImGui
 {
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public readonly partial struct ImTextureID : IEquatable<ImTextureID>
 	{
 		public ImTextureID(nint handle) { Handle = handle; }
@@ -31,10 +34,14 @@ namespace Hexa.NET.ImGui
 		public override bool Equals(object obj) => obj is ImTextureID handle && Equals(handle);
 		/// <inheritdoc/>
 		public override int GetHashCode() => Handle.GetHashCode();
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImTextureID [0x{0}]", Handle.ToString("X"));
+		#endif
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public readonly partial struct ImBitArrayPtr : IEquatable<ImBitArrayPtr>
 	{
 		public ImBitArrayPtr(nint handle) { Handle = handle; }
@@ -51,10 +58,14 @@ namespace Hexa.NET.ImGui
 		public override bool Equals(object obj) => obj is ImBitArrayPtr handle && Equals(handle);
 		/// <inheritdoc/>
 		public override int GetHashCode() => Handle.GetHashCode();
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImBitArrayPtr [0x{0}]", Handle.ToString("X"));
+		#endif
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public readonly partial struct ImFileHandle : IEquatable<ImFileHandle>
 	{
 		public ImFileHandle(nint handle) { Handle = handle; }
@@ -71,7 +82,9 @@ namespace Hexa.NET.ImGui
 		public override bool Equals(object obj) => obj is ImFileHandle handle && Equals(handle);
 		/// <inheritdoc/>
 		public override int GetHashCode() => Handle.GetHashCode();
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImFileHandle [0x{0}]", Handle.ToString("X"));
+		#endif
 	}
 
 }

@@ -1,9 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net7.0;net8.0</TargetFrameworks>
+		<TargetFrameworks>net7.0;net8.0;netstandard2.0;netstandard2.1</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+		<LangVersion>12</LangVersion>
 
 		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
 		<EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
@@ -22,6 +24,11 @@
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="HexaGen.Runtime" Version="1.1.4" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<None Include="..\native\android-x64\cimguizmo.so">
 			<Link>runtimes\android-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>

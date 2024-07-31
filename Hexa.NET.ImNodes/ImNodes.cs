@@ -4,7 +4,12 @@ namespace Hexa.NET.ImNodes
     {
         static ImNodes()
         {
-            LibraryLoader.SetImportResolver();
+            InitApi();
+        }
+
+        public static nint GetLibraryName()
+        {
+            return LibraryLoader.LoadLibrary();
         }
     }
 }

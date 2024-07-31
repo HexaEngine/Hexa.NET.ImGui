@@ -11,12 +11,35 @@
             if (Directory.Exists(outputPath))
                 Directory.Delete(outputPath, true);
             Directory.CreateDirectory(outputPath);
-            GenerateConstants(compilation, outputPath);
-            GenerateEnums(compilation, outputPath);
-            GenerateHandles(compilation, outputPath);
-            GenerateStructAndUnions(compilation, outputPath);
-            GenerateFunctions(compilation, outputPath);
-            GenerateDelegates(compilation, outputPath);
+           
+            if (CsCodeGeneratorSettings.Default.GenerateConstants)
+            {
+                GenerateConstants(compilation, outputPath);
+            }
+            if (CsCodeGeneratorSettings.Default.GenerateEnums)
+            {
+                GenerateEnums(compilation, outputPath);
+            }
+            if (CsCodeGeneratorSettings.Default.GenerateExtensions)
+            {
+                GenerateExtensions(compilation, outputPath);
+            }
+            if (CsCodeGeneratorSettings.Default.GenerateHandles)
+            {
+                GenerateHandles(compilation, outputPath);
+            }
+            if (CsCodeGeneratorSettings.Default.GenerateStructs)
+            {
+                GenerateStructAndUnions(compilation, outputPath);
+            }
+            if (CsCodeGeneratorSettings.Default.GenerateFunctions)
+            {
+                GenerateFunctions(compilation, outputPath);
+            }
+            if (CsCodeGeneratorSettings.Default.GenerateDelegates)
+            {
+                GenerateDelegates(compilation, outputPath);
+            }
         }
 
         public static void Reset()
@@ -248,6 +271,11 @@
             }
 
             return string.Empty;
+        }
+
+        private static string GetBoolType()
+        {
+            return "byte";
         }
 
         private static string GetCsTypeName(CppPointerType pointerType)

@@ -8,6 +8,8 @@
 // ------------------------------------------------------------------------------
 
 using System;
+using HexaGen.Runtime;
+using System.Numerics;
 
 namespace Hexa.NET.ImGui
 {

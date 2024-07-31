@@ -11,6 +11,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
@@ -52,7 +53,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotContextPtr : IEquatable<ImPlotContextPtr>
 	{
 		public ImPlotContextPtr(ImPlotContext* handle) { Handle = handle; }
@@ -83,7 +86,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotContextPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImPoolImPlotPlot Plots => ref Unsafe.AsRef<ImPoolImPlotPlot>(&Handle->Plots);
 		public ref ImPoolImPlotSubplot Subplots => ref Unsafe.AsRef<ImPoolImPlotSubplot>(&Handle->Subplots);
 		public ref ImPlotPlotPtr CurrentPlot => ref Unsafe.AsRef<ImPlotPlotPtr>(&Handle->CurrentPlot);
@@ -183,7 +188,9 @@ namespace Hexa.NET.ImPlot
 		}
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotPlotPtr : IEquatable<ImPlotPlotPtr>
 	{
 		public ImPlotPlotPtr(ImPlotPlot* handle) { Handle = handle; }
@@ -214,7 +221,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotPlotPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImPlotFlags Flags => ref Unsafe.AsRef<ImPlotFlags>(&Handle->Flags);
 		public ref ImPlotFlags PreviousFlags => ref Unsafe.AsRef<ImPlotFlags>(&Handle->PreviousFlags);
@@ -319,7 +328,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotAxisPtr : IEquatable<ImPlotAxisPtr>
 	{
 		public ImPlotAxisPtr(ImPlotAxis* handle) { Handle = handle; }
@@ -350,7 +361,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotAxisPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImPlotAxisFlags Flags => ref Unsafe.AsRef<ImPlotAxisFlags>(&Handle->Flags);
 		public ref ImPlotAxisFlags PreviousFlags => ref Unsafe.AsRef<ImPlotAxisFlags>(&Handle->PreviousFlags);
@@ -452,7 +465,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotRangePtr : IEquatable<ImPlotRangePtr>
 	{
 		public ImPlotRangePtr(ImPlotRange* handle) { Handle = handle; }
@@ -483,7 +498,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotRangePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref double Min => ref Unsafe.AsRef<double>(&Handle->Min);
 		public ref double Max => ref Unsafe.AsRef<double>(&Handle->Max);
 
@@ -523,7 +540,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotTickerPtr : IEquatable<ImPlotTickerPtr>
 	{
 		public ImPlotTickerPtr(ImPlotTicker* handle) { Handle = handle; }
@@ -554,7 +573,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotTickerPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorImPlotTick Ticks => ref Unsafe.AsRef<ImVectorImPlotTick>(&Handle->Ticks);
 		public ref ImGuiTextBuffer TextBuffer => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->TextBuffer);
 		public ref Vector2 MaxSize => ref Unsafe.AsRef<Vector2>(&Handle->MaxSize);
@@ -585,7 +606,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotTickPtr : IEquatable<ImPlotTickPtr>
 	{
 		public ImPlotTickPtr(ImPlotTick* handle) { Handle = handle; }
@@ -616,7 +639,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotTickPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref double PlotPos => ref Unsafe.AsRef<double>(&Handle->PlotPos);
 		public ref float PixelPos => ref Unsafe.AsRef<float>(&Handle->PixelPos);
 		public ref Vector2 LabelSize => ref Unsafe.AsRef<Vector2>(&Handle->LabelSize);
@@ -635,7 +660,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotTimePtr : IEquatable<ImPlotTimePtr>
 	{
 		public ImPlotTimePtr(ImPlotTime* handle) { Handle = handle; }
@@ -666,7 +693,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotTimePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref long S => ref Unsafe.AsRef<long>(&Handle->S);
 		public ref int Us => ref Unsafe.AsRef<int>(&Handle->Us);
 	}
@@ -681,7 +710,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotItemGroupPtr : IEquatable<ImPlotItemGroupPtr>
 	{
 		public ImPlotItemGroupPtr(ImPlotItemGroup* handle) { Handle = handle; }
@@ -712,7 +743,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotItemGroupPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImPlotLegend Legend => ref Unsafe.AsRef<ImPlotLegend>(&Handle->Legend);
 		public ref ImPoolImPlotItem ItemPool => ref Unsafe.AsRef<ImPoolImPlotItem>(&Handle->ItemPool);
@@ -737,7 +770,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotLegendPtr : IEquatable<ImPlotLegendPtr>
 	{
 		public ImPlotLegendPtr(ImPlotLegend* handle) { Handle = handle; }
@@ -768,7 +803,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotLegendPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImPlotLegendFlags Flags => ref Unsafe.AsRef<ImPlotLegendFlags>(&Handle->Flags);
 		public ref ImPlotLegendFlags PreviousFlags => ref Unsafe.AsRef<ImPlotLegendFlags>(&Handle->PreviousFlags);
 		public ref ImPlotLocation Location => ref Unsafe.AsRef<ImPlotLocation>(&Handle->Location);
@@ -815,7 +852,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotItemPtr : IEquatable<ImPlotItemPtr>
 	{
 		public ImPlotItemPtr(ImPlotItem* handle) { Handle = handle; }
@@ -846,7 +885,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotItemPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref uint Color => ref Unsafe.AsRef<uint>(&Handle->Color);
 		public ref ImRect LegendHoverRect => ref Unsafe.AsRef<ImRect>(&Handle->LegendHoverRect);
@@ -901,7 +942,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotSubplotPtr : IEquatable<ImPlotSubplotPtr>
 	{
 		public ImPlotSubplotPtr(ImPlotSubplot* handle) { Handle = handle; }
@@ -932,7 +975,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotSubplotPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref ImPlotSubplotFlags Flags => ref Unsafe.AsRef<ImPlotSubplotFlags>(&Handle->Flags);
 		public ref ImPlotSubplotFlags PreviousFlags => ref Unsafe.AsRef<ImPlotSubplotFlags>(&Handle->PreviousFlags);
@@ -981,7 +1026,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotAlignmentDataPtr : IEquatable<ImPlotAlignmentDataPtr>
 	{
 		public ImPlotAlignmentDataPtr(ImPlotAlignmentData* handle) { Handle = handle; }
@@ -1012,7 +1059,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotAlignmentDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref bool Vertical => ref Unsafe.AsRef<bool>(&Handle->Vertical);
 		public ref float PadA => ref Unsafe.AsRef<float>(&Handle->PadA);
 		public ref float PadB => ref Unsafe.AsRef<float>(&Handle->PadB);
@@ -1038,7 +1087,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotAnnotationCollectionPtr : IEquatable<ImPlotAnnotationCollectionPtr>
 	{
 		public ImPlotAnnotationCollectionPtr(ImPlotAnnotationCollection* handle) { Handle = handle; }
@@ -1069,7 +1120,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotAnnotationCollectionPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorImPlotAnnotation Annotations => ref Unsafe.AsRef<ImVectorImPlotAnnotation>(&Handle->Annotations);
 		public ref ImGuiTextBuffer TextBuffer => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->TextBuffer);
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
@@ -1096,7 +1149,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotAnnotationPtr : IEquatable<ImPlotAnnotationPtr>
 	{
 		public ImPlotAnnotationPtr(ImPlotAnnotation* handle) { Handle = handle; }
@@ -1127,7 +1182,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotAnnotationPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref Vector2 Pos => ref Unsafe.AsRef<Vector2>(&Handle->Pos);
 		public ref Vector2 Offset => ref Unsafe.AsRef<Vector2>(&Handle->Offset);
 		public ref uint ColorBg => ref Unsafe.AsRef<uint>(&Handle->ColorBg);
@@ -1145,7 +1202,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotTagCollectionPtr : IEquatable<ImPlotTagCollectionPtr>
 	{
 		public ImPlotTagCollectionPtr(ImPlotTagCollection* handle) { Handle = handle; }
@@ -1176,7 +1235,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotTagCollectionPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorImPlotTag Tags => ref Unsafe.AsRef<ImVectorImPlotTag>(&Handle->Tags);
 		public ref ImGuiTextBuffer TextBuffer => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->TextBuffer);
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
@@ -1202,7 +1263,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotTagPtr : IEquatable<ImPlotTagPtr>
 	{
 		public ImPlotTagPtr(ImPlotTag* handle) { Handle = handle; }
@@ -1233,7 +1296,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotTagPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImAxis Axis => ref Unsafe.AsRef<ImAxis>(&Handle->Axis);
 		public ref double Value => ref Unsafe.AsRef<double>(&Handle->Value);
 		public ref uint ColorBg => ref Unsafe.AsRef<uint>(&Handle->ColorBg);
@@ -1319,7 +1384,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotStylePtr : IEquatable<ImPlotStylePtr>
 	{
 		public ImPlotStylePtr(ImPlotStyle* handle) { Handle = handle; }
@@ -1350,7 +1417,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotStylePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref float LineWeight => ref Unsafe.AsRef<float>(&Handle->LineWeight);
 		public ref int Marker => ref Unsafe.AsRef<int>(&Handle->Marker);
 		public ref float MarkerSize => ref Unsafe.AsRef<float>(&Handle->MarkerSize);
@@ -1415,7 +1484,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotColormapDataPtr : IEquatable<ImPlotColormapDataPtr>
 	{
 		public ImPlotColormapDataPtr(ImPlotColormapData* handle) { Handle = handle; }
@@ -1446,7 +1517,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotColormapDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImVectorImU32 Keys => ref Unsafe.AsRef<ImVectorImU32>(&Handle->Keys);
 		public ref ImVectorInt KeyCounts => ref Unsafe.AsRef<ImVectorInt>(&Handle->KeyCounts);
 		public ref ImVectorInt KeyOffsets => ref Unsafe.AsRef<ImVectorInt>(&Handle->KeyOffsets);
@@ -1487,7 +1560,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVectorDoublePtr : IEquatable<ImVectorDoublePtr>
 	{
 		public ImVectorDoublePtr(ImVectorDouble* handle) { Handle = handle; }
@@ -1518,7 +1593,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVectorDoublePtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
 		public double* Data { get => Handle->Data; set => Handle->Data = value; }
@@ -1577,7 +1654,9 @@ namespace Hexa.NET.ImPlot
 		}
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotNextPlotDataPtr : IEquatable<ImPlotNextPlotDataPtr>
 	{
 		public ImPlotNextPlotDataPtr(ImPlotNextPlotData* handle) { Handle = handle; }
@@ -1608,7 +1687,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotNextPlotDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public unsafe Span<int> RangeCond
 		
 		{
@@ -1681,7 +1762,9 @@ namespace Hexa.NET.ImPlot
 		}
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotNextItemDataPtr : IEquatable<ImPlotNextItemDataPtr>
 	{
 		public ImPlotNextItemDataPtr(ImPlotNextItemData* handle) { Handle = handle; }
@@ -1712,7 +1795,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotNextItemDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public unsafe Span<Vector4> Colors
 		
 		{
@@ -1766,7 +1851,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotInputMapPtr : IEquatable<ImPlotInputMapPtr>
 	{
 		public ImPlotInputMapPtr(ImPlotInputMap* handle) { Handle = handle; }
@@ -1797,7 +1884,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotInputMapPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImGuiMouseButton Pan => ref Unsafe.AsRef<ImGuiMouseButton>(&Handle->Pan);
 		public ref int PanMod => ref Unsafe.AsRef<int>(&Handle->PanMod);
 		public ref ImGuiMouseButton Fit => ref Unsafe.AsRef<ImGuiMouseButton>(&Handle->Fit);
@@ -1843,7 +1932,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVectorImS16Ptr : IEquatable<ImVectorImS16Ptr>
 	{
 		public ImVectorImS16Ptr(ImVectorImS16* handle) { Handle = handle; }
@@ -1874,7 +1965,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVectorImS16Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
 		public short* Data { get => Handle->Data; set => Handle->Data = value; }
@@ -1889,7 +1982,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVectorImS32Ptr : IEquatable<ImVectorImS32Ptr>
 	{
 		public ImVectorImS32Ptr(ImVectorImS32* handle) { Handle = handle; }
@@ -1920,7 +2015,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVectorImS32Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
 		public int* Data { get => Handle->Data; set => Handle->Data = value; }
@@ -1935,7 +2032,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVectorImS64Ptr : IEquatable<ImVectorImS64Ptr>
 	{
 		public ImVectorImS64Ptr(ImVectorImS64* handle) { Handle = handle; }
@@ -1966,7 +2065,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVectorImS64Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
 		public long* Data { get => Handle->Data; set => Handle->Data = value; }
@@ -1981,7 +2082,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVectorImS8Ptr : IEquatable<ImVectorImS8Ptr>
 	{
 		public ImVectorImS8Ptr(ImVectorImS8* handle) { Handle = handle; }
@@ -2012,7 +2115,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVectorImS8Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
 		public sbyte* Data { get => Handle->Data; set => Handle->Data = value; }
@@ -2027,7 +2132,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVectorImU16Ptr : IEquatable<ImVectorImU16Ptr>
 	{
 		public ImVectorImU16Ptr(ImVectorImU16* handle) { Handle = handle; }
@@ -2058,7 +2165,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVectorImU16Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
 		public ushort* Data { get => Handle->Data; set => Handle->Data = value; }
@@ -2073,7 +2182,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVectorImU64Ptr : IEquatable<ImVectorImU64Ptr>
 	{
 		public ImVectorImU64Ptr(ImVectorImU64* handle) { Handle = handle; }
@@ -2104,7 +2215,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVectorImU64Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
 		public ulong* Data { get => Handle->Data; set => Handle->Data = value; }
@@ -2119,7 +2232,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImVectorImU8Ptr : IEquatable<ImVectorImU8Ptr>
 	{
 		public ImVectorImU8Ptr(ImVectorImU8* handle) { Handle = handle; }
@@ -2150,7 +2265,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImVectorImU8Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
 		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
 		public byte* Data { get => Handle->Data; set => Handle->Data = value; }
@@ -2173,7 +2290,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotPointPtr : IEquatable<ImPlotPointPtr>
 	{
 		public ImPlotPointPtr(ImPlotPoint* handle) { Handle = handle; }
@@ -2204,7 +2323,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotPointPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref double X => ref Unsafe.AsRef<double>(&Handle->X);
 		public ref double Y => ref Unsafe.AsRef<double>(&Handle->Y);
 
@@ -2250,7 +2371,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotRectPtr : IEquatable<ImPlotRectPtr>
 	{
 		public ImPlotRectPtr(ImPlotRect* handle) { Handle = handle; }
@@ -2281,7 +2404,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotRectPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImPlotRange X => ref Unsafe.AsRef<ImPlotRange>(&Handle->X);
 		public ref ImPlotRange Y => ref Unsafe.AsRef<ImPlotRange>(&Handle->Y);
 
@@ -2314,7 +2439,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotDateTimeSpecPtr : IEquatable<ImPlotDateTimeSpecPtr>
 	{
 		public ImPlotDateTimeSpecPtr(ImPlotDateTimeSpec* handle) { Handle = handle; }
@@ -2345,7 +2472,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotDateTimeSpecPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref ImPlotDateFmt Date => ref Unsafe.AsRef<ImPlotDateFmt>(&Handle->Date);
 		public ref ImPlotTimeFmt Time => ref Unsafe.AsRef<ImPlotTimeFmt>(&Handle->Time);
 		public ref bool UseISO8601 => ref Unsafe.AsRef<bool>(&Handle->UseISO8601);
@@ -2362,7 +2491,9 @@ namespace Hexa.NET.ImPlot
 
 	}
 
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public unsafe struct ImPlotPointErrorPtr : IEquatable<ImPlotPointErrorPtr>
 	{
 		public ImPlotPointErrorPtr(ImPlotPointError* handle) { Handle = handle; }
@@ -2393,7 +2524,9 @@ namespace Hexa.NET.ImPlot
 		/// <inheritdoc/>
 		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
 
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotPointErrorPtr [0x{0}]", ((nuint)Handle).ToString("X"));
+		#endif
 		public ref double X => ref Unsafe.AsRef<double>(&Handle->X);
 		public ref double Y => ref Unsafe.AsRef<double>(&Handle->Y);
 		public ref double Neg => ref Unsafe.AsRef<double>(&Handle->Neg);

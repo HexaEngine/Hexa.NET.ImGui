@@ -10,12 +10,15 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
 namespace Hexa.NET.ImNodes
 {
+	#if NET5_0_OR_GREATER
 	[DebuggerDisplay("{DebuggerDisplay,nq}")]
+	#endif
 	public readonly partial struct ImNodesMiniMapNodeHoveringCallbackUserData : IEquatable<ImNodesMiniMapNodeHoveringCallbackUserData>
 	{
 		public ImNodesMiniMapNodeHoveringCallbackUserData(nint handle) { Handle = handle; }
@@ -32,7 +35,9 @@ namespace Hexa.NET.ImNodes
 		public override bool Equals(object obj) => obj is ImNodesMiniMapNodeHoveringCallbackUserData handle && Equals(handle);
 		/// <inheritdoc/>
 		public override int GetHashCode() => Handle.GetHashCode();
+		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImNodesMiniMapNodeHoveringCallbackUserData [0x{0}]", Handle.ToString("X"));
+		#endif
 	}
 
 }

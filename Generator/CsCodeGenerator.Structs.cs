@@ -13,7 +13,7 @@
 
         private static void GenerateStructAndUnions(CppCompilation compilation, string outputPath)
         {
-            string[] usings = { "System", "System.Diagnostics", "System.Runtime.CompilerServices", "System.Runtime.InteropServices" };
+            string[] usings = { "System", "System.Diagnostics", "System.Runtime.CompilerServices", "System.Runtime.InteropServices", "HexaGen.Runtime" };
 
             string outDir = Path.Combine(outputPath, "Structs");
             string fileName = Path.Combine(outDir, "Structs.cs");
@@ -74,7 +74,9 @@
         private static void WriteStructHandle(ICodeWriter writer, CppCompilation compilation, CppClass cppClass, string csName, string handleType)
         {
             WriteCsSummary(cppClass.Comment, writer);
+            writer.WriteLine("#if NET5_0_OR_GREATER");
             writer.WriteLine($"[DebuggerDisplay(\"{{DebuggerDisplay,nq}}\")]");
+            writer.WriteLine("#endif");
             using (writer.PushBlock($"public unsafe struct {csName} : IEquatable<{csName}>"))
             {
                 string nullValue = "null";
@@ -107,7 +109,9 @@
                 writer.WriteLine("/// <inheritdoc/>");
                 writer.WriteLine($"public override int GetHashCode() => ((nuint)Handle).GetHashCode();");
                 writer.WriteLine();
+                writer.WriteLine("#if NET5_0_OR_GREATER");
                 writer.WriteLine($"private string DebuggerDisplay => string.Format(\"{csName} [0x{{0}}]\", ((nuint)Handle).ToString(\"X\"));");
+                writer.WriteLine("#endif");
                 var pCount = handleType.Count(x => x == '*');
                 if (pCount == 1)
                 {

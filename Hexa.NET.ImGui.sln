@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hexa.NET.ImNodes", "Hexa.NE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hexa.NET.ImPlot", "Hexa.NET.ImPlot\Hexa.NET.ImPlot.csproj", "{EE66DB89-A45C-45C4-A23B-99EF0BED4350}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleD3D11", "ExampleD3D11\ExampleD3D11.csproj", "{539452FB-6300-470C-8C46-E40BBF1C67BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleD3D11", "ExampleD3D11\ExampleD3D11.csproj", "{539452FB-6300-470C-8C46-E40BBF1C67BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetFrameworkTest", "NetFrameworkTest\NetFrameworkTest.csproj", "{EB050117-B80E-4B06-AE34-CB155DEE50BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{539452FB-6300-470C-8C46-E40BBF1C67BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{539452FB-6300-470C-8C46-E40BBF1C67BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{539452FB-6300-470C-8C46-E40BBF1C67BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB050117-B80E-4B06-AE34-CB155DEE50BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB050117-B80E-4B06-AE34-CB155DEE50BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB050117-B80E-4B06-AE34-CB155DEE50BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB050117-B80E-4B06-AE34-CB155DEE50BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

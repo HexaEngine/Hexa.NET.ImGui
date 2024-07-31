@@ -10,6 +10,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
@@ -17,11 +18,14 @@ namespace Hexa.NET.ImPlot
 {
 	public unsafe partial class ImPlot
 	{
-		internal const string LibName = "cimplot";
-
-		[LibraryImport(LibName, EntryPoint = "ImPlotPoint_ImPlotPoint_Nil")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotPoint* ImPlotPointNative();
+		internal static ImPlotPoint* ImPlotPointNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotPoint*>)vt[0])();
+			#else
+			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<nint>)vt[0])();
+			#endif
+		}
 
 		public static ImPlotPointPtr ImPlotPoint()
 		{
@@ -29,9 +33,14 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotPoint_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImPlotPoint* self);
+		internal static void DestroyNative(ImPlotPoint* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, void>)vt[1])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[1])((nint)self);
+			#endif
+		}
 
 		public static void Destroy(ImPlotPointPtr self)
 		{
@@ -46,9 +55,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotPoint_ImPlotPoint_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotPoint* ImPlotPointNative(double x, double y);
+		internal static ImPlotPoint* ImPlotPointNative(double x, double y)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotPoint*>)vt[2])(x, y);
+			#else
+			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<double, double, nint>)vt[2])(x, y);
+			#endif
+		}
 
 		public static ImPlotPointPtr ImPlotPoint(double x, double y)
 		{
@@ -56,9 +70,14 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotPoint_ImPlotPoint_Vec2")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotPoint* ImPlotPointNative(Vector2 p);
+		internal static ImPlotPoint* ImPlotPointNative(Vector2 p)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<Vector2, ImPlotPoint*>)vt[3])(p);
+			#else
+			return (ImPlotPoint*)((delegate* unmanaged[Cdecl]<Vector2, nint>)vt[3])(p);
+			#endif
+		}
 
 		public static ImPlotPointPtr ImPlotPoint(Vector2 p)
 		{
@@ -66,9 +85,14 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRange_ImPlotRange_Nil")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotRange* ImPlotRangeNative();
+		internal static ImPlotRange* ImPlotRangeNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*>)vt[4])();
+			#else
+			return (ImPlotRange*)((delegate* unmanaged[Cdecl]<nint>)vt[4])();
+			#endif
+		}
 
 		public static ImPlotRangePtr ImPlotRange()
 		{
@@ -76,9 +100,14 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRange_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImPlotRange* self);
+		internal static void DestroyNative(ImPlotRange* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotRange*, void>)vt[5])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[5])((nint)self);
+			#endif
+		}
 
 		public static void Destroy(ImPlotRangePtr self)
 		{
@@ -93,9 +122,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRange_ImPlotRange_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotRange* ImPlotRangeNative(double min, double max);
+		internal static ImPlotRange* ImPlotRangeNative(double min, double max)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotRange*>)vt[6])(min, max);
+			#else
+			return (ImPlotRange*)((delegate* unmanaged[Cdecl]<double, double, nint>)vt[6])(min, max);
+			#endif
+		}
 
 		public static ImPlotRangePtr ImPlotRange(double min, double max)
 		{
@@ -103,9 +137,14 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRange_Contains")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ContainsNative(ImPlotRange* self, double value);
+		internal static byte ContainsNative(ImPlotRange* self, double value)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double, byte>)vt[7])(self, value);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, double, byte>)vt[7])((nint)self, value);
+			#endif
+		}
 
 		public static bool Contains(ImPlotRangePtr self, double value)
 		{
@@ -122,9 +161,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRange_Size")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double SizeNative(ImPlotRange* self);
+		internal static double SizeNative(ImPlotRange* self)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double>)vt[8])(self);
+			#else
+			return (double)((delegate* unmanaged[Cdecl]<nint, double>)vt[8])((nint)self);
+			#endif
+		}
 
 		public static double Size(ImPlotRangePtr self)
 		{
@@ -141,9 +185,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRange_Clamp")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ClampNative(ImPlotRange* self, double value);
+		internal static double ClampNative(ImPlotRange* self, double value)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double, double>)vt[9])(self, value);
+			#else
+			return (double)((delegate* unmanaged[Cdecl]<nint, double, double>)vt[9])((nint)self, value);
+			#endif
+		}
 
 		public static double Clamp(ImPlotRangePtr self, double value)
 		{
@@ -160,9 +209,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_ImPlotRect_Nil")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotRect* ImPlotRectNative();
+		internal static ImPlotRect* ImPlotRectNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*>)vt[10])();
+			#else
+			return (ImPlotRect*)((delegate* unmanaged[Cdecl]<nint>)vt[10])();
+			#endif
+		}
 
 		public static ImPlotRectPtr ImPlotRect()
 		{
@@ -170,9 +224,14 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImPlotRect* self);
+		internal static void DestroyNative(ImPlotRect* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotRect*, void>)vt[11])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[11])((nint)self);
+			#endif
+		}
 
 		public static void Destroy(ImPlotRectPtr self)
 		{
@@ -187,9 +246,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_ImPlotRect_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotRect* ImPlotRectNative(double xMin, double xMax, double yMin, double yMax);
+		internal static ImPlotRect* ImPlotRectNative(double xMin, double xMax, double yMin, double yMax)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotRect*>)vt[12])(xMin, xMax, yMin, yMax);
+			#else
+			return (ImPlotRect*)((delegate* unmanaged[Cdecl]<double, double, double, double, nint>)vt[12])(xMin, xMax, yMin, yMax);
+			#endif
+		}
 
 		public static ImPlotRectPtr ImPlotRect(double xMin, double xMax, double yMin, double yMax)
 		{
@@ -197,9 +261,14 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_Contains_PlotPoInt")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ContainsNative(ImPlotRect* self, ImPlotPoint p);
+		internal static byte ContainsNative(ImPlotRect* self, ImPlotPoint p)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, ImPlotPoint, byte>)vt[13])(self, p);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImPlotPoint, byte>)vt[13])((nint)self, p);
+			#endif
+		}
 
 		public static bool Contains(ImPlotRectPtr self, ImPlotPoint p)
 		{
@@ -216,9 +285,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_Contains_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ContainsNative(ImPlotRect* self, double x, double y);
+		internal static byte ContainsNative(ImPlotRect* self, double x, double y)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, double, double, byte>)vt[14])(self, x, y);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, double, double, byte>)vt[14])((nint)self, x, y);
+			#endif
+		}
 
 		public static bool Contains(ImPlotRectPtr self, double x, double y)
 		{
@@ -235,9 +309,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_Size")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SizeNative(ImPlotPoint* output, ImPlotRect* self);
+		internal static void SizeNative(ImPlotPoint* output, ImPlotRect* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)vt[15])(output, self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[15])((nint)output, (nint)self);
+			#endif
+		}
 
 		public static ImPlotPoint Size(ImPlotRectPtr self)
 		{
@@ -288,9 +367,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_Clamp_PlotPoInt")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClampNative(ImPlotPoint* output, ImPlotRect* self, ImPlotPoint p);
+		internal static void ClampNative(ImPlotPoint* output, ImPlotRect* self, ImPlotPoint p)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, ImPlotPoint, void>)vt[16])(output, self, p);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, ImPlotPoint, void>)vt[16])((nint)output, (nint)self, p);
+			#endif
+		}
 
 		public static ImPlotPoint Clamp(ImPlotRectPtr self, ImPlotPoint p)
 		{
@@ -341,9 +425,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_Clamp_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClampNative(ImPlotPoint* output, ImPlotRect* self, double x, double y);
+		internal static void ClampNative(ImPlotPoint* output, ImPlotRect* self, double x, double y)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, double, double, void>)vt[17])(output, self, x, y);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, double, double, void>)vt[17])((nint)output, (nint)self, x, y);
+			#endif
+		}
 
 		public static ImPlotPoint Clamp(ImPlotRectPtr self, double x, double y)
 		{
@@ -394,9 +483,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_Min")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void MinNative(ImPlotPoint* output, ImPlotRect* self);
+		internal static void MinNative(ImPlotPoint* output, ImPlotRect* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)vt[18])(output, self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[18])((nint)output, (nint)self);
+			#endif
+		}
 
 		public static ImPlotPoint Min(ImPlotRectPtr self)
 		{
@@ -447,9 +541,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_Max")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void MaxNative(ImPlotPoint* output, ImPlotRect* self);
+		internal static void MaxNative(ImPlotPoint* output, ImPlotRect* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)vt[19])(output, self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[19])((nint)output, (nint)self);
+			#endif
+		}
 
 		public static ImPlotPoint Max(ImPlotRectPtr self)
 		{
@@ -500,9 +599,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotStyle_ImPlotStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotStyle* ImPlotStyleNative();
+		internal static ImPlotStyle* ImPlotStyleNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotStyle*>)vt[20])();
+			#else
+			return (ImPlotStyle*)((delegate* unmanaged[Cdecl]<nint>)vt[20])();
+			#endif
+		}
 
 		public static ImPlotStylePtr ImPlotStyle()
 		{
@@ -510,9 +614,14 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotStyle_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImPlotStyle* self);
+		internal static void DestroyNative(ImPlotStyle* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotStyle*, void>)vt[21])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[21])((nint)self);
+			#endif
+		}
 
 		public static void Destroy(ImPlotStylePtr self)
 		{
@@ -527,9 +636,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotInputMap_ImPlotInputMap")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotInputMap* ImPlotInputMapNative();
+		internal static ImPlotInputMap* ImPlotInputMapNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotInputMap*>)vt[22])();
+			#else
+			return (ImPlotInputMap*)((delegate* unmanaged[Cdecl]<nint>)vt[22])();
+			#endif
+		}
 
 		public static ImPlotInputMapPtr ImPlotInputMap()
 		{
@@ -537,9 +651,14 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotInputMap_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImPlotInputMap* self);
+		internal static void DestroyNative(ImPlotInputMap* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotInputMap*, void>)vt[23])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[23])((nint)self);
+			#endif
+		}
 
 		public static void Destroy(ImPlotInputMapPtr self)
 		{
@@ -554,9 +673,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CreateContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotContext* CreateContextNative();
+		internal static ImPlotContext* CreateContextNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotContext*>)vt[24])();
+			#else
+			return (ImPlotContext*)((delegate* unmanaged[Cdecl]<nint>)vt[24])();
+			#endif
+		}
 
 		public static ImPlotContextPtr CreateContext()
 		{
@@ -564,9 +688,14 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_DestroyContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyContextNative(ImPlotContext* ctx);
+		internal static void DestroyContextNative(ImPlotContext* ctx)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)vt[25])(ctx);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[25])((nint)ctx);
+			#endif
+		}
 
 		public static void DestroyContext(ImPlotContextPtr ctx)
 		{
@@ -586,9 +715,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetCurrentContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotContext* GetCurrentContextNative();
+		internal static ImPlotContext* GetCurrentContextNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImPlotContext*>)vt[26])();
+			#else
+			return (ImPlotContext*)((delegate* unmanaged[Cdecl]<nint>)vt[26])();
+			#endif
+		}
 
 		public static ImPlotContextPtr GetCurrentContext()
 		{
@@ -596,9 +730,14 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetCurrentContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetCurrentContextNative(ImPlotContext* ctx);
+		internal static void SetCurrentContextNative(ImPlotContext* ctx)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)vt[27])(ctx);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[27])((nint)ctx);
+			#endif
+		}
 
 		public static void SetCurrentContext(ImPlotContextPtr ctx)
 		{
@@ -613,9 +752,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetImGuiContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetImGuiContextNative(ImGuiContext* ctx);
+		internal static void SetImGuiContextNative(ImGuiContext* ctx)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[28])(ctx);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[28])((nint)ctx);
+			#endif
+		}
 
 		public static void SetImGuiContext(ImGuiContextPtr ctx)
 		{
@@ -630,9 +774,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginPlot")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginPlotNative(byte* titleId, Vector2 size, ImPlotFlags flags);
+		internal static byte BeginPlotNative(byte* titleId, Vector2 size, ImPlotFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImPlotFlags, byte>)vt[29])(titleId, size, flags);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImPlotFlags, byte>)vt[29])((nint)titleId, size, flags);
+			#endif
+		}
 
 		public static bool BeginPlot(byte* titleId, Vector2 size, ImPlotFlags flags)
 		{
@@ -802,18 +951,64 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_EndPlot")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndPlotNative();
+		public static bool BeginPlot(ReadOnlySpan<byte> titleId, Vector2 size, ImPlotFlags flags)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				byte ret = BeginPlotNative((byte*)ptitleId, size, flags);
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginPlot(ReadOnlySpan<byte> titleId, Vector2 size)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				byte ret = BeginPlotNative((byte*)ptitleId, size, (ImPlotFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginPlot(ReadOnlySpan<byte> titleId)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				byte ret = BeginPlotNative((byte*)ptitleId, (Vector2)(new Vector2(-1,0)), (ImPlotFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginPlot(ReadOnlySpan<byte> titleId, ImPlotFlags flags)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				byte ret = BeginPlotNative((byte*)ptitleId, (Vector2)(new Vector2(-1,0)), flags);
+				return ret != 0;
+			}
+		}
+
+		internal static void EndPlotNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[30])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[30])();
+			#endif
+		}
 
 		public static void EndPlot()
 		{
 			EndPlotNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginSubplots")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginSubplotsNative(byte* titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, float* colRatios);
+		internal static byte BeginSubplotsNative(byte* titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, float* colRatios)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, int, int, Vector2, ImPlotSubplotFlags, float*, float*, byte>)vt[31])(titleId, rows, cols, size, flags, rowRatios, colRatios);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, int, int, Vector2, ImPlotSubplotFlags, nint, nint, byte>)vt[31])((nint)titleId, rows, cols, size, flags, (nint)rowRatios, (nint)colRatios);
+			#endif
+		}
 
 		public static bool BeginSubplots(byte* titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, float* colRatios)
 		{
@@ -1067,6 +1262,60 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
+		public static bool BeginSubplots(ReadOnlySpan<byte> titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, float* colRatios)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				byte ret = BeginSubplotsNative((byte*)ptitleId, rows, cols, size, flags, rowRatios, colRatios);
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginSubplots(ReadOnlySpan<byte> titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				byte ret = BeginSubplotsNative((byte*)ptitleId, rows, cols, size, flags, rowRatios, (float*)(default));
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginSubplots(ReadOnlySpan<byte> titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				byte ret = BeginSubplotsNative((byte*)ptitleId, rows, cols, size, flags, (float*)(default), (float*)(default));
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginSubplots(ReadOnlySpan<byte> titleId, int rows, int cols, Vector2 size)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				byte ret = BeginSubplotsNative((byte*)ptitleId, rows, cols, size, (ImPlotSubplotFlags)(0), (float*)(default), (float*)(default));
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginSubplots(ReadOnlySpan<byte> titleId, int rows, int cols, Vector2 size, float* rowRatios)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				byte ret = BeginSubplotsNative((byte*)ptitleId, rows, cols, size, (ImPlotSubplotFlags)(0), rowRatios, (float*)(default));
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginSubplots(ReadOnlySpan<byte> titleId, int rows, int cols, Vector2 size, float* rowRatios, float* colRatios)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				byte ret = BeginSubplotsNative((byte*)ptitleId, rows, cols, size, (ImPlotSubplotFlags)(0), rowRatios, colRatios);
+				return ret != 0;
+			}
+		}
+
 		public static bool BeginSubplots(byte* titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, ref float rowRatios, float* colRatios)
 		{
 			fixed (float* prowRatios = &rowRatios)
@@ -1271,6 +1520,54 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		public static bool BeginSubplots(ReadOnlySpan<byte> titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, ref float rowRatios, float* colRatios)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				fixed (float* prowRatios = &rowRatios)
+				{
+					byte ret = BeginSubplotsNative((byte*)ptitleId, rows, cols, size, flags, (float*)prowRatios, colRatios);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool BeginSubplots(ReadOnlySpan<byte> titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, ref float rowRatios)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				fixed (float* prowRatios = &rowRatios)
+				{
+					byte ret = BeginSubplotsNative((byte*)ptitleId, rows, cols, size, flags, (float*)prowRatios, (float*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool BeginSubplots(ReadOnlySpan<byte> titleId, int rows, int cols, Vector2 size, ref float rowRatios)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				fixed (float* prowRatios = &rowRatios)
+				{
+					byte ret = BeginSubplotsNative((byte*)ptitleId, rows, cols, size, (ImPlotSubplotFlags)(0), (float*)prowRatios, (float*)(default));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool BeginSubplots(ReadOnlySpan<byte> titleId, int rows, int cols, Vector2 size, ref float rowRatios, float* colRatios)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				fixed (float* prowRatios = &rowRatios)
+				{
+					byte ret = BeginSubplotsNative((byte*)ptitleId, rows, cols, size, (ImPlotSubplotFlags)(0), (float*)prowRatios, colRatios);
+					return ret != 0;
+				}
+			}
+		}
+
 		public static bool BeginSubplots(byte* titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, ref float colRatios)
 		{
 			fixed (float* pcolRatios = &colRatios)
@@ -1370,6 +1667,30 @@ namespace Hexa.NET.ImPlot
 					Utils.Free(pStr0);
 				}
 				return ret != 0;
+			}
+		}
+
+		public static bool BeginSubplots(ReadOnlySpan<byte> titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, ref float colRatios)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				fixed (float* pcolRatios = &colRatios)
+				{
+					byte ret = BeginSubplotsNative((byte*)ptitleId, rows, cols, size, flags, rowRatios, (float*)pcolRatios);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool BeginSubplots(ReadOnlySpan<byte> titleId, int rows, int cols, Vector2 size, float* rowRatios, ref float colRatios)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				fixed (float* pcolRatios = &colRatios)
+				{
+					byte ret = BeginSubplotsNative((byte*)ptitleId, rows, cols, size, (ImPlotSubplotFlags)(0), rowRatios, (float*)pcolRatios);
+					return ret != 0;
+				}
 			}
 		}
 
@@ -1493,18 +1814,58 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_EndSubplots")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndSubplotsNative();
+		public static bool BeginSubplots(ReadOnlySpan<byte> titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, ref float rowRatios, ref float colRatios)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				fixed (float* prowRatios = &rowRatios)
+				{
+					fixed (float* pcolRatios = &colRatios)
+					{
+						byte ret = BeginSubplotsNative((byte*)ptitleId, rows, cols, size, flags, (float*)prowRatios, (float*)pcolRatios);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool BeginSubplots(ReadOnlySpan<byte> titleId, int rows, int cols, Vector2 size, ref float rowRatios, ref float colRatios)
+		{
+			fixed (byte* ptitleId = titleId)
+			{
+				fixed (float* prowRatios = &rowRatios)
+				{
+					fixed (float* pcolRatios = &colRatios)
+					{
+						byte ret = BeginSubplotsNative((byte*)ptitleId, rows, cols, size, (ImPlotSubplotFlags)(0), (float*)prowRatios, (float*)pcolRatios);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		internal static void EndSubplotsNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[32])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[32])();
+			#endif
+		}
 
 		public static void EndSubplots()
 		{
 			EndSubplotsNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxis")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisNative(ImAxis axis, byte* label, ImPlotAxisFlags flags);
+		internal static void SetupAxisNative(ImAxis axis, byte* label, ImPlotAxisFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImAxis, byte*, ImPlotAxisFlags, void>)vt[33])(axis, label, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, ImPlotAxisFlags, void>)vt[33])(axis, (nint)label, flags);
+			#endif
+		}
 
 		public static void SetupAxis(ImAxis axis, byte* label, ImPlotAxisFlags flags)
 		{
@@ -1594,9 +1955,30 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisLimits")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisLimitsNative(ImAxis axis, double vMin, double vMax, ImPlotCond cond);
+		public static void SetupAxis(ImAxis axis, ReadOnlySpan<byte> label, ImPlotAxisFlags flags)
+		{
+			fixed (byte* plabel = label)
+			{
+				SetupAxisNative(axis, (byte*)plabel, flags);
+			}
+		}
+
+		public static void SetupAxis(ImAxis axis, ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				SetupAxisNative(axis, (byte*)plabel, (ImPlotAxisFlags)(0));
+			}
+		}
+
+		internal static void SetupAxisLimitsNative(ImAxis axis, double vMin, double vMax, ImPlotCond cond)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)vt[34])(axis, vMin, vMax, cond);
+			#else
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)vt[34])(axis, vMin, vMax, cond);
+			#endif
+		}
 
 		public static void SetupAxisLimits(ImAxis axis, double vMin, double vMax, ImPlotCond cond)
 		{
@@ -1608,9 +1990,14 @@ namespace Hexa.NET.ImPlot
 			SetupAxisLimitsNative(axis, vMin, vMax, (ImPlotCond)(ImPlotCond.Once));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisLinks")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisLinksNative(ImAxis axis, double* linkMin, double* linkMax);
+		internal static void SetupAxisLinksNative(ImAxis axis, double* linkMin, double* linkMax)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImAxis, double*, double*, void>)vt[35])(axis, linkMin, linkMax);
+			#else
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)vt[35])(axis, (nint)linkMin, (nint)linkMax);
+			#endif
+		}
 
 		public static void SetupAxisLinks(ImAxis axis, double* linkMin, double* linkMax)
 		{
@@ -1644,9 +2031,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisFormat_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisFormatNative(ImAxis axis, byte* fmt);
+		internal static void SetupAxisFormatNative(ImAxis axis, byte* fmt)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImAxis, byte*, void>)vt[36])(axis, fmt);
+			#else
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, void>)vt[36])(axis, (nint)fmt);
+			#endif
+		}
 
 		public static void SetupAxisFormat(ImAxis axis, byte* fmt)
 		{
@@ -1687,9 +2079,22 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisFormat_PlotFormatter")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisFormatNative(ImAxis axis, ImPlotFormatter formatter, void* data);
+		public static void SetupAxisFormat(ImAxis axis, ReadOnlySpan<byte> fmt)
+		{
+			fixed (byte* pfmt = fmt)
+			{
+				SetupAxisFormatNative(axis, (byte*)pfmt);
+			}
+		}
+
+		internal static void SetupAxisFormatNative(ImAxis axis, ImPlotFormatter formatter, void* data)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImAxis, delegate*<double, byte*, int, void*, int>, void*, void>)vt[37])(axis, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
+			#else
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)vt[37])(axis, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)data);
+			#endif
+		}
 
 		public static void SetupAxisFormat(ImAxis axis, ImPlotFormatter formatter, void* data)
 		{
@@ -1701,9 +2106,14 @@ namespace Hexa.NET.ImPlot
 			SetupAxisFormatNative(axis, formatter, (void*)(default));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisTicks_doublePtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisTicksNative(ImAxis axis, double* values, int nTicks, byte** labels, byte keepDefault);
+		internal static void SetupAxisTicksNative(ImAxis axis, double* values, int nTicks, byte** labels, byte keepDefault)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImAxis, double*, int, byte**, byte, void>)vt[38])(axis, values, nTicks, labels, keepDefault);
+			#else
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, int, nint, byte, void>)vt[38])(axis, (nint)values, nTicks, (nint)labels, keepDefault);
+			#endif
+		}
 
 		public static void SetupAxisTicks(ImAxis axis, double* values, int nTicks, byte** labels, bool keepDefault)
 		{
@@ -1887,9 +2297,14 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisTicks_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisTicksNative(ImAxis axis, double vMin, double vMax, int nTicks, byte** labels, byte keepDefault);
+		internal static void SetupAxisTicksNative(ImAxis axis, double vMin, double vMax, int nTicks, byte** labels, byte keepDefault)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, int, byte**, byte, void>)vt[39])(axis, vMin, vMax, nTicks, labels, keepDefault);
+			#else
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, int, nint, byte, void>)vt[39])(axis, vMin, vMax, nTicks, (nint)labels, keepDefault);
+			#endif
+		}
 
 		public static void SetupAxisTicks(ImAxis axis, double vMin, double vMax, int nTicks, byte** labels, bool keepDefault)
 		{
@@ -1973,18 +2388,28 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisScale_PlotScale")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisScaleNative(ImAxis axis, ImPlotScale scale);
+		internal static void SetupAxisScaleNative(ImAxis axis, ImPlotScale scale)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImAxis, ImPlotScale, void>)vt[40])(axis, scale);
+			#else
+			((delegate* unmanaged[Cdecl]<ImAxis, ImPlotScale, void>)vt[40])(axis, scale);
+			#endif
+		}
 
 		public static void SetupAxisScale(ImAxis axis, ImPlotScale scale)
 		{
 			SetupAxisScaleNative(axis, scale);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisScale_PlotTransform")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisScaleNative(ImAxis axis, ImPlotTransform forward, ImPlotTransform inverse, void* data);
+		internal static void SetupAxisScaleNative(ImAxis axis, ImPlotTransform forward, ImPlotTransform inverse, void* data)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImAxis, delegate*<double, void*, double>, delegate*<double, void*, double>, void*, void>)vt[41])(axis, (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(forward), (delegate*<double, void*, double>)Utils.GetFunctionPointerForDelegate(inverse), data);
+			#else
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, nint, void>)vt[41])(axis, (nint)Utils.GetFunctionPointerForDelegate(forward), (nint)Utils.GetFunctionPointerForDelegate(inverse), (nint)data);
+			#endif
+		}
 
 		public static void SetupAxisScale(ImAxis axis, ImPlotTransform forward, ImPlotTransform inverse, void* data)
 		{
@@ -1996,27 +2421,42 @@ namespace Hexa.NET.ImPlot
 			SetupAxisScaleNative(axis, forward, inverse, (void*)(default));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisLimitsConstraints")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisLimitsConstraintsNative(ImAxis axis, double vMin, double vMax);
+		internal static void SetupAxisLimitsConstraintsNative(ImAxis axis, double vMin, double vMax)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)vt[42])(axis, vMin, vMax);
+			#else
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)vt[42])(axis, vMin, vMax);
+			#endif
+		}
 
 		public static void SetupAxisLimitsConstraints(ImAxis axis, double vMin, double vMax)
 		{
 			SetupAxisLimitsConstraintsNative(axis, vMin, vMax);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisZoomConstraints")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisZoomConstraintsNative(ImAxis axis, double zMin, double zMax);
+		internal static void SetupAxisZoomConstraintsNative(ImAxis axis, double zMin, double zMax)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)vt[43])(axis, zMin, zMax);
+			#else
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)vt[43])(axis, zMin, zMax);
+			#endif
+		}
 
 		public static void SetupAxisZoomConstraints(ImAxis axis, double zMin, double zMax)
 		{
 			SetupAxisZoomConstraintsNative(axis, zMin, zMax);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxes")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxesNative(byte* xLabel, byte* yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags);
+		internal static void SetupAxesNative(byte* xLabel, byte* yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, byte*, ImPlotAxisFlags, ImPlotAxisFlags, void>)vt[44])(xLabel, yLabel, xFlags, yFlags);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, ImPlotAxisFlags, ImPlotAxisFlags, void>)vt[44])((nint)xLabel, (nint)yLabel, xFlags, yFlags);
+			#endif
+		}
 
 		public static void SetupAxes(byte* xLabel, byte* yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
 		{
@@ -2135,6 +2575,30 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, byte* yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		{
+			fixed (byte* pxLabel = xLabel)
+			{
+				SetupAxesNative((byte*)pxLabel, yLabel, xFlags, yFlags);
+			}
+		}
+
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, byte* yLabel, ImPlotAxisFlags xFlags)
+		{
+			fixed (byte* pxLabel = xLabel)
+			{
+				SetupAxesNative((byte*)pxLabel, yLabel, xFlags, (ImPlotAxisFlags)(0));
+			}
+		}
+
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, byte* yLabel)
+		{
+			fixed (byte* pxLabel = xLabel)
+			{
+				SetupAxesNative((byte*)pxLabel, yLabel, (ImPlotAxisFlags)(0), (ImPlotAxisFlags)(0));
+			}
+		}
+
 		public static void SetupAxes(byte* xLabel, ref byte yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
 		{
 			fixed (byte* pyLabel = &yLabel)
@@ -2234,6 +2698,30 @@ namespace Hexa.NET.ImPlot
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
+			}
+		}
+
+		public static void SetupAxes(byte* xLabel, ReadOnlySpan<byte> yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		{
+			fixed (byte* pyLabel = yLabel)
+			{
+				SetupAxesNative(xLabel, (byte*)pyLabel, xFlags, yFlags);
+			}
+		}
+
+		public static void SetupAxes(byte* xLabel, ReadOnlySpan<byte> yLabel, ImPlotAxisFlags xFlags)
+		{
+			fixed (byte* pyLabel = yLabel)
+			{
+				SetupAxesNative(xLabel, (byte*)pyLabel, xFlags, (ImPlotAxisFlags)(0));
+			}
+		}
+
+		public static void SetupAxes(byte* xLabel, ReadOnlySpan<byte> yLabel)
+		{
+			fixed (byte* pyLabel = yLabel)
+			{
+				SetupAxesNative(xLabel, (byte*)pyLabel, (ImPlotAxisFlags)(0), (ImPlotAxisFlags)(0));
 			}
 		}
 
@@ -2411,9 +2899,47 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxesLimits")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxesLimitsNative(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond);
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, ReadOnlySpan<byte> yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		{
+			fixed (byte* pxLabel = xLabel)
+			{
+				fixed (byte* pyLabel = yLabel)
+				{
+					SetupAxesNative((byte*)pxLabel, (byte*)pyLabel, xFlags, yFlags);
+				}
+			}
+		}
+
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, ReadOnlySpan<byte> yLabel, ImPlotAxisFlags xFlags)
+		{
+			fixed (byte* pxLabel = xLabel)
+			{
+				fixed (byte* pyLabel = yLabel)
+				{
+					SetupAxesNative((byte*)pxLabel, (byte*)pyLabel, xFlags, (ImPlotAxisFlags)(0));
+				}
+			}
+		}
+
+		public static void SetupAxes(ReadOnlySpan<byte> xLabel, ReadOnlySpan<byte> yLabel)
+		{
+			fixed (byte* pxLabel = xLabel)
+			{
+				fixed (byte* pyLabel = yLabel)
+				{
+					SetupAxesNative((byte*)pxLabel, (byte*)pyLabel, (ImPlotAxisFlags)(0), (ImPlotAxisFlags)(0));
+				}
+			}
+		}
+
+		internal static void SetupAxesLimitsNative(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)vt[45])(xMin, xMax, yMin, yMax, cond);
+			#else
+			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)vt[45])(xMin, xMax, yMin, yMax, cond);
+			#endif
+		}
 
 		public static void SetupAxesLimits(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond)
 		{
@@ -2425,9 +2951,14 @@ namespace Hexa.NET.ImPlot
 			SetupAxesLimitsNative(xMin, xMax, yMin, yMax, (ImPlotCond)(ImPlotCond.Once));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupLegend")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupLegendNative(ImPlotLocation location, ImPlotLegendFlags flags);
+		internal static void SetupLegendNative(ImPlotLocation location, ImPlotLegendFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotLegendFlags, void>)vt[46])(location, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotLegendFlags, void>)vt[46])(location, flags);
+			#endif
+		}
 
 		public static void SetupLegend(ImPlotLocation location, ImPlotLegendFlags flags)
 		{
@@ -2439,9 +2970,14 @@ namespace Hexa.NET.ImPlot
 			SetupLegendNative(location, (ImPlotLegendFlags)(0));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupMouseText")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupMouseTextNative(ImPlotLocation location, ImPlotMouseTextFlags flags);
+		internal static void SetupMouseTextNative(ImPlotLocation location, ImPlotMouseTextFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotMouseTextFlags, void>)vt[47])(location, flags);
+			#else
+			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotMouseTextFlags, void>)vt[47])(location, flags);
+			#endif
+		}
 
 		public static void SetupMouseText(ImPlotLocation location, ImPlotMouseTextFlags flags)
 		{
@@ -2453,18 +2989,28 @@ namespace Hexa.NET.ImPlot
 			SetupMouseTextNative(location, (ImPlotMouseTextFlags)(0));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupFinish")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupFinishNative();
+		internal static void SetupFinishNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[48])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[48])();
+			#endif
+		}
 
 		public static void SetupFinish()
 		{
 			SetupFinishNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextAxisLimits")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextAxisLimitsNative(ImAxis axis, double vMin, double vMax, ImPlotCond cond);
+		internal static void SetNextAxisLimitsNative(ImAxis axis, double vMin, double vMax, ImPlotCond cond)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)vt[49])(axis, vMin, vMax, cond);
+			#else
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)vt[49])(axis, vMin, vMax, cond);
+			#endif
+		}
 
 		public static void SetNextAxisLimits(ImAxis axis, double vMin, double vMax, ImPlotCond cond)
 		{
@@ -2476,9 +3022,14 @@ namespace Hexa.NET.ImPlot
 			SetNextAxisLimitsNative(axis, vMin, vMax, (ImPlotCond)(ImPlotCond.Once));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextAxisLinks")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextAxisLinksNative(ImAxis axis, double* linkMin, double* linkMax);
+		internal static void SetNextAxisLinksNative(ImAxis axis, double* linkMin, double* linkMax)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImAxis, double*, double*, void>)vt[50])(axis, linkMin, linkMax);
+			#else
+			((delegate* unmanaged[Cdecl]<ImAxis, nint, nint, void>)vt[50])(axis, (nint)linkMin, (nint)linkMax);
+			#endif
+		}
 
 		public static void SetNextAxisLinks(ImAxis axis, double* linkMin, double* linkMax)
 		{
@@ -2512,18 +3063,28 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextAxisToFit")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextAxisToFitNative(ImAxis axis);
+		internal static void SetNextAxisToFitNative(ImAxis axis)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImAxis, void>)vt[51])(axis);
+			#else
+			((delegate* unmanaged[Cdecl]<ImAxis, void>)vt[51])(axis);
+			#endif
+		}
 
 		public static void SetNextAxisToFit(ImAxis axis)
 		{
 			SetNextAxisToFitNative(axis);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextAxesLimits")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextAxesLimitsNative(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond);
+		internal static void SetNextAxesLimitsNative(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)vt[52])(xMin, xMax, yMin, yMax, cond);
+			#else
+			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)vt[52])(xMin, xMax, yMin, yMax, cond);
+			#endif
+		}
 
 		public static void SetNextAxesLimits(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond)
 		{
@@ -2535,18 +3096,28 @@ namespace Hexa.NET.ImPlot
 			SetNextAxesLimitsNative(xMin, xMax, yMin, yMax, (ImPlotCond)(ImPlotCond.Once));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextAxesToFit")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextAxesToFitNative();
+		internal static void SetNextAxesToFitNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[53])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[53])();
+			#endif
+		}
 
 		public static void SetNextAxesToFit()
 		{
 			SetNextAxesToFitNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotLine_FloatPtrInt")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotLineNative(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride);
+		internal static void PlotLineNative(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, float*, int, double, double, ImPlotLineFlags, int, int, void>)vt[54])(labelId, values, count, xscale, xstart, flags, offset, stride);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotLineFlags, int, int, void>)vt[54])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
+			#endif
+		}
 
 		public static void PlotLine(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
@@ -3247,6 +3818,150 @@ namespace Hexa.NET.ImPlot
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, stride);
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, double xstart, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, float* values, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, stride);
 			}
 		}
 
@@ -4114,907 +4829,189 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotLine_doublePtrInt")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotLineNative(byte* labelId, double* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride);
-
-		public static void PlotLine(byte* labelId, double* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
-			PlotLineNative(labelId, values, count, xscale, xstart, flags, offset, stride);
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(double)));
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(double)));
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, double xscale, double xstart)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, double xscale)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, ImPlotLineFlags flags)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, double xscale, double xstart, int offset)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(double)));
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, double xscale, int offset)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(double)));
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, int offset)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(double)));
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(double)));
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, ImPlotLineFlags flags, int offset)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, double xscale, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, offset, stride);
-		}
-
-		public static void PlotLine(byte* labelId, double* values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, offset, stride);
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, stride);
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, double xscale, double xstart)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, double xscale)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, double xscale, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, double xscale, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, double* values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (float* pvalues = &values)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, flags, offset, (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, double xscale, double xstart)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, double xscale)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, ImPlotLineFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, double xscale, double xstart, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, double xscale, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, ImPlotLineFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, double xscale, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, (double)(0), flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, double* values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, (double)(1), (double)(0), flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, xscale, xstart, flags, offset, stride);
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, double xscale, double xstart)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, double xscale)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, ImPlotLineFlags flags)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, double xscale, int offset)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, int offset)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(double)));
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, double xscale, int offset, int stride)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, int offset, int stride)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, xscale, (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotLine(byte* labelId, ref double values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (double* pvalues = &values)
-			{
-				PlotLineNative(labelId, (double*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, ref double values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (double*)pvalues, count, xscale, xstart, flags, offset, stride);
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, flags, offset, stride);
 				}
 			}
 		}
 
-		public static void PlotLine(ref byte labelId, ref double values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (double*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(double)));
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotLine(ref byte labelId, ref double values, int count, double xscale, double xstart, ImPlotLineFlags flags)
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, double xstart, ImPlotLineFlags flags)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (double*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(double)));
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotLine(ref byte labelId, ref double values, int count, double xscale, double xstart)
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, double xstart)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (double*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
 				}
 			}
 		}
 
-		public static void PlotLine(ref byte labelId, ref double values, int count, double xscale)
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (double* pvalues = &values)
+				fixed (float* pvalues = &values)
 				{
-					PlotLineNative((byte*)plabelId, (double*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, double xstart, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, double xstart, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref float values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (float*)pvalues, count, xscale, (double)(0), flags, offset, stride);
 				}
 			}
 		}

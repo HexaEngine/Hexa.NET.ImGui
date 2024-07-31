@@ -1,6 +1,7 @@
 ﻿namespace Generator
 {
     using System;
+    using System.Collections.Generic;
 
     public interface ICodeWriter
     {
@@ -16,5 +17,7 @@
         void Write(string @string);
         void WriteLine();
         void WriteLine(string @string);
+        void WriteLines(string? @string, bool newLineAtEnd = false);
+        void WriteLines(IEnumerable<string> lines);
     }
 }

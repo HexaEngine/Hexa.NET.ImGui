@@ -63,6 +63,8 @@
 
         public bool IsRef { get; set; }
 
+        public bool IsSpan { get; set; }
+
         public bool IsString { get; set; }
 
         public bool IsPrimitive { get; set; }
@@ -116,6 +118,7 @@
 
         public void Classify()
         {
+            IsSpan = Name.StartsWith("ReadOnlySpan<") || Name.StartsWith("Span<");
             IsRef = Name.StartsWith("ref");
             IsArray = Name.Contains("[]");
             IsPointer = Name.Contains('*');
@@ -139,6 +142,10 @@
             if (IsRef)
             {
                 CleanName = Name.Replace("ref ", string.Empty);
+            }
+            else if (IsSpan)
+            {
+                CleanName = Name.Replace("ReadOnlySpan<", string.Empty).Replace("Span<", string.Empty).Replace(">", string.Empty);
             }
             else if (IsArray)
             {

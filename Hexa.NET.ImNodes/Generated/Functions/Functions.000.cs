@@ -10,6 +10,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
@@ -17,11 +18,14 @@ namespace Hexa.NET.ImNodes
 {
 	public unsafe partial class ImNodes
 	{
-		internal const string LibName = "cimnodes";
-
-		[LibraryImport(LibName, EntryPoint = "EmulateThreeButtonMouse_EmulateThreeButtonMouse")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial EmulateThreeButtonMouse* EmulateThreeButtonMouseNative();
+		internal static EmulateThreeButtonMouse* EmulateThreeButtonMouseNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<EmulateThreeButtonMouse*>)vt[0])();
+			#else
+			return (EmulateThreeButtonMouse*)((delegate* unmanaged[Cdecl]<nint>)vt[0])();
+			#endif
+		}
 
 		public static EmulateThreeButtonMousePtr EmulateThreeButtonMouse()
 		{
@@ -29,9 +33,14 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "EmulateThreeButtonMouse_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(EmulateThreeButtonMouse* self);
+		internal static void DestroyNative(EmulateThreeButtonMouse* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<EmulateThreeButtonMouse*, void>)vt[1])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[1])((nint)self);
+			#endif
+		}
 
 		public static void Destroy(EmulateThreeButtonMousePtr self)
 		{
@@ -46,9 +55,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "LinkDetachWithModifierClick_LinkDetachWithModifierClick")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial LinkDetachWithModifierClick* LinkDetachWithModifierClickNative();
+		internal static LinkDetachWithModifierClick* LinkDetachWithModifierClickNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<LinkDetachWithModifierClick*>)vt[2])();
+			#else
+			return (LinkDetachWithModifierClick*)((delegate* unmanaged[Cdecl]<nint>)vt[2])();
+			#endif
+		}
 
 		public static LinkDetachWithModifierClickPtr LinkDetachWithModifierClick()
 		{
@@ -56,9 +70,14 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "LinkDetachWithModifierClick_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(LinkDetachWithModifierClick* self);
+		internal static void DestroyNative(LinkDetachWithModifierClick* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<LinkDetachWithModifierClick*, void>)vt[3])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[3])((nint)self);
+			#endif
+		}
 
 		public static void Destroy(LinkDetachWithModifierClickPtr self)
 		{
@@ -73,9 +92,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "MultipleSelectModifier_MultipleSelectModifier")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial MultipleSelectModifier* MultipleSelectModifierNative();
+		internal static MultipleSelectModifier* MultipleSelectModifierNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<MultipleSelectModifier*>)vt[4])();
+			#else
+			return (MultipleSelectModifier*)((delegate* unmanaged[Cdecl]<nint>)vt[4])();
+			#endif
+		}
 
 		public static MultipleSelectModifierPtr MultipleSelectModifier()
 		{
@@ -83,9 +107,14 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "MultipleSelectModifier_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(MultipleSelectModifier* self);
+		internal static void DestroyNative(MultipleSelectModifier* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<MultipleSelectModifier*, void>)vt[5])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[5])((nint)self);
+			#endif
+		}
 
 		public static void Destroy(MultipleSelectModifierPtr self)
 		{
@@ -100,9 +129,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodesIO_ImNodesIO")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImNodesIO* ImNodesIONative();
+		internal static ImNodesIO* ImNodesIONative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImNodesIO*>)vt[6])();
+			#else
+			return (ImNodesIO*)((delegate* unmanaged[Cdecl]<nint>)vt[6])();
+			#endif
+		}
 
 		public static ImNodesIOPtr ImNodesIO()
 		{
@@ -110,9 +144,14 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodesIO_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImNodesIO* self);
+		internal static void DestroyNative(ImNodesIO* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesIO*, void>)vt[7])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[7])((nint)self);
+			#endif
+		}
 
 		public static void Destroy(ImNodesIOPtr self)
 		{
@@ -127,9 +166,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodesStyle_ImNodesStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImNodesStyle* ImNodesStyleNative();
+		internal static ImNodesStyle* ImNodesStyleNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImNodesStyle*>)vt[8])();
+			#else
+			return (ImNodesStyle*)((delegate* unmanaged[Cdecl]<nint>)vt[8])();
+			#endif
+		}
 
 		public static ImNodesStylePtr ImNodesStyle()
 		{
@@ -137,9 +181,14 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodesStyle_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImNodesStyle* self);
+		internal static void DestroyNative(ImNodesStyle* self)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesStyle*, void>)vt[9])(self);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[9])((nint)self);
+			#endif
+		}
 
 		public static void Destroy(ImNodesStylePtr self)
 		{
@@ -154,9 +203,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SetImGuiContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetImGuiContextNative(ImGuiContext* ctx);
+		internal static void SetImGuiContextNative(ImGuiContext* ctx)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[10])(ctx);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[10])((nint)ctx);
+			#endif
+		}
 
 		public static void SetImGuiContext(ImGuiContextPtr ctx)
 		{
@@ -171,9 +225,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_CreateContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImNodesContext* CreateContextNative();
+		internal static ImNodesContext* CreateContextNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImNodesContext*>)vt[11])();
+			#else
+			return (ImNodesContext*)((delegate* unmanaged[Cdecl]<nint>)vt[11])();
+			#endif
+		}
 
 		public static ImNodesContextPtr CreateContext()
 		{
@@ -181,9 +240,14 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_DestroyContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyContextNative(ImNodesContext* ctx);
+		internal static void DestroyContextNative(ImNodesContext* ctx)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesContext*, void>)vt[12])(ctx);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[12])((nint)ctx);
+			#endif
+		}
 
 		public static void DestroyContext(ImNodesContextPtr ctx)
 		{
@@ -203,9 +267,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetCurrentContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImNodesContext* GetCurrentContextNative();
+		internal static ImNodesContext* GetCurrentContextNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImNodesContext*>)vt[13])();
+			#else
+			return (ImNodesContext*)((delegate* unmanaged[Cdecl]<nint>)vt[13])();
+			#endif
+		}
 
 		public static ImNodesContextPtr GetCurrentContext()
 		{
@@ -213,9 +282,14 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SetCurrentContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetCurrentContextNative(ImNodesContext* ctx);
+		internal static void SetCurrentContextNative(ImNodesContext* ctx)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesContext*, void>)vt[14])(ctx);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[14])((nint)ctx);
+			#endif
+		}
 
 		public static void SetCurrentContext(ImNodesContextPtr ctx)
 		{
@@ -230,9 +304,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EditorContextCreate")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImNodesEditorContext* EditorContextCreateNative();
+		internal static ImNodesEditorContext* EditorContextCreateNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImNodesEditorContext*>)vt[15])();
+			#else
+			return (ImNodesEditorContext*)((delegate* unmanaged[Cdecl]<nint>)vt[15])();
+			#endif
+		}
 
 		public static ImNodesEditorContextPtr EditorContextCreate()
 		{
@@ -240,9 +319,14 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EditorContextFree")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EditorContextFreeNative(ImNodesEditorContext* noname1);
+		internal static void EditorContextFreeNative(ImNodesEditorContext* noname1)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, void>)vt[16])(noname1);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[16])((nint)noname1);
+			#endif
+		}
 
 		public static void EditorContextFree(ImNodesEditorContextPtr noname1)
 		{
@@ -257,9 +341,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EditorContextSet")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EditorContextSetNative(ImNodesEditorContext* noname1);
+		internal static void EditorContextSetNative(ImNodesEditorContext* noname1)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, void>)vt[17])(noname1);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[17])((nint)noname1);
+			#endif
+		}
 
 		public static void EditorContextSet(ImNodesEditorContextPtr noname1)
 		{
@@ -274,9 +363,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EditorContextGetPanning")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EditorContextGetPanningNative(Vector2* output);
+		internal static void EditorContextGetPanningNative(Vector2* output)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[18])(output);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[18])((nint)output);
+			#endif
+		}
 
 		public static Vector2 EditorContextGetPanning()
 		{
@@ -298,27 +392,42 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EditorContextResetPanning")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EditorContextResetPanningNative(Vector2 pos);
+		internal static void EditorContextResetPanningNative(Vector2 pos)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2, void>)vt[19])(pos);
+			#else
+			((delegate* unmanaged[Cdecl]<Vector2, void>)vt[19])(pos);
+			#endif
+		}
 
 		public static void EditorContextResetPanning(Vector2 pos)
 		{
 			EditorContextResetPanningNative(pos);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EditorContextMoveToNode")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EditorContextMoveToNodeNative(int nodeId);
+		internal static void EditorContextMoveToNodeNative(int nodeId)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, void>)vt[20])(nodeId);
+			#else
+			((delegate* unmanaged[Cdecl]<int, void>)vt[20])(nodeId);
+			#endif
+		}
 
 		public static void EditorContextMoveToNode(int nodeId)
 		{
 			EditorContextMoveToNodeNative(nodeId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetIO")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImNodesIO* GetIONative();
+		internal static ImNodesIO* GetIONative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImNodesIO*>)vt[21])();
+			#else
+			return (ImNodesIO*)((delegate* unmanaged[Cdecl]<nint>)vt[21])();
+			#endif
+		}
 
 		public static ImNodesIOPtr GetIO()
 		{
@@ -326,9 +435,14 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImNodesStyle* GetStyleNative();
+		internal static ImNodesStyle* GetStyleNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImNodesStyle*>)vt[22])();
+			#else
+			return (ImNodesStyle*)((delegate* unmanaged[Cdecl]<nint>)vt[22])();
+			#endif
+		}
 
 		public static ImNodesStylePtr GetStyle()
 		{
@@ -336,9 +450,14 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_StyleColorsDark")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void StyleColorsDarkNative(ImNodesStyle* dest);
+		internal static void StyleColorsDarkNative(ImNodesStyle* dest)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesStyle*, void>)vt[23])(dest);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[23])((nint)dest);
+			#endif
+		}
 
 		public static void StyleColorsDark(ImNodesStylePtr dest)
 		{
@@ -358,9 +477,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_StyleColorsClassic")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void StyleColorsClassicNative(ImNodesStyle* dest);
+		internal static void StyleColorsClassicNative(ImNodesStyle* dest)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesStyle*, void>)vt[24])(dest);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[24])((nint)dest);
+			#endif
+		}
 
 		public static void StyleColorsClassic(ImNodesStylePtr dest)
 		{
@@ -380,9 +504,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_StyleColorsLight")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void StyleColorsLightNative(ImNodesStyle* dest);
+		internal static void StyleColorsLightNative(ImNodesStyle* dest)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesStyle*, void>)vt[25])(dest);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[25])((nint)dest);
+			#endif
+		}
 
 		public static void StyleColorsLight(ImNodesStylePtr dest)
 		{
@@ -402,27 +531,42 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_BeginNodeEditor")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BeginNodeEditorNative();
+		internal static void BeginNodeEditorNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[26])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[26])();
+			#endif
+		}
 
 		public static void BeginNodeEditor()
 		{
 			BeginNodeEditorNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EndNodeEditor")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndNodeEditorNative();
+		internal static void EndNodeEditorNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[27])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[27])();
+			#endif
+		}
 
 		public static void EndNodeEditor()
 		{
 			EndNodeEditorNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_MiniMap")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void MiniMapNative(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData);
+		internal static void MiniMapNative(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<float, ImNodesMiniMapLocation, delegate*<int, void*, void>, ImNodesMiniMapNodeHoveringCallbackUserData, void>)vt[28])(minimapSizeFraction, location, (delegate*<int, void*, void>)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
+			#else
+			((delegate* unmanaged[Cdecl]<float, ImNodesMiniMapLocation, nint, ImNodesMiniMapNodeHoveringCallbackUserData, void>)vt[28])(minimapSizeFraction, location, (nint)Utils.GetFunctionPointerForDelegate(nodeHoveringCallback), nodeHoveringCallbackData);
+			#endif
+		}
 
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
 		{
@@ -504,45 +648,70 @@ namespace Hexa.NET.ImNodes
 			MiniMapNative((float)(0.2f), location, nodeHoveringCallback, nodeHoveringCallbackData);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_PushColorStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushColorStyleNative(ImNodesCol item, uint color);
+		internal static void PushColorStyleNative(ImNodesCol item, uint color)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesCol, uint, void>)vt[29])(item, color);
+			#else
+			((delegate* unmanaged[Cdecl]<ImNodesCol, uint, void>)vt[29])(item, color);
+			#endif
+		}
 
 		public static void PushColorStyle(ImNodesCol item, uint color)
 		{
 			PushColorStyleNative(item, color);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_PopColorStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopColorStyleNative();
+		internal static void PopColorStyleNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[30])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[30])();
+			#endif
+		}
 
 		public static void PopColorStyle()
 		{
 			PopColorStyleNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_PushStyleVar_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleVarNative(ImNodesStyleVar styleItem, float value);
+		internal static void PushStyleVarNative(ImNodesStyleVar styleItem, float value)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesStyleVar, float, void>)vt[31])(styleItem, value);
+			#else
+			((delegate* unmanaged[Cdecl]<ImNodesStyleVar, float, void>)vt[31])(styleItem, value);
+			#endif
+		}
 
 		public static void PushStyleVar(ImNodesStyleVar styleItem, float value)
 		{
 			PushStyleVarNative(styleItem, value);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_PushStyleVar_Vec2")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleVarNative(ImNodesStyleVar styleItem, Vector2 value);
+		internal static void PushStyleVarNative(ImNodesStyleVar styleItem, Vector2 value)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesStyleVar, Vector2, void>)vt[32])(styleItem, value);
+			#else
+			((delegate* unmanaged[Cdecl]<ImNodesStyleVar, Vector2, void>)vt[32])(styleItem, value);
+			#endif
+		}
 
 		public static void PushStyleVar(ImNodesStyleVar styleItem, Vector2 value)
 		{
 			PushStyleVarNative(styleItem, value);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_PopStyleVar")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopStyleVarNative(int count);
+		internal static void PopStyleVarNative(int count)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, void>)vt[33])(count);
+			#else
+			((delegate* unmanaged[Cdecl]<int, void>)vt[33])(count);
+			#endif
+		}
 
 		public static void PopStyleVar(int count)
 		{
@@ -554,27 +723,42 @@ namespace Hexa.NET.ImNodes
 			PopStyleVarNative((int)(1));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_BeginNode")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BeginNodeNative(int id);
+		internal static void BeginNodeNative(int id)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, void>)vt[34])(id);
+			#else
+			((delegate* unmanaged[Cdecl]<int, void>)vt[34])(id);
+			#endif
+		}
 
 		public static void BeginNode(int id)
 		{
 			BeginNodeNative(id);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EndNode")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndNodeNative();
+		internal static void EndNodeNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[35])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[35])();
+			#endif
+		}
 
 		public static void EndNode()
 		{
 			EndNodeNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetNodeDimensions")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetNodeDimensionsNative(Vector2* output, int id);
+		internal static void GetNodeDimensionsNative(Vector2* output, int id)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[36])(output, id);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[36])((nint)output, id);
+			#endif
+		}
 
 		public static Vector2 GetNodeDimensions(int id)
 		{
@@ -596,27 +780,42 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_BeginNodeTitleBar")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BeginNodeTitleBarNative();
+		internal static void BeginNodeTitleBarNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[37])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[37])();
+			#endif
+		}
 
 		public static void BeginNodeTitleBar()
 		{
 			BeginNodeTitleBarNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EndNodeTitleBar")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndNodeTitleBarNative();
+		internal static void EndNodeTitleBarNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[38])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[38])();
+			#endif
+		}
 
 		public static void EndNodeTitleBar()
 		{
 			EndNodeTitleBarNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_BeginInputAttribute")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BeginInputAttributeNative(int id, ImNodesPinShape shape);
+		internal static void BeginInputAttributeNative(int id, ImNodesPinShape shape)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, ImNodesPinShape, void>)vt[39])(id, shape);
+			#else
+			((delegate* unmanaged[Cdecl]<int, ImNodesPinShape, void>)vt[39])(id, shape);
+			#endif
+		}
 
 		public static void BeginInputAttribute(int id, ImNodesPinShape shape)
 		{
@@ -628,18 +827,28 @@ namespace Hexa.NET.ImNodes
 			BeginInputAttributeNative(id, (ImNodesPinShape)(ImNodesPinShape.CircleFilled));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EndInputAttribute")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndInputAttributeNative();
+		internal static void EndInputAttributeNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[40])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[40])();
+			#endif
+		}
 
 		public static void EndInputAttribute()
 		{
 			EndInputAttributeNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_BeginOutputAttribute")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BeginOutputAttributeNative(int id, ImNodesPinShape shape);
+		internal static void BeginOutputAttributeNative(int id, ImNodesPinShape shape)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, ImNodesPinShape, void>)vt[41])(id, shape);
+			#else
+			((delegate* unmanaged[Cdecl]<int, ImNodesPinShape, void>)vt[41])(id, shape);
+			#endif
+		}
 
 		public static void BeginOutputAttribute(int id, ImNodesPinShape shape)
 		{
@@ -651,99 +860,154 @@ namespace Hexa.NET.ImNodes
 			BeginOutputAttributeNative(id, (ImNodesPinShape)(ImNodesPinShape.CircleFilled));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EndOutputAttribute")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndOutputAttributeNative();
+		internal static void EndOutputAttributeNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[42])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[42])();
+			#endif
+		}
 
 		public static void EndOutputAttribute()
 		{
 			EndOutputAttributeNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_BeginStaticAttribute")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BeginStaticAttributeNative(int id);
+		internal static void BeginStaticAttributeNative(int id)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, void>)vt[43])(id);
+			#else
+			((delegate* unmanaged[Cdecl]<int, void>)vt[43])(id);
+			#endif
+		}
 
 		public static void BeginStaticAttribute(int id)
 		{
 			BeginStaticAttributeNative(id);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_EndStaticAttribute")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndStaticAttributeNative();
+		internal static void EndStaticAttributeNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[44])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[44])();
+			#endif
+		}
 
 		public static void EndStaticAttribute()
 		{
 			EndStaticAttributeNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_PushAttributeFlag")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushAttributeFlagNative(ImNodesAttributeFlags flag);
+		internal static void PushAttributeFlagNative(ImNodesAttributeFlags flag)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesAttributeFlags, void>)vt[45])(flag);
+			#else
+			((delegate* unmanaged[Cdecl]<ImNodesAttributeFlags, void>)vt[45])(flag);
+			#endif
+		}
 
 		public static void PushAttributeFlag(ImNodesAttributeFlags flag)
 		{
 			PushAttributeFlagNative(flag);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_PopAttributeFlag")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopAttributeFlagNative();
+		internal static void PopAttributeFlagNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[46])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[46])();
+			#endif
+		}
 
 		public static void PopAttributeFlag()
 		{
 			PopAttributeFlagNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_Link")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void LinkNative(int id, int startAttributeId, int endAttributeId);
+		internal static void LinkNative(int id, int startAttributeId, int endAttributeId)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, int, int, void>)vt[47])(id, startAttributeId, endAttributeId);
+			#else
+			((delegate* unmanaged[Cdecl]<int, int, int, void>)vt[47])(id, startAttributeId, endAttributeId);
+			#endif
+		}
 
 		public static void Link(int id, int startAttributeId, int endAttributeId)
 		{
 			LinkNative(id, startAttributeId, endAttributeId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SetNodeDraggable")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNodeDraggableNative(int nodeId, byte draggable);
+		internal static void SetNodeDraggableNative(int nodeId, byte draggable)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, byte, void>)vt[48])(nodeId, draggable);
+			#else
+			((delegate* unmanaged[Cdecl]<int, byte, void>)vt[48])(nodeId, draggable);
+			#endif
+		}
 
 		public static void SetNodeDraggable(int nodeId, bool draggable)
 		{
 			SetNodeDraggableNative(nodeId, draggable ? (byte)1 : (byte)0);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SetNodeScreenSpacePos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNodeScreenSpacePosNative(int nodeId, Vector2 screenSpacePos);
+		internal static void SetNodeScreenSpacePosNative(int nodeId, Vector2 screenSpacePos)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[49])(nodeId, screenSpacePos);
+			#else
+			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[49])(nodeId, screenSpacePos);
+			#endif
+		}
 
 		public static void SetNodeScreenSpacePos(int nodeId, Vector2 screenSpacePos)
 		{
 			SetNodeScreenSpacePosNative(nodeId, screenSpacePos);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SetNodeEditorSpacePos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNodeEditorSpacePosNative(int nodeId, Vector2 editorSpacePos);
+		internal static void SetNodeEditorSpacePosNative(int nodeId, Vector2 editorSpacePos)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[50])(nodeId, editorSpacePos);
+			#else
+			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[50])(nodeId, editorSpacePos);
+			#endif
+		}
 
 		public static void SetNodeEditorSpacePos(int nodeId, Vector2 editorSpacePos)
 		{
 			SetNodeEditorSpacePosNative(nodeId, editorSpacePos);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SetNodeGridSpacePos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNodeGridSpacePosNative(int nodeId, Vector2 gridPos);
+		internal static void SetNodeGridSpacePosNative(int nodeId, Vector2 gridPos)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[51])(nodeId, gridPos);
+			#else
+			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[51])(nodeId, gridPos);
+			#endif
+		}
 
 		public static void SetNodeGridSpacePos(int nodeId, Vector2 gridPos)
 		{
 			SetNodeGridSpacePosNative(nodeId, gridPos);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetNodeScreenSpacePos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetNodeScreenSpacePosNative(Vector2* output, int nodeId);
+		internal static void GetNodeScreenSpacePosNative(Vector2* output, int nodeId)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[52])(output, nodeId);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[52])((nint)output, nodeId);
+			#endif
+		}
 
 		public static Vector2 GetNodeScreenSpacePos(int nodeId)
 		{
@@ -765,9 +1029,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetNodeEditorSpacePos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetNodeEditorSpacePosNative(Vector2* output, int nodeId);
+		internal static void GetNodeEditorSpacePosNative(Vector2* output, int nodeId)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[53])(output, nodeId);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[53])((nint)output, nodeId);
+			#endif
+		}
 
 		public static Vector2 GetNodeEditorSpacePos(int nodeId)
 		{
@@ -789,9 +1058,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetNodeGridSpacePos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetNodeGridSpacePosNative(Vector2* output, int nodeId);
+		internal static void GetNodeGridSpacePosNative(Vector2* output, int nodeId)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[54])(output, nodeId);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[54])((nint)output, nodeId);
+			#endif
+		}
 
 		public static Vector2 GetNodeGridSpacePos(int nodeId)
 		{
@@ -813,18 +1087,28 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SnapNodeToGrid")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SnapNodeToGridNative(int nodeId);
+		internal static void SnapNodeToGridNative(int nodeId)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, void>)vt[55])(nodeId);
+			#else
+			((delegate* unmanaged[Cdecl]<int, void>)vt[55])(nodeId);
+			#endif
+		}
 
 		public static void SnapNodeToGrid(int nodeId)
 		{
 			SnapNodeToGridNative(nodeId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsEditorHovered")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsEditorHoveredNative();
+		internal static byte IsEditorHoveredNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[56])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[56])();
+			#endif
+		}
 
 		public static bool IsEditorHovered()
 		{
@@ -832,9 +1116,14 @@ namespace Hexa.NET.ImNodes
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsNodeHovered")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsNodeHoveredNative(int* nodeId);
+		internal static byte IsNodeHoveredNative(int* nodeId)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int*, byte>)vt[57])(nodeId);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[57])((nint)nodeId);
+			#endif
+		}
 
 		public static bool IsNodeHovered(int* nodeId)
 		{
@@ -851,9 +1140,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsLinkHovered")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsLinkHoveredNative(int* linkId);
+		internal static byte IsLinkHoveredNative(int* linkId)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int*, byte>)vt[58])(linkId);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[58])((nint)linkId);
+			#endif
+		}
 
 		public static bool IsLinkHovered(int* linkId)
 		{
@@ -870,9 +1164,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsPinHovered")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsPinHoveredNative(int* attributeId);
+		internal static byte IsPinHoveredNative(int* attributeId)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int*, byte>)vt[59])(attributeId);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[59])((nint)attributeId);
+			#endif
+		}
 
 		public static bool IsPinHovered(int* attributeId)
 		{
@@ -889,9 +1188,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_NumSelectedNodes")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int NumSelectedNodesNative();
+		internal static int NumSelectedNodesNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int>)vt[60])();
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<int>)vt[60])();
+			#endif
+		}
 
 		public static int NumSelectedNodes()
 		{
@@ -899,9 +1203,14 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_NumSelectedLinks")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int NumSelectedLinksNative();
+		internal static int NumSelectedLinksNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int>)vt[61])();
+			#else
+			return (int)((delegate* unmanaged[Cdecl]<int>)vt[61])();
+			#endif
+		}
 
 		public static int NumSelectedLinks()
 		{
@@ -909,9 +1218,14 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetSelectedNodes")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetSelectedNodesNative(int* nodeIds);
+		internal static void GetSelectedNodesNative(int* nodeIds)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int*, void>)vt[62])(nodeIds);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[62])((nint)nodeIds);
+			#endif
+		}
 
 		public static void GetSelectedNodes(int* nodeIds)
 		{
@@ -926,9 +1240,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_GetSelectedLinks")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetSelectedLinksNative(int* linkIds);
+		internal static void GetSelectedLinksNative(int* linkIds)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int*, void>)vt[63])(linkIds);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[63])((nint)linkIds);
+			#endif
+		}
 
 		public static void GetSelectedLinks(int* linkIds)
 		{
@@ -943,45 +1262,70 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_ClearNodeSelection_Nil")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearNodeSelectionNative();
+		internal static void ClearNodeSelectionNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[64])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[64])();
+			#endif
+		}
 
 		public static void ClearNodeSelection()
 		{
 			ClearNodeSelectionNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_ClearLinkSelection_Nil")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearLinkSelectionNative();
+		internal static void ClearLinkSelectionNative()
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<void>)vt[65])();
+			#else
+			((delegate* unmanaged[Cdecl]<void>)vt[65])();
+			#endif
+		}
 
 		public static void ClearLinkSelection()
 		{
 			ClearLinkSelectionNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SelectNode")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SelectNodeNative(int nodeId);
+		internal static void SelectNodeNative(int nodeId)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, void>)vt[66])(nodeId);
+			#else
+			((delegate* unmanaged[Cdecl]<int, void>)vt[66])(nodeId);
+			#endif
+		}
 
 		public static void SelectNode(int nodeId)
 		{
 			SelectNodeNative(nodeId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_ClearNodeSelection_Int")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearNodeSelectionNative(int nodeId);
+		internal static void ClearNodeSelectionNative(int nodeId)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, void>)vt[67])(nodeId);
+			#else
+			((delegate* unmanaged[Cdecl]<int, void>)vt[67])(nodeId);
+			#endif
+		}
 
 		public static void ClearNodeSelection(int nodeId)
 		{
 			ClearNodeSelectionNative(nodeId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsNodeSelected")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsNodeSelectedNative(int nodeId);
+		internal static byte IsNodeSelectedNative(int nodeId)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, byte>)vt[68])(nodeId);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)vt[68])(nodeId);
+			#endif
+		}
 
 		public static bool IsNodeSelected(int nodeId)
 		{
@@ -989,27 +1333,42 @@ namespace Hexa.NET.ImNodes
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SelectLink")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SelectLinkNative(int linkId);
+		internal static void SelectLinkNative(int linkId)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, void>)vt[69])(linkId);
+			#else
+			((delegate* unmanaged[Cdecl]<int, void>)vt[69])(linkId);
+			#endif
+		}
 
 		public static void SelectLink(int linkId)
 		{
 			SelectLinkNative(linkId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_ClearLinkSelection_Int")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearLinkSelectionNative(int linkId);
+		internal static void ClearLinkSelectionNative(int linkId)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<int, void>)vt[70])(linkId);
+			#else
+			((delegate* unmanaged[Cdecl]<int, void>)vt[70])(linkId);
+			#endif
+		}
 
 		public static void ClearLinkSelection(int linkId)
 		{
 			ClearLinkSelectionNative(linkId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsLinkSelected")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsLinkSelectedNative(int linkId);
+		internal static byte IsLinkSelectedNative(int linkId)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int, byte>)vt[71])(linkId);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<int, byte>)vt[71])(linkId);
+			#endif
+		}
 
 		public static bool IsLinkSelected(int linkId)
 		{
@@ -1017,9 +1376,14 @@ namespace Hexa.NET.ImNodes
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsAttributeActive")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsAttributeActiveNative();
+		internal static byte IsAttributeActiveNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[72])();
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<byte>)vt[72])();
+			#endif
+		}
 
 		public static bool IsAttributeActive()
 		{
@@ -1027,9 +1391,14 @@ namespace Hexa.NET.ImNodes
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsAnyAttributeActive")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsAnyAttributeActiveNative(int* attributeId);
+		internal static byte IsAnyAttributeActiveNative(int* attributeId)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int*, byte>)vt[73])(attributeId);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[73])((nint)attributeId);
+			#endif
+		}
 
 		public static bool IsAnyAttributeActive(int* attributeId)
 		{
@@ -1052,9 +1421,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsLinkStarted")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsLinkStartedNative(int* startedAtAttributeId);
+		internal static byte IsLinkStartedNative(int* startedAtAttributeId)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int*, byte>)vt[74])(startedAtAttributeId);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[74])((nint)startedAtAttributeId);
+			#endif
+		}
 
 		public static bool IsLinkStarted(int* startedAtAttributeId)
 		{
@@ -1071,9 +1445,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsLinkDropped")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsLinkDroppedNative(int* startedAtAttributeId, byte includingDetachedLinks);
+		internal static byte IsLinkDroppedNative(int* startedAtAttributeId, byte includingDetachedLinks)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int*, byte, byte>)vt[75])(startedAtAttributeId, includingDetachedLinks);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)vt[75])((nint)startedAtAttributeId, includingDetachedLinks);
+			#endif
+		}
 
 		public static bool IsLinkDropped(int* startedAtAttributeId, bool includingDetachedLinks)
 		{
@@ -1117,9 +1496,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsLinkCreated_BoolPtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsLinkCreatedNative(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap);
+		internal static byte IsLinkCreatedNative(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int*, int*, bool*, byte>)vt[76])(startedAtAttributeId, endedAtAttributeId, createdFromSnap);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, byte>)vt[76])((nint)startedAtAttributeId, (nint)endedAtAttributeId, (nint)createdFromSnap);
+			#endif
+		}
 
 		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
@@ -1241,9 +1625,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsLinkCreated_IntPtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsLinkCreatedNative(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap);
+		internal static byte IsLinkCreatedNative(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int*, int*, int*, int*, bool*, byte>)vt[77])(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, byte>)vt[77])((nint)startedAtNodeId, (nint)startedAtAttributeId, (nint)endedAtNodeId, (nint)endedAtAttributeId, (nint)createdFromSnap);
+			#endif
+		}
 
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
@@ -1869,9 +2258,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_IsLinkDestroyed")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsLinkDestroyedNative(int* linkId);
+		internal static byte IsLinkDestroyedNative(int* linkId)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<int*, byte>)vt[78])(linkId);
+			#else
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[78])((nint)linkId);
+			#endif
+		}
 
 		public static bool IsLinkDestroyed(int* linkId)
 		{
@@ -1888,9 +2282,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SaveCurrentEditorStateToIniString")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte* SaveCurrentEditorStateToIniStringNative(nuint* dataSize);
+		internal static byte* SaveCurrentEditorStateToIniStringNative(nuint* dataSize)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<nuint*, byte*>)vt[79])(dataSize);
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[79])((nint)dataSize);
+			#endif
+		}
 
 		public static byte* SaveCurrentEditorStateToIniString(nuint* dataSize)
 		{
@@ -1934,9 +2333,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SaveEditorStateToIniString")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte* SaveEditorStateToIniStringNative(ImNodesEditorContext* editor, nuint* dataSize);
+		internal static byte* SaveEditorStateToIniStringNative(ImNodesEditorContext* editor, nuint* dataSize)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, nuint*, byte*>)vt[80])(editor, dataSize);
+			#else
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)vt[80])((nint)editor, (nint)dataSize);
+			#endif
+		}
 
 		public static byte* SaveEditorStateToIniString(ImNodesEditorContextPtr editor, nuint* dataSize)
 		{
@@ -2040,9 +2444,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_LoadCurrentEditorStateFromIniString")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void LoadCurrentEditorStateFromIniStringNative(byte* data, nuint dataSize);
+		internal static void LoadCurrentEditorStateFromIniStringNative(byte* data, nuint dataSize)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[81])(data, dataSize);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[81])((nint)data, dataSize);
+			#endif
+		}
 
 		public static void LoadCurrentEditorStateFromIniString(byte* data, nuint dataSize)
 		{
@@ -2083,9 +2492,22 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_LoadEditorStateFromIniString")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void LoadEditorStateFromIniStringNative(ImNodesEditorContext* editor, byte* data, nuint dataSize);
+		public static void LoadCurrentEditorStateFromIniString(ReadOnlySpan<byte> data, nuint dataSize)
+		{
+			fixed (byte* pdata = data)
+			{
+				LoadCurrentEditorStateFromIniStringNative((byte*)pdata, dataSize);
+			}
+		}
+
+		internal static void LoadEditorStateFromIniStringNative(ImNodesEditorContext* editor, byte* data, nuint dataSize)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, byte*, nuint, void>)vt[82])(editor, data, dataSize);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)vt[82])((nint)editor, (nint)data, dataSize);
+			#endif
+		}
 
 		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, byte* data, nuint dataSize)
 		{
@@ -2134,6 +2556,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, ReadOnlySpan<byte> data, nuint dataSize)
+		{
+			fixed (byte* pdata = data)
+			{
+				LoadEditorStateFromIniStringNative(editor, (byte*)pdata, dataSize);
+			}
+		}
+
 		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, ref byte data, nuint dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
@@ -2174,9 +2604,25 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SaveCurrentEditorStateToIniFile")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SaveCurrentEditorStateToIniFileNative(byte* fileName);
+		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, ReadOnlySpan<byte> data, nuint dataSize)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				fixed (byte* pdata = data)
+				{
+					LoadEditorStateFromIniStringNative((ImNodesEditorContext*)peditor, (byte*)pdata, dataSize);
+				}
+			}
+		}
+
+		internal static void SaveCurrentEditorStateToIniFileNative(byte* fileName)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[83])(fileName);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[83])((nint)fileName);
+			#endif
+		}
 
 		public static void SaveCurrentEditorStateToIniFile(byte* fileName)
 		{
@@ -2217,9 +2663,22 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_SaveEditorStateToIniFile")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SaveEditorStateToIniFileNative(ImNodesEditorContext* editor, byte* fileName);
+		public static void SaveCurrentEditorStateToIniFile(ReadOnlySpan<byte> fileName)
+		{
+			fixed (byte* pfileName = fileName)
+			{
+				SaveCurrentEditorStateToIniFileNative((byte*)pfileName);
+			}
+		}
+
+		internal static void SaveEditorStateToIniFileNative(ImNodesEditorContext* editor, byte* fileName)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, byte*, void>)vt[84])(editor, fileName);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[84])((nint)editor, (nint)fileName);
+			#endif
+		}
 
 		public static void SaveEditorStateToIniFile(ImNodesEditorContextPtr editor, byte* fileName)
 		{
@@ -2268,6 +2727,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		public static void SaveEditorStateToIniFile(ImNodesEditorContextPtr editor, ReadOnlySpan<byte> fileName)
+		{
+			fixed (byte* pfileName = fileName)
+			{
+				SaveEditorStateToIniFileNative(editor, (byte*)pfileName);
+			}
+		}
+
 		public static void SaveEditorStateToIniFile(ref ImNodesEditorContext editor, ref byte fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
@@ -2308,9 +2775,25 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_LoadCurrentEditorStateFromIniFile")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void LoadCurrentEditorStateFromIniFileNative(byte* fileName);
+		public static void SaveEditorStateToIniFile(ref ImNodesEditorContext editor, ReadOnlySpan<byte> fileName)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				fixed (byte* pfileName = fileName)
+				{
+					SaveEditorStateToIniFileNative((ImNodesEditorContext*)peditor, (byte*)pfileName);
+				}
+			}
+		}
+
+		internal static void LoadCurrentEditorStateFromIniFileNative(byte* fileName)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[85])(fileName);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[85])((nint)fileName);
+			#endif
+		}
 
 		public static void LoadCurrentEditorStateFromIniFile(byte* fileName)
 		{
@@ -2351,9 +2834,22 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImNodes_LoadEditorStateFromIniFile")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void LoadEditorStateFromIniFileNative(ImNodesEditorContext* editor, byte* fileName);
+		public static void LoadCurrentEditorStateFromIniFile(ReadOnlySpan<byte> fileName)
+		{
+			fixed (byte* pfileName = fileName)
+			{
+				LoadCurrentEditorStateFromIniFileNative((byte*)pfileName);
+			}
+		}
+
+		internal static void LoadEditorStateFromIniFileNative(ImNodesEditorContext* editor, byte* fileName)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, byte*, void>)vt[86])(editor, fileName);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[86])((nint)editor, (nint)fileName);
+			#endif
+		}
 
 		public static void LoadEditorStateFromIniFile(ImNodesEditorContextPtr editor, byte* fileName)
 		{
@@ -2402,6 +2898,14 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		public static void LoadEditorStateFromIniFile(ImNodesEditorContextPtr editor, ReadOnlySpan<byte> fileName)
+		{
+			fixed (byte* pfileName = fileName)
+			{
+				LoadEditorStateFromIniFileNative(editor, (byte*)pfileName);
+			}
+		}
+
 		public static void LoadEditorStateFromIniFile(ref ImNodesEditorContext editor, ref byte fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
@@ -2442,14 +2946,30 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		public static void LoadEditorStateFromIniFile(ref ImNodesEditorContext editor, ReadOnlySpan<byte> fileName)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				fixed (byte* pfileName = fileName)
+				{
+					LoadEditorStateFromIniFileNative((ImNodesEditorContext*)peditor, (byte*)pfileName);
+				}
+			}
+		}
+
 		/// <summary>
 		/// needed for io.link_detach_with_modifier_click.modifier = 
 		/// &ImGui
 		/// ::GetIO().KeyCtrl
 		/// </summary>
-		[LibraryImport(LibName, EntryPoint = "getIOKeyCtrlPtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial bool* GetIOKeyCtrlPtrNative();
+		internal static bool* GetIOKeyCtrlPtrNative()
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<bool*>)vt[87])();
+			#else
+			return (bool*)((delegate* unmanaged[Cdecl]<nint>)vt[87])();
+			#endif
+		}
 
 		/// <summary>
 /// needed for io.link_detach_with_modifier_click.modifier = 

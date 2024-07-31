@@ -11,25 +11,6 @@
     using System;
     using System.Diagnostics;
 
-    public class ResizedEventArgs : EventArgs
-    {
-        public ResizedEventArgs(int width, int height, int oldWidth, int oldHeight)
-        {
-            Width = width;
-            Height = height;
-            OldWidth = oldWidth;
-            OldHeight = oldHeight;
-        }
-
-        public int Width { get; }
-
-        public int Height { get; }
-
-        public int OldWidth { get; }
-
-        public int OldHeight { get; }
-    }
-
     internal unsafe class Program
     {
         internal static readonly Sdl sdl = Sdl.GetApi();
