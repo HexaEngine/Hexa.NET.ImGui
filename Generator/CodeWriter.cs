@@ -70,6 +70,31 @@
             _shouldIndent = true;
         }
 
+        public void WriteLines(string? @string, bool newLineAtEnd = false)
+        {
+            if (@string == null)
+                return;
+
+            if (@string.Contains('\n'))
+            {
+                var lines = @string.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    WriteIndented(lines[i]);
+                    _shouldIndent = true;
+                }
+            }
+            _shouldIndent = true;
+        }
+
+        public void WriteLines(IEnumerable<string> lines)
+        {
+            foreach (var line in lines)
+            {
+                WriteLine(line);
+            }
+        }
+
         public void BeginBlock(string content)
         {
             WriteLine(content);

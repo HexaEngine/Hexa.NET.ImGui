@@ -10,12 +10,158 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 
 namespace Hexa.NET.ImGui
 {
 	public unsafe partial class ImGui
 	{
+
+		internal static void ImageNative(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 tintCol, Vector4 borderCol)
+		{
+			((delegate* unmanaged[Cdecl]<ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, void>)vt[156])(userTextureId, imageSize, uv0, uv1, tintCol, borderCol);
+		}
+
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 tintCol, Vector4 borderCol)
+		{
+			ImageNative(userTextureId, imageSize, uv0, uv1, tintCol, borderCol);
+		}
+
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 tintCol)
+		{
+			ImageNative(userTextureId, imageSize, uv0, uv1, tintCol, (Vector4)(new Vector4(0,0,0,0)));
+		}
+
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		{
+			ImageNative(userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), (Vector4)(new Vector4(0,0,0,0)));
+		}
+
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
+		{
+			ImageNative(userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (Vector4)(new Vector4(0,0,0,0)));
+		}
+
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize)
+		{
+			ImageNative(userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (Vector4)(new Vector4(0,0,0,0)));
+		}
+
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 tintCol)
+		{
+			ImageNative(userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), tintCol, (Vector4)(new Vector4(0,0,0,0)));
+		}
+
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector4 tintCol)
+		{
+			ImageNative(userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (Vector4)(new Vector4(0,0,0,0)));
+		}
+
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 tintCol, Vector4 borderCol)
+		{
+			ImageNative(userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), tintCol, borderCol);
+		}
+
+		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector4 tintCol, Vector4 borderCol)
+		{
+			ImageNative(userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, borderCol);
+		}
+
+		internal static byte ImageButtonNative(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)vt[157])(strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+		}
+
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		{
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+			return ret != 0;
+		}
+
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		{
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			return ret != 0;
+		}
+
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		{
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			return ret != 0;
+		}
+
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
+		{
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			return ret != 0;
+		}
+
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize)
+		{
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+			return ret != 0;
+		}
+
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
+		{
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			return ret != 0;
+		}
+
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol)
+		{
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
+			return ret != 0;
+		}
+
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
+		{
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+			return ret != 0;
+		}
+
+		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
+		{
+			byte ret = ImageButtonNative(strId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
+			return ret != 0;
+		}
+
+		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+				return ret != 0;
+			}
+		}
+
+		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
+
+		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
+
+		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
+		{
+			fixed (byte* pstrId = &strId)
+			{
+				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
+				return ret != 0;
+			}
+		}
 
 		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize)
 		{
@@ -305,9 +451,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginCombo")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginComboNative(byte* label, byte* previewValue, ImGuiComboFlags flags);
+		internal static byte BeginComboNative(byte* label, byte* previewValue, ImGuiComboFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ImGuiComboFlags, byte>)vt[158])(label, previewValue, flags);
+		}
 
 		public static bool BeginCombo(byte* label, byte* previewValue, ImGuiComboFlags flags)
 		{
@@ -585,18 +732,20 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igEndCombo")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndComboNative();
+		internal static void EndComboNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[159])();
+		}
 
 		public static void EndCombo()
 		{
 			EndComboNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igCombo_Str_arr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ComboNative(byte* label, int* currentItem, byte** items, int itemsCount, int popupMaxHeightInItems);
+		internal static byte ComboNative(byte* label, int* currentItem, byte** items, int itemsCount, int popupMaxHeightInItems)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, byte**, int, int, byte>)vt[160])(label, currentItem, items, itemsCount, popupMaxHeightInItems);
+		}
 
 		public static bool Combo(byte* label, int* currentItem, byte** items, int itemsCount, int popupMaxHeightInItems)
 		{
@@ -1136,9 +1285,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igCombo_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ComboNative(byte* label, int* currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems);
+		internal static byte ComboNative(byte* label, int* currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, byte*, int, byte>)vt[161])(label, currentItem, itemsSeparatedByZeros, popupMaxHeightInItems);
+		}
 
 		public static bool Combo(byte* label, int* currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
 		{
@@ -1734,9 +1884,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igCombo_FnStrPtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ComboNative(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int popupMaxHeightInItems);
+		internal static byte ComboNative(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int>, void*, int, int, byte>)vt[162])(label, currentItem, getter, userData, itemsCount, popupMaxHeightInItems);
+		}
 
 		public static bool Combo(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int popupMaxHeightInItems)
 		{
@@ -1924,9 +2075,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDragFloat")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte DragFloatNative(byte* label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags);
+		internal static byte DragFloatNative(byte* label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, float, float, float, byte*, ImGuiSliderFlags, byte>)vt[163])(label, v, vSpeed, vMin, vMax, format, flags);
+		}
 
 		public static bool DragFloat(byte* label, float* v, float vSpeed, float vMin, float vMax, byte* format, ImGuiSliderFlags flags)
 		{
@@ -4883,159 +5035,6 @@ namespace Hexa.NET.ImGui
 					pStr1[pStrOffset1] = 0;
 				}
 				byte ret = DragFloatNative(pStr0, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), pStr1, (ImGuiSliderFlags)(0));
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool DragFloat(string label, ref float v, float vSpeed, float vMin, string format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pv = &v)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (format != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(format);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = DragFloatNative(pStr0, (float*)pv, vSpeed, vMin, (float)(0.0f), pStr1, flags);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool DragFloat(string label, ref float v, float vSpeed, string format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pv = &v)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (format != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(format);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = DragFloatNative(pStr0, (float*)pv, vSpeed, (float)(0.0f), (float)(0.0f), pStr1, flags);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr1);
-				}
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool DragFloat(string label, ref float v, string format, ImGuiSliderFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pv = &v)
-			{
-				byte* pStr1 = null;
-				int pStrSize1 = 0;
-				if (format != null)
-				{
-					pStrSize1 = Utils.GetByteCountUTF8(format);
-					if (pStrSize1 >= Utils.MaxStackallocSize)
-					{
-						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-					}
-					else
-					{
-						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-						pStr1 = pStrStack1;
-					}
-					int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
-					pStr1[pStrOffset1] = 0;
-				}
-				byte ret = DragFloatNative(pStr0, (float*)pv, (float)(1.0f), (float)(0.0f), (float)(0.0f), pStr1, flags);
 				if (pStrSize1 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr1);

@@ -10,6 +10,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
@@ -17,6 +18,597 @@ namespace Hexa.NET.ImPlot
 {
 	public unsafe partial class ImPlot
 	{
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								fixed (bool* pheld = &held)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, ref double y2, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (double* py2 = &y2)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								fixed (bool* pheld = &held)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, (double*)py2, col, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px2 = &x2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* px2 = &x2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								fixed (bool* pheld = &held)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* px2 = &x2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								fixed (bool* pheld = &held)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py2 = &y2)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragRectNative(id, x1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, double* y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, (double*)px1, y1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, double* x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py1 = &y1)
+			{
+				fixed (double* py2 = &y2)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* poutHovered = &outHovered)
+						{
+							fixed (bool* pheld = &held)
+							{
+								byte ret = DragRectNative(id, x1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+								return ret != 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								fixed (bool* pheld = &held)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, ref double y2, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px1 = &x1)
+			{
+				fixed (double* py1 = &y1)
+				{
+					fixed (double* py2 = &y2)
+					{
+						fixed (bool* poutClicked = &outClicked)
+						{
+							fixed (bool* poutHovered = &outHovered)
+							{
+								fixed (bool* pheld = &held)
+								{
+									byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, (double*)py2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+									return ret != 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 
 		public static bool DragRect(int id, double* x1, double* y1, ref double x2, ref double y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
 		{
@@ -210,9 +802,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Annotation_Bool")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AnnotationNative(double x, double y, Vector4 col, Vector2 pixOffset, byte clamp, byte round);
+		internal static void AnnotationNative(double x, double y, Vector4 col, Vector2 pixOffset, byte clamp, byte round)
+		{
+			((delegate* unmanaged[Cdecl]<double, double, Vector4, Vector2, byte, byte, void>)vt[297])(x, y, col, pixOffset, clamp, round);
+		}
 
 		public static void Annotation(double x, double y, Vector4 col, Vector2 pixOffset, bool clamp, bool round)
 		{
@@ -224,9 +817,10 @@ namespace Hexa.NET.ImPlot
 			AnnotationNative(x, y, col, pixOffset, clamp ? (byte)1 : (byte)0, (byte)(0));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Annotation_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AnnotationNative(double x, double y, Vector4 col, Vector2 pixOffset, byte clamp, byte* fmt);
+		internal static void AnnotationNative(double x, double y, Vector4 col, Vector2 pixOffset, byte clamp, byte* fmt)
+		{
+			((delegate* unmanaged[Cdecl]<double, double, Vector4, Vector2, byte, byte*, void>)vt[298])(x, y, col, pixOffset, clamp, fmt);
+		}
 
 		public static void Annotation(double x, double y, Vector4 col, Vector2 pixOffset, bool clamp, byte* fmt)
 		{
@@ -267,9 +861,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_AnnotationV")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AnnotationVNative(double x, double y, Vector4 col, Vector2 pixOffset, byte clamp, byte* fmt, nuint args);
+		internal static void AnnotationVNative(double x, double y, Vector4 col, Vector2 pixOffset, byte clamp, byte* fmt, nuint args)
+		{
+			((delegate* unmanaged[Cdecl]<double, double, Vector4, Vector2, byte, byte*, nuint, void>)vt[299])(x, y, col, pixOffset, clamp, fmt, args);
+		}
 
 		public static void AnnotationV(double x, double y, Vector4 col, Vector2 pixOffset, bool clamp, byte* fmt, nuint args)
 		{
@@ -310,9 +905,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TagX_Bool")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TagXNative(double x, Vector4 col, byte round);
+		internal static void TagXNative(double x, Vector4 col, byte round)
+		{
+			((delegate* unmanaged[Cdecl]<double, Vector4, byte, void>)vt[300])(x, col, round);
+		}
 
 		public static void TagX(double x, Vector4 col, bool round)
 		{
@@ -324,9 +920,10 @@ namespace Hexa.NET.ImPlot
 			TagXNative(x, col, (byte)(0));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TagX_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TagXNative(double x, Vector4 col, byte* fmt);
+		internal static void TagXNative(double x, Vector4 col, byte* fmt)
+		{
+			((delegate* unmanaged[Cdecl]<double, Vector4, byte*, void>)vt[301])(x, col, fmt);
+		}
 
 		public static void TagX(double x, Vector4 col, byte* fmt)
 		{
@@ -367,9 +964,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TagXV")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TagXVNative(double x, Vector4 col, byte* fmt, nuint args);
+		internal static void TagXVNative(double x, Vector4 col, byte* fmt, nuint args)
+		{
+			((delegate* unmanaged[Cdecl]<double, Vector4, byte*, nuint, void>)vt[302])(x, col, fmt, args);
+		}
 
 		public static void TagXV(double x, Vector4 col, byte* fmt, nuint args)
 		{
@@ -410,9 +1008,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TagY_Bool")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TagYNative(double y, Vector4 col, byte round);
+		internal static void TagYNative(double y, Vector4 col, byte round)
+		{
+			((delegate* unmanaged[Cdecl]<double, Vector4, byte, void>)vt[303])(y, col, round);
+		}
 
 		public static void TagY(double y, Vector4 col, bool round)
 		{
@@ -424,9 +1023,10 @@ namespace Hexa.NET.ImPlot
 			TagYNative(y, col, (byte)(0));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TagY_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TagYNative(double y, Vector4 col, byte* fmt);
+		internal static void TagYNative(double y, Vector4 col, byte* fmt)
+		{
+			((delegate* unmanaged[Cdecl]<double, Vector4, byte*, void>)vt[304])(y, col, fmt);
+		}
 
 		public static void TagY(double y, Vector4 col, byte* fmt)
 		{
@@ -467,9 +1067,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TagYV")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TagYVNative(double y, Vector4 col, byte* fmt, nuint args);
+		internal static void TagYVNative(double y, Vector4 col, byte* fmt, nuint args)
+		{
+			((delegate* unmanaged[Cdecl]<double, Vector4, byte*, nuint, void>)vt[305])(y, col, fmt, args);
+		}
 
 		public static void TagYV(double y, Vector4 col, byte* fmt, nuint args)
 		{
@@ -510,27 +1111,30 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetAxis")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetAxisNative(ImAxis axis);
+		internal static void SetAxisNative(ImAxis axis)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, void>)vt[306])(axis);
+		}
 
 		public static void SetAxis(ImAxis axis)
 		{
 			SetAxisNative(axis);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetAxes")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetAxesNative(ImAxis xAxis, ImAxis yAxis);
+		internal static void SetAxesNative(ImAxis xAxis, ImAxis yAxis)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, ImAxis, void>)vt[307])(xAxis, yAxis);
+		}
 
 		public static void SetAxes(ImAxis xAxis, ImAxis yAxis)
 		{
 			SetAxesNative(xAxis, yAxis);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PixelsToPlot_Vec2")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PixelsToPlotNative(ImPlotPoint* output, Vector2 pix, ImAxis xAxis, ImAxis yAxis);
+		internal static void PixelsToPlotNative(ImPlotPoint* output, Vector2 pix, ImAxis xAxis, ImAxis yAxis)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, Vector2, ImAxis, ImAxis, void>)vt[308])(output, pix, xAxis, yAxis);
+		}
 
 		public static ImPlotPoint PixelsToPlot(Vector2 pix)
 		{
@@ -592,9 +1196,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PixelsToPlot_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PixelsToPlotNative(ImPlotPoint* output, float x, float y, ImAxis xAxis, ImAxis yAxis);
+		internal static void PixelsToPlotNative(ImPlotPoint* output, float x, float y, ImAxis xAxis, ImAxis yAxis)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, float, float, ImAxis, ImAxis, void>)vt[309])(output, x, y, xAxis, yAxis);
+		}
 
 		public static ImPlotPoint PixelsToPlot(float x, float y)
 		{
@@ -656,9 +1261,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotToPixels_PlotPoInt")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotToPixelsNative(Vector2* output, ImPlotPoint plt, ImAxis xAxis, ImAxis yAxis);
+		internal static void PlotToPixelsNative(Vector2* output, ImPlotPoint plt, ImAxis xAxis, ImAxis yAxis)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, ImPlotPoint, ImAxis, ImAxis, void>)vt[310])(output, plt, xAxis, yAxis);
+		}
 
 		public static Vector2 PlotToPixels(ImPlotPoint plt)
 		{
@@ -720,9 +1326,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotToPixels_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotToPixelsNative(Vector2* output, double x, double y, ImAxis xAxis, ImAxis yAxis);
+		internal static void PlotToPixelsNative(Vector2* output, double x, double y, ImAxis xAxis, ImAxis yAxis)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, double, double, ImAxis, ImAxis, void>)vt[311])(output, x, y, xAxis, yAxis);
+		}
 
 		public static Vector2 PlotToPixels(double x, double y)
 		{
@@ -784,9 +1391,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetPlotPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetPlotPosNative(Vector2* output);
+		internal static void GetPlotPosNative(Vector2* output)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[312])(output);
+		}
 
 		public static Vector2 GetPlotPos()
 		{
@@ -808,9 +1416,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetPlotSize")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetPlotSizeNative(Vector2* output);
+		internal static void GetPlotSizeNative(Vector2* output)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[313])(output);
+		}
 
 		public static Vector2 GetPlotSize()
 		{
@@ -832,9 +1441,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetPlotMousePos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetPlotMousePosNative(ImPlotPoint* output, ImAxis xAxis, ImAxis yAxis);
+		internal static void GetPlotMousePosNative(ImPlotPoint* output, ImAxis xAxis, ImAxis yAxis)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImAxis, ImAxis, void>)vt[314])(output, xAxis, yAxis);
+		}
 
 		public static ImPlotPoint GetPlotMousePos()
 		{
@@ -896,9 +1506,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetPlotLimits")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetPlotLimitsNative(ImPlotRect* output, ImAxis xAxis, ImAxis yAxis);
+		internal static void GetPlotLimitsNative(ImPlotRect* output, ImAxis xAxis, ImAxis yAxis)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotRect*, ImAxis, ImAxis, void>)vt[315])(output, xAxis, yAxis);
+		}
 
 		public static ImPlotRect GetPlotLimits()
 		{
@@ -960,9 +1571,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_IsPlotHovered")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsPlotHoveredNative();
+		internal static byte IsPlotHoveredNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[316])();
+		}
 
 		public static bool IsPlotHovered()
 		{
@@ -970,9 +1582,10 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_IsAxisHovered")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsAxisHoveredNative(ImAxis axis);
+		internal static byte IsAxisHoveredNative(ImAxis axis)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImAxis, byte>)vt[317])(axis);
+		}
 
 		public static bool IsAxisHovered(ImAxis axis)
 		{
@@ -980,9 +1593,10 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_IsSubplotsHovered")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsSubplotsHoveredNative();
+		internal static byte IsSubplotsHoveredNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[318])();
+		}
 
 		public static bool IsSubplotsHovered()
 		{
@@ -990,9 +1604,10 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_IsPlotSelected")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsPlotSelectedNative();
+		internal static byte IsPlotSelectedNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[319])();
+		}
 
 		public static bool IsPlotSelected()
 		{
@@ -1000,9 +1615,10 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetPlotSelection")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetPlotSelectionNative(ImPlotRect* output, ImAxis xAxis, ImAxis yAxis);
+		internal static void GetPlotSelectionNative(ImPlotRect* output, ImAxis xAxis, ImAxis yAxis)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotRect*, ImAxis, ImAxis, void>)vt[320])(output, xAxis, yAxis);
+		}
 
 		public static ImPlotRect GetPlotSelection()
 		{
@@ -1064,18 +1680,20 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CancelPlotSelection")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void CancelPlotSelectionNative();
+		internal static void CancelPlotSelectionNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[321])();
+		}
 
 		public static void CancelPlotSelection()
 		{
 			CancelPlotSelectionNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_HideNextItem")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void HideNextItemNative(byte hidden, ImPlotCond cond);
+		internal static void HideNextItemNative(byte hidden, ImPlotCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<byte, ImPlotCond, void>)vt[322])(hidden, cond);
+		}
 
 		public static void HideNextItem(bool hidden, ImPlotCond cond)
 		{
@@ -1097,9 +1715,10 @@ namespace Hexa.NET.ImPlot
 			HideNextItemNative((byte)(1), cond);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginAlignedPlots")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginAlignedPlotsNative(byte* groupId, byte vertical);
+		internal static byte BeginAlignedPlotsNative(byte* groupId, byte vertical)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, byte, byte>)vt[323])(groupId, vertical);
+		}
 
 		public static bool BeginAlignedPlots(byte* groupId, bool vertical)
 		{
@@ -1185,18 +1804,20 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_EndAlignedPlots")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndAlignedPlotsNative();
+		internal static void EndAlignedPlotsNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[324])();
+		}
 
 		public static void EndAlignedPlots()
 		{
 			EndAlignedPlotsNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginLegendPopup")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginLegendPopupNative(byte* labelId, ImGuiMouseButton mouseButton);
+		internal static byte BeginLegendPopupNative(byte* labelId, ImGuiMouseButton mouseButton)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiMouseButton, byte>)vt[325])(labelId, mouseButton);
+		}
 
 		public static bool BeginLegendPopup(byte* labelId, ImGuiMouseButton mouseButton)
 		{
@@ -1282,18 +1903,20 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_EndLegendPopup")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndLegendPopupNative();
+		internal static void EndLegendPopupNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[326])();
+		}
 
 		public static void EndLegendPopup()
 		{
 			EndLegendPopupNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_IsLegendEntryHovered")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsLegendEntryHoveredNative(byte* labelId);
+		internal static byte IsLegendEntryHoveredNative(byte* labelId)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)vt[327])(labelId);
+		}
 
 		public static bool IsLegendEntryHovered(byte* labelId)
 		{
@@ -1337,9 +1960,10 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginDragDropTargetPlot")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginDragDropTargetPlotNative();
+		internal static byte BeginDragDropTargetPlotNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[328])();
+		}
 
 		public static bool BeginDragDropTargetPlot()
 		{
@@ -1347,9 +1971,10 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginDragDropTargetAxis")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginDragDropTargetAxisNative(ImAxis axis);
+		internal static byte BeginDragDropTargetAxisNative(ImAxis axis)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImAxis, byte>)vt[329])(axis);
+		}
 
 		public static bool BeginDragDropTargetAxis(ImAxis axis)
 		{
@@ -1357,9 +1982,10 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginDragDropTargetLegend")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginDragDropTargetLegendNative();
+		internal static byte BeginDragDropTargetLegendNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[330])();
+		}
 
 		public static bool BeginDragDropTargetLegend()
 		{
@@ -1367,18 +1993,20 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_EndDragDropTarget")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndDragDropTargetNative();
+		internal static void EndDragDropTargetNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[331])();
+		}
 
 		public static void EndDragDropTarget()
 		{
 			EndDragDropTargetNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginDragDropSourcePlot")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginDragDropSourcePlotNative(ImGuiDragDropFlags flags);
+		internal static byte BeginDragDropSourcePlotNative(ImGuiDragDropFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiDragDropFlags, byte>)vt[332])(flags);
+		}
 
 		public static bool BeginDragDropSourcePlot(ImGuiDragDropFlags flags)
 		{
@@ -1392,9 +2020,10 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginDragDropSourceAxis")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginDragDropSourceAxisNative(ImAxis axis, ImGuiDragDropFlags flags);
+		internal static byte BeginDragDropSourceAxisNative(ImAxis axis, ImGuiDragDropFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImAxis, ImGuiDragDropFlags, byte>)vt[333])(axis, flags);
+		}
 
 		public static bool BeginDragDropSourceAxis(ImAxis axis, ImGuiDragDropFlags flags)
 		{
@@ -1408,9 +2037,10 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginDragDropSourceItem")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginDragDropSourceItemNative(byte* labelId, ImGuiDragDropFlags flags);
+		internal static byte BeginDragDropSourceItemNative(byte* labelId, ImGuiDragDropFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDragDropFlags, byte>)vt[334])(labelId, flags);
+		}
 
 		public static bool BeginDragDropSourceItem(byte* labelId, ImGuiDragDropFlags flags)
 		{
@@ -1496,18 +2126,20 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_EndDragDropSource")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndDragDropSourceNative();
+		internal static void EndDragDropSourceNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[335])();
+		}
 
 		public static void EndDragDropSource()
 		{
 			EndDragDropSourceNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotStyle* GetStyleNative();
+		internal static ImPlotStyle* GetStyleNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotStyle*>)vt[336])();
+		}
 
 		public static ImPlotStylePtr GetStyle()
 		{
@@ -1515,9 +2147,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_StyleColorsAuto")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void StyleColorsAutoNative(ImPlotStyle* dst);
+		internal static void StyleColorsAutoNative(ImPlotStyle* dst)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotStyle*, void>)vt[337])(dst);
+		}
 
 		public static void StyleColorsAuto(ImPlotStylePtr dst)
 		{
@@ -1537,9 +2170,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_StyleColorsClassic")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void StyleColorsClassicNative(ImPlotStyle* dst);
+		internal static void StyleColorsClassicNative(ImPlotStyle* dst)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotStyle*, void>)vt[338])(dst);
+		}
 
 		public static void StyleColorsClassic(ImPlotStylePtr dst)
 		{
@@ -1559,9 +2193,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_StyleColorsDark")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void StyleColorsDarkNative(ImPlotStyle* dst);
+		internal static void StyleColorsDarkNative(ImPlotStyle* dst)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotStyle*, void>)vt[339])(dst);
+		}
 
 		public static void StyleColorsDark(ImPlotStylePtr dst)
 		{
@@ -1581,9 +2216,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_StyleColorsLight")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void StyleColorsLightNative(ImPlotStyle* dst);
+		internal static void StyleColorsLightNative(ImPlotStyle* dst)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotStyle*, void>)vt[340])(dst);
+		}
 
 		public static void StyleColorsLight(ImPlotStylePtr dst)
 		{
@@ -1603,27 +2239,30 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PushStyleColor_U32")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleColorNative(ImPlotCol idx, uint col);
+		internal static void PushStyleColorNative(ImPlotCol idx, uint col)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotCol, uint, void>)vt[341])(idx, col);
+		}
 
 		public static void PushStyleColor(ImPlotCol idx, uint col)
 		{
 			PushStyleColorNative(idx, col);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PushStyleColor_Vec4")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleColorNative(ImPlotCol idx, Vector4 col);
+		internal static void PushStyleColorNative(ImPlotCol idx, Vector4 col)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotCol, Vector4, void>)vt[342])(idx, col);
+		}
 
 		public static void PushStyleColor(ImPlotCol idx, Vector4 col)
 		{
 			PushStyleColorNative(idx, col);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PopStyleColor")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopStyleColorNative(int count);
+		internal static void PopStyleColorNative(int count)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[343])(count);
+		}
 
 		public static void PopStyleColor(int count)
 		{
@@ -1635,36 +2274,40 @@ namespace Hexa.NET.ImPlot
 			PopStyleColorNative((int)(1));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PushStyleVar_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleVarNative(ImPlotStyleVar idx, float val);
+		internal static void PushStyleVarNative(ImPlotStyleVar idx, float val)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotStyleVar, float, void>)vt[344])(idx, val);
+		}
 
 		public static void PushStyleVar(ImPlotStyleVar idx, float val)
 		{
 			PushStyleVarNative(idx, val);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PushStyleVar_Int")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleVarNative(ImPlotStyleVar idx, int val);
+		internal static void PushStyleVarNative(ImPlotStyleVar idx, int val)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotStyleVar, int, void>)vt[345])(idx, val);
+		}
 
 		public static void PushStyleVar(ImPlotStyleVar idx, int val)
 		{
 			PushStyleVarNative(idx, val);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PushStyleVar_Vec2")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleVarNative(ImPlotStyleVar idx, Vector2 val);
+		internal static void PushStyleVarNative(ImPlotStyleVar idx, Vector2 val)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotStyleVar, Vector2, void>)vt[346])(idx, val);
+		}
 
 		public static void PushStyleVar(ImPlotStyleVar idx, Vector2 val)
 		{
 			PushStyleVarNative(idx, val);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PopStyleVar")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopStyleVarNative(int count);
+		internal static void PopStyleVarNative(int count)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[347])(count);
+		}
 
 		public static void PopStyleVar(int count)
 		{
@@ -1676,9 +2319,10 @@ namespace Hexa.NET.ImPlot
 			PopStyleVarNative((int)(1));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextLineStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextLineStyleNative(Vector4 col, float weight);
+		internal static void SetNextLineStyleNative(Vector4 col, float weight)
+		{
+			((delegate* unmanaged[Cdecl]<Vector4, float, void>)vt[348])(col, weight);
+		}
 
 		public static void SetNextLineStyle(Vector4 col, float weight)
 		{
@@ -1700,9 +2344,10 @@ namespace Hexa.NET.ImPlot
 			SetNextLineStyleNative((Vector4)(new Vector4(0,0,0,-1)), weight);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextFillStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextFillStyleNative(Vector4 col, float alphaMod);
+		internal static void SetNextFillStyleNative(Vector4 col, float alphaMod)
+		{
+			((delegate* unmanaged[Cdecl]<Vector4, float, void>)vt[349])(col, alphaMod);
+		}
 
 		public static void SetNextFillStyle(Vector4 col, float alphaMod)
 		{
@@ -1724,9 +2369,10 @@ namespace Hexa.NET.ImPlot
 			SetNextFillStyleNative((Vector4)(new Vector4(0,0,0,-1)), alphaMod);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextMarkerStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextMarkerStyleNative(ImPlotMarker marker, float size, Vector4 fill, float weight, Vector4 outline);
+		internal static void SetNextMarkerStyleNative(ImPlotMarker marker, float size, Vector4 fill, float weight, Vector4 outline)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotMarker, float, Vector4, float, Vector4, void>)vt[350])(marker, size, fill, weight, outline);
+		}
 
 		public static void SetNextMarkerStyle(ImPlotMarker marker, float size, Vector4 fill, float weight, Vector4 outline)
 		{
@@ -1848,9 +2494,10 @@ namespace Hexa.NET.ImPlot
 			SetNextMarkerStyleNative((ImPlotMarker)(-1), size, fill, weight, outline);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextErrorBarStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextErrorBarStyleNative(Vector4 col, float size, float weight);
+		internal static void SetNextErrorBarStyleNative(Vector4 col, float size, float weight)
+		{
+			((delegate* unmanaged[Cdecl]<Vector4, float, float, void>)vt[351])(col, size, weight);
+		}
 
 		public static void SetNextErrorBarStyle(Vector4 col, float size, float weight)
 		{
@@ -1882,9 +2529,10 @@ namespace Hexa.NET.ImPlot
 			SetNextErrorBarStyleNative((Vector4)(new Vector4(0,0,0,-1)), size, weight);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetLastItemColor")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetLastItemColorNative(Vector4* output);
+		internal static void GetLastItemColorNative(Vector4* output)
+		{
+			((delegate* unmanaged[Cdecl]<Vector4*, void>)vt[352])(output);
+		}
 
 		public static Vector4 GetLastItemColor()
 		{
@@ -1906,9 +2554,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetStyleColorName")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte* GetStyleColorNameNative(ImPlotCol idx);
+		internal static byte* GetStyleColorNameNative(ImPlotCol idx)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotCol, byte*>)vt[353])(idx);
+		}
 
 		public static byte* GetStyleColorName(ImPlotCol idx)
 		{
@@ -1922,9 +2571,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetMarkerName")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte* GetMarkerNameNative(ImPlotMarker idx);
+		internal static byte* GetMarkerNameNative(ImPlotMarker idx)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotMarker, byte*>)vt[354])(idx);
+		}
 
 		public static byte* GetMarkerName(ImPlotMarker idx)
 		{
@@ -1938,9 +2588,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_AddColormap_Vec4Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotColormap AddColormapNative(byte* name, Vector4* cols, int size, byte qual);
+		internal static ImPlotColormap AddColormapNative(byte* name, Vector4* cols, int size, byte qual)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector4*, int, byte, ImPlotColormap>)vt[355])(name, cols, size, qual);
+		}
 
 		public static ImPlotColormap AddColormap(byte* name, Vector4* cols, int size, bool qual)
 		{
@@ -2128,9 +2779,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_AddColormap_U32Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotColormap AddColormapNative(byte* name, uint* cols, int size, byte qual);
+		internal static ImPlotColormap AddColormapNative(byte* name, uint* cols, int size, byte qual)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, uint*, int, byte, ImPlotColormap>)vt[356])(name, cols, size, qual);
+		}
 
 		public static ImPlotColormap AddColormap(byte* name, uint* cols, int size, bool qual)
 		{
@@ -2318,9 +2970,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetColormapCount")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int GetColormapCountNative();
+		internal static int GetColormapCountNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<int>)vt[357])();
+		}
 
 		public static int GetColormapCount()
 		{
@@ -2328,9 +2981,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetColormapName")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte* GetColormapNameNative(ImPlotColormap cmap);
+		internal static byte* GetColormapNameNative(ImPlotColormap cmap)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormap, byte*>)vt[358])(cmap);
+		}
 
 		public static byte* GetColormapName(ImPlotColormap cmap)
 		{
@@ -2344,9 +2998,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetColormapIndex")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotColormap GetColormapIndexNative(byte* name);
+		internal static ImPlotColormap GetColormapIndexNative(byte* name)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotColormap>)vt[359])(name);
+		}
 
 		public static ImPlotColormap GetColormapIndex(byte* name)
 		{
@@ -2390,18 +3045,20 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PushColormap_PlotColormap")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushColormapNative(ImPlotColormap cmap);
+		internal static void PushColormapNative(ImPlotColormap cmap)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotColormap, void>)vt[360])(cmap);
+		}
 
 		public static void PushColormap(ImPlotColormap cmap)
 		{
 			PushColormapNative(cmap);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PushColormap_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushColormapNative(byte* name);
+		internal static void PushColormapNative(byte* name)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[361])(name);
+		}
 
 		public static void PushColormap(byte* name)
 		{
@@ -2442,9 +3099,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PopColormap")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopColormapNative(int count);
+		internal static void PopColormapNative(int count)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[362])(count);
+		}
 
 		public static void PopColormap(int count)
 		{
@@ -2456,9 +3114,10 @@ namespace Hexa.NET.ImPlot
 			PopColormapNative((int)(1));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_NextColormapColor")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void NextColormapColorNative(Vector4* output);
+		internal static void NextColormapColorNative(Vector4* output)
+		{
+			((delegate* unmanaged[Cdecl]<Vector4*, void>)vt[363])(output);
+		}
 
 		public static Vector4 NextColormapColor()
 		{
@@ -2480,9 +3139,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetColormapSize")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int GetColormapSizeNative(ImPlotColormap cmap);
+		internal static int GetColormapSizeNative(ImPlotColormap cmap)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotColormap, int>)vt[364])(cmap);
+		}
 
 		public static int GetColormapSize(ImPlotColormap cmap)
 		{
@@ -2496,9 +3156,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetColormapColor")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetColormapColorNative(Vector4* output, int idx, ImPlotColormap cmap);
+		internal static void GetColormapColorNative(Vector4* output, int idx, ImPlotColormap cmap)
+		{
+			((delegate* unmanaged[Cdecl]<Vector4*, int, ImPlotColormap, void>)vt[365])(output, idx, cmap);
+		}
 
 		public static Vector4 GetColormapColor(int idx)
 		{
@@ -2540,9 +3201,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SampleColormap")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SampleColormapNative(Vector4* output, float t, ImPlotColormap cmap);
+		internal static void SampleColormapNative(Vector4* output, float t, ImPlotColormap cmap)
+		{
+			((delegate* unmanaged[Cdecl]<Vector4*, float, ImPlotColormap, void>)vt[366])(output, t, cmap);
+		}
 
 		public static Vector4 SampleColormap(float t)
 		{
@@ -2584,9 +3246,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_ColormapScale")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ColormapScaleNative(byte* label, double scaleMin, double scaleMax, Vector2 size, byte* format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap);
+		internal static void ColormapScaleNative(byte* label, double scaleMin, double scaleMax, Vector2 size, byte* format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, double, double, Vector2, byte*, ImPlotColormapScaleFlags, ImPlotColormap, void>)vt[367])(label, scaleMin, scaleMax, size, format, flags, cmap);
+		}
 
 		public static void ColormapScale(byte* label, double scaleMin, double scaleMax, Vector2 size, byte* format, ImPlotColormapScaleFlags flags, ImPlotColormap cmap)
 		{
@@ -3948,9 +4611,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_ColormapSlider")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ColormapSliderNative(byte* label, float* t, Vector4* output, byte* format, ImPlotColormap cmap);
+		internal static byte ColormapSliderNative(byte* label, float* t, Vector4* output, byte* format, ImPlotColormap cmap)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, Vector4*, byte*, ImPlotColormap, byte>)vt[368])(label, t, output, format, cmap);
+		}
 
 		public static bool ColormapSlider(byte* label, float* t, Vector4* output, byte* format, ImPlotColormap cmap)
 		{
@@ -4357,687 +5021,6 @@ namespace Hexa.NET.ImPlot
 			{
 				byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)(default), format, cmap);
 				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, Vector4* output, byte* format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, output, format, cmap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, Vector4* output, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, output, format, (ImPlotColormap)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, Vector4* output)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					bool ret = ColormapSlider((byte*)plabel, (float*)pt, output, (string)"", (ImPlotColormap)(-1));
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					bool ret = ColormapSlider((byte*)plabel, (float*)pt, (Vector4*)(default), (string)"", (ImPlotColormap)(-1));
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)(default), format, (ImPlotColormap)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, Vector4* output, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					bool ret = ColormapSlider((byte*)plabel, (float*)pt, output, (string)"", cmap);
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					bool ret = ColormapSlider((byte*)plabel, (float*)pt, (Vector4*)(default), (string)"", cmap);
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, byte* format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)(default), format, cmap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, Vector4* output, byte* format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				byte ret = ColormapSliderNative(pStr0, (float*)pt, output, format, cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, Vector4* output, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				byte ret = ColormapSliderNative(pStr0, (float*)pt, output, format, (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, Vector4* output)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				bool ret = ColormapSlider(pStr0, (float*)pt, output, (string)"", (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				bool ret = ColormapSlider(pStr0, (float*)pt, (Vector4*)(default), (string)"", (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)(default), format, (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, Vector4* output, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				bool ret = ColormapSlider(pStr0, (float*)pt, output, (string)"", cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				bool ret = ColormapSlider(pStr0, (float*)pt, (Vector4*)(default), (string)"", cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, byte* format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)(default), format, cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, byte* format, ImPlotColormap cmap)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				byte ret = ColormapSliderNative(label, t, (Vector4*)poutput, format, cmap);
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, byte* format)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				byte ret = ColormapSliderNative(label, t, (Vector4*)poutput, format, (ImPlotColormap)(-1));
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				bool ret = ColormapSlider(label, t, (Vector4*)poutput, (string)"", (ImPlotColormap)(-1));
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, float* t, ref Vector4 output, ImPlotColormap cmap)
-		{
-			fixed (Vector4* poutput = &output)
-			{
-				bool ret = ColormapSlider(label, t, (Vector4*)poutput, (string)"", cmap);
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output, byte* format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, format, cmap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					byte ret = ColormapSliderNative((byte*)plabel, t, (Vector4*)poutput, format, (ImPlotColormap)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					bool ret = ColormapSlider((byte*)plabel, t, (Vector4*)poutput, (string)"", (ImPlotColormap)(-1));
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, float* t, ref Vector4 output, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					bool ret = ColormapSlider((byte*)plabel, t, (Vector4*)poutput, (string)"", cmap);
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output, byte* format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector4* poutput = &output)
-			{
-				byte ret = ColormapSliderNative(pStr0, t, (Vector4*)poutput, format, cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output, byte* format)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector4* poutput = &output)
-			{
-				byte ret = ColormapSliderNative(pStr0, t, (Vector4*)poutput, format, (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector4* poutput = &output)
-			{
-				bool ret = ColormapSlider(pStr0, t, (Vector4*)poutput, (string)"", (ImPlotColormap)(-1));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(string label, float* t, ref Vector4 output, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (Vector4* poutput = &output)
-			{
-				bool ret = ColormapSlider(pStr0, t, (Vector4*)poutput, (string)"", cmap);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, ref Vector4 output, byte* format, ImPlotColormap cmap)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)poutput, format, cmap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, ref Vector4 output, byte* format)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					byte ret = ColormapSliderNative(label, (float*)pt, (Vector4*)poutput, format, (ImPlotColormap)(-1));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, ref Vector4 output)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					bool ret = ColormapSlider(label, (float*)pt, (Vector4*)poutput, (string)"", (ImPlotColormap)(-1));
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(byte* label, ref float t, ref Vector4 output, ImPlotColormap cmap)
-		{
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					bool ret = ColormapSlider(label, (float*)pt, (Vector4*)poutput, (string)"", cmap);
-					return ret;
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, ref Vector4 output, byte* format, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					fixed (Vector4* poutput = &output)
-					{
-						byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, format, cmap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, ref Vector4 output, byte* format)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					fixed (Vector4* poutput = &output)
-					{
-						byte ret = ColormapSliderNative((byte*)plabel, (float*)pt, (Vector4*)poutput, format, (ImPlotColormap)(-1));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, ref Vector4 output)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					fixed (Vector4* poutput = &output)
-					{
-						bool ret = ColormapSlider((byte*)plabel, (float*)pt, (Vector4*)poutput, (string)"", (ImPlotColormap)(-1));
-						return ret;
-					}
-				}
-			}
-		}
-
-		public static bool ColormapSlider(ref byte label, ref float t, ref Vector4 output, ImPlotColormap cmap)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (float* pt = &t)
-				{
-					fixed (Vector4* poutput = &output)
-					{
-						bool ret = ColormapSlider((byte*)plabel, (float*)pt, (Vector4*)poutput, (string)"", cmap);
-						return ret;
-					}
-				}
-			}
-		}
-
-		public static bool ColormapSlider(string label, ref float t, ref Vector4 output, byte* format, ImPlotColormap cmap)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (float* pt = &t)
-			{
-				fixed (Vector4* poutput = &output)
-				{
-					byte ret = ColormapSliderNative(pStr0, (float*)pt, (Vector4*)poutput, format, cmap);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
 			}
 		}
 	}

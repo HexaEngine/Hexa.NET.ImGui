@@ -22,6 +22,11 @@
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="HexaGen.Runtime" Version="1.1.1" />
+	</ItemGroup>
+	
 	<ItemGroup>
 		<None Include="..\native\android-x64\cimgui.so">
 			<Link>runtimes\android-x64\native\%(RecursiveDir)%(Filename)%(Extension)</Link>

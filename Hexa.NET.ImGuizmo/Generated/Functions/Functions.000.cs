@@ -10,6 +10,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
@@ -19,9 +20,10 @@ namespace Hexa.NET.ImGuizmo
 	{
 		internal const string LibName = "cimguizmo";
 
-		[LibraryImport(LibName, EntryPoint = "ImGuizmo_SetDrawlist")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetDrawlistNative(ImDrawList* drawlist);
+		internal static void SetDrawlistNative(ImDrawList* drawlist)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[0])(drawlist);
+		}
 
 		public static void SetDrawlist(ImDrawListPtr drawlist)
 		{
@@ -41,18 +43,20 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuizmo_BeginFrame")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BeginFrameNative();
+		internal static void BeginFrameNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1])();
+		}
 
 		public static void BeginFrame()
 		{
 			BeginFrameNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuizmo_SetImGuiContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetImGuiContextNative(ImGuiContext* ctx);
+		internal static void SetImGuiContextNative(ImGuiContext* ctx)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[2])(ctx);
+		}
 
 		public static void SetImGuiContext(ImGuiContextPtr ctx)
 		{
@@ -67,9 +71,10 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuizmo_IsOver_Nil")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsOverNative();
+		internal static byte IsOverNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[3])();
+		}
 
 		public static bool IsOver()
 		{
@@ -77,9 +82,10 @@ namespace Hexa.NET.ImGuizmo
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuizmo_IsUsing")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsUsingNative();
+		internal static byte IsUsingNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[4])();
+		}
 
 		public static bool IsUsing()
 		{
@@ -87,9 +93,10 @@ namespace Hexa.NET.ImGuizmo
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuizmo_IsUsingAny")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsUsingAnyNative();
+		internal static byte IsUsingAnyNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[5])();
+		}
 
 		public static bool IsUsingAny()
 		{
@@ -97,18 +104,20 @@ namespace Hexa.NET.ImGuizmo
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuizmo_Enable")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EnableNative(byte enable);
+		internal static void EnableNative(byte enable)
+		{
+			((delegate* unmanaged[Cdecl]<byte, void>)vt[6])(enable);
+		}
 
 		public static void Enable(bool enable)
 		{
 			EnableNative(enable ? (byte)1 : (byte)0);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuizmo_DecomposeMatrixToComponents")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DecomposeMatrixToComponentsNative(float* matrix, float* translation, float* rotation, float* scale);
+		internal static void DecomposeMatrixToComponentsNative(float* matrix, float* translation, float* rotation, float* scale)
+		{
+			((delegate* unmanaged[Cdecl]<float*, float*, float*, float*, void>)vt[7])(matrix, translation, rotation, scale);
+		}
 
 		public static void DecomposeMatrixToComponents(float* matrix, float* translation, float* rotation, float* scale)
 		{
@@ -457,9 +466,10 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuizmo_RecomposeMatrixFromComponents")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void RecomposeMatrixFromComponentsNative(float* translation, float* rotation, float* scale, float* matrix);
+		internal static void RecomposeMatrixFromComponentsNative(float* translation, float* rotation, float* scale, float* matrix)
+		{
+			((delegate* unmanaged[Cdecl]<float*, float*, float*, float*, void>)vt[8])(translation, rotation, scale, matrix);
+		}
 
 		public static void RecomposeMatrixFromComponents(float* translation, float* rotation, float* scale, float* matrix)
 		{
@@ -808,27 +818,30 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuizmo_SetRect")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetRectNative(float x, float y, float width, float height);
+		internal static void SetRectNative(float x, float y, float width, float height)
+		{
+			((delegate* unmanaged[Cdecl]<float, float, float, float, void>)vt[9])(x, y, width, height);
+		}
 
 		public static void SetRect(float x, float y, float width, float height)
 		{
 			SetRectNative(x, y, width, height);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuizmo_SetOrthographic")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetOrthographicNative(byte isOrthographic);
+		internal static void SetOrthographicNative(byte isOrthographic)
+		{
+			((delegate* unmanaged[Cdecl]<byte, void>)vt[10])(isOrthographic);
+		}
 
 		public static void SetOrthographic(bool isOrthographic)
 		{
 			SetOrthographicNative(isOrthographic ? (byte)1 : (byte)0);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuizmo_DrawCubes")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DrawCubesNative(float* view, float* projection, float* matrices, int matrixCount);
+		internal static void DrawCubesNative(float* view, float* projection, float* matrices, int matrixCount)
+		{
+			((delegate* unmanaged[Cdecl]<float*, float*, float*, int, void>)vt[11])(view, projection, matrices, matrixCount);
+		}
 
 		public static void DrawCubes(float* view, float* projection, float* matrices, int matrixCount)
 		{
@@ -1021,9 +1034,10 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuizmo_DrawGrid")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DrawGridNative(float* view, float* projection, float* matrix, float gridSize);
+		internal static void DrawGridNative(float* view, float* projection, float* matrix, float gridSize)
+		{
+			((delegate* unmanaged[Cdecl]<float*, float*, float*, float, void>)vt[12])(view, projection, matrix, gridSize);
+		}
 
 		public static void DrawGrid(float* view, float* projection, float* matrix, float gridSize)
 		{
@@ -1172,9 +1186,10 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImGuizmo_Manipulate")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ManipulateNative(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap);
+		internal static byte ManipulateNative(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
+		{
+			return ((delegate* unmanaged[Cdecl]<float*, float*, ImGuizmoOperation, ImGuizmoMode, float*, float*, float*, float*, float*, byte>)vt[13])(view, projection, operation, mode, matrix, deltaMatrix, snap, localBounds, boundsSnap);
+		}
 
 		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, float* boundsSnap)
 		{
@@ -5005,18 +5020,6 @@ namespace Hexa.NET.ImGuizmo
 				fixed (float* plocalBounds = &localBounds)
 				{
 					byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* plocalBounds = &localBounds)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
 					return ret != 0;
 				}
 			}

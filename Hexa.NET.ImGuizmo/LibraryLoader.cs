@@ -31,6 +31,26 @@
             }
         }
 
+        public static nint LoadLibrary()
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return LoadLocalLibrary("cimguizmo");
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                return LoadLocalLibrary("cimguizmo");
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                return LoadLocalLibrary("cimguizmo");
+            }
+            else
+            {
+                return LoadLocalLibrary("cimguizmo");
+            }
+        }
+
         public static string GetExtension()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

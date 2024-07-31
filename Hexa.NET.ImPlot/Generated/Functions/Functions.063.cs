@@ -10,6 +10,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
@@ -17,6 +18,299 @@ namespace Hexa.NET.ImPlot
 {
 	public unsafe partial class ImPlot
 	{
+
+		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
+		{
+			byte** pStrArray0 = null;
+			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+				}
+				else
+				{
+					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
+					pStrArray0 = (byte**)pStrArrayStack0;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, (double)(90), flags);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
+		{
+			byte** pStrArray0 = null;
+			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+				}
+				else
+				{
+					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
+					pStrArray0 = (byte**)pStrArrayStack0;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
+		{
+			byte** pStrArray0 = null;
+			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+				}
+				else
+				{
+					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
+					pStrArray0 = (byte**)pStrArrayStack0;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
+			}
+			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, flags);
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				Utils.Free(pStrArray0[i]);
+			}
+			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStrArray0);
+			}
+		}
+
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
+			}
+		}
+
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
+			}
+		}
+
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
+			}
+		}
+
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
+			}
+		}
+
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
+			}
+		}
+
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), flags);
+			}
+		}
+
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
+			}
+		}
+
+		public static void PlotPieChart(byte** labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
+		{
+			fixed (float* pvalues = &values)
+			{
+				PlotPieChartNative(labelIds, (float*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, flags);
+			}
+		}
+
+		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		{
+			byte** pStrArray0 = null;
+			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+				}
+				else
+				{
+					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
+					pStrArray0 = (byte**)pStrArrayStack0;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (float*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
+		{
+			byte** pStrArray0 = null;
+			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+				}
+				else
+				{
+					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
+					pStrArray0 = (byte**)pStrArrayStack0;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (float*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
+		{
+			byte** pStrArray0 = null;
+			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+				}
+				else
+				{
+					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
+					pStrArray0 = (byte**)pStrArrayStack0;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (float*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
+
+		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt)
+		{
+			byte** pStrArray0 = null;
+			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			if (labelIds != null)
+			{
+				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				{
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+				}
+				else
+				{
+					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
+					pStrArray0 = (byte**)pStrArrayStack0;
+				}
+			}
+			for (int i = 0; i < labelIds.Length; i++)
+			{
+				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
+			}
+			fixed (float* pvalues = &values)
+			{
+				PlotPieChartNative(pStrArray0, (float*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
+				for (int i = 0; i < labelIds.Length; i++)
+				{
+					Utils.Free(pStrArray0[i]);
+				}
+				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStrArray0);
+				}
+			}
+		}
 
 		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
 		{
@@ -154,9 +448,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotPieChart_doublePtrPlotFormatter")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotPieChartNative(byte** labelIds, double* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags);
+		internal static void PlotPieChartNative(byte** labelIds, double* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<byte**, double*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[230])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Marshal.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+		}
 
 		public static void PlotPieChart(byte** labelIds, double* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
@@ -782,9 +1077,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotPieChart_S8PtrPlotFormatter")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotPieChartNative(byte** labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags);
+		internal static void PlotPieChartNative(byte** labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<byte**, sbyte*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[231])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Marshal.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+		}
 
 		public static void PlotPieChart(byte** labelIds, sbyte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
@@ -1410,9 +1706,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotPieChart_U8PtrPlotFormatter")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotPieChartNative(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags);
+		internal static void PlotPieChartNative(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<byte**, byte*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[232])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Marshal.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+		}
 
 		public static void PlotPieChart(byte** labelIds, byte* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
@@ -2038,9 +2335,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotPieChart_S16PtrPlotFormatter")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotPieChartNative(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags);
+		internal static void PlotPieChartNative(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<byte**, short*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[233])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Marshal.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+		}
 
 		public static void PlotPieChart(byte** labelIds, short* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
@@ -2666,9 +2964,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotPieChart_U16PtrPlotFormatter")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotPieChartNative(byte** labelIds, ushort* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags);
+		internal static void PlotPieChartNative(byte** labelIds, ushort* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<byte**, ushort*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[234])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Marshal.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+		}
 
 		public static void PlotPieChart(byte** labelIds, ushort* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
@@ -3294,9 +3593,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotPieChart_S32PtrPlotFormatter")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotPieChartNative(byte** labelIds, int* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags);
+		internal static void PlotPieChartNative(byte** labelIds, int* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<byte**, int*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[235])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Marshal.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+		}
 
 		public static void PlotPieChart(byte** labelIds, int* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
@@ -3922,9 +4222,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotPieChart_U32PtrPlotFormatter")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotPieChartNative(byte** labelIds, uint* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags);
+		internal static void PlotPieChartNative(byte** labelIds, uint* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<byte**, uint*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[236])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Marshal.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+		}
 
 		public static void PlotPieChart(byte** labelIds, uint* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
@@ -4550,9 +4851,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotPieChart_S64PtrPlotFormatter")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotPieChartNative(byte** labelIds, long* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags);
+		internal static void PlotPieChartNative(byte** labelIds, long* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<byte**, long*, int, double, double, double, delegate*<double, byte*, int, void*, int>, void*, double, ImPlotPieChartFlags, void>)vt[237])(labelIds, values, count, x, y, radius, (delegate*<double, byte*, int, void*, int>)Marshal.GetFunctionPointerForDelegate(fmt), fmtData, angle0, flags);
+		}
 
 		public static void PlotPieChart(byte** labelIds, long* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
@@ -4715,330 +5017,6 @@ namespace Hexa.NET.ImPlot
 			if (pStrArraySize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, long* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, long* values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, fmtData, (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, long* values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, long* values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			PlotPieChartNative(pStrArray0, values, count, x, y, radius, fmt, (void*)(default), angle0, flags);
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				Utils.Free(pStrArray0[i]);
-			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStrArray0);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref long values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (long* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (long*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref long values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
-		{
-			fixed (long* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (long*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref long values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
-		{
-			fixed (long* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (long*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref long values, int count, double x, double y, double radius, ImPlotFormatter fmt)
-		{
-			fixed (long* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (long*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref long values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
-		{
-			fixed (long* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (long*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, (ImPlotPieChartFlags)(0));
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref long values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
-		{
-			fixed (long* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (long*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref long values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
-		{
-			fixed (long* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (long*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), flags);
-			}
-		}
-
-		public static void PlotPieChart(byte** labelIds, ref long values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
-		{
-			fixed (long* pvalues = &values)
-			{
-				PlotPieChartNative(labelIds, (long*)pvalues, count, x, y, radius, fmt, (void*)(default), angle0, flags);
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref long values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (long* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (long*)pvalues, count, x, y, radius, fmt, fmtData, angle0, flags);
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref long values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (long* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (long*)pvalues, count, x, y, radius, fmt, fmtData, angle0, (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref long values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (long* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (long*)pvalues, count, x, y, radius, fmt, fmtData, (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
-			}
-		}
-
-		public static void PlotPieChart(string[] labelIds, ref long values, int count, double x, double y, double radius, ImPlotFormatter fmt)
-		{
-			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
-			if (labelIds != null)
-			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
-				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
-				}
-				else
-				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
-				}
-			}
-			for (int i = 0; i < labelIds.Length; i++)
-			{
-				pStrArray0[i] = (byte*)Marshal.StringToHGlobalAnsi(labelIds[i]);
-			}
-			fixed (long* pvalues = &values)
-			{
-				PlotPieChartNative(pStrArray0, (long*)pvalues, count, x, y, radius, fmt, (void*)(default), (double)(90), (ImPlotPieChartFlags)(0));
-				for (int i = 0; i < labelIds.Length; i++)
-				{
-					Utils.Free(pStrArray0[i]);
-				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStrArray0);
-				}
 			}
 		}
 	}

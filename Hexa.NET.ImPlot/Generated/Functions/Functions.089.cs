@@ -10,6 +10,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
@@ -17,6 +18,568 @@ namespace Hexa.NET.ImPlot
 {
 	public unsafe partial class ImPlot
 	{
+
+		public static void PlotDigital(string labelId, ref byte xs, ref byte ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pxs = &xs)
+			{
+				fixed (byte* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (byte*)pxs, (byte*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(byte)));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref byte xs, ref byte ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (byte* pxs = &xs)
+			{
+				fixed (byte* pys = &ys)
+				{
+					PlotDigitalNative(pStr0, (byte*)pxs, (byte*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		internal static void PlotDigitalNative(byte* labelId, short* xs, short* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, short*, short*, int, ImPlotDigitalFlags, int, int, void>)vt[283])(labelId, xs, ys, count, flags, offset, stride);
+		}
+
+		public static void PlotDigital(byte* labelId, short* xs, short* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, flags, offset, stride);
+		}
+
+		public static void PlotDigital(byte* labelId, short* xs, short* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, flags, offset, (int)(sizeof(short)));
+		}
+
+		public static void PlotDigital(byte* labelId, short* xs, short* ys, int count, ImPlotDigitalFlags flags)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, flags, (int)(0), (int)(sizeof(short)));
+		}
+
+		public static void PlotDigital(byte* labelId, short* xs, short* ys, int count)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(short)));
+		}
+
+		public static void PlotDigital(byte* labelId, short* xs, short* ys, int count, int offset)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(short)));
+		}
+
+		public static void PlotDigital(byte* labelId, short* xs, short* ys, int count, int offset, int stride)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+		}
+
+		public static void PlotDigital(ref byte labelId, short* xs, short* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, short* xs, short* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(short)));
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, short* xs, short* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(short)));
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, short* xs, short* ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(short)));
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, short* xs, short* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(short)));
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, short* xs, short* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotDigital(string labelId, short* xs, short* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, flags, offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotDigital(string labelId, short* xs, short* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, flags, offset, (int)(sizeof(short)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotDigital(string labelId, short* xs, short* ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, flags, (int)(0), (int)(sizeof(short)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotDigital(string labelId, short* xs, short* ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(short)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotDigital(string labelId, short* xs, short* ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(short)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotDigital(string labelId, short* xs, short* ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref short xs, short* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (short* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (short*)pxs, ys, count, flags, offset, stride);
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref short xs, short* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (short* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (short*)pxs, ys, count, flags, offset, (int)(sizeof(short)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref short xs, short* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (short* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (short*)pxs, ys, count, flags, (int)(0), (int)(sizeof(short)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref short xs, short* ys, int count)
+		{
+			fixed (short* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (short*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(short)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref short xs, short* ys, int count, int offset)
+		{
+			fixed (short* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (short*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(short)));
+			}
+		}
+
+		public static void PlotDigital(byte* labelId, ref short xs, short* ys, int count, int offset, int stride)
+		{
+			fixed (short* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (short*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref short xs, short* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (short*)pxs, ys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref short xs, short* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (short*)pxs, ys, count, flags, offset, (int)(sizeof(short)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref short xs, short* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (short*)pxs, ys, count, flags, (int)(0), (int)(sizeof(short)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref short xs, short* ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (short*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(short)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref short xs, short* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (short*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(short)));
+				}
+			}
+		}
+
+		public static void PlotDigital(ref byte labelId, ref short xs, short* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (short* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (short*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref short xs, short* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (short*)pxs, ys, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref short xs, short* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (short*)pxs, ys, count, flags, offset, (int)(sizeof(short)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref short xs, short* ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (short*)pxs, ys, count, flags, (int)(0), (int)(sizeof(short)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref short xs, short* ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (short*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(short)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void PlotDigital(string labelId, ref short xs, short* ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (short* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (short*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(short)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
 
 		public static void PlotDigital(string labelId, ref short xs, short* ys, int count, int offset, int stride)
 		{
@@ -677,9 +1240,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotDigital_U16Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotDigitalNative(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset, int stride);
+		internal static void PlotDigitalNative(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, ushort*, ushort*, int, ImPlotDigitalFlags, int, int, void>)vt[284])(labelId, xs, ys, count, flags, offset, stride);
+		}
 
 		public static void PlotDigital(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
@@ -1833,9 +2397,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotDigital_S32Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotDigitalNative(byte* labelId, int* xs, int* ys, int count, ImPlotDigitalFlags flags, int offset, int stride);
+		internal static void PlotDigitalNative(byte* labelId, int* xs, int* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, int*, int*, int, ImPlotDigitalFlags, int, int, void>)vt[285])(labelId, xs, ys, count, flags, offset, stride);
+		}
 
 		public static void PlotDigital(byte* labelId, int* xs, int* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
@@ -2989,9 +3554,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotDigital_U32Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotDigitalNative(byte* labelId, uint* xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset, int stride);
+		internal static void PlotDigitalNative(byte* labelId, uint* xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, uint*, uint*, int, ImPlotDigitalFlags, int, int, void>)vt[286])(labelId, xs, ys, count, flags, offset, stride);
+		}
 
 		public static void PlotDigital(byte* labelId, uint* xs, uint* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
@@ -4145,9 +4711,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotDigital_S64Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotDigitalNative(byte* labelId, long* xs, long* ys, int count, ImPlotDigitalFlags flags, int offset, int stride);
+		internal static void PlotDigitalNative(byte* labelId, long* xs, long* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, long*, long*, int, ImPlotDigitalFlags, int, int, void>)vt[287])(labelId, xs, ys, count, flags, offset, stride);
+		}
 
 		public static void PlotDigital(byte* labelId, long* xs, long* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
 		{
@@ -4449,578 +5016,6 @@ namespace Hexa.NET.ImPlot
 				fixed (long* pxs = &xs)
 				{
 					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref long xs, long* ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref long xs, long* ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, ref long xs, long* ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pxs = &xs)
-				{
-					PlotDigitalNative((byte*)plabelId, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotDigitalNative(pStr0, (long*)pxs, ys, count, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotDigitalNative(pStr0, (long*)pxs, ys, count, flags, offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, ImPlotDigitalFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotDigitalNative(pStr0, (long*)pxs, ys, count, flags, (int)(0), (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref long xs, long* ys, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotDigitalNative(pStr0, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotDigitalNative(pStr0, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, ref long xs, long* ys, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pxs = &xs)
-			{
-				PlotDigitalNative(pStr0, (long*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (long*)pys, count, flags, offset, stride);
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, int offset)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, long* xs, ref long ys, int count, int offset, int stride)
-		{
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(labelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(ref byte labelId, long* xs, ref long ys, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative((byte*)plabelId, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(pStr0, xs, (long*)pys, count, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(pStr0, xs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, ImPlotDigitalFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(pStr0, xs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, long* xs, ref long ys, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(pStr0, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(pStr0, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(string labelId, long* xs, ref long ys, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (long* pys = &ys)
-			{
-				PlotDigitalNative(pStr0, xs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, flags, offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, ImPlotDigitalFlags flags)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, flags, (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, int offset)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(long)));
-				}
-			}
-		}
-
-		public static void PlotDigital(byte* labelId, ref long xs, ref long ys, int count, int offset, int stride)
-		{
-			fixed (long* pxs = &xs)
-			{
-				fixed (long* pys = &ys)
-				{
-					PlotDigitalNative(labelId, (long*)pxs, (long*)pys, count, (ImPlotDigitalFlags)(0), offset, stride);
 				}
 			}
 		}

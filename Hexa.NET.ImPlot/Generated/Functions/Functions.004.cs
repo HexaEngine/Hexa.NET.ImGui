@@ -10,6 +10,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
@@ -17,6 +18,90 @@ namespace Hexa.NET.ImPlot
 {
 	public unsafe partial class ImPlot
 	{
+
+		public static void PlotLine(ref byte labelId, double* xs, ref double ys, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (double*)pys, count, flags, offset, (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, double* xs, ref double ys, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (double*)pys, count, flags, (int)(0), (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, double* xs, ref double ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (double*)pys, count, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, double* xs, ref double ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (double*)pys, count, (ImPlotLineFlags)(0), offset, (int)(sizeof(double)));
+				}
+			}
+		}
+
+		public static void PlotLine(ref byte labelId, double* xs, ref double ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (double* pys = &ys)
+				{
+					PlotLineNative((byte*)plabelId, xs, (double*)pys, count, (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		public static void PlotLine(string labelId, double* xs, ref double ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (double* pys = &ys)
+			{
+				PlotLineNative(pStr0, xs, (double*)pys, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
 
 		public static void PlotLine(string labelId, double* xs, ref double ys, int count, ImPlotLineFlags flags, int offset)
 		{
@@ -505,9 +590,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotLine_S8PtrS8Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotLineNative(byte* labelId, sbyte* xs, sbyte* ys, int count, ImPlotLineFlags flags, int offset, int stride);
+		internal static void PlotLineNative(byte* labelId, sbyte* xs, sbyte* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, sbyte*, sbyte*, int, ImPlotLineFlags, int, int, void>)vt[66])(labelId, xs, ys, count, flags, offset, stride);
+		}
 
 		public static void PlotLine(byte* labelId, sbyte* xs, sbyte* ys, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
@@ -1661,9 +1747,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotLine_U8PtrU8Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotLineNative(byte* labelId, byte* xs, byte* ys, int count, ImPlotLineFlags flags, int offset, int stride);
+		internal static void PlotLineNative(byte* labelId, byte* xs, byte* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, int, ImPlotLineFlags, int, int, void>)vt[67])(labelId, xs, ys, count, flags, offset, stride);
+		}
 
 		public static void PlotLine(byte* labelId, byte* xs, byte* ys, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
@@ -2817,9 +2904,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotLine_S16PtrS16Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotLineNative(byte* labelId, short* xs, short* ys, int count, ImPlotLineFlags flags, int offset, int stride);
+		internal static void PlotLineNative(byte* labelId, short* xs, short* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, short*, short*, int, ImPlotLineFlags, int, int, void>)vt[68])(labelId, xs, ys, count, flags, offset, stride);
+		}
 
 		public static void PlotLine(byte* labelId, short* xs, short* ys, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
@@ -3973,9 +4061,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotLine_U16PtrU16Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotLineNative(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags, int offset, int stride);
+		internal static void PlotLineNative(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, ushort*, ushort*, int, ImPlotLineFlags, int, int, void>)vt[69])(labelId, xs, ys, count, flags, offset, stride);
+		}
 
 		public static void PlotLine(byte* labelId, ushort* xs, ushort* ys, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
@@ -4932,102 +5021,6 @@ namespace Hexa.NET.ImPlot
 					fixed (ushort* pys = &ys)
 					{
 						PlotLineNative((byte*)plabelId, (ushort*)pxs, (ushort*)pys, count, (ImPlotLineFlags)(0), offset, stride);
-					}
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort xs, ref ushort ys, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pxs = &xs)
-			{
-				fixed (ushort* pys = &ys)
-				{
-					PlotLineNative(pStr0, (ushort*)pxs, (ushort*)pys, count, flags, offset, stride);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort xs, ref ushort ys, int count, ImPlotLineFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pxs = &xs)
-			{
-				fixed (ushort* pys = &ys)
-				{
-					PlotLineNative(pStr0, (ushort*)pxs, (ushort*)pys, count, flags, offset, (int)(sizeof(ushort)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort xs, ref ushort ys, int count, ImPlotLineFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pxs = &xs)
-			{
-				fixed (ushort* pys = &ys)
-				{
-					PlotLineNative(pStr0, (ushort*)pxs, (ushort*)pys, count, flags, (int)(0), (int)(sizeof(ushort)));
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
 					}
 				}
 			}

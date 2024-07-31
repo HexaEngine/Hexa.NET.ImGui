@@ -10,6 +10,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
@@ -19,9 +20,10 @@ namespace Hexa.NET.ImPlot
 	{
 		internal const string LibName = "cimplot";
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotPoint_ImPlotPoint_Nil")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotPoint* ImPlotPointNative();
+		internal static ImPlotPoint* ImPlotPointNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotPoint*>)vt[0])();
+		}
 
 		public static ImPlotPointPtr ImPlotPoint()
 		{
@@ -29,9 +31,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotPoint_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImPlotPoint* self);
+		internal static void DestroyNative(ImPlotPoint* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, void>)vt[1])(self);
+		}
 
 		public static void Destroy(ImPlotPointPtr self)
 		{
@@ -46,9 +49,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotPoint_ImPlotPoint_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotPoint* ImPlotPointNative(double x, double y);
+		internal static ImPlotPoint* ImPlotPointNative(double x, double y)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotPoint*>)vt[2])(x, y);
+		}
 
 		public static ImPlotPointPtr ImPlotPoint(double x, double y)
 		{
@@ -56,9 +60,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotPoint_ImPlotPoint_Vec2")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotPoint* ImPlotPointNative(Vector2 p);
+		internal static ImPlotPoint* ImPlotPointNative(Vector2 p)
+		{
+			return ((delegate* unmanaged[Cdecl]<Vector2, ImPlotPoint*>)vt[3])(p);
+		}
 
 		public static ImPlotPointPtr ImPlotPoint(Vector2 p)
 		{
@@ -66,9 +71,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRange_ImPlotRange_Nil")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotRange* ImPlotRangeNative();
+		internal static ImPlotRange* ImPlotRangeNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*>)vt[4])();
+		}
 
 		public static ImPlotRangePtr ImPlotRange()
 		{
@@ -76,9 +82,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRange_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImPlotRange* self);
+		internal static void DestroyNative(ImPlotRange* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotRange*, void>)vt[5])(self);
+		}
 
 		public static void Destroy(ImPlotRangePtr self)
 		{
@@ -93,9 +100,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRange_ImPlotRange_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotRange* ImPlotRangeNative(double min, double max);
+		internal static ImPlotRange* ImPlotRangeNative(double min, double max)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, double, ImPlotRange*>)vt[6])(min, max);
+		}
 
 		public static ImPlotRangePtr ImPlotRange(double min, double max)
 		{
@@ -103,9 +111,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRange_Contains")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ContainsNative(ImPlotRange* self, double value);
+		internal static byte ContainsNative(ImPlotRange* self, double value)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double, byte>)vt[7])(self, value);
+		}
 
 		public static bool Contains(ImPlotRangePtr self, double value)
 		{
@@ -122,9 +131,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRange_Size")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double SizeNative(ImPlotRange* self);
+		internal static double SizeNative(ImPlotRange* self)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double>)vt[8])(self);
+		}
 
 		public static double Size(ImPlotRangePtr self)
 		{
@@ -141,9 +151,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRange_Clamp")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ClampNative(ImPlotRange* self, double value);
+		internal static double ClampNative(ImPlotRange* self, double value)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotRange*, double, double>)vt[9])(self, value);
+		}
 
 		public static double Clamp(ImPlotRangePtr self, double value)
 		{
@@ -160,9 +171,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_ImPlotRect_Nil")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotRect* ImPlotRectNative();
+		internal static ImPlotRect* ImPlotRectNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*>)vt[10])();
+		}
 
 		public static ImPlotRectPtr ImPlotRect()
 		{
@@ -170,9 +182,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImPlotRect* self);
+		internal static void DestroyNative(ImPlotRect* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotRect*, void>)vt[11])(self);
+		}
 
 		public static void Destroy(ImPlotRectPtr self)
 		{
@@ -187,9 +200,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_ImPlotRect_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotRect* ImPlotRectNative(double xMin, double xMax, double yMin, double yMax);
+		internal static ImPlotRect* ImPlotRectNative(double xMin, double xMax, double yMin, double yMax)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotRect*>)vt[12])(xMin, xMax, yMin, yMax);
+		}
 
 		public static ImPlotRectPtr ImPlotRect(double xMin, double xMax, double yMin, double yMax)
 		{
@@ -197,9 +211,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_Contains_PlotPoInt")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ContainsNative(ImPlotRect* self, ImPlotPoint p);
+		internal static byte ContainsNative(ImPlotRect* self, ImPlotPoint p)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, ImPlotPoint, byte>)vt[13])(self, p);
+		}
 
 		public static bool Contains(ImPlotRectPtr self, ImPlotPoint p)
 		{
@@ -216,9 +231,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_Contains_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ContainsNative(ImPlotRect* self, double x, double y);
+		internal static byte ContainsNative(ImPlotRect* self, double x, double y)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotRect*, double, double, byte>)vt[14])(self, x, y);
+		}
 
 		public static bool Contains(ImPlotRectPtr self, double x, double y)
 		{
@@ -235,9 +251,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_Size")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SizeNative(ImPlotPoint* output, ImPlotRect* self);
+		internal static void SizeNative(ImPlotPoint* output, ImPlotRect* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)vt[15])(output, self);
+		}
 
 		public static ImPlotPoint Size(ImPlotRectPtr self)
 		{
@@ -288,9 +305,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_Clamp_PlotPoInt")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClampNative(ImPlotPoint* output, ImPlotRect* self, ImPlotPoint p);
+		internal static void ClampNative(ImPlotPoint* output, ImPlotRect* self, ImPlotPoint p)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, ImPlotPoint, void>)vt[16])(output, self, p);
+		}
 
 		public static ImPlotPoint Clamp(ImPlotRectPtr self, ImPlotPoint p)
 		{
@@ -341,9 +359,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_Clamp_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClampNative(ImPlotPoint* output, ImPlotRect* self, double x, double y);
+		internal static void ClampNative(ImPlotPoint* output, ImPlotRect* self, double x, double y)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, double, double, void>)vt[17])(output, self, x, y);
+		}
 
 		public static ImPlotPoint Clamp(ImPlotRectPtr self, double x, double y)
 		{
@@ -394,9 +413,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_Min")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void MinNative(ImPlotPoint* output, ImPlotRect* self);
+		internal static void MinNative(ImPlotPoint* output, ImPlotRect* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)vt[18])(output, self);
+		}
 
 		public static ImPlotPoint Min(ImPlotRectPtr self)
 		{
@@ -447,9 +467,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotRect_Max")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void MaxNative(ImPlotPoint* output, ImPlotRect* self);
+		internal static void MaxNative(ImPlotPoint* output, ImPlotRect* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotPoint*, ImPlotRect*, void>)vt[19])(output, self);
+		}
 
 		public static ImPlotPoint Max(ImPlotRectPtr self)
 		{
@@ -500,9 +521,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotStyle_ImPlotStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotStyle* ImPlotStyleNative();
+		internal static ImPlotStyle* ImPlotStyleNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotStyle*>)vt[20])();
+		}
 
 		public static ImPlotStylePtr ImPlotStyle()
 		{
@@ -510,9 +532,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotStyle_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImPlotStyle* self);
+		internal static void DestroyNative(ImPlotStyle* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotStyle*, void>)vt[21])(self);
+		}
 
 		public static void Destroy(ImPlotStylePtr self)
 		{
@@ -527,9 +550,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotInputMap_ImPlotInputMap")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotInputMap* ImPlotInputMapNative();
+		internal static ImPlotInputMap* ImPlotInputMapNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotInputMap*>)vt[22])();
+		}
 
 		public static ImPlotInputMapPtr ImPlotInputMap()
 		{
@@ -537,9 +561,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlotInputMap_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImPlotInputMap* self);
+		internal static void DestroyNative(ImPlotInputMap* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotInputMap*, void>)vt[23])(self);
+		}
 
 		public static void Destroy(ImPlotInputMapPtr self)
 		{
@@ -554,9 +579,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CreateContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotContext* CreateContextNative();
+		internal static ImPlotContext* CreateContextNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotContext*>)vt[24])();
+		}
 
 		public static ImPlotContextPtr CreateContext()
 		{
@@ -564,9 +590,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_DestroyContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyContextNative(ImPlotContext* ctx);
+		internal static void DestroyContextNative(ImPlotContext* ctx)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)vt[25])(ctx);
+		}
 
 		public static void DestroyContext(ImPlotContextPtr ctx)
 		{
@@ -586,9 +613,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetCurrentContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImPlotContext* GetCurrentContextNative();
+		internal static ImPlotContext* GetCurrentContextNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotContext*>)vt[26])();
+		}
 
 		public static ImPlotContextPtr GetCurrentContext()
 		{
@@ -596,9 +624,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetCurrentContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetCurrentContextNative(ImPlotContext* ctx);
+		internal static void SetCurrentContextNative(ImPlotContext* ctx)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotContext*, void>)vt[27])(ctx);
+		}
 
 		public static void SetCurrentContext(ImPlotContextPtr ctx)
 		{
@@ -613,9 +642,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetImGuiContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetImGuiContextNative(ImGuiContext* ctx);
+		internal static void SetImGuiContextNative(ImGuiContext* ctx)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[28])(ctx);
+		}
 
 		public static void SetImGuiContext(ImGuiContextPtr ctx)
 		{
@@ -630,9 +660,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginPlot")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginPlotNative(byte* titleId, Vector2 size, ImPlotFlags flags);
+		internal static byte BeginPlotNative(byte* titleId, Vector2 size, ImPlotFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImPlotFlags, byte>)vt[29])(titleId, size, flags);
+		}
 
 		public static bool BeginPlot(byte* titleId, Vector2 size, ImPlotFlags flags)
 		{
@@ -802,18 +833,20 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_EndPlot")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndPlotNative();
+		internal static void EndPlotNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[30])();
+		}
 
 		public static void EndPlot()
 		{
 			EndPlotNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_BeginSubplots")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginSubplotsNative(byte* titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, float* colRatios);
+		internal static byte BeginSubplotsNative(byte* titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, float* colRatios)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, int, int, Vector2, ImPlotSubplotFlags, float*, float*, byte>)vt[31])(titleId, rows, cols, size, flags, rowRatios, colRatios);
+		}
 
 		public static bool BeginSubplots(byte* titleId, int rows, int cols, Vector2 size, ImPlotSubplotFlags flags, float* rowRatios, float* colRatios)
 		{
@@ -1493,18 +1526,20 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_EndSubplots")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndSubplotsNative();
+		internal static void EndSubplotsNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[32])();
+		}
 
 		public static void EndSubplots()
 		{
 			EndSubplotsNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxis")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisNative(ImAxis axis, byte* label, ImPlotAxisFlags flags);
+		internal static void SetupAxisNative(ImAxis axis, byte* label, ImPlotAxisFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, byte*, ImPlotAxisFlags, void>)vt[33])(axis, label, flags);
+		}
 
 		public static void SetupAxis(ImAxis axis, byte* label, ImPlotAxisFlags flags)
 		{
@@ -1594,9 +1629,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisLimits")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisLimitsNative(ImAxis axis, double vMin, double vMax, ImPlotCond cond);
+		internal static void SetupAxisLimitsNative(ImAxis axis, double vMin, double vMax, ImPlotCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)vt[34])(axis, vMin, vMax, cond);
+		}
 
 		public static void SetupAxisLimits(ImAxis axis, double vMin, double vMax, ImPlotCond cond)
 		{
@@ -1608,9 +1644,10 @@ namespace Hexa.NET.ImPlot
 			SetupAxisLimitsNative(axis, vMin, vMax, (ImPlotCond)(ImPlotCond.Once));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisLinks")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisLinksNative(ImAxis axis, double* linkMin, double* linkMax);
+		internal static void SetupAxisLinksNative(ImAxis axis, double* linkMin, double* linkMax)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, double*, double*, void>)vt[35])(axis, linkMin, linkMax);
+		}
 
 		public static void SetupAxisLinks(ImAxis axis, double* linkMin, double* linkMax)
 		{
@@ -1644,9 +1681,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisFormat_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisFormatNative(ImAxis axis, byte* fmt);
+		internal static void SetupAxisFormatNative(ImAxis axis, byte* fmt)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, byte*, void>)vt[36])(axis, fmt);
+		}
 
 		public static void SetupAxisFormat(ImAxis axis, byte* fmt)
 		{
@@ -1687,9 +1725,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisFormat_PlotFormatter")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisFormatNative(ImAxis axis, ImPlotFormatter formatter, void* data);
+		internal static void SetupAxisFormatNative(ImAxis axis, ImPlotFormatter formatter, void* data)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, delegate*<double, byte*, int, void*, int>, void*, void>)vt[37])(axis, (delegate*<double, byte*, int, void*, int>)Marshal.GetFunctionPointerForDelegate(formatter), data);
+		}
 
 		public static void SetupAxisFormat(ImAxis axis, ImPlotFormatter formatter, void* data)
 		{
@@ -1701,9 +1740,10 @@ namespace Hexa.NET.ImPlot
 			SetupAxisFormatNative(axis, formatter, (void*)(default));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisTicks_doublePtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisTicksNative(ImAxis axis, double* values, int nTicks, byte** labels, byte keepDefault);
+		internal static void SetupAxisTicksNative(ImAxis axis, double* values, int nTicks, byte** labels, byte keepDefault)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, double*, int, byte**, byte, void>)vt[38])(axis, values, nTicks, labels, keepDefault);
+		}
 
 		public static void SetupAxisTicks(ImAxis axis, double* values, int nTicks, byte** labels, bool keepDefault)
 		{
@@ -1887,9 +1927,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisTicks_double")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisTicksNative(ImAxis axis, double vMin, double vMax, int nTicks, byte** labels, byte keepDefault);
+		internal static void SetupAxisTicksNative(ImAxis axis, double vMin, double vMax, int nTicks, byte** labels, byte keepDefault)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, int, byte**, byte, void>)vt[39])(axis, vMin, vMax, nTicks, labels, keepDefault);
+		}
 
 		public static void SetupAxisTicks(ImAxis axis, double vMin, double vMax, int nTicks, byte** labels, bool keepDefault)
 		{
@@ -1973,18 +2014,20 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisScale_PlotScale")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisScaleNative(ImAxis axis, ImPlotScale scale);
+		internal static void SetupAxisScaleNative(ImAxis axis, ImPlotScale scale)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, ImPlotScale, void>)vt[40])(axis, scale);
+		}
 
 		public static void SetupAxisScale(ImAxis axis, ImPlotScale scale)
 		{
 			SetupAxisScaleNative(axis, scale);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisScale_PlotTransform")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisScaleNative(ImAxis axis, ImPlotTransform forward, ImPlotTransform inverse, void* data);
+		internal static void SetupAxisScaleNative(ImAxis axis, ImPlotTransform forward, ImPlotTransform inverse, void* data)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, delegate*<double, void*, double>, delegate*<double, void*, double>, void*, void>)vt[41])(axis, (delegate*<double, void*, double>)Marshal.GetFunctionPointerForDelegate(forward), (delegate*<double, void*, double>)Marshal.GetFunctionPointerForDelegate(inverse), data);
+		}
 
 		public static void SetupAxisScale(ImAxis axis, ImPlotTransform forward, ImPlotTransform inverse, void* data)
 		{
@@ -1996,27 +2039,30 @@ namespace Hexa.NET.ImPlot
 			SetupAxisScaleNative(axis, forward, inverse, (void*)(default));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisLimitsConstraints")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisLimitsConstraintsNative(ImAxis axis, double vMin, double vMax);
+		internal static void SetupAxisLimitsConstraintsNative(ImAxis axis, double vMin, double vMax)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)vt[42])(axis, vMin, vMax);
+		}
 
 		public static void SetupAxisLimitsConstraints(ImAxis axis, double vMin, double vMax)
 		{
 			SetupAxisLimitsConstraintsNative(axis, vMin, vMax);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxisZoomConstraints")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxisZoomConstraintsNative(ImAxis axis, double zMin, double zMax);
+		internal static void SetupAxisZoomConstraintsNative(ImAxis axis, double zMin, double zMax)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, void>)vt[43])(axis, zMin, zMax);
+		}
 
 		public static void SetupAxisZoomConstraints(ImAxis axis, double zMin, double zMax)
 		{
 			SetupAxisZoomConstraintsNative(axis, zMin, zMax);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxes")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxesNative(byte* xLabel, byte* yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags);
+		internal static void SetupAxesNative(byte* xLabel, byte* yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, byte*, ImPlotAxisFlags, ImPlotAxisFlags, void>)vt[44])(xLabel, yLabel, xFlags, yFlags);
+		}
 
 		public static void SetupAxes(byte* xLabel, byte* yLabel, ImPlotAxisFlags xFlags, ImPlotAxisFlags yFlags)
 		{
@@ -2411,9 +2457,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupAxesLimits")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupAxesLimitsNative(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond);
+		internal static void SetupAxesLimitsNative(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)vt[45])(xMin, xMax, yMin, yMax, cond);
+		}
 
 		public static void SetupAxesLimits(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond)
 		{
@@ -2425,9 +2472,10 @@ namespace Hexa.NET.ImPlot
 			SetupAxesLimitsNative(xMin, xMax, yMin, yMax, (ImPlotCond)(ImPlotCond.Once));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupLegend")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupLegendNative(ImPlotLocation location, ImPlotLegendFlags flags);
+		internal static void SetupLegendNative(ImPlotLocation location, ImPlotLegendFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotLegendFlags, void>)vt[46])(location, flags);
+		}
 
 		public static void SetupLegend(ImPlotLocation location, ImPlotLegendFlags flags)
 		{
@@ -2439,9 +2487,10 @@ namespace Hexa.NET.ImPlot
 			SetupLegendNative(location, (ImPlotLegendFlags)(0));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupMouseText")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupMouseTextNative(ImPlotLocation location, ImPlotMouseTextFlags flags);
+		internal static void SetupMouseTextNative(ImPlotLocation location, ImPlotMouseTextFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotLocation, ImPlotMouseTextFlags, void>)vt[47])(location, flags);
+		}
 
 		public static void SetupMouseText(ImPlotLocation location, ImPlotMouseTextFlags flags)
 		{
@@ -2453,18 +2502,20 @@ namespace Hexa.NET.ImPlot
 			SetupMouseTextNative(location, (ImPlotMouseTextFlags)(0));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetupFinish")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetupFinishNative();
+		internal static void SetupFinishNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[48])();
+		}
 
 		public static void SetupFinish()
 		{
 			SetupFinishNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextAxisLimits")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextAxisLimitsNative(ImAxis axis, double vMin, double vMax, ImPlotCond cond);
+		internal static void SetNextAxisLimitsNative(ImAxis axis, double vMin, double vMax, ImPlotCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, double, double, ImPlotCond, void>)vt[49])(axis, vMin, vMax, cond);
+		}
 
 		public static void SetNextAxisLimits(ImAxis axis, double vMin, double vMax, ImPlotCond cond)
 		{
@@ -2476,9 +2527,10 @@ namespace Hexa.NET.ImPlot
 			SetNextAxisLimitsNative(axis, vMin, vMax, (ImPlotCond)(ImPlotCond.Once));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextAxisLinks")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextAxisLinksNative(ImAxis axis, double* linkMin, double* linkMax);
+		internal static void SetNextAxisLinksNative(ImAxis axis, double* linkMin, double* linkMax)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, double*, double*, void>)vt[50])(axis, linkMin, linkMax);
+		}
 
 		public static void SetNextAxisLinks(ImAxis axis, double* linkMin, double* linkMax)
 		{
@@ -2512,18 +2564,20 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextAxisToFit")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextAxisToFitNative(ImAxis axis);
+		internal static void SetNextAxisToFitNative(ImAxis axis)
+		{
+			((delegate* unmanaged[Cdecl]<ImAxis, void>)vt[51])(axis);
+		}
 
 		public static void SetNextAxisToFit(ImAxis axis)
 		{
 			SetNextAxisToFitNative(axis);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextAxesLimits")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextAxesLimitsNative(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond);
+		internal static void SetNextAxesLimitsNative(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotCond, void>)vt[52])(xMin, xMax, yMin, yMax, cond);
+		}
 
 		public static void SetNextAxesLimits(double xMin, double xMax, double yMin, double yMax, ImPlotCond cond)
 		{
@@ -2535,18 +2589,20 @@ namespace Hexa.NET.ImPlot
 			SetNextAxesLimitsNative(xMin, xMax, yMin, yMax, (ImPlotCond)(ImPlotCond.Once));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_SetNextAxesToFit")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextAxesToFitNative();
+		internal static void SetNextAxesToFitNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[53])();
+		}
 
 		public static void SetNextAxesToFit()
 		{
 			SetNextAxesToFitNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotLine_FloatPtrInt")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotLineNative(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride);
+		internal static void PlotLineNative(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, float*, int, double, double, ImPlotLineFlags, int, int, void>)vt[54])(labelId, values, count, xscale, xstart, flags, offset, stride);
+		}
 
 		public static void PlotLine(byte* labelId, float* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
@@ -4114,9 +4170,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_PlotLine_doublePtrInt")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotLineNative(byte* labelId, double* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride);
+		internal static void PlotLineNative(byte* labelId, double* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, double*, int, double, double, ImPlotLineFlags, int, int, void>)vt[55])(labelId, values, count, xscale, xstart, flags, offset, stride);
+		}
 
 		public static void PlotLine(byte* labelId, double* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
@@ -4961,61 +5018,6 @@ namespace Hexa.NET.ImPlot
 			fixed (double* pvalues = &values)
 			{
 				PlotLineNative(labelId, (double*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, ref double values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (double*)pvalues, count, xscale, xstart, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, ref double values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (double*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(double)));
-				}
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, ref double values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (double*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(double)));
-				}
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, ref double values, int count, double xscale, double xstart)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (double*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
-				}
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, ref double values, int count, double xscale)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				fixed (double* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (double*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(double)));
-				}
 			}
 		}
 	}

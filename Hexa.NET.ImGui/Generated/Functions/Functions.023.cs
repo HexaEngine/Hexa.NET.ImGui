@@ -10,12 +10,289 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 
 namespace Hexa.NET.ImGui
 {
 	public unsafe partial class ImGui
 	{
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, ref byte format)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, (ImGuiInputTextFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, void* pStep, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, pStep, (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalarN(ref byte label, ImGuiDataType dataType, void* pData, int components, ref byte format, ImGuiInputTextFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pformat = &format)
+				{
+					byte ret = InputScalarNNative((byte*)plabel, dataType, pData, components, (void*)(default), (void*)(default), (byte*)pformat, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, pStepFast, pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, void* pStepFast, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, pStepFast, pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, string format)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, (void*)(default), (void*)(default), pStr1, (ImGuiInputTextFlags)(0));
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, void* pStep, string format, ImGuiInputTextFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (format != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(format);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(format, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = InputScalarNNative(pStr0, dataType, pData, components, pStep, (void*)(default), pStr1, flags);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
 
 		public static bool InputScalarN(string label, ImGuiDataType dataType, void* pData, int components, string format, ImGuiInputTextFlags flags)
 		{
@@ -65,9 +342,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igColorEdit3")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ColorEdit3Native(byte* label, float* col, ImGuiColorEditFlags flags);
+		internal static byte ColorEdit3Native(byte* label, float* col, ImGuiColorEditFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)vt[200])(label, col, flags);
+		}
 
 		public static bool ColorEdit3(byte* label, float* col, ImGuiColorEditFlags flags)
 		{
@@ -273,9 +551,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igColorEdit4")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ColorEdit4Native(byte* label, float* col, ImGuiColorEditFlags flags);
+		internal static byte ColorEdit4Native(byte* label, float* col, ImGuiColorEditFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)vt[201])(label, col, flags);
+		}
 
 		public static bool ColorEdit4(byte* label, float* col, ImGuiColorEditFlags flags)
 		{
@@ -481,9 +760,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igColorPicker3")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ColorPicker3Native(byte* label, float* col, ImGuiColorEditFlags flags);
+		internal static byte ColorPicker3Native(byte* label, float* col, ImGuiColorEditFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, byte>)vt[202])(label, col, flags);
+		}
 
 		public static bool ColorPicker3(byte* label, float* col, ImGuiColorEditFlags flags)
 		{
@@ -689,9 +969,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igColorPicker4")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ColorPicker4Native(byte* label, float* col, ImGuiColorEditFlags flags, float* refCol);
+		internal static byte ColorPicker4Native(byte* label, float* col, ImGuiColorEditFlags flags, float* refCol)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, float*, ImGuiColorEditFlags, float*, byte>)vt[203])(label, col, flags, refCol);
+		}
 
 		public static bool ColorPicker4(byte* label, float* col, ImGuiColorEditFlags flags, float* refCol)
 		{
@@ -1347,9 +1628,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igColorButton")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ColorButtonNative(byte* descId, Vector4 col, ImGuiColorEditFlags flags, Vector2 size);
+		internal static byte ColorButtonNative(byte* descId, Vector4 col, ImGuiColorEditFlags flags, Vector2 size)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector4, ImGuiColorEditFlags, Vector2, byte>)vt[204])(descId, col, flags, size);
+		}
 
 		public static bool ColorButton(byte* descId, Vector4 col, ImGuiColorEditFlags flags, Vector2 size)
 		{
@@ -1519,18 +1801,20 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetColorEditOptions")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetColorEditOptionsNative(ImGuiColorEditFlags flags);
+		internal static void SetColorEditOptionsNative(ImGuiColorEditFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiColorEditFlags, void>)vt[205])(flags);
+		}
 
 		public static void SetColorEditOptions(ImGuiColorEditFlags flags)
 		{
 			SetColorEditOptionsNative(flags);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTreeNode_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TreeNodeNative(byte* label);
+		internal static byte TreeNodeNative(byte* label)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)vt[206])(label);
+		}
 
 		public static bool TreeNode(byte* label)
 		{
@@ -1574,9 +1858,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTreeNode_StrStr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TreeNodeNative(byte* strId, byte* fmt);
+		internal static byte TreeNodeNative(byte* strId, byte* fmt)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte>)vt[207])(strId, fmt);
+		}
 
 		public static bool TreeNode(byte* strId, byte* fmt)
 		{
@@ -1716,9 +2001,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTreeNode_Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TreeNodeNative(void* ptrId, byte* fmt);
+		internal static byte TreeNodeNative(void* ptrId, byte* fmt)
+		{
+			return ((delegate* unmanaged[Cdecl]<void*, byte*, byte>)vt[208])(ptrId, fmt);
+		}
 
 		public static bool TreeNode(void* ptrId, byte* fmt)
 		{
@@ -1762,9 +2048,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTreeNodeV_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TreeNodeVNative(byte* strId, byte* fmt, nuint args);
+		internal static byte TreeNodeVNative(byte* strId, byte* fmt, nuint args)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, byte>)vt[209])(strId, fmt, args);
+		}
 
 		public static bool TreeNodeV(byte* strId, byte* fmt, nuint args)
 		{
@@ -1904,9 +2191,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTreeNodeV_Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TreeNodeVNative(void* ptrId, byte* fmt, nuint args);
+		internal static byte TreeNodeVNative(void* ptrId, byte* fmt, nuint args)
+		{
+			return ((delegate* unmanaged[Cdecl]<void*, byte*, nuint, byte>)vt[210])(ptrId, fmt, args);
+		}
 
 		public static bool TreeNodeV(void* ptrId, byte* fmt, nuint args)
 		{
@@ -1950,9 +2238,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTreeNodeEx_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TreeNodeExNative(byte* label, ImGuiTreeNodeFlags flags);
+		internal static byte TreeNodeExNative(byte* label, ImGuiTreeNodeFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTreeNodeFlags, byte>)vt[211])(label, flags);
+		}
 
 		public static bool TreeNodeEx(byte* label, ImGuiTreeNodeFlags flags)
 		{
@@ -2038,9 +2327,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTreeNodeEx_StrStr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TreeNodeExNative(byte* strId, ImGuiTreeNodeFlags flags, byte* fmt);
+		internal static byte TreeNodeExNative(byte* strId, ImGuiTreeNodeFlags flags, byte* fmt)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTreeNodeFlags, byte*, byte>)vt[212])(strId, flags, fmt);
+		}
 
 		public static bool TreeNodeEx(byte* strId, ImGuiTreeNodeFlags flags, byte* fmt)
 		{
@@ -2180,9 +2470,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTreeNodeEx_Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TreeNodeExNative(void* ptrId, ImGuiTreeNodeFlags flags, byte* fmt);
+		internal static byte TreeNodeExNative(void* ptrId, ImGuiTreeNodeFlags flags, byte* fmt)
+		{
+			return ((delegate* unmanaged[Cdecl]<void*, ImGuiTreeNodeFlags, byte*, byte>)vt[213])(ptrId, flags, fmt);
+		}
 
 		public static bool TreeNodeEx(void* ptrId, ImGuiTreeNodeFlags flags, byte* fmt)
 		{
@@ -2226,9 +2517,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTreeNodeExV_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TreeNodeExVNative(byte* strId, ImGuiTreeNodeFlags flags, byte* fmt, nuint args);
+		internal static byte TreeNodeExVNative(byte* strId, ImGuiTreeNodeFlags flags, byte* fmt, nuint args)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTreeNodeFlags, byte*, nuint, byte>)vt[214])(strId, flags, fmt, args);
+		}
 
 		public static bool TreeNodeExV(byte* strId, ImGuiTreeNodeFlags flags, byte* fmt, nuint args)
 		{
@@ -2368,9 +2660,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTreeNodeExV_Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TreeNodeExVNative(void* ptrId, ImGuiTreeNodeFlags flags, byte* fmt, nuint args);
+		internal static byte TreeNodeExVNative(void* ptrId, ImGuiTreeNodeFlags flags, byte* fmt, nuint args)
+		{
+			return ((delegate* unmanaged[Cdecl]<void*, ImGuiTreeNodeFlags, byte*, nuint, byte>)vt[215])(ptrId, flags, fmt, args);
+		}
 
 		public static bool TreeNodeExV(void* ptrId, ImGuiTreeNodeFlags flags, byte* fmt, nuint args)
 		{
@@ -2414,9 +2707,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTreePush_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TreePushNative(byte* strId);
+		internal static void TreePushNative(byte* strId)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[216])(strId);
+		}
 
 		public static void TreePush(byte* strId)
 		{
@@ -2457,27 +2751,30 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTreePush_Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TreePushNative(void* ptrId);
+		internal static void TreePushNative(void* ptrId)
+		{
+			((delegate* unmanaged[Cdecl]<void*, void>)vt[217])(ptrId);
+		}
 
 		public static void TreePush(void* ptrId)
 		{
 			TreePushNative(ptrId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTreePop")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TreePopNative();
+		internal static void TreePopNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[218])();
+		}
 
 		public static void TreePop()
 		{
 			TreePopNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetTreeNodeToLabelSpacing")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetTreeNodeToLabelSpacingNative();
+		internal static float GetTreeNodeToLabelSpacingNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[219])();
+		}
 
 		public static float GetTreeNodeToLabelSpacing()
 		{
@@ -2485,9 +2782,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igCollapsingHeader_TreeNodeFlags")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte CollapsingHeaderNative(byte* label, ImGuiTreeNodeFlags flags);
+		internal static byte CollapsingHeaderNative(byte* label, ImGuiTreeNodeFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiTreeNodeFlags, byte>)vt[220])(label, flags);
+		}
 
 		public static bool CollapsingHeader(byte* label, ImGuiTreeNodeFlags flags)
 		{
@@ -2573,9 +2871,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igCollapsingHeader_BoolPtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte CollapsingHeaderNative(byte* label, bool* pVisible, ImGuiTreeNodeFlags flags);
+		internal static byte CollapsingHeaderNative(byte* label, bool* pVisible, ImGuiTreeNodeFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, bool*, ImGuiTreeNodeFlags, byte>)vt[221])(label, pVisible, flags);
+		}
 
 		public static bool CollapsingHeader(byte* label, bool* pVisible, ImGuiTreeNodeFlags flags)
 		{
@@ -2763,9 +3062,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetNextItemOpen")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextItemOpenNative(byte isOpen, ImGuiCond cond);
+		internal static void SetNextItemOpenNative(byte isOpen, ImGuiCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)vt[222])(isOpen, cond);
+		}
 
 		public static void SetNextItemOpen(bool isOpen, ImGuiCond cond)
 		{
@@ -2777,18 +3077,20 @@ namespace Hexa.NET.ImGui
 			SetNextItemOpenNative(isOpen ? (byte)1 : (byte)0, (ImGuiCond)(0));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetNextItemStorageID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextItemStorageIDNative(int storageId);
+		internal static void SetNextItemStorageIDNative(int storageId)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[223])(storageId);
+		}
 
 		public static void SetNextItemStorageID(int storageId)
 		{
 			SetNextItemStorageIDNative(storageId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSelectable_Bool")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte SelectableNative(byte* label, byte selected, ImGuiSelectableFlags flags, Vector2 size);
+		internal static byte SelectableNative(byte* label, byte selected, ImGuiSelectableFlags flags, Vector2 size)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, byte, ImGuiSelectableFlags, Vector2, byte>)vt[224])(label, selected, flags, size);
+		}
 
 		public static bool Selectable(byte* label, bool selected, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -3126,9 +3428,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSelectable_BoolPtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte SelectableNative(byte* label, bool* pSelected, ImGuiSelectableFlags flags, Vector2 size);
+		internal static byte SelectableNative(byte* label, bool* pSelected, ImGuiSelectableFlags flags, Vector2 size)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, bool*, ImGuiSelectableFlags, Vector2, byte>)vt[225])(label, pSelected, flags, size);
+		}
 
 		public static bool Selectable(byte* label, bool* pSelected, ImGuiSelectableFlags flags, Vector2 size)
 		{
@@ -3502,9 +3805,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginMultiSelect")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiMultiSelectIO* BeginMultiSelectNative(ImGuiMultiSelectFlags flags, int selectionSize, int itemsCount);
+		internal static ImGuiMultiSelectIO* BeginMultiSelectNative(ImGuiMultiSelectFlags flags, int selectionSize, int itemsCount)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiMultiSelectFlags, int, int, ImGuiMultiSelectIO*>)vt[226])(flags, selectionSize, itemsCount);
+		}
 
 		public static ImGuiMultiSelectIOPtr BeginMultiSelect(ImGuiMultiSelectFlags flags, int selectionSize, int itemsCount)
 		{
@@ -3524,9 +3828,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igEndMultiSelect")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiMultiSelectIO* EndMultiSelectNative();
+		internal static ImGuiMultiSelectIO* EndMultiSelectNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiMultiSelectIO*>)vt[227])();
+		}
 
 		public static ImGuiMultiSelectIOPtr EndMultiSelect()
 		{
@@ -3534,18 +3839,20 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetNextItemSelectionUserData")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextItemSelectionUserDataNative(long selectionUserData);
+		internal static void SetNextItemSelectionUserDataNative(long selectionUserData)
+		{
+			((delegate* unmanaged[Cdecl]<long, void>)vt[228])(selectionUserData);
+		}
 
 		public static void SetNextItemSelectionUserData(long selectionUserData)
 		{
 			SetNextItemSelectionUserDataNative(selectionUserData);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsItemToggledSelection")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsItemToggledSelectionNative();
+		internal static byte IsItemToggledSelectionNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[229])();
+		}
 
 		public static bool IsItemToggledSelection()
 		{
@@ -3553,9 +3860,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginListBox")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginListBoxNative(byte* label, Vector2 size);
+		internal static byte BeginListBoxNative(byte* label, Vector2 size)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, byte>)vt[230])(label, size);
+		}
 
 		public static bool BeginListBox(byte* label, Vector2 size)
 		{
@@ -3641,18 +3949,20 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igEndListBox")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndListBoxNative();
+		internal static void EndListBoxNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[231])();
+		}
 
 		public static void EndListBox()
 		{
 			EndListBoxNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igListBox_Str_arr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ListBoxNative(byte* label, int* currentItem, byte** items, int itemsCount, int heightInItems);
+		internal static byte ListBoxNative(byte* label, int* currentItem, byte** items, int itemsCount, int heightInItems)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, byte**, int, int, byte>)vt[232])(label, currentItem, items, itemsCount, heightInItems);
+		}
 
 		public static bool ListBox(byte* label, int* currentItem, byte** items, int itemsCount, int heightInItems)
 		{
@@ -4192,9 +4502,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igListBox_FnStrPtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ListBoxNative(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int heightInItems);
+		internal static byte ListBoxNative(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int heightInItems)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int>, void*, int, int, byte>)vt[233])(label, currentItem, getter, userData, itemsCount, heightInItems);
+		}
 
 		public static bool ListBox(byte* label, int* currentItem, delegate*<byte*, int*, delegate*<void*, int>, void*, int, int> getter, void* userData, int itemsCount, int heightInItems)
 		{
@@ -4382,9 +4693,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPlotLines_FloatPtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PlotLinesNative(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride);
+		internal static void PlotLinesNative(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, float*, int, int, byte*, float, float, Vector2, int, void>)vt[234])(label, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
+		}
 
 		public static void PlotLines(byte* label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
 		{
@@ -4706,320 +5018,6 @@ namespace Hexa.NET.ImGui
 			fixed (byte* plabel = &label)
 			{
 				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, byte* overlayText, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, (int)(sizeof(float)));
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, byte* overlayText, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, byte* overlayText, float scaleMin, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, (Vector2)(new Vector2(0,0)), stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, byte* overlayText, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, (float)(float.MaxValue), (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, byte* overlayText, float scaleMin, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, (float)(float.MaxValue), graphSize, stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, int valuesOffset, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, valuesOffset, (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), (byte*)(default), scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		public static void PlotLines(ref byte label, float* values, int valuesCount, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			fixed (byte* plabel = &label)
-			{
-				PlotLinesNative((byte*)plabel, values, valuesCount, (int)(0), overlayText, scaleMin, scaleMax, graphSize, stride);
-			}
-		}
-
-		public static void PlotLines(string label, float* values, int valuesCount, int valuesOffset, byte* overlayText, float scaleMin, float scaleMax, Vector2 graphSize, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLinesNative(pStr0, values, valuesCount, valuesOffset, overlayText, scaleMin, scaleMax, graphSize, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
 			}
 		}
 	}

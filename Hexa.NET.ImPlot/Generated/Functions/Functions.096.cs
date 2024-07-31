@@ -10,6 +10,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
@@ -17,6 +18,1031 @@ namespace Hexa.NET.ImPlot
 {
 	public unsafe partial class ImPlot
 	{
+
+		public static void ImPlotAddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					ImPlotAddTextVerticalNative((ImDrawList*)pdrawList, pos, col, (byte*)ptextBegin, textEnd);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, string textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotAddTextVerticalNative((ImDrawList*)pdrawList, pos, col, pStr0, textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				ImPlotAddTextVerticalNative(drawList, pos, col, textBegin, (byte*)ptextEnd);
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, byte* textBegin, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotAddTextVerticalNative(drawList, pos, col, textBegin, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImPlotAddTextVerticalNative((ImDrawList*)pdrawList, pos, col, textBegin, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, byte* textBegin, string textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotAddTextVerticalNative((ImDrawList*)pdrawList, pos, col, textBegin, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImPlotAddTextVerticalNative(drawList, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, string textBegin, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			ImPlotAddTextVerticalNative(drawList, pos, col, pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImPlotAddTextVerticalNative((ImDrawList*)pdrawList, pos, col, (byte*)ptextBegin, (byte*)ptextEnd);
+					}
+				}
+			}
+		}
+
+		public static void ImPlotAddTextVertical(ref ImDrawList drawList, Vector2 pos, uint col, string textBegin, string textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				ImPlotAddTextVerticalNative((ImDrawList*)pdrawList, pos, col, pStr0, pStr1);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		internal static void ImPlotAddTextCenteredNative(ImDrawList* drawList, Vector2 topCenter, uint col, byte* textBegin, byte* textEnd)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, byte*, byte*, void>)vt[673])(drawList, topCenter, col, textBegin, textEnd);
+		}
+
+		public static void ImPlotAddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, byte* textEnd)
+		{
+			ImPlotAddTextCenteredNative(drawList, topCenter, col, textBegin, textEnd);
+		}
+
+		public static void ImPlotAddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, byte* textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				ImPlotAddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, textBegin, textEnd);
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, ref byte textBegin, byte* textEnd)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				ImPlotAddTextCenteredNative(drawList, topCenter, col, (byte*)ptextBegin, textEnd);
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, string textBegin, byte* textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotAddTextCenteredNative(drawList, topCenter, col, pStr0, textEnd);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, ref byte textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					ImPlotAddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, (byte*)ptextBegin, textEnd);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, string textBegin, byte* textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotAddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, pStr0, textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				ImPlotAddTextCenteredNative(drawList, topCenter, col, textBegin, (byte*)ptextEnd);
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			ImPlotAddTextCenteredNative(drawList, topCenter, col, textBegin, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, byte* textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImPlotAddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, textBegin, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, byte* textBegin, string textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotAddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, textBegin, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					ImPlotAddTextCenteredNative(drawList, topCenter, col, (byte*)ptextBegin, (byte*)ptextEnd);
+				}
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, string textBegin, string textEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			ImPlotAddTextCenteredNative(drawList, topCenter, col, pStr0, pStr1);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, ref byte textBegin, ref byte textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						ImPlotAddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, (byte*)ptextBegin, (byte*)ptextEnd);
+					}
+				}
+			}
+		}
+
+		public static void ImPlotAddTextCentered(ref ImDrawList drawList, Vector2 topCenter, uint col, string textBegin, string textEnd)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				ImPlotAddTextCenteredNative((ImDrawList*)pdrawList, topCenter, col, pStr0, pStr1);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		internal static void ImPlotCalcTextSizeVerticalNative(Vector2* output, byte* text)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, byte*, void>)vt[674])(output, text);
+		}
+
+		public static Vector2 ImPlotCalcTextSizeVertical(byte* text)
+		{
+			Vector2 ret;
+			ImPlotCalcTextSizeVerticalNative(&ret, text);
+			return ret;
+		}
+
+		public static void ImPlotCalcTextSizeVertical(Vector2* output, byte* text)
+		{
+			ImPlotCalcTextSizeVerticalNative(output, text);
+		}
+
+		public static void ImPlotCalcTextSizeVertical(ref Vector2 output, byte* text)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				ImPlotCalcTextSizeVerticalNative((Vector2*)poutput, text);
+			}
+		}
+
+		public static Vector2 ImPlotCalcTextSizeVertical(ref byte text)
+		{
+			fixed (byte* ptext = &text)
+			{
+				Vector2 ret;
+				ImPlotCalcTextSizeVerticalNative(&ret, (byte*)ptext);
+				return ret;
+			}
+		}
+
+		public static Vector2 ImPlotCalcTextSizeVertical(string text)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (text != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(text);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			Vector2 ret;
+			ImPlotCalcTextSizeVerticalNative(&ret, pStr0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		public static void ImPlotCalcTextSizeVertical(ref Vector2 output, ref byte text)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (byte* ptext = &text)
+				{
+					ImPlotCalcTextSizeVerticalNative((Vector2*)poutput, (byte*)ptext);
+				}
+			}
+		}
+
+		public static void ImPlotCalcTextSizeVertical(ref Vector2 output, string text)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (text != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(text);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				ImPlotCalcTextSizeVerticalNative((Vector2*)poutput, pStr0);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		internal static uint ImPlotCalcTextColorVec4Native(Vector4 bg)
+		{
+			return ((delegate* unmanaged[Cdecl]<Vector4, uint>)vt[675])(bg);
+		}
+
+		public static uint ImPlotCalcTextColorVec4(Vector4 bg)
+		{
+			uint ret = ImPlotCalcTextColorVec4Native(bg);
+			return ret;
+		}
+
+		internal static uint ImPlotCalcTextColorU32Native(uint bg)
+		{
+			return ((delegate* unmanaged[Cdecl]<uint, uint>)vt[676])(bg);
+		}
+
+		public static uint ImPlotCalcTextColorU32(uint bg)
+		{
+			uint ret = ImPlotCalcTextColorU32Native(bg);
+			return ret;
+		}
+
+		internal static uint ImPlotCalcHoverColorNative(uint col)
+		{
+			return ((delegate* unmanaged[Cdecl]<uint, uint>)vt[677])(col);
+		}
+
+		public static uint ImPlotCalcHoverColor(uint col)
+		{
+			uint ret = ImPlotCalcHoverColorNative(col);
+			return ret;
+		}
+
+		internal static void ImPlotClampLabelPosNative(Vector2* output, Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, Vector2, Vector2, Vector2, Vector2, void>)vt[678])(output, pos, size, min, max);
+		}
+
+		public static Vector2 ImPlotClampLabelPos(Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
+		{
+			Vector2 ret;
+			ImPlotClampLabelPosNative(&ret, pos, size, min, max);
+			return ret;
+		}
+
+		public static void ImPlotClampLabelPos(Vector2* output, Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
+		{
+			ImPlotClampLabelPosNative(output, pos, size, min, max);
+		}
+
+		public static void ImPlotClampLabelPos(ref Vector2 output, Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				ImPlotClampLabelPosNative((Vector2*)poutput, pos, size, min, max);
+			}
+		}
+
+		internal static uint ImPlotGetColormapColorU32Native(int idx, ImPlotColormap cmap)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImPlotColormap, uint>)vt[679])(idx, cmap);
+		}
+
+		public static uint ImPlotGetColormapColorU32(int idx, ImPlotColormap cmap)
+		{
+			uint ret = ImPlotGetColormapColorU32Native(idx, cmap);
+			return ret;
+		}
+
+		internal static uint ImPlotNextColormapColorU32Native()
+		{
+			return ((delegate* unmanaged[Cdecl]<uint>)vt[680])();
+		}
+
+		public static uint ImPlotNextColormapColorU32()
+		{
+			uint ret = ImPlotNextColormapColorU32Native();
+			return ret;
+		}
+
+		internal static uint ImPlotSampleColormapU32Native(float t, ImPlotColormap cmap)
+		{
+			return ((delegate* unmanaged[Cdecl]<float, ImPlotColormap, uint>)vt[681])(t, cmap);
+		}
+
+		public static uint ImPlotSampleColormapU32(float t, ImPlotColormap cmap)
+		{
+			uint ret = ImPlotSampleColormapU32Native(t, cmap);
+			return ret;
+		}
+
+		internal static void ImPlotRenderColorBarNative(uint* colors, int size, ImDrawList* drawList, ImRect bounds, byte vert, byte reversed, byte continuous)
+		{
+			((delegate* unmanaged[Cdecl]<uint*, int, ImDrawList*, ImRect, byte, byte, byte, void>)vt[682])(colors, size, drawList, bounds, vert, reversed, continuous);
+		}
+
+		public static void ImPlotRenderColorBar(uint* colors, int size, ImDrawListPtr drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
+		{
+			ImPlotRenderColorBarNative(colors, size, drawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
+		}
+
+		public static void ImPlotRenderColorBar(ref uint colors, int size, ImDrawListPtr drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
+		{
+			fixed (uint* pcolors = &colors)
+			{
+				ImPlotRenderColorBarNative((uint*)pcolors, size, drawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
+			}
+		}
+
+		public static void ImPlotRenderColorBar(uint* colors, int size, ref ImDrawList drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				ImPlotRenderColorBarNative(colors, size, (ImDrawList*)pdrawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
+			}
+		}
+
+		public static void ImPlotRenderColorBar(ref uint colors, int size, ref ImDrawList drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
+		{
+			fixed (uint* pcolors = &colors)
+			{
+				fixed (ImDrawList* pdrawList = &drawList)
+				{
+					ImPlotRenderColorBarNative((uint*)pcolors, size, (ImDrawList*)pdrawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
+				}
+			}
+		}
+
+		internal static double ImPlotNiceNumNative(double x, byte round)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, byte, double>)vt[683])(x, round);
+		}
+
+		public static double ImPlotNiceNum(double x, bool round)
+		{
+			double ret = ImPlotNiceNumNative(x, round ? (byte)1 : (byte)0);
+			return ret;
+		}
+
+		internal static int ImPlotOrderOfMagnitudeNative(double val)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, int>)vt[684])(val);
+		}
+
+		public static int ImPlotOrderOfMagnitude(double val)
+		{
+			int ret = ImPlotOrderOfMagnitudeNative(val);
+			return ret;
+		}
+
+		internal static int ImPlotOrderToPrecisionNative(int order)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, int>)vt[685])(order);
+		}
+
+		public static int ImPlotOrderToPrecision(int order)
+		{
+			int ret = ImPlotOrderToPrecisionNative(order);
+			return ret;
+		}
+
+		internal static int ImPlotPrecisionNative(double val)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, int>)vt[686])(val);
+		}
+
+		public static int ImPlotPrecision(double val)
+		{
+			int ret = ImPlotPrecisionNative(val);
+			return ret;
+		}
+
+		internal static double ImPlotRoundToNative(double val, int prec)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, int, double>)vt[687])(val, prec);
+		}
+
+		public static double ImPlotRoundTo(double val, int prec)
+		{
+			double ret = ImPlotRoundToNative(val, prec);
+			return ret;
+		}
+
+		internal static void ImPlotIntersectionNative(Vector2* output, Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, Vector2, Vector2, Vector2, Vector2, void>)vt[688])(output, a1, a2, b1, b2);
+		}
+
+		public static Vector2 ImPlotIntersection(Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
+		{
+			Vector2 ret;
+			ImPlotIntersectionNative(&ret, a1, a2, b1, b2);
+			return ret;
+		}
+
+		public static void ImPlotIntersection(Vector2* output, Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
+		{
+			ImPlotIntersectionNative(output, a1, a2, b1, b2);
+		}
+
+		public static void ImPlotIntersection(ref Vector2 output, Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				ImPlotIntersectionNative((Vector2*)poutput, a1, a2, b1, b2);
+			}
+		}
+
+		internal static void ImPlotFillRangeVectorFloatPtrNative(ImVectorFloat* buffer, int n, float vmin, float vmax)
+		{
+			((delegate* unmanaged[Cdecl]<ImVectorFloat*, int, float, float, void>)vt[689])(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorFloatPtr(ImVectorFloat* buffer, int n, float vmin, float vmax)
+		{
+			ImPlotFillRangeVectorFloatPtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorFloatPtr(ref ImVectorFloat buffer, int n, float vmin, float vmax)
+		{
+			fixed (ImVectorFloat* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorFloatPtrNative((ImVectorFloat*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		internal static void ImPlotFillRangeVectorDoublePtrNative(ImVectorDouble* buffer, int n, double vmin, double vmax)
+		{
+			((delegate* unmanaged[Cdecl]<ImVectorDouble*, int, double, double, void>)vt[690])(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorDoublePtr(ImVectorDoublePtr buffer, int n, double vmin, double vmax)
+		{
+			ImPlotFillRangeVectorDoublePtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorDoublePtr(ref ImVectorDouble buffer, int n, double vmin, double vmax)
+		{
+			fixed (ImVectorDouble* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorDoublePtrNative((ImVectorDouble*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		internal static void ImPlotFillRangeVectorS8PtrNative(ImVectorImS8* buffer, int n, sbyte vmin, sbyte vmax)
+		{
+			((delegate* unmanaged[Cdecl]<ImVectorImS8*, int, sbyte, sbyte, void>)vt[691])(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorS8Ptr(ImVectorImS8Ptr buffer, int n, sbyte vmin, sbyte vmax)
+		{
+			ImPlotFillRangeVectorS8PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorS8Ptr(ref ImVectorImS8 buffer, int n, sbyte vmin, sbyte vmax)
+		{
+			fixed (ImVectorImS8* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorS8PtrNative((ImVectorImS8*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		internal static void ImPlotFillRangeVectorU8PtrNative(ImVectorImU8* buffer, int n, byte vmin, byte vmax)
+		{
+			((delegate* unmanaged[Cdecl]<ImVectorImU8*, int, byte, byte, void>)vt[692])(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorU8Ptr(ImVectorImU8Ptr buffer, int n, byte vmin, byte vmax)
+		{
+			ImPlotFillRangeVectorU8PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorU8Ptr(ref ImVectorImU8 buffer, int n, byte vmin, byte vmax)
+		{
+			fixed (ImVectorImU8* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorU8PtrNative((ImVectorImU8*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		internal static void ImPlotFillRangeVectorS16PtrNative(ImVectorImS16* buffer, int n, short vmin, short vmax)
+		{
+			((delegate* unmanaged[Cdecl]<ImVectorImS16*, int, short, short, void>)vt[693])(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorS16Ptr(ImVectorImS16Ptr buffer, int n, short vmin, short vmax)
+		{
+			ImPlotFillRangeVectorS16PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorS16Ptr(ref ImVectorImS16 buffer, int n, short vmin, short vmax)
+		{
+			fixed (ImVectorImS16* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorS16PtrNative((ImVectorImS16*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		internal static void ImPlotFillRangeVectorU16PtrNative(ImVectorImU16* buffer, int n, ushort vmin, ushort vmax)
+		{
+			((delegate* unmanaged[Cdecl]<ImVectorImU16*, int, ushort, ushort, void>)vt[694])(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorU16Ptr(ImVectorImU16Ptr buffer, int n, ushort vmin, ushort vmax)
+		{
+			ImPlotFillRangeVectorU16PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorU16Ptr(ref ImVectorImU16 buffer, int n, ushort vmin, ushort vmax)
+		{
+			fixed (ImVectorImU16* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorU16PtrNative((ImVectorImU16*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		internal static void ImPlotFillRangeVectorS32PtrNative(ImVectorImS32* buffer, int n, int vmin, int vmax)
+		{
+			((delegate* unmanaged[Cdecl]<ImVectorImS32*, int, int, int, void>)vt[695])(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorS32Ptr(ImVectorImS32Ptr buffer, int n, int vmin, int vmax)
+		{
+			ImPlotFillRangeVectorS32PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorS32Ptr(ref ImVectorImS32 buffer, int n, int vmin, int vmax)
+		{
+			fixed (ImVectorImS32* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorS32PtrNative((ImVectorImS32*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		internal static void ImPlotFillRangeVectorU32PtrNative(ImVectorImU32* buffer, int n, uint vmin, uint vmax)
+		{
+			((delegate* unmanaged[Cdecl]<ImVectorImU32*, int, uint, uint, void>)vt[696])(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorU32Ptr(ImVectorImU32* buffer, int n, uint vmin, uint vmax)
+		{
+			ImPlotFillRangeVectorU32PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorU32Ptr(ref ImVectorImU32 buffer, int n, uint vmin, uint vmax)
+		{
+			fixed (ImVectorImU32* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorU32PtrNative((ImVectorImU32*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		internal static void ImPlotFillRangeVectorS64PtrNative(ImVectorImS64* buffer, int n, long vmin, long vmax)
+		{
+			((delegate* unmanaged[Cdecl]<ImVectorImS64*, int, long, long, void>)vt[697])(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorS64Ptr(ImVectorImS64Ptr buffer, int n, long vmin, long vmax)
+		{
+			ImPlotFillRangeVectorS64PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorS64Ptr(ref ImVectorImS64 buffer, int n, long vmin, long vmax)
+		{
+			fixed (ImVectorImS64* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorS64PtrNative((ImVectorImS64*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		internal static void ImPlotFillRangeVectorU64PtrNative(ImVectorImU64* buffer, int n, ulong vmin, ulong vmax)
+		{
+			((delegate* unmanaged[Cdecl]<ImVectorImU64*, int, ulong, ulong, void>)vt[698])(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorU64Ptr(ImVectorImU64Ptr buffer, int n, ulong vmin, ulong vmax)
+		{
+			ImPlotFillRangeVectorU64PtrNative(buffer, n, vmin, vmax);
+		}
+
+		public static void ImPlotFillRangeVectorU64Ptr(ref ImVectorImU64 buffer, int n, ulong vmin, ulong vmax)
+		{
+			fixed (ImVectorImU64* pbuffer = &buffer)
+			{
+				ImPlotFillRangeVectorU64PtrNative((ImVectorImU64*)pbuffer, n, vmin, vmax);
+			}
+		}
+
+		internal static void ImPlotCalculateBinsFloatPtrNative(float* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		{
+			((delegate* unmanaged[Cdecl]<float*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[699])(values, count, meth, range, binsOut, widthOut);
+		}
+
+		public static void ImPlotCalculateBinsFloatPtr(float* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		{
+			ImPlotCalculateBinsFloatPtrNative(values, count, meth, range, binsOut, widthOut);
+		}
 
 		public static void ImPlotCalculateBinsFloatPtr(ref float values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
@@ -89,9 +1115,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CalculateBins_doublePtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotCalculateBinsDoublePtrNative(double* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut);
+		internal static void ImPlotCalculateBinsDoublePtrNative(double* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		{
+			((delegate* unmanaged[Cdecl]<double*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[700])(values, count, meth, range, binsOut, widthOut);
+		}
 
 		public static void ImPlotCalculateBinsDoublePtr(double* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
@@ -169,9 +1196,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CalculateBins_S8Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotCalculateBinsS8PtrNative(sbyte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut);
+		internal static void ImPlotCalculateBinsS8PtrNative(sbyte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		{
+			((delegate* unmanaged[Cdecl]<sbyte*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[701])(values, count, meth, range, binsOut, widthOut);
+		}
 
 		public static void ImPlotCalculateBinsS8Ptr(sbyte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
@@ -249,9 +1277,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CalculateBins_U8Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotCalculateBinsU8PtrNative(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut);
+		internal static void ImPlotCalculateBinsU8PtrNative(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[702])(values, count, meth, range, binsOut, widthOut);
+		}
 
 		public static void ImPlotCalculateBinsU8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
@@ -329,9 +1358,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CalculateBins_S16Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotCalculateBinsS16PtrNative(short* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut);
+		internal static void ImPlotCalculateBinsS16PtrNative(short* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		{
+			((delegate* unmanaged[Cdecl]<short*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[703])(values, count, meth, range, binsOut, widthOut);
+		}
 
 		public static void ImPlotCalculateBinsS16Ptr(short* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
@@ -409,9 +1439,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CalculateBins_U16Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotCalculateBinsU16PtrNative(ushort* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut);
+		internal static void ImPlotCalculateBinsU16PtrNative(ushort* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		{
+			((delegate* unmanaged[Cdecl]<ushort*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[704])(values, count, meth, range, binsOut, widthOut);
+		}
 
 		public static void ImPlotCalculateBinsU16Ptr(ushort* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
@@ -489,9 +1520,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CalculateBins_S32Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotCalculateBinsS32PtrNative(int* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut);
+		internal static void ImPlotCalculateBinsS32PtrNative(int* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		{
+			((delegate* unmanaged[Cdecl]<int*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[705])(values, count, meth, range, binsOut, widthOut);
+		}
 
 		public static void ImPlotCalculateBinsS32Ptr(int* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
@@ -569,9 +1601,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CalculateBins_U32Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotCalculateBinsU32PtrNative(uint* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut);
+		internal static void ImPlotCalculateBinsU32PtrNative(uint* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		{
+			((delegate* unmanaged[Cdecl]<uint*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[706])(values, count, meth, range, binsOut, widthOut);
+		}
 
 		public static void ImPlotCalculateBinsU32Ptr(uint* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
@@ -649,9 +1682,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CalculateBins_S64Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotCalculateBinsS64PtrNative(long* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut);
+		internal static void ImPlotCalculateBinsS64PtrNative(long* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		{
+			((delegate* unmanaged[Cdecl]<long*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[707])(values, count, meth, range, binsOut, widthOut);
+		}
 
 		public static void ImPlotCalculateBinsS64Ptr(long* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
@@ -729,9 +1763,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CalculateBins_U64Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotCalculateBinsU64PtrNative(ulong* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut);
+		internal static void ImPlotCalculateBinsU64PtrNative(ulong* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		{
+			((delegate* unmanaged[Cdecl]<ulong*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[708])(values, count, meth, range, binsOut, widthOut);
+		}
 
 		public static void ImPlotCalculateBinsU64Ptr(ulong* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
@@ -809,9 +1844,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_IsLeapYear")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ImPlotIsLeapYearNative(int year);
+		internal static byte ImPlotIsLeapYearNative(int year)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, byte>)vt[709])(year);
+		}
 
 		public static bool ImPlotIsLeapYear(int year)
 		{
@@ -819,9 +1855,10 @@ namespace Hexa.NET.ImPlot
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetDaysInMonth")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImPlotGetDaysInMonthNative(int year, int month);
+		internal static int ImPlotGetDaysInMonthNative(int year, int month)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, int, int>)vt[710])(year, month);
+		}
 
 		public static int ImPlotGetDaysInMonth(int year, int month)
 		{
@@ -829,9 +1866,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_MkGmtTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotMkGmtTimeNative(ImPlotTime* output, Tm* ptm);
+		internal static void ImPlotMkGmtTimeNative(ImPlotTime* output, Tm* ptm)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, Tm*, void>)vt[711])(output, ptm);
+		}
 
 		public static ImPlotTime ImPlotMkGmtTime(Tm* ptm)
 		{
@@ -882,9 +1920,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetGmtTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial Tm* ImPlotGetGmtTimeNative(ImPlotTime t, Tm* ptm);
+		internal static Tm* ImPlotGetGmtTimeNative(ImPlotTime t, Tm* ptm)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, Tm*, Tm*>)vt[712])(t, ptm);
+		}
 
 		public static Tm* ImPlotGetGmtTime(ImPlotTime t, Tm* ptm)
 		{
@@ -901,9 +1940,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_MkLocTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotMkLocTimeNative(ImPlotTime* output, Tm* ptm);
+		internal static void ImPlotMkLocTimeNative(ImPlotTime* output, Tm* ptm)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, Tm*, void>)vt[713])(output, ptm);
+		}
 
 		public static ImPlotTime ImPlotMkLocTime(Tm* ptm)
 		{
@@ -954,9 +1994,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetLocTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial Tm* ImPlotGetLocTimeNative(ImPlotTime t, Tm* ptm);
+		internal static Tm* ImPlotGetLocTimeNative(ImPlotTime t, Tm* ptm)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, Tm*, Tm*>)vt[714])(t, ptm);
+		}
 
 		public static Tm* ImPlotGetLocTime(ImPlotTime t, Tm* ptm)
 		{
@@ -973,9 +2014,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_MakeTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotMakeTimeNative(ImPlotTime* output, int year, int month, int day, int hour, int min, int sec, int us);
+		internal static void ImPlotMakeTimeNative(ImPlotTime* output, int year, int month, int day, int hour, int min, int sec, int us)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, int, int, int, int, int, int, int, void>)vt[715])(output, year, month, day, hour, min, sec, us);
+		}
 
 		public static ImPlotTime ImPlotMakeTime(int year, int month, int day, int hour, int min, int sec, int us)
 		{
@@ -997,9 +2039,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_GetYear")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImPlotGetYearNative(ImPlotTime t);
+		internal static int ImPlotGetYearNative(ImPlotTime t)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, int>)vt[716])(t);
+		}
 
 		public static int ImPlotGetYear(ImPlotTime t)
 		{
@@ -1007,9 +2050,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_AddTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotAddTimeNative(ImPlotTime* output, ImPlotTime t, ImPlotTimeUnit unit, int count);
+		internal static void ImPlotAddTimeNative(ImPlotTime* output, ImPlotTime t, ImPlotTimeUnit unit, int count)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, int, void>)vt[717])(output, t, unit, count);
+		}
 
 		public static ImPlotTime ImPlotAddTime(ImPlotTime t, ImPlotTimeUnit unit, int count)
 		{
@@ -1031,9 +2075,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_FloorTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotFloorTimeNative(ImPlotTime* output, ImPlotTime t, ImPlotTimeUnit unit);
+		internal static void ImPlotFloorTimeNative(ImPlotTime* output, ImPlotTime t, ImPlotTimeUnit unit)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)vt[718])(output, t, unit);
+		}
 
 		public static ImPlotTime ImPlotFloorTime(ImPlotTime t, ImPlotTimeUnit unit)
 		{
@@ -1055,9 +2100,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CeilTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotCeilTimeNative(ImPlotTime* output, ImPlotTime t, ImPlotTimeUnit unit);
+		internal static void ImPlotCeilTimeNative(ImPlotTime* output, ImPlotTime t, ImPlotTimeUnit unit)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)vt[719])(output, t, unit);
+		}
 
 		public static ImPlotTime ImPlotCeilTime(ImPlotTime t, ImPlotTimeUnit unit)
 		{
@@ -1079,9 +2125,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_RoundTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotRoundTimeNative(ImPlotTime* output, ImPlotTime t, ImPlotTimeUnit unit);
+		internal static void ImPlotRoundTimeNative(ImPlotTime* output, ImPlotTime t, ImPlotTimeUnit unit)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)vt[720])(output, t, unit);
+		}
 
 		public static ImPlotTime ImPlotRoundTime(ImPlotTime t, ImPlotTimeUnit unit)
 		{
@@ -1103,9 +2150,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_CombineDateTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotCombineDateTimeNative(ImPlotTime* output, ImPlotTime datePart, ImPlotTime timePart);
+		internal static void ImPlotCombineDateTimeNative(ImPlotTime* output, ImPlotTime datePart, ImPlotTime timePart)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTime, void>)vt[721])(output, datePart, timePart);
+		}
 
 		public static ImPlotTime ImPlotCombineDateTime(ImPlotTime datePart, ImPlotTime timePart)
 		{
@@ -1127,9 +2175,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_FormatTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImPlotFormatTimeNative(ImPlotTime t, byte* buffer, int size, ImPlotTimeFmt fmt, byte use24HrClk);
+		internal static int ImPlotFormatTimeNative(ImPlotTime t, byte* buffer, int size, ImPlotTimeFmt fmt, byte use24HrClk)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotTimeFmt, byte, int>)vt[722])(t, buffer, size, fmt, use24HrClk);
+		}
 
 		public static int ImPlotFormatTime(ImPlotTime t, byte* buffer, int size, ImPlotTimeFmt fmt, bool use24HrClk)
 		{
@@ -1174,9 +2223,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_FormatDate")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImPlotFormatDateNative(ImPlotTime t, byte* buffer, int size, ImPlotDateFmt fmt, byte useIso8601);
+		internal static int ImPlotFormatDateNative(ImPlotTime t, byte* buffer, int size, ImPlotDateFmt fmt, byte useIso8601)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotDateFmt, byte, int>)vt[723])(t, buffer, size, fmt, useIso8601);
+		}
 
 		public static int ImPlotFormatDate(ImPlotTime t, byte* buffer, int size, ImPlotDateFmt fmt, bool useIso8601)
 		{
@@ -1221,9 +2271,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_FormatDateTime")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImPlotFormatDateTimeNative(ImPlotTime t, byte* buffer, int size, ImPlotDateTimeSpec fmt);
+		internal static int ImPlotFormatDateTimeNative(ImPlotTime t, byte* buffer, int size, ImPlotDateTimeSpec fmt)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotDateTimeSpec, int>)vt[724])(t, buffer, size, fmt);
+		}
 
 		public static int ImPlotFormatDateTime(ImPlotTime t, byte* buffer, int size, ImPlotDateTimeSpec fmt)
 		{
@@ -1268,9 +2319,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_ShowDatePicker")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ImPlotShowDatePickerNative(byte* id, int* level, ImPlotTime* t, ImPlotTime* t1, ImPlotTime* t2);
+		internal static byte ImPlotShowDatePickerNative(byte* id, int* level, ImPlotTime* t, ImPlotTime* t1, ImPlotTime* t2)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImPlotTime*, ImPlotTime*, ImPlotTime*, byte>)vt[725])(id, level, t, t1, t2);
+		}
 
 		public static bool ImPlotShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
@@ -2232,9 +3284,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_ShowTimePicker")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ImPlotShowTimePickerNative(byte* id, ImPlotTime* t);
+		internal static byte ImPlotShowTimePickerNative(byte* id, ImPlotTime* t)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotTime*, byte>)vt[726])(id, t);
+		}
 
 		public static bool ImPlotShowTimePicker(byte* id, ImPlotTimePtr t)
 		{
@@ -2329,9 +3382,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TransformForward_Log10")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImPlotTransformForwardLog10Native(double v, void* noname1);
+		internal static double ImPlotTransformForwardLog10Native(double v, void* noname1)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[727])(v, noname1);
+		}
 
 		public static double ImPlotTransformForwardLog10(double v, void* noname1)
 		{
@@ -2339,9 +3393,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TransformInverse_Log10")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImPlotTransformInverseLog10Native(double v, void* noname1);
+		internal static double ImPlotTransformInverseLog10Native(double v, void* noname1)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[728])(v, noname1);
+		}
 
 		public static double ImPlotTransformInverseLog10(double v, void* noname1)
 		{
@@ -2349,9 +3404,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TransformForward_SymLog")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImPlotTransformForwardSymLogNative(double v, void* noname1);
+		internal static double ImPlotTransformForwardSymLogNative(double v, void* noname1)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[729])(v, noname1);
+		}
 
 		public static double ImPlotTransformForwardSymLog(double v, void* noname1)
 		{
@@ -2359,9 +3415,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TransformInverse_SymLog")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImPlotTransformInverseSymLogNative(double v, void* noname1);
+		internal static double ImPlotTransformInverseSymLogNative(double v, void* noname1)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[730])(v, noname1);
+		}
 
 		public static double ImPlotTransformInverseSymLog(double v, void* noname1)
 		{
@@ -2369,9 +3426,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TransformForward_Logit")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImPlotTransformForwardLogitNative(double v, void* noname1);
+		internal static double ImPlotTransformForwardLogitNative(double v, void* noname1)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[731])(v, noname1);
+		}
 
 		public static double ImPlotTransformForwardLogit(double v, void* noname1)
 		{
@@ -2379,9 +3437,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_TransformInverse_Logit")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial double ImPlotTransformInverseLogitNative(double v, void* noname1);
+		internal static double ImPlotTransformInverseLogitNative(double v, void* noname1)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[732])(v, noname1);
+		}
 
 		public static double ImPlotTransformInverseLogit(double v, void* noname1)
 		{
@@ -2389,9 +3448,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Formatter_Default")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImPlotFormatterDefaultNative(double value, byte* buff, int size, void* data);
+		internal static int ImPlotFormatterDefaultNative(double value, byte* buff, int size, void* data)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)vt[733])(value, buff, size, data);
+		}
 
 		public static int ImPlotFormatterDefault(double value, byte* buff, int size, void* data)
 		{
@@ -2436,9 +3496,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Formatter_Logit")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImPlotFormatterLogitNative(double value, byte* buff, int size, void* noname1);
+		internal static int ImPlotFormatterLogitNative(double value, byte* buff, int size, void* noname1)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)vt[734])(value, buff, size, noname1);
+		}
 
 		public static int ImPlotFormatterLogit(double value, byte* buff, int size, void* noname1)
 		{
@@ -2483,9 +3544,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Formatter_Time")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int ImPlotFormatterTimeNative(double noname1, byte* buff, int size, void* data);
+		internal static int ImPlotFormatterTimeNative(double noname1, byte* buff, int size, void* data)
+		{
+			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)vt[735])(noname1, buff, size, data);
+		}
 
 		public static int ImPlotFormatterTime(double noname1, byte* buff, int size, void* data)
 		{
@@ -2530,9 +3592,10 @@ namespace Hexa.NET.ImPlot
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Locator_Default")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotLocatorDefaultNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData);
+		internal static void ImPlotLocatorDefaultNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)vt[736])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Marshal.GetFunctionPointerForDelegate(formatter), formatterData);
+		}
 
 		public static void ImPlotLocatorDefault(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
 		{
@@ -2547,9 +3610,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Locator_Time")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotLocatorTimeNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData);
+		internal static void ImPlotLocatorTimeNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)vt[737])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Marshal.GetFunctionPointerForDelegate(formatter), formatterData);
+		}
 
 		public static void ImPlotLocatorTime(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
 		{
@@ -2564,9 +3628,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Locator_Log10")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotLocatorLog10Native(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData);
+		internal static void ImPlotLocatorLog10Native(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)vt[738])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Marshal.GetFunctionPointerForDelegate(formatter), formatterData);
+		}
 
 		public static void ImPlotLocatorLog10(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
 		{
@@ -2581,9 +3646,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_Locator_SymLog")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImPlotLocatorSymLogNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData);
+		internal static void ImPlotLocatorSymLogNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
+		{
+			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)vt[739])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Marshal.GetFunctionPointerForDelegate(formatter), formatterData);
+		}
 
 		public static void ImPlotLocatorSymLog(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
 		{

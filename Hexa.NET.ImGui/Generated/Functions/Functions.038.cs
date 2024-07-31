@@ -10,6 +10,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 
 namespace Hexa.NET.ImGui
@@ -17,9 +18,1237 @@ namespace Hexa.NET.ImGui
 	public unsafe partial class ImGui
 	{
 
-		[LibraryImport(LibName, EntryPoint = "igIsAliasKey")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsAliasKeyNative(ImGuiKey key);
+		public static void ClosePopupsOverWindow(ref ImGuiWindow refWindow, bool restoreFocusToWindowUnderPopup)
+		{
+			fixed (ImGuiWindow* prefWindow = &refWindow)
+			{
+				ClosePopupsOverWindowNative((ImGuiWindow*)prefWindow, restoreFocusToWindowUnderPopup ? (byte)1 : (byte)0);
+			}
+		}
+
+		internal static void ClosePopupsExceptModalsNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1082])();
+		}
+
+		public static void ClosePopupsExceptModals()
+		{
+			ClosePopupsExceptModalsNative();
+		}
+
+		internal static byte IsPopupOpenIDNative(int id, ImGuiPopupFlags popupFlags)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiPopupFlags, byte>)vt[1083])(id, popupFlags);
+		}
+
+		public static bool IsPopupOpenID(int id, ImGuiPopupFlags popupFlags)
+		{
+			byte ret = IsPopupOpenIDNative(id, popupFlags);
+			return ret != 0;
+		}
+
+		internal static void GetPopupAllowedExtentRectNative(ImRect* output, ImGuiWindow* window)
+		{
+			((delegate* unmanaged[Cdecl]<ImRect*, ImGuiWindow*, void>)vt[1084])(output, window);
+		}
+
+		public static ImRect GetPopupAllowedExtentRect(ImGuiWindowPtr window)
+		{
+			ImRect ret;
+			GetPopupAllowedExtentRectNative(&ret, window);
+			return ret;
+		}
+
+		public static void GetPopupAllowedExtentRect(ImRectPtr output, ImGuiWindowPtr window)
+		{
+			GetPopupAllowedExtentRectNative(output, window);
+		}
+
+		public static void GetPopupAllowedExtentRect(ref ImRect output, ImGuiWindowPtr window)
+		{
+			fixed (ImRect* poutput = &output)
+			{
+				GetPopupAllowedExtentRectNative((ImRect*)poutput, window);
+			}
+		}
+
+		public static ImRect GetPopupAllowedExtentRect(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				ImRect ret;
+				GetPopupAllowedExtentRectNative(&ret, (ImGuiWindow*)pwindow);
+				return ret;
+			}
+		}
+
+		public static void GetPopupAllowedExtentRect(ImRectPtr output, ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				GetPopupAllowedExtentRectNative(output, (ImGuiWindow*)pwindow);
+			}
+		}
+
+		public static void GetPopupAllowedExtentRect(ref ImRect output, ref ImGuiWindow window)
+		{
+			fixed (ImRect* poutput = &output)
+			{
+				fixed (ImGuiWindow* pwindow = &window)
+				{
+					GetPopupAllowedExtentRectNative((ImRect*)poutput, (ImGuiWindow*)pwindow);
+				}
+			}
+		}
+
+		internal static ImGuiWindow* GetTopMostPopupModalNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*>)vt[1085])();
+		}
+
+		public static ImGuiWindowPtr GetTopMostPopupModal()
+		{
+			ImGuiWindowPtr ret = GetTopMostPopupModalNative();
+			return ret;
+		}
+
+		internal static ImGuiWindow* GetTopMostAndVisiblePopupModalNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*>)vt[1086])();
+		}
+
+		public static ImGuiWindowPtr GetTopMostAndVisiblePopupModal()
+		{
+			ImGuiWindowPtr ret = GetTopMostAndVisiblePopupModalNative();
+			return ret;
+		}
+
+		internal static ImGuiWindow* FindBlockingModalNative(ImGuiWindow* window)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiWindow*>)vt[1087])(window);
+		}
+
+		public static ImGuiWindowPtr FindBlockingModal(ImGuiWindowPtr window)
+		{
+			ImGuiWindowPtr ret = FindBlockingModalNative(window);
+			return ret;
+		}
+
+		public static ImGuiWindowPtr FindBlockingModal(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				ImGuiWindowPtr ret = FindBlockingModalNative((ImGuiWindow*)pwindow);
+				return ret;
+			}
+		}
+
+		internal static void FindBestWindowPosForPopupNative(Vector2* output, ImGuiWindow* window)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, ImGuiWindow*, void>)vt[1088])(output, window);
+		}
+
+		public static Vector2 FindBestWindowPosForPopup(ImGuiWindowPtr window)
+		{
+			Vector2 ret;
+			FindBestWindowPosForPopupNative(&ret, window);
+			return ret;
+		}
+
+		public static void FindBestWindowPosForPopup(Vector2* output, ImGuiWindowPtr window)
+		{
+			FindBestWindowPosForPopupNative(output, window);
+		}
+
+		public static void FindBestWindowPosForPopup(ref Vector2 output, ImGuiWindowPtr window)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				FindBestWindowPosForPopupNative((Vector2*)poutput, window);
+			}
+		}
+
+		public static Vector2 FindBestWindowPosForPopup(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				Vector2 ret;
+				FindBestWindowPosForPopupNative(&ret, (ImGuiWindow*)pwindow);
+				return ret;
+			}
+		}
+
+		public static void FindBestWindowPosForPopup(Vector2* output, ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				FindBestWindowPosForPopupNative(output, (ImGuiWindow*)pwindow);
+			}
+		}
+
+		public static void FindBestWindowPosForPopup(ref Vector2 output, ref ImGuiWindow window)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImGuiWindow* pwindow = &window)
+				{
+					FindBestWindowPosForPopupNative((Vector2*)poutput, (ImGuiWindow*)pwindow);
+				}
+			}
+		}
+
+		internal static void FindBestWindowPosForPopupExNative(Vector2* output, Vector2 refPos, Vector2 size, ImGuiDir* lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, Vector2, Vector2, ImGuiDir*, ImRect, ImRect, ImGuiPopupPositionPolicy, void>)vt[1089])(output, refPos, size, lastDir, rOuter, rAvoid, policy);
+		}
+
+		public static Vector2 FindBestWindowPosForPopupEx(Vector2 refPos, Vector2 size, ImGuiDir* lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
+		{
+			Vector2 ret;
+			FindBestWindowPosForPopupExNative(&ret, refPos, size, lastDir, rOuter, rAvoid, policy);
+			return ret;
+		}
+
+		public static void FindBestWindowPosForPopupEx(Vector2* output, Vector2 refPos, Vector2 size, ImGuiDir* lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
+		{
+			FindBestWindowPosForPopupExNative(output, refPos, size, lastDir, rOuter, rAvoid, policy);
+		}
+
+		public static void FindBestWindowPosForPopupEx(ref Vector2 output, Vector2 refPos, Vector2 size, ImGuiDir* lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				FindBestWindowPosForPopupExNative((Vector2*)poutput, refPos, size, lastDir, rOuter, rAvoid, policy);
+			}
+		}
+
+		public static Vector2 FindBestWindowPosForPopupEx(Vector2 refPos, Vector2 size, ref ImGuiDir lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
+		{
+			fixed (ImGuiDir* plastDir = &lastDir)
+			{
+				Vector2 ret;
+				FindBestWindowPosForPopupExNative(&ret, refPos, size, (ImGuiDir*)plastDir, rOuter, rAvoid, policy);
+				return ret;
+			}
+		}
+
+		public static void FindBestWindowPosForPopupEx(Vector2* output, Vector2 refPos, Vector2 size, ref ImGuiDir lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
+		{
+			fixed (ImGuiDir* plastDir = &lastDir)
+			{
+				FindBestWindowPosForPopupExNative(output, refPos, size, (ImGuiDir*)plastDir, rOuter, rAvoid, policy);
+			}
+		}
+
+		public static void FindBestWindowPosForPopupEx(ref Vector2 output, Vector2 refPos, Vector2 size, ref ImGuiDir lastDir, ImRect rOuter, ImRect rAvoid, ImGuiPopupPositionPolicy policy)
+		{
+			fixed (Vector2* poutput = &output)
+			{
+				fixed (ImGuiDir* plastDir = &lastDir)
+				{
+					FindBestWindowPosForPopupExNative((Vector2*)poutput, refPos, size, (ImGuiDir*)plastDir, rOuter, rAvoid, policy);
+				}
+			}
+		}
+
+		internal static byte BeginTooltipExNative(ImGuiTooltipFlags tooltipFlags, ImGuiWindowFlags extraWindowFlags)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTooltipFlags, ImGuiWindowFlags, byte>)vt[1090])(tooltipFlags, extraWindowFlags);
+		}
+
+		public static bool BeginTooltipEx(ImGuiTooltipFlags tooltipFlags, ImGuiWindowFlags extraWindowFlags)
+		{
+			byte ret = BeginTooltipExNative(tooltipFlags, extraWindowFlags);
+			return ret != 0;
+		}
+
+		internal static byte BeginTooltipHiddenNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[1091])();
+		}
+
+		public static bool BeginTooltipHidden()
+		{
+			byte ret = BeginTooltipHiddenNative();
+			return ret != 0;
+		}
+
+		internal static byte BeginViewportSideBarNative(byte* name, ImGuiViewport* viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiViewport*, ImGuiDir, float, ImGuiWindowFlags, byte>)vt[1092])(name, viewport, dir, size, windowFlags);
+		}
+
+		public static bool BeginViewportSideBar(byte* name, ImGuiViewportPtr viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
+		{
+			byte ret = BeginViewportSideBarNative(name, viewport, dir, size, windowFlags);
+			return ret != 0;
+		}
+
+		public static bool BeginViewportSideBar(ref byte name, ImGuiViewportPtr viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
+		{
+			fixed (byte* pname = &name)
+			{
+				byte ret = BeginViewportSideBarNative((byte*)pname, viewport, dir, size, windowFlags);
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginViewportSideBar(string name, ImGuiViewportPtr viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginViewportSideBarNative(pStr0, viewport, dir, size, windowFlags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool BeginViewportSideBar(byte* name, ref ImGuiViewport viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
+		{
+			fixed (ImGuiViewport* pviewport = &viewport)
+			{
+				byte ret = BeginViewportSideBarNative(name, (ImGuiViewport*)pviewport, dir, size, windowFlags);
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginViewportSideBar(ref byte name, ref ImGuiViewport viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
+		{
+			fixed (byte* pname = &name)
+			{
+				fixed (ImGuiViewport* pviewport = &viewport)
+				{
+					byte ret = BeginViewportSideBarNative((byte*)pname, (ImGuiViewport*)pviewport, dir, size, windowFlags);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool BeginViewportSideBar(string name, ref ImGuiViewport viewport, ImGuiDir dir, float size, ImGuiWindowFlags windowFlags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (name != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(name);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ImGuiViewport* pviewport = &viewport)
+			{
+				byte ret = BeginViewportSideBarNative(pStr0, (ImGuiViewport*)pviewport, dir, size, windowFlags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret != 0;
+			}
+		}
+
+		internal static byte BeginMenuExNative(byte* label, byte* icon, byte enabled)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte, byte>)vt[1093])(label, icon, enabled);
+		}
+
+		public static bool BeginMenuEx(byte* label, byte* icon, bool enabled)
+		{
+			byte ret = BeginMenuExNative(label, icon, enabled ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		public static bool BeginMenuEx(ref byte label, byte* icon, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = BeginMenuExNative((byte*)plabel, icon, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginMenuEx(string label, byte* icon, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginMenuExNative(pStr0, icon, enabled ? (byte)1 : (byte)0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool BeginMenuEx(byte* label, ref byte icon, bool enabled)
+		{
+			fixed (byte* picon = &icon)
+			{
+				byte ret = BeginMenuExNative(label, (byte*)picon, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		public static bool BeginMenuEx(byte* label, string icon, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (icon != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(icon);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = BeginMenuExNative(label, pStr0, enabled ? (byte)1 : (byte)0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool BeginMenuEx(ref byte label, ref byte icon, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* picon = &icon)
+				{
+					byte ret = BeginMenuExNative((byte*)plabel, (byte*)picon, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool BeginMenuEx(string label, string icon, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (icon != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(icon);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = BeginMenuExNative(pStr0, pStr1, enabled ? (byte)1 : (byte)0);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		internal static byte MenuItemExNative(byte* label, byte* icon, byte* shortcut, byte selected, byte enabled)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, byte, byte, byte>)vt[1094])(label, icon, shortcut, selected, enabled);
+		}
+
+		public static bool MenuItemEx(byte* label, byte* icon, byte* shortcut, bool selected, bool enabled)
+		{
+			byte ret = MenuItemExNative(label, icon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+			return ret != 0;
+		}
+
+		public static bool MenuItemEx(ref byte label, byte* icon, byte* shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				byte ret = MenuItemExNative((byte*)plabel, icon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		public static bool MenuItemEx(string label, byte* icon, byte* shortcut, bool selected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemExNative(pStr0, icon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool MenuItemEx(byte* label, ref byte icon, byte* shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* picon = &icon)
+			{
+				byte ret = MenuItemExNative(label, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		public static bool MenuItemEx(byte* label, string icon, byte* shortcut, bool selected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (icon != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(icon);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemExNative(label, pStr0, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool MenuItemEx(ref byte label, ref byte icon, byte* shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* picon = &icon)
+				{
+					byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool MenuItemEx(string label, string icon, byte* shortcut, bool selected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (icon != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(icon);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = MenuItemExNative(pStr0, pStr1, shortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool MenuItemEx(byte* label, byte* icon, ref byte shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* pshortcut = &shortcut)
+			{
+				byte ret = MenuItemExNative(label, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+				return ret != 0;
+			}
+		}
+
+		public static bool MenuItemEx(byte* label, byte* icon, string shortcut, bool selected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (shortcut != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(shortcut, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte ret = MenuItemExNative(label, icon, pStr0, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool MenuItemEx(ref byte label, byte* icon, ref byte shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemExNative((byte*)plabel, icon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool MenuItemEx(string label, byte* icon, string shortcut, bool selected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (shortcut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = MenuItemExNative(pStr0, icon, pStr1, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool MenuItemEx(byte* label, ref byte icon, ref byte shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* picon = &icon)
+			{
+				fixed (byte* pshortcut = &shortcut)
+				{
+					byte ret = MenuItemExNative(label, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool MenuItemEx(byte* label, string icon, string shortcut, bool selected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (icon != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(icon);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(icon, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (shortcut != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(shortcut, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte ret = MenuItemExNative(label, pStr0, pStr1, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		public static bool MenuItemEx(ref byte label, ref byte icon, ref byte shortcut, bool selected, bool enabled)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (byte* picon = &icon)
+				{
+					fixed (byte* pshortcut = &shortcut)
+					{
+						byte ret = MenuItemExNative((byte*)plabel, (byte*)picon, (byte*)pshortcut, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool MenuItemEx(string label, string icon, string shortcut, bool selected, bool enabled)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (icon != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(icon);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(icon, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			byte* pStr2 = null;
+			int pStrSize2 = 0;
+			if (shortcut != null)
+			{
+				pStrSize2 = Utils.GetByteCountUTF8(shortcut);
+				if (pStrSize2 >= Utils.MaxStackallocSize)
+				{
+					pStr2 = Utils.Alloc<byte>(pStrSize2 + 1);
+				}
+				else
+				{
+					byte* pStrStack2 = stackalloc byte[pStrSize2 + 1];
+					pStr2 = pStrStack2;
+				}
+				int pStrOffset2 = Utils.EncodeStringUTF8(shortcut, pStr2, pStrSize2);
+				pStr2[pStrOffset2] = 0;
+			}
+			byte ret = MenuItemExNative(pStr0, pStr1, pStr2, selected ? (byte)1 : (byte)0, enabled ? (byte)1 : (byte)0);
+			if (pStrSize2 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr2);
+			}
+			if (pStrSize1 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr1);
+			}
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret != 0;
+		}
+
+		internal static byte BeginComboPopupNative(int popupId, ImRect bb, ImGuiComboFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImRect, ImGuiComboFlags, byte>)vt[1095])(popupId, bb, flags);
+		}
+
+		public static bool BeginComboPopup(int popupId, ImRect bb, ImGuiComboFlags flags)
+		{
+			byte ret = BeginComboPopupNative(popupId, bb, flags);
+			return ret != 0;
+		}
+
+		internal static byte BeginComboPreviewNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[1096])();
+		}
+
+		public static bool BeginComboPreview()
+		{
+			byte ret = BeginComboPreviewNative();
+			return ret != 0;
+		}
+
+		internal static void EndComboPreviewNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1097])();
+		}
+
+		public static void EndComboPreview()
+		{
+			EndComboPreviewNative();
+		}
+
+		internal static void NavInitWindowNative(ImGuiWindow* window, byte forceReinit)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, byte, void>)vt[1098])(window, forceReinit);
+		}
+
+		public static void NavInitWindow(ImGuiWindowPtr window, bool forceReinit)
+		{
+			NavInitWindowNative(window, forceReinit ? (byte)1 : (byte)0);
+		}
+
+		public static void NavInitWindow(ref ImGuiWindow window, bool forceReinit)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				NavInitWindowNative((ImGuiWindow*)pwindow, forceReinit ? (byte)1 : (byte)0);
+			}
+		}
+
+		internal static void NavInitRequestApplyResultNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1099])();
+		}
+
+		public static void NavInitRequestApplyResult()
+		{
+			NavInitRequestApplyResultNative();
+		}
+
+		internal static byte NavMoveRequestButNoResultYetNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[1100])();
+		}
+
+		public static bool NavMoveRequestButNoResultYet()
+		{
+			byte ret = NavMoveRequestButNoResultYetNative();
+			return ret != 0;
+		}
+
+		internal static void NavMoveRequestSubmitNative(ImGuiDir moveDir, ImGuiDir clipDir, ImGuiNavMoveFlags moveFlags, ImGuiScrollFlags scrollFlags)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiDir, ImGuiDir, ImGuiNavMoveFlags, ImGuiScrollFlags, void>)vt[1101])(moveDir, clipDir, moveFlags, scrollFlags);
+		}
+
+		public static void NavMoveRequestSubmit(ImGuiDir moveDir, ImGuiDir clipDir, ImGuiNavMoveFlags moveFlags, ImGuiScrollFlags scrollFlags)
+		{
+			NavMoveRequestSubmitNative(moveDir, clipDir, moveFlags, scrollFlags);
+		}
+
+		internal static void NavMoveRequestForwardNative(ImGuiDir moveDir, ImGuiDir clipDir, ImGuiNavMoveFlags moveFlags, ImGuiScrollFlags scrollFlags)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiDir, ImGuiDir, ImGuiNavMoveFlags, ImGuiScrollFlags, void>)vt[1102])(moveDir, clipDir, moveFlags, scrollFlags);
+		}
+
+		public static void NavMoveRequestForward(ImGuiDir moveDir, ImGuiDir clipDir, ImGuiNavMoveFlags moveFlags, ImGuiScrollFlags scrollFlags)
+		{
+			NavMoveRequestForwardNative(moveDir, clipDir, moveFlags, scrollFlags);
+		}
+
+		internal static void NavMoveRequestResolveWithLastItemNative(ImGuiNavItemData* result)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiNavItemData*, void>)vt[1103])(result);
+		}
+
+		public static void NavMoveRequestResolveWithLastItem(ImGuiNavItemDataPtr result)
+		{
+			NavMoveRequestResolveWithLastItemNative(result);
+		}
+
+		public static void NavMoveRequestResolveWithLastItem(ref ImGuiNavItemData result)
+		{
+			fixed (ImGuiNavItemData* presult = &result)
+			{
+				NavMoveRequestResolveWithLastItemNative((ImGuiNavItemData*)presult);
+			}
+		}
+
+		internal static void NavMoveRequestResolveWithPastTreeNodeNative(ImGuiNavItemData* result, ImGuiTreeNodeStackData* treeNodeData)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiNavItemData*, ImGuiTreeNodeStackData*, void>)vt[1104])(result, treeNodeData);
+		}
+
+		public static void NavMoveRequestResolveWithPastTreeNode(ImGuiNavItemDataPtr result, ImGuiTreeNodeStackDataPtr treeNodeData)
+		{
+			NavMoveRequestResolveWithPastTreeNodeNative(result, treeNodeData);
+		}
+
+		public static void NavMoveRequestResolveWithPastTreeNode(ref ImGuiNavItemData result, ImGuiTreeNodeStackDataPtr treeNodeData)
+		{
+			fixed (ImGuiNavItemData* presult = &result)
+			{
+				NavMoveRequestResolveWithPastTreeNodeNative((ImGuiNavItemData*)presult, treeNodeData);
+			}
+		}
+
+		public static void NavMoveRequestResolveWithPastTreeNode(ImGuiNavItemDataPtr result, ref ImGuiTreeNodeStackData treeNodeData)
+		{
+			fixed (ImGuiTreeNodeStackData* ptreeNodeData = &treeNodeData)
+			{
+				NavMoveRequestResolveWithPastTreeNodeNative(result, (ImGuiTreeNodeStackData*)ptreeNodeData);
+			}
+		}
+
+		public static void NavMoveRequestResolveWithPastTreeNode(ref ImGuiNavItemData result, ref ImGuiTreeNodeStackData treeNodeData)
+		{
+			fixed (ImGuiNavItemData* presult = &result)
+			{
+				fixed (ImGuiTreeNodeStackData* ptreeNodeData = &treeNodeData)
+				{
+					NavMoveRequestResolveWithPastTreeNodeNative((ImGuiNavItemData*)presult, (ImGuiTreeNodeStackData*)ptreeNodeData);
+				}
+			}
+		}
+
+		internal static void NavMoveRequestCancelNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1105])();
+		}
+
+		public static void NavMoveRequestCancel()
+		{
+			NavMoveRequestCancelNative();
+		}
+
+		internal static void NavMoveRequestApplyResultNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1106])();
+		}
+
+		public static void NavMoveRequestApplyResult()
+		{
+			NavMoveRequestApplyResultNative();
+		}
+
+		internal static void NavMoveRequestTryWrappingNative(ImGuiWindow* window, ImGuiNavMoveFlags moveFlags)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiNavMoveFlags, void>)vt[1107])(window, moveFlags);
+		}
+
+		public static void NavMoveRequestTryWrapping(ImGuiWindowPtr window, ImGuiNavMoveFlags moveFlags)
+		{
+			NavMoveRequestTryWrappingNative(window, moveFlags);
+		}
+
+		public static void NavMoveRequestTryWrapping(ref ImGuiWindow window, ImGuiNavMoveFlags moveFlags)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				NavMoveRequestTryWrappingNative((ImGuiWindow*)pwindow, moveFlags);
+			}
+		}
+
+		internal static void NavHighlightActivatedNative(int id)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[1108])(id);
+		}
+
+		public static void NavHighlightActivated(int id)
+		{
+			NavHighlightActivatedNative(id);
+		}
+
+		internal static void NavClearPreferredPosForAxisNative(ImGuiAxis axis)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiAxis, void>)vt[1109])(axis);
+		}
+
+		public static void NavClearPreferredPosForAxis(ImGuiAxis axis)
+		{
+			NavClearPreferredPosForAxisNative(axis);
+		}
+
+		internal static void NavRestoreHighlightAfterMoveNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1110])();
+		}
+
+		public static void NavRestoreHighlightAfterMove()
+		{
+			NavRestoreHighlightAfterMoveNative();
+		}
+
+		internal static void NavUpdateCurrentWindowIsScrollPushableXNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1111])();
+		}
+
+		public static void NavUpdateCurrentWindowIsScrollPushableX()
+		{
+			NavUpdateCurrentWindowIsScrollPushableXNative();
+		}
+
+		internal static void SetNavWindowNative(ImGuiWindow* window)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)vt[1112])(window);
+		}
+
+		public static void SetNavWindow(ImGuiWindowPtr window)
+		{
+			SetNavWindowNative(window);
+		}
+
+		public static void SetNavWindow(ref ImGuiWindow window)
+		{
+			fixed (ImGuiWindow* pwindow = &window)
+			{
+				SetNavWindowNative((ImGuiWindow*)pwindow);
+			}
+		}
+
+		internal static void SetNavIDNative(int id, ImGuiNavLayer navLayer, int focusScopeId, ImRect rectRel)
+		{
+			((delegate* unmanaged[Cdecl]<int, ImGuiNavLayer, int, ImRect, void>)vt[1113])(id, navLayer, focusScopeId, rectRel);
+		}
+
+		public static void SetNavID(int id, ImGuiNavLayer navLayer, int focusScopeId, ImRect rectRel)
+		{
+			SetNavIDNative(id, navLayer, focusScopeId, rectRel);
+		}
+
+		internal static void SetNavFocusScopeNative(int focusScopeId)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[1114])(focusScopeId);
+		}
+
+		public static void SetNavFocusScope(int focusScopeId)
+		{
+			SetNavFocusScopeNative(focusScopeId);
+		}
+
+		internal static void FocusItemNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1115])();
+		}
+
+		public static void FocusItem()
+		{
+			FocusItemNative();
+		}
+
+		internal static void ActivateItemByIDNative(int id)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[1116])(id);
+		}
+
+		public static void ActivateItemByID(int id)
+		{
+			ActivateItemByIDNative(id);
+		}
+
+		internal static byte IsNamedKeyNative(ImGuiKey key)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1117])(key);
+		}
+
+		public static bool IsNamedKey(ImGuiKey key)
+		{
+			byte ret = IsNamedKeyNative(key);
+			return ret != 0;
+		}
+
+		internal static byte IsNamedKeyOrModNative(ImGuiKey key)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1118])(key);
+		}
+
+		public static bool IsNamedKeyOrMod(ImGuiKey key)
+		{
+			byte ret = IsNamedKeyOrModNative(key);
+			return ret != 0;
+		}
+
+		internal static byte IsLegacyKeyNative(ImGuiKey key)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1119])(key);
+		}
+
+		public static bool IsLegacyKey(ImGuiKey key)
+		{
+			byte ret = IsLegacyKeyNative(key);
+			return ret != 0;
+		}
+
+		internal static byte IsKeyboardKeyNative(ImGuiKey key)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1120])(key);
+		}
+
+		public static bool IsKeyboardKey(ImGuiKey key)
+		{
+			byte ret = IsKeyboardKeyNative(key);
+			return ret != 0;
+		}
+
+		internal static byte IsGamepadKeyNative(ImGuiKey key)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1121])(key);
+		}
+
+		public static bool IsGamepadKey(ImGuiKey key)
+		{
+			byte ret = IsGamepadKeyNative(key);
+			return ret != 0;
+		}
+
+		internal static byte IsMouseKeyNative(ImGuiKey key)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1122])(key);
+		}
+
+		public static bool IsMouseKey(ImGuiKey key)
+		{
+			byte ret = IsMouseKeyNative(key);
+			return ret != 0;
+		}
+
+		internal static byte IsAliasKeyNative(ImGuiKey key)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1123])(key);
+		}
 
 		public static bool IsAliasKey(ImGuiKey key)
 		{
@@ -27,9 +1256,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsModKey")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsModKeyNative(ImGuiKey key);
+		internal static byte IsModKeyNative(ImGuiKey key)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, byte>)vt[1124])(key);
+		}
 
 		public static bool IsModKey(ImGuiKey key)
 		{
@@ -37,9 +1267,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igFixupKeyChord")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int FixupKeyChordNative(int keyChord);
+		internal static int FixupKeyChordNative(int keyChord)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, int>)vt[1125])(keyChord);
+		}
 
 		public static int FixupKeyChord(int keyChord)
 		{
@@ -47,9 +1278,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igConvertSingleModFlagToKey")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiKey ConvertSingleModFlagToKeyNative(ImGuiKey key);
+		internal static ImGuiKey ConvertSingleModFlagToKeyNative(ImGuiKey key)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, ImGuiKey>)vt[1126])(key);
+		}
 
 		public static ImGuiKey ConvertSingleModFlagToKey(ImGuiKey key)
 		{
@@ -57,9 +1289,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetKeyData_ContextPtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiKeyData* GetKeyDataContextPtrNative(ImGuiContext* ctx, ImGuiKey key);
+		internal static ImGuiKeyData* GetKeyDataContextPtrNative(ImGuiContext* ctx, ImGuiKey key)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiKey, ImGuiKeyData*>)vt[1127])(ctx, key);
+		}
 
 		public static ImGuiKeyDataPtr GetKeyDataContextPtr(ImGuiContextPtr ctx, ImGuiKey key)
 		{
@@ -76,9 +1309,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetKeyData_Key")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiKeyData* GetKeyDataKeyNative(ImGuiKey key);
+		internal static ImGuiKeyData* GetKeyDataKeyNative(ImGuiKey key)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, ImGuiKeyData*>)vt[1128])(key);
+		}
 
 		public static ImGuiKeyDataPtr GetKeyDataKey(ImGuiKey key)
 		{
@@ -86,9 +1320,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igMouseButtonToKey")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiKey MouseButtonToKeyNative(ImGuiMouseButton button);
+		internal static ImGuiKey MouseButtonToKeyNative(ImGuiMouseButton button)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, ImGuiKey>)vt[1129])(button);
+		}
 
 		public static ImGuiKey MouseButtonToKey(ImGuiMouseButton button)
 		{
@@ -96,9 +1331,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsMouseDragPastThreshold")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsMouseDragPastThresholdNative(ImGuiMouseButton button, float lockThreshold);
+		internal static byte IsMouseDragPastThresholdNative(ImGuiMouseButton button, float lockThreshold)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, float, byte>)vt[1130])(button, lockThreshold);
+		}
 
 		public static bool IsMouseDragPastThreshold(ImGuiMouseButton button, float lockThreshold)
 		{
@@ -106,9 +1342,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetKeyMagnitude2d")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetKeyMagnitude2dNative(Vector2* output, ImGuiKey keyLeft, ImGuiKey keyRight, ImGuiKey keyUp, ImGuiKey keyDown);
+		internal static void GetKeyMagnitude2dNative(Vector2* output, ImGuiKey keyLeft, ImGuiKey keyRight, ImGuiKey keyUp, ImGuiKey keyDown)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, ImGuiKey, ImGuiKey, ImGuiKey, ImGuiKey, void>)vt[1131])(output, keyLeft, keyRight, keyUp, keyDown);
+		}
 
 		public static Vector2 GetKeyMagnitude2d(ImGuiKey keyLeft, ImGuiKey keyRight, ImGuiKey keyUp, ImGuiKey keyDown)
 		{
@@ -130,9 +1367,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetNavTweakPressedAmount")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetNavTweakPressedAmountNative(ImGuiAxis axis);
+		internal static float GetNavTweakPressedAmountNative(ImGuiAxis axis)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiAxis, float>)vt[1132])(axis);
+		}
 
 		public static float GetNavTweakPressedAmount(ImGuiAxis axis)
 		{
@@ -140,9 +1378,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igCalcTypematicRepeatAmount")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int CalcTypematicRepeatAmountNative(float t0, float t1, float repeatDelay, float repeatRate);
+		internal static int CalcTypematicRepeatAmountNative(float t0, float t1, float repeatDelay, float repeatRate)
+		{
+			return ((delegate* unmanaged[Cdecl]<float, float, float, float, int>)vt[1133])(t0, t1, repeatDelay, repeatRate);
+		}
 
 		public static int CalcTypematicRepeatAmount(float t0, float t1, float repeatDelay, float repeatRate)
 		{
@@ -150,9 +1389,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetTypematicRepeatRate")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetTypematicRepeatRateNative(ImGuiInputFlags flags, float* repeatDelay, float* repeatRate);
+		internal static void GetTypematicRepeatRateNative(ImGuiInputFlags flags, float* repeatDelay, float* repeatRate)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiInputFlags, float*, float*, void>)vt[1134])(flags, repeatDelay, repeatRate);
+		}
 
 		public static void GetTypematicRepeatRate(ImGuiInputFlags flags, float* repeatDelay, float* repeatRate)
 		{
@@ -186,27 +1426,30 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTeleportMousePos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TeleportMousePosNative(Vector2 pos);
+		internal static void TeleportMousePosNative(Vector2 pos)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2, void>)vt[1135])(pos);
+		}
 
 		public static void TeleportMousePos(Vector2 pos)
 		{
 			TeleportMousePosNative(pos);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetActiveIdUsingAllKeyboardKeys")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetActiveIdUsingAllKeyboardKeysNative();
+		internal static void SetActiveIdUsingAllKeyboardKeysNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1136])();
+		}
 
 		public static void SetActiveIdUsingAllKeyboardKeys()
 		{
 			SetActiveIdUsingAllKeyboardKeysNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsActiveIdUsingNavDir")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsActiveIdUsingNavDirNative(ImGuiDir dir);
+		internal static byte IsActiveIdUsingNavDirNative(ImGuiDir dir)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiDir, byte>)vt[1137])(dir);
+		}
 
 		public static bool IsActiveIdUsingNavDir(ImGuiDir dir)
 		{
@@ -214,9 +1457,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetKeyOwner")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int GetKeyOwnerNative(ImGuiKey key);
+		internal static int GetKeyOwnerNative(ImGuiKey key)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, int>)vt[1138])(key);
+		}
 
 		public static int GetKeyOwner(ImGuiKey key)
 		{
@@ -224,36 +1468,40 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetKeyOwner")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetKeyOwnerNative(ImGuiKey key, int ownerId, ImGuiInputFlags flags);
+		internal static void SetKeyOwnerNative(ImGuiKey key, int ownerId, ImGuiInputFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiKey, int, ImGuiInputFlags, void>)vt[1139])(key, ownerId, flags);
+		}
 
 		public static void SetKeyOwner(ImGuiKey key, int ownerId, ImGuiInputFlags flags)
 		{
 			SetKeyOwnerNative(key, ownerId, flags);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetKeyOwnersForKeyChord")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetKeyOwnersForKeyChordNative(int key, int ownerId, ImGuiInputFlags flags);
+		internal static void SetKeyOwnersForKeyChordNative(int key, int ownerId, ImGuiInputFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<int, int, ImGuiInputFlags, void>)vt[1140])(key, ownerId, flags);
+		}
 
 		public static void SetKeyOwnersForKeyChord(int key, int ownerId, ImGuiInputFlags flags)
 		{
 			SetKeyOwnersForKeyChordNative(key, ownerId, flags);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetItemKeyOwner_InputFlags")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetItemKeyOwnerInputFlagsNative(ImGuiKey key, ImGuiInputFlags flags);
+		internal static void SetItemKeyOwnerInputFlagsNative(ImGuiKey key, ImGuiInputFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiKey, ImGuiInputFlags, void>)vt[1141])(key, flags);
+		}
 
 		public static void SetItemKeyOwnerInputFlags(ImGuiKey key, ImGuiInputFlags flags)
 		{
 			SetItemKeyOwnerInputFlagsNative(key, flags);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTestKeyOwner")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TestKeyOwnerNative(ImGuiKey key, int ownerId);
+		internal static byte TestKeyOwnerNative(ImGuiKey key, int ownerId)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, int, byte>)vt[1142])(key, ownerId);
+		}
 
 		public static bool TestKeyOwner(ImGuiKey key, int ownerId)
 		{
@@ -261,9 +1509,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetKeyOwnerData")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiKeyOwnerData* GetKeyOwnerDataNative(ImGuiContext* ctx, ImGuiKey key);
+		internal static ImGuiKeyOwnerData* GetKeyOwnerDataNative(ImGuiContext* ctx, ImGuiKey key)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiKey, ImGuiKeyOwnerData*>)vt[1143])(ctx, key);
+		}
 
 		public static ImGuiKeyOwnerDataPtr GetKeyOwnerData(ImGuiContextPtr ctx, ImGuiKey key)
 		{
@@ -280,9 +1529,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsKeyDown_ID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsKeyDownIDNative(ImGuiKey key, int ownerId);
+		internal static byte IsKeyDownIDNative(ImGuiKey key, int ownerId)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, int, byte>)vt[1144])(key, ownerId);
+		}
 
 		public static bool IsKeyDownID(ImGuiKey key, int ownerId)
 		{
@@ -290,9 +1540,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsKeyPressed_InputFlags")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsKeyPressedInputFlagsNative(ImGuiKey key, ImGuiInputFlags flags, int ownerId);
+		internal static byte IsKeyPressedInputFlagsNative(ImGuiKey key, ImGuiInputFlags flags, int ownerId)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, ImGuiInputFlags, int, byte>)vt[1145])(key, flags, ownerId);
+		}
 
 		public static bool IsKeyPressedInputFlags(ImGuiKey key, ImGuiInputFlags flags, int ownerId)
 		{
@@ -300,9 +1551,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsKeyReleased_ID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsKeyReleasedIDNative(ImGuiKey key, int ownerId);
+		internal static byte IsKeyReleasedIDNative(ImGuiKey key, int ownerId)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiKey, int, byte>)vt[1146])(key, ownerId);
+		}
 
 		public static bool IsKeyReleasedID(ImGuiKey key, int ownerId)
 		{
@@ -310,9 +1562,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsKeyChordPressed_InputFlags")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsKeyChordPressedInputFlagsNative(int keyChord, ImGuiInputFlags flags, int ownerId);
+		internal static byte IsKeyChordPressedInputFlagsNative(int keyChord, ImGuiInputFlags flags, int ownerId)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, int, byte>)vt[1147])(keyChord, flags, ownerId);
+		}
 
 		public static bool IsKeyChordPressedInputFlags(int keyChord, ImGuiInputFlags flags, int ownerId)
 		{
@@ -320,9 +1573,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsMouseDown_ID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsMouseDownIDNative(ImGuiMouseButton button, int ownerId);
+		internal static byte IsMouseDownIDNative(ImGuiMouseButton button, int ownerId)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int, byte>)vt[1148])(button, ownerId);
+		}
 
 		public static bool IsMouseDownID(ImGuiMouseButton button, int ownerId)
 		{
@@ -330,9 +1584,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsMouseClicked_InputFlags")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsMouseClickedInputFlagsNative(ImGuiMouseButton button, ImGuiInputFlags flags, int ownerId);
+		internal static byte IsMouseClickedInputFlagsNative(ImGuiMouseButton button, ImGuiInputFlags flags, int ownerId)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, ImGuiInputFlags, int, byte>)vt[1149])(button, flags, ownerId);
+		}
 
 		public static bool IsMouseClickedInputFlags(ImGuiMouseButton button, ImGuiInputFlags flags, int ownerId)
 		{
@@ -340,9 +1595,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsMouseReleased_ID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsMouseReleasedIDNative(ImGuiMouseButton button, int ownerId);
+		internal static byte IsMouseReleasedIDNative(ImGuiMouseButton button, int ownerId)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int, byte>)vt[1150])(button, ownerId);
+		}
 
 		public static bool IsMouseReleasedID(ImGuiMouseButton button, int ownerId)
 		{
@@ -350,9 +1606,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsMouseDoubleClicked_ID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsMouseDoubleClickedIDNative(ImGuiMouseButton button, int ownerId);
+		internal static byte IsMouseDoubleClickedIDNative(ImGuiMouseButton button, int ownerId)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiMouseButton, int, byte>)vt[1151])(button, ownerId);
+		}
 
 		public static bool IsMouseDoubleClickedID(ImGuiMouseButton button, int ownerId)
 		{
@@ -360,9 +1617,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igShortcut_ID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ShortcutIDNative(int keyChord, ImGuiInputFlags flags, int ownerId);
+		internal static byte ShortcutIDNative(int keyChord, ImGuiInputFlags flags, int ownerId)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, int, byte>)vt[1152])(keyChord, flags, ownerId);
+		}
 
 		public static bool ShortcutID(int keyChord, ImGuiInputFlags flags, int ownerId)
 		{
@@ -370,9 +1628,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetShortcutRouting")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte SetShortcutRoutingNative(int keyChord, ImGuiInputFlags flags, int ownerId);
+		internal static byte SetShortcutRoutingNative(int keyChord, ImGuiInputFlags flags, int ownerId)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiInputFlags, int, byte>)vt[1153])(keyChord, flags, ownerId);
+		}
 
 		public static bool SetShortcutRouting(int keyChord, ImGuiInputFlags flags, int ownerId)
 		{
@@ -380,9 +1639,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTestShortcutRouting")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TestShortcutRoutingNative(int keyChord, int ownerId);
+		internal static byte TestShortcutRoutingNative(int keyChord, int ownerId)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, int, byte>)vt[1154])(keyChord, ownerId);
+		}
 
 		public static bool TestShortcutRouting(int keyChord, int ownerId)
 		{
@@ -390,9 +1650,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetShortcutRoutingData")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiKeyRoutingData* GetShortcutRoutingDataNative(int keyChord);
+		internal static ImGuiKeyRoutingData* GetShortcutRoutingDataNative(int keyChord)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiKeyRoutingData*>)vt[1155])(keyChord);
+		}
 
 		public static ImGuiKeyRoutingDataPtr GetShortcutRoutingData(int keyChord)
 		{
@@ -400,9 +1661,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextInitialize")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockContextInitializeNative(ImGuiContext* ctx);
+		internal static void DockContextInitializeNative(ImGuiContext* ctx)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[1156])(ctx);
+		}
 
 		public static void DockContextInitialize(ImGuiContextPtr ctx)
 		{
@@ -417,9 +1679,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextShutdown")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockContextShutdownNative(ImGuiContext* ctx);
+		internal static void DockContextShutdownNative(ImGuiContext* ctx)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[1157])(ctx);
+		}
 
 		public static void DockContextShutdown(ImGuiContextPtr ctx)
 		{
@@ -434,9 +1697,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextClearNodes")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockContextClearNodesNative(ImGuiContext* ctx, int rootId, byte clearSettingsRefs);
+		internal static void DockContextClearNodesNative(ImGuiContext* ctx, int rootId, byte clearSettingsRefs)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, int, byte, void>)vt[1158])(ctx, rootId, clearSettingsRefs);
+		}
 
 		public static void DockContextClearNodes(ImGuiContextPtr ctx, int rootId, bool clearSettingsRefs)
 		{
@@ -451,9 +1715,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextRebuildNodes")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockContextRebuildNodesNative(ImGuiContext* ctx);
+		internal static void DockContextRebuildNodesNative(ImGuiContext* ctx)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[1159])(ctx);
+		}
 
 		public static void DockContextRebuildNodes(ImGuiContextPtr ctx)
 		{
@@ -468,9 +1733,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextNewFrameUpdateUndocking")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockContextNewFrameUpdateUndockingNative(ImGuiContext* ctx);
+		internal static void DockContextNewFrameUpdateUndockingNative(ImGuiContext* ctx)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[1160])(ctx);
+		}
 
 		public static void DockContextNewFrameUpdateUndocking(ImGuiContextPtr ctx)
 		{
@@ -485,9 +1751,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextNewFrameUpdateDocking")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockContextNewFrameUpdateDockingNative(ImGuiContext* ctx);
+		internal static void DockContextNewFrameUpdateDockingNative(ImGuiContext* ctx)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[1161])(ctx);
+		}
 
 		public static void DockContextNewFrameUpdateDocking(ImGuiContextPtr ctx)
 		{
@@ -502,9 +1769,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextEndFrame")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockContextEndFrameNative(ImGuiContext* ctx);
+		internal static void DockContextEndFrameNative(ImGuiContext* ctx)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[1162])(ctx);
+		}
 
 		public static void DockContextEndFrame(ImGuiContextPtr ctx)
 		{
@@ -519,9 +1787,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextGenNodeID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int DockContextGenNodeIDNative(ImGuiContext* ctx);
+		internal static int DockContextGenNodeIDNative(ImGuiContext* ctx)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiContext*, int>)vt[1163])(ctx);
+		}
 
 		public static int DockContextGenNodeID(ImGuiContextPtr ctx)
 		{
@@ -538,9 +1807,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextQueueDock")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockContextQueueDockNative(ImGuiContext* ctx, ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payload, ImGuiDir splitDir, float splitRatio, byte splitOuter);
+		internal static void DockContextQueueDockNative(ImGuiContext* ctx, ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payload, ImGuiDir splitDir, float splitRatio, byte splitOuter)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiWindow*, ImGuiDockNode*, ImGuiWindow*, ImGuiDir, float, byte, void>)vt[1164])(ctx, target, targetNode, payload, splitDir, splitRatio, splitOuter);
+		}
 
 		public static void DockContextQueueDock(ImGuiContextPtr ctx, ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payload, ImGuiDir splitDir, float splitRatio, bool splitOuter)
 		{
@@ -718,9 +1988,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextQueueUndockWindow")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockContextQueueUndockWindowNative(ImGuiContext* ctx, ImGuiWindow* window);
+		internal static void DockContextQueueUndockWindowNative(ImGuiContext* ctx, ImGuiWindow* window)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiWindow*, void>)vt[1165])(ctx, window);
+		}
 
 		public static void DockContextQueueUndockWindow(ImGuiContextPtr ctx, ImGuiWindowPtr window)
 		{
@@ -754,9 +2025,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextQueueUndockNode")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockContextQueueUndockNodeNative(ImGuiContext* ctx, ImGuiDockNode* node);
+		internal static void DockContextQueueUndockNodeNative(ImGuiContext* ctx, ImGuiDockNode* node)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiDockNode*, void>)vt[1166])(ctx, node);
+		}
 
 		public static void DockContextQueueUndockNode(ImGuiContextPtr ctx, ImGuiDockNodePtr node)
 		{
@@ -790,9 +2062,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextProcessUndockWindow")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockContextProcessUndockWindowNative(ImGuiContext* ctx, ImGuiWindow* window, byte clearPersistentDockingRef);
+		internal static void DockContextProcessUndockWindowNative(ImGuiContext* ctx, ImGuiWindow* window, byte clearPersistentDockingRef)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiWindow*, byte, void>)vt[1167])(ctx, window, clearPersistentDockingRef);
+		}
 
 		public static void DockContextProcessUndockWindow(ImGuiContextPtr ctx, ImGuiWindowPtr window, bool clearPersistentDockingRef)
 		{
@@ -826,9 +2099,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextProcessUndockNode")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockContextProcessUndockNodeNative(ImGuiContext* ctx, ImGuiDockNode* node);
+		internal static void DockContextProcessUndockNodeNative(ImGuiContext* ctx, ImGuiDockNode* node)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiDockNode*, void>)vt[1168])(ctx, node);
+		}
 
 		public static void DockContextProcessUndockNode(ImGuiContextPtr ctx, ImGuiDockNodePtr node)
 		{
@@ -862,9 +2136,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextCalcDropPosForDocking")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte DockContextCalcDropPosForDockingNative(ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payloadWindow, ImGuiDockNode* payloadNode, ImGuiDir splitDir, byte splitOuter, Vector2* outPos);
+		internal static byte DockContextCalcDropPosForDockingNative(ImGuiWindow* target, ImGuiDockNode* targetNode, ImGuiWindow* payloadWindow, ImGuiDockNode* payloadNode, ImGuiDir splitDir, byte splitOuter, Vector2* outPos)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImGuiDockNode*, ImGuiWindow*, ImGuiDockNode*, ImGuiDir, byte, Vector2*, byte>)vt[1169])(target, targetNode, payloadWindow, payloadNode, splitDir, splitOuter, outPos);
+		}
 
 		public static bool DockContextCalcDropPosForDocking(ImGuiWindowPtr target, ImGuiDockNodePtr targetNode, ImGuiWindowPtr payloadWindow, ImGuiDockNodePtr payloadNode, ImGuiDir splitDir, bool splitOuter, Vector2* outPos)
 		{
@@ -1298,9 +2573,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockContextFindNodeByID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiDockNode* DockContextFindNodeByIDNative(ImGuiContext* ctx, int id);
+		internal static ImGuiDockNode* DockContextFindNodeByIDNative(ImGuiContext* ctx, int id)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiContext*, int, ImGuiDockNode*>)vt[1170])(ctx, id);
+		}
 
 		public static ImGuiDockNodePtr DockContextFindNodeByID(ImGuiContextPtr ctx, int id)
 		{
@@ -1317,9 +2593,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockNodeWindowMenuHandler_Default")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockNodeWindowMenuHandlerDefaultNative(ImGuiContext* ctx, ImGuiDockNode* node, ImGuiTabBar* tabBar);
+		internal static void DockNodeWindowMenuHandlerDefaultNative(ImGuiContext* ctx, ImGuiDockNode* node, ImGuiTabBar* tabBar)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, ImGuiDockNode*, ImGuiTabBar*, void>)vt[1171])(ctx, node, tabBar);
+		}
 
 		public static void DockNodeWindowMenuHandlerDefault(ImGuiContextPtr ctx, ImGuiDockNodePtr node, ImGuiTabBarPtr tabBar)
 		{
@@ -1397,9 +2674,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockNodeBeginAmendTabBar")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte DockNodeBeginAmendTabBarNative(ImGuiDockNode* node);
+		internal static byte DockNodeBeginAmendTabBarNative(ImGuiDockNode* node)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, byte>)vt[1172])(node);
+		}
 
 		public static bool DockNodeBeginAmendTabBar(ImGuiDockNodePtr node)
 		{
@@ -1416,18 +2694,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockNodeEndAmendTabBar")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockNodeEndAmendTabBarNative();
+		internal static void DockNodeEndAmendTabBarNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1173])();
+		}
 
 		public static void DockNodeEndAmendTabBar()
 		{
 			DockNodeEndAmendTabBarNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockNodeGetRootNode")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiDockNode* DockNodeGetRootNodeNative(ImGuiDockNode* node);
+		internal static ImGuiDockNode* DockNodeGetRootNodeNative(ImGuiDockNode* node)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, ImGuiDockNode*>)vt[1174])(node);
+		}
 
 		public static ImGuiDockNodePtr DockNodeGetRootNode(ImGuiDockNodePtr node)
 		{
@@ -1444,9 +2724,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockNodeIsInHierarchyOf")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte DockNodeIsInHierarchyOfNative(ImGuiDockNode* node, ImGuiDockNode* parent);
+		internal static byte DockNodeIsInHierarchyOfNative(ImGuiDockNode* node, ImGuiDockNode* parent)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, ImGuiDockNode*, byte>)vt[1175])(node, parent);
+		}
 
 		public static bool DockNodeIsInHierarchyOf(ImGuiDockNodePtr node, ImGuiDockNodePtr parent)
 		{
@@ -1484,9 +2765,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockNodeGetDepth")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int DockNodeGetDepthNative(ImGuiDockNode* node);
+		internal static int DockNodeGetDepthNative(ImGuiDockNode* node)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, int>)vt[1176])(node);
+		}
 
 		public static int DockNodeGetDepth(ImGuiDockNodePtr node)
 		{
@@ -1503,9 +2785,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockNodeGetWindowMenuButtonId")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int DockNodeGetWindowMenuButtonIdNative(ImGuiDockNode* node);
+		internal static int DockNodeGetWindowMenuButtonIdNative(ImGuiDockNode* node)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*, int>)vt[1177])(node);
+		}
 
 		public static int DockNodeGetWindowMenuButtonId(ImGuiDockNodePtr node)
 		{
@@ -1522,9 +2805,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetWindowDockNode")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiDockNode* GetWindowDockNodeNative();
+		internal static ImGuiDockNode* GetWindowDockNodeNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiDockNode*>)vt[1178])();
+		}
 
 		public static ImGuiDockNodePtr GetWindowDockNode()
 		{
@@ -1532,9 +2816,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetWindowAlwaysWantOwnTabBar")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte GetWindowAlwaysWantOwnTabBarNative(ImGuiWindow* window);
+		internal static byte GetWindowAlwaysWantOwnTabBarNative(ImGuiWindow* window)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, byte>)vt[1179])(window);
+		}
 
 		public static bool GetWindowAlwaysWantOwnTabBar(ImGuiWindowPtr window)
 		{
@@ -1551,9 +2836,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginDocked")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BeginDockedNative(ImGuiWindow* window, bool* pOpen);
+		internal static void BeginDockedNative(ImGuiWindow* window, bool* pOpen)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, bool*, void>)vt[1180])(window, pOpen);
+		}
 
 		public static void BeginDocked(ImGuiWindowPtr window, bool* pOpen)
 		{
@@ -1587,9 +2873,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginDockableDragDropSource")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BeginDockableDragDropSourceNative(ImGuiWindow* window);
+		internal static void BeginDockableDragDropSourceNative(ImGuiWindow* window)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)vt[1181])(window);
+		}
 
 		public static void BeginDockableDragDropSource(ImGuiWindowPtr window)
 		{
@@ -1604,9 +2891,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginDockableDragDropTarget")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BeginDockableDragDropTargetNative(ImGuiWindow* window);
+		internal static void BeginDockableDragDropTargetNative(ImGuiWindow* window)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, void>)vt[1182])(window);
+		}
 
 		public static void BeginDockableDragDropTarget(ImGuiWindowPtr window)
 		{
@@ -1621,9 +2909,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetWindowDock")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetWindowDockNative(ImGuiWindow* window, int dockId, ImGuiCond cond);
+		internal static void SetWindowDockNative(ImGuiWindow* window, int dockId, ImGuiCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, int, ImGuiCond, void>)vt[1183])(window, dockId, cond);
+		}
 
 		public static void SetWindowDock(ImGuiWindowPtr window, int dockId, ImGuiCond cond)
 		{
@@ -1638,9 +2927,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockBuilderDockWindow")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockBuilderDockWindowNative(byte* windowName, int nodeId);
+		internal static void DockBuilderDockWindowNative(byte* windowName, int nodeId)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, int, void>)vt[1184])(windowName, nodeId);
+		}
 
 		public static void DockBuilderDockWindow(byte* windowName, int nodeId)
 		{
@@ -1681,9 +2971,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockBuilderGetNode")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiDockNode* DockBuilderGetNodeNative(int nodeId);
+		internal static ImGuiDockNode* DockBuilderGetNodeNative(int nodeId)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiDockNode*>)vt[1185])(nodeId);
+		}
 
 		public static ImGuiDockNodePtr DockBuilderGetNode(int nodeId)
 		{
@@ -1691,9 +2982,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockBuilderGetCentralNode")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiDockNode* DockBuilderGetCentralNodeNative(int nodeId);
+		internal static ImGuiDockNode* DockBuilderGetCentralNodeNative(int nodeId)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiDockNode*>)vt[1186])(nodeId);
+		}
 
 		public static ImGuiDockNodePtr DockBuilderGetCentralNode(int nodeId)
 		{
@@ -1701,9 +2993,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockBuilderAddNode")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int DockBuilderAddNodeNative(int nodeId, ImGuiDockNodeFlags flags);
+		internal static int DockBuilderAddNodeNative(int nodeId, ImGuiDockNodeFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiDockNodeFlags, int>)vt[1187])(nodeId, flags);
+		}
 
 		public static int DockBuilderAddNode(int nodeId, ImGuiDockNodeFlags flags)
 		{
@@ -1711,54 +3004,60 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockBuilderRemoveNode")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockBuilderRemoveNodeNative(int nodeId);
+		internal static void DockBuilderRemoveNodeNative(int nodeId)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[1188])(nodeId);
+		}
 
 		public static void DockBuilderRemoveNode(int nodeId)
 		{
 			DockBuilderRemoveNodeNative(nodeId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockBuilderRemoveNodeDockedWindows")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockBuilderRemoveNodeDockedWindowsNative(int nodeId, byte clearSettingsRefs);
+		internal static void DockBuilderRemoveNodeDockedWindowsNative(int nodeId, byte clearSettingsRefs)
+		{
+			((delegate* unmanaged[Cdecl]<int, byte, void>)vt[1189])(nodeId, clearSettingsRefs);
+		}
 
 		public static void DockBuilderRemoveNodeDockedWindows(int nodeId, bool clearSettingsRefs)
 		{
 			DockBuilderRemoveNodeDockedWindowsNative(nodeId, clearSettingsRefs ? (byte)1 : (byte)0);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockBuilderRemoveNodeChildNodes")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockBuilderRemoveNodeChildNodesNative(int nodeId);
+		internal static void DockBuilderRemoveNodeChildNodesNative(int nodeId)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[1190])(nodeId);
+		}
 
 		public static void DockBuilderRemoveNodeChildNodes(int nodeId)
 		{
 			DockBuilderRemoveNodeChildNodesNative(nodeId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockBuilderSetNodePos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockBuilderSetNodePosNative(int nodeId, Vector2 pos);
+		internal static void DockBuilderSetNodePosNative(int nodeId, Vector2 pos)
+		{
+			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[1191])(nodeId, pos);
+		}
 
 		public static void DockBuilderSetNodePos(int nodeId, Vector2 pos)
 		{
 			DockBuilderSetNodePosNative(nodeId, pos);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockBuilderSetNodeSize")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockBuilderSetNodeSizeNative(int nodeId, Vector2 size);
+		internal static void DockBuilderSetNodeSizeNative(int nodeId, Vector2 size)
+		{
+			((delegate* unmanaged[Cdecl]<int, Vector2, void>)vt[1192])(nodeId, size);
+		}
 
 		public static void DockBuilderSetNodeSize(int nodeId, Vector2 size)
 		{
 			DockBuilderSetNodeSizeNative(nodeId, size);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockBuilderSplitNode")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int DockBuilderSplitNodeNative(int nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, int* outIdAtDir, int* outIdAtOppositeDir);
+		internal static int DockBuilderSplitNodeNative(int nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, int* outIdAtDir, int* outIdAtOppositeDir)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiDir, float, int*, int*, int>)vt[1193])(nodeId, splitDir, sizeRatioForNodeAtDir, outIdAtDir, outIdAtOppositeDir);
+		}
 
 		public static int DockBuilderSplitNode(int nodeId, ImGuiDir splitDir, float sizeRatioForNodeAtDir, int* outIdAtDir, int* outIdAtOppositeDir)
 		{
@@ -1796,9 +3095,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockBuilderCopyDockSpace")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockBuilderCopyDockSpaceNative(int srcDockspaceId, int dstDockspaceId, ImVectorConstCharPtr* inWindowRemapPairs);
+		internal static void DockBuilderCopyDockSpaceNative(int srcDockspaceId, int dstDockspaceId, ImVectorConstCharPtr* inWindowRemapPairs)
+		{
+			((delegate* unmanaged[Cdecl]<int, int, ImVectorConstCharPtr*, void>)vt[1194])(srcDockspaceId, dstDockspaceId, inWindowRemapPairs);
+		}
 
 		public static void DockBuilderCopyDockSpace(int srcDockspaceId, int dstDockspaceId, ImVectorConstCharPtrPtr inWindowRemapPairs)
 		{
@@ -1813,9 +3113,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockBuilderCopyNode")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockBuilderCopyNodeNative(int srcNodeId, int dstNodeId, ImVectorImGuiID* outNodeRemapPairs);
+		internal static void DockBuilderCopyNodeNative(int srcNodeId, int dstNodeId, ImVectorImGuiID* outNodeRemapPairs)
+		{
+			((delegate* unmanaged[Cdecl]<int, int, ImVectorImGuiID*, void>)vt[1195])(srcNodeId, dstNodeId, outNodeRemapPairs);
+		}
 
 		public static void DockBuilderCopyNode(int srcNodeId, int dstNodeId, ImVectorImGuiIDPtr outNodeRemapPairs)
 		{
@@ -1830,9 +3131,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockBuilderCopyWindowSettings")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockBuilderCopyWindowSettingsNative(byte* srcName, byte* dstName);
+		internal static void DockBuilderCopyWindowSettingsNative(byte* srcName, byte* dstName)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[1196])(srcName, dstName);
+		}
 
 		public static void DockBuilderCopyWindowSettings(byte* srcName, byte* dstName)
 		{
@@ -1965,36 +3267,40 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDockBuilderFinish")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DockBuilderFinishNative(int nodeId);
+		internal static void DockBuilderFinishNative(int nodeId)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[1197])(nodeId);
+		}
 
 		public static void DockBuilderFinish(int nodeId)
 		{
 			DockBuilderFinishNative(nodeId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushFocusScope")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushFocusScopeNative(int id);
+		internal static void PushFocusScopeNative(int id)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[1198])(id);
+		}
 
 		public static void PushFocusScope(int id)
 		{
 			PushFocusScopeNative(id);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPopFocusScope")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopFocusScopeNative();
+		internal static void PopFocusScopeNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1199])();
+		}
 
 		public static void PopFocusScope()
 		{
 			PopFocusScopeNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetCurrentFocusScope")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int GetCurrentFocusScopeNative();
+		internal static int GetCurrentFocusScopeNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<int>)vt[1200])();
+		}
 
 		public static int GetCurrentFocusScope()
 		{
@@ -2002,9 +3308,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsDragDropActive")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsDragDropActiveNative();
+		internal static byte IsDragDropActiveNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[1201])();
+		}
 
 		public static bool IsDragDropActive()
 		{
@@ -2012,9 +3319,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginDragDropTargetCustom")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginDragDropTargetCustomNative(ImRect bb, int id);
+		internal static byte BeginDragDropTargetCustomNative(ImRect bb, int id)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImRect, int, byte>)vt[1202])(bb, id);
+		}
 
 		public static bool BeginDragDropTargetCustom(ImRect bb, int id)
 		{
@@ -2022,18 +3330,20 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igClearDragDrop")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearDragDropNative();
+		internal static void ClearDragDropNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1203])();
+		}
 
 		public static void ClearDragDrop()
 		{
 			ClearDragDropNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsDragDropPayloadBeingAccepted")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsDragDropPayloadBeingAcceptedNative();
+		internal static byte IsDragDropPayloadBeingAcceptedNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[1204])();
+		}
 
 		public static bool IsDragDropPayloadBeingAccepted()
 		{
@@ -2041,18 +3351,20 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igRenderDragDropTargetRect")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void RenderDragDropTargetRectNative(ImRect bb, ImRect itemClipRect);
+		internal static void RenderDragDropTargetRectNative(ImRect bb, ImRect itemClipRect)
+		{
+			((delegate* unmanaged[Cdecl]<ImRect, ImRect, void>)vt[1205])(bb, itemClipRect);
+		}
 
 		public static void RenderDragDropTargetRect(ImRect bb, ImRect itemClipRect)
 		{
 			RenderDragDropTargetRectNative(bb, itemClipRect);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetTypingSelectRequest")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTypingSelectRequest* GetTypingSelectRequestNative(ImGuiTypingSelectFlags flags);
+		internal static ImGuiTypingSelectRequest* GetTypingSelectRequestNative(ImGuiTypingSelectFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectFlags, ImGuiTypingSelectRequest*>)vt[1206])(flags);
+		}
 
 		public static ImGuiTypingSelectRequestPtr GetTypingSelectRequest(ImGuiTypingSelectFlags flags)
 		{
@@ -2060,9 +3372,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTypingSelectFindMatch")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int TypingSelectFindMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int> getItemNameFunc, void* userData, int navItemIdx);
+		internal static int TypingSelectFindMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int> getItemNameFunc, void* userData, int navItemIdx)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int>, void*, int, int>)vt[1207])(req, itemsCount, getItemNameFunc, userData, navItemIdx);
+		}
 
 		public static int TypingSelectFindMatch(ImGuiTypingSelectRequestPtr req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int> getItemNameFunc, void* userData, int navItemIdx)
 		{
@@ -2079,9 +3392,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTypingSelectFindNextSingleCharMatch")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int TypingSelectFindNextSingleCharMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int> getItemNameFunc, void* userData, int navItemIdx);
+		internal static int TypingSelectFindNextSingleCharMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int> getItemNameFunc, void* userData, int navItemIdx)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int>, void*, int, int>)vt[1208])(req, itemsCount, getItemNameFunc, userData, navItemIdx);
+		}
 
 		public static int TypingSelectFindNextSingleCharMatch(ImGuiTypingSelectRequestPtr req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*, int> getItemNameFunc, void* userData, int navItemIdx)
 		{
@@ -2098,9 +3412,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTypingSelectFindBestLeadingMatch")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int TypingSelectFindBestLeadingMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*> getItemNameFunc, void* userData);
+		internal static int TypingSelectFindBestLeadingMatchNative(ImGuiTypingSelectRequest* req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*> getItemNameFunc, void* userData)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTypingSelectRequest*, int, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*>, void*, int>)vt[1209])(req, itemsCount, getItemNameFunc, userData);
+		}
 
 		public static int TypingSelectFindBestLeadingMatch(ImGuiTypingSelectRequestPtr req, int itemsCount, delegate*<ImGuiTypingSelectRequest*, int, delegate*<void*, int>, void*> getItemNameFunc, void* userData)
 		{
@@ -2117,9 +3432,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginBoxSelect")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginBoxSelectNative(ImRect scopeRect, ImGuiWindow* window, int boxSelectId, ImGuiMultiSelectFlags msFlags);
+		internal static byte BeginBoxSelectNative(ImRect scopeRect, ImGuiWindow* window, int boxSelectId, ImGuiMultiSelectFlags msFlags)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImRect, ImGuiWindow*, int, ImGuiMultiSelectFlags, byte>)vt[1210])(scopeRect, window, boxSelectId, msFlags);
+		}
 
 		public static bool BeginBoxSelect(ImRect scopeRect, ImGuiWindowPtr window, int boxSelectId, ImGuiMultiSelectFlags msFlags)
 		{
@@ -2136,18 +3452,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igEndBoxSelect")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndBoxSelectNative(ImRect scopeRect, ImGuiMultiSelectFlags msFlags);
+		internal static void EndBoxSelectNative(ImRect scopeRect, ImGuiMultiSelectFlags msFlags)
+		{
+			((delegate* unmanaged[Cdecl]<ImRect, ImGuiMultiSelectFlags, void>)vt[1211])(scopeRect, msFlags);
+		}
 
 		public static void EndBoxSelect(ImRect scopeRect, ImGuiMultiSelectFlags msFlags)
 		{
 			EndBoxSelectNative(scopeRect, msFlags);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igMultiSelectItemHeader")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void MultiSelectItemHeaderNative(int id, bool* pSelected, ImGuiButtonFlags* pButtonFlags);
+		internal static void MultiSelectItemHeaderNative(int id, bool* pSelected, ImGuiButtonFlags* pButtonFlags)
+		{
+			((delegate* unmanaged[Cdecl]<int, bool*, ImGuiButtonFlags*, void>)vt[1212])(id, pSelected, pButtonFlags);
+		}
 
 		public static void MultiSelectItemHeader(int id, bool* pSelected, ImGuiButtonFlags* pButtonFlags)
 		{
@@ -2181,9 +3499,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igMultiSelectItemFooter")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void MultiSelectItemFooterNative(int id, bool* pSelected, bool* pPressed);
+		internal static void MultiSelectItemFooterNative(int id, bool* pSelected, bool* pPressed)
+		{
+			((delegate* unmanaged[Cdecl]<int, bool*, bool*, void>)vt[1213])(id, pSelected, pPressed);
+		}
 
 		public static void MultiSelectItemFooter(int id, bool* pSelected, bool* pPressed)
 		{
@@ -2217,9 +3536,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igMultiSelectAddSetAll")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void MultiSelectAddSetAllNative(ImGuiMultiSelectTempData* ms, byte selected);
+		internal static void MultiSelectAddSetAllNative(ImGuiMultiSelectTempData* ms, byte selected)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, byte, void>)vt[1214])(ms, selected);
+		}
 
 		public static void MultiSelectAddSetAll(ImGuiMultiSelectTempDataPtr ms, bool selected)
 		{
@@ -2234,9 +3554,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igMultiSelectAddSetRange")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void MultiSelectAddSetRangeNative(ImGuiMultiSelectTempData* ms, byte selected, int rangeDir, long firstItem, long lastItem);
+		internal static void MultiSelectAddSetRangeNative(ImGuiMultiSelectTempData* ms, byte selected, int rangeDir, long firstItem, long lastItem)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiMultiSelectTempData*, byte, int, long, long, void>)vt[1215])(ms, selected, rangeDir, firstItem, lastItem);
+		}
 
 		public static void MultiSelectAddSetRange(ImGuiMultiSelectTempDataPtr ms, bool selected, int rangeDir, long firstItem, long lastItem)
 		{
@@ -2251,9 +3572,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetBoxSelectState")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiBoxSelectState* GetBoxSelectStateNative(int id);
+		internal static ImGuiBoxSelectState* GetBoxSelectStateNative(int id)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiBoxSelectState*>)vt[1216])(id);
+		}
 
 		public static ImGuiBoxSelectStatePtr GetBoxSelectState(int id)
 		{
@@ -2261,9 +3583,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetMultiSelectState")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiMultiSelectState* GetMultiSelectStateNative(int id);
+		internal static ImGuiMultiSelectState* GetMultiSelectStateNative(int id)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiMultiSelectState*>)vt[1217])(id);
+		}
 
 		public static ImGuiMultiSelectStatePtr GetMultiSelectState(int id)
 		{
@@ -2271,9 +3594,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetWindowClipRectBeforeSetChannel")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetWindowClipRectBeforeSetChannelNative(ImGuiWindow* window, ImRect clipRect);
+		internal static void SetWindowClipRectBeforeSetChannelNative(ImGuiWindow* window, ImRect clipRect)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiWindow*, ImRect, void>)vt[1218])(window, clipRect);
+		}
 
 		public static void SetWindowClipRectBeforeSetChannel(ImGuiWindowPtr window, ImRect clipRect)
 		{
@@ -2288,9 +3612,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginColumns")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BeginColumnsNative(byte* strId, int count, ImGuiOldColumnFlags flags);
+		internal static void BeginColumnsNative(byte* strId, int count, ImGuiOldColumnFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, int, ImGuiOldColumnFlags, void>)vt[1219])(strId, count, flags);
+		}
 
 		public static void BeginColumns(byte* strId, int count, ImGuiOldColumnFlags flags)
 		{
@@ -2331,45 +3656,50 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igEndColumns")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndColumnsNative();
+		internal static void EndColumnsNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1220])();
+		}
 
 		public static void EndColumns()
 		{
 			EndColumnsNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushColumnClipRect")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushColumnClipRectNative(int columnIndex);
+		internal static void PushColumnClipRectNative(int columnIndex)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[1221])(columnIndex);
+		}
 
 		public static void PushColumnClipRect(int columnIndex)
 		{
 			PushColumnClipRectNative(columnIndex);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushColumnsBackground")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushColumnsBackgroundNative();
+		internal static void PushColumnsBackgroundNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1222])();
+		}
 
 		public static void PushColumnsBackground()
 		{
 			PushColumnsBackgroundNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPopColumnsBackground")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopColumnsBackgroundNative();
+		internal static void PopColumnsBackgroundNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1223])();
+		}
 
 		public static void PopColumnsBackground()
 		{
 			PopColumnsBackgroundNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetColumnsID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int GetColumnsIDNative(byte* strId, int count);
+		internal static int GetColumnsIDNative(byte* strId, int count)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, int, int>)vt[1224])(strId, count);
+		}
 
 		public static int GetColumnsID(byte* strId, int count)
 		{
@@ -2413,9 +3743,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igFindOrCreateColumns")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiOldColumns* FindOrCreateColumnsNative(ImGuiWindow* window, int id);
+		internal static ImGuiOldColumns* FindOrCreateColumnsNative(ImGuiWindow* window, int id)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiWindow*, int, ImGuiOldColumns*>)vt[1225])(window, id);
+		}
 
 		public static ImGuiOldColumnsPtr FindOrCreateColumns(ImGuiWindowPtr window, int id)
 		{
@@ -2432,9 +3763,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetColumnOffsetFromNorm")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetColumnOffsetFromNormNative(ImGuiOldColumns* columns, float offsetNorm);
+		internal static float GetColumnOffsetFromNormNative(ImGuiOldColumns* columns, float offsetNorm)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, float, float>)vt[1226])(columns, offsetNorm);
+		}
 
 		public static float GetColumnOffsetFromNorm(ImGuiOldColumnsPtr columns, float offsetNorm)
 		{
@@ -2451,9 +3783,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetColumnNormFromOffset")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetColumnNormFromOffsetNative(ImGuiOldColumns* columns, float offset);
+		internal static float GetColumnNormFromOffsetNative(ImGuiOldColumns* columns, float offset)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiOldColumns*, float, float>)vt[1227])(columns, offset);
+		}
 
 		public static float GetColumnNormFromOffset(ImGuiOldColumnsPtr columns, float offset)
 		{
@@ -2470,36 +3803,40 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableOpenContextMenu")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableOpenContextMenuNative(int columnN);
+		internal static void TableOpenContextMenuNative(int columnN)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[1228])(columnN);
+		}
 
 		public static void TableOpenContextMenu(int columnN)
 		{
 			TableOpenContextMenuNative(columnN);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableSetColumnWidth")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableSetColumnWidthNative(int columnN, float width);
+		internal static void TableSetColumnWidthNative(int columnN, float width)
+		{
+			((delegate* unmanaged[Cdecl]<int, float, void>)vt[1229])(columnN, width);
+		}
 
 		public static void TableSetColumnWidth(int columnN, float width)
 		{
 			TableSetColumnWidthNative(columnN, width);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableSetColumnSortDirection")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableSetColumnSortDirectionNative(int columnN, ImGuiSortDirection sortDirection, byte appendToSortSpecs);
+		internal static void TableSetColumnSortDirectionNative(int columnN, ImGuiSortDirection sortDirection, byte appendToSortSpecs)
+		{
+			((delegate* unmanaged[Cdecl]<int, ImGuiSortDirection, byte, void>)vt[1230])(columnN, sortDirection, appendToSortSpecs);
+		}
 
 		public static void TableSetColumnSortDirection(int columnN, ImGuiSortDirection sortDirection, bool appendToSortSpecs)
 		{
 			TableSetColumnSortDirectionNative(columnN, sortDirection, appendToSortSpecs ? (byte)1 : (byte)0);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGetHoveredRow")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int TableGetHoveredRowNative();
+		internal static int TableGetHoveredRowNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<int>)vt[1231])();
+		}
 
 		public static int TableGetHoveredRow()
 		{
@@ -2507,9 +3844,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGetHeaderRowHeight")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float TableGetHeaderRowHeightNative();
+		internal static float TableGetHeaderRowHeightNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[1232])();
+		}
 
 		public static float TableGetHeaderRowHeight()
 		{
@@ -2517,9 +3855,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGetHeaderAngledMaxLabelWidth")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float TableGetHeaderAngledMaxLabelWidthNative();
+		internal static float TableGetHeaderAngledMaxLabelWidthNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[1233])();
+		}
 
 		public static float TableGetHeaderAngledMaxLabelWidth()
 		{
@@ -2527,27 +3866,30 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTablePushBackgroundChannel")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TablePushBackgroundChannelNative();
+		internal static void TablePushBackgroundChannelNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1234])();
+		}
 
 		public static void TablePushBackgroundChannel()
 		{
 			TablePushBackgroundChannelNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTablePopBackgroundChannel")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TablePopBackgroundChannelNative();
+		internal static void TablePopBackgroundChannelNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1235])();
+		}
 
 		public static void TablePopBackgroundChannel()
 		{
 			TablePopBackgroundChannelNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableAngledHeadersRowEx")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableAngledHeadersRowExNative(int rowId, float angle, float maxLabelWidth, ImGuiTableHeaderData* data, int dataCount);
+		internal static void TableAngledHeadersRowExNative(int rowId, float angle, float maxLabelWidth, ImGuiTableHeaderData* data, int dataCount)
+		{
+			((delegate* unmanaged[Cdecl]<int, float, float, ImGuiTableHeaderData*, int, void>)vt[1236])(rowId, angle, maxLabelWidth, data, dataCount);
+		}
 
 		public static void TableAngledHeadersRowEx(int rowId, float angle, float maxLabelWidth, ImGuiTableHeaderDataPtr data, int dataCount)
 		{
@@ -2562,9 +3904,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetCurrentTable")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTable* GetCurrentTableNative();
+		internal static ImGuiTable* GetCurrentTableNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*>)vt[1237])();
+		}
 
 		public static ImGuiTablePtr GetCurrentTable()
 		{
@@ -2572,9 +3915,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableFindByID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTable* TableFindByIDNative(int id);
+		internal static ImGuiTable* TableFindByIDNative(int id)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiTable*>)vt[1238])(id);
+		}
 
 		public static ImGuiTablePtr TableFindByID(int id)
 		{
@@ -2582,9 +3926,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginTableEx")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginTableExNative(byte* name, int id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth);
+		internal static byte BeginTableExNative(byte* name, int id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, int, int, ImGuiTableFlags, Vector2, float, byte>)vt[1239])(name, id, columnsCount, flags, outerSize, innerWidth);
+		}
 
 		public static bool BeginTableEx(byte* name, int id, int columnsCount, ImGuiTableFlags flags, Vector2 outerSize, float innerWidth)
 		{
@@ -2628,9 +3973,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableBeginInitMemory")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableBeginInitMemoryNative(ImGuiTable* table, int columnsCount);
+		internal static void TableBeginInitMemoryNative(ImGuiTable* table, int columnsCount)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)vt[1240])(table, columnsCount);
+		}
 
 		public static void TableBeginInitMemory(ImGuiTablePtr table, int columnsCount)
 		{
@@ -2645,9 +3991,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableBeginApplyRequests")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableBeginApplyRequestsNative(ImGuiTable* table);
+		internal static void TableBeginApplyRequestsNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1241])(table);
+		}
 
 		public static void TableBeginApplyRequests(ImGuiTablePtr table)
 		{
@@ -2662,9 +4009,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableSetupDrawChannels")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableSetupDrawChannelsNative(ImGuiTable* table);
+		internal static void TableSetupDrawChannelsNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1242])(table);
+		}
 
 		public static void TableSetupDrawChannels(ImGuiTablePtr table)
 		{
@@ -2679,9 +4027,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableUpdateLayout")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableUpdateLayoutNative(ImGuiTable* table);
+		internal static void TableUpdateLayoutNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1243])(table);
+		}
 
 		public static void TableUpdateLayout(ImGuiTablePtr table)
 		{
@@ -2696,9 +4045,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableUpdateBorders")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableUpdateBordersNative(ImGuiTable* table);
+		internal static void TableUpdateBordersNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1244])(table);
+		}
 
 		public static void TableUpdateBorders(ImGuiTablePtr table)
 		{
@@ -2713,9 +4063,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableUpdateColumnsWeightFromWidth")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableUpdateColumnsWeightFromWidthNative(ImGuiTable* table);
+		internal static void TableUpdateColumnsWeightFromWidthNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1245])(table);
+		}
 
 		public static void TableUpdateColumnsWeightFromWidth(ImGuiTablePtr table)
 		{
@@ -2730,9 +4081,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableDrawBorders")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableDrawBordersNative(ImGuiTable* table);
+		internal static void TableDrawBordersNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1246])(table);
+		}
 
 		public static void TableDrawBorders(ImGuiTablePtr table)
 		{
@@ -2747,9 +4099,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableDrawDefaultContextMenu")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableDrawDefaultContextMenuNative(ImGuiTable* table, ImGuiTableFlags flagsForSectionToDisplay);
+		internal static void TableDrawDefaultContextMenuNative(ImGuiTable* table, ImGuiTableFlags flagsForSectionToDisplay)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableFlags, void>)vt[1247])(table, flagsForSectionToDisplay);
+		}
 
 		public static void TableDrawDefaultContextMenu(ImGuiTablePtr table, ImGuiTableFlags flagsForSectionToDisplay)
 		{
@@ -2764,9 +4117,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableBeginContextMenuPopup")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TableBeginContextMenuPopupNative(ImGuiTable* table);
+		internal static byte TableBeginContextMenuPopupNative(ImGuiTable* table)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, byte>)vt[1248])(table);
+		}
 
 		public static bool TableBeginContextMenuPopup(ImGuiTablePtr table)
 		{
@@ -2783,9 +4137,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableMergeDrawChannels")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableMergeDrawChannelsNative(ImGuiTable* table);
+		internal static void TableMergeDrawChannelsNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1249])(table);
+		}
 
 		public static void TableMergeDrawChannels(ImGuiTablePtr table)
 		{
@@ -2800,9 +4155,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGetInstanceData")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTableInstanceData* TableGetInstanceDataNative(ImGuiTable* table, int instanceNo);
+		internal static ImGuiTableInstanceData* TableGetInstanceDataNative(ImGuiTable* table, int instanceNo)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, ImGuiTableInstanceData*>)vt[1250])(table, instanceNo);
+		}
 
 		public static ImGuiTableInstanceDataPtr TableGetInstanceData(ImGuiTablePtr table, int instanceNo)
 		{
@@ -2819,9 +4175,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGetInstanceID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int TableGetInstanceIDNative(ImGuiTable* table, int instanceNo);
+		internal static int TableGetInstanceIDNative(ImGuiTable* table, int instanceNo)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, int>)vt[1251])(table, instanceNo);
+		}
 
 		public static int TableGetInstanceID(ImGuiTablePtr table, int instanceNo)
 		{
@@ -2838,9 +4195,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableSortSpecsSanitize")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableSortSpecsSanitizeNative(ImGuiTable* table);
+		internal static void TableSortSpecsSanitizeNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1252])(table);
+		}
 
 		public static void TableSortSpecsSanitize(ImGuiTablePtr table)
 		{
@@ -2855,9 +4213,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableSortSpecsBuild")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableSortSpecsBuildNative(ImGuiTable* table);
+		internal static void TableSortSpecsBuildNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1253])(table);
+		}
 
 		public static void TableSortSpecsBuild(ImGuiTablePtr table)
 		{
@@ -2872,9 +4231,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGetColumnNextSortDirection")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiSortDirection TableGetColumnNextSortDirectionNative(ImGuiTableColumn* column);
+		internal static ImGuiSortDirection TableGetColumnNextSortDirectionNative(ImGuiTableColumn* column)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTableColumn*, ImGuiSortDirection>)vt[1254])(column);
+		}
 
 		public static ImGuiSortDirection TableGetColumnNextSortDirection(ImGuiTableColumnPtr column)
 		{
@@ -2891,9 +4251,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableFixColumnSortDirection")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableFixColumnSortDirectionNative(ImGuiTable* table, ImGuiTableColumn* column);
+		internal static void TableFixColumnSortDirectionNative(ImGuiTable* table, ImGuiTableColumn* column)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableColumn*, void>)vt[1255])(table, column);
+		}
 
 		public static void TableFixColumnSortDirection(ImGuiTablePtr table, ImGuiTableColumnPtr column)
 		{
@@ -2927,9 +4288,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGetColumnWidthAuto")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float TableGetColumnWidthAutoNative(ImGuiTable* table, ImGuiTableColumn* column);
+		internal static float TableGetColumnWidthAutoNative(ImGuiTable* table, ImGuiTableColumn* column)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableColumn*, float>)vt[1256])(table, column);
+		}
 
 		public static float TableGetColumnWidthAuto(ImGuiTablePtr table, ImGuiTableColumnPtr column)
 		{
@@ -2967,9 +4329,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableBeginRow")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableBeginRowNative(ImGuiTable* table);
+		internal static void TableBeginRowNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1257])(table);
+		}
 
 		public static void TableBeginRow(ImGuiTablePtr table)
 		{
@@ -2984,9 +4347,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableEndRow")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableEndRowNative(ImGuiTable* table);
+		internal static void TableEndRowNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1258])(table);
+		}
 
 		public static void TableEndRow(ImGuiTablePtr table)
 		{
@@ -3001,9 +4365,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableBeginCell")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableBeginCellNative(ImGuiTable* table, int columnN);
+		internal static void TableBeginCellNative(ImGuiTable* table, int columnN)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)vt[1259])(table, columnN);
+		}
 
 		public static void TableBeginCell(ImGuiTablePtr table, int columnN)
 		{
@@ -3018,9 +4383,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableEndCell")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableEndCellNative(ImGuiTable* table);
+		internal static void TableEndCellNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1260])(table);
+		}
 
 		public static void TableEndCell(ImGuiTablePtr table)
 		{
@@ -3035,9 +4401,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGetCellBgRect")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableGetCellBgRectNative(ImRect* output, ImGuiTable* table, int columnN);
+		internal static void TableGetCellBgRectNative(ImRect* output, ImGuiTable* table, int columnN)
+		{
+			((delegate* unmanaged[Cdecl]<ImRect*, ImGuiTable*, int, void>)vt[1261])(output, table, columnN);
+		}
 
 		public static ImRect TableGetCellBgRect(ImGuiTablePtr table, int columnN)
 		{
@@ -3088,9 +4455,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGetColumnName_TablePtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte* TableGetColumnNameTablePtrNative(ImGuiTable* table, int columnN);
+		internal static byte* TableGetColumnNameTablePtrNative(ImGuiTable* table, int columnN)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, byte*>)vt[1262])(table, columnN);
+		}
 
 		public static byte* TableGetColumnNameTablePtr(ImGuiTablePtr table, int columnN)
 		{
@@ -3122,9 +4490,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGetColumnResizeID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int TableGetColumnResizeIDNative(ImGuiTable* table, int columnN, int instanceNo);
+		internal static int TableGetColumnResizeIDNative(ImGuiTable* table, int columnN, int instanceNo)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, int, int>)vt[1263])(table, columnN, instanceNo);
+		}
 
 		public static int TableGetColumnResizeID(ImGuiTablePtr table, int columnN, int instanceNo)
 		{
@@ -3141,9 +4510,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGetMaxColumnWidth")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float TableGetMaxColumnWidthNative(ImGuiTable* table, int columnN);
+		internal static float TableGetMaxColumnWidthNative(ImGuiTable* table, int columnN)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, int, float>)vt[1264])(table, columnN);
+		}
 
 		public static float TableGetMaxColumnWidth(ImGuiTablePtr table, int columnN)
 		{
@@ -3160,9 +4530,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableSetColumnWidthAutoSingle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableSetColumnWidthAutoSingleNative(ImGuiTable* table, int columnN);
+		internal static void TableSetColumnWidthAutoSingleNative(ImGuiTable* table, int columnN)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, int, void>)vt[1265])(table, columnN);
+		}
 
 		public static void TableSetColumnWidthAutoSingle(ImGuiTablePtr table, int columnN)
 		{
@@ -3177,9 +4548,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableSetColumnWidthAutoAll")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableSetColumnWidthAutoAllNative(ImGuiTable* table);
+		internal static void TableSetColumnWidthAutoAllNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1266])(table);
+		}
 
 		public static void TableSetColumnWidthAutoAll(ImGuiTablePtr table)
 		{
@@ -3194,9 +4566,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableRemove")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableRemoveNative(ImGuiTable* table);
+		internal static void TableRemoveNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1267])(table);
+		}
 
 		public static void TableRemove(ImGuiTablePtr table)
 		{
@@ -3211,9 +4584,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGcCompactTransientBuffers_TablePtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableGcCompactTransientBuffersTablePtrNative(ImGuiTable* table);
+		internal static void TableGcCompactTransientBuffersTablePtrNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1268])(table);
+		}
 
 		public static void TableGcCompactTransientBuffersTablePtr(ImGuiTablePtr table)
 		{
@@ -3228,9 +4602,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGcCompactTransientBuffers_TableTempDataPtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableGcCompactTransientBuffersTableTempDataPtrNative(ImGuiTableTempData* table);
+		internal static void TableGcCompactTransientBuffersTableTempDataPtrNative(ImGuiTableTempData* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTableTempData*, void>)vt[1269])(table);
+		}
 
 		public static void TableGcCompactTransientBuffersTableTempDataPtr(ImGuiTableTempDataPtr table)
 		{
@@ -3245,18 +4620,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGcCompactSettings")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableGcCompactSettingsNative();
+		internal static void TableGcCompactSettingsNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1270])();
+		}
 
 		public static void TableGcCompactSettings()
 		{
 			TableGcCompactSettingsNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableLoadSettings")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableLoadSettingsNative(ImGuiTable* table);
+		internal static void TableLoadSettingsNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1271])(table);
+		}
 
 		public static void TableLoadSettings(ImGuiTablePtr table)
 		{
@@ -3271,9 +4648,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableSaveSettings")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableSaveSettingsNative(ImGuiTable* table);
+		internal static void TableSaveSettingsNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1272])(table);
+		}
 
 		public static void TableSaveSettings(ImGuiTablePtr table)
 		{
@@ -3288,9 +4666,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableResetSettings")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableResetSettingsNative(ImGuiTable* table);
+		internal static void TableResetSettingsNative(ImGuiTable* table)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[1273])(table);
+		}
 
 		public static void TableResetSettings(ImGuiTablePtr table)
 		{
@@ -3305,9 +4684,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableGetBoundSettings")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTableSettings* TableGetBoundSettingsNative(ImGuiTable* table);
+		internal static ImGuiTableSettings* TableGetBoundSettingsNative(ImGuiTable* table)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTable*, ImGuiTableSettings*>)vt[1274])(table);
+		}
 
 		public static ImGuiTableSettingsPtr TableGetBoundSettings(ImGuiTablePtr table)
 		{
@@ -3324,18 +4704,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableSettingsAddSettingsHandler")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TableSettingsAddSettingsHandlerNative();
+		internal static void TableSettingsAddSettingsHandlerNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[1275])();
+		}
 
 		public static void TableSettingsAddSettingsHandler()
 		{
 			TableSettingsAddSettingsHandlerNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableSettingsCreate")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTableSettings* TableSettingsCreateNative(int id, int columnsCount);
+		internal static ImGuiTableSettings* TableSettingsCreateNative(int id, int columnsCount)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, int, ImGuiTableSettings*>)vt[1276])(id, columnsCount);
+		}
 
 		public static ImGuiTableSettingsPtr TableSettingsCreate(int id, int columnsCount)
 		{
@@ -3343,9 +4725,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTableSettingsFindByID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTableSettings* TableSettingsFindByIDNative(int id);
+		internal static ImGuiTableSettings* TableSettingsFindByIDNative(int id)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, ImGuiTableSettings*>)vt[1277])(id);
+		}
 
 		public static ImGuiTableSettingsPtr TableSettingsFindByID(int id)
 		{
@@ -3353,9 +4736,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetCurrentTabBar")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTabBar* GetCurrentTabBarNative();
+		internal static ImGuiTabBar* GetCurrentTabBarNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*>)vt[1278])();
+		}
 
 		public static ImGuiTabBarPtr GetCurrentTabBar()
 		{
@@ -3363,9 +4747,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginTabBarEx")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginTabBarExNative(ImGuiTabBar* tabBar, ImRect bb, ImGuiTabBarFlags flags);
+		internal static byte BeginTabBarExNative(ImGuiTabBar* tabBar, ImRect bb, ImGuiTabBarFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImRect, ImGuiTabBarFlags, byte>)vt[1279])(tabBar, bb, flags);
+		}
 
 		public static bool BeginTabBarEx(ImGuiTabBarPtr tabBar, ImRect bb, ImGuiTabBarFlags flags)
 		{
@@ -3382,9 +4767,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTabBarFindTabByID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTabItem* TabBarFindTabByIDNative(ImGuiTabBar* tabBar, int tabId);
+		internal static ImGuiTabItem* TabBarFindTabByIDNative(ImGuiTabBar* tabBar, int tabId)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, int, ImGuiTabItem*>)vt[1280])(tabBar, tabId);
+		}
 
 		public static ImGuiTabItemPtr TabBarFindTabByID(ImGuiTabBarPtr tabBar, int tabId)
 		{
@@ -3401,9 +4787,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTabBarFindTabByOrder")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTabItem* TabBarFindTabByOrderNative(ImGuiTabBar* tabBar, int order);
+		internal static ImGuiTabItem* TabBarFindTabByOrderNative(ImGuiTabBar* tabBar, int order)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, int, ImGuiTabItem*>)vt[1281])(tabBar, order);
+		}
 
 		public static ImGuiTabItemPtr TabBarFindTabByOrder(ImGuiTabBarPtr tabBar, int order)
 		{
@@ -3420,9 +4807,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTabBarFindMostRecentlySelectedTabForActiveWindow")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTabItem* TabBarFindMostRecentlySelectedTabForActiveWindowNative(ImGuiTabBar* tabBar);
+		internal static ImGuiTabItem* TabBarFindMostRecentlySelectedTabForActiveWindowNative(ImGuiTabBar* tabBar)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*>)vt[1282])(tabBar);
+		}
 
 		public static ImGuiTabItemPtr TabBarFindMostRecentlySelectedTabForActiveWindow(ImGuiTabBarPtr tabBar)
 		{
@@ -3439,9 +4827,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTabBarGetCurrentTab")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiTabItem* TabBarGetCurrentTabNative(ImGuiTabBar* tabBar);
+		internal static ImGuiTabItem* TabBarGetCurrentTabNative(ImGuiTabBar* tabBar)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*>)vt[1283])(tabBar);
+		}
 
 		public static ImGuiTabItemPtr TabBarGetCurrentTab(ImGuiTabBarPtr tabBar)
 		{
@@ -3458,9 +4847,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTabBarGetTabOrder")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int TabBarGetTabOrderNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab);
+		internal static int TabBarGetTabOrderNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*, int>)vt[1284])(tabBar, tab);
+		}
 
 		public static int TabBarGetTabOrder(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab)
 		{
@@ -3498,9 +4888,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTabBarGetTabName")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte* TabBarGetTabNameNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab);
+		internal static byte* TabBarGetTabNameNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItem*, byte*>)vt[1285])(tabBar, tab);
+		}
 
 		public static byte* TabBarGetTabName(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab)
 		{
@@ -3574,9 +4965,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTabBarAddTab")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TabBarAddTabNative(ImGuiTabBar* tabBar, ImGuiTabItemFlags tabFlags, ImGuiWindow* window);
+		internal static void TabBarAddTabNative(ImGuiTabBar* tabBar, ImGuiTabItemFlags tabFlags, ImGuiWindow* window)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, ImGuiTabItemFlags, ImGuiWindow*, void>)vt[1286])(tabBar, tabFlags, window);
+		}
 
 		public static void TabBarAddTab(ImGuiTabBarPtr tabBar, ImGuiTabItemFlags tabFlags, ImGuiWindowPtr window)
 		{
@@ -3610,9 +5002,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTabBarRemoveTab")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TabBarRemoveTabNative(ImGuiTabBar* tabBar, int tabId);
+		internal static void TabBarRemoveTabNative(ImGuiTabBar* tabBar, int tabId)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, int, void>)vt[1287])(tabBar, tabId);
+		}
 
 		public static void TabBarRemoveTab(ImGuiTabBarPtr tabBar, int tabId)
 		{
@@ -3624,1399 +5017,6 @@ namespace Hexa.NET.ImGui
 			fixed (ImGuiTabBar* ptabBar = &tabBar)
 			{
 				TabBarRemoveTabNative((ImGuiTabBar*)ptabBar, tabId);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igTabBarCloseTab")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TabBarCloseTabNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab);
-
-		public static void TabBarCloseTab(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab)
-		{
-			TabBarCloseTabNative(tabBar, tab);
-		}
-
-		public static void TabBarCloseTab(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				TabBarCloseTabNative((ImGuiTabBar*)ptabBar, tab);
-			}
-		}
-
-		public static void TabBarCloseTab(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				TabBarCloseTabNative(tabBar, (ImGuiTabItem*)ptab);
-			}
-		}
-
-		public static void TabBarCloseTab(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
-				{
-					TabBarCloseTabNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab);
-				}
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igTabBarQueueFocus")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TabBarQueueFocusNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab);
-
-		public static void TabBarQueueFocus(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab)
-		{
-			TabBarQueueFocusNative(tabBar, tab);
-		}
-
-		public static void TabBarQueueFocus(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				TabBarQueueFocusNative((ImGuiTabBar*)ptabBar, tab);
-			}
-		}
-
-		public static void TabBarQueueFocus(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				TabBarQueueFocusNative(tabBar, (ImGuiTabItem*)ptab);
-			}
-		}
-
-		public static void TabBarQueueFocus(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
-				{
-					TabBarQueueFocusNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab);
-				}
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igTabBarQueueReorder")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TabBarQueueReorderNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab, int offset);
-
-		public static void TabBarQueueReorder(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab, int offset)
-		{
-			TabBarQueueReorderNative(tabBar, tab, offset);
-		}
-
-		public static void TabBarQueueReorder(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab, int offset)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				TabBarQueueReorderNative((ImGuiTabBar*)ptabBar, tab, offset);
-			}
-		}
-
-		public static void TabBarQueueReorder(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab, int offset)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				TabBarQueueReorderNative(tabBar, (ImGuiTabItem*)ptab, offset);
-			}
-		}
-
-		public static void TabBarQueueReorder(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab, int offset)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
-				{
-					TabBarQueueReorderNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab, offset);
-				}
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igTabBarQueueReorderFromMousePos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TabBarQueueReorderFromMousePosNative(ImGuiTabBar* tabBar, ImGuiTabItem* tab, Vector2 mousePos);
-
-		public static void TabBarQueueReorderFromMousePos(ImGuiTabBarPtr tabBar, ImGuiTabItemPtr tab, Vector2 mousePos)
-		{
-			TabBarQueueReorderFromMousePosNative(tabBar, tab, mousePos);
-		}
-
-		public static void TabBarQueueReorderFromMousePos(ref ImGuiTabBar tabBar, ImGuiTabItemPtr tab, Vector2 mousePos)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				TabBarQueueReorderFromMousePosNative((ImGuiTabBar*)ptabBar, tab, mousePos);
-			}
-		}
-
-		public static void TabBarQueueReorderFromMousePos(ImGuiTabBarPtr tabBar, ref ImGuiTabItem tab, Vector2 mousePos)
-		{
-			fixed (ImGuiTabItem* ptab = &tab)
-			{
-				TabBarQueueReorderFromMousePosNative(tabBar, (ImGuiTabItem*)ptab, mousePos);
-			}
-		}
-
-		public static void TabBarQueueReorderFromMousePos(ref ImGuiTabBar tabBar, ref ImGuiTabItem tab, Vector2 mousePos)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiTabItem* ptab = &tab)
-				{
-					TabBarQueueReorderFromMousePosNative((ImGuiTabBar*)ptabBar, (ImGuiTabItem*)ptab, mousePos);
-				}
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igTabBarProcessReorder")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TabBarProcessReorderNative(ImGuiTabBar* tabBar);
-
-		public static bool TabBarProcessReorder(ImGuiTabBarPtr tabBar)
-		{
-			byte ret = TabBarProcessReorderNative(tabBar);
-			return ret != 0;
-		}
-
-		public static bool TabBarProcessReorder(ref ImGuiTabBar tabBar)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte ret = TabBarProcessReorderNative((ImGuiTabBar*)ptabBar);
-				return ret != 0;
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igTabItemEx")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TabItemExNative(ImGuiTabBar* tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindow* dockedWindow);
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			byte ret = TabItemExNative(tabBar, label, pOpen, flags, dockedWindow);
-			return ret != 0;
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, label, pOpen, flags, dockedWindow);
-				return ret != 0;
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, ref byte label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = TabItemExNative(tabBar, (byte*)plabel, pOpen, flags, dockedWindow);
-				return ret != 0;
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, string label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte ret = TabItemExNative(tabBar, pStr0, pOpen, flags, dockedWindow);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret != 0;
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, ref byte label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* plabel = &label)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, (byte*)plabel, pOpen, flags, dockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, string label, bool* pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, pStr0, pOpen, flags, dockedWindow);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, byte* label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (bool* ppOpen = &pOpen)
-			{
-				byte ret = TabItemExNative(tabBar, label, (bool*)ppOpen, flags, dockedWindow);
-				return ret != 0;
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, byte* label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, label, (bool*)ppOpen, flags, dockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, ref byte label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					byte ret = TabItemExNative(tabBar, (byte*)plabel, (bool*)ppOpen, flags, dockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, string label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* ppOpen = &pOpen)
-			{
-				byte ret = TabItemExNative(tabBar, pStr0, (bool*)ppOpen, flags, dockedWindow);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, ref byte label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* plabel = &label)
-				{
-					fixed (bool* ppOpen = &pOpen)
-					{
-						byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, (byte*)plabel, (bool*)ppOpen, flags, dockedWindow);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, string label, ref bool pOpen, ImGuiTabItemFlags flags, ImGuiWindowPtr dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (bool* ppOpen = &pOpen)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, pStr0, (bool*)ppOpen, flags, dockedWindow);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-			{
-				byte ret = TabItemExNative(tabBar, label, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-				return ret != 0;
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, byte* label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, label, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, ref byte label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-				{
-					byte ret = TabItemExNative(tabBar, (byte*)plabel, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, string label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-			{
-				byte ret = TabItemExNative(tabBar, pStr0, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret != 0;
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, ref byte label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* plabel = &label)
-				{
-					fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-					{
-						byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, (byte*)plabel, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, string label, bool* pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-				{
-					byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, pStr0, pOpen, flags, (ImGuiWindow*)pdockedWindow);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, byte* label, ref bool pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (bool* ppOpen = &pOpen)
-			{
-				fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-				{
-					byte ret = TabItemExNative(tabBar, label, (bool*)ppOpen, flags, (ImGuiWindow*)pdockedWindow);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, byte* label, ref bool pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-					{
-						byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, label, (bool*)ppOpen, flags, (ImGuiWindow*)pdockedWindow);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, ref byte label, ref bool pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-					{
-						byte ret = TabItemExNative(tabBar, (byte*)plabel, (bool*)ppOpen, flags, (ImGuiWindow*)pdockedWindow);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool TabItemEx(ImGuiTabBarPtr tabBar, string label, ref bool pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* ppOpen = &pOpen)
-			{
-				fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-				{
-					byte ret = TabItemExNative(tabBar, pStr0, (bool*)ppOpen, flags, (ImGuiWindow*)pdockedWindow);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, ref byte label, ref bool pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				fixed (byte* plabel = &label)
-				{
-					fixed (bool* ppOpen = &pOpen)
-					{
-						fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-						{
-							byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, (byte*)plabel, (bool*)ppOpen, flags, (ImGuiWindow*)pdockedWindow);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool TabItemEx(ref ImGuiTabBar tabBar, string label, ref bool pOpen, ImGuiTabItemFlags flags, ref ImGuiWindow dockedWindow)
-		{
-			fixed (ImGuiTabBar* ptabBar = &tabBar)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (bool* ppOpen = &pOpen)
-				{
-					fixed (ImGuiWindow* pdockedWindow = &dockedWindow)
-					{
-						byte ret = TabItemExNative((ImGuiTabBar*)ptabBar, pStr0, (bool*)ppOpen, flags, (ImGuiWindow*)pdockedWindow);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igTabItemCalcSize_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TabItemCalcSizeNative(Vector2* output, byte* label, byte hasCloseButtonOrUnsavedMarker);
-
-		public static Vector2 TabItemCalcSize(byte* label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			Vector2 ret;
-			TabItemCalcSizeNative(&ret, label, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		public static void TabItemCalcSize(Vector2* output, byte* label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			TabItemCalcSizeNative(output, label, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-		}
-
-		public static void TabItemCalcSize(ref Vector2 output, byte* label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				TabItemCalcSizeNative((Vector2*)poutput, label, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-			}
-		}
-
-		public static Vector2 TabItemCalcSize(ref byte label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			fixed (byte* plabel = &label)
-			{
-				Vector2 ret;
-				TabItemCalcSizeNative(&ret, (byte*)plabel, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		public static Vector2 TabItemCalcSize(string label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			Vector2 ret;
-			TabItemCalcSizeNative(&ret, pStr0, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static void TabItemCalcSize(ref Vector2 output, ref byte label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				fixed (byte* plabel = &label)
-				{
-					TabItemCalcSizeNative((Vector2*)poutput, (byte*)plabel, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-				}
-			}
-		}
-
-		public static void TabItemCalcSize(ref Vector2 output, string label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				TabItemCalcSizeNative((Vector2*)poutput, pStr0, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void TabItemCalcSize(Vector2* output, ref byte label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			fixed (byte* plabel = &label)
-			{
-				TabItemCalcSizeNative(output, (byte*)plabel, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-			}
-		}
-
-		public static void TabItemCalcSize(Vector2* output, string label, bool hasCloseButtonOrUnsavedMarker)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TabItemCalcSizeNative(output, pStr0, hasCloseButtonOrUnsavedMarker ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igTabItemCalcSize_WindowPtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TabItemCalcSizeWindowPtrNative(Vector2* output, ImGuiWindow* window);
-
-		public static Vector2 TabItemCalcSizeWindowPtr(ImGuiWindowPtr window)
-		{
-			Vector2 ret;
-			TabItemCalcSizeWindowPtrNative(&ret, window);
-			return ret;
-		}
-
-		public static void TabItemCalcSizeWindowPtr(Vector2* output, ImGuiWindowPtr window)
-		{
-			TabItemCalcSizeWindowPtrNative(output, window);
-		}
-
-		public static void TabItemCalcSizeWindowPtr(ref Vector2 output, ImGuiWindowPtr window)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				TabItemCalcSizeWindowPtrNative((Vector2*)poutput, window);
-			}
-		}
-
-		public static Vector2 TabItemCalcSizeWindowPtr(ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				Vector2 ret;
-				TabItemCalcSizeWindowPtrNative(&ret, (ImGuiWindow*)pwindow);
-				return ret;
-			}
-		}
-
-		public static void TabItemCalcSizeWindowPtr(Vector2* output, ref ImGuiWindow window)
-		{
-			fixed (ImGuiWindow* pwindow = &window)
-			{
-				TabItemCalcSizeWindowPtrNative(output, (ImGuiWindow*)pwindow);
-			}
-		}
-
-		public static void TabItemCalcSizeWindowPtr(ref Vector2 output, ref ImGuiWindow window)
-		{
-			fixed (Vector2* poutput = &output)
-			{
-				fixed (ImGuiWindow* pwindow = &window)
-				{
-					TabItemCalcSizeWindowPtrNative((Vector2*)poutput, (ImGuiWindow*)pwindow);
-				}
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igTabItemBackground")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TabItemBackgroundNative(ImDrawList* drawList, ImRect bb, ImGuiTabItemFlags flags, uint col);
-
-		public static void TabItemBackground(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, uint col)
-		{
-			TabItemBackgroundNative(drawList, bb, flags, col);
-		}
-
-		public static void TabItemBackground(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, uint col)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				TabItemBackgroundNative((ImDrawList*)pdrawList, bb, flags, col);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igTabItemLabelAndCloseButton")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TabItemLabelAndCloseButtonNative(ImDrawList* drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, byte isContentsVisible, bool* outJustClosed, bool* outTextClipped);
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped)
-		{
-			TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped)
-		{
-			fixed (byte* plabel = &label)
-			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* plabel = &label)
-				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, bool* outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, outTextClipped);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, bool* outTextClipped)
-		{
-			fixed (bool* poutJustClosed = &outJustClosed)
-			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, bool* outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (bool* poutJustClosed = &outJustClosed)
-				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, bool* outTextClipped)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (bool* poutJustClosed = &outJustClosed)
-				{
-					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, bool* outTextClipped)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* poutJustClosed = &outJustClosed)
-			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, bool* outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* plabel = &label)
-				{
-					fixed (bool* poutJustClosed = &outJustClosed)
-					{
-						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, bool* outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (bool* poutJustClosed = &outJustClosed)
-				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
-		{
-			fixed (bool* poutTextClipped = &outTextClipped)
-			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (bool* poutTextClipped = &outTextClipped)
-				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (bool* poutTextClipped = &outTextClipped)
-				{
-					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* poutTextClipped = &outTextClipped)
-			{
-				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* plabel = &label)
-				{
-					fixed (bool* poutTextClipped = &outTextClipped)
-					{
-						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (bool* poutTextClipped = &outTextClipped)
-				{
-					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
-		{
-			fixed (bool* poutJustClosed = &outJustClosed)
-			{
-				fixed (bool* poutTextClipped = &outTextClipped)
-				{
-					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (bool* poutJustClosed = &outJustClosed)
-				{
-					fixed (bool* poutTextClipped = &outTextClipped)
-					{
-						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (bool* poutJustClosed = &outJustClosed)
-				{
-					fixed (bool* poutTextClipped = &outTextClipped)
-					{
-						TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (bool* poutJustClosed = &outJustClosed)
-			{
-				fixed (bool* poutTextClipped = &outTextClipped)
-				{
-					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				fixed (byte* plabel = &label)
-				{
-					fixed (bool* poutJustClosed = &outJustClosed)
-					{
-						fixed (bool* poutTextClipped = &outTextClipped)
-						{
-							TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
-						}
-					}
-				}
-			}
-		}
-
-		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, int tabId, int closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (bool* poutJustClosed = &outJustClosed)
-				{
-					fixed (bool* poutTextClipped = &outTextClipped)
-					{
-						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-					}
-				}
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igRenderText")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void RenderTextNative(Vector2 pos, byte* text, byte* textEnd, byte hideTextAfterHash);
-
-		public static void RenderText(Vector2 pos, byte* text, byte* textEnd, bool hideTextAfterHash)
-		{
-			RenderTextNative(pos, text, textEnd, hideTextAfterHash ? (byte)1 : (byte)0);
-		}
-
-		public static void RenderText(Vector2 pos, ref byte text, byte* textEnd, bool hideTextAfterHash)
-		{
-			fixed (byte* ptext = &text)
-			{
-				RenderTextNative(pos, (byte*)ptext, textEnd, hideTextAfterHash ? (byte)1 : (byte)0);
-			}
-		}
-
-		public static void RenderText(Vector2 pos, string text, byte* textEnd, bool hideTextAfterHash)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			RenderTextNative(pos, pStr0, textEnd, hideTextAfterHash ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void RenderText(Vector2 pos, byte* text, ref byte textEnd, bool hideTextAfterHash)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				RenderTextNative(pos, text, (byte*)ptextEnd, hideTextAfterHash ? (byte)1 : (byte)0);
-			}
-		}
-
-		public static void RenderText(Vector2 pos, byte* text, string textEnd, bool hideTextAfterHash)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			RenderTextNative(pos, text, pStr0, hideTextAfterHash ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void RenderText(Vector2 pos, ref byte text, ref byte textEnd, bool hideTextAfterHash)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					RenderTextNative(pos, (byte*)ptext, (byte*)ptextEnd, hideTextAfterHash ? (byte)1 : (byte)0);
-				}
-			}
-		}
-
-		public static void RenderText(Vector2 pos, string text, string textEnd, bool hideTextAfterHash)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			RenderTextNative(pos, pStr0, pStr1, hideTextAfterHash ? (byte)1 : (byte)0);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igRenderTextWrapped")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void RenderTextWrappedNative(Vector2 pos, byte* text, byte* textEnd, float wrapWidth);
-
-		public static void RenderTextWrapped(Vector2 pos, byte* text, byte* textEnd, float wrapWidth)
-		{
-			RenderTextWrappedNative(pos, text, textEnd, wrapWidth);
-		}
-
-		public static void RenderTextWrapped(Vector2 pos, ref byte text, byte* textEnd, float wrapWidth)
-		{
-			fixed (byte* ptext = &text)
-			{
-				RenderTextWrappedNative(pos, (byte*)ptext, textEnd, wrapWidth);
 			}
 		}
 	}

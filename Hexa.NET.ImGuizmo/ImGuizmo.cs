@@ -5,6 +5,12 @@ namespace Hexa.NET.ImGuizmo
         static ImGuizmo()
         {
             LibraryLoader.SetImportResolver();
+            InitApi();
+        }
+
+        public static nint GetLibraryName()
+        {
+            return LibraryLoader.LoadLibrary();
         }
     }
 }

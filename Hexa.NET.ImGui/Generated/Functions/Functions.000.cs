@@ -10,6 +10,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 
 namespace Hexa.NET.ImGui
@@ -18,9 +19,10 @@ namespace Hexa.NET.ImGui
 	{
 		internal const string LibName = "cimgui";
 
-		[LibraryImport(LibName, EntryPoint = "ImVec2_ImVec2_Nil")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial Vector2* ImVec2Native();
+		internal static Vector2* ImVec2Native()
+		{
+			return ((delegate* unmanaged[Cdecl]<Vector2*>)vt[0])();
+		}
 
 		public static Vector2* ImVec2()
 		{
@@ -28,9 +30,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImVec2_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(Vector2* self);
+		internal static void DestroyNative(Vector2* self)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[1])(self);
+		}
 
 		public static void Destroy(Vector2* self)
 		{
@@ -45,9 +48,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImVec2_ImVec2_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial Vector2* ImVec2Native(float x, float y);
+		internal static Vector2* ImVec2Native(float x, float y)
+		{
+			return ((delegate* unmanaged[Cdecl]<float, float, Vector2*>)vt[2])(x, y);
+		}
 
 		public static Vector2* ImVec2(float x, float y)
 		{
@@ -55,9 +59,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImVec4_ImVec4_Nil")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial Vector4* ImVec4Native();
+		internal static Vector4* ImVec4Native()
+		{
+			return ((delegate* unmanaged[Cdecl]<Vector4*>)vt[3])();
+		}
 
 		public static Vector4* ImVec4()
 		{
@@ -65,9 +70,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImVec4_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(Vector4* self);
+		internal static void DestroyNative(Vector4* self)
+		{
+			((delegate* unmanaged[Cdecl]<Vector4*, void>)vt[4])(self);
+		}
 
 		public static void Destroy(Vector4* self)
 		{
@@ -82,9 +88,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImVec4_ImVec4_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial Vector4* ImVec4Native(float x, float y, float z, float w);
+		internal static Vector4* ImVec4Native(float x, float y, float z, float w)
+		{
+			return ((delegate* unmanaged[Cdecl]<float, float, float, float, Vector4*>)vt[5])(x, y, z, w);
+		}
 
 		public static Vector4* ImVec4(float x, float y, float z, float w)
 		{
@@ -92,9 +99,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igCreateContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiContext* CreateContextNative(ImFontAtlas* sharedFontAtlas);
+		internal static ImGuiContext* CreateContextNative(ImFontAtlas* sharedFontAtlas)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImGuiContext*>)vt[6])(sharedFontAtlas);
+		}
 
 		public static ImGuiContextPtr CreateContext(ImFontAtlasPtr sharedFontAtlas)
 		{
@@ -117,9 +125,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDestroyContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyContextNative(ImGuiContext* ctx);
+		internal static void DestroyContextNative(ImGuiContext* ctx)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[7])(ctx);
+		}
 
 		public static void DestroyContext(ImGuiContextPtr ctx)
 		{
@@ -139,9 +148,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetCurrentContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiContext* GetCurrentContextNative();
+		internal static ImGuiContext* GetCurrentContextNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiContext*>)vt[8])();
+		}
 
 		public static ImGuiContextPtr GetCurrentContext()
 		{
@@ -149,9 +159,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetCurrentContext")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetCurrentContextNative(ImGuiContext* ctx);
+		internal static void SetCurrentContextNative(ImGuiContext* ctx)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiContext*, void>)vt[9])(ctx);
+		}
 
 		public static void SetCurrentContext(ImGuiContextPtr ctx)
 		{
@@ -166,9 +177,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetIO")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiIO* GetIONative();
+		internal static ImGuiIO* GetIONative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiIO*>)vt[10])();
+		}
 
 		public static ImGuiIOPtr GetIO()
 		{
@@ -176,9 +188,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetStyle")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiStyle* GetStyleNative();
+		internal static ImGuiStyle* GetStyleNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiStyle*>)vt[11])();
+		}
 
 		public static ImGuiStylePtr GetStyle()
 		{
@@ -186,36 +199,40 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igNewFrame")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void NewFrameNative();
+		internal static void NewFrameNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[12])();
+		}
 
 		public static void NewFrame()
 		{
 			NewFrameNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igEndFrame")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndFrameNative();
+		internal static void EndFrameNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[13])();
+		}
 
 		public static void EndFrame()
 		{
 			EndFrameNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igRender")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void RenderNative();
+		internal static void RenderNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[14])();
+		}
 
 		public static void Render()
 		{
 			RenderNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetDrawData")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImDrawData* GetDrawDataNative();
+		internal static ImDrawData* GetDrawDataNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImDrawData*>)vt[15])();
+		}
 
 		public static ImDrawDataPtr GetDrawData()
 		{
@@ -223,9 +240,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igShowDemoWindow")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ShowDemoWindowNative(bool* pOpen);
+		internal static void ShowDemoWindowNative(bool* pOpen)
+		{
+			((delegate* unmanaged[Cdecl]<bool*, void>)vt[16])(pOpen);
+		}
 
 		public static void ShowDemoWindow(bool* pOpen)
 		{
@@ -245,9 +263,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igShowMetricsWindow")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ShowMetricsWindowNative(bool* pOpen);
+		internal static void ShowMetricsWindowNative(bool* pOpen)
+		{
+			((delegate* unmanaged[Cdecl]<bool*, void>)vt[17])(pOpen);
+		}
 
 		public static void ShowMetricsWindow(bool* pOpen)
 		{
@@ -267,9 +286,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igShowDebugLogWindow")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ShowDebugLogWindowNative(bool* pOpen);
+		internal static void ShowDebugLogWindowNative(bool* pOpen)
+		{
+			((delegate* unmanaged[Cdecl]<bool*, void>)vt[18])(pOpen);
+		}
 
 		public static void ShowDebugLogWindow(bool* pOpen)
 		{
@@ -289,9 +309,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igShowIDStackToolWindow")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ShowIDStackToolWindowNative(bool* pOpen);
+		internal static void ShowIDStackToolWindowNative(bool* pOpen)
+		{
+			((delegate* unmanaged[Cdecl]<bool*, void>)vt[19])(pOpen);
+		}
 
 		public static void ShowIDStackToolWindow(bool* pOpen)
 		{
@@ -311,9 +332,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igShowAboutWindow")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ShowAboutWindowNative(bool* pOpen);
+		internal static void ShowAboutWindowNative(bool* pOpen)
+		{
+			((delegate* unmanaged[Cdecl]<bool*, void>)vt[20])(pOpen);
+		}
 
 		public static void ShowAboutWindow(bool* pOpen)
 		{
@@ -333,9 +355,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igShowStyleEditor")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ShowStyleEditorNative(ImGuiStyle* reference);
+		internal static void ShowStyleEditorNative(ImGuiStyle* reference)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiStyle*, void>)vt[21])(reference);
+		}
 
 		public static void ShowStyleEditor(ImGuiStylePtr reference)
 		{
@@ -355,9 +378,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igShowStyleSelector")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ShowStyleSelectorNative(byte* label);
+		internal static byte ShowStyleSelectorNative(byte* label)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)vt[22])(label);
+		}
 
 		public static bool ShowStyleSelector(byte* label)
 		{
@@ -401,9 +425,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igShowFontSelector")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ShowFontSelectorNative(byte* label);
+		internal static void ShowFontSelectorNative(byte* label)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[23])(label);
+		}
 
 		public static void ShowFontSelector(byte* label)
 		{
@@ -444,18 +469,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igShowUserGuide")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ShowUserGuideNative();
+		internal static void ShowUserGuideNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[24])();
+		}
 
 		public static void ShowUserGuide()
 		{
 			ShowUserGuideNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetVersion")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte* GetVersionNative();
+		internal static byte* GetVersionNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*>)vt[25])();
+		}
 
 		public static byte* GetVersion()
 		{
@@ -469,9 +496,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igStyleColorsDark")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void StyleColorsDarkNative(ImGuiStyle* dst);
+		internal static void StyleColorsDarkNative(ImGuiStyle* dst)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiStyle*, void>)vt[26])(dst);
+		}
 
 		public static void StyleColorsDark(ImGuiStylePtr dst)
 		{
@@ -491,9 +519,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igStyleColorsLight")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void StyleColorsLightNative(ImGuiStyle* dst);
+		internal static void StyleColorsLightNative(ImGuiStyle* dst)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiStyle*, void>)vt[27])(dst);
+		}
 
 		public static void StyleColorsLight(ImGuiStylePtr dst)
 		{
@@ -513,9 +542,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igStyleColorsClassic")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void StyleColorsClassicNative(ImGuiStyle* dst);
+		internal static void StyleColorsClassicNative(ImGuiStyle* dst)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiStyle*, void>)vt[28])(dst);
+		}
 
 		public static void StyleColorsClassic(ImGuiStylePtr dst)
 		{
@@ -535,9 +565,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBegin")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginNative(byte* name, bool* pOpen, ImGuiWindowFlags flags);
+		internal static byte BeginNative(byte* name, bool* pOpen, ImGuiWindowFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, bool*, ImGuiWindowFlags, byte>)vt[29])(name, pOpen, flags);
+		}
 
 		public static bool Begin(byte* name, bool* pOpen, ImGuiWindowFlags flags)
 		{
@@ -809,18 +840,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igEnd")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndNative();
+		internal static void EndNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[30])();
+		}
 
 		public static void End()
 		{
 			EndNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginChild_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginChildNative(byte* strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags);
+		internal static byte BeginChildNative(byte* strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiChildFlags, ImGuiWindowFlags, byte>)vt[31])(strId, size, childFlags, windowFlags);
+		}
 
 		public static bool BeginChild(byte* strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
@@ -1158,9 +1191,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginChild_ID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BeginChildNative(int id, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags);
+		internal static byte BeginChildNative(int id, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, Vector2, ImGuiChildFlags, ImGuiWindowFlags, byte>)vt[32])(id, size, childFlags, windowFlags);
+		}
 
 		public static bool BeginChild(int id, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
@@ -1210,18 +1244,20 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igEndChild")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndChildNative();
+		internal static void EndChildNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[33])();
+		}
 
 		public static void EndChild()
 		{
 			EndChildNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsWindowAppearing")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsWindowAppearingNative();
+		internal static byte IsWindowAppearingNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[34])();
+		}
 
 		public static bool IsWindowAppearing()
 		{
@@ -1229,9 +1265,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsWindowCollapsed")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsWindowCollapsedNative();
+		internal static byte IsWindowCollapsedNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<byte>)vt[35])();
+		}
 
 		public static bool IsWindowCollapsed()
 		{
@@ -1239,9 +1276,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsWindowFocused")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsWindowFocusedNative(ImGuiFocusedFlags flags);
+		internal static byte IsWindowFocusedNative(ImGuiFocusedFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiFocusedFlags, byte>)vt[36])(flags);
+		}
 
 		public static bool IsWindowFocused(ImGuiFocusedFlags flags)
 		{
@@ -1255,9 +1293,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIsWindowHovered")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsWindowHoveredNative(ImGuiHoveredFlags flags);
+		internal static byte IsWindowHoveredNative(ImGuiHoveredFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiHoveredFlags, byte>)vt[37])(flags);
+		}
 
 		public static bool IsWindowHovered(ImGuiHoveredFlags flags)
 		{
@@ -1271,9 +1310,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetWindowDrawList")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImDrawList* GetWindowDrawListNative();
+		internal static ImDrawList* GetWindowDrawListNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImDrawList*>)vt[38])();
+		}
 
 		public static ImDrawListPtr GetWindowDrawList()
 		{
@@ -1281,9 +1321,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetWindowDpiScale")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetWindowDpiScaleNative();
+		internal static float GetWindowDpiScaleNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[39])();
+		}
 
 		public static float GetWindowDpiScale()
 		{
@@ -1291,9 +1332,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetWindowPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetWindowPosNative(Vector2* output);
+		internal static void GetWindowPosNative(Vector2* output)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[40])(output);
+		}
 
 		public static Vector2 GetWindowPos()
 		{
@@ -1315,9 +1357,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetWindowSize")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetWindowSizeNative(Vector2* output);
+		internal static void GetWindowSizeNative(Vector2* output)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[41])(output);
+		}
 
 		public static Vector2 GetWindowSize()
 		{
@@ -1339,9 +1382,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetWindowWidth")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetWindowWidthNative();
+		internal static float GetWindowWidthNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[42])();
+		}
 
 		public static float GetWindowWidth()
 		{
@@ -1349,9 +1393,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetWindowHeight")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetWindowHeightNative();
+		internal static float GetWindowHeightNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[43])();
+		}
 
 		public static float GetWindowHeight()
 		{
@@ -1359,9 +1404,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetWindowViewport")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImGuiViewport* GetWindowViewportNative();
+		internal static ImGuiViewport* GetWindowViewportNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiViewport*>)vt[44])();
+		}
 
 		public static ImGuiViewportPtr GetWindowViewport()
 		{
@@ -1369,9 +1415,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetNextWindowPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextWindowPosNative(Vector2 pos, ImGuiCond cond, Vector2 pivot);
+		internal static void SetNextWindowPosNative(Vector2 pos, ImGuiCond cond, Vector2 pivot)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, Vector2, void>)vt[45])(pos, cond, pivot);
+		}
 
 		public static void SetNextWindowPos(Vector2 pos, ImGuiCond cond, Vector2 pivot)
 		{
@@ -1393,9 +1440,10 @@ namespace Hexa.NET.ImGui
 			SetNextWindowPosNative(pos, (ImGuiCond)(0), pivot);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetNextWindowSize")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextWindowSizeNative(Vector2 size, ImGuiCond cond);
+		internal static void SetNextWindowSizeNative(Vector2 size, ImGuiCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)vt[46])(size, cond);
+		}
 
 		public static void SetNextWindowSize(Vector2 size, ImGuiCond cond)
 		{
@@ -1407,9 +1455,10 @@ namespace Hexa.NET.ImGui
 			SetNextWindowSizeNative(size, (ImGuiCond)(0));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetNextWindowSizeConstraints")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextWindowSizeConstraintsNative(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback, void* customCallbackData);
+		internal static void SetNextWindowSizeConstraintsNative(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback, void* customCallbackData)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, delegate*<ImGuiSizeCallbackData*, void>, void*, void>)vt[47])(sizeMin, sizeMax, (delegate*<ImGuiSizeCallbackData*, void>)Marshal.GetFunctionPointerForDelegate(customCallback), customCallbackData);
+		}
 
 		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback, void* customCallbackData)
 		{
@@ -1431,18 +1480,20 @@ namespace Hexa.NET.ImGui
 			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, (ImGuiSizeCallback)(default), customCallbackData);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetNextWindowContentSize")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextWindowContentSizeNative(Vector2 size);
+		internal static void SetNextWindowContentSizeNative(Vector2 size)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2, void>)vt[48])(size);
+		}
 
 		public static void SetNextWindowContentSize(Vector2 size)
 		{
 			SetNextWindowContentSizeNative(size);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetNextWindowCollapsed")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextWindowCollapsedNative(byte collapsed, ImGuiCond cond);
+		internal static void SetNextWindowCollapsedNative(byte collapsed, ImGuiCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)vt[49])(collapsed, cond);
+		}
 
 		public static void SetNextWindowCollapsed(bool collapsed, ImGuiCond cond)
 		{
@@ -1454,45 +1505,50 @@ namespace Hexa.NET.ImGui
 			SetNextWindowCollapsedNative(collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetNextWindowFocus")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextWindowFocusNative();
+		internal static void SetNextWindowFocusNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[50])();
+		}
 
 		public static void SetNextWindowFocus()
 		{
 			SetNextWindowFocusNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetNextWindowScroll")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextWindowScrollNative(Vector2 scroll);
+		internal static void SetNextWindowScrollNative(Vector2 scroll)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2, void>)vt[51])(scroll);
+		}
 
 		public static void SetNextWindowScroll(Vector2 scroll)
 		{
 			SetNextWindowScrollNative(scroll);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetNextWindowBgAlpha")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextWindowBgAlphaNative(float alpha);
+		internal static void SetNextWindowBgAlphaNative(float alpha)
+		{
+			((delegate* unmanaged[Cdecl]<float, void>)vt[52])(alpha);
+		}
 
 		public static void SetNextWindowBgAlpha(float alpha)
 		{
 			SetNextWindowBgAlphaNative(alpha);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetNextWindowViewport")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextWindowViewportNative(int viewportId);
+		internal static void SetNextWindowViewportNative(int viewportId)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[53])(viewportId);
+		}
 
 		public static void SetNextWindowViewport(int viewportId)
 		{
 			SetNextWindowViewportNative(viewportId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetWindowPos_Vec2")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetWindowPosNative(Vector2 pos, ImGuiCond cond);
+		internal static void SetWindowPosNative(Vector2 pos, ImGuiCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)vt[54])(pos, cond);
+		}
 
 		public static void SetWindowPos(Vector2 pos, ImGuiCond cond)
 		{
@@ -1504,9 +1560,10 @@ namespace Hexa.NET.ImGui
 			SetWindowPosNative(pos, (ImGuiCond)(0));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetWindowSize_Vec2")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetWindowSizeNative(Vector2 size, ImGuiCond cond);
+		internal static void SetWindowSizeNative(Vector2 size, ImGuiCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2, ImGuiCond, void>)vt[55])(size, cond);
+		}
 
 		public static void SetWindowSize(Vector2 size, ImGuiCond cond)
 		{
@@ -1518,9 +1575,10 @@ namespace Hexa.NET.ImGui
 			SetWindowSizeNative(size, (ImGuiCond)(0));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetWindowCollapsed_Bool")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetWindowCollapsedNative(byte collapsed, ImGuiCond cond);
+		internal static void SetWindowCollapsedNative(byte collapsed, ImGuiCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<byte, ImGuiCond, void>)vt[56])(collapsed, cond);
+		}
 
 		public static void SetWindowCollapsed(bool collapsed, ImGuiCond cond)
 		{
@@ -1532,27 +1590,30 @@ namespace Hexa.NET.ImGui
 			SetWindowCollapsedNative(collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetWindowFocus_Nil")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetWindowFocusNative();
+		internal static void SetWindowFocusNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[57])();
+		}
 
 		public static void SetWindowFocus()
 		{
 			SetWindowFocusNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetWindowFontScale")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetWindowFontScaleNative(float scale);
+		internal static void SetWindowFontScaleNative(float scale)
+		{
+			((delegate* unmanaged[Cdecl]<float, void>)vt[58])(scale);
+		}
 
 		public static void SetWindowFontScale(float scale)
 		{
 			SetWindowFontScaleNative(scale);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetWindowPos_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetWindowPosNative(byte* name, Vector2 pos, ImGuiCond cond);
+		internal static void SetWindowPosNative(byte* name, Vector2 pos, ImGuiCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiCond, void>)vt[59])(name, pos, cond);
+		}
 
 		public static void SetWindowPos(byte* name, Vector2 pos, ImGuiCond cond)
 		{
@@ -1632,9 +1693,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetWindowSize_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetWindowSizeNative(byte* name, Vector2 size, ImGuiCond cond);
+		internal static void SetWindowSizeNative(byte* name, Vector2 size, ImGuiCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiCond, void>)vt[60])(name, size, cond);
+		}
 
 		public static void SetWindowSize(byte* name, Vector2 size, ImGuiCond cond)
 		{
@@ -1714,9 +1776,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetWindowCollapsed_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetWindowCollapsedNative(byte* name, byte collapsed, ImGuiCond cond);
+		internal static void SetWindowCollapsedNative(byte* name, byte collapsed, ImGuiCond cond)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, byte, ImGuiCond, void>)vt[61])(name, collapsed, cond);
+		}
 
 		public static void SetWindowCollapsed(byte* name, bool collapsed, ImGuiCond cond)
 		{
@@ -1796,9 +1859,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetWindowFocus_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetWindowFocusNative(byte* name);
+		internal static void SetWindowFocusNative(byte* name)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[62])(name);
+		}
 
 		public static void SetWindowFocus(byte* name)
 		{
@@ -1839,9 +1903,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetScrollX")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetScrollXNative();
+		internal static float GetScrollXNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[63])();
+		}
 
 		public static float GetScrollX()
 		{
@@ -1849,9 +1914,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetScrollY")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetScrollYNative();
+		internal static float GetScrollYNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[64])();
+		}
 
 		public static float GetScrollY()
 		{
@@ -1859,27 +1925,30 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetScrollX_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetScrollXNative(float scrollX);
+		internal static void SetScrollXNative(float scrollX)
+		{
+			((delegate* unmanaged[Cdecl]<float, void>)vt[65])(scrollX);
+		}
 
 		public static void SetScrollX(float scrollX)
 		{
 			SetScrollXNative(scrollX);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetScrollY_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetScrollYNative(float scrollY);
+		internal static void SetScrollYNative(float scrollY)
+		{
+			((delegate* unmanaged[Cdecl]<float, void>)vt[66])(scrollY);
+		}
 
 		public static void SetScrollY(float scrollY)
 		{
 			SetScrollYNative(scrollY);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetScrollMaxX")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetScrollMaxXNative();
+		internal static float GetScrollMaxXNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[67])();
+		}
 
 		public static float GetScrollMaxX()
 		{
@@ -1887,9 +1956,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetScrollMaxY")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetScrollMaxYNative();
+		internal static float GetScrollMaxYNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[68])();
+		}
 
 		public static float GetScrollMaxY()
 		{
@@ -1897,9 +1967,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetScrollHereX")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetScrollHereXNative(float centerXRatio);
+		internal static void SetScrollHereXNative(float centerXRatio)
+		{
+			((delegate* unmanaged[Cdecl]<float, void>)vt[69])(centerXRatio);
+		}
 
 		public static void SetScrollHereX(float centerXRatio)
 		{
@@ -1911,9 +1982,10 @@ namespace Hexa.NET.ImGui
 			SetScrollHereXNative((float)(0.5f));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetScrollHereY")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetScrollHereYNative(float centerYRatio);
+		internal static void SetScrollHereYNative(float centerYRatio)
+		{
+			((delegate* unmanaged[Cdecl]<float, void>)vt[70])(centerYRatio);
+		}
 
 		public static void SetScrollHereY(float centerYRatio)
 		{
@@ -1925,9 +1997,10 @@ namespace Hexa.NET.ImGui
 			SetScrollHereYNative((float)(0.5f));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetScrollFromPosX_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetScrollFromPosXNative(float localX, float centerXRatio);
+		internal static void SetScrollFromPosXNative(float localX, float centerXRatio)
+		{
+			((delegate* unmanaged[Cdecl]<float, float, void>)vt[71])(localX, centerXRatio);
+		}
 
 		public static void SetScrollFromPosX(float localX, float centerXRatio)
 		{
@@ -1939,9 +2012,10 @@ namespace Hexa.NET.ImGui
 			SetScrollFromPosXNative(localX, (float)(0.5f));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetScrollFromPosY_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetScrollFromPosYNative(float localY, float centerYRatio);
+		internal static void SetScrollFromPosYNative(float localY, float centerYRatio)
+		{
+			((delegate* unmanaged[Cdecl]<float, float, void>)vt[72])(localY, centerYRatio);
+		}
 
 		public static void SetScrollFromPosY(float localY, float centerYRatio)
 		{
@@ -1953,9 +2027,10 @@ namespace Hexa.NET.ImGui
 			SetScrollFromPosYNative(localY, (float)(0.5f));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushFont")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushFontNative(ImFont* font);
+		internal static void PushFontNative(ImFont* font)
+		{
+			((delegate* unmanaged[Cdecl]<ImFont*, void>)vt[73])(font);
+		}
 
 		public static void PushFont(ImFontPtr font)
 		{
@@ -1970,36 +2045,40 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPopFont")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopFontNative();
+		internal static void PopFontNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[74])();
+		}
 
 		public static void PopFont()
 		{
 			PopFontNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushStyleColor_U32")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleColorNative(ImGuiCol idx, uint col);
+		internal static void PushStyleColorNative(ImGuiCol idx, uint col)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiCol, uint, void>)vt[75])(idx, col);
+		}
 
 		public static void PushStyleColor(ImGuiCol idx, uint col)
 		{
 			PushStyleColorNative(idx, col);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushStyleColor_Vec4")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleColorNative(ImGuiCol idx, Vector4 col);
+		internal static void PushStyleColorNative(ImGuiCol idx, Vector4 col)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiCol, Vector4, void>)vt[76])(idx, col);
+		}
 
 		public static void PushStyleColor(ImGuiCol idx, Vector4 col)
 		{
 			PushStyleColorNative(idx, col);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPopStyleColor")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopStyleColorNative(int count);
+		internal static void PopStyleColorNative(int count)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[77])(count);
+		}
 
 		public static void PopStyleColor(int count)
 		{
@@ -2011,27 +2090,30 @@ namespace Hexa.NET.ImGui
 			PopStyleColorNative((int)(1));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushStyleVar_Float")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleVarNative(ImGuiStyleVar idx, float val);
+		internal static void PushStyleVarNative(ImGuiStyleVar idx, float val)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, float, void>)vt[78])(idx, val);
+		}
 
 		public static void PushStyleVar(ImGuiStyleVar idx, float val)
 		{
 			PushStyleVarNative(idx, val);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushStyleVar_Vec2")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushStyleVarNative(ImGuiStyleVar idx, Vector2 val);
+		internal static void PushStyleVarNative(ImGuiStyleVar idx, Vector2 val)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiStyleVar, Vector2, void>)vt[79])(idx, val);
+		}
 
 		public static void PushStyleVar(ImGuiStyleVar idx, Vector2 val)
 		{
 			PushStyleVarNative(idx, val);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPopStyleVar")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopStyleVarNative(int count);
+		internal static void PopStyleVarNative(int count)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[80])(count);
+		}
 
 		public static void PopStyleVar(int count)
 		{
@@ -2043,54 +2125,60 @@ namespace Hexa.NET.ImGui
 			PopStyleVarNative((int)(1));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushItemFlag")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushItemFlagNative(ImGuiItemFlags option, byte enabled);
+		internal static void PushItemFlagNative(ImGuiItemFlags option, byte enabled)
+		{
+			((delegate* unmanaged[Cdecl]<ImGuiItemFlags, byte, void>)vt[81])(option, enabled);
+		}
 
 		public static void PushItemFlag(ImGuiItemFlags option, bool enabled)
 		{
 			PushItemFlagNative(option, enabled ? (byte)1 : (byte)0);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPopItemFlag")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopItemFlagNative();
+		internal static void PopItemFlagNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[82])();
+		}
 
 		public static void PopItemFlag()
 		{
 			PopItemFlagNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushItemWidth")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushItemWidthNative(float itemWidth);
+		internal static void PushItemWidthNative(float itemWidth)
+		{
+			((delegate* unmanaged[Cdecl]<float, void>)vt[83])(itemWidth);
+		}
 
 		public static void PushItemWidth(float itemWidth)
 		{
 			PushItemWidthNative(itemWidth);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPopItemWidth")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopItemWidthNative();
+		internal static void PopItemWidthNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[84])();
+		}
 
 		public static void PopItemWidth()
 		{
 			PopItemWidthNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetNextItemWidth")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetNextItemWidthNative(float itemWidth);
+		internal static void SetNextItemWidthNative(float itemWidth)
+		{
+			((delegate* unmanaged[Cdecl]<float, void>)vt[85])(itemWidth);
+		}
 
 		public static void SetNextItemWidth(float itemWidth)
 		{
 			SetNextItemWidthNative(itemWidth);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igCalcItemWidth")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float CalcItemWidthNative();
+		internal static float CalcItemWidthNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[86])();
+		}
 
 		public static float CalcItemWidth()
 		{
@@ -2098,9 +2186,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushTextWrapPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushTextWrapPosNative(float wrapLocalPosX);
+		internal static void PushTextWrapPosNative(float wrapLocalPosX)
+		{
+			((delegate* unmanaged[Cdecl]<float, void>)vt[87])(wrapLocalPosX);
+		}
 
 		public static void PushTextWrapPos(float wrapLocalPosX)
 		{
@@ -2112,18 +2201,20 @@ namespace Hexa.NET.ImGui
 			PushTextWrapPosNative((float)(0.0f));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPopTextWrapPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopTextWrapPosNative();
+		internal static void PopTextWrapPosNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[88])();
+		}
 
 		public static void PopTextWrapPos()
 		{
 			PopTextWrapPosNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetFont")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImFont* GetFontNative();
+		internal static ImFont* GetFontNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImFont*>)vt[89])();
+		}
 
 		public static ImFontPtr GetFont()
 		{
@@ -2131,9 +2222,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetFontSize")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetFontSizeNative();
+		internal static float GetFontSizeNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[90])();
+		}
 
 		public static float GetFontSize()
 		{
@@ -2141,9 +2233,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetFontTexUvWhitePixel")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetFontTexUvWhitePixelNative(Vector2* output);
+		internal static void GetFontTexUvWhitePixelNative(Vector2* output)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[91])(output);
+		}
 
 		public static Vector2 GetFontTexUvWhitePixel()
 		{
@@ -2165,9 +2258,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetColorU32_Col")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial uint GetColorU32Native(ImGuiCol idx, float alphaMul);
+		internal static uint GetColorU32Native(ImGuiCol idx, float alphaMul)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiCol, float, uint>)vt[92])(idx, alphaMul);
+		}
 
 		public static uint GetColorU32(ImGuiCol idx, float alphaMul)
 		{
@@ -2181,9 +2275,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetColorU32_Vec4")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial uint GetColorU32Native(Vector4 col);
+		internal static uint GetColorU32Native(Vector4 col)
+		{
+			return ((delegate* unmanaged[Cdecl]<Vector4, uint>)vt[93])(col);
+		}
 
 		public static uint GetColorU32(Vector4 col)
 		{
@@ -2191,9 +2286,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetColorU32_U32")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial uint GetColorU32Native(uint col, float alphaMul);
+		internal static uint GetColorU32Native(uint col, float alphaMul)
+		{
+			return ((delegate* unmanaged[Cdecl]<uint, float, uint>)vt[94])(col, alphaMul);
+		}
 
 		public static uint GetColorU32(uint col, float alphaMul)
 		{
@@ -2207,9 +2303,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetStyleColorVec4")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial Vector4* GetStyleColorVec4Native(ImGuiCol idx);
+		internal static Vector4* GetStyleColorVec4Native(ImGuiCol idx)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImGuiCol, Vector4*>)vt[95])(idx);
+		}
 
 		public static Vector4* GetStyleColorVec4(ImGuiCol idx)
 		{
@@ -2217,9 +2314,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetCursorScreenPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetCursorScreenPosNative(Vector2* output);
+		internal static void GetCursorScreenPosNative(Vector2* output)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[96])(output);
+		}
 
 		public static Vector2 GetCursorScreenPos()
 		{
@@ -2241,18 +2339,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetCursorScreenPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetCursorScreenPosNative(Vector2 pos);
+		internal static void SetCursorScreenPosNative(Vector2 pos)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2, void>)vt[97])(pos);
+		}
 
 		public static void SetCursorScreenPos(Vector2 pos)
 		{
 			SetCursorScreenPosNative(pos);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetContentRegionAvail")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetContentRegionAvailNative(Vector2* output);
+		internal static void GetContentRegionAvailNative(Vector2* output)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[98])(output);
+		}
 
 		public static Vector2 GetContentRegionAvail()
 		{
@@ -2274,9 +2374,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetCursorPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetCursorPosNative(Vector2* output);
+		internal static void GetCursorPosNative(Vector2* output)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[99])(output);
+		}
 
 		public static Vector2 GetCursorPos()
 		{
@@ -2298,9 +2399,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetCursorPosX")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetCursorPosXNative();
+		internal static float GetCursorPosXNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[100])();
+		}
 
 		public static float GetCursorPosX()
 		{
@@ -2308,9 +2410,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetCursorPosY")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetCursorPosYNative();
+		internal static float GetCursorPosYNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[101])();
+		}
 
 		public static float GetCursorPosY()
 		{
@@ -2318,36 +2421,40 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetCursorPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetCursorPosNative(Vector2 localPos);
+		internal static void SetCursorPosNative(Vector2 localPos)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2, void>)vt[102])(localPos);
+		}
 
 		public static void SetCursorPos(Vector2 localPos)
 		{
 			SetCursorPosNative(localPos);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetCursorPosX")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetCursorPosXNative(float localX);
+		internal static void SetCursorPosXNative(float localX)
+		{
+			((delegate* unmanaged[Cdecl]<float, void>)vt[103])(localX);
+		}
 
 		public static void SetCursorPosX(float localX)
 		{
 			SetCursorPosXNative(localX);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSetCursorPosY")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetCursorPosYNative(float localY);
+		internal static void SetCursorPosYNative(float localY)
+		{
+			((delegate* unmanaged[Cdecl]<float, void>)vt[104])(localY);
+		}
 
 		public static void SetCursorPosY(float localY)
 		{
 			SetCursorPosYNative(localY);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetCursorStartPos")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetCursorStartPosNative(Vector2* output);
+		internal static void GetCursorStartPosNative(Vector2* output)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[105])(output);
+		}
 
 		public static Vector2 GetCursorStartPos()
 		{
@@ -2369,18 +2476,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSeparator")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SeparatorNative();
+		internal static void SeparatorNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[106])();
+		}
 
 		public static void Separator()
 		{
 			SeparatorNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSameLine")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SameLineNative(float offsetFromStartX, float spacing);
+		internal static void SameLineNative(float offsetFromStartX, float spacing)
+		{
+			((delegate* unmanaged[Cdecl]<float, float, void>)vt[107])(offsetFromStartX, spacing);
+		}
 
 		public static void SameLine(float offsetFromStartX, float spacing)
 		{
@@ -2397,36 +2506,40 @@ namespace Hexa.NET.ImGui
 			SameLineNative((float)(0.0f), (float)(-1.0f));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igNewLine")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void NewLineNative();
+		internal static void NewLineNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[108])();
+		}
 
 		public static void NewLine()
 		{
 			NewLineNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSpacing")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SpacingNative();
+		internal static void SpacingNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[109])();
+		}
 
 		public static void Spacing()
 		{
 			SpacingNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igDummy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DummyNative(Vector2 size);
+		internal static void DummyNative(Vector2 size)
+		{
+			((delegate* unmanaged[Cdecl]<Vector2, void>)vt[110])(size);
+		}
 
 		public static void Dummy(Vector2 size)
 		{
 			DummyNative(size);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igIndent")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void IndentNative(float indentW);
+		internal static void IndentNative(float indentW)
+		{
+			((delegate* unmanaged[Cdecl]<float, void>)vt[111])(indentW);
+		}
 
 		public static void Indent(float indentW)
 		{
@@ -2438,9 +2551,10 @@ namespace Hexa.NET.ImGui
 			IndentNative((float)(0.0f));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igUnindent")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void UnindentNative(float indentW);
+		internal static void UnindentNative(float indentW)
+		{
+			((delegate* unmanaged[Cdecl]<float, void>)vt[112])(indentW);
+		}
 
 		public static void Unindent(float indentW)
 		{
@@ -2452,36 +2566,40 @@ namespace Hexa.NET.ImGui
 			UnindentNative((float)(0.0f));
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBeginGroup")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BeginGroupNative();
+		internal static void BeginGroupNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[113])();
+		}
 
 		public static void BeginGroup()
 		{
 			BeginGroupNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igEndGroup")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void EndGroupNative();
+		internal static void EndGroupNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[114])();
+		}
 
 		public static void EndGroup()
 		{
 			EndGroupNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igAlignTextToFramePadding")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AlignTextToFramePaddingNative();
+		internal static void AlignTextToFramePaddingNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[115])();
+		}
 
 		public static void AlignTextToFramePadding()
 		{
 			AlignTextToFramePaddingNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetTextLineHeight")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetTextLineHeightNative();
+		internal static float GetTextLineHeightNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[116])();
+		}
 
 		public static float GetTextLineHeight()
 		{
@@ -2489,9 +2607,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetTextLineHeightWithSpacing")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetTextLineHeightWithSpacingNative();
+		internal static float GetTextLineHeightWithSpacingNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[117])();
+		}
 
 		public static float GetTextLineHeightWithSpacing()
 		{
@@ -2499,9 +2618,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetFrameHeight")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetFrameHeightNative();
+		internal static float GetFrameHeightNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[118])();
+		}
 
 		public static float GetFrameHeight()
 		{
@@ -2509,9 +2629,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetFrameHeightWithSpacing")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial float GetFrameHeightWithSpacingNative();
+		internal static float GetFrameHeightWithSpacingNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<float>)vt[119])();
+		}
 
 		public static float GetFrameHeightWithSpacing()
 		{
@@ -2519,9 +2640,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushID_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushIDNative(byte* strId);
+		internal static void PushIDNative(byte* strId)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[120])(strId);
+		}
 
 		public static void PushID(byte* strId)
 		{
@@ -2562,9 +2684,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushID_StrStr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushIDNative(byte* strIdBegin, byte* strIdEnd);
+		internal static void PushIDNative(byte* strIdBegin, byte* strIdEnd)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[121])(strIdBegin, strIdEnd);
+		}
 
 		public static void PushID(byte* strIdBegin, byte* strIdEnd)
 		{
@@ -2697,36 +2820,40 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushID_Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushIDNative(void* ptrId);
+		internal static void PushIDNative(void* ptrId)
+		{
+			((delegate* unmanaged[Cdecl]<void*, void>)vt[122])(ptrId);
+		}
 
 		public static void PushID(void* ptrId)
 		{
 			PushIDNative(ptrId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPushID_Int")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PushIDNative(int intId);
+		internal static void PushIDNative(int intId)
+		{
+			((delegate* unmanaged[Cdecl]<int, void>)vt[123])(intId);
+		}
 
 		public static void PushID(int intId)
 		{
 			PushIDNative(intId);
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igPopID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PopIDNative();
+		internal static void PopIDNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[124])();
+		}
 
 		public static void PopID()
 		{
 			PopIDNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetID_Str")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int GetIDNative(byte* strId);
+		internal static int GetIDNative(byte* strId)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, int>)vt[125])(strId);
+		}
 
 		public static int GetID(byte* strId)
 		{
@@ -2770,9 +2897,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetID_StrStr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int GetIDNative(byte* strIdBegin, byte* strIdEnd);
+		internal static int GetIDNative(byte* strIdBegin, byte* strIdEnd)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)vt[126])(strIdBegin, strIdEnd);
+		}
 
 		public static int GetID(byte* strIdBegin, byte* strIdEnd)
 		{
@@ -2912,9 +3040,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetID_Ptr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int GetIDNative(void* ptrId);
+		internal static int GetIDNative(void* ptrId)
+		{
+			return ((delegate* unmanaged[Cdecl]<void*, int>)vt[127])(ptrId);
+		}
 
 		public static int GetID(void* ptrId)
 		{
@@ -2922,9 +3051,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igGetID_Int")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int GetIDNative(int intId);
+		internal static int GetIDNative(int intId)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, int>)vt[128])(intId);
+		}
 
 		public static int GetID(int intId)
 		{
@@ -2932,9 +3062,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTextUnformatted")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TextUnformattedNative(byte* text, byte* textEnd);
+		internal static void TextUnformattedNative(byte* text, byte* textEnd)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[129])(text, textEnd);
+		}
 
 		public static void TextUnformatted(byte* text, byte* textEnd)
 		{
@@ -3106,9 +3237,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igText")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TextNative(byte* fmt);
+		internal static void TextNative(byte* fmt)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[130])(fmt);
+		}
 
 		public static void Text(byte* fmt)
 		{
@@ -3149,9 +3281,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTextV")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TextVNative(byte* fmt, nuint args);
+		internal static void TextVNative(byte* fmt, nuint args)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[131])(fmt, args);
+		}
 
 		public static void TextV(byte* fmt, nuint args)
 		{
@@ -3192,9 +3325,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTextColored")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TextColoredNative(Vector4 col, byte* fmt);
+		internal static void TextColoredNative(Vector4 col, byte* fmt)
+		{
+			((delegate* unmanaged[Cdecl]<Vector4, byte*, void>)vt[132])(col, fmt);
+		}
 
 		public static void TextColored(Vector4 col, byte* fmt)
 		{
@@ -3235,9 +3369,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTextColoredV")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TextColoredVNative(Vector4 col, byte* fmt, nuint args);
+		internal static void TextColoredVNative(Vector4 col, byte* fmt, nuint args)
+		{
+			((delegate* unmanaged[Cdecl]<Vector4, byte*, nuint, void>)vt[133])(col, fmt, args);
+		}
 
 		public static void TextColoredV(Vector4 col, byte* fmt, nuint args)
 		{
@@ -3278,9 +3413,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTextDisabled")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TextDisabledNative(byte* fmt);
+		internal static void TextDisabledNative(byte* fmt)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[134])(fmt);
+		}
 
 		public static void TextDisabled(byte* fmt)
 		{
@@ -3321,9 +3457,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTextDisabledV")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TextDisabledVNative(byte* fmt, nuint args);
+		internal static void TextDisabledVNative(byte* fmt, nuint args)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[135])(fmt, args);
+		}
 
 		public static void TextDisabledV(byte* fmt, nuint args)
 		{
@@ -3364,9 +3501,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTextWrapped")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TextWrappedNative(byte* fmt);
+		internal static void TextWrappedNative(byte* fmt)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[136])(fmt);
+		}
 
 		public static void TextWrapped(byte* fmt)
 		{
@@ -3407,9 +3545,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTextWrappedV")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TextWrappedVNative(byte* fmt, nuint args);
+		internal static void TextWrappedVNative(byte* fmt, nuint args)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[137])(fmt, args);
+		}
 
 		public static void TextWrappedV(byte* fmt, nuint args)
 		{
@@ -3450,9 +3589,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igLabelText")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void LabelTextNative(byte* label, byte* fmt);
+		internal static void LabelTextNative(byte* label, byte* fmt)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[138])(label, fmt);
+		}
 
 		public static void LabelText(byte* label, byte* fmt)
 		{
@@ -3585,9 +3725,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igLabelTextV")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void LabelTextVNative(byte* label, byte* fmt, nuint args);
+		internal static void LabelTextVNative(byte* label, byte* fmt, nuint args)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, void>)vt[139])(label, fmt, args);
+		}
 
 		public static void LabelTextV(byte* label, byte* fmt, nuint args)
 		{
@@ -3720,9 +3861,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBulletText")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BulletTextNative(byte* fmt);
+		internal static void BulletTextNative(byte* fmt)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[140])(fmt);
+		}
 
 		public static void BulletText(byte* fmt)
 		{
@@ -3763,9 +3905,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBulletTextV")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BulletTextVNative(byte* fmt, nuint args);
+		internal static void BulletTextVNative(byte* fmt, nuint args)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[141])(fmt, args);
+		}
 
 		public static void BulletTextV(byte* fmt, nuint args)
 		{
@@ -3806,9 +3949,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSeparatorText")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SeparatorTextNative(byte* label);
+		internal static void SeparatorTextNative(byte* label)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[142])(label);
+		}
 
 		public static void SeparatorText(byte* label)
 		{
@@ -3849,9 +3993,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igButton")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ButtonNative(byte* label, Vector2 size);
+		internal static byte ButtonNative(byte* label, Vector2 size)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, byte>)vt[143])(label, size);
+		}
 
 		public static bool Button(byte* label, Vector2 size)
 		{
@@ -3937,9 +4082,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igSmallButton")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte SmallButtonNative(byte* label);
+		internal static byte SmallButtonNative(byte* label)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)vt[144])(label);
+		}
 
 		public static bool SmallButton(byte* label)
 		{
@@ -3983,9 +4129,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igInvisibleButton")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte InvisibleButtonNative(byte* strId, Vector2 size, ImGuiButtonFlags flags);
+		internal static byte InvisibleButtonNative(byte* strId, Vector2 size, ImGuiButtonFlags flags)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiButtonFlags, byte>)vt[145])(strId, size, flags);
+		}
 
 		public static bool InvisibleButton(byte* strId, Vector2 size, ImGuiButtonFlags flags)
 		{
@@ -4071,9 +4218,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igArrowButton")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ArrowButtonNative(byte* strId, ImGuiDir dir);
+		internal static byte ArrowButtonNative(byte* strId, ImGuiDir dir)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDir, byte>)vt[146])(strId, dir);
+		}
 
 		public static bool ArrowButton(byte* strId, ImGuiDir dir)
 		{
@@ -4117,9 +4265,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igCheckbox")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte CheckboxNative(byte* label, bool* v);
+		internal static byte CheckboxNative(byte* label, bool* v)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, bool*, byte>)vt[147])(label, v);
+		}
 
 		public static bool Checkbox(byte* label, bool* v)
 		{
@@ -4214,9 +4363,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igCheckboxFlags_IntPtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte CheckboxFlagsNative(byte* label, int* flags, int flagsValue);
+		internal static byte CheckboxFlagsNative(byte* label, int* flags, int flagsValue)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)vt[148])(label, flags, flagsValue);
+		}
 
 		public static bool CheckboxFlags(byte* label, int* flags, int flagsValue)
 		{
@@ -4311,9 +4461,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igCheckboxFlags_UintPtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte CheckboxFlagsNative(byte* label, uint* flags, uint flagsValue);
+		internal static byte CheckboxFlagsNative(byte* label, uint* flags, uint flagsValue)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, uint*, uint, byte>)vt[149])(label, flags, flagsValue);
+		}
 
 		public static bool CheckboxFlags(byte* label, uint* flags, uint flagsValue)
 		{
@@ -4408,9 +4559,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igRadioButton_Bool")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte RadioButtonNative(byte* label, byte active);
+		internal static byte RadioButtonNative(byte* label, byte active)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, byte, byte>)vt[150])(label, active);
+		}
 
 		public static bool RadioButton(byte* label, bool active)
 		{
@@ -4454,9 +4606,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igRadioButton_IntPtr")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte RadioButtonNative(byte* label, int* v, int vButton);
+		internal static byte RadioButtonNative(byte* label, int* v, int vButton)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)vt[151])(label, v, vButton);
+		}
 
 		public static bool RadioButton(byte* label, int* v, int vButton)
 		{
@@ -4551,9 +4704,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igProgressBar")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ProgressBarNative(float fraction, Vector2 sizeArg, byte* overlay);
+		internal static void ProgressBarNative(float fraction, Vector2 sizeArg, byte* overlay)
+		{
+			((delegate* unmanaged[Cdecl]<float, Vector2, byte*, void>)vt[152])(fraction, sizeArg, overlay);
+		}
 
 		public static void ProgressBar(float fraction, Vector2 sizeArg, byte* overlay)
 		{
@@ -4643,18 +4797,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igBullet")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BulletNative();
+		internal static void BulletNative()
+		{
+			((delegate* unmanaged[Cdecl]<void>)vt[153])();
+		}
 
 		public static void Bullet()
 		{
 			BulletNative();
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTextLink")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte TextLinkNative(byte* label);
+		internal static byte TextLinkNative(byte* label)
+		{
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)vt[154])(label);
+		}
 
 		public static bool TextLink(byte* label)
 		{
@@ -4698,9 +4854,10 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "igTextLinkOpenURL")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void TextLinkOpenURLNative(byte* label, byte* url);
+		internal static void TextLinkOpenURLNative(byte* label, byte* url)
+		{
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[155])(label, url);
+		}
 
 		public static void TextLinkOpenURL(byte* label, byte* url)
 		{
@@ -4869,149 +5026,6 @@ namespace Hexa.NET.ImGui
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImage")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ImageNative(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 tintCol, Vector4 borderCol);
-
-		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 tintCol, Vector4 borderCol)
-		{
-			ImageNative(userTextureId, imageSize, uv0, uv1, tintCol, borderCol);
-		}
-
-		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 tintCol)
-		{
-			ImageNative(userTextureId, imageSize, uv0, uv1, tintCol, (Vector4)(new Vector4(0,0,0,0)));
-		}
-
-		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
-		{
-			ImageNative(userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(1,1,1,1)), (Vector4)(new Vector4(0,0,0,0)));
-		}
-
-		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
-		{
-			ImageNative(userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (Vector4)(new Vector4(0,0,0,0)));
-		}
-
-		public static void Image(ImTextureID userTextureId, Vector2 imageSize)
-		{
-			ImageNative(userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(1,1,1,1)), (Vector4)(new Vector4(0,0,0,0)));
-		}
-
-		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 tintCol)
-		{
-			ImageNative(userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), tintCol, (Vector4)(new Vector4(0,0,0,0)));
-		}
-
-		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector4 tintCol)
-		{
-			ImageNative(userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, (Vector4)(new Vector4(0,0,0,0)));
-		}
-
-		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 tintCol, Vector4 borderCol)
-		{
-			ImageNative(userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), tintCol, borderCol);
-		}
-
-		public static void Image(ImTextureID userTextureId, Vector2 imageSize, Vector4 tintCol, Vector4 borderCol)
-		{
-			ImageNative(userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), tintCol, borderCol);
-		}
-
-		[LibraryImport(LibName, EntryPoint = "igImageButton")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte ImageButtonNative(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol);
-
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
-		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
-			return ret != 0;
-		}
-
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
-		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
-			return ret != 0;
-		}
-
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
-		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
-			return ret != 0;
-		}
-
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
-		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
-			return ret != 0;
-		}
-
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize)
-		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
-			return ret != 0;
-		}
-
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol)
-		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
-			return ret != 0;
-		}
-
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol)
-		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, (Vector4)(new Vector4(1,1,1,1)));
-			return ret != 0;
-		}
-
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector4 bgCol, Vector4 tintCol)
-		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), bgCol, tintCol);
-			return ret != 0;
-		}
-
-		public static bool ImageButton(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector4 bgCol, Vector4 tintCol)
-		{
-			byte ret = ImageButtonNative(strId, userTextureId, imageSize, (Vector2)(new Vector2(0,0)), (Vector2)(new Vector2(1,1)), bgCol, tintCol);
-			return ret != 0;
-		}
-
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
-				return ret != 0;
-			}
-		}
-
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, bgCol, (Vector4)(new Vector4(1,1,1,1)));
-				return ret != 0;
-			}
-		}
-
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, uv1, (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
-				return ret != 0;
-			}
-		}
-
-		public static bool ImageButton(ref byte strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0)
-		{
-			fixed (byte* pstrId = &strId)
-			{
-				byte ret = ImageButtonNative((byte*)pstrId, userTextureId, imageSize, uv0, (Vector2)(new Vector2(1,1)), (Vector4)(new Vector4(0,0,0,0)), (Vector4)(new Vector4(1,1,1,1)));
-				return ret != 0;
 			}
 		}
 	}

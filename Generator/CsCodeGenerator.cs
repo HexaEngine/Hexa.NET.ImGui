@@ -250,6 +250,11 @@
             return string.Empty;
         }
 
+        private static string GetBoolType()
+        {
+            return "byte";
+        }
+
         private static string GetCsTypeName(CppPointerType pointerType)
         {
             if (pointerType.ElementType is CppQualifiedType qualifiedType)

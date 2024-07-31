@@ -10,12 +10,631 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 
 namespace Hexa.NET.ImGui
 {
 	public unsafe partial class ImGui
 	{
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, string textBegin, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textBegin != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, pStr0, (byte*)(default), wrapWidth, (Vector4*)pcpuFineClipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextEnd = &textEnd)
+			{
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)pcpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textEnd != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImFont* pfont = &font)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textEnd != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative(self, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, wrapWidth, (Vector4*)pcpuFineClipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ref ImFont font, float fontSize, Vector2 pos, uint col, byte* textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (ImFont* pfont = &font)
+				{
+					byte* pStr0 = null;
+					int pStrSize0 = 0;
+					if (textEnd != null)
+					{
+						pStrSize0 = Utils.GetByteCountUTF8(textEnd);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						}
+						else
+						{
+							byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+							pStr0 = pStrStack0;
+						}
+						int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
+						pStr0[pStrOffset0] = 0;
+					}
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative((ImDrawList*)pself, (ImFont*)pfont, fontSize, pos, col, textBegin, pStr0, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (byte* ptextBegin = &textBegin)
+			{
+				fixed (byte* ptextEnd = &textEnd)
+				{
+					fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+					{
+						AddTextNative(self, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+					}
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, (Vector4*)pcpuFineClipRect);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ImDrawListPtr self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, ref Vector4 cpuFineClipRect)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (textBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			byte* pStr1 = null;
+			int pStrSize1 = 0;
+			if (textEnd != null)
+			{
+				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+				}
+				else
+				{
+					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+					pStr1 = pStrStack1;
+				}
+				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+				pStr1[pStrOffset1] = 0;
+			}
+			fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+			{
+				AddTextNative(self, font, fontSize, pos, col, pStr0, pStr1, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+				if (pStrSize1 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr1);
+				}
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, wrapWidth, (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				fixed (byte* ptextBegin = &textBegin)
+				{
+					fixed (byte* ptextEnd = &textEnd)
+					{
+						fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+						{
+							AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, (byte*)ptextBegin, (byte*)ptextEnd, (float)(0.0f), (Vector4*)pcpuFineClipRect);
+						}
+					}
+				}
+			}
+		}
+
+		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, float wrapWidth, ref Vector4 cpuFineClipRect)
+		{
+			fixed (ImDrawList* pself = &self)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (textBegin != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(textBegin);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(textBegin, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				byte* pStr1 = null;
+				int pStrSize1 = 0;
+				if (textEnd != null)
+				{
+					pStrSize1 = Utils.GetByteCountUTF8(textEnd);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
+					}
+					else
+					{
+						byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
+						pStr1 = pStrStack1;
+					}
+					int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
+					pStr1[pStrOffset1] = 0;
+				}
+				fixed (Vector4* pcpuFineClipRect = &cpuFineClipRect)
+				{
+					AddTextNative((ImDrawList*)pself, font, fontSize, pos, col, pStr0, pStr1, wrapWidth, (Vector4*)pcpuFineClipRect);
+					if (pStrSize1 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr1);
+					}
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
 
 		public static void AddText(ref ImDrawList self, ImFontPtr font, float fontSize, Vector2 pos, uint col, string textBegin, string textEnd, ref Vector4 cpuFineClipRect)
 		{
@@ -362,9 +981,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddBezierCubic")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddBezierCubicNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments);
+		internal static void AddBezierCubicNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, float, int, void>)vt[555])(self, p1, p2, p3, p4, col, thickness, numSegments);
+		}
 
 		public static void AddBezierCubic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int numSegments)
 		{
@@ -392,9 +1012,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddBezierQuadratic")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddBezierQuadraticNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments);
+		internal static void AddBezierQuadraticNative(ImDrawList* self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, uint, float, int, void>)vt[556])(self, p1, p2, p3, col, thickness, numSegments);
+		}
 
 		public static void AddBezierQuadratic(ImDrawListPtr self, Vector2 p1, Vector2 p2, Vector2 p3, uint col, float thickness, int numSegments)
 		{
@@ -422,9 +1043,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddPolyline")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddPolylineNative(ImDrawList* self, Vector2* points, int numPoints, uint col, ImDrawFlags flags, float thickness);
+		internal static void AddPolylineNative(ImDrawList* self, Vector2* points, int numPoints, uint col, ImDrawFlags flags, float thickness)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2*, int, uint, ImDrawFlags, float, void>)vt[557])(self, points, numPoints, col, flags, thickness);
+		}
 
 		public static void AddPolyline(ImDrawListPtr self, Vector2* points, int numPoints, uint col, ImDrawFlags flags, float thickness)
 		{
@@ -458,9 +1080,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddConvexPolyFilled")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddConvexPolyFilledNative(ImDrawList* self, Vector2* points, int numPoints, uint col);
+		internal static void AddConvexPolyFilledNative(ImDrawList* self, Vector2* points, int numPoints, uint col)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2*, int, uint, void>)vt[558])(self, points, numPoints, col);
+		}
 
 		public static void AddConvexPolyFilled(ImDrawListPtr self, Vector2* points, int numPoints, uint col)
 		{
@@ -494,9 +1117,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddConcavePolyFilled")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddConcavePolyFilledNative(ImDrawList* self, Vector2* points, int numPoints, uint col);
+		internal static void AddConcavePolyFilledNative(ImDrawList* self, Vector2* points, int numPoints, uint col)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2*, int, uint, void>)vt[559])(self, points, numPoints, col);
+		}
 
 		public static void AddConcavePolyFilled(ImDrawListPtr self, Vector2* points, int numPoints, uint col)
 		{
@@ -530,9 +1154,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddImage")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddImageNative(ImDrawList* self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col);
+		internal static void AddImageNative(ImDrawList* self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[560])(self, userTextureId, pMin, pMax, uvMin, uvMax, col);
+		}
 
 		public static void AddImage(ImDrawListPtr self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col)
 		{
@@ -612,9 +1237,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddImageQuad")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddImageQuadNative(ImDrawList* self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col);
+		internal static void AddImageQuadNative(ImDrawList* self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[561])(self, userTextureId, p1, p2, p3, p4, uv1, uv2, uv3, uv4, col);
+		}
 
 		public static void AddImageQuad(ImDrawListPtr self, ImTextureID userTextureId, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 uv1, Vector2 uv2, Vector2 uv3, Vector2 uv4, uint col)
 		{
@@ -746,9 +1372,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddImageRounded")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddImageRoundedNative(ImDrawList* self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags);
+		internal static void AddImageRoundedNative(ImDrawList* self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ImTextureID, Vector2, Vector2, Vector2, Vector2, uint, float, ImDrawFlags, void>)vt[562])(self, userTextureId, pMin, pMax, uvMin, uvMax, col, rounding, flags);
+		}
 
 		public static void AddImageRounded(ImDrawListPtr self, ImTextureID userTextureId, Vector2 pMin, Vector2 pMax, Vector2 uvMin, Vector2 uvMax, uint col, float rounding, ImDrawFlags flags)
 		{
@@ -776,9 +1403,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathClear")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathClearNative(ImDrawList* self);
+		internal static void PathClearNative(ImDrawList* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[563])(self);
+		}
 
 		public static void PathClear(ImDrawListPtr self)
 		{
@@ -793,9 +1421,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathLineTo")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathLineToNative(ImDrawList* self, Vector2 pos);
+		internal static void PathLineToNative(ImDrawList* self, Vector2 pos)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, void>)vt[564])(self, pos);
+		}
 
 		public static void PathLineTo(ImDrawListPtr self, Vector2 pos)
 		{
@@ -810,9 +1439,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathLineToMergeDuplicate")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathLineToMergeDuplicateNative(ImDrawList* self, Vector2 pos);
+		internal static void PathLineToMergeDuplicateNative(ImDrawList* self, Vector2 pos)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, void>)vt[565])(self, pos);
+		}
 
 		public static void PathLineToMergeDuplicate(ImDrawListPtr self, Vector2 pos)
 		{
@@ -827,9 +1457,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathFillConvex")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathFillConvexNative(ImDrawList* self, uint col);
+		internal static void PathFillConvexNative(ImDrawList* self, uint col)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, uint, void>)vt[566])(self, col);
+		}
 
 		public static void PathFillConvex(ImDrawListPtr self, uint col)
 		{
@@ -844,9 +1475,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathFillConcave")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathFillConcaveNative(ImDrawList* self, uint col);
+		internal static void PathFillConcaveNative(ImDrawList* self, uint col)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, uint, void>)vt[567])(self, col);
+		}
 
 		public static void PathFillConcave(ImDrawListPtr self, uint col)
 		{
@@ -861,9 +1493,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathStroke")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathStrokeNative(ImDrawList* self, uint col, ImDrawFlags flags, float thickness);
+		internal static void PathStrokeNative(ImDrawList* self, uint col, ImDrawFlags flags, float thickness)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, uint, ImDrawFlags, float, void>)vt[568])(self, col, flags, thickness);
+		}
 
 		public static void PathStroke(ImDrawListPtr self, uint col, ImDrawFlags flags, float thickness)
 		{
@@ -917,9 +1550,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathArcTo")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathArcToNative(ImDrawList* self, Vector2 center, float radius, float aMin, float aMax, int numSegments);
+		internal static void PathArcToNative(ImDrawList* self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, float, float, int, void>)vt[569])(self, center, radius, aMin, aMax, numSegments);
+		}
 
 		public static void PathArcTo(ImDrawListPtr self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
 		{
@@ -947,9 +1581,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathArcToFast")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathArcToFastNative(ImDrawList* self, Vector2 center, float radius, int aMinOf12, int aMaxOf12);
+		internal static void PathArcToFastNative(ImDrawList* self, Vector2 center, float radius, int aMinOf12, int aMaxOf12)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, int, int, void>)vt[570])(self, center, radius, aMinOf12, aMaxOf12);
+		}
 
 		public static void PathArcToFast(ImDrawListPtr self, Vector2 center, float radius, int aMinOf12, int aMaxOf12)
 		{
@@ -964,9 +1599,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathEllipticalArcTo")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathEllipticalArcToNative(ImDrawList* self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments);
+		internal static void PathEllipticalArcToNative(ImDrawList* self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, float, float, int, void>)vt[571])(self, center, radius, rot, aMin, aMax, numSegments);
+		}
 
 		public static void PathEllipticalArcTo(ImDrawListPtr self, Vector2 center, Vector2 radius, float rot, float aMin, float aMax, int numSegments)
 		{
@@ -994,9 +1630,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathBezierCubicCurveTo")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathBezierCubicCurveToNative(ImDrawList* self, Vector2 p2, Vector2 p3, Vector2 p4, int numSegments);
+		internal static void PathBezierCubicCurveToNative(ImDrawList* self, Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, int, void>)vt[572])(self, p2, p3, p4, numSegments);
+		}
 
 		public static void PathBezierCubicCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3, Vector2 p4, int numSegments)
 		{
@@ -1024,9 +1661,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathBezierQuadraticCurveTo")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathBezierQuadraticCurveToNative(ImDrawList* self, Vector2 p2, Vector2 p3, int numSegments);
+		internal static void PathBezierQuadraticCurveToNative(ImDrawList* self, Vector2 p2, Vector2 p3, int numSegments)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, int, void>)vt[573])(self, p2, p3, numSegments);
+		}
 
 		public static void PathBezierQuadraticCurveTo(ImDrawListPtr self, Vector2 p2, Vector2 p3, int numSegments)
 		{
@@ -1054,9 +1692,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PathRect")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PathRectNative(ImDrawList* self, Vector2 rectMin, Vector2 rectMax, float rounding, ImDrawFlags flags);
+		internal static void PathRectNative(ImDrawList* self, Vector2 rectMin, Vector2 rectMax, float rounding, ImDrawFlags flags)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, ImDrawFlags, void>)vt[574])(self, rectMin, rectMax, rounding, flags);
+		}
 
 		public static void PathRect(ImDrawListPtr self, Vector2 rectMin, Vector2 rectMax, float rounding, ImDrawFlags flags)
 		{
@@ -1110,9 +1749,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddCallback")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddCallbackNative(ImDrawList* self, ImDrawCallback callback, void* callbackData);
+		internal static void AddCallbackNative(ImDrawList* self, ImDrawCallback callback, void* callbackData)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, delegate*<ImDrawList*, ImDrawCmd*, void>, void*, void>)vt[575])(self, (delegate*<ImDrawList*, ImDrawCmd*, void>)Marshal.GetFunctionPointerForDelegate(callback), callbackData);
+		}
 
 		public static void AddCallback(ImDrawListPtr self, ImDrawCallback callback, void* callbackData)
 		{
@@ -1127,9 +1767,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_AddDrawCmd")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddDrawCmdNative(ImDrawList* self);
+		internal static void AddDrawCmdNative(ImDrawList* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[576])(self);
+		}
 
 		public static void AddDrawCmd(ImDrawListPtr self)
 		{
@@ -1144,9 +1785,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_CloneOutput")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImDrawList* CloneOutputNative(ImDrawList* self);
+		internal static ImDrawList* CloneOutputNative(ImDrawList* self)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImDrawList*, ImDrawList*>)vt[577])(self);
+		}
 
 		public static ImDrawListPtr CloneOutput(ImDrawListPtr self)
 		{
@@ -1163,9 +1805,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_ChannelsSplit")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ChannelsSplitNative(ImDrawList* self, int count);
+		internal static void ChannelsSplitNative(ImDrawList* self, int count)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, void>)vt[578])(self, count);
+		}
 
 		public static void ChannelsSplit(ImDrawListPtr self, int count)
 		{
@@ -1180,9 +1823,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_ChannelsMerge")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ChannelsMergeNative(ImDrawList* self);
+		internal static void ChannelsMergeNative(ImDrawList* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[579])(self);
+		}
 
 		public static void ChannelsMerge(ImDrawListPtr self)
 		{
@@ -1197,9 +1841,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_ChannelsSetCurrent")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ChannelsSetCurrentNative(ImDrawList* self, int n);
+		internal static void ChannelsSetCurrentNative(ImDrawList* self, int n)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, void>)vt[580])(self, n);
+		}
 
 		public static void ChannelsSetCurrent(ImDrawListPtr self, int n)
 		{
@@ -1214,9 +1859,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PrimReserve")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PrimReserveNative(ImDrawList* self, int idxCount, int vtxCount);
+		internal static void PrimReserveNative(ImDrawList* self, int idxCount, int vtxCount)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, void>)vt[581])(self, idxCount, vtxCount);
+		}
 
 		public static void PrimReserve(ImDrawListPtr self, int idxCount, int vtxCount)
 		{
@@ -1231,9 +1877,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PrimUnreserve")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PrimUnreserveNative(ImDrawList* self, int idxCount, int vtxCount);
+		internal static void PrimUnreserveNative(ImDrawList* self, int idxCount, int vtxCount)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, int, int, void>)vt[582])(self, idxCount, vtxCount);
+		}
 
 		public static void PrimUnreserve(ImDrawListPtr self, int idxCount, int vtxCount)
 		{
@@ -1248,9 +1895,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PrimRect")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PrimRectNative(ImDrawList* self, Vector2 a, Vector2 b, uint col);
+		internal static void PrimRectNative(ImDrawList* self, Vector2 a, Vector2 b, uint col)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)vt[583])(self, a, b, col);
+		}
 
 		public static void PrimRect(ImDrawListPtr self, Vector2 a, Vector2 b, uint col)
 		{
@@ -1265,9 +1913,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PrimRectUV")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PrimRectUVNative(ImDrawList* self, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, uint col);
+		internal static void PrimRectUVNative(ImDrawList* self, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, uint col)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[584])(self, a, b, uvA, uvB, col);
+		}
 
 		public static void PrimRectUV(ImDrawListPtr self, Vector2 a, Vector2 b, Vector2 uvA, Vector2 uvB, uint col)
 		{
@@ -1282,9 +1931,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PrimQuadUV")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PrimQuadUVNative(ImDrawList* self, Vector2 a, Vector2 b, Vector2 c, Vector2 d, Vector2 uvA, Vector2 uvB, Vector2 uvC, Vector2 uvD, uint col);
+		internal static void PrimQuadUVNative(ImDrawList* self, Vector2 a, Vector2 b, Vector2 c, Vector2 d, Vector2 uvA, Vector2 uvB, Vector2 uvC, Vector2 uvD, uint col)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, Vector2, uint, void>)vt[585])(self, a, b, c, d, uvA, uvB, uvC, uvD, col);
+		}
 
 		public static void PrimQuadUV(ImDrawListPtr self, Vector2 a, Vector2 b, Vector2 c, Vector2 d, Vector2 uvA, Vector2 uvB, Vector2 uvC, Vector2 uvD, uint col)
 		{
@@ -1299,9 +1949,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PrimWriteVtx")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PrimWriteVtxNative(ImDrawList* self, Vector2 pos, Vector2 uv, uint col);
+		internal static void PrimWriteVtxNative(ImDrawList* self, Vector2 pos, Vector2 uv, uint col)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)vt[586])(self, pos, uv, col);
+		}
 
 		public static void PrimWriteVtx(ImDrawListPtr self, Vector2 pos, Vector2 uv, uint col)
 		{
@@ -1316,9 +1967,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PrimWriteIdx")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PrimWriteIdxNative(ImDrawList* self, ushort idx);
+		internal static void PrimWriteIdxNative(ImDrawList* self, ushort idx)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, ushort, void>)vt[587])(self, idx);
+		}
 
 		public static void PrimWriteIdx(ImDrawListPtr self, ushort idx)
 		{
@@ -1333,9 +1985,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList_PrimVtx")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void PrimVtxNative(ImDrawList* self, Vector2 pos, Vector2 uv, uint col);
+		internal static void PrimVtxNative(ImDrawList* self, Vector2 pos, Vector2 uv, uint col)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, void>)vt[588])(self, pos, uv, col);
+		}
 
 		public static void PrimVtx(ImDrawListPtr self, Vector2 pos, Vector2 uv, uint col)
 		{
@@ -1350,9 +2003,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList__ResetForNewFrame")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void _ResetForNewFrameNative(ImDrawList* self);
+		internal static void _ResetForNewFrameNative(ImDrawList* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[589])(self);
+		}
 
 		public static void _ResetForNewFrame(ImDrawListPtr self)
 		{
@@ -1367,9 +2021,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList__ClearFreeMemory")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void _ClearFreeMemoryNative(ImDrawList* self);
+		internal static void _ClearFreeMemoryNative(ImDrawList* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[590])(self);
+		}
 
 		public static void _ClearFreeMemory(ImDrawListPtr self)
 		{
@@ -1384,9 +2039,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList__PopUnusedDrawCmd")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void _PopUnusedDrawCmdNative(ImDrawList* self);
+		internal static void _PopUnusedDrawCmdNative(ImDrawList* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[591])(self);
+		}
 
 		public static void _PopUnusedDrawCmd(ImDrawListPtr self)
 		{
@@ -1401,9 +2057,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList__TryMergeDrawCmds")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void _TryMergeDrawCmdsNative(ImDrawList* self);
+		internal static void _TryMergeDrawCmdsNative(ImDrawList* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[592])(self);
+		}
 
 		public static void _TryMergeDrawCmds(ImDrawListPtr self)
 		{
@@ -1418,9 +2075,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList__OnChangedClipRect")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void _OnChangedClipRectNative(ImDrawList* self);
+		internal static void _OnChangedClipRectNative(ImDrawList* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[593])(self);
+		}
 
 		public static void _OnChangedClipRect(ImDrawListPtr self)
 		{
@@ -1435,9 +2093,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList__OnChangedTextureID")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void _OnChangedTextureIDNative(ImDrawList* self);
+		internal static void _OnChangedTextureIDNative(ImDrawList* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[594])(self);
+		}
 
 		public static void _OnChangedTextureID(ImDrawListPtr self)
 		{
@@ -1452,9 +2111,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList__OnChangedVtxOffset")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void _OnChangedVtxOffsetNative(ImDrawList* self);
+		internal static void _OnChangedVtxOffsetNative(ImDrawList* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, void>)vt[595])(self);
+		}
 
 		public static void _OnChangedVtxOffset(ImDrawListPtr self)
 		{
@@ -1469,9 +2129,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList__CalcCircleAutoSegmentCount")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial int _CalcCircleAutoSegmentCountNative(ImDrawList* self, float radius);
+		internal static int _CalcCircleAutoSegmentCountNative(ImDrawList* self, float radius)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImDrawList*, float, int>)vt[596])(self, radius);
+		}
 
 		public static int _CalcCircleAutoSegmentCount(ImDrawListPtr self, float radius)
 		{
@@ -1488,9 +2149,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList__PathArcToFastEx")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void _PathArcToFastExNative(ImDrawList* self, Vector2 center, float radius, int aMinSample, int aMaxSample, int aStep);
+		internal static void _PathArcToFastExNative(ImDrawList* self, Vector2 center, float radius, int aMinSample, int aMaxSample, int aStep)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, int, int, int, void>)vt[597])(self, center, radius, aMinSample, aMaxSample, aStep);
+		}
 
 		public static void _PathArcToFastEx(ImDrawListPtr self, Vector2 center, float radius, int aMinSample, int aMaxSample, int aStep)
 		{
@@ -1505,9 +2167,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawList__PathArcToN")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void _PathArcToNNative(ImDrawList* self, Vector2 center, float radius, float aMin, float aMax, int numSegments);
+		internal static void _PathArcToNNative(ImDrawList* self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, float, float, int, void>)vt[598])(self, center, radius, aMin, aMax, numSegments);
+		}
 
 		public static void _PathArcToN(ImDrawListPtr self, Vector2 center, float radius, float aMin, float aMax, int numSegments)
 		{
@@ -1522,9 +2185,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawData_ImDrawData")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImDrawData* ImDrawDataNative();
+		internal static ImDrawData* ImDrawDataNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImDrawData*>)vt[599])();
+		}
 
 		public static ImDrawDataPtr ImDrawData()
 		{
@@ -1532,9 +2196,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawData_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImDrawData* self);
+		internal static void DestroyNative(ImDrawData* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)vt[600])(self);
+		}
 
 		public static void Destroy(ImDrawDataPtr self)
 		{
@@ -1549,9 +2214,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawData_Clear")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearNative(ImDrawData* self);
+		internal static void ClearNative(ImDrawData* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)vt[601])(self);
+		}
 
 		public static void Clear(ImDrawDataPtr self)
 		{
@@ -1566,9 +2232,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawData_AddDrawList")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddDrawListNative(ImDrawData* self, ImDrawList* drawList);
+		internal static void AddDrawListNative(ImDrawData* self, ImDrawList* drawList)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawData*, ImDrawList*, void>)vt[602])(self, drawList);
+		}
 
 		public static void AddDrawList(ImDrawDataPtr self, ImDrawListPtr drawList)
 		{
@@ -1602,9 +2269,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawData_DeIndexAllBuffers")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DeIndexAllBuffersNative(ImDrawData* self);
+		internal static void DeIndexAllBuffersNative(ImDrawData* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawData*, void>)vt[603])(self);
+		}
 
 		public static void DeIndexAllBuffers(ImDrawDataPtr self)
 		{
@@ -1619,9 +2287,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImDrawData_ScaleClipRects")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ScaleClipRectsNative(ImDrawData* self, Vector2 fbScale);
+		internal static void ScaleClipRectsNative(ImDrawData* self, Vector2 fbScale)
+		{
+			((delegate* unmanaged[Cdecl]<ImDrawData*, Vector2, void>)vt[604])(self, fbScale);
+		}
 
 		public static void ScaleClipRects(ImDrawDataPtr self, Vector2 fbScale)
 		{
@@ -1636,9 +2305,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontConfig_ImFontConfig")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImFontConfig* ImFontConfigNative();
+		internal static ImFontConfig* ImFontConfigNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImFontConfig*>)vt[605])();
+		}
 
 		public static ImFontConfigPtr ImFontConfig()
 		{
@@ -1646,9 +2316,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontConfig_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImFontConfig* self);
+		internal static void DestroyNative(ImFontConfig* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImFontConfig*, void>)vt[606])(self);
+		}
 
 		public static void Destroy(ImFontConfigPtr self)
 		{
@@ -1663,9 +2334,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontGlyphRangesBuilder_ImFontGlyphRangesBuilder")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImFontGlyphRangesBuilder* ImFontGlyphRangesBuilderNative();
+		internal static ImFontGlyphRangesBuilder* ImFontGlyphRangesBuilderNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*>)vt[607])();
+		}
 
 		public static ImFontGlyphRangesBuilderPtr ImFontGlyphRangesBuilder()
 		{
@@ -1673,9 +2345,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontGlyphRangesBuilder_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImFontGlyphRangesBuilder* self);
+		internal static void DestroyNative(ImFontGlyphRangesBuilder* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, void>)vt[608])(self);
+		}
 
 		public static void Destroy(ImFontGlyphRangesBuilderPtr self)
 		{
@@ -1690,9 +2363,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontGlyphRangesBuilder_Clear")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearNative(ImFontGlyphRangesBuilder* self);
+		internal static void ClearNative(ImFontGlyphRangesBuilder* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, void>)vt[609])(self);
+		}
 
 		public static void Clear(ImFontGlyphRangesBuilderPtr self)
 		{
@@ -1707,9 +2381,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontGlyphRangesBuilder_GetBit")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte GetBitNative(ImFontGlyphRangesBuilder* self, nuint n);
+		internal static byte GetBitNative(ImFontGlyphRangesBuilder* self, nuint n)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, nuint, byte>)vt[610])(self, n);
+		}
 
 		public static bool GetBit(ImFontGlyphRangesBuilderPtr self, nuint n)
 		{
@@ -1726,9 +2401,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontGlyphRangesBuilder_SetBit")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void SetBitNative(ImFontGlyphRangesBuilder* self, nuint n);
+		internal static void SetBitNative(ImFontGlyphRangesBuilder* self, nuint n)
+		{
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, nuint, void>)vt[611])(self, n);
+		}
 
 		public static void SetBit(ImFontGlyphRangesBuilderPtr self, nuint n)
 		{
@@ -1743,9 +2419,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontGlyphRangesBuilder_AddChar")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddCharNative(ImFontGlyphRangesBuilder* self, char c);
+		internal static void AddCharNative(ImFontGlyphRangesBuilder* self, char c)
+		{
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, char, void>)vt[612])(self, c);
+		}
 
 		public static void AddChar(ImFontGlyphRangesBuilderPtr self, char c)
 		{
@@ -1760,9 +2437,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontGlyphRangesBuilder_AddText")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddTextNative(ImFontGlyphRangesBuilder* self, byte* text, byte* textEnd);
+		internal static void AddTextNative(ImFontGlyphRangesBuilder* self, byte* text, byte* textEnd)
+		{
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, byte*, byte*, void>)vt[613])(self, text, textEnd);
+		}
 
 		public static void AddText(ImFontGlyphRangesBuilderPtr self, byte* text, byte* textEnd)
 		{
@@ -2134,9 +2812,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontGlyphRangesBuilder_AddRanges")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void AddRangesNative(ImFontGlyphRangesBuilder* self, char* ranges);
+		internal static void AddRangesNative(ImFontGlyphRangesBuilder* self, char* ranges)
+		{
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, char*, void>)vt[614])(self, ranges);
+		}
 
 		public static void AddRanges(ImFontGlyphRangesBuilderPtr self, char* ranges)
 		{
@@ -2170,9 +2849,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontGlyphRangesBuilder_BuildRanges")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void BuildRangesNative(ImFontGlyphRangesBuilder* self, ImVectorImWchar* outRanges);
+		internal static void BuildRangesNative(ImFontGlyphRangesBuilder* self, ImVectorImWchar* outRanges)
+		{
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ImVectorImWchar*, void>)vt[615])(self, outRanges);
+		}
 
 		public static void BuildRanges(ImFontGlyphRangesBuilderPtr self, ImVectorImWcharPtr outRanges)
 		{
@@ -2206,9 +2886,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlasCustomRect_ImFontAtlasCustomRect")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImFontAtlasCustomRect* ImFontAtlasCustomRectNative();
+		internal static ImFontAtlasCustomRect* ImFontAtlasCustomRectNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*>)vt[616])();
+		}
 
 		public static ImFontAtlasCustomRectPtr ImFontAtlasCustomRect()
 		{
@@ -2216,9 +2897,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlasCustomRect_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImFontAtlasCustomRect* self);
+		internal static void DestroyNative(ImFontAtlasCustomRect* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*, void>)vt[617])(self);
+		}
 
 		public static void Destroy(ImFontAtlasCustomRectPtr self)
 		{
@@ -2233,9 +2915,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlasCustomRect_IsPacked")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte IsPackedNative(ImFontAtlasCustomRect* self);
+		internal static byte IsPackedNative(ImFontAtlasCustomRect* self)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlasCustomRect*, byte>)vt[618])(self);
+		}
 
 		public static bool IsPacked(ImFontAtlasCustomRectPtr self)
 		{
@@ -2252,9 +2935,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_ImFontAtlas")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImFontAtlas* ImFontAtlasNative();
+		internal static ImFontAtlas* ImFontAtlasNative()
+		{
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*>)vt[619])();
+		}
 
 		public static ImFontAtlasPtr ImFontAtlas()
 		{
@@ -2262,9 +2946,10 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_destroy")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void DestroyNative(ImFontAtlas* self);
+		internal static void DestroyNative(ImFontAtlas* self)
+		{
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)vt[620])(self);
+		}
 
 		public static void Destroy(ImFontAtlasPtr self)
 		{
@@ -2279,9 +2964,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_AddFont")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImFont* AddFontNative(ImFontAtlas* self, ImFontConfig* fontCfg);
+		internal static ImFont* AddFontNative(ImFontAtlas* self, ImFontConfig* fontCfg)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, ImFont*>)vt[621])(self, fontCfg);
+		}
 
 		public static ImFontPtr AddFont(ImFontAtlasPtr self, ImFontConfigPtr fontCfg)
 		{
@@ -2319,9 +3005,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_AddFontDefault")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImFont* AddFontDefaultNative(ImFontAtlas* self, ImFontConfig* fontCfg);
+		internal static ImFont* AddFontDefaultNative(ImFontAtlas* self, ImFontConfig* fontCfg)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontConfig*, ImFont*>)vt[622])(self, fontCfg);
+		}
 
 		public static ImFontPtr AddFontDefault(ImFontAtlasPtr self, ImFontConfigPtr fontCfg)
 		{
@@ -2374,9 +3061,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_AddFontFromFileTTF")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImFont* AddFontFromFileTTFNative(ImFontAtlas* self, byte* filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges);
+		internal static ImFont* AddFontFromFileTTFNative(ImFontAtlas* self, byte* filename, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte*, float, ImFontConfig*, char*, ImFont*>)vt[623])(self, filename, sizePixels, fontCfg, glyphRanges);
+		}
 
 		public static ImFontPtr AddFontFromFileTTF(ImFontAtlasPtr self, byte* filename, float sizePixels, ImFontConfigPtr fontCfg, char* glyphRanges)
 		{
@@ -3323,9 +4011,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_AddFontFromMemoryTTF")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImFont* AddFontFromMemoryTTFNative(ImFontAtlas* self, void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges);
+		internal static ImFont* AddFontFromMemoryTTFNative(ImFontAtlas* self, void* fontData, int fontDataSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, void*, int, float, ImFontConfig*, char*, ImFont*>)vt[624])(self, fontData, fontDataSize, sizePixels, fontCfg, glyphRanges);
+		}
 
 		public static ImFontPtr AddFontFromMemoryTTF(ImFontAtlasPtr self, void* fontData, int fontDataSize, float sizePixels, ImFontConfigPtr fontCfg, char* glyphRanges)
 		{
@@ -3498,9 +4187,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_AddFontFromMemoryCompressedTTF")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImFont* AddFontFromMemoryCompressedTTFNative(ImFontAtlas* self, void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges);
+		internal static ImFont* AddFontFromMemoryCompressedTTFNative(ImFontAtlas* self, void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, void*, int, float, ImFontConfig*, char*, ImFont*>)vt[625])(self, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
+		}
 
 		public static ImFontPtr AddFontFromMemoryCompressedTTF(ImFontAtlasPtr self, void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfigPtr fontCfg, char* glyphRanges)
 		{
@@ -3673,9 +4363,10 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_AddFontFromMemoryCompressedBase85TTF")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial ImFont* AddFontFromMemoryCompressedBase85TTFNative(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges);
+		internal static ImFont* AddFontFromMemoryCompressedBase85TTFNative(ImFontAtlas* self, byte* compressedFontDataBase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
+		{
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte*, float, ImFontConfig*, char*, ImFont*>)vt[626])(self, compressedFontDataBase85, sizePixels, fontCfg, glyphRanges);
+		}
 
 		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, byte* compressedFontDataBase85, float sizePixels, ImFontConfigPtr fontCfg, char* glyphRanges)
 		{
@@ -4333,686 +5024,6 @@ namespace Hexa.NET.ImGui
 				{
 					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
 					return ret;
-				}
-			}
-		}
-
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, string compressedFontDataBase85, float sizePixels, ImFontConfigPtr fontCfg, ref char glyphRanges)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (compressedFontDataBase85 != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDataBase85);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (char* pglyphRanges = &glyphRanges)
-			{
-				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, fontCfg, (char*)pglyphRanges);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, string compressedFontDataBase85, float sizePixels, ref char glyphRanges)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (compressedFontDataBase85 != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDataBase85);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (char* pglyphRanges = &glyphRanges)
-			{
-				ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ImFontConfigPtr fontCfg, ref char glyphRanges)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
-				{
-					fixed (char* pglyphRanges = &glyphRanges)
-					{
-						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, fontCfg, (char*)pglyphRanges);
-						return ret;
-					}
-				}
-			}
-		}
-
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ref char glyphRanges)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
-				{
-					fixed (char* pglyphRanges = &glyphRanges)
-					{
-						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
-						return ret;
-					}
-				}
-			}
-		}
-
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ImFontConfigPtr fontCfg, ref char glyphRanges)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDataBase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDataBase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (char* pglyphRanges = &glyphRanges)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, fontCfg, (char*)pglyphRanges);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ref char glyphRanges)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDataBase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDataBase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (char* pglyphRanges = &glyphRanges)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)(default), (char*)pglyphRanges);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
-		{
-			fixed (ImFontConfig* pfontCfg = &fontCfg)
-			{
-				fixed (char* pglyphRanges = &glyphRanges)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, compressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
-					return ret;
-				}
-			}
-		}
-
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, byte* compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					fixed (char* pglyphRanges = &glyphRanges)
-					{
-						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, compressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
-						return ret;
-					}
-				}
-			}
-		}
-
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
-		{
-			fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
-			{
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					fixed (char* pglyphRanges = &glyphRanges)
-					{
-						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
-						return ret;
-					}
-				}
-			}
-		}
-
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ImFontAtlasPtr self, string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (compressedFontDataBase85 != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(compressedFontDataBase85);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ImFontConfig* pfontCfg = &fontCfg)
-			{
-				fixed (char* pglyphRanges = &glyphRanges)
-				{
-					ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative(self, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						Utils.Free(pStr0);
-					}
-					return ret;
-				}
-			}
-		}
-
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, ref byte compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte* pcompressedFontDataBase85 = &compressedFontDataBase85)
-				{
-					fixed (ImFontConfig* pfontCfg = &fontCfg)
-					{
-						fixed (char* pglyphRanges = &glyphRanges)
-						{
-							ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, (byte*)pcompressedFontDataBase85, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
-							return ret;
-						}
-					}
-				}
-			}
-		}
-
-		public static ImFontPtr AddFontFromMemoryCompressedBase85TTF(ref ImFontAtlas self, string compressedFontDataBase85, float sizePixels, ref ImFontConfig fontCfg, ref char glyphRanges)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (compressedFontDataBase85 != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(compressedFontDataBase85);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(compressedFontDataBase85, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				fixed (ImFontConfig* pfontCfg = &fontCfg)
-				{
-					fixed (char* pglyphRanges = &glyphRanges)
-					{
-						ImFontPtr ret = AddFontFromMemoryCompressedBase85TTFNative((ImFontAtlas*)pself, pStr0, sizePixels, (ImFontConfig*)pfontCfg, (char*)pglyphRanges);
-						if (pStrSize0 >= Utils.MaxStackallocSize)
-						{
-							Utils.Free(pStr0);
-						}
-						return ret;
-					}
-				}
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_ClearInputData")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearInputDataNative(ImFontAtlas* self);
-
-		public static void ClearInputData(ImFontAtlasPtr self)
-		{
-			ClearInputDataNative(self);
-		}
-
-		public static void ClearInputData(ref ImFontAtlas self)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				ClearInputDataNative((ImFontAtlas*)pself);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_ClearTexData")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearTexDataNative(ImFontAtlas* self);
-
-		public static void ClearTexData(ImFontAtlasPtr self)
-		{
-			ClearTexDataNative(self);
-		}
-
-		public static void ClearTexData(ref ImFontAtlas self)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				ClearTexDataNative((ImFontAtlas*)pself);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_ClearFonts")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearFontsNative(ImFontAtlas* self);
-
-		public static void ClearFonts(ImFontAtlasPtr self)
-		{
-			ClearFontsNative(self);
-		}
-
-		public static void ClearFonts(ref ImFontAtlas self)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				ClearFontsNative((ImFontAtlas*)pself);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_Clear")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void ClearNative(ImFontAtlas* self);
-
-		public static void Clear(ImFontAtlasPtr self)
-		{
-			ClearNative(self);
-		}
-
-		public static void Clear(ref ImFontAtlas self)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				ClearNative((ImFontAtlas*)pself);
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_Build")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte BuildNative(ImFontAtlas* self);
-
-		public static bool Build(ImFontAtlasPtr self)
-		{
-			byte ret = BuildNative(self);
-			return ret != 0;
-		}
-
-		public static bool Build(ref ImFontAtlas self)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				byte ret = BuildNative((ImFontAtlas*)pself);
-				return ret != 0;
-			}
-		}
-
-		[LibraryImport(LibName, EntryPoint = "ImFontAtlas_GetTexDataAsAlpha8")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial void GetTexDataAsAlpha8Native(ImFontAtlas* self, byte** outPixels, int* outWidth, int* outHeight, int* outBytesPerPixel);
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, byte** outPixels, int* outWidth, int* outHeight, int* outBytesPerPixel)
-		{
-			GetTexDataAsAlpha8Native(self, outPixels, outWidth, outHeight, outBytesPerPixel);
-		}
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, byte** outPixels, int* outWidth, int* outHeight)
-		{
-			GetTexDataAsAlpha8Native(self, outPixels, outWidth, outHeight, (int*)(default));
-		}
-
-		public static void GetTexDataAsAlpha8(ref ImFontAtlas self, byte** outPixels, int* outWidth, int* outHeight, int* outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				GetTexDataAsAlpha8Native((ImFontAtlas*)pself, outPixels, outWidth, outHeight, outBytesPerPixel);
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ref ImFontAtlas self, byte** outPixels, int* outWidth, int* outHeight)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				GetTexDataAsAlpha8Native((ImFontAtlas*)pself, outPixels, outWidth, outHeight, (int*)(default));
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, ref byte* outPixels, int* outWidth, int* outHeight, int* outBytesPerPixel)
-		{
-			fixed (byte** poutPixels = &outPixels)
-			{
-				GetTexDataAsAlpha8Native(self, (byte**)poutPixels, outWidth, outHeight, outBytesPerPixel);
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, ref byte* outPixels, int* outWidth, int* outHeight)
-		{
-			fixed (byte** poutPixels = &outPixels)
-			{
-				GetTexDataAsAlpha8Native(self, (byte**)poutPixels, outWidth, outHeight, (int*)(default));
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ref ImFontAtlas self, ref byte* outPixels, int* outWidth, int* outHeight, int* outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte** poutPixels = &outPixels)
-				{
-					GetTexDataAsAlpha8Native((ImFontAtlas*)pself, (byte**)poutPixels, outWidth, outHeight, outBytesPerPixel);
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ref ImFontAtlas self, ref byte* outPixels, int* outWidth, int* outHeight)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte** poutPixels = &outPixels)
-				{
-					GetTexDataAsAlpha8Native((ImFontAtlas*)pself, (byte**)poutPixels, outWidth, outHeight, (int*)(default));
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, byte** outPixels, ref int outWidth, int* outHeight, int* outBytesPerPixel)
-		{
-			fixed (int* poutWidth = &outWidth)
-			{
-				GetTexDataAsAlpha8Native(self, outPixels, (int*)poutWidth, outHeight, outBytesPerPixel);
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, byte** outPixels, ref int outWidth, int* outHeight)
-		{
-			fixed (int* poutWidth = &outWidth)
-			{
-				GetTexDataAsAlpha8Native(self, outPixels, (int*)poutWidth, outHeight, (int*)(default));
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ref ImFontAtlas self, byte** outPixels, ref int outWidth, int* outHeight, int* outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (int* poutWidth = &outWidth)
-				{
-					GetTexDataAsAlpha8Native((ImFontAtlas*)pself, outPixels, (int*)poutWidth, outHeight, outBytesPerPixel);
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ref ImFontAtlas self, byte** outPixels, ref int outWidth, int* outHeight)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (int* poutWidth = &outWidth)
-				{
-					GetTexDataAsAlpha8Native((ImFontAtlas*)pself, outPixels, (int*)poutWidth, outHeight, (int*)(default));
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, ref byte* outPixels, ref int outWidth, int* outHeight, int* outBytesPerPixel)
-		{
-			fixed (byte** poutPixels = &outPixels)
-			{
-				fixed (int* poutWidth = &outWidth)
-				{
-					GetTexDataAsAlpha8Native(self, (byte**)poutPixels, (int*)poutWidth, outHeight, outBytesPerPixel);
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, ref byte* outPixels, ref int outWidth, int* outHeight)
-		{
-			fixed (byte** poutPixels = &outPixels)
-			{
-				fixed (int* poutWidth = &outWidth)
-				{
-					GetTexDataAsAlpha8Native(self, (byte**)poutPixels, (int*)poutWidth, outHeight, (int*)(default));
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ref ImFontAtlas self, ref byte* outPixels, ref int outWidth, int* outHeight, int* outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte** poutPixels = &outPixels)
-				{
-					fixed (int* poutWidth = &outWidth)
-					{
-						GetTexDataAsAlpha8Native((ImFontAtlas*)pself, (byte**)poutPixels, (int*)poutWidth, outHeight, outBytesPerPixel);
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ref ImFontAtlas self, ref byte* outPixels, ref int outWidth, int* outHeight)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte** poutPixels = &outPixels)
-				{
-					fixed (int* poutWidth = &outWidth)
-					{
-						GetTexDataAsAlpha8Native((ImFontAtlas*)pself, (byte**)poutPixels, (int*)poutWidth, outHeight, (int*)(default));
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, byte** outPixels, int* outWidth, ref int outHeight, int* outBytesPerPixel)
-		{
-			fixed (int* poutHeight = &outHeight)
-			{
-				GetTexDataAsAlpha8Native(self, outPixels, outWidth, (int*)poutHeight, outBytesPerPixel);
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, byte** outPixels, int* outWidth, ref int outHeight)
-		{
-			fixed (int* poutHeight = &outHeight)
-			{
-				GetTexDataAsAlpha8Native(self, outPixels, outWidth, (int*)poutHeight, (int*)(default));
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ref ImFontAtlas self, byte** outPixels, int* outWidth, ref int outHeight, int* outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (int* poutHeight = &outHeight)
-				{
-					GetTexDataAsAlpha8Native((ImFontAtlas*)pself, outPixels, outWidth, (int*)poutHeight, outBytesPerPixel);
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ref ImFontAtlas self, byte** outPixels, int* outWidth, ref int outHeight)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (int* poutHeight = &outHeight)
-				{
-					GetTexDataAsAlpha8Native((ImFontAtlas*)pself, outPixels, outWidth, (int*)poutHeight, (int*)(default));
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, ref byte* outPixels, int* outWidth, ref int outHeight, int* outBytesPerPixel)
-		{
-			fixed (byte** poutPixels = &outPixels)
-			{
-				fixed (int* poutHeight = &outHeight)
-				{
-					GetTexDataAsAlpha8Native(self, (byte**)poutPixels, outWidth, (int*)poutHeight, outBytesPerPixel);
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, ref byte* outPixels, int* outWidth, ref int outHeight)
-		{
-			fixed (byte** poutPixels = &outPixels)
-			{
-				fixed (int* poutHeight = &outHeight)
-				{
-					GetTexDataAsAlpha8Native(self, (byte**)poutPixels, outWidth, (int*)poutHeight, (int*)(default));
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ref ImFontAtlas self, ref byte* outPixels, int* outWidth, ref int outHeight, int* outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte** poutPixels = &outPixels)
-				{
-					fixed (int* poutHeight = &outHeight)
-					{
-						GetTexDataAsAlpha8Native((ImFontAtlas*)pself, (byte**)poutPixels, outWidth, (int*)poutHeight, outBytesPerPixel);
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ref ImFontAtlas self, ref byte* outPixels, int* outWidth, ref int outHeight)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (byte** poutPixels = &outPixels)
-				{
-					fixed (int* poutHeight = &outHeight)
-					{
-						GetTexDataAsAlpha8Native((ImFontAtlas*)pself, (byte**)poutPixels, outWidth, (int*)poutHeight, (int*)(default));
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, byte** outPixels, ref int outWidth, ref int outHeight, int* outBytesPerPixel)
-		{
-			fixed (int* poutWidth = &outWidth)
-			{
-				fixed (int* poutHeight = &outHeight)
-				{
-					GetTexDataAsAlpha8Native(self, outPixels, (int*)poutWidth, (int*)poutHeight, outBytesPerPixel);
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, byte** outPixels, ref int outWidth, ref int outHeight)
-		{
-			fixed (int* poutWidth = &outWidth)
-			{
-				fixed (int* poutHeight = &outHeight)
-				{
-					GetTexDataAsAlpha8Native(self, outPixels, (int*)poutWidth, (int*)poutHeight, (int*)(default));
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ref ImFontAtlas self, byte** outPixels, ref int outWidth, ref int outHeight, int* outBytesPerPixel)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (int* poutWidth = &outWidth)
-				{
-					fixed (int* poutHeight = &outHeight)
-					{
-						GetTexDataAsAlpha8Native((ImFontAtlas*)pself, outPixels, (int*)poutWidth, (int*)poutHeight, outBytesPerPixel);
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ref ImFontAtlas self, byte** outPixels, ref int outWidth, ref int outHeight)
-		{
-			fixed (ImFontAtlas* pself = &self)
-			{
-				fixed (int* poutWidth = &outWidth)
-				{
-					fixed (int* poutHeight = &outHeight)
-					{
-						GetTexDataAsAlpha8Native((ImFontAtlas*)pself, outPixels, (int*)poutWidth, (int*)poutHeight, (int*)(default));
-					}
-				}
-			}
-		}
-
-		public static void GetTexDataAsAlpha8(ImFontAtlasPtr self, ref byte* outPixels, ref int outWidth, ref int outHeight, int* outBytesPerPixel)
-		{
-			fixed (byte** poutPixels = &outPixels)
-			{
-				fixed (int* poutWidth = &outWidth)
-				{
-					fixed (int* poutHeight = &outHeight)
-					{
-						GetTexDataAsAlpha8Native(self, (byte**)poutPixels, (int*)poutWidth, (int*)poutHeight, outBytesPerPixel);
-					}
 				}
 			}
 		}

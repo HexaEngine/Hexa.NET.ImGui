@@ -10,6 +10,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using HexaGen.Runtime;
 using System.Numerics;
 using Hexa.NET.ImGui;
 
@@ -17,6 +18,597 @@ namespace Hexa.NET.ImPlot
 {
 	public unsafe partial class ImPlot
 	{
+
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutClicked = &outClicked)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, (bool*)poutClicked, outHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragPointNative(id, x, y, col, size, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (bool* poutHovered = &outHovered)
+			{
+				fixed (bool* pheld = &held)
+				{
+					byte ret = DragPointNative(id, x, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+					return ret != 0;
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, size, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, (double*)px, y, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* py = &y)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, x, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, float size, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, size, (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), (ImPlotDragToolFlags)(0), outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, ref double y, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (double* py = &y)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragPointNative(id, (double*)px, (double*)py, col, (float)(4), flags, outClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, x, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, x, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, x, y, col, (float)(4), (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, double* x, double* y, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (bool* poutClicked = &outClicked)
+			{
+				fixed (bool* poutHovered = &outHovered)
+				{
+					fixed (bool* pheld = &held)
+					{
+						byte ret = DragPointNative(id, x, y, col, (float)(4), flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+						return ret != 0;
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ImPlotDragToolFlags flags, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragPointNative(id, (double*)px, y, col, size, flags, (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
+
+		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, float size, ref bool outClicked, ref bool outHovered, ref bool held)
+		{
+			fixed (double* px = &x)
+			{
+				fixed (bool* poutClicked = &outClicked)
+				{
+					fixed (bool* poutHovered = &outHovered)
+					{
+						fixed (bool* pheld = &held)
+						{
+							byte ret = DragPointNative(id, (double*)px, y, col, size, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)poutHovered, (bool*)pheld);
+							return ret != 0;
+						}
+					}
+				}
+			}
+		}
 
 		public static bool DragPoint(int id, ref double x, double* y, Vector4 col, ref bool outClicked, ref bool outHovered, ref bool held)
 		{
@@ -210,9 +802,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_DragLineX")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte DragLineXNative(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held);
+		internal static byte DragLineXNative(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, double*, Vector4, float, ImPlotDragToolFlags, bool*, bool*, bool*, byte>)vt[294])(id, x, col, thickness, flags, outClicked, outHovered, held);
+		}
 
 		public static bool DragLineX(int id, double* x, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
 		{
@@ -1522,9 +2115,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_DragLineY")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte DragLineYNative(int id, double* y, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held);
+		internal static byte DragLineYNative(int id, double* y, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, double*, Vector4, float, ImPlotDragToolFlags, bool*, bool*, bool*, byte>)vt[295])(id, y, col, thickness, flags, outClicked, outHovered, held);
+		}
 
 		public static bool DragLineY(int id, double* y, Vector4 col, float thickness, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
 		{
@@ -2834,9 +3428,10 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		[LibraryImport(LibName, EntryPoint = "ImPlot_DragRect")]
-		[UnmanagedCallConv(CallConvs = new Type[] {typeof(System.Runtime.CompilerServices.CallConvCdecl)})]
-		internal static partial byte DragRectNative(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held);
+		internal static byte DragRectNative(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
+		{
+			return ((delegate* unmanaged[Cdecl]<int, double*, double*, double*, double*, Vector4, ImPlotDragToolFlags, bool*, bool*, bool*, byte>)vt[296])(id, x1, y1, x2, y2, col, flags, outClicked, outHovered, held);
+		}
 
 		public static bool DragRect(int id, double* x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, bool* outClicked, bool* outHovered, bool* held)
 		{
@@ -4425,600 +5020,6 @@ namespace Hexa.NET.ImPlot
 			{
 				byte ret = DragRectNative(id, x1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
 				return ret != 0;
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, double* y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, (double*)px1, y1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* py1 = &y1)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* py1 = &y1)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* py1 = &y1)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked)
-		{
-			fixed (double* py1 = &y1)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* py1 = &y1)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* py1 = &y1)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, x1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* py1 = &y1)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, outHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* py1 = &y1)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* py1 = &y1)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* py1 = &y1)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* py1 = &y1)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, ref double y1, double* x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* py1 = &y1)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, (double*)px1, (double*)py1, x2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px2 = &x2)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px2 = &x2)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* px2 = &x2)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked)
-		{
-			fixed (double* px2 = &x2)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px2 = &x2)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px2 = &x2)
-			{
-				fixed (bool* poutClicked = &outClicked)
-				{
-					byte ret = DragRectNative(id, x1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* px2 = &x2)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* px2 = &x2)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* px2 = &x2)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* px2 = &x2)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* px2 = &x2)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, double* y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* px2 = &x2)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, (double*)px1, y1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* py1 = &y1)
-			{
-				fixed (double* px2 = &x2)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* py1 = &y1)
-			{
-				fixed (double* px2 = &x2)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* py1 = &y1)
-			{
-				fixed (double* px2 = &x2)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked)
-		{
-			fixed (double* py1 = &y1)
-			{
-				fixed (double* px2 = &x2)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* py1 = &y1)
-			{
-				fixed (double* px2 = &x2)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, double* x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* py1 = &y1)
-			{
-				fixed (double* px2 = &x2)
-				{
-					fixed (bool* poutClicked = &outClicked)
-					{
-						byte ret = DragRectNative(id, x1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* py1 = &y1)
-				{
-					fixed (double* px2 = &x2)
-					{
-						fixed (bool* poutClicked = &outClicked)
-						{
-							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, held);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* py1 = &y1)
-				{
-					fixed (double* px2 = &x2)
-					{
-						fixed (bool* poutClicked = &outClicked)
-						{
-							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, outHovered, (bool*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ImPlotDragToolFlags flags, ref bool outClicked)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* py1 = &y1)
-				{
-					fixed (double* px2 = &x2)
-					{
-						fixed (bool* poutClicked = &outClicked)
-						{
-							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, flags, (bool*)poutClicked, (bool*)(default), (bool*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* py1 = &y1)
-				{
-					fixed (double* px2 = &x2)
-					{
-						fixed (bool* poutClicked = &outClicked)
-						{
-							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, (bool*)(default), (bool*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* py1 = &y1)
-				{
-					fixed (double* px2 = &x2)
-					{
-						fixed (bool* poutClicked = &outClicked)
-						{
-							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, (bool*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool DragRect(int id, ref double x1, ref double y1, ref double x2, double* y2, Vector4 col, ref bool outClicked, bool* outHovered, bool* held)
-		{
-			fixed (double* px1 = &x1)
-			{
-				fixed (double* py1 = &y1)
-				{
-					fixed (double* px2 = &x2)
-					{
-						fixed (bool* poutClicked = &outClicked)
-						{
-							byte ret = DragRectNative(id, (double*)px1, (double*)py1, (double*)px2, y2, col, (ImPlotDragToolFlags)(0), (bool*)poutClicked, outHovered, held);
-							return ret != 0;
-						}
-					}
-				}
 			}
 		}
 	}

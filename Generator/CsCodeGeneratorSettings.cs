@@ -21,6 +21,13 @@
         public string Signature { get; set; }
     }
 
+    public enum ImportType
+    {
+        DllImport,
+        LibraryImport,
+        VTable
+    }
+
     public class CsCodeGeneratorSettings
     {
         public static void Load(string file)
@@ -50,7 +57,13 @@
 
         public bool GenerateDelegates { get; set; } = true;
 
-        public bool UseLibraryImport { get; set; } = true;
+        public bool UseDllImport => ImportType == ImportType.DllImport;
+
+        public bool UseLibraryImport => ImportType == ImportType.LibraryImport;
+
+        public bool UseVTable => ImportType == ImportType.VTable;
+
+        public ImportType ImportType { get; set; } = ImportType.VTable;
 
         public Dictionary<string, string> KnownConstantNames { get; set; } = new();
 

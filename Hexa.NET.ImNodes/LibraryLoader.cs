@@ -31,6 +31,26 @@
             }
         }
 
+        public static nint LoadLibrary()
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return LoadLocalLibrary("cimnodes");
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                return LoadLocalLibrary("cimnodes");
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                return LoadLocalLibrary("cimnodes");
+            }
+            else
+            {
+                return LoadLocalLibrary("cimnodes");
+            }
+        }
+
         public static string GetExtension()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

@@ -31,6 +31,26 @@
             }
         }
 
+        public static nint LoadLibrary()
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return LoadLocalLibrary("cimplot");
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                return LoadLocalLibrary("cimplot");
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                return LoadLocalLibrary("cimplot");
+            }
+            else
+            {
+                return LoadLocalLibrary("cimplot");
+            }
+        }
+
         public static string GetExtension()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

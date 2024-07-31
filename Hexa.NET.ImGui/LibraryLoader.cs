@@ -31,6 +31,26 @@
             }
         }
 
+        public static nint LoadLibrary()
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return LoadLocalLibrary("cimgui");
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                return LoadLocalLibrary("cimgui");
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                return LoadLocalLibrary("cimgui");
+            }
+            else
+            {
+                return LoadLocalLibrary("cimgui");
+            }
+        }
+
         public static string GetExtension()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
