@@ -3,11 +3,26 @@
     using CppAst;
     using System.IO;
 
-    public static partial class CsCodeGenerator
+    public partial class CsCodeGenerator
     {
-        public static readonly HashSet<string> DefinedTypedefs = new();
+        public readonly HashSet<string> DefinedTypedefs = new();
+        public readonly HashSet<string> LibDefinedTypedefs = new();
 
-        private static void GenerateHandles(CppCompilation compilation, string outputPath)
+        private bool FilterTypedef(CppTypedef typedef)
+        {
+            if (settings.AllowedTypedefs.Count != 0 && !settings.AllowedTypedefs.Contains(typedef.Name))
+                return true;
+            if (settings.IgnoredTypedefs.Contains(typedef.Name))
+                return true;
+            if (LibDefinedTypedefs.Contains(typedef.Name))
+                return true;
+            if (DefinedTypedefs.Contains(typedef.Name))
+                return true;
+            DefinedTypedefs.Add(typedef.Name);
+            return false;
+        }
+
+        private void GenerateHandles(CppCompilation compilation, string outputPath)
         {
             string[] usings = { "System", "System.Diagnostics", "System.Runtime.InteropServices", "HexaGen.Runtime" };
 
@@ -19,23 +34,20 @@
             Directory.CreateDirectory(outDir);
 
             // Generate Functions
-            using var writer = new CodeWriter(fileName, CsCodeGeneratorSettings.Default.Namespace, usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
+            using var writer = new CodeWriter(fileName, settings.Namespace, usings.Concat(settings.Usings).ToArray());
 
             for (int i = 0; i < compilation.Typedefs.Count; i++)
             {
                 CppTypedef typedef = compilation.Typedefs[i];
-                if (CsCodeGeneratorSettings.Default.AllowedTypedefs.Count != 0 && !CsCodeGeneratorSettings.Default.AllowedTypedefs.Contains(typedef.Name))
+                if (FilterTypedef(typedef))
+                {
                     continue;
-                if (CsCodeGeneratorSettings.Default.IgnoredTypedefs.Contains(typedef.Name))
-                    continue;
-                if (DefinedTypedefs.Contains(typedef.Name))
-                    continue;
-                DefinedTypedefs.Add(typedef.Name);
+                }
 
                 if (typedef.ElementType is CppPointerType pointerType && pointerType.ElementType is not CppFunctionType)
                 {
                     var isDispatchable = true;
-                    var csName = GetCsCleanName(typedef.Name);
+                    var csName = settings.GetCsCleanName(typedef.Name);
                     WriteHandle(writer, typedef, csName, isDispatchable);
                 }
             }

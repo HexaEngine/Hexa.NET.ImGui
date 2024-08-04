@@ -5,15 +5,38 @@
     using System.IO;
     using System.Linq;
 
-    public static partial class CsCodeGenerator
+    public partial class CsCodeGenerator
     {
-        public static readonly HashSet<string> DefinedDelegates = new();
+        public readonly HashSet<string> DefinedDelegates = new();
+        public readonly HashSet<string> LibDefinedDelegates = new();
 
-        private static void GenerateDelegates(CppCompilation compilation, string outputPath)
+        private bool FilterDelegate(ICppMember member)
         {
-            string[] usings = { "System", "System.Diagnostics", "System.Runtime.CompilerServices", "System.Runtime.InteropServices", "HexaGen.Runtime" };
+            if (settings.AllowedDelegates.Count != 0 && !settings.AllowedDelegates.Contains(member.Name))
+                return true;
+            if (settings.IgnoredDelegates.Contains(member.Name))
+                return true;
 
-            if (!CsCodeGeneratorSettings.Default.GenerateDelegates)
+            if (LibDefinedDelegates.Contains(member.Name))
+            {
+                return true;
+            }
+
+            if (DefinedDelegates.Contains(member.Name))
+            {
+                return true;
+            }
+
+            DefinedDelegates.Add(member.Name);
+
+            return false;
+        }
+
+        private void GenerateDelegates(CppCompilation compilation, string outputPath)
+        {
+            string[] usings = ["System", "System.Diagnostics", "System.Runtime.CompilerServices", "System.Runtime.InteropServices", "HexaGen.Runtime"];
+
+            if (!settings.GenerateDelegates)
             {
                 return;
             }
@@ -26,34 +49,33 @@
             Directory.CreateDirectory(outDir);
 
             // Generate Delegates
-            using var writer = new SplitCodeWriter(fileName, CsCodeGeneratorSettings.Default.Namespace, 2, usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
+            using var writer = new SplitCodeWriter(fileName, settings.Namespace, 2, usings.Concat(settings.Usings).ToArray());
 
             // Print All classes, structs
             for (int i = 0; i < compilation.Classes.Count; i++)
             {
                 CppClass? cppClass = compilation.Classes[i];
-                if (CsCodeGeneratorSettings.Default.AllowedTypes.Count != 0 && !CsCodeGeneratorSettings.Default.AllowedTypes.Contains(cppClass.Name))
+                if (settings.AllowedTypes.Count != 0 && !settings.AllowedTypes.Contains(cppClass.Name))
                 {
                     continue;
                 }
 
-                if (CsCodeGeneratorSettings.Default.IgnoredTypes.Contains(cppClass.Name))
+                if (settings.IgnoredTypes.Contains(cppClass.Name))
                 {
                     continue;
                 }
 
-                string csName = GetCsCleanName(cppClass.Name);
+                string csName = settings.GetCsCleanName(cppClass.Name);
                 WriteClassDelegates(writer, cppClass, csName);
             }
 
             for (int i = 0; i < compilation.Typedefs.Count; i++)
             {
                 CppTypedef typedef = compilation.Typedefs[i];
-                if (CsCodeGeneratorSettings.Default.AllowedDelegates.Count != 0 && !CsCodeGeneratorSettings.Default.AllowedDelegates.Contains(typedef.Name))
+                if (settings.AllowedDelegates.Count != 0 && !settings.AllowedDelegates.Contains(typedef.Name))
                     continue;
-                if (CsCodeGeneratorSettings.Default.IgnoredDelegates.Contains(typedef.Name))
+                if (settings.IgnoredDelegates.Contains(typedef.Name))
                     continue;
-      
 
                 if (typedef.ElementType is CppPointerType pointerType && pointerType.ElementType is CppFunctionType functionType)
                 {
@@ -62,9 +84,7 @@
             }
         }
 
-     
-
-        public static void WriteClassDelegates(ICodeWriter writer, CppClass cppClass, string csName)
+        public void WriteClassDelegates(ICodeWriter writer, CppClass cppClass, string csName)
         {
             if (cppClass.ClassKind == CppClassKind.Class || cppClass.Name.EndsWith("_T") || csName == "void")
             {
@@ -82,7 +102,7 @@
                 }
                 else
                 {
-                    csSubName = GetCsCleanName(subClass.Name);
+                    csSubName = settings.GetCsCleanName(subClass.Name);
                 }
 
                 WriteClassDelegates(writer, subClass, csSubName);
@@ -102,61 +122,40 @@
                 }
             }
         }
-  
-        private static bool FilterDelegate(ICppMember member)
-        {
-            var settings = CsCodeGeneratorSettings.Default;
 
-            if (settings.AllowedDelegates.Count != 0 && !settings.AllowedDelegates.Contains(member.Name))
-                return true;
-            if (settings.IgnoredDelegates.Contains(member.Name))
-                return true;
-
-            if (DefinedDelegates.Contains(member.Name))
-            {
-                return true;
-            }
-
-            DefinedDelegates.Add(member.Name);
-
-            return false;
-        }
-
-        private static void WriteDelegate<T>(ICodeWriter writer, T field, CppFunctionType functionType,  bool isReadOnly = false) where T : class, ICppDeclaration, ICppMember
+        private void WriteDelegate<T>(ICodeWriter writer, T field, CppFunctionType functionType, bool isReadOnly = false) where T : class, ICppDeclaration, ICppMember
         {
             if (FilterDelegate(field))
             {
                 return;
             }
 
-            var settings = CsCodeGeneratorSettings.Default;
-
-            string csFieldName = NormalizeFieldName(field.Name);
+            string csFieldName = settings.NormalizeFieldName(field.Name);
             string fieldPrefix = isReadOnly ? "readonly " : string.Empty;
 
             writer.WriteLine("#if NET5_0_OR_GREATER");
-            WriteFinal(writer, field, functionType, settings, csFieldName, fieldPrefix);
+            WriteFinal(writer, field, functionType, csFieldName, fieldPrefix);
             writer.WriteLine("#else");
-            WriteFinal(writer, field, functionType, settings, csFieldName, fieldPrefix, compatibility: true);
+            WriteFinal(writer, field, functionType, csFieldName, fieldPrefix, compatibility: true);
             writer.WriteLine("#endif");
             writer.WriteLine();
         }
 
-        private static void WriteFinal<T>(ICodeWriter writer, T field, CppFunctionType functionType, CsCodeGeneratorSettings settings, string csFieldName, string fieldPrefix, bool compatibility = false) where T : class, ICppDeclaration, ICppMember
+        private void WriteFinal<T>(ICodeWriter writer, T field, CppFunctionType functionType, string csFieldName, string fieldPrefix, bool compatibility = false) where T : class, ICppDeclaration, ICppMember
         {
-            string signature = GetParameterSignature(functionType.Parameters, canUseOut: false, delegateType: true, compatibility: compatibility);
-            string returnCsName = GetCsTypeName(functionType.ReturnType, false);
-            returnCsName = returnCsName.Replace("bool", GetBoolType());
+            string signature = settings.GetParameterSignature(functionType.Parameters, canUseOut: false, delegateType: true, compatibility: compatibility);
+            string returnCsName = settings.GetCsTypeName(functionType.ReturnType, false);
+            returnCsName = returnCsName.Replace("bool", settings.GetBoolType());
 
             if (functionType.ReturnType is CppTypedef typedef && typedef.ElementType.IsDelegate(out var cppFunction) && !returnCsName.Contains('*'))
             {
                 if (cppFunction.Parameters.Count == 0)
                 {
-                    returnCsName = $"delegate*<{GetCsTypeName(cppFunction.ReturnType)}>";
+                    returnCsName = $"delegate*<{settings.GetCsTypeName(cppFunction.ReturnType)}>";
                 }
                 else
                 {
-                    returnCsName = $"delegate*<{GetNamelessParameterSignature(cppFunction.Parameters, canUseOut: false, delegateType: true, compatibility)}, {GetCsTypeName(cppFunction.ReturnType)}>";
+                    returnCsName = $"delegate*<{settings.GetNamelessParameterSignature(cppFunction.Parameters, canUseOut: false, delegateType: true, compatibility)}, {settings.GetCsTypeName(cppFunction.ReturnType)}>";
                 }
             }
 

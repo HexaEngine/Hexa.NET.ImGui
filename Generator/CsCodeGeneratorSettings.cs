@@ -5,45 +5,9 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Text.Json;
 
-    public class DelegateMapping
+    public partial class CsCodeGeneratorSettings
     {
-        public DelegateMapping(string name, string returnType, string signature)
-        {
-            Name = name;
-            ReturnType = returnType;
-            Signature = signature;
-        }
-
-        public string Name { get; set; }
-
-        public string ReturnType { get; set; }
-
-        public string Signature { get; set; }
-    }
-
-    public enum ImportType
-    {
-        DllImport,
-        LibraryImport,
-        VTable
-    }
-
-    public class CsCodeGeneratorSettings
-    {
-        public static void Load(string file)
-        {
-            if (File.Exists(file))
-            {
-                Default = JsonSerializer.Deserialize<CsCodeGeneratorSettings>(File.ReadAllText(file)) ?? new();
-            }
-            else
-            {
-                Default = new();
-            }
-            Default.Save();
-        }
-
-        public static CsCodeGeneratorSettings LoadInstance(string file)
+        public static CsCodeGeneratorSettings Load(string file)
         {
             CsCodeGeneratorSettings settings;
             if (File.Exists(file))
@@ -57,8 +21,6 @@
 
             return settings;
         }
-
-        public static CsCodeGeneratorSettings Default { get; private set; }
 
         public string Namespace { get; set; } = string.Empty;
 
@@ -159,12 +121,7 @@
 
         public int VTableStart { get; set; }
 
-        public int VTableLength { get; internal set; }
-
-        public void Save()
-        {
-            File.WriteAllText("generator.json", JsonSerializer.Serialize(this));
-        }
+        public bool GenerateConstructors { get; internal set; } = true;
 
         public void Save(string path)
         {

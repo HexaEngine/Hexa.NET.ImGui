@@ -7,9 +7,29 @@
 
     public partial class CsCodeGenerator
     {
-        public static readonly HashSet<string> DefinedExtensions = new();
+        public readonly HashSet<string> DefinedExtensions = new();
+        public readonly HashSet<string> LibDefinedExtensions = new();
 
-        private static void GenerateExtensions(CppCompilation compilation, string outputPath)
+        private bool FilterExtension(CppTypedef typedef)
+        {
+            if (settings.IgnoredTypedefs.Contains(typedef.Name))
+                return true;
+
+            if (LibDefinedExtensions.Contains(typedef.Name))
+                return true;
+
+            if (DefinedExtensions.Contains(typedef.Name))
+                return true;
+            DefinedExtensions.Add(typedef.Name);
+            if (typedef.ElementType is not CppPointerType)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void GenerateExtensions(CppCompilation compilation, string outputPath)
         {
             string[] usings = { "System", "System.Runtime.CompilerServices", "System.Runtime.InteropServices", "HexaGen.Runtime" };
 
@@ -21,23 +41,15 @@
             Directory.CreateDirectory(outDir);
 
             // Generate Functions
-            using var writer = new SplitCodeWriter(fileName, CsCodeGeneratorSettings.Default.Namespace, 2, usings.Concat(CsCodeGeneratorSettings.Default.Usings).ToArray());
+            using var writer = new SplitCodeWriter(fileName, settings.Namespace, 2, usings.Concat(settings.Usings).ToArray());
             using (writer.PushBlock($"public static unsafe class Extensions"))
             {
                 for (int i = 0; i < compilation.Typedefs.Count; i++)
                 {
                     CppTypedef typedef = compilation.Typedefs[i];
-                    if (CsCodeGeneratorSettings.Default.IgnoredTypedefs.Contains(typedef.Name))
-                        continue;
-                    if (DefinedExtensions.Contains(typedef.Name))
-                        continue;
-                    DefinedExtensions.Add(typedef.Name);
-                    if (typedef.ElementType is not CppPointerType)
-                    {
-                        continue;
-                    }
+                    FilterExtension(typedef);
 
-                    if (IsDelegate(typedef, out _))
+                    if (typedef.IsDelegate(out _))
                     {
                         continue;
                     }
@@ -45,9 +57,9 @@
                     for (int j = 0; j < compilation.Functions.Count; j++)
                     {
                         var cppFunction = compilation.Functions[j];
-                        if (CsCodeGeneratorSettings.Default.AllowedFunctions.Count != 0 && !CsCodeGeneratorSettings.Default.AllowedFunctions.Contains(cppFunction.Name))
+                        if (settings.AllowedFunctions.Count != 0 && !settings.AllowedFunctions.Contains(cppFunction.Name))
                             continue;
-                        if (CsCodeGeneratorSettings.Default.IgnoredFunctions.Contains(cppFunction.Name))
+                        if (settings.IgnoredFunctions.Contains(cppFunction.Name))
                             continue;
                         if (cppFunction.Parameters.Count == 0 || cppFunction.Parameters[0].Type.TypeKind == CppTypeKind.Pointer)
                             continue;
@@ -71,11 +83,11 @@
             }
         }
 
-        private static void WriteExtensions(ICodeWriter writer, CppFunction cppFunction, string command, string extension, List<string> signatures)
+        private void WriteExtensions(ICodeWriter writer, CppFunction cppFunction, string command, string extension, List<string> signatures)
         {
-            bool voidReturn = IsVoid(cppFunction.ReturnType);
-            bool stringReturn = IsString(cppFunction.ReturnType);
-            string returnCsName = GetCsTypeName(cppFunction.ReturnType, false);
+            bool voidReturn = cppFunction.ReturnType.IsVoid();
+            bool stringReturn = cppFunction.ReturnType.IsString();
+            string returnCsName = settings.GetCsTypeName(cppFunction.ReturnType, false);
 
             for (int i = 0; i < signatures.Count; i++)
             {
@@ -88,7 +100,7 @@
             }
         }
 
-        private static void WriteExtensionMethod(ICodeWriter writer, CppFunction cppFunction, string command, string extension, bool voidReturn, bool stringReturn, string returnCsName, string signature)
+        private void WriteExtensionMethod(ICodeWriter writer, CppFunction cppFunction, string command, string extension, bool voidReturn, bool stringReturn, string returnCsName, string signature)
         {
             string[] paramList = signature.Split(',', StringSplitOptions.RemoveEmptyEntries);
 
@@ -117,7 +129,7 @@
                     WriteStringConvertToManaged(sb, cppFunction.ReturnType);
                 }
 
-                sb.Append($"{CsCodeGeneratorSettings.Default.ApiName}.{command}Native(");
+                sb.Append($"{settings.ApiName}.{command}Native(");
                 int strings = 0;
                 int stacks = 0;
                 for (int j = 0; j < cppFunction.Parameters.Count; j++)
@@ -125,8 +137,8 @@
                     var isRef = paramList[j].Contains("ref");
                     var isStr = paramList[j].Contains("string");
                     var cppParameter = cppFunction.Parameters[j];
-                    var paramCsTypeName = GetCsTypeName(cppParameter.Type, false);
-                    var paramCsName = GetParameterName(cppParameter.Type, cppParameter.Name);
+                    var paramCsTypeName = settings.GetCsTypeName(cppParameter.Type, false);
+                    var paramCsName = settings.GetParameterName(cppParameter.Type, cppParameter.Name);
                     if (isRef)
                     {
                         writer.BeginBlock($"fixed ({paramCsTypeName} p{paramCsName} = &{paramCsName})");
@@ -171,52 +183,6 @@
             }
 
             writer.WriteLine();
-        }
-
-        public static string GetExtensionNamePrefix(string typeName)
-        {
-            if (CsCodeGeneratorSettings.Default.KnownExtensionPrefixes.TryGetValue(typeName, out string? knownValue))
-            {
-                return knownValue;
-            }
-
-            string[] parts = typeName.Split('_', StringSplitOptions.RemoveEmptyEntries).SelectMany(x => x.SplitByCase()).ToArray();
-
-            return string.Join("_", parts.Select(s => s.ToUpper()));
-        }
-
-        public static string GetPrettyExtensionName(string value, string extensionPrefix)
-        {
-            if (CsCodeGeneratorSettings.Default.KnownExtensionNames.TryGetValue(value, out string? knownName))
-            {
-                return knownName;
-            }
-
-            string[] parts = value.Split('_', StringSplitOptions.RemoveEmptyEntries).SelectMany(x => x.SplitByCase()).ToArray();
-            string[] prefixParts = extensionPrefix.Split('_', StringSplitOptions.RemoveEmptyEntries);
-
-            bool capture = false;
-            var sb = new StringBuilder();
-            for (int i = 0; i < parts.Length; i++)
-            {
-                string part = parts[i];
-                if (prefixParts.Contains(part, StringComparer.InvariantCultureIgnoreCase) && !capture)
-                {
-                    continue;
-                }
-
-                part = part.ToLower();
-
-                sb.Append(char.ToUpper(part[0]));
-                sb.Append(part[1..]);
-                capture = true;
-            }
-
-            if (sb.Length == 0)
-                sb.Append(value);
-
-            string prettyName = sb.ToString();
-            return (char.IsNumber(prettyName[0])) ? prefixParts[^1].ToCamelCase() + prettyName : prettyName;
         }
     }
 }
