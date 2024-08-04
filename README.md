@@ -10,6 +10,8 @@ Hexa.NET.ImGui is a .NET wrapper for the Dear ImGui (1.90.9) library, including 
 - **Trustworthy Builds**: Native libraries are built using GitHub Actions for added trustworthiness and can be found [here](https://github.com/HexaEngine/Hexa.NET.ImGui/actions).
 - **Open Source**: The source code for the native libraries is public and can be reviewed by anyone.
 - **Access to Internals**: Allows users to access Dear ImGui internals for advanced customization and functionality.
+- **Drop in replacement for ImGuiNET** Adapt to the library with minimal effort by simply changing the namespace.
+- **High performance** Using a static VTable, all API calls are faster and startup time is reduced.
 
 ## Packages
 
