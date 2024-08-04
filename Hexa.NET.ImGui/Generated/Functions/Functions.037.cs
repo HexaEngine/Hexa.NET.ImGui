@@ -4532,21 +4532,21 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		internal static void splitNative(ImGuiTextRange* self, byte separator, ImVectorImGuiTextRange* output)
+		internal static void splitNative(ImGuiTextRange* self, byte separator, ImVector<ImGuiTextRange>* output)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImGuiTextRange*, byte, ImVectorImGuiTextRange*, void>)vt[461])(self, separator, output);
+			((delegate* unmanaged[Cdecl]<ImGuiTextRange*, byte, ImVector<ImGuiTextRange>*, void>)vt[461])(self, separator, output);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, byte, nint, void>)vt[461])((nint)self, separator, (nint)output);
 			#endif
 		}
 
-		public static void split(ImGuiTextRangePtr self, byte separator, ImVectorImGuiTextRangePtr output)
+		public static void split(ImGuiTextRangePtr self, byte separator, ImVector<ImGuiTextRange>* output)
 		{
 			splitNative(self, separator, output);
 		}
 
-		public static void split(ref ImGuiTextRange self, byte separator, ImVectorImGuiTextRangePtr output)
+		public static void split(ref ImGuiTextRange self, byte separator, ImVector<ImGuiTextRange>* output)
 		{
 			fixed (ImGuiTextRange* pself = &self)
 			{
@@ -4554,21 +4554,21 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void split(ImGuiTextRangePtr self, byte separator, ref ImVectorImGuiTextRange output)
+		public static void split(ImGuiTextRangePtr self, byte separator, ref ImVector<ImGuiTextRange> output)
 		{
-			fixed (ImVectorImGuiTextRange* poutput = &output)
+			fixed (ImVector<ImGuiTextRange>* poutput = &output)
 			{
-				splitNative(self, separator, (ImVectorImGuiTextRange*)poutput);
+				splitNative(self, separator, (ImVector<ImGuiTextRange>*)poutput);
 			}
 		}
 
-		public static void split(ref ImGuiTextRange self, byte separator, ref ImVectorImGuiTextRange output)
+		public static void split(ref ImGuiTextRange self, byte separator, ref ImVector<ImGuiTextRange> output)
 		{
 			fixed (ImGuiTextRange* pself = &self)
 			{
-				fixed (ImVectorImGuiTextRange* poutput = &output)
+				fixed (ImVector<ImGuiTextRange>* poutput = &output)
 				{
-					splitNative((ImGuiTextRange*)pself, separator, (ImVectorImGuiTextRange*)poutput);
+					splitNative((ImGuiTextRange*)pself, separator, (ImVector<ImGuiTextRange>*)poutput);
 				}
 			}
 		}

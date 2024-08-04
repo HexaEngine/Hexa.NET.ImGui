@@ -643,29 +643,29 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		internal static void DebugNodeWindowsListNative(ImVectorImGuiWindowPtr* windows, byte* label)
+		internal static void DebugNodeWindowsListNative(ImVector<ImGuiWindowPtr>* windows, byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVectorImGuiWindowPtr*, byte*, void>)vt[1393])(windows, label);
+			((delegate* unmanaged[Cdecl]<ImVector<ImGuiWindowPtr>*, byte*, void>)vt[1393])(windows, label);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[1393])((nint)windows, (nint)label);
 			#endif
 		}
 
-		public static void DebugNodeWindowsList(ImVectorImGuiWindowPtrPtr windows, byte* label)
+		public static void DebugNodeWindowsList(ImVector<ImGuiWindowPtr>* windows, byte* label)
 		{
 			DebugNodeWindowsListNative(windows, label);
 		}
 
-		public static void DebugNodeWindowsList(ref ImVectorImGuiWindowPtr windows, byte* label)
+		public static void DebugNodeWindowsList(ref ImVector<ImGuiWindowPtr> windows, byte* label)
 		{
-			fixed (ImVectorImGuiWindowPtr* pwindows = &windows)
+			fixed (ImVector<ImGuiWindowPtr>* pwindows = &windows)
 			{
-				DebugNodeWindowsListNative((ImVectorImGuiWindowPtr*)pwindows, label);
+				DebugNodeWindowsListNative((ImVector<ImGuiWindowPtr>*)pwindows, label);
 			}
 		}
 
-		public static void DebugNodeWindowsList(ImVectorImGuiWindowPtrPtr windows, ref byte label)
+		public static void DebugNodeWindowsList(ImVector<ImGuiWindowPtr>* windows, ref byte label)
 		{
 			fixed (byte* plabel = &label)
 			{
@@ -673,7 +673,7 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void DebugNodeWindowsList(ImVectorImGuiWindowPtrPtr windows, string label)
+		public static void DebugNodeWindowsList(ImVector<ImGuiWindowPtr>* windows, string label)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -699,7 +699,7 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void DebugNodeWindowsList(ImVectorImGuiWindowPtrPtr windows, ReadOnlySpan<byte> label)
+		public static void DebugNodeWindowsList(ImVector<ImGuiWindowPtr>* windows, ReadOnlySpan<byte> label)
 		{
 			fixed (byte* plabel = label)
 			{
@@ -707,20 +707,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void DebugNodeWindowsList(ref ImVectorImGuiWindowPtr windows, ref byte label)
+		public static void DebugNodeWindowsList(ref ImVector<ImGuiWindowPtr> windows, ref byte label)
 		{
-			fixed (ImVectorImGuiWindowPtr* pwindows = &windows)
+			fixed (ImVector<ImGuiWindowPtr>* pwindows = &windows)
 			{
 				fixed (byte* plabel = &label)
 				{
-					DebugNodeWindowsListNative((ImVectorImGuiWindowPtr*)pwindows, (byte*)plabel);
+					DebugNodeWindowsListNative((ImVector<ImGuiWindowPtr>*)pwindows, (byte*)plabel);
 				}
 			}
 		}
 
-		public static void DebugNodeWindowsList(ref ImVectorImGuiWindowPtr windows, string label)
+		public static void DebugNodeWindowsList(ref ImVector<ImGuiWindowPtr> windows, string label)
 		{
-			fixed (ImVectorImGuiWindowPtr* pwindows = &windows)
+			fixed (ImVector<ImGuiWindowPtr>* pwindows = &windows)
 			{
 				byte* pStr0 = null;
 				int pStrSize0 = 0;
@@ -739,7 +739,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				DebugNodeWindowsListNative((ImVectorImGuiWindowPtr*)pwindows, pStr0);
+				DebugNodeWindowsListNative((ImVector<ImGuiWindowPtr>*)pwindows, pStr0);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -747,13 +747,13 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void DebugNodeWindowsList(ref ImVectorImGuiWindowPtr windows, ReadOnlySpan<byte> label)
+		public static void DebugNodeWindowsList(ref ImVector<ImGuiWindowPtr> windows, ReadOnlySpan<byte> label)
 		{
-			fixed (ImVectorImGuiWindowPtr* pwindows = &windows)
+			fixed (ImVector<ImGuiWindowPtr>* pwindows = &windows)
 			{
 				fixed (byte* plabel = label)
 				{
-					DebugNodeWindowsListNative((ImVectorImGuiWindowPtr*)pwindows, (byte*)plabel);
+					DebugNodeWindowsListNative((ImVector<ImGuiWindowPtr>*)pwindows, (byte*)plabel);
 				}
 			}
 		}
@@ -1767,84 +1767,84 @@ public static float GETFLTMIN()
 			return ret;
 		}
 
-		internal static ImVectorImWchar* ImVectorImWcharCreateNative()
+		internal static ImVector<char>* ImVectorImWcharCreateNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImVectorImWchar*>)vt[1413])();
+			return ((delegate* unmanaged[Cdecl]<ImVector<char>*>)vt[1413])();
 			#else
-			return (ImVectorImWchar*)((delegate* unmanaged[Cdecl]<nint>)vt[1413])();
+			return (ImVector<char>*)((delegate* unmanaged[Cdecl]<nint>)vt[1413])();
 			#endif
 		}
 
-		public static ImVectorImWcharPtr ImVectorImWcharCreate()
+		public static ImVector<char>* ImVectorImWcharCreate()
 		{
-			ImVectorImWcharPtr ret = ImVectorImWcharCreateNative();
+			ImVector<char>* ret = ImVectorImWcharCreateNative();
 			return ret;
 		}
 
-		internal static void ImVectorImWcharDestroyNative(ImVectorImWchar* self)
+		internal static void ImVectorImWcharDestroyNative(ImVector<char>* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVectorImWchar*, void>)vt[1414])(self);
+			((delegate* unmanaged[Cdecl]<ImVector<char>*, void>)vt[1414])(self);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, void>)vt[1414])((nint)self);
 			#endif
 		}
 
-		public static void ImVectorImWcharDestroy(ImVectorImWcharPtr self)
+		public static void ImVectorImWcharDestroy(ImVector<char>* self)
 		{
 			ImVectorImWcharDestroyNative(self);
 		}
 
-		public static void ImVectorImWcharDestroy(ref ImVectorImWchar self)
+		public static void ImVectorImWcharDestroy(ref ImVector<char> self)
 		{
-			fixed (ImVectorImWchar* pself = &self)
+			fixed (ImVector<char>* pself = &self)
 			{
-				ImVectorImWcharDestroyNative((ImVectorImWchar*)pself);
+				ImVectorImWcharDestroyNative((ImVector<char>*)pself);
 			}
 		}
 
-		internal static void ImVectorImWcharInitNative(ImVectorImWchar* p)
+		internal static void ImVectorImWcharInitNative(ImVector<char>* p)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVectorImWchar*, void>)vt[1415])(p);
+			((delegate* unmanaged[Cdecl]<ImVector<char>*, void>)vt[1415])(p);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, void>)vt[1415])((nint)p);
 			#endif
 		}
 
-		public static void ImVectorImWcharInit(ImVectorImWcharPtr p)
+		public static void ImVectorImWcharInit(ImVector<char>* p)
 		{
 			ImVectorImWcharInitNative(p);
 		}
 
-		public static void ImVectorImWcharInit(ref ImVectorImWchar p)
+		public static void ImVectorImWcharInit(ref ImVector<char> p)
 		{
-			fixed (ImVectorImWchar* pp = &p)
+			fixed (ImVector<char>* pp = &p)
 			{
-				ImVectorImWcharInitNative((ImVectorImWchar*)pp);
+				ImVectorImWcharInitNative((ImVector<char>*)pp);
 			}
 		}
 
-		internal static void ImVectorImWcharUnInitNative(ImVectorImWchar* p)
+		internal static void ImVectorImWcharUnInitNative(ImVector<char>* p)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVectorImWchar*, void>)vt[1416])(p);
+			((delegate* unmanaged[Cdecl]<ImVector<char>*, void>)vt[1416])(p);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, void>)vt[1416])((nint)p);
 			#endif
 		}
 
-		public static void ImVectorImWcharUnInit(ImVectorImWcharPtr p)
+		public static void ImVectorImWcharUnInit(ImVector<char>* p)
 		{
 			ImVectorImWcharUnInitNative(p);
 		}
 
-		public static void ImVectorImWcharUnInit(ref ImVectorImWchar p)
+		public static void ImVectorImWcharUnInit(ref ImVector<char> p)
 		{
-			fixed (ImVectorImWchar* pp = &p)
+			fixed (ImVector<char>* pp = &p)
 			{
-				ImVectorImWcharUnInitNative((ImVectorImWchar*)pp);
+				ImVectorImWcharUnInitNative((ImVector<char>*)pp);
 			}
 		}
 

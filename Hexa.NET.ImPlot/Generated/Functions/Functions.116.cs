@@ -3377,223 +3377,223 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		internal static void ImPlotFillRangeVectorFloatPtrNative(ImVectorFloat* buffer, int n, float vmin, float vmax)
+		internal static void ImPlotFillRangeVectorFloatPtrNative(ImVector<float>* buffer, int n, float vmin, float vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVectorFloat*, int, float, float, void>)vt[689])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<float>*, int, float, float, void>)vt[689])(buffer, n, vmin, vmax);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, float, float, void>)vt[689])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
-		public static void ImPlotFillRangeVectorFloatPtr(ImVectorFloat* buffer, int n, float vmin, float vmax)
+		public static void ImPlotFillRangeVectorFloatPtr(ImVector<float>* buffer, int n, float vmin, float vmax)
 		{
 			ImPlotFillRangeVectorFloatPtrNative(buffer, n, vmin, vmax);
 		}
 
-		public static void ImPlotFillRangeVectorFloatPtr(ref ImVectorFloat buffer, int n, float vmin, float vmax)
+		public static void ImPlotFillRangeVectorFloatPtr(ref ImVector<float> buffer, int n, float vmin, float vmax)
 		{
-			fixed (ImVectorFloat* pbuffer = &buffer)
+			fixed (ImVector<float>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorFloatPtrNative((ImVectorFloat*)pbuffer, n, vmin, vmax);
+				ImPlotFillRangeVectorFloatPtrNative((ImVector<float>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
-		internal static void ImPlotFillRangeVectorDoublePtrNative(ImVectorDouble* buffer, int n, double vmin, double vmax)
+		internal static void ImPlotFillRangeVectorDoublePtrNative(ImVector<double>* buffer, int n, double vmin, double vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVectorDouble*, int, double, double, void>)vt[690])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<double>*, int, double, double, void>)vt[690])(buffer, n, vmin, vmax);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, double, double, void>)vt[690])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
-		public static void ImPlotFillRangeVectorDoublePtr(ImVectorDoublePtr buffer, int n, double vmin, double vmax)
+		public static void ImPlotFillRangeVectorDoublePtr(ImVector<double>* buffer, int n, double vmin, double vmax)
 		{
 			ImPlotFillRangeVectorDoublePtrNative(buffer, n, vmin, vmax);
 		}
 
-		public static void ImPlotFillRangeVectorDoublePtr(ref ImVectorDouble buffer, int n, double vmin, double vmax)
+		public static void ImPlotFillRangeVectorDoublePtr(ref ImVector<double> buffer, int n, double vmin, double vmax)
 		{
-			fixed (ImVectorDouble* pbuffer = &buffer)
+			fixed (ImVector<double>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorDoublePtrNative((ImVectorDouble*)pbuffer, n, vmin, vmax);
+				ImPlotFillRangeVectorDoublePtrNative((ImVector<double>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
-		internal static void ImPlotFillRangeVectorS8PtrNative(ImVectorImS8* buffer, int n, sbyte vmin, sbyte vmax)
+		internal static void ImPlotFillRangeVectorS8PtrNative(ImVector<sbyte>* buffer, int n, sbyte vmin, sbyte vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVectorImS8*, int, sbyte, sbyte, void>)vt[691])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<sbyte>*, int, sbyte, sbyte, void>)vt[691])(buffer, n, vmin, vmax);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, sbyte, sbyte, void>)vt[691])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
-		public static void ImPlotFillRangeVectorS8Ptr(ImVectorImS8Ptr buffer, int n, sbyte vmin, sbyte vmax)
+		public static void ImPlotFillRangeVectorS8Ptr(ImVector<sbyte>* buffer, int n, sbyte vmin, sbyte vmax)
 		{
 			ImPlotFillRangeVectorS8PtrNative(buffer, n, vmin, vmax);
 		}
 
-		public static void ImPlotFillRangeVectorS8Ptr(ref ImVectorImS8 buffer, int n, sbyte vmin, sbyte vmax)
+		public static void ImPlotFillRangeVectorS8Ptr(ref ImVector<sbyte> buffer, int n, sbyte vmin, sbyte vmax)
 		{
-			fixed (ImVectorImS8* pbuffer = &buffer)
+			fixed (ImVector<sbyte>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorS8PtrNative((ImVectorImS8*)pbuffer, n, vmin, vmax);
+				ImPlotFillRangeVectorS8PtrNative((ImVector<sbyte>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
-		internal static void ImPlotFillRangeVectorU8PtrNative(ImVectorImU8* buffer, int n, byte vmin, byte vmax)
+		internal static void ImPlotFillRangeVectorU8PtrNative(ImVector<byte>* buffer, int n, byte vmin, byte vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVectorImU8*, int, byte, byte, void>)vt[692])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<byte>*, int, byte, byte, void>)vt[692])(buffer, n, vmin, vmax);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, byte, byte, void>)vt[692])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
-		public static void ImPlotFillRangeVectorU8Ptr(ImVectorImU8Ptr buffer, int n, byte vmin, byte vmax)
+		public static void ImPlotFillRangeVectorU8Ptr(ImVector<byte>* buffer, int n, byte vmin, byte vmax)
 		{
 			ImPlotFillRangeVectorU8PtrNative(buffer, n, vmin, vmax);
 		}
 
-		public static void ImPlotFillRangeVectorU8Ptr(ref ImVectorImU8 buffer, int n, byte vmin, byte vmax)
+		public static void ImPlotFillRangeVectorU8Ptr(ref ImVector<byte> buffer, int n, byte vmin, byte vmax)
 		{
-			fixed (ImVectorImU8* pbuffer = &buffer)
+			fixed (ImVector<byte>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorU8PtrNative((ImVectorImU8*)pbuffer, n, vmin, vmax);
+				ImPlotFillRangeVectorU8PtrNative((ImVector<byte>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
-		internal static void ImPlotFillRangeVectorS16PtrNative(ImVectorImS16* buffer, int n, short vmin, short vmax)
+		internal static void ImPlotFillRangeVectorS16PtrNative(ImVector<short>* buffer, int n, short vmin, short vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVectorImS16*, int, short, short, void>)vt[693])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<short>*, int, short, short, void>)vt[693])(buffer, n, vmin, vmax);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, short, short, void>)vt[693])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
-		public static void ImPlotFillRangeVectorS16Ptr(ImVectorImS16Ptr buffer, int n, short vmin, short vmax)
+		public static void ImPlotFillRangeVectorS16Ptr(ImVector<short>* buffer, int n, short vmin, short vmax)
 		{
 			ImPlotFillRangeVectorS16PtrNative(buffer, n, vmin, vmax);
 		}
 
-		public static void ImPlotFillRangeVectorS16Ptr(ref ImVectorImS16 buffer, int n, short vmin, short vmax)
+		public static void ImPlotFillRangeVectorS16Ptr(ref ImVector<short> buffer, int n, short vmin, short vmax)
 		{
-			fixed (ImVectorImS16* pbuffer = &buffer)
+			fixed (ImVector<short>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorS16PtrNative((ImVectorImS16*)pbuffer, n, vmin, vmax);
+				ImPlotFillRangeVectorS16PtrNative((ImVector<short>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
-		internal static void ImPlotFillRangeVectorU16PtrNative(ImVectorImU16* buffer, int n, ushort vmin, ushort vmax)
+		internal static void ImPlotFillRangeVectorU16PtrNative(ImVector<ushort>* buffer, int n, ushort vmin, ushort vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVectorImU16*, int, ushort, ushort, void>)vt[694])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<ushort>*, int, ushort, ushort, void>)vt[694])(buffer, n, vmin, vmax);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, ushort, ushort, void>)vt[694])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
-		public static void ImPlotFillRangeVectorU16Ptr(ImVectorImU16Ptr buffer, int n, ushort vmin, ushort vmax)
+		public static void ImPlotFillRangeVectorU16Ptr(ImVector<ushort>* buffer, int n, ushort vmin, ushort vmax)
 		{
 			ImPlotFillRangeVectorU16PtrNative(buffer, n, vmin, vmax);
 		}
 
-		public static void ImPlotFillRangeVectorU16Ptr(ref ImVectorImU16 buffer, int n, ushort vmin, ushort vmax)
+		public static void ImPlotFillRangeVectorU16Ptr(ref ImVector<ushort> buffer, int n, ushort vmin, ushort vmax)
 		{
-			fixed (ImVectorImU16* pbuffer = &buffer)
+			fixed (ImVector<ushort>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorU16PtrNative((ImVectorImU16*)pbuffer, n, vmin, vmax);
+				ImPlotFillRangeVectorU16PtrNative((ImVector<ushort>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
-		internal static void ImPlotFillRangeVectorS32PtrNative(ImVectorImS32* buffer, int n, int vmin, int vmax)
+		internal static void ImPlotFillRangeVectorS32PtrNative(ImVector<int>* buffer, int n, int vmin, int vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVectorImS32*, int, int, int, void>)vt[695])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<int>*, int, int, int, void>)vt[695])(buffer, n, vmin, vmax);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, int, int, void>)vt[695])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
-		public static void ImPlotFillRangeVectorS32Ptr(ImVectorImS32Ptr buffer, int n, int vmin, int vmax)
+		public static void ImPlotFillRangeVectorS32Ptr(ImVector<int>* buffer, int n, int vmin, int vmax)
 		{
 			ImPlotFillRangeVectorS32PtrNative(buffer, n, vmin, vmax);
 		}
 
-		public static void ImPlotFillRangeVectorS32Ptr(ref ImVectorImS32 buffer, int n, int vmin, int vmax)
+		public static void ImPlotFillRangeVectorS32Ptr(ref ImVector<int> buffer, int n, int vmin, int vmax)
 		{
-			fixed (ImVectorImS32* pbuffer = &buffer)
+			fixed (ImVector<int>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorS32PtrNative((ImVectorImS32*)pbuffer, n, vmin, vmax);
+				ImPlotFillRangeVectorS32PtrNative((ImVector<int>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
-		internal static void ImPlotFillRangeVectorU32PtrNative(ImVectorImU32* buffer, int n, uint vmin, uint vmax)
+		internal static void ImPlotFillRangeVectorU32PtrNative(ImVector<uint>* buffer, int n, uint vmin, uint vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVectorImU32*, int, uint, uint, void>)vt[696])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<uint>*, int, uint, uint, void>)vt[696])(buffer, n, vmin, vmax);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, uint, uint, void>)vt[696])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
-		public static void ImPlotFillRangeVectorU32Ptr(ImVectorImU32* buffer, int n, uint vmin, uint vmax)
+		public static void ImPlotFillRangeVectorU32Ptr(ImVector<uint>* buffer, int n, uint vmin, uint vmax)
 		{
 			ImPlotFillRangeVectorU32PtrNative(buffer, n, vmin, vmax);
 		}
 
-		public static void ImPlotFillRangeVectorU32Ptr(ref ImVectorImU32 buffer, int n, uint vmin, uint vmax)
+		public static void ImPlotFillRangeVectorU32Ptr(ref ImVector<uint> buffer, int n, uint vmin, uint vmax)
 		{
-			fixed (ImVectorImU32* pbuffer = &buffer)
+			fixed (ImVector<uint>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorU32PtrNative((ImVectorImU32*)pbuffer, n, vmin, vmax);
+				ImPlotFillRangeVectorU32PtrNative((ImVector<uint>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
-		internal static void ImPlotFillRangeVectorS64PtrNative(ImVectorImS64* buffer, int n, long vmin, long vmax)
+		internal static void ImPlotFillRangeVectorS64PtrNative(ImVector<long>* buffer, int n, long vmin, long vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVectorImS64*, int, long, long, void>)vt[697])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<long>*, int, long, long, void>)vt[697])(buffer, n, vmin, vmax);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, long, long, void>)vt[697])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
-		public static void ImPlotFillRangeVectorS64Ptr(ImVectorImS64Ptr buffer, int n, long vmin, long vmax)
+		public static void ImPlotFillRangeVectorS64Ptr(ImVector<long>* buffer, int n, long vmin, long vmax)
 		{
 			ImPlotFillRangeVectorS64PtrNative(buffer, n, vmin, vmax);
 		}
 
-		public static void ImPlotFillRangeVectorS64Ptr(ref ImVectorImS64 buffer, int n, long vmin, long vmax)
+		public static void ImPlotFillRangeVectorS64Ptr(ref ImVector<long> buffer, int n, long vmin, long vmax)
 		{
-			fixed (ImVectorImS64* pbuffer = &buffer)
+			fixed (ImVector<long>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorS64PtrNative((ImVectorImS64*)pbuffer, n, vmin, vmax);
+				ImPlotFillRangeVectorS64PtrNative((ImVector<long>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
-		internal static void ImPlotFillRangeVectorU64PtrNative(ImVectorImU64* buffer, int n, ulong vmin, ulong vmax)
+		internal static void ImPlotFillRangeVectorU64PtrNative(ImVector<ulong>* buffer, int n, ulong vmin, ulong vmax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImVectorImU64*, int, ulong, ulong, void>)vt[698])(buffer, n, vmin, vmax);
+			((delegate* unmanaged[Cdecl]<ImVector<ulong>*, int, ulong, ulong, void>)vt[698])(buffer, n, vmin, vmax);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, int, ulong, ulong, void>)vt[698])((nint)buffer, n, vmin, vmax);
 			#endif
 		}
 
-		public static void ImPlotFillRangeVectorU64Ptr(ImVectorImU64Ptr buffer, int n, ulong vmin, ulong vmax)
+		public static void ImPlotFillRangeVectorU64Ptr(ImVector<ulong>* buffer, int n, ulong vmin, ulong vmax)
 		{
 			ImPlotFillRangeVectorU64PtrNative(buffer, n, vmin, vmax);
 		}
 
-		public static void ImPlotFillRangeVectorU64Ptr(ref ImVectorImU64 buffer, int n, ulong vmin, ulong vmax)
+		public static void ImPlotFillRangeVectorU64Ptr(ref ImVector<ulong> buffer, int n, ulong vmin, ulong vmax)
 		{
-			fixed (ImVectorImU64* pbuffer = &buffer)
+			fixed (ImVector<ulong>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorU64PtrNative((ImVectorImU64*)pbuffer, n, vmin, vmax);
+				ImPlotFillRangeVectorU64PtrNative((ImVector<ulong>*)pbuffer, n, vmin, vmax);
 			}
 		}
 

@@ -13,7 +13,7 @@
 		<IsAotCompatible>true</IsAotCompatible>
 
 		<AssemblyVersion>0.17.0</AssemblyVersion>
-		<PackageVersion>1.1.0</PackageVersion>
+		<PackageVersion>1.1.1</PackageVersion>
 		<Description>A .NET wrapper for the ImPlot library. (0.17)</Description>
 		<PackageTags>ImPlot UI Immidate GUI Plot Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
@@ -23,10 +23,12 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HexaGen.Runtime" Version="1.1.4" />
+		<PackageReference Include="HexaGen.Runtime" Version="1.1.5" />
 	</ItemGroup>
 
 	<ItemGroup>

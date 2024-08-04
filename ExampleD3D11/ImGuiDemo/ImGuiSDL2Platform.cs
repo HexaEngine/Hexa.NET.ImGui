@@ -760,7 +760,7 @@
         {
             BackendData* bd = GetBackendData();
             ImGuiPlatformIO* platform_io = ImGui.GetPlatformIO();
-            UnsafeVector<ImGuiPlatformMonitor>* monitors = (UnsafeVector<ImGuiPlatformMonitor>*)&platform_io->Monitors;
+            ImVector<ImGuiPlatformMonitor>* monitors = &platform_io->Monitors;
             monitors->Resize(0);
             bd->WantUpdateMonitors = false;
             int display_count = sdl.GetNumVideoDisplays();
@@ -781,7 +781,7 @@
                 sdl.GetDisplayDPI(n, &dpi, null, null);
                 monitor.DpiScale = dpi / 96.0f;
 
-                monitors->Add(monitor);
+                monitors->PushBack(monitor);
             }
         }
 

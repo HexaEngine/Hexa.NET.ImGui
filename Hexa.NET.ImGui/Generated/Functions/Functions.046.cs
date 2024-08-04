@@ -2361,21 +2361,21 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		internal static void AddDrawListToDrawDataExNative(ImDrawData* drawData, ImVectorImDrawListPtr* outList, ImDrawList* drawList)
+		internal static void AddDrawListToDrawDataExNative(ImDrawData* drawData, ImVector<ImDrawListPtr>* outList, ImDrawList* drawList)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawData*, ImVectorImDrawListPtr*, ImDrawList*, void>)vt[1005])(drawData, outList, drawList);
+			((delegate* unmanaged[Cdecl]<ImDrawData*, ImVector<ImDrawListPtr>*, ImDrawList*, void>)vt[1005])(drawData, outList, drawList);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, nint, nint, void>)vt[1005])((nint)drawData, (nint)outList, (nint)drawList);
 			#endif
 		}
 
-		public static void AddDrawListToDrawDataEx(ImDrawDataPtr drawData, ImVectorImDrawListPtrPtr outList, ImDrawListPtr drawList)
+		public static void AddDrawListToDrawDataEx(ImDrawDataPtr drawData, ImVector<ImDrawListPtr>* outList, ImDrawListPtr drawList)
 		{
 			AddDrawListToDrawDataExNative(drawData, outList, drawList);
 		}
 
-		public static void AddDrawListToDrawDataEx(ref ImDrawData drawData, ImVectorImDrawListPtrPtr outList, ImDrawListPtr drawList)
+		public static void AddDrawListToDrawDataEx(ref ImDrawData drawData, ImVector<ImDrawListPtr>* outList, ImDrawListPtr drawList)
 		{
 			fixed (ImDrawData* pdrawData = &drawData)
 			{
@@ -2383,26 +2383,26 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void AddDrawListToDrawDataEx(ImDrawDataPtr drawData, ref ImVectorImDrawListPtr outList, ImDrawListPtr drawList)
+		public static void AddDrawListToDrawDataEx(ImDrawDataPtr drawData, ref ImVector<ImDrawListPtr> outList, ImDrawListPtr drawList)
 		{
-			fixed (ImVectorImDrawListPtr* poutList = &outList)
+			fixed (ImVector<ImDrawListPtr>* poutList = &outList)
 			{
-				AddDrawListToDrawDataExNative(drawData, (ImVectorImDrawListPtr*)poutList, drawList);
+				AddDrawListToDrawDataExNative(drawData, (ImVector<ImDrawListPtr>*)poutList, drawList);
 			}
 		}
 
-		public static void AddDrawListToDrawDataEx(ref ImDrawData drawData, ref ImVectorImDrawListPtr outList, ImDrawListPtr drawList)
+		public static void AddDrawListToDrawDataEx(ref ImDrawData drawData, ref ImVector<ImDrawListPtr> outList, ImDrawListPtr drawList)
 		{
 			fixed (ImDrawData* pdrawData = &drawData)
 			{
-				fixed (ImVectorImDrawListPtr* poutList = &outList)
+				fixed (ImVector<ImDrawListPtr>* poutList = &outList)
 				{
-					AddDrawListToDrawDataExNative((ImDrawData*)pdrawData, (ImVectorImDrawListPtr*)poutList, drawList);
+					AddDrawListToDrawDataExNative((ImDrawData*)pdrawData, (ImVector<ImDrawListPtr>*)poutList, drawList);
 				}
 			}
 		}
 
-		public static void AddDrawListToDrawDataEx(ImDrawDataPtr drawData, ImVectorImDrawListPtrPtr outList, ref ImDrawList drawList)
+		public static void AddDrawListToDrawDataEx(ImDrawDataPtr drawData, ImVector<ImDrawListPtr>* outList, ref ImDrawList drawList)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
@@ -2410,7 +2410,7 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void AddDrawListToDrawDataEx(ref ImDrawData drawData, ImVectorImDrawListPtrPtr outList, ref ImDrawList drawList)
+		public static void AddDrawListToDrawDataEx(ref ImDrawData drawData, ImVector<ImDrawListPtr>* outList, ref ImDrawList drawList)
 		{
 			fixed (ImDrawData* pdrawData = &drawData)
 			{
@@ -2421,26 +2421,26 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void AddDrawListToDrawDataEx(ImDrawDataPtr drawData, ref ImVectorImDrawListPtr outList, ref ImDrawList drawList)
+		public static void AddDrawListToDrawDataEx(ImDrawDataPtr drawData, ref ImVector<ImDrawListPtr> outList, ref ImDrawList drawList)
 		{
-			fixed (ImVectorImDrawListPtr* poutList = &outList)
+			fixed (ImVector<ImDrawListPtr>* poutList = &outList)
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					AddDrawListToDrawDataExNative(drawData, (ImVectorImDrawListPtr*)poutList, (ImDrawList*)pdrawList);
+					AddDrawListToDrawDataExNative(drawData, (ImVector<ImDrawListPtr>*)poutList, (ImDrawList*)pdrawList);
 				}
 			}
 		}
 
-		public static void AddDrawListToDrawDataEx(ref ImDrawData drawData, ref ImVectorImDrawListPtr outList, ref ImDrawList drawList)
+		public static void AddDrawListToDrawDataEx(ref ImDrawData drawData, ref ImVector<ImDrawListPtr> outList, ref ImDrawList drawList)
 		{
 			fixed (ImDrawData* pdrawData = &drawData)
 			{
-				fixed (ImVectorImDrawListPtr* poutList = &outList)
+				fixed (ImVector<ImDrawListPtr>* poutList = &outList)
 				{
 					fixed (ImDrawList* pdrawList = &drawList)
 					{
-						AddDrawListToDrawDataExNative((ImDrawData*)pdrawData, (ImVectorImDrawListPtr*)poutList, (ImDrawList*)pdrawList);
+						AddDrawListToDrawDataExNative((ImDrawData*)pdrawData, (ImVector<ImDrawListPtr>*)poutList, (ImDrawList*)pdrawList);
 					}
 				}
 			}

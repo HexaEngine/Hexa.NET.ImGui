@@ -31,14 +31,14 @@ namespace Hexa.NET.ImPlot
 		public ImPlotAnnotationCollection Annotations;
 		public ImPlotTagCollection Tags;
 		public ImPlotStyle Style;
-		public ImVectorImGuiColorMod ColorModifiers;
-		public ImVectorImGuiStyleMod StyleModifiers;
+		public ImVector<ImGuiColorMod> ColorModifiers;
+		public ImVector<ImGuiStyleMod> StyleModifiers;
 		public ImPlotColormapData ColormapData;
-		public ImVectorImPlotColormap ColormapModifiers;
+		public ImVector<ImPlotColormap> ColormapModifiers;
 		public Tm Tm;
-		public ImVectorDouble TempDouble1;
-		public ImVectorDouble TempDouble2;
-		public ImVectorInt TempInt1;
+		public ImVector<double> TempDouble1;
+		public ImVector<double> TempDouble2;
+		public ImVector<int> TempInt1;
 		public int DigitalPlotItemCnt;
 		public int DigitalPlotOffset;
 		public ImPlotNextPlotData NextPlotData;
@@ -100,14 +100,14 @@ namespace Hexa.NET.ImPlot
 		public ref ImPlotAnnotationCollection Annotations => ref Unsafe.AsRef<ImPlotAnnotationCollection>(&Handle->Annotations);
 		public ref ImPlotTagCollection Tags => ref Unsafe.AsRef<ImPlotTagCollection>(&Handle->Tags);
 		public ref ImPlotStyle Style => ref Unsafe.AsRef<ImPlotStyle>(&Handle->Style);
-		public ref ImVectorImGuiColorMod ColorModifiers => ref Unsafe.AsRef<ImVectorImGuiColorMod>(&Handle->ColorModifiers);
-		public ref ImVectorImGuiStyleMod StyleModifiers => ref Unsafe.AsRef<ImVectorImGuiStyleMod>(&Handle->StyleModifiers);
+		public ref ImVector<ImGuiColorMod> ColorModifiers => ref Unsafe.AsRef<ImVector<ImGuiColorMod>>(&Handle->ColorModifiers);
+		public ref ImVector<ImGuiStyleMod> StyleModifiers => ref Unsafe.AsRef<ImVector<ImGuiStyleMod>>(&Handle->StyleModifiers);
 		public ref ImPlotColormapData ColormapData => ref Unsafe.AsRef<ImPlotColormapData>(&Handle->ColormapData);
-		public ref ImVectorImPlotColormap ColormapModifiers => ref Unsafe.AsRef<ImVectorImPlotColormap>(&Handle->ColormapModifiers);
+		public ref ImVector<ImPlotColormap> ColormapModifiers => ref Unsafe.AsRef<ImVector<ImPlotColormap>>(&Handle->ColormapModifiers);
 		public ref Tm Tm => ref Unsafe.AsRef<Tm>(&Handle->Tm);
-		public ref ImVectorDouble TempDouble1 => ref Unsafe.AsRef<ImVectorDouble>(&Handle->TempDouble1);
-		public ref ImVectorDouble TempDouble2 => ref Unsafe.AsRef<ImVectorDouble>(&Handle->TempDouble2);
-		public ref ImVectorInt TempInt1 => ref Unsafe.AsRef<ImVectorInt>(&Handle->TempInt1);
+		public ref ImVector<double> TempDouble1 => ref Unsafe.AsRef<ImVector<double>>(&Handle->TempDouble1);
+		public ref ImVector<double> TempDouble2 => ref Unsafe.AsRef<ImVector<double>>(&Handle->TempDouble2);
+		public ref ImVector<int> TempInt1 => ref Unsafe.AsRef<ImVector<int>>(&Handle->TempInt1);
 		public ref int DigitalPlotItemCnt => ref Unsafe.AsRef<int>(&Handle->DigitalPlotItemCnt);
 		public ref int DigitalPlotOffset => ref Unsafe.AsRef<int>(&Handle->DigitalPlotOffset);
 		public ref ImPlotNextPlotData NextPlotData => ref Unsafe.AsRef<ImPlotNextPlotData>(&Handle->NextPlotData);
@@ -124,19 +124,10 @@ namespace Hexa.NET.ImPlot
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImPoolImPlotPlot
 	{
-		public ImVectorImPlotPlot Buf;
+		public ImVector<ImPlotPlot> Buf;
 		public ImGuiStorage Map;
 		public int FreeIdx;
 		public int AliveCount;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImPlotPlot
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImPlotPlot* Data;
 
 	}
 
@@ -532,7 +523,7 @@ namespace Hexa.NET.ImPlot
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImPlotTicker
 	{
-		public ImVectorImPlotTick Ticks;
+		public ImVector<ImPlotTick> Ticks;
 		public ImGuiTextBuffer TextBuffer;
 		public Vector2 MaxSize;
 		public Vector2 LateSize;
@@ -576,20 +567,11 @@ namespace Hexa.NET.ImPlot
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotTickerPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorImPlotTick Ticks => ref Unsafe.AsRef<ImVectorImPlotTick>(&Handle->Ticks);
+		public ref ImVector<ImPlotTick> Ticks => ref Unsafe.AsRef<ImVector<ImPlotTick>>(&Handle->Ticks);
 		public ref ImGuiTextBuffer TextBuffer => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->TextBuffer);
 		public ref Vector2 MaxSize => ref Unsafe.AsRef<Vector2>(&Handle->MaxSize);
 		public ref Vector2 LateSize => ref Unsafe.AsRef<Vector2>(&Handle->LateSize);
 		public ref int Levels => ref Unsafe.AsRef<int>(&Handle->Levels);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImPlotTick
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImPlotTick* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -760,7 +742,7 @@ namespace Hexa.NET.ImPlot
 		public ImPlotLocation Location;
 		public ImPlotLocation PreviousLocation;
 		public Vector2 Scroll;
-		public ImVectorInt Indices;
+		public ImVector<int> Indices;
 		public ImGuiTextBuffer Labels;
 		public ImRect Rect;
 		public ImRect RectClamped;
@@ -811,7 +793,7 @@ namespace Hexa.NET.ImPlot
 		public ref ImPlotLocation Location => ref Unsafe.AsRef<ImPlotLocation>(&Handle->Location);
 		public ref ImPlotLocation PreviousLocation => ref Unsafe.AsRef<ImPlotLocation>(&Handle->PreviousLocation);
 		public ref Vector2 Scroll => ref Unsafe.AsRef<Vector2>(&Handle->Scroll);
-		public ref ImVectorInt Indices => ref Unsafe.AsRef<ImVectorInt>(&Handle->Indices);
+		public ref ImVector<int> Indices => ref Unsafe.AsRef<ImVector<int>>(&Handle->Indices);
 		public ref ImGuiTextBuffer Labels => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->Labels);
 		public ref ImRect Rect => ref Unsafe.AsRef<ImRect>(&Handle->Rect);
 		public ref ImRect RectClamped => ref Unsafe.AsRef<ImRect>(&Handle->RectClamped);
@@ -823,19 +805,10 @@ namespace Hexa.NET.ImPlot
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImPoolImPlotItem
 	{
-		public ImVectorImPlotItem Buf;
+		public ImVector<ImPlotItem> Buf;
 		public ImGuiStorage Map;
 		public int FreeIdx;
 		public int AliveCount;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImPlotItem
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImPlotItem* Data;
 
 	}
 
@@ -900,19 +873,10 @@ namespace Hexa.NET.ImPlot
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImPoolImPlotSubplot
 	{
-		public ImVectorImPlotSubplot Buf;
+		public ImVector<ImPlotSubplot> Buf;
 		public ImGuiStorage Map;
 		public int FreeIdx;
 		public int AliveCount;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImPlotSubplot
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImPlotSubplot* Data;
 
 	}
 
@@ -929,12 +893,12 @@ namespace Hexa.NET.ImPlot
 		public ImRect FrameRect;
 		public ImRect GridRect;
 		public Vector2 CellSize;
-		public ImVectorImPlotAlignmentData RowAlignmentData;
-		public ImVectorImPlotAlignmentData ColAlignmentData;
-		public ImVectorFloat RowRatios;
-		public ImVectorFloat ColRatios;
-		public ImVectorImPlotRange RowLinkData;
-		public ImVectorImPlotRange ColLinkData;
+		public ImVector<ImPlotAlignmentData> RowAlignmentData;
+		public ImVector<ImPlotAlignmentData> ColAlignmentData;
+		public ImVector<float> RowRatios;
+		public ImVector<float> ColRatios;
+		public ImVector<ImPlotRange> RowLinkData;
+		public ImVector<ImPlotRange> ColLinkData;
 		public float TempSizes_0;
 		public float TempSizes_1;
 		public byte FrameHovered;
@@ -988,12 +952,12 @@ namespace Hexa.NET.ImPlot
 		public ref ImRect FrameRect => ref Unsafe.AsRef<ImRect>(&Handle->FrameRect);
 		public ref ImRect GridRect => ref Unsafe.AsRef<ImRect>(&Handle->GridRect);
 		public ref Vector2 CellSize => ref Unsafe.AsRef<Vector2>(&Handle->CellSize);
-		public ref ImVectorImPlotAlignmentData RowAlignmentData => ref Unsafe.AsRef<ImVectorImPlotAlignmentData>(&Handle->RowAlignmentData);
-		public ref ImVectorImPlotAlignmentData ColAlignmentData => ref Unsafe.AsRef<ImVectorImPlotAlignmentData>(&Handle->ColAlignmentData);
-		public ref ImVectorFloat RowRatios => ref Unsafe.AsRef<ImVectorFloat>(&Handle->RowRatios);
-		public ref ImVectorFloat ColRatios => ref Unsafe.AsRef<ImVectorFloat>(&Handle->ColRatios);
-		public ref ImVectorImPlotRange RowLinkData => ref Unsafe.AsRef<ImVectorImPlotRange>(&Handle->RowLinkData);
-		public ref ImVectorImPlotRange ColLinkData => ref Unsafe.AsRef<ImVectorImPlotRange>(&Handle->ColLinkData);
+		public ref ImVector<ImPlotAlignmentData> RowAlignmentData => ref Unsafe.AsRef<ImVector<ImPlotAlignmentData>>(&Handle->RowAlignmentData);
+		public ref ImVector<ImPlotAlignmentData> ColAlignmentData => ref Unsafe.AsRef<ImVector<ImPlotAlignmentData>>(&Handle->ColAlignmentData);
+		public ref ImVector<float> RowRatios => ref Unsafe.AsRef<ImVector<float>>(&Handle->RowRatios);
+		public ref ImVector<float> ColRatios => ref Unsafe.AsRef<ImVector<float>>(&Handle->ColRatios);
+		public ref ImVector<ImPlotRange> RowLinkData => ref Unsafe.AsRef<ImVector<ImPlotRange>>(&Handle->RowLinkData);
+		public ref ImVector<ImPlotRange> ColLinkData => ref Unsafe.AsRef<ImVector<ImPlotRange>>(&Handle->ColLinkData);
 		public unsafe Span<float> TempSizes
 		
 		{
@@ -1004,15 +968,6 @@ namespace Hexa.NET.ImPlot
 		}
 		public ref bool FrameHovered => ref Unsafe.AsRef<bool>(&Handle->FrameHovered);
 		public ref bool HasTitle => ref Unsafe.AsRef<bool>(&Handle->HasTitle);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImPlotAlignmentData
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImPlotAlignmentData* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1070,18 +1025,9 @@ namespace Hexa.NET.ImPlot
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImPlotRange
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImPlotRange* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImPlotAnnotationCollection
 	{
-		public ImVectorImPlotAnnotation Annotations;
+		public ImVector<ImPlotAnnotation> Annotations;
 		public ImGuiTextBuffer TextBuffer;
 		public int Size;
 
@@ -1123,18 +1069,9 @@ namespace Hexa.NET.ImPlot
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotAnnotationCollectionPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorImPlotAnnotation Annotations => ref Unsafe.AsRef<ImVectorImPlotAnnotation>(&Handle->Annotations);
+		public ref ImVector<ImPlotAnnotation> Annotations => ref Unsafe.AsRef<ImVector<ImPlotAnnotation>>(&Handle->Annotations);
 		public ref ImGuiTextBuffer TextBuffer => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->TextBuffer);
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImPlotAnnotation
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImPlotAnnotation* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1196,7 +1133,7 @@ namespace Hexa.NET.ImPlot
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImPlotTagCollection
 	{
-		public ImVectorImPlotTag Tags;
+		public ImVector<ImPlotTag> Tags;
 		public ImGuiTextBuffer TextBuffer;
 		public int Size;
 
@@ -1238,18 +1175,9 @@ namespace Hexa.NET.ImPlot
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotTagCollectionPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorImPlotTag Tags => ref Unsafe.AsRef<ImVectorImPlotTag>(&Handle->Tags);
+		public ref ImVector<ImPlotTag> Tags => ref Unsafe.AsRef<ImVector<ImPlotTag>>(&Handle->Tags);
 		public ref ImGuiTextBuffer TextBuffer => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->TextBuffer);
 		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImPlotTag
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImPlotTag* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1470,15 +1398,15 @@ namespace Hexa.NET.ImPlot
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImPlotColormapData
 	{
-		public ImVectorImU32 Keys;
-		public ImVectorInt KeyCounts;
-		public ImVectorInt KeyOffsets;
-		public ImVectorImU32 Tables;
-		public ImVectorInt TableSizes;
-		public ImVectorInt TableOffsets;
+		public ImVector<uint> Keys;
+		public ImVector<int> KeyCounts;
+		public ImVector<int> KeyOffsets;
+		public ImVector<uint> Tables;
+		public ImVector<int> TableSizes;
+		public ImVector<int> TableOffsets;
 		public ImGuiTextBuffer Text;
-		public ImVectorInt TextOffsets;
-		public ImVectorBool Quals;
+		public ImVector<int> TextOffsets;
+		public ImVector<bool> Quals;
 		public ImGuiStorage Map;
 		public int Count;
 
@@ -1520,85 +1448,17 @@ namespace Hexa.NET.ImPlot
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImPlotColormapDataPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorImU32 Keys => ref Unsafe.AsRef<ImVectorImU32>(&Handle->Keys);
-		public ref ImVectorInt KeyCounts => ref Unsafe.AsRef<ImVectorInt>(&Handle->KeyCounts);
-		public ref ImVectorInt KeyOffsets => ref Unsafe.AsRef<ImVectorInt>(&Handle->KeyOffsets);
-		public ref ImVectorImU32 Tables => ref Unsafe.AsRef<ImVectorImU32>(&Handle->Tables);
-		public ref ImVectorInt TableSizes => ref Unsafe.AsRef<ImVectorInt>(&Handle->TableSizes);
-		public ref ImVectorInt TableOffsets => ref Unsafe.AsRef<ImVectorInt>(&Handle->TableOffsets);
+		public ref ImVector<uint> Keys => ref Unsafe.AsRef<ImVector<uint>>(&Handle->Keys);
+		public ref ImVector<int> KeyCounts => ref Unsafe.AsRef<ImVector<int>>(&Handle->KeyCounts);
+		public ref ImVector<int> KeyOffsets => ref Unsafe.AsRef<ImVector<int>>(&Handle->KeyOffsets);
+		public ref ImVector<uint> Tables => ref Unsafe.AsRef<ImVector<uint>>(&Handle->Tables);
+		public ref ImVector<int> TableSizes => ref Unsafe.AsRef<ImVector<int>>(&Handle->TableSizes);
+		public ref ImVector<int> TableOffsets => ref Unsafe.AsRef<ImVector<int>>(&Handle->TableOffsets);
 		public ref ImGuiTextBuffer Text => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->Text);
-		public ref ImVectorInt TextOffsets => ref Unsafe.AsRef<ImVectorInt>(&Handle->TextOffsets);
-		public ref ImVectorBool Quals => ref Unsafe.AsRef<ImVectorBool>(&Handle->Quals);
+		public ref ImVector<int> TextOffsets => ref Unsafe.AsRef<ImVector<int>>(&Handle->TextOffsets);
+		public ref ImVector<bool> Quals => ref Unsafe.AsRef<ImVector<bool>>(&Handle->Quals);
 		public ref ImGuiStorage Map => ref Unsafe.AsRef<ImGuiStorage>(&Handle->Map);
 		public ref int Count => ref Unsafe.AsRef<int>(&Handle->Count);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorBool
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe bool* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImPlotColormap
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImPlotColormap* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorDouble
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe double* Data;
-
-	}
-
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVectorDoublePtr : IEquatable<ImVectorDoublePtr>
-	{
-		public ImVectorDoublePtr(ImVectorDouble* handle) { Handle = handle; }
-
-		public ImVectorDouble* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVectorDoublePtr Null => new ImVectorDoublePtr(null);
-
-		public static implicit operator ImVectorDoublePtr(ImVectorDouble* handle) => new ImVectorDoublePtr(handle);
-
-		public static implicit operator ImVectorDouble*(ImVectorDoublePtr handle) => handle.Handle;
-
-		public static bool operator ==(ImVectorDoublePtr left, ImVectorDoublePtr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVectorDoublePtr left, ImVectorDoublePtr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVectorDoublePtr left, ImVectorDouble* right) => left.Handle == right;
-
-		public static bool operator !=(ImVectorDoublePtr left, ImVectorDouble* right) => left.Handle != right;
-
-		public bool Equals(ImVectorDoublePtr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVectorDoublePtr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVectorDoublePtr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
-		public double* Data { get => Handle->Data; set => Handle->Data = value; }
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -1910,7 +1770,7 @@ namespace Hexa.NET.ImPlot
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImPoolImPlotAlignmentData
 	{
-		public ImVectorImPlotAlignmentData Buf;
+		public ImVector<ImPlotAlignmentData> Buf;
 		public ImGuiStorage Map;
 		public int FreeIdx;
 		public int AliveCount;
@@ -1921,356 +1781,6 @@ namespace Hexa.NET.ImPlot
 	public partial struct ImPlotAxisColor
 	{
 
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImS16
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe short* Data;
-
-	}
-
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVectorImS16Ptr : IEquatable<ImVectorImS16Ptr>
-	{
-		public ImVectorImS16Ptr(ImVectorImS16* handle) { Handle = handle; }
-
-		public ImVectorImS16* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVectorImS16Ptr Null => new ImVectorImS16Ptr(null);
-
-		public static implicit operator ImVectorImS16Ptr(ImVectorImS16* handle) => new ImVectorImS16Ptr(handle);
-
-		public static implicit operator ImVectorImS16*(ImVectorImS16Ptr handle) => handle.Handle;
-
-		public static bool operator ==(ImVectorImS16Ptr left, ImVectorImS16Ptr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVectorImS16Ptr left, ImVectorImS16Ptr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVectorImS16Ptr left, ImVectorImS16* right) => left.Handle == right;
-
-		public static bool operator !=(ImVectorImS16Ptr left, ImVectorImS16* right) => left.Handle != right;
-
-		public bool Equals(ImVectorImS16Ptr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVectorImS16Ptr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVectorImS16Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
-		public short* Data { get => Handle->Data; set => Handle->Data = value; }
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImS32
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe int* Data;
-
-	}
-
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVectorImS32Ptr : IEquatable<ImVectorImS32Ptr>
-	{
-		public ImVectorImS32Ptr(ImVectorImS32* handle) { Handle = handle; }
-
-		public ImVectorImS32* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVectorImS32Ptr Null => new ImVectorImS32Ptr(null);
-
-		public static implicit operator ImVectorImS32Ptr(ImVectorImS32* handle) => new ImVectorImS32Ptr(handle);
-
-		public static implicit operator ImVectorImS32*(ImVectorImS32Ptr handle) => handle.Handle;
-
-		public static bool operator ==(ImVectorImS32Ptr left, ImVectorImS32Ptr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVectorImS32Ptr left, ImVectorImS32Ptr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVectorImS32Ptr left, ImVectorImS32* right) => left.Handle == right;
-
-		public static bool operator !=(ImVectorImS32Ptr left, ImVectorImS32* right) => left.Handle != right;
-
-		public bool Equals(ImVectorImS32Ptr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVectorImS32Ptr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVectorImS32Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
-		public int* Data { get => Handle->Data; set => Handle->Data = value; }
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImS64
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe long* Data;
-
-	}
-
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVectorImS64Ptr : IEquatable<ImVectorImS64Ptr>
-	{
-		public ImVectorImS64Ptr(ImVectorImS64* handle) { Handle = handle; }
-
-		public ImVectorImS64* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVectorImS64Ptr Null => new ImVectorImS64Ptr(null);
-
-		public static implicit operator ImVectorImS64Ptr(ImVectorImS64* handle) => new ImVectorImS64Ptr(handle);
-
-		public static implicit operator ImVectorImS64*(ImVectorImS64Ptr handle) => handle.Handle;
-
-		public static bool operator ==(ImVectorImS64Ptr left, ImVectorImS64Ptr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVectorImS64Ptr left, ImVectorImS64Ptr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVectorImS64Ptr left, ImVectorImS64* right) => left.Handle == right;
-
-		public static bool operator !=(ImVectorImS64Ptr left, ImVectorImS64* right) => left.Handle != right;
-
-		public bool Equals(ImVectorImS64Ptr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVectorImS64Ptr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVectorImS64Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
-		public long* Data { get => Handle->Data; set => Handle->Data = value; }
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImS8
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe sbyte* Data;
-
-	}
-
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVectorImS8Ptr : IEquatable<ImVectorImS8Ptr>
-	{
-		public ImVectorImS8Ptr(ImVectorImS8* handle) { Handle = handle; }
-
-		public ImVectorImS8* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVectorImS8Ptr Null => new ImVectorImS8Ptr(null);
-
-		public static implicit operator ImVectorImS8Ptr(ImVectorImS8* handle) => new ImVectorImS8Ptr(handle);
-
-		public static implicit operator ImVectorImS8*(ImVectorImS8Ptr handle) => handle.Handle;
-
-		public static bool operator ==(ImVectorImS8Ptr left, ImVectorImS8Ptr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVectorImS8Ptr left, ImVectorImS8Ptr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVectorImS8Ptr left, ImVectorImS8* right) => left.Handle == right;
-
-		public static bool operator !=(ImVectorImS8Ptr left, ImVectorImS8* right) => left.Handle != right;
-
-		public bool Equals(ImVectorImS8Ptr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVectorImS8Ptr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVectorImS8Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
-		public sbyte* Data { get => Handle->Data; set => Handle->Data = value; }
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImU16
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ushort* Data;
-
-	}
-
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVectorImU16Ptr : IEquatable<ImVectorImU16Ptr>
-	{
-		public ImVectorImU16Ptr(ImVectorImU16* handle) { Handle = handle; }
-
-		public ImVectorImU16* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVectorImU16Ptr Null => new ImVectorImU16Ptr(null);
-
-		public static implicit operator ImVectorImU16Ptr(ImVectorImU16* handle) => new ImVectorImU16Ptr(handle);
-
-		public static implicit operator ImVectorImU16*(ImVectorImU16Ptr handle) => handle.Handle;
-
-		public static bool operator ==(ImVectorImU16Ptr left, ImVectorImU16Ptr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVectorImU16Ptr left, ImVectorImU16Ptr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVectorImU16Ptr left, ImVectorImU16* right) => left.Handle == right;
-
-		public static bool operator !=(ImVectorImU16Ptr left, ImVectorImU16* right) => left.Handle != right;
-
-		public bool Equals(ImVectorImU16Ptr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVectorImU16Ptr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVectorImU16Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
-		public ushort* Data { get => Handle->Data; set => Handle->Data = value; }
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImU64
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ulong* Data;
-
-	}
-
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVectorImU64Ptr : IEquatable<ImVectorImU64Ptr>
-	{
-		public ImVectorImU64Ptr(ImVectorImU64* handle) { Handle = handle; }
-
-		public ImVectorImU64* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVectorImU64Ptr Null => new ImVectorImU64Ptr(null);
-
-		public static implicit operator ImVectorImU64Ptr(ImVectorImU64* handle) => new ImVectorImU64Ptr(handle);
-
-		public static implicit operator ImVectorImU64*(ImVectorImU64Ptr handle) => handle.Handle;
-
-		public static bool operator ==(ImVectorImU64Ptr left, ImVectorImU64Ptr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVectorImU64Ptr left, ImVectorImU64Ptr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVectorImU64Ptr left, ImVectorImU64* right) => left.Handle == right;
-
-		public static bool operator !=(ImVectorImU64Ptr left, ImVectorImU64* right) => left.Handle != right;
-
-		public bool Equals(ImVectorImU64Ptr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVectorImU64Ptr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVectorImU64Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
-		public ulong* Data { get => Handle->Data; set => Handle->Data = value; }
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImU8
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe byte* Data;
-
-	}
-
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVectorImU8Ptr : IEquatable<ImVectorImU8Ptr>
-	{
-		public ImVectorImU8Ptr(ImVectorImU8* handle) { Handle = handle; }
-
-		public ImVectorImU8* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVectorImU8Ptr Null => new ImVectorImU8Ptr(null);
-
-		public static implicit operator ImVectorImU8Ptr(ImVectorImU8* handle) => new ImVectorImU8Ptr(handle);
-
-		public static implicit operator ImVectorImU8*(ImVectorImU8Ptr handle) => handle.Handle;
-
-		public static bool operator ==(ImVectorImU8Ptr left, ImVectorImU8Ptr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVectorImU8Ptr left, ImVectorImU8Ptr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVectorImU8Ptr left, ImVectorImU8* right) => left.Handle == right;
-
-		public static bool operator !=(ImVectorImU8Ptr left, ImVectorImU8* right) => left.Handle != right;
-
-		public bool Equals(ImVectorImU8Ptr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVectorImU8Ptr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVectorImU8Ptr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
-		public byte* Data { get => Handle->Data; set => Handle->Data = value; }
 	}
 
 	[StructLayout(LayoutKind.Sequential)]

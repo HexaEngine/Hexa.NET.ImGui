@@ -10,11 +10,10 @@
 
         private static void Main(string[] args)
         {
-          
-         
+            PreProcess();
 
             GenerateImGui();
-       
+
             var constants = CsCodeGenerator.DefinedConstants.ToList();
             var enums = CsCodeGenerator.DefinedEnums.ToList();
             var extensions = CsCodeGenerator.DefinedExtensions.ToList();
@@ -23,7 +22,7 @@
             var types = CsCodeGenerator.DefinedTypes.ToList();
             var delegates = CsCodeGenerator.DefinedDelegates.ToList();
 
-            
+
             GenerateImGuizmo();
             CsCodeGenerator.Reset();
             CsCodeGenerator.CopyFrom(constants, enums, extensions, functions, typedefs, types, delegates);
@@ -31,9 +30,107 @@
             CsCodeGenerator.Reset();
             CsCodeGenerator.CopyFrom(constants, enums, extensions, functions, typedefs, types, delegates);
             GenerateImPlot();
-            
+
 
             GenerateImGuiManual();
+        }
+
+        private static void PreProcess()
+        {
+            // Patch ImVector types
+            PatchConfig("cimgui/cimgui.h", "cimgui/generator.json");
+            PatchConfig("cimguizmo/cimguizmo.h", "cimguizmo/generator.json");
+            PatchConfig("cimnodes/cimnodes.h", "cimnodes/generator.json");
+            PatchConfig("cimplot/cimplot.h", "cimplot/generator.json");
+
+            // Merge settings
+            MergeConfig("cimgui/generator.json", "cimguizmo/generator.json");
+            MergeConfig("cimgui/generator.json", "cimnodes/generator.json");
+            MergeConfig("cimgui/generator.json", "cimplot/generator.json");
+        }
+
+        private static void MergeConfig(string from, string into)
+        {
+            var baseSettings = CsCodeGeneratorSettings.LoadInstance(from);
+            var patchSettings = CsCodeGeneratorSettings.LoadInstance(into);
+
+            foreach (var mapping in baseSettings.FunctionMappings)
+            {
+                patchSettings.FunctionMappings.Add(mapping);
+            }
+
+            foreach (var mapping in baseSettings.DelegateMappings)
+            {
+                patchSettings.DelegateMappings.Add(mapping);
+            }
+
+            foreach (var mapping in baseSettings.IgnoredEnums)
+            {
+                patchSettings.IgnoredEnums.Add(mapping);
+            }
+
+            foreach (var mapping in baseSettings.IgnoredFunctions)
+            {
+                patchSettings.IgnoredFunctions.Add(mapping);
+            }
+
+            foreach (var mapping in baseSettings.IgnoredTypes)
+            {
+                patchSettings.IgnoredTypes.Add(mapping);
+            }
+
+            foreach (var mapping in baseSettings.IgnoredTypedefs)
+            {
+                patchSettings.IgnoredTypedefs.Add(mapping);
+            }
+
+            foreach (var mapping in baseSettings.NameMappings)
+            {
+                patchSettings.NameMappings.TryAdd(mapping.Key, mapping.Value);
+            }
+
+            patchSettings.Save(into);
+        }
+
+        private static void PatchConfig(string file, string settingFile)
+        {
+            var settings = CsCodeGeneratorSettings.LoadInstance(settingFile);
+            Regex regex = new("typedef struct (\\bImVector_(.*)\\b) {");
+            string content = File.ReadAllText(file);
+            var matches = regex.Matches(content);
+            TextWriter writer = File.CreateText(Path.Combine(Path.GetDirectoryName(file) ?? string.Empty, "ImVectorPatch.json"));
+            writer.WriteLine("{");
+            for (int i = 0; i < matches.Count; i++)
+            {
+                Match match = matches[i];
+                var name = match.Groups[1].Value;
+                var nameValue = match.Groups[2].Value;
+                switch (nameValue)
+                {
+                    case "const_charPtr":
+                        nameValue = "ConstPointer<byte>";
+                        break;
+                    case "unsigned_char":
+                        nameValue = "byte";
+                        break;
+                }
+                if (settings.NameMappings.TryGetValue(nameValue, out var mappedName))
+                {
+                    nameValue = mappedName;
+                }
+
+                settings.IgnoredTypes.Add(name);
+                settings.IgnoredTypedefs.Add(name);
+                settings.NameMappings.TryAdd(name, $"ImVector<{nameValue}>");
+
+                if (i < matches.Count - 1)
+                    writer.WriteLine($"\t\"{name}\": \"ImVector<{nameValue}>\",");
+                else
+                    writer.WriteLine($"\t\"{name}\": \"ImVector<{nameValue}>\"");
+            }
+            writer.WriteLine("}");
+            writer.Close();
+            settings.Save(settingFile);
         }
 
         private static void GenerateImGuiManual()
@@ -144,7 +241,7 @@
             {
                 Regex regex = new("\\b(.*) = Utils.GetByteCountUTF8\\b\\(buf\\);");
                 const string manualFunctions = manual + "Functions/";
-                
+
                 foreach (var file in Directory.EnumerateFiles(manualFunctions, "*.cs"))
                 {
                     int indexOffset = 0;
@@ -158,7 +255,7 @@
                             var name = match.Groups[1].Value.Trim();
                             var replacement = $"{name} = Math.Max(Utils.GetByteCountUTF8(buf), (int)bufSize);";
                             var delta = replacement.Length - match.Value.Length;
-                  
+
                             builder.Replace(match.Value, replacement, match.Index + indexOffset, match.Length);
                             indexOffset += delta;
                         }
@@ -167,7 +264,7 @@
                     }
                 }
             }
-        }   
+        }
 
 
 

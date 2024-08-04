@@ -417,25 +417,25 @@ namespace ExampleD3D11.ImGuiDemo
 
                 for (int cmd_i = 0; cmd_i < cmd_list->CmdBuffer.Size; cmd_i++)
                 {
-                    ImDrawCmd* pcmd = &cmd_list->CmdBuffer.Data[cmd_i];
-                    if (pcmd->UserCallback != null)
+                    ImDrawCmd pcmd = cmd_list->CmdBuffer[cmd_i];
+                    if (pcmd.UserCallback != null)
                     {
                         // User callback, registered via ImDrawList::AddCallback()
                         // (ImDrawCallback_ResetRenderState is a special callback value used by the user to request the renderer to reset render state.)
-                        if ((nint)pcmd->UserCallback == -1)
+                        if ((nint)pcmd.UserCallback == -1)
                         {
                             SetupRenderState(draw_data, fb_width, fb_height, vertex_array_object);
                         }
                         else
                         {
-                            Marshal.GetDelegateForFunctionPointer<UserCallback>((nint)pcmd->UserCallback)(cmd_list, pcmd);
+                            Marshal.GetDelegateForFunctionPointer<UserCallback>((nint)pcmd.UserCallback)(cmd_list, &pcmd);
                         }
                     }
                     else
                     {
                         // Project scissor/clipping rectangles into framebuffer space
-                        Vector2 clip_min = new((pcmd->ClipRect.X - clip_off.X) * clip_scale.X, (pcmd->ClipRect.Y - clip_off.Y) * clip_scale.Y);
-                        Vector2 clip_max = new((pcmd->ClipRect.Z - clip_off.X) * clip_scale.X, (pcmd->ClipRect.W - clip_off.Y) * clip_scale.Y);
+                        Vector2 clip_min = new((pcmd.ClipRect.X - clip_off.X) * clip_scale.X, (pcmd.ClipRect.Y - clip_off.Y) * clip_scale.Y);
+                        Vector2 clip_max = new((pcmd.ClipRect.Z - clip_off.X) * clip_scale.X, (pcmd.ClipRect.W - clip_off.Y) * clip_scale.Y);
                         if (clip_max.X <= clip_min.X || clip_max.Y <= clip_min.Y)
                         {
                             continue;
@@ -447,17 +447,17 @@ namespace ExampleD3D11.ImGuiDemo
 
                         // Bind texture, Draw
                         /*GL_CALL*/
-                        GL.BindTexture(GLEnum.Texture2D, (uint)pcmd->GetTexID().Handle);
+                        GL.BindTexture(GLEnum.Texture2D, (uint)pcmd.GetTexID().Handle);
 #if IMGUI_IMPL_OPENGL_MAY_HAVE_VTX_OFFSET
                         if (bd->GlVersion >= 320)
                         {
                             /*GL_CALL*/
-                            GL.DrawElementsBaseVertex(GLEnum.Triangles, (uint)pcmd->ElemCount, sizeof(ImDrawIdx) == 2 ? GLEnum.UnsignedShort : GLEnum.UnsignedInt, (void*)(nint)(pcmd->IdxOffset * sizeof(ImDrawIdx)), (int)pcmd->VtxOffset);
+                            GL.DrawElementsBaseVertex(GLEnum.Triangles, (uint)pcmd.ElemCount, sizeof(ImDrawIdx) == 2 ? GLEnum.UnsignedShort : GLEnum.UnsignedInt, (void*)(nint)(pcmd.IdxOffset * sizeof(ImDrawIdx)), (int)pcmd.VtxOffset);
                         }
                         else
 #endif
                             /*GL_CALL*/
-                            GL.DrawElements(GLEnum.Triangles, (uint)pcmd->ElemCount, sizeof(ImDrawIdx) == 2 ? GLEnum.UnsignedShort : GLEnum.UnsignedInt, (void*)(nint)(pcmd->IdxOffset * sizeof(ImDrawIdx)));
+                            GL.DrawElements(GLEnum.Triangles, (uint)pcmd.ElemCount, sizeof(ImDrawIdx) == 2 ? GLEnum.UnsignedShort : GLEnum.UnsignedInt, (void*)(nint)(pcmd.IdxOffset * sizeof(ImDrawIdx)));
                     }
                 }
             }

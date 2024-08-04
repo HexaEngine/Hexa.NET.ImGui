@@ -3452,47 +3452,47 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		internal static void DockBuilderCopyDockSpaceNative(int srcDockspaceId, int dstDockspaceId, ImVectorConstCharPtr* inWindowRemapPairs)
+		internal static void DockBuilderCopyDockSpaceNative(int srcDockspaceId, int dstDockspaceId, ImVector<ConstPointer<byte>>* inWindowRemapPairs)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, int, ImVectorConstCharPtr*, void>)vt[1194])(srcDockspaceId, dstDockspaceId, inWindowRemapPairs);
+			((delegate* unmanaged[Cdecl]<int, int, ImVector<ConstPointer<byte>>*, void>)vt[1194])(srcDockspaceId, dstDockspaceId, inWindowRemapPairs);
 			#else
 			((delegate* unmanaged[Cdecl]<int, int, nint, void>)vt[1194])(srcDockspaceId, dstDockspaceId, (nint)inWindowRemapPairs);
 			#endif
 		}
 
-		public static void DockBuilderCopyDockSpace(int srcDockspaceId, int dstDockspaceId, ImVectorConstCharPtrPtr inWindowRemapPairs)
+		public static void DockBuilderCopyDockSpace(int srcDockspaceId, int dstDockspaceId, ImVector<ConstPointer<byte>>* inWindowRemapPairs)
 		{
 			DockBuilderCopyDockSpaceNative(srcDockspaceId, dstDockspaceId, inWindowRemapPairs);
 		}
 
-		public static void DockBuilderCopyDockSpace(int srcDockspaceId, int dstDockspaceId, ref ImVectorConstCharPtr inWindowRemapPairs)
+		public static void DockBuilderCopyDockSpace(int srcDockspaceId, int dstDockspaceId, ref ImVector<ConstPointer<byte>> inWindowRemapPairs)
 		{
-			fixed (ImVectorConstCharPtr* pinWindowRemapPairs = &inWindowRemapPairs)
+			fixed (ImVector<ConstPointer<byte>>* pinWindowRemapPairs = &inWindowRemapPairs)
 			{
-				DockBuilderCopyDockSpaceNative(srcDockspaceId, dstDockspaceId, (ImVectorConstCharPtr*)pinWindowRemapPairs);
+				DockBuilderCopyDockSpaceNative(srcDockspaceId, dstDockspaceId, (ImVector<ConstPointer<byte>>*)pinWindowRemapPairs);
 			}
 		}
 
-		internal static void DockBuilderCopyNodeNative(int srcNodeId, int dstNodeId, ImVectorImGuiID* outNodeRemapPairs)
+		internal static void DockBuilderCopyNodeNative(int srcNodeId, int dstNodeId, ImVector<int>* outNodeRemapPairs)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, int, ImVectorImGuiID*, void>)vt[1195])(srcNodeId, dstNodeId, outNodeRemapPairs);
+			((delegate* unmanaged[Cdecl]<int, int, ImVector<int>*, void>)vt[1195])(srcNodeId, dstNodeId, outNodeRemapPairs);
 			#else
 			((delegate* unmanaged[Cdecl]<int, int, nint, void>)vt[1195])(srcNodeId, dstNodeId, (nint)outNodeRemapPairs);
 			#endif
 		}
 
-		public static void DockBuilderCopyNode(int srcNodeId, int dstNodeId, ImVectorImGuiIDPtr outNodeRemapPairs)
+		public static void DockBuilderCopyNode(int srcNodeId, int dstNodeId, ImVector<int>* outNodeRemapPairs)
 		{
 			DockBuilderCopyNodeNative(srcNodeId, dstNodeId, outNodeRemapPairs);
 		}
 
-		public static void DockBuilderCopyNode(int srcNodeId, int dstNodeId, ref ImVectorImGuiID outNodeRemapPairs)
+		public static void DockBuilderCopyNode(int srcNodeId, int dstNodeId, ref ImVector<int> outNodeRemapPairs)
 		{
-			fixed (ImVectorImGuiID* poutNodeRemapPairs = &outNodeRemapPairs)
+			fixed (ImVector<int>* poutNodeRemapPairs = &outNodeRemapPairs)
 			{
-				DockBuilderCopyNodeNative(srcNodeId, dstNodeId, (ImVectorImGuiID*)poutNodeRemapPairs);
+				DockBuilderCopyNodeNative(srcNodeId, dstNodeId, (ImVector<int>*)poutNodeRemapPairs);
 			}
 		}
 

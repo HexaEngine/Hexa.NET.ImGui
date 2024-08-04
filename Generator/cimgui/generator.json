@@ -13,10 +13,10 @@
   "KnownExtensionPrefixes": {},
   "KnownExtensionNames": {},
   "KnownStructMethods": {},
-  "IgnoredParts": [ "bit", "Ig", "ImGui", "Str", "Arr" ],
-  "PreserveCaps": [ "" ],
-  "Keywords": [ "object", "event", "out", "base" ],
-  "IgnoredTypes": [ "ImVec4", "ImVec3", "ImVec2" ],
+  "IgnoredParts": ["bit", "Ig", "ImGui", "Str", "Arr"],
+  "PreserveCaps": [""],
+  "Keywords": ["object", "event", "out", "base"],
+  "IgnoredTypes": ["ImVec4", "ImVec3", "ImVec2", "ImVector_ImDrawCmd"],
   "IgnoredFunctions": [
     "igInputText",
     "igInputTextMultiline",
@@ -49,6 +49,7 @@
     }
   ],
   "NameMappings": {
+    "ImVector_ImDrawCmd": "ImVector<ImDrawCmd>",
     "uint8_t": "byte",
     "uint16_t": "ushort",
     "uint32_t": "uint",
@@ -90,5 +91,5 @@
   "AllowedTypes": [],
   "AllowedEnums": [],
   "AllowedTypedefs": [],
-  "Usings": [ "System.Numerics" ]
+  "Usings": ["System.Numerics"]
 }

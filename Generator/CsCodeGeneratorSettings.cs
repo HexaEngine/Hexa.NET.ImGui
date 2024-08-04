@@ -43,6 +43,21 @@
             Default.Save();
         }
 
+        public static CsCodeGeneratorSettings LoadInstance(string file)
+        {
+            CsCodeGeneratorSettings settings;
+            if (File.Exists(file))
+            {
+                settings = JsonSerializer.Deserialize<CsCodeGeneratorSettings>(File.ReadAllText(file)) ?? new();
+            }
+            else
+            {
+                settings = new();
+            }
+
+            return settings;
+        }
+
         public static CsCodeGeneratorSettings Default { get; private set; }
 
         public string Namespace { get; set; } = string.Empty;
@@ -53,7 +68,7 @@
 
         public bool GenerateSizeOfStructs { get; set; } = false;
 
-        public bool DelegatesAsVoidPointer { get; set; } = true;  
+        public bool DelegatesAsVoidPointer { get; set; } = true;
 
         public bool GenerateConstants { get; set; } = true;
 
@@ -67,7 +82,7 @@
 
         public bool GenerateHandles { get; set; } = true;
 
-        public bool GenerateDelegates { get; set; } = true;     
+        public bool GenerateDelegates { get; set; } = true;
 
         public bool UseDllImport => ImportType == ImportType.DllImport;
 
@@ -148,7 +163,12 @@
 
         public void Save()
         {
-            File.WriteAllText("generator.json", JsonSerializer.Serialize(Default));
+            File.WriteAllText("generator.json", JsonSerializer.Serialize(this));
+        }
+
+        public void Save(string path)
+        {
+            File.WriteAllText(path, JsonSerializer.Serialize(this));
         }
 
         public bool TryGetFunctionMapping(string functionName, [NotNullWhen(true)] out FunctionMapping? mapping)

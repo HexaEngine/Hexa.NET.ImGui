@@ -1723,21 +1723,21 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		internal static void BuildRangesNative(ImFontGlyphRangesBuilder* self, ImVectorImWchar* outRanges)
+		internal static void BuildRangesNative(ImFontGlyphRangesBuilder* self, ImVector<char>* outRanges)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ImVectorImWchar*, void>)vt[615])(self, outRanges);
+			((delegate* unmanaged[Cdecl]<ImFontGlyphRangesBuilder*, ImVector<char>*, void>)vt[615])(self, outRanges);
 			#else
 			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[615])((nint)self, (nint)outRanges);
 			#endif
 		}
 
-		public static void BuildRanges(ImFontGlyphRangesBuilderPtr self, ImVectorImWcharPtr outRanges)
+		public static void BuildRanges(ImFontGlyphRangesBuilderPtr self, ImVector<char>* outRanges)
 		{
 			BuildRangesNative(self, outRanges);
 		}
 
-		public static void BuildRanges(ref ImFontGlyphRangesBuilder self, ImVectorImWcharPtr outRanges)
+		public static void BuildRanges(ref ImFontGlyphRangesBuilder self, ImVector<char>* outRanges)
 		{
 			fixed (ImFontGlyphRangesBuilder* pself = &self)
 			{
@@ -1745,21 +1745,21 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void BuildRanges(ImFontGlyphRangesBuilderPtr self, ref ImVectorImWchar outRanges)
+		public static void BuildRanges(ImFontGlyphRangesBuilderPtr self, ref ImVector<char> outRanges)
 		{
-			fixed (ImVectorImWchar* poutRanges = &outRanges)
+			fixed (ImVector<char>* poutRanges = &outRanges)
 			{
-				BuildRangesNative(self, (ImVectorImWchar*)poutRanges);
+				BuildRangesNative(self, (ImVector<char>*)poutRanges);
 			}
 		}
 
-		public static void BuildRanges(ref ImFontGlyphRangesBuilder self, ref ImVectorImWchar outRanges)
+		public static void BuildRanges(ref ImFontGlyphRangesBuilder self, ref ImVector<char> outRanges)
 		{
 			fixed (ImFontGlyphRangesBuilder* pself = &self)
 			{
-				fixed (ImVectorImWchar* poutRanges = &outRanges)
+				fixed (ImVector<char>* poutRanges = &outRanges)
 				{
-					BuildRangesNative((ImFontGlyphRangesBuilder*)pself, (ImVectorImWchar*)poutRanges);
+					BuildRangesNative((ImFontGlyphRangesBuilder*)pself, (ImVector<char>*)poutRanges);
 				}
 			}
 		}

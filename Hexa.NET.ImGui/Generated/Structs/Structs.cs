@@ -19,8 +19,8 @@ namespace Hexa.NET.ImGui
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawChannel
 	{
-		public ImVectorImDrawCmd CmdBuffer;
-		public ImVectorImDrawIdx IdxBuffer;
+		public ImVector<ImDrawCmd> CmdBuffer;
+		public ImVector<ushort> IdxBuffer;
 
 	}
 
@@ -60,17 +60,8 @@ namespace Hexa.NET.ImGui
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImDrawChannelPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorImDrawCmd CmdBuffer => ref Unsafe.AsRef<ImVectorImDrawCmd>(&Handle->CmdBuffer);
-		public ref ImVectorImDrawIdx IdxBuffer => ref Unsafe.AsRef<ImVectorImDrawIdx>(&Handle->IdxBuffer);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImDrawCmd
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImDrawCmd* Data;
-
+		public ref ImVector<ImDrawCmd> CmdBuffer => ref Unsafe.AsRef<ImVector<ImDrawCmd>>(&Handle->CmdBuffer);
+		public ref ImVector<ushort> IdxBuffer => ref Unsafe.AsRef<ImVector<ushort>>(&Handle->IdxBuffer);
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -164,19 +155,19 @@ namespace Hexa.NET.ImGui
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawList
 	{
-		public ImVectorImDrawCmd CmdBuffer;
-		public ImVectorImDrawIdx IdxBuffer;
-		public ImVectorImDrawVert VtxBuffer;
+		public ImVector<ImDrawCmd> CmdBuffer;
+		public ImVector<ushort> IdxBuffer;
+		public ImVector<ImDrawVert> VtxBuffer;
 		public ImDrawListFlags Flags;
 		public uint VtxCurrentIdx;
 		public unsafe ImDrawListSharedData* Data;
 		public unsafe ImDrawVert* VtxWritePtr;
 		public unsafe ushort* IdxWritePtr;
-		public ImVectorImVec2 Path;
+		public ImVector<Vector2> Path;
 		public ImDrawCmdHeader CmdHeader;
 		public ImDrawListSplitter Splitter;
-		public ImVectorImVec4 ClipRectStack;
-		public ImVectorImTextureID TextureIdStack;
+		public ImVector<Vector4> ClipRectStack;
+		public ImVector<ImTextureID> TextureIdStack;
 		public float FringeScale;
 		public unsafe byte* OwnerName;
 
@@ -4829,19 +4820,19 @@ namespace Hexa.NET.ImGui
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImDrawListPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorImDrawCmd CmdBuffer => ref Unsafe.AsRef<ImVectorImDrawCmd>(&Handle->CmdBuffer);
-		public ref ImVectorImDrawIdx IdxBuffer => ref Unsafe.AsRef<ImVectorImDrawIdx>(&Handle->IdxBuffer);
-		public ref ImVectorImDrawVert VtxBuffer => ref Unsafe.AsRef<ImVectorImDrawVert>(&Handle->VtxBuffer);
+		public ref ImVector<ImDrawCmd> CmdBuffer => ref Unsafe.AsRef<ImVector<ImDrawCmd>>(&Handle->CmdBuffer);
+		public ref ImVector<ushort> IdxBuffer => ref Unsafe.AsRef<ImVector<ushort>>(&Handle->IdxBuffer);
+		public ref ImVector<ImDrawVert> VtxBuffer => ref Unsafe.AsRef<ImVector<ImDrawVert>>(&Handle->VtxBuffer);
 		public ref ImDrawListFlags Flags => ref Unsafe.AsRef<ImDrawListFlags>(&Handle->Flags);
 		public ref uint VtxCurrentIdx => ref Unsafe.AsRef<uint>(&Handle->VtxCurrentIdx);
 		public ref ImDrawListSharedDataPtr Data => ref Unsafe.AsRef<ImDrawListSharedDataPtr>(&Handle->Data);
 		public ref ImDrawVertPtr VtxWritePtr => ref Unsafe.AsRef<ImDrawVertPtr>(&Handle->VtxWritePtr);
 		public ushort* IdxWritePtr { get => Handle->IdxWritePtr; set => Handle->IdxWritePtr = value; }
-		public ref ImVectorImVec2 Path => ref Unsafe.AsRef<ImVectorImVec2>(&Handle->Path);
+		public ref ImVector<Vector2> Path => ref Unsafe.AsRef<ImVector<Vector2>>(&Handle->Path);
 		public ref ImDrawCmdHeader CmdHeader => ref Unsafe.AsRef<ImDrawCmdHeader>(&Handle->CmdHeader);
 		public ref ImDrawListSplitter Splitter => ref Unsafe.AsRef<ImDrawListSplitter>(&Handle->Splitter);
-		public ref ImVectorImVec4 ClipRectStack => ref Unsafe.AsRef<ImVectorImVec4>(&Handle->ClipRectStack);
-		public ref ImVectorImTextureID TextureIdStack => ref Unsafe.AsRef<ImVectorImTextureID>(&Handle->TextureIdStack);
+		public ref ImVector<Vector4> ClipRectStack => ref Unsafe.AsRef<ImVector<Vector4>>(&Handle->ClipRectStack);
+		public ref ImVector<ImTextureID> TextureIdStack => ref Unsafe.AsRef<ImVector<ImTextureID>>(&Handle->TextureIdStack);
 		public ref float FringeScale => ref Unsafe.AsRef<float>(&Handle->FringeScale);
 		public byte* OwnerName { get => Handle->OwnerName; set => Handle->OwnerName = value; }
 
@@ -8591,24 +8582,6 @@ namespace Hexa.NET.ImGui
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImDrawIdx
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ushort* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImDrawVert
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImDrawVert* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawVert
 	{
 		public Vector2 Pos;
@@ -8669,7 +8642,7 @@ namespace Hexa.NET.ImGui
 		public float CircleSegmentMaxError;
 		public Vector4 ClipRectFullscreen;
 		public ImDrawListFlags InitialFlags;
-		public ImVectorImVec2 TempBuffer;
+		public ImVector<Vector2> TempBuffer;
 		public Vector2 ArcFastVtx_0;
 		public Vector2 ArcFastVtx_1;
 		public Vector2 ArcFastVtx_2;
@@ -8842,7 +8815,7 @@ namespace Hexa.NET.ImGui
 		public ref float CircleSegmentMaxError => ref Unsafe.AsRef<float>(&Handle->CircleSegmentMaxError);
 		public ref Vector4 ClipRectFullscreen => ref Unsafe.AsRef<Vector4>(&Handle->ClipRectFullscreen);
 		public ref ImDrawListFlags InitialFlags => ref Unsafe.AsRef<ImDrawListFlags>(&Handle->InitialFlags);
-		public ref ImVectorImVec2 TempBuffer => ref Unsafe.AsRef<ImVectorImVec2>(&Handle->TempBuffer);
+		public ref ImVector<Vector2> TempBuffer => ref Unsafe.AsRef<ImVector<Vector2>>(&Handle->TempBuffer);
 		public unsafe Span<Vector2> ArcFastVtx
 		
 		{
@@ -8866,11 +8839,11 @@ namespace Hexa.NET.ImGui
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFont
 	{
-		public ImVectorFloat IndexAdvanceX;
+		public ImVector<float> IndexAdvanceX;
 		public float FallbackAdvanceX;
 		public float FontSize;
-		public ImVectorImWchar IndexLookup;
-		public ImVectorImFontGlyph Glyphs;
+		public ImVector<char> IndexLookup;
+		public ImVector<ImFontGlyph> Glyphs;
 		public unsafe ImFontGlyph* FallbackGlyph;
 		public unsafe ImFontAtlas* ContainerAtlas;
 		public unsafe ImFontConfig* ConfigData;
@@ -11104,11 +11077,11 @@ namespace Hexa.NET.ImGui
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImFontPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorFloat IndexAdvanceX => ref Unsafe.AsRef<ImVectorFloat>(&Handle->IndexAdvanceX);
+		public ref ImVector<float> IndexAdvanceX => ref Unsafe.AsRef<ImVector<float>>(&Handle->IndexAdvanceX);
 		public ref float FallbackAdvanceX => ref Unsafe.AsRef<float>(&Handle->FallbackAdvanceX);
 		public ref float FontSize => ref Unsafe.AsRef<float>(&Handle->FontSize);
-		public ref ImVectorImWchar IndexLookup => ref Unsafe.AsRef<ImVectorImWchar>(&Handle->IndexLookup);
-		public ref ImVectorImFontGlyph Glyphs => ref Unsafe.AsRef<ImVectorImFontGlyph>(&Handle->Glyphs);
+		public ref ImVector<char> IndexLookup => ref Unsafe.AsRef<ImVector<char>>(&Handle->IndexLookup);
+		public ref ImVector<ImFontGlyph> Glyphs => ref Unsafe.AsRef<ImVector<ImFontGlyph>>(&Handle->Glyphs);
 		public ref ImFontGlyphPtr FallbackGlyph => ref Unsafe.AsRef<ImFontGlyphPtr>(&Handle->FallbackGlyph);
 		public ref ImFontAtlasPtr ContainerAtlas => ref Unsafe.AsRef<ImFontAtlasPtr>(&Handle->ContainerAtlas);
 		public ref ImFontConfigPtr ConfigData => ref Unsafe.AsRef<ImFontConfigPtr>(&Handle->ConfigData);
@@ -13000,74 +12973,6 @@ namespace Hexa.NET.ImGui
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorFloat
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe float* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImWchar
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe char* Data;
-
-	}
-
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVectorImWcharPtr : IEquatable<ImVectorImWcharPtr>
-	{
-		public ImVectorImWcharPtr(ImVectorImWchar* handle) { Handle = handle; }
-
-		public ImVectorImWchar* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVectorImWcharPtr Null => new ImVectorImWcharPtr(null);
-
-		public static implicit operator ImVectorImWcharPtr(ImVectorImWchar* handle) => new ImVectorImWcharPtr(handle);
-
-		public static implicit operator ImVectorImWchar*(ImVectorImWcharPtr handle) => handle.Handle;
-
-		public static bool operator ==(ImVectorImWcharPtr left, ImVectorImWcharPtr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVectorImWcharPtr left, ImVectorImWcharPtr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVectorImWcharPtr left, ImVectorImWchar* right) => left.Handle == right;
-
-		public static bool operator !=(ImVectorImWcharPtr left, ImVectorImWchar* right) => left.Handle != right;
-
-		public bool Equals(ImVectorImWcharPtr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVectorImWcharPtr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVectorImWcharPtr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
-		public char* Data { get => Handle->Data; set => Handle->Data = value; }
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImFontGlyph
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImFontGlyph* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontGlyph
 	{
 		public uint Colored;
@@ -13152,9 +13057,9 @@ namespace Hexa.NET.ImGui
 		public int TexHeight;
 		public Vector2 TexUvScale;
 		public Vector2 TexUvWhitePixel;
-		public ImVectorImFontPtr Fonts;
-		public ImVectorImFontAtlasCustomRect CustomRects;
-		public ImVectorImFontConfig ConfigData;
+		public ImVector<ImFontPtr> Fonts;
+		public ImVector<ImFontAtlasCustomRect> CustomRects;
+		public ImVector<ImFontConfig> ConfigData;
 		public Vector4 TexUvLines_0;
 		public Vector4 TexUvLines_1;
 		public Vector4 TexUvLines_2;
@@ -16202,9 +16107,9 @@ namespace Hexa.NET.ImGui
 		public ref int TexHeight => ref Unsafe.AsRef<int>(&Handle->TexHeight);
 		public ref Vector2 TexUvScale => ref Unsafe.AsRef<Vector2>(&Handle->TexUvScale);
 		public ref Vector2 TexUvWhitePixel => ref Unsafe.AsRef<Vector2>(&Handle->TexUvWhitePixel);
-		public ref ImVectorImFontPtr Fonts => ref Unsafe.AsRef<ImVectorImFontPtr>(&Handle->Fonts);
-		public ref ImVectorImFontAtlasCustomRect CustomRects => ref Unsafe.AsRef<ImVectorImFontAtlasCustomRect>(&Handle->CustomRects);
-		public ref ImVectorImFontConfig ConfigData => ref Unsafe.AsRef<ImVectorImFontConfig>(&Handle->ConfigData);
+		public ref ImVector<ImFontPtr> Fonts => ref Unsafe.AsRef<ImVector<ImFontPtr>>(&Handle->Fonts);
+		public ref ImVector<ImFontAtlasCustomRect> CustomRects => ref Unsafe.AsRef<ImVector<ImFontAtlasCustomRect>>(&Handle->CustomRects);
+		public ref ImVector<ImFontConfig> ConfigData => ref Unsafe.AsRef<ImVector<ImFontConfig>>(&Handle->ConfigData);
 		public unsafe Span<Vector4> TexUvLines
 		
 		{
@@ -18529,24 +18434,6 @@ namespace Hexa.NET.ImGui
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImFontPtr
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImFont** Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImFontAtlasCustomRect
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImFontAtlasCustomRect* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontAtlasCustomRect
 	{
 		public ushort Width;
@@ -18633,15 +18520,6 @@ namespace Hexa.NET.ImGui
 			byte ret = ImGui.IsPackedNative(Handle);
 			return ret != 0;
 		}
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImFontConfig
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImFontConfig* Data;
 
 	}
 
@@ -18837,15 +18715,6 @@ namespace Hexa.NET.ImGui
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImVec2
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe Vector2* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawCmdHeader
 	{
 		public Vector4 ClipRect;
@@ -18859,7 +18728,7 @@ namespace Hexa.NET.ImGui
 	{
 		public int Current;
 		public int Count;
-		public ImVectorImDrawChannel Channels;
+		public ImVector<ImDrawChannel> Channels;
 
 
 		public unsafe void Clear()
@@ -18983,7 +18852,7 @@ namespace Hexa.NET.ImGui
 		#endif
 		public ref int Current => ref Unsafe.AsRef<int>(&Handle->Current);
 		public ref int Count => ref Unsafe.AsRef<int>(&Handle->Count);
-		public ref ImVectorImDrawChannel Channels => ref Unsafe.AsRef<ImVectorImDrawChannel>(&Handle->Channels);
+		public ref ImVector<ImDrawChannel> Channels => ref Unsafe.AsRef<ImVector<ImDrawChannel>>(&Handle->Channels);
 
 		public unsafe void Clear()
 		{
@@ -19042,40 +18911,13 @@ namespace Hexa.NET.ImGui
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImDrawChannel
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImDrawChannel* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImVec4
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe Vector4* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImTextureID
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImTextureID* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawData
 	{
 		public byte Valid;
 		public int CmdListsCount;
 		public int TotalIdxCount;
 		public int TotalVtxCount;
-		public ImVectorImDrawListPtr CmdLists;
+		public ImVector<ImDrawListPtr> CmdLists;
 		public Vector2 DisplayPos;
 		public Vector2 DisplaySize;
 		public Vector2 FramebufferScale;
@@ -19175,7 +19017,7 @@ namespace Hexa.NET.ImGui
 		public ref int CmdListsCount => ref Unsafe.AsRef<int>(&Handle->CmdListsCount);
 		public ref int TotalIdxCount => ref Unsafe.AsRef<int>(&Handle->TotalIdxCount);
 		public ref int TotalVtxCount => ref Unsafe.AsRef<int>(&Handle->TotalVtxCount);
-		public ref ImVectorImDrawListPtr CmdLists => ref Unsafe.AsRef<ImVectorImDrawListPtr>(&Handle->CmdLists);
+		public ref ImVector<ImDrawListPtr> CmdLists => ref Unsafe.AsRef<ImVector<ImDrawListPtr>>(&Handle->CmdLists);
 		public ref Vector2 DisplayPos => ref Unsafe.AsRef<Vector2>(&Handle->DisplayPos);
 		public ref Vector2 DisplaySize => ref Unsafe.AsRef<Vector2>(&Handle->DisplaySize);
 		public ref Vector2 FramebufferScale => ref Unsafe.AsRef<Vector2>(&Handle->FramebufferScale);
@@ -19214,56 +19056,6 @@ namespace Hexa.NET.ImGui
 			ImGui.ScaleClipRectsNative(Handle, fbScale);
 		}
 
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImDrawListPtr
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImDrawList** Data;
-
-	}
-
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVectorImDrawListPtrPtr : IEquatable<ImVectorImDrawListPtrPtr>
-	{
-		public ImVectorImDrawListPtrPtr(ImVectorImDrawListPtr* handle) { Handle = handle; }
-
-		public ImVectorImDrawListPtr* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVectorImDrawListPtrPtr Null => new ImVectorImDrawListPtrPtr(null);
-
-		public static implicit operator ImVectorImDrawListPtrPtr(ImVectorImDrawListPtr* handle) => new ImVectorImDrawListPtrPtr(handle);
-
-		public static implicit operator ImVectorImDrawListPtr*(ImVectorImDrawListPtrPtr handle) => handle.Handle;
-
-		public static bool operator ==(ImVectorImDrawListPtrPtr left, ImVectorImDrawListPtrPtr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVectorImDrawListPtrPtr left, ImVectorImDrawListPtrPtr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVectorImDrawListPtrPtr left, ImVectorImDrawListPtr* right) => left.Handle == right;
-
-		public static bool operator !=(ImVectorImDrawListPtrPtr left, ImVectorImDrawListPtr* right) => left.Handle != right;
-
-		public bool Equals(ImVectorImDrawListPtrPtr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVectorImDrawListPtrPtr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVectorImDrawListPtrPtr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
-		public ref ImDrawListPtrPtr Data => ref Unsafe.AsRef<ImDrawListPtrPtr>(&Handle->Data);
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -19404,7 +19196,7 @@ namespace Hexa.NET.ImGui
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImFontGlyphRangesBuilder
 	{
-		public ImVectorImU32 UsedChars;
+		public ImVector<uint> UsedChars;
 
 
 		public unsafe void AddChar(char c)
@@ -19681,7 +19473,7 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public unsafe void BuildRanges(ImVectorImWcharPtr outRanges)
+		public unsafe void BuildRanges(ImVector<char>* outRanges)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
@@ -19689,13 +19481,13 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public unsafe void BuildRanges(ref ImVectorImWchar outRanges)
+		public unsafe void BuildRanges(ref ImVector<char> outRanges)
 		{
 			fixed (ImFontGlyphRangesBuilder* @this = &this)
 			{
-				fixed (ImVectorImWchar* poutRanges = &outRanges)
+				fixed (ImVector<char>* poutRanges = &outRanges)
 				{
-					ImGui.BuildRangesNative(@this, (ImVectorImWchar*)poutRanges);
+					ImGui.BuildRangesNative(@this, (ImVector<char>*)poutRanges);
 				}
 			}
 		}
@@ -19771,7 +19563,7 @@ namespace Hexa.NET.ImGui
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImFontGlyphRangesBuilderPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorImU32 UsedChars => ref Unsafe.AsRef<ImVectorImU32>(&Handle->UsedChars);
+		public ref ImVector<uint> UsedChars => ref Unsafe.AsRef<ImVector<uint>>(&Handle->UsedChars);
 
 		public unsafe void AddChar(char c)
 		{
@@ -19996,16 +19788,16 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public unsafe void BuildRanges(ImVectorImWcharPtr outRanges)
+		public unsafe void BuildRanges(ImVector<char>* outRanges)
 		{
 			ImGui.BuildRangesNative(Handle, outRanges);
 		}
 
-		public unsafe void BuildRanges(ref ImVectorImWchar outRanges)
+		public unsafe void BuildRanges(ref ImVector<char> outRanges)
 		{
-			fixed (ImVectorImWchar* poutRanges = &outRanges)
+			fixed (ImVector<char>* poutRanges = &outRanges)
 			{
-				ImGui.BuildRangesNative(Handle, (ImVectorImWchar*)poutRanges);
+				ImGui.BuildRangesNative(Handle, (ImVector<char>*)poutRanges);
 			}
 		}
 
@@ -20029,15 +19821,6 @@ namespace Hexa.NET.ImGui
 		{
 			ImGui.SetBitNative(Handle, n);
 		}
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImU32
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe uint* Data;
 
 	}
 
@@ -20197,14 +19980,14 @@ namespace Hexa.NET.ImGui
 		public byte ContextName_13;
 		public byte ContextName_14;
 		public byte ContextName_15;
-		public ImVectorImGuiInputEvent InputEventsQueue;
-		public ImVectorImGuiInputEvent InputEventsTrail;
+		public ImVector<ImGuiInputEvent> InputEventsQueue;
+		public ImVector<ImGuiInputEvent> InputEventsTrail;
 		public ImGuiMouseSource InputEventsNextMouseSource;
 		public uint InputEventsNextEventId;
-		public ImVectorImGuiWindowPtr Windows;
-		public ImVectorImGuiWindowPtr WindowsFocusOrder;
-		public ImVectorImGuiWindowPtr WindowsTempSortBuffer;
-		public ImVectorImGuiWindowStackData CurrentWindowStack;
+		public ImVector<ImGuiWindowPtr> Windows;
+		public ImVector<ImGuiWindowPtr> WindowsFocusOrder;
+		public ImVector<ImGuiWindowPtr> WindowsTempSortBuffer;
+		public ImVector<ImGuiWindowStackData> CurrentWindowStack;
 		public ImGuiStorage WindowsById;
 		public int WindowsActiveCount;
 		public Vector2 WindowsHoverPadding;
@@ -20419,16 +20202,16 @@ namespace Hexa.NET.ImGui
 		public ImGuiNextWindowData NextWindowData;
 		public byte DebugShowGroupRects;
 		public ImGuiCol DebugFlashStyleColorIdx;
-		public ImVectorImGuiColorMod ColorStack;
-		public ImVectorImGuiStyleMod StyleVarStack;
-		public ImVectorImFontPtr FontStack;
-		public ImVectorImGuiFocusScopeData FocusScopeStack;
-		public ImVectorImGuiItemFlags ItemFlagsStack;
-		public ImVectorImGuiGroupData GroupStack;
-		public ImVectorImGuiPopupData OpenPopupStack;
-		public ImVectorImGuiPopupData BeginPopupStack;
-		public ImVectorImGuiTreeNodeStackData TreeNodeStack;
-		public ImVectorImGuiViewportPPtr Viewports;
+		public ImVector<ImGuiColorMod> ColorStack;
+		public ImVector<ImGuiStyleMod> StyleVarStack;
+		public ImVector<ImFontPtr> FontStack;
+		public ImVector<ImGuiFocusScopeData> FocusScopeStack;
+		public ImVector<ImGuiItemFlags> ItemFlagsStack;
+		public ImVector<ImGuiGroupData> GroupStack;
+		public ImVector<ImGuiPopupData> OpenPopupStack;
+		public ImVector<ImGuiPopupData> BeginPopupStack;
+		public ImVector<ImGuiTreeNodeStackData> TreeNodeStack;
+		public ImVector<ImGuiViewportPPtr> Viewports;
 		public unsafe ImGuiViewportP* CurrentViewport;
 		public unsafe ImGuiViewportP* MouseViewport;
 		public unsafe ImGuiViewportP* MouseLastHoveredViewport;
@@ -20446,7 +20229,7 @@ namespace Hexa.NET.ImGui
 		public int NavActivateDownId;
 		public int NavActivatePressedId;
 		public ImGuiActivateFlags NavActivateFlags;
-		public ImVectorImGuiFocusScopeData NavFocusRoute;
+		public ImVector<ImGuiFocusScopeData> NavFocusRoute;
 		public int NavHighlightActivatedId;
 		public float NavHighlightActivatedTimer;
 		public int NavNextActivateId;
@@ -20513,7 +20296,7 @@ namespace Hexa.NET.ImGui
 		public int DragDropAcceptIdPrev;
 		public int DragDropAcceptFrameCount;
 		public int DragDropHoldJustPressedId;
-		public ImVectorUnsignedChar DragDropPayloadBufHeap;
+		public ImVector<byte> DragDropPayloadBufHeap;
 		public byte DragDropPayloadBufLocal_0;
 		public byte DragDropPayloadBufLocal_1;
 		public byte DragDropPayloadBufLocal_2;
@@ -20531,22 +20314,22 @@ namespace Hexa.NET.ImGui
 		public byte DragDropPayloadBufLocal_14;
 		public byte DragDropPayloadBufLocal_15;
 		public int ClipperTempDataStacked;
-		public ImVectorImGuiListClipperData ClipperTempData;
+		public ImVector<ImGuiListClipperData> ClipperTempData;
 		public unsafe ImGuiTable* CurrentTable;
 		public int DebugBreakInTable;
 		public int TablesTempDataStacked;
-		public ImVectorImGuiTableTempData TablesTempData;
+		public ImVector<ImGuiTableTempData> TablesTempData;
 		public ImPoolImGuiTable Tables;
-		public ImVectorFloat TablesLastTimeActive;
-		public ImVectorImDrawChannel DrawChannelsTempMergeBuffer;
+		public ImVector<float> TablesLastTimeActive;
+		public ImVector<ImDrawChannel> DrawChannelsTempMergeBuffer;
 		public unsafe ImGuiTabBar* CurrentTabBar;
 		public ImPoolImGuiTabBar TabBars;
-		public ImVectorImGuiPtrOrIndex CurrentTabBarStack;
-		public ImVectorImGuiShrinkWidthItem ShrinkWidthBuffer;
+		public ImVector<ImGuiPtrOrIndex> CurrentTabBarStack;
+		public ImVector<ImGuiShrinkWidthItem> ShrinkWidthBuffer;
 		public ImGuiBoxSelectState BoxSelectState;
 		public unsafe ImGuiMultiSelectTempData* CurrentMultiSelect;
 		public int MultiSelectTempDataStacked;
-		public ImVectorImGuiMultiSelectTempData MultiSelectTempData;
+		public ImVector<ImGuiMultiSelectTempData> MultiSelectTempData;
 		public ImPoolImGuiMultiSelectState MultiSelectStorage;
 		public int HoverItemDelayId;
 		public int HoverItemDelayIdPreviousFrame;
@@ -20586,8 +20369,8 @@ namespace Hexa.NET.ImGui
 		public short DisabledStackSize;
 		public short LockMarkEdited;
 		public short TooltipOverrideCount;
-		public ImVectorChar ClipboardHandlerData;
-		public ImVectorImGuiID MenusIdSubmittedThisFrame;
+		public ImVector<byte> ClipboardHandlerData;
+		public ImVector<int> MenusIdSubmittedThisFrame;
 		public ImGuiTypingSelectState TypingSelectState;
 		public ImGuiPlatformImeData PlatformImeData;
 		public ImGuiPlatformImeData PlatformImeDataPrev;
@@ -20597,10 +20380,10 @@ namespace Hexa.NET.ImGui
 		public byte SettingsLoaded;
 		public float SettingsDirtyTimer;
 		public ImGuiTextBuffer SettingsIniData;
-		public ImVectorImGuiSettingsHandler SettingsHandlers;
+		public ImVector<ImGuiSettingsHandler> SettingsHandlers;
 		public ImChunkStreamImGuiWindowSettings SettingsWindows;
 		public ImChunkStreamImGuiTableSettings SettingsTables;
-		public ImVectorImGuiContextHook Hooks;
+		public ImVector<ImGuiContextHook> Hooks;
 		public int HookIdNext;
 		public unsafe byte* LocalizationTable_0;
 		public unsafe byte* LocalizationTable_1;
@@ -20709,7 +20492,7 @@ namespace Hexa.NET.ImGui
 		public int WantCaptureMouseNextFrame;
 		public int WantCaptureKeyboardNextFrame;
 		public int WantTextInputNextFrame;
-		public ImVectorChar TempBuffer;
+		public ImVector<byte> TempBuffer;
 		public byte TempKeychordName_0;
 		public byte TempKeychordName_1;
 		public byte TempKeychordName_2;
@@ -20856,14 +20639,14 @@ namespace Hexa.NET.ImGui
 				return new Span<byte>(&Handle->ContextName_0, 16);
 			}
 		}
-		public ref ImVectorImGuiInputEvent InputEventsQueue => ref Unsafe.AsRef<ImVectorImGuiInputEvent>(&Handle->InputEventsQueue);
-		public ref ImVectorImGuiInputEvent InputEventsTrail => ref Unsafe.AsRef<ImVectorImGuiInputEvent>(&Handle->InputEventsTrail);
+		public ref ImVector<ImGuiInputEvent> InputEventsQueue => ref Unsafe.AsRef<ImVector<ImGuiInputEvent>>(&Handle->InputEventsQueue);
+		public ref ImVector<ImGuiInputEvent> InputEventsTrail => ref Unsafe.AsRef<ImVector<ImGuiInputEvent>>(&Handle->InputEventsTrail);
 		public ref ImGuiMouseSource InputEventsNextMouseSource => ref Unsafe.AsRef<ImGuiMouseSource>(&Handle->InputEventsNextMouseSource);
 		public ref uint InputEventsNextEventId => ref Unsafe.AsRef<uint>(&Handle->InputEventsNextEventId);
-		public ref ImVectorImGuiWindowPtr Windows => ref Unsafe.AsRef<ImVectorImGuiWindowPtr>(&Handle->Windows);
-		public ref ImVectorImGuiWindowPtr WindowsFocusOrder => ref Unsafe.AsRef<ImVectorImGuiWindowPtr>(&Handle->WindowsFocusOrder);
-		public ref ImVectorImGuiWindowPtr WindowsTempSortBuffer => ref Unsafe.AsRef<ImVectorImGuiWindowPtr>(&Handle->WindowsTempSortBuffer);
-		public ref ImVectorImGuiWindowStackData CurrentWindowStack => ref Unsafe.AsRef<ImVectorImGuiWindowStackData>(&Handle->CurrentWindowStack);
+		public ref ImVector<ImGuiWindowPtr> Windows => ref Unsafe.AsRef<ImVector<ImGuiWindowPtr>>(&Handle->Windows);
+		public ref ImVector<ImGuiWindowPtr> WindowsFocusOrder => ref Unsafe.AsRef<ImVector<ImGuiWindowPtr>>(&Handle->WindowsFocusOrder);
+		public ref ImVector<ImGuiWindowPtr> WindowsTempSortBuffer => ref Unsafe.AsRef<ImVector<ImGuiWindowPtr>>(&Handle->WindowsTempSortBuffer);
+		public ref ImVector<ImGuiWindowStackData> CurrentWindowStack => ref Unsafe.AsRef<ImVector<ImGuiWindowStackData>>(&Handle->CurrentWindowStack);
 		public ref ImGuiStorage WindowsById => ref Unsafe.AsRef<ImGuiStorage>(&Handle->WindowsById);
 		public ref int WindowsActiveCount => ref Unsafe.AsRef<int>(&Handle->WindowsActiveCount);
 		public ref Vector2 WindowsHoverPadding => ref Unsafe.AsRef<Vector2>(&Handle->WindowsHoverPadding);
@@ -20932,16 +20715,16 @@ namespace Hexa.NET.ImGui
 		public ref ImGuiNextWindowData NextWindowData => ref Unsafe.AsRef<ImGuiNextWindowData>(&Handle->NextWindowData);
 		public ref bool DebugShowGroupRects => ref Unsafe.AsRef<bool>(&Handle->DebugShowGroupRects);
 		public ref ImGuiCol DebugFlashStyleColorIdx => ref Unsafe.AsRef<ImGuiCol>(&Handle->DebugFlashStyleColorIdx);
-		public ref ImVectorImGuiColorMod ColorStack => ref Unsafe.AsRef<ImVectorImGuiColorMod>(&Handle->ColorStack);
-		public ref ImVectorImGuiStyleMod StyleVarStack => ref Unsafe.AsRef<ImVectorImGuiStyleMod>(&Handle->StyleVarStack);
-		public ref ImVectorImFontPtr FontStack => ref Unsafe.AsRef<ImVectorImFontPtr>(&Handle->FontStack);
-		public ref ImVectorImGuiFocusScopeData FocusScopeStack => ref Unsafe.AsRef<ImVectorImGuiFocusScopeData>(&Handle->FocusScopeStack);
-		public ref ImVectorImGuiItemFlags ItemFlagsStack => ref Unsafe.AsRef<ImVectorImGuiItemFlags>(&Handle->ItemFlagsStack);
-		public ref ImVectorImGuiGroupData GroupStack => ref Unsafe.AsRef<ImVectorImGuiGroupData>(&Handle->GroupStack);
-		public ref ImVectorImGuiPopupData OpenPopupStack => ref Unsafe.AsRef<ImVectorImGuiPopupData>(&Handle->OpenPopupStack);
-		public ref ImVectorImGuiPopupData BeginPopupStack => ref Unsafe.AsRef<ImVectorImGuiPopupData>(&Handle->BeginPopupStack);
-		public ref ImVectorImGuiTreeNodeStackData TreeNodeStack => ref Unsafe.AsRef<ImVectorImGuiTreeNodeStackData>(&Handle->TreeNodeStack);
-		public ref ImVectorImGuiViewportPPtr Viewports => ref Unsafe.AsRef<ImVectorImGuiViewportPPtr>(&Handle->Viewports);
+		public ref ImVector<ImGuiColorMod> ColorStack => ref Unsafe.AsRef<ImVector<ImGuiColorMod>>(&Handle->ColorStack);
+		public ref ImVector<ImGuiStyleMod> StyleVarStack => ref Unsafe.AsRef<ImVector<ImGuiStyleMod>>(&Handle->StyleVarStack);
+		public ref ImVector<ImFontPtr> FontStack => ref Unsafe.AsRef<ImVector<ImFontPtr>>(&Handle->FontStack);
+		public ref ImVector<ImGuiFocusScopeData> FocusScopeStack => ref Unsafe.AsRef<ImVector<ImGuiFocusScopeData>>(&Handle->FocusScopeStack);
+		public ref ImVector<ImGuiItemFlags> ItemFlagsStack => ref Unsafe.AsRef<ImVector<ImGuiItemFlags>>(&Handle->ItemFlagsStack);
+		public ref ImVector<ImGuiGroupData> GroupStack => ref Unsafe.AsRef<ImVector<ImGuiGroupData>>(&Handle->GroupStack);
+		public ref ImVector<ImGuiPopupData> OpenPopupStack => ref Unsafe.AsRef<ImVector<ImGuiPopupData>>(&Handle->OpenPopupStack);
+		public ref ImVector<ImGuiPopupData> BeginPopupStack => ref Unsafe.AsRef<ImVector<ImGuiPopupData>>(&Handle->BeginPopupStack);
+		public ref ImVector<ImGuiTreeNodeStackData> TreeNodeStack => ref Unsafe.AsRef<ImVector<ImGuiTreeNodeStackData>>(&Handle->TreeNodeStack);
+		public ref ImVector<ImGuiViewportPPtr> Viewports => ref Unsafe.AsRef<ImVector<ImGuiViewportPPtr>>(&Handle->Viewports);
 		public ref ImGuiViewportPPtr CurrentViewport => ref Unsafe.AsRef<ImGuiViewportPPtr>(&Handle->CurrentViewport);
 		public ref ImGuiViewportPPtr MouseViewport => ref Unsafe.AsRef<ImGuiViewportPPtr>(&Handle->MouseViewport);
 		public ref ImGuiViewportPPtr MouseLastHoveredViewport => ref Unsafe.AsRef<ImGuiViewportPPtr>(&Handle->MouseLastHoveredViewport);
@@ -20959,7 +20742,7 @@ namespace Hexa.NET.ImGui
 		public ref int NavActivateDownId => ref Unsafe.AsRef<int>(&Handle->NavActivateDownId);
 		public ref int NavActivatePressedId => ref Unsafe.AsRef<int>(&Handle->NavActivatePressedId);
 		public ref ImGuiActivateFlags NavActivateFlags => ref Unsafe.AsRef<ImGuiActivateFlags>(&Handle->NavActivateFlags);
-		public ref ImVectorImGuiFocusScopeData NavFocusRoute => ref Unsafe.AsRef<ImVectorImGuiFocusScopeData>(&Handle->NavFocusRoute);
+		public ref ImVector<ImGuiFocusScopeData> NavFocusRoute => ref Unsafe.AsRef<ImVector<ImGuiFocusScopeData>>(&Handle->NavFocusRoute);
 		public ref int NavHighlightActivatedId => ref Unsafe.AsRef<int>(&Handle->NavHighlightActivatedId);
 		public ref float NavHighlightActivatedTimer => ref Unsafe.AsRef<float>(&Handle->NavHighlightActivatedTimer);
 		public ref int NavNextActivateId => ref Unsafe.AsRef<int>(&Handle->NavNextActivateId);
@@ -21026,7 +20809,7 @@ namespace Hexa.NET.ImGui
 		public ref int DragDropAcceptIdPrev => ref Unsafe.AsRef<int>(&Handle->DragDropAcceptIdPrev);
 		public ref int DragDropAcceptFrameCount => ref Unsafe.AsRef<int>(&Handle->DragDropAcceptFrameCount);
 		public ref int DragDropHoldJustPressedId => ref Unsafe.AsRef<int>(&Handle->DragDropHoldJustPressedId);
-		public ref ImVectorUnsignedChar DragDropPayloadBufHeap => ref Unsafe.AsRef<ImVectorUnsignedChar>(&Handle->DragDropPayloadBufHeap);
+		public ref ImVector<byte> DragDropPayloadBufHeap => ref Unsafe.AsRef<ImVector<byte>>(&Handle->DragDropPayloadBufHeap);
 		public unsafe Span<byte> DragDropPayloadBufLocal
 		
 		{
@@ -21036,22 +20819,22 @@ namespace Hexa.NET.ImGui
 			}
 		}
 		public ref int ClipperTempDataStacked => ref Unsafe.AsRef<int>(&Handle->ClipperTempDataStacked);
-		public ref ImVectorImGuiListClipperData ClipperTempData => ref Unsafe.AsRef<ImVectorImGuiListClipperData>(&Handle->ClipperTempData);
+		public ref ImVector<ImGuiListClipperData> ClipperTempData => ref Unsafe.AsRef<ImVector<ImGuiListClipperData>>(&Handle->ClipperTempData);
 		public ref ImGuiTablePtr CurrentTable => ref Unsafe.AsRef<ImGuiTablePtr>(&Handle->CurrentTable);
 		public ref int DebugBreakInTable => ref Unsafe.AsRef<int>(&Handle->DebugBreakInTable);
 		public ref int TablesTempDataStacked => ref Unsafe.AsRef<int>(&Handle->TablesTempDataStacked);
-		public ref ImVectorImGuiTableTempData TablesTempData => ref Unsafe.AsRef<ImVectorImGuiTableTempData>(&Handle->TablesTempData);
+		public ref ImVector<ImGuiTableTempData> TablesTempData => ref Unsafe.AsRef<ImVector<ImGuiTableTempData>>(&Handle->TablesTempData);
 		public ref ImPoolImGuiTable Tables => ref Unsafe.AsRef<ImPoolImGuiTable>(&Handle->Tables);
-		public ref ImVectorFloat TablesLastTimeActive => ref Unsafe.AsRef<ImVectorFloat>(&Handle->TablesLastTimeActive);
-		public ref ImVectorImDrawChannel DrawChannelsTempMergeBuffer => ref Unsafe.AsRef<ImVectorImDrawChannel>(&Handle->DrawChannelsTempMergeBuffer);
+		public ref ImVector<float> TablesLastTimeActive => ref Unsafe.AsRef<ImVector<float>>(&Handle->TablesLastTimeActive);
+		public ref ImVector<ImDrawChannel> DrawChannelsTempMergeBuffer => ref Unsafe.AsRef<ImVector<ImDrawChannel>>(&Handle->DrawChannelsTempMergeBuffer);
 		public ref ImGuiTabBarPtr CurrentTabBar => ref Unsafe.AsRef<ImGuiTabBarPtr>(&Handle->CurrentTabBar);
 		public ref ImPoolImGuiTabBar TabBars => ref Unsafe.AsRef<ImPoolImGuiTabBar>(&Handle->TabBars);
-		public ref ImVectorImGuiPtrOrIndex CurrentTabBarStack => ref Unsafe.AsRef<ImVectorImGuiPtrOrIndex>(&Handle->CurrentTabBarStack);
-		public ref ImVectorImGuiShrinkWidthItem ShrinkWidthBuffer => ref Unsafe.AsRef<ImVectorImGuiShrinkWidthItem>(&Handle->ShrinkWidthBuffer);
+		public ref ImVector<ImGuiPtrOrIndex> CurrentTabBarStack => ref Unsafe.AsRef<ImVector<ImGuiPtrOrIndex>>(&Handle->CurrentTabBarStack);
+		public ref ImVector<ImGuiShrinkWidthItem> ShrinkWidthBuffer => ref Unsafe.AsRef<ImVector<ImGuiShrinkWidthItem>>(&Handle->ShrinkWidthBuffer);
 		public ref ImGuiBoxSelectState BoxSelectState => ref Unsafe.AsRef<ImGuiBoxSelectState>(&Handle->BoxSelectState);
 		public ref ImGuiMultiSelectTempDataPtr CurrentMultiSelect => ref Unsafe.AsRef<ImGuiMultiSelectTempDataPtr>(&Handle->CurrentMultiSelect);
 		public ref int MultiSelectTempDataStacked => ref Unsafe.AsRef<int>(&Handle->MultiSelectTempDataStacked);
-		public ref ImVectorImGuiMultiSelectTempData MultiSelectTempData => ref Unsafe.AsRef<ImVectorImGuiMultiSelectTempData>(&Handle->MultiSelectTempData);
+		public ref ImVector<ImGuiMultiSelectTempData> MultiSelectTempData => ref Unsafe.AsRef<ImVector<ImGuiMultiSelectTempData>>(&Handle->MultiSelectTempData);
 		public ref ImPoolImGuiMultiSelectState MultiSelectStorage => ref Unsafe.AsRef<ImPoolImGuiMultiSelectState>(&Handle->MultiSelectStorage);
 		public ref int HoverItemDelayId => ref Unsafe.AsRef<int>(&Handle->HoverItemDelayId);
 		public ref int HoverItemDelayIdPreviousFrame => ref Unsafe.AsRef<int>(&Handle->HoverItemDelayIdPreviousFrame);
@@ -21091,8 +20874,8 @@ namespace Hexa.NET.ImGui
 		public ref short DisabledStackSize => ref Unsafe.AsRef<short>(&Handle->DisabledStackSize);
 		public ref short LockMarkEdited => ref Unsafe.AsRef<short>(&Handle->LockMarkEdited);
 		public ref short TooltipOverrideCount => ref Unsafe.AsRef<short>(&Handle->TooltipOverrideCount);
-		public ref ImVectorChar ClipboardHandlerData => ref Unsafe.AsRef<ImVectorChar>(&Handle->ClipboardHandlerData);
-		public ref ImVectorImGuiID MenusIdSubmittedThisFrame => ref Unsafe.AsRef<ImVectorImGuiID>(&Handle->MenusIdSubmittedThisFrame);
+		public ref ImVector<byte> ClipboardHandlerData => ref Unsafe.AsRef<ImVector<byte>>(&Handle->ClipboardHandlerData);
+		public ref ImVector<int> MenusIdSubmittedThisFrame => ref Unsafe.AsRef<ImVector<int>>(&Handle->MenusIdSubmittedThisFrame);
 		public ref ImGuiTypingSelectState TypingSelectState => ref Unsafe.AsRef<ImGuiTypingSelectState>(&Handle->TypingSelectState);
 		public ref ImGuiPlatformImeData PlatformImeData => ref Unsafe.AsRef<ImGuiPlatformImeData>(&Handle->PlatformImeData);
 		public ref ImGuiPlatformImeData PlatformImeDataPrev => ref Unsafe.AsRef<ImGuiPlatformImeData>(&Handle->PlatformImeDataPrev);
@@ -21102,10 +20885,10 @@ namespace Hexa.NET.ImGui
 		public ref bool SettingsLoaded => ref Unsafe.AsRef<bool>(&Handle->SettingsLoaded);
 		public ref float SettingsDirtyTimer => ref Unsafe.AsRef<float>(&Handle->SettingsDirtyTimer);
 		public ref ImGuiTextBuffer SettingsIniData => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->SettingsIniData);
-		public ref ImVectorImGuiSettingsHandler SettingsHandlers => ref Unsafe.AsRef<ImVectorImGuiSettingsHandler>(&Handle->SettingsHandlers);
+		public ref ImVector<ImGuiSettingsHandler> SettingsHandlers => ref Unsafe.AsRef<ImVector<ImGuiSettingsHandler>>(&Handle->SettingsHandlers);
 		public ref ImChunkStreamImGuiWindowSettings SettingsWindows => ref Unsafe.AsRef<ImChunkStreamImGuiWindowSettings>(&Handle->SettingsWindows);
 		public ref ImChunkStreamImGuiTableSettings SettingsTables => ref Unsafe.AsRef<ImChunkStreamImGuiTableSettings>(&Handle->SettingsTables);
-		public ref ImVectorImGuiContextHook Hooks => ref Unsafe.AsRef<ImVectorImGuiContextHook>(&Handle->Hooks);
+		public ref ImVector<ImGuiContextHook> Hooks => ref Unsafe.AsRef<ImVector<ImGuiContextHook>>(&Handle->Hooks);
 		public ref int HookIdNext => ref Unsafe.AsRef<int>(&Handle->HookIdNext);
 		public ref bool LogEnabled => ref Unsafe.AsRef<bool>(&Handle->LogEnabled);
 		public ref ImGuiLogType LogType => ref Unsafe.AsRef<ImGuiLogType>(&Handle->LogType);
@@ -21150,7 +20933,7 @@ namespace Hexa.NET.ImGui
 		public ref int WantCaptureMouseNextFrame => ref Unsafe.AsRef<int>(&Handle->WantCaptureMouseNextFrame);
 		public ref int WantCaptureKeyboardNextFrame => ref Unsafe.AsRef<int>(&Handle->WantCaptureKeyboardNextFrame);
 		public ref int WantTextInputNextFrame => ref Unsafe.AsRef<int>(&Handle->WantTextInputNextFrame);
-		public ref ImVectorChar TempBuffer => ref Unsafe.AsRef<ImVectorChar>(&Handle->TempBuffer);
+		public ref ImVector<byte> TempBuffer => ref Unsafe.AsRef<ImVector<byte>>(&Handle->TempBuffer);
 		public unsafe Span<byte> TempKeychordName
 		
 		{
@@ -21475,7 +21258,7 @@ namespace Hexa.NET.ImGui
 		public sbyte BackendUsingLegacyKeyArrays;
 		public byte BackendUsingLegacyNavInputArray;
 		public char InputQueueSurrogate;
-		public ImVectorImWchar InputQueueCharacters;
+		public ImVector<char> InputQueueCharacters;
 
 		public unsafe Span<ImGuiKeyData> KeysData
 		
@@ -21951,7 +21734,7 @@ namespace Hexa.NET.ImGui
 		public ref sbyte BackendUsingLegacyKeyArrays => ref Unsafe.AsRef<sbyte>(&Handle->BackendUsingLegacyKeyArrays);
 		public ref bool BackendUsingLegacyNavInputArray => ref Unsafe.AsRef<bool>(&Handle->BackendUsingLegacyNavInputArray);
 		public ref char InputQueueSurrogate => ref Unsafe.AsRef<char>(&Handle->InputQueueSurrogate);
-		public ref ImVectorImWchar InputQueueCharacters => ref Unsafe.AsRef<ImVectorImWchar>(&Handle->InputQueueCharacters);
+		public ref ImVector<char> InputQueueCharacters => ref Unsafe.AsRef<ImVector<char>>(&Handle->InputQueueCharacters);
 
 		public unsafe void AddFocusEvent(bool focused)
 		{
@@ -22230,8 +22013,8 @@ namespace Hexa.NET.ImGui
 		public unsafe void* RendererSetWindowSize;
 		public unsafe void* RendererRenderWindow;
 		public unsafe void* RendererSwapBuffers;
-		public ImVectorImGuiPlatformMonitor Monitors;
-		public ImVectorImGuiViewportPtr Viewports;
+		public ImVector<ImGuiPlatformMonitor> Monitors;
+		public ImVector<ImGuiViewportPtr> Viewports;
 
 
 		public unsafe void Destroy()
@@ -22303,22 +22086,13 @@ namespace Hexa.NET.ImGui
 		public void* RendererSetWindowSize { get => Handle->RendererSetWindowSize; set => Handle->RendererSetWindowSize = value; }
 		public void* RendererRenderWindow { get => Handle->RendererRenderWindow; set => Handle->RendererRenderWindow = value; }
 		public void* RendererSwapBuffers { get => Handle->RendererSwapBuffers; set => Handle->RendererSwapBuffers = value; }
-		public ref ImVectorImGuiPlatformMonitor Monitors => ref Unsafe.AsRef<ImVectorImGuiPlatformMonitor>(&Handle->Monitors);
-		public ref ImVectorImGuiViewportPtr Viewports => ref Unsafe.AsRef<ImVectorImGuiViewportPtr>(&Handle->Viewports);
+		public ref ImVector<ImGuiPlatformMonitor> Monitors => ref Unsafe.AsRef<ImVector<ImGuiPlatformMonitor>>(&Handle->Monitors);
+		public ref ImVector<ImGuiViewportPtr> Viewports => ref Unsafe.AsRef<ImVector<ImGuiViewportPtr>>(&Handle->Viewports);
 
 		public unsafe void Destroy()
 		{
 			ImGui.DestroyNative(Handle);
 		}
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiPlatformMonitor
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiPlatformMonitor* Data;
 
 	}
 
@@ -22390,15 +22164,6 @@ namespace Hexa.NET.ImGui
 		{
 			ImGui.DestroyNative(Handle);
 		}
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiViewportPtr
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiViewport** Data;
 
 	}
 
@@ -22657,15 +22422,6 @@ namespace Hexa.NET.ImGui
 
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiInputEvent
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiInputEvent* Data;
-
-	}
-
 	[StructLayout(LayoutKind.Explicit)]
 	public partial struct ImGuiInputEventUnion
 	{
@@ -22798,56 +22554,6 @@ namespace Hexa.NET.ImGui
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiWindowPtr
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiWindow** Data;
-
-	}
-
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVectorImGuiWindowPtrPtr : IEquatable<ImVectorImGuiWindowPtrPtr>
-	{
-		public ImVectorImGuiWindowPtrPtr(ImVectorImGuiWindowPtr* handle) { Handle = handle; }
-
-		public ImVectorImGuiWindowPtr* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVectorImGuiWindowPtrPtr Null => new ImVectorImGuiWindowPtrPtr(null);
-
-		public static implicit operator ImVectorImGuiWindowPtrPtr(ImVectorImGuiWindowPtr* handle) => new ImVectorImGuiWindowPtrPtr(handle);
-
-		public static implicit operator ImVectorImGuiWindowPtr*(ImVectorImGuiWindowPtrPtr handle) => handle.Handle;
-
-		public static bool operator ==(ImVectorImGuiWindowPtrPtr left, ImVectorImGuiWindowPtrPtr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVectorImGuiWindowPtrPtr left, ImVectorImGuiWindowPtrPtr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVectorImGuiWindowPtrPtr left, ImVectorImGuiWindowPtr* right) => left.Handle == right;
-
-		public static bool operator !=(ImVectorImGuiWindowPtrPtr left, ImVectorImGuiWindowPtr* right) => left.Handle != right;
-
-		public bool Equals(ImVectorImGuiWindowPtrPtr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVectorImGuiWindowPtrPtr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVectorImGuiWindowPtrPtr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
-		public ref ImGuiWindowPtrPtr Data => ref Unsafe.AsRef<ImGuiWindowPtrPtr>(&Handle->Data);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiWindow
 	{
 		public unsafe ImGuiContext* Ctx;
@@ -22925,7 +22631,7 @@ namespace Hexa.NET.ImGui
 		public ImGuiCond SetWindowDockAllowFlags;
 		public Vector2 SetWindowPosVal;
 		public Vector2 SetWindowPosPivot;
-		public ImVectorImGuiID IDStack;
+		public ImVector<int> IDStack;
 		public ImGuiWindowTempData DC;
 		public ImRect OuterRectClipped;
 		public ImRect InnerRect;
@@ -22941,7 +22647,7 @@ namespace Hexa.NET.ImGui
 		public float LastTimeActive;
 		public float ItemWidthDefault;
 		public ImGuiStorage StateStorage;
-		public ImVectorImGuiOldColumns ColumnsStorage;
+		public ImVector<ImGuiOldColumns> ColumnsStorage;
 		public float FontWindowScale;
 		public float FontDpiScale;
 		public int SettingsOffset;
@@ -23113,7 +22819,7 @@ namespace Hexa.NET.ImGui
 		public ref ImGuiCond SetWindowDockAllowFlags => ref Unsafe.AsRef<ImGuiCond>(&Handle->SetWindowDockAllowFlags);
 		public ref Vector2 SetWindowPosVal => ref Unsafe.AsRef<Vector2>(&Handle->SetWindowPosVal);
 		public ref Vector2 SetWindowPosPivot => ref Unsafe.AsRef<Vector2>(&Handle->SetWindowPosPivot);
-		public ref ImVectorImGuiID IDStack => ref Unsafe.AsRef<ImVectorImGuiID>(&Handle->IDStack);
+		public ref ImVector<int> IDStack => ref Unsafe.AsRef<ImVector<int>>(&Handle->IDStack);
 		public ref ImGuiWindowTempData DC => ref Unsafe.AsRef<ImGuiWindowTempData>(&Handle->DC);
 		public ref ImRect OuterRectClipped => ref Unsafe.AsRef<ImRect>(&Handle->OuterRectClipped);
 		public ref ImRect InnerRect => ref Unsafe.AsRef<ImRect>(&Handle->InnerRect);
@@ -23129,7 +22835,7 @@ namespace Hexa.NET.ImGui
 		public ref float LastTimeActive => ref Unsafe.AsRef<float>(&Handle->LastTimeActive);
 		public ref float ItemWidthDefault => ref Unsafe.AsRef<float>(&Handle->ItemWidthDefault);
 		public ref ImGuiStorage StateStorage => ref Unsafe.AsRef<ImGuiStorage>(&Handle->StateStorage);
-		public ref ImVectorImGuiOldColumns ColumnsStorage => ref Unsafe.AsRef<ImVectorImGuiOldColumns>(&Handle->ColumnsStorage);
+		public ref ImVector<ImGuiOldColumns> ColumnsStorage => ref Unsafe.AsRef<ImVector<ImGuiOldColumns>>(&Handle->ColumnsStorage);
 		public ref float FontWindowScale => ref Unsafe.AsRef<float>(&Handle->FontWindowScale);
 		public ref float FontDpiScale => ref Unsafe.AsRef<float>(&Handle->FontDpiScale);
 		public ref int SettingsOffset => ref Unsafe.AsRef<int>(&Handle->SettingsOffset);
@@ -23445,9 +23151,9 @@ namespace Hexa.NET.ImGui
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImDrawDataBuilder
 	{
-		public unsafe ImVectorImDrawListPtr* Layers_0;
-		public unsafe ImVectorImDrawListPtr* Layers_1;
-		public ImVectorImDrawListPtr LayerData1;
+		public unsafe ImVector<ImDrawListPtr>* Layers_0;
+		public unsafe ImVector<ImDrawListPtr>* Layers_1;
+		public ImVector<ImDrawListPtr> LayerData1;
 
 	}
 
@@ -23487,57 +23193,7 @@ namespace Hexa.NET.ImGui
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImDrawDataBuilderPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorImDrawListPtr LayerData1 => ref Unsafe.AsRef<ImVectorImDrawListPtr>(&Handle->LayerData1);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiID
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe int* Data;
-
-	}
-
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVectorImGuiIDPtr : IEquatable<ImVectorImGuiIDPtr>
-	{
-		public ImVectorImGuiIDPtr(ImVectorImGuiID* handle) { Handle = handle; }
-
-		public ImVectorImGuiID* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVectorImGuiIDPtr Null => new ImVectorImGuiIDPtr(null);
-
-		public static implicit operator ImVectorImGuiIDPtr(ImVectorImGuiID* handle) => new ImVectorImGuiIDPtr(handle);
-
-		public static implicit operator ImVectorImGuiID*(ImVectorImGuiIDPtr handle) => handle.Handle;
-
-		public static bool operator ==(ImVectorImGuiIDPtr left, ImVectorImGuiIDPtr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVectorImGuiIDPtr left, ImVectorImGuiIDPtr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVectorImGuiIDPtr left, ImVectorImGuiID* right) => left.Handle == right;
-
-		public static bool operator !=(ImVectorImGuiIDPtr left, ImVectorImGuiID* right) => left.Handle != right;
-
-		public bool Equals(ImVectorImGuiIDPtr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVectorImGuiIDPtr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVectorImGuiIDPtr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
-		public int* Data { get => Handle->Data; set => Handle->Data = value; }
+		public ref ImVector<ImDrawListPtr> LayerData1 => ref Unsafe.AsRef<ImVector<ImDrawListPtr>>(&Handle->LayerData1);
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -23569,7 +23225,7 @@ namespace Hexa.NET.ImGui
 		public ImGuiMenuColumns MenuColumns;
 		public int TreeDepth;
 		public uint TreeHasStackDataDepthMask;
-		public ImVectorImGuiWindowPtr ChildWindows;
+		public ImVector<ImGuiWindowPtr> ChildWindows;
 		public unsafe ImGuiStorage* StateStorage;
 		public unsafe ImGuiOldColumns* CurrentColumns;
 		public int CurrentTableIdx;
@@ -23578,8 +23234,8 @@ namespace Hexa.NET.ImGui
 		public uint ModalDimBgColor;
 		public float ItemWidth;
 		public float TextWrapPos;
-		public ImVectorFloat ItemWidthStack;
-		public ImVectorFloat TextWrapPosStack;
+		public ImVector<float> ItemWidthStack;
+		public ImVector<float> TextWrapPosStack;
 
 	}
 
@@ -23702,7 +23358,7 @@ namespace Hexa.NET.ImGui
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiStorage
 	{
-		public ImVectorImGuiStoragePair Data;
+		public ImVector<ImGuiStoragePair> Data;
 
 
 		public unsafe void BuildSortByKey()
@@ -23934,7 +23590,7 @@ namespace Hexa.NET.ImGui
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiStoragePtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorImGuiStoragePair Data => ref Unsafe.AsRef<ImVectorImGuiStoragePair>(&Handle->Data);
+		public ref ImVector<ImGuiStoragePair> Data => ref Unsafe.AsRef<ImVector<ImGuiStoragePair>>(&Handle->Data);
 
 		public unsafe void BuildSortByKey()
 		{
@@ -24063,15 +23719,6 @@ namespace Hexa.NET.ImGui
 
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiStoragePair
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiStoragePair* Data;
-
-	}
-
 	[StructLayout(LayoutKind.Explicit)]
 	public partial struct ImGuiStoragePairUnion
 	{
@@ -24165,7 +23812,7 @@ namespace Hexa.NET.ImGui
 		public ImRect HostInitialClipRect;
 		public ImRect HostBackupClipRect;
 		public ImRect HostBackupParentWorkRect;
-		public ImVectorImGuiOldColumnData Columns;
+		public ImVector<ImGuiOldColumnData> Columns;
 		public ImDrawListSplitter Splitter;
 
 	}
@@ -24221,7 +23868,7 @@ namespace Hexa.NET.ImGui
 		public ref ImRect HostInitialClipRect => ref Unsafe.AsRef<ImRect>(&Handle->HostInitialClipRect);
 		public ref ImRect HostBackupClipRect => ref Unsafe.AsRef<ImRect>(&Handle->HostBackupClipRect);
 		public ref ImRect HostBackupParentWorkRect => ref Unsafe.AsRef<ImRect>(&Handle->HostBackupParentWorkRect);
-		public ref ImVectorImGuiOldColumnData Columns => ref Unsafe.AsRef<ImVectorImGuiOldColumnData>(&Handle->Columns);
+		public ref ImVector<ImGuiOldColumnData> Columns => ref Unsafe.AsRef<ImVector<ImGuiOldColumnData>>(&Handle->Columns);
 		public ref ImDrawListSplitter Splitter => ref Unsafe.AsRef<ImDrawListSplitter>(&Handle->Splitter);
 	}
 
@@ -24271,15 +23918,6 @@ namespace Hexa.NET.ImGui
 		#endif
 		public ref Vector2 Min => ref Unsafe.AsRef<Vector2>(&Handle->Min);
 		public ref Vector2 Max => ref Unsafe.AsRef<Vector2>(&Handle->Max);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiOldColumnData
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiOldColumnData* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -24383,15 +24021,6 @@ namespace Hexa.NET.ImGui
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiOldColumns
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiOldColumns* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiWindowDockStyle
 	{
 		public uint Colors_0;
@@ -24417,7 +24046,7 @@ namespace Hexa.NET.ImGui
 		public unsafe ImGuiDockNode* ParentNode;
 		public unsafe ImGuiDockNode* ChildNodes_0;
 		public unsafe ImGuiDockNode* ChildNodes_1;
-		public ImVectorImGuiWindowPtr Windows;
+		public ImVector<ImGuiWindowPtr> Windows;
 		public unsafe ImGuiTabBar* TabBar;
 		public Vector2 Pos;
 		public Vector2 Size;
@@ -24497,7 +24126,7 @@ namespace Hexa.NET.ImGui
 		public ref ImGuiDockNodeFlags MergedFlags => ref Unsafe.AsRef<ImGuiDockNodeFlags>(&Handle->MergedFlags);
 		public ref ImGuiDockNodeState State => ref Unsafe.AsRef<ImGuiDockNodeState>(&Handle->State);
 		public ref ImGuiDockNodePtr ParentNode => ref Unsafe.AsRef<ImGuiDockNodePtr>(&Handle->ParentNode);
-		public ref ImVectorImGuiWindowPtr Windows => ref Unsafe.AsRef<ImVectorImGuiWindowPtr>(&Handle->Windows);
+		public ref ImVector<ImGuiWindowPtr> Windows => ref Unsafe.AsRef<ImVector<ImGuiWindowPtr>>(&Handle->Windows);
 		public ref ImGuiTabBarPtr TabBar => ref Unsafe.AsRef<ImGuiTabBarPtr>(&Handle->TabBar);
 		public ref Vector2 Pos => ref Unsafe.AsRef<Vector2>(&Handle->Pos);
 		public ref Vector2 Size => ref Unsafe.AsRef<Vector2>(&Handle->Size);
@@ -24536,7 +24165,7 @@ namespace Hexa.NET.ImGui
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTabBar
 	{
-		public ImVectorImGuiTabItem Tabs;
+		public ImVector<ImGuiTabItem> Tabs;
 		public ImGuiTabBarFlags Flags;
 		public int ID;
 		public int SelectedTabId;
@@ -24608,7 +24237,7 @@ namespace Hexa.NET.ImGui
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTabBarPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorImGuiTabItem Tabs => ref Unsafe.AsRef<ImVectorImGuiTabItem>(&Handle->Tabs);
+		public ref ImVector<ImGuiTabItem> Tabs => ref Unsafe.AsRef<ImVector<ImGuiTabItem>>(&Handle->Tabs);
 		public ref ImGuiTabBarFlags Flags => ref Unsafe.AsRef<ImGuiTabBarFlags>(&Handle->Flags);
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref int SelectedTabId => ref Unsafe.AsRef<int>(&Handle->SelectedTabId);
@@ -24641,15 +24270,6 @@ namespace Hexa.NET.ImGui
 		public ref Vector2 FramePadding => ref Unsafe.AsRef<Vector2>(&Handle->FramePadding);
 		public ref Vector2 BackupCursorPos => ref Unsafe.AsRef<Vector2>(&Handle->BackupCursorPos);
 		public ref ImGuiTextBuffer TabsNames => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->TabsNames);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiTabItem
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiTabItem* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -24725,7 +24345,7 @@ namespace Hexa.NET.ImGui
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTextBuffer
 	{
-		public ImVectorChar Buf;
+		public ImVector<byte> Buf;
 
 
 		public unsafe void append(byte* str, byte* strEnd)
@@ -25239,7 +24859,7 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTextBufferPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorChar Buf => ref Unsafe.AsRef<ImVectorChar>(&Handle->Buf);
+		public ref ImVector<byte> Buf => ref Unsafe.AsRef<ImVector<byte>>(&Handle->Buf);
 
 		public unsafe void append(byte* str, byte* strEnd)
 		{
@@ -25614,24 +25234,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 			int ret = ImGui.sizeNative(Handle);
 			return ret;
 		}
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorChar
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe byte* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiWindowStackData
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiWindowStackData* Data;
 
 	}
 
@@ -26029,8 +25631,8 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		public short Index_151;
 		public short Index_152;
 		public short Index_153;
-		public ImVectorImGuiKeyRoutingData Entries;
-		public ImVectorImGuiKeyRoutingData EntriesNext;
+		public ImVector<ImGuiKeyRoutingData> Entries;
+		public ImVector<ImGuiKeyRoutingData> EntriesNext;
 
 	}
 
@@ -26078,17 +25680,8 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 				return new Span<short>(&Handle->Index_0, 154);
 			}
 		}
-		public ref ImVectorImGuiKeyRoutingData Entries => ref Unsafe.AsRef<ImVectorImGuiKeyRoutingData>(&Handle->Entries);
-		public ref ImVectorImGuiKeyRoutingData EntriesNext => ref Unsafe.AsRef<ImVectorImGuiKeyRoutingData>(&Handle->EntriesNext);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiKeyRoutingData
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiKeyRoutingData* Data;
-
+		public ref ImVector<ImGuiKeyRoutingData> Entries => ref Unsafe.AsRef<ImVector<ImGuiKeyRoutingData>>(&Handle->Entries);
+		public ref ImVector<ImGuiKeyRoutingData> EntriesNext => ref Unsafe.AsRef<ImVector<ImGuiKeyRoutingData>>(&Handle->EntriesNext);
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -26326,15 +25919,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiColorMod
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiColorMod* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiColorMod
 	{
 		public ImGuiCol Col;
@@ -26380,15 +25964,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		#endif
 		public ref ImGuiCol Col => ref Unsafe.AsRef<ImGuiCol>(&Handle->Col);
 		public ref Vector4 BackupValue => ref Unsafe.AsRef<Vector4>(&Handle->BackupValue);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiStyleMod
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiStyleMod* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Explicit)]
@@ -26454,15 +26029,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiFocusScopeData
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiFocusScopeData* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiFocusScopeData
 	{
 		public int ID;
@@ -26508,24 +26074,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref int WindowID => ref Unsafe.AsRef<int>(&Handle->WindowID);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiItemFlags
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiItemFlags* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiGroupData
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiGroupData* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -26599,15 +26147,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiPopupData
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiPopupData* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiPopupData
 	{
 		public int PopupId;
@@ -26668,15 +26207,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiTreeNodeStackData
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiTreeNodeStackData* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTreeNodeStackData
 	{
 		public int ID;
@@ -26726,15 +26256,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		public ref ImGuiTreeNodeFlags TreeFlags => ref Unsafe.AsRef<ImGuiTreeNodeFlags>(&Handle->TreeFlags);
 		public ref ImGuiItemFlags InFlags => ref Unsafe.AsRef<ImGuiItemFlags>(&Handle->InFlags);
 		public ref ImRect NavRect => ref Unsafe.AsRef<ImRect>(&Handle->NavRect);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiViewportPPtr
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiViewportP** Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -27071,31 +26592,13 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorUnsignedChar
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe byte* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiListClipperData
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiListClipperData* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiListClipperData
 	{
 		public unsafe ImGuiListClipper* ListClipper;
 		public float LossynessOffset;
 		public int StepNo;
 		public int ItemsFrozen;
-		public ImVectorImGuiListClipperRange Ranges;
+		public ImVector<ImGuiListClipperRange> Ranges;
 
 	}
 
@@ -27139,7 +26642,7 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		public ref float LossynessOffset => ref Unsafe.AsRef<float>(&Handle->LossynessOffset);
 		public ref int StepNo => ref Unsafe.AsRef<int>(&Handle->StepNo);
 		public ref int ItemsFrozen => ref Unsafe.AsRef<int>(&Handle->ItemsFrozen);
-		public ref ImVectorImGuiListClipperRange Ranges => ref Unsafe.AsRef<ImVectorImGuiListClipperRange>(&Handle->Ranges);
+		public ref ImVector<ImGuiListClipperRange> Ranges => ref Unsafe.AsRef<ImVector<ImGuiListClipperRange>>(&Handle->Ranges);
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -27311,15 +26814,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiListClipperRange
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiListClipperRange* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiListClipperRange
 	{
 		public int Min;
@@ -27438,9 +26932,9 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		public ImGuiTextBuffer ColumnsNames;
 		public unsafe ImDrawListSplitter* DrawSplitter;
 		public ImGuiTableInstanceData InstanceDataFirst;
-		public ImVectorImGuiTableInstanceData InstanceDataExtra;
+		public ImVector<ImGuiTableInstanceData> InstanceDataExtra;
 		public ImGuiTableColumnSortSpecs SortSpecsSingle;
-		public ImVectorImGuiTableColumnSortSpecs SortSpecsMulti;
+		public ImVector<ImGuiTableColumnSortSpecs> SortSpecsMulti;
 		public ImGuiTableSortSpecs SortSpecs;
 		public sbyte SortSpecsCount;
 		public sbyte ColumnsEnabledCount;
@@ -27596,9 +27090,9 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		public ref ImGuiTextBuffer ColumnsNames => ref Unsafe.AsRef<ImGuiTextBuffer>(&Handle->ColumnsNames);
 		public ref ImDrawListSplitterPtr DrawSplitter => ref Unsafe.AsRef<ImDrawListSplitterPtr>(&Handle->DrawSplitter);
 		public ref ImGuiTableInstanceData InstanceDataFirst => ref Unsafe.AsRef<ImGuiTableInstanceData>(&Handle->InstanceDataFirst);
-		public ref ImVectorImGuiTableInstanceData InstanceDataExtra => ref Unsafe.AsRef<ImVectorImGuiTableInstanceData>(&Handle->InstanceDataExtra);
+		public ref ImVector<ImGuiTableInstanceData> InstanceDataExtra => ref Unsafe.AsRef<ImVector<ImGuiTableInstanceData>>(&Handle->InstanceDataExtra);
 		public ref ImGuiTableColumnSortSpecs SortSpecsSingle => ref Unsafe.AsRef<ImGuiTableColumnSortSpecs>(&Handle->SortSpecsSingle);
-		public ref ImVectorImGuiTableColumnSortSpecs SortSpecsMulti => ref Unsafe.AsRef<ImVectorImGuiTableColumnSortSpecs>(&Handle->SortSpecsMulti);
+		public ref ImVector<ImGuiTableColumnSortSpecs> SortSpecsMulti => ref Unsafe.AsRef<ImVector<ImGuiTableColumnSortSpecs>>(&Handle->SortSpecsMulti);
 		public ref ImGuiTableSortSpecs SortSpecs => ref Unsafe.AsRef<ImGuiTableSortSpecs>(&Handle->SortSpecs);
 		public ref sbyte SortSpecsCount => ref Unsafe.AsRef<sbyte>(&Handle->SortSpecsCount);
 		public ref sbyte ColumnsEnabledCount => ref Unsafe.AsRef<sbyte>(&Handle->ColumnsEnabledCount);
@@ -27655,7 +27149,7 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		public int TableIndex;
 		public float LastTimeActive;
 		public float AngledHeadersExtraWidth;
-		public ImVectorImGuiTableHeaderData AngledHeadersRequests;
+		public ImVector<ImGuiTableHeaderData> AngledHeadersRequests;
 		public Vector2 UserOuterSize;
 		public ImDrawListSplitter DrawSplitter;
 		public ImRect HostBackupWorkRect;
@@ -27708,7 +27202,7 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		public ref int TableIndex => ref Unsafe.AsRef<int>(&Handle->TableIndex);
 		public ref float LastTimeActive => ref Unsafe.AsRef<float>(&Handle->LastTimeActive);
 		public ref float AngledHeadersExtraWidth => ref Unsafe.AsRef<float>(&Handle->AngledHeadersExtraWidth);
-		public ref ImVectorImGuiTableHeaderData AngledHeadersRequests => ref Unsafe.AsRef<ImVectorImGuiTableHeaderData>(&Handle->AngledHeadersRequests);
+		public ref ImVector<ImGuiTableHeaderData> AngledHeadersRequests => ref Unsafe.AsRef<ImVector<ImGuiTableHeaderData>>(&Handle->AngledHeadersRequests);
 		public ref Vector2 UserOuterSize => ref Unsafe.AsRef<Vector2>(&Handle->UserOuterSize);
 		public ref ImDrawListSplitter DrawSplitter => ref Unsafe.AsRef<ImDrawListSplitter>(&Handle->DrawSplitter);
 		public ref ImRect HostBackupWorkRect => ref Unsafe.AsRef<ImRect>(&Handle->HostBackupWorkRect);
@@ -27719,15 +27213,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		public ref ImVec1 HostBackupColumnsOffset => ref Unsafe.AsRef<ImVec1>(&Handle->HostBackupColumnsOffset);
 		public ref float HostBackupItemWidth => ref Unsafe.AsRef<float>(&Handle->HostBackupItemWidth);
 		public ref int HostBackupItemWidthStackSize => ref Unsafe.AsRef<int>(&Handle->HostBackupItemWidthStackSize);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiTableHeaderData
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiTableHeaderData* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -28037,15 +27522,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiTableInstanceData
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiTableInstanceData* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTableColumnSortSpecs
 	{
 		public int ColumnUserID;
@@ -28109,15 +27585,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		{
 			ImGui.DestroyNative(Handle);
 		}
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiTableColumnSortSpecs
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiTableColumnSortSpecs* Data;
 
 	}
 
@@ -28187,58 +27654,22 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiTableTempData
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiTableTempData* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImPoolImGuiTable
 	{
-		public ImVectorImGuiTable Buf;
+		public ImVector<ImGuiTable> Buf;
 		public ImGuiStorage Map;
 		public int FreeIdx;
 		public int AliveCount;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiTable
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiTable* Data;
 
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImPoolImGuiTabBar
 	{
-		public ImVectorImGuiTabBar Buf;
+		public ImVector<ImGuiTabBar> Buf;
 		public ImGuiStorage Map;
 		public int FreeIdx;
 		public int AliveCount;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiTabBar
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiTabBar* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiPtrOrIndex
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiPtrOrIndex* Data;
 
 	}
 
@@ -28288,15 +27719,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		#endif
 		public void* Ptr { get => Handle->Ptr; set => Handle->Ptr = value; }
 		public ref int Index => ref Unsafe.AsRef<int>(&Handle->Index);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiShrinkWidthItem
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiShrinkWidthItem* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -28502,7 +27924,7 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiMultiSelectIO
 	{
-		public ImVectorImGuiSelectionRequest Requests;
+		public ImVector<ImGuiSelectionRequest> Requests;
 		public long RangeSrcItem;
 		public long NavIdItem;
 		public byte NavIdSelected;
@@ -28547,21 +27969,12 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiMultiSelectIOPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorImGuiSelectionRequest Requests => ref Unsafe.AsRef<ImVectorImGuiSelectionRequest>(&Handle->Requests);
+		public ref ImVector<ImGuiSelectionRequest> Requests => ref Unsafe.AsRef<ImVector<ImGuiSelectionRequest>>(&Handle->Requests);
 		public ref long RangeSrcItem => ref Unsafe.AsRef<long>(&Handle->RangeSrcItem);
 		public ref long NavIdItem => ref Unsafe.AsRef<long>(&Handle->NavIdItem);
 		public ref bool NavIdSelected => ref Unsafe.AsRef<bool>(&Handle->NavIdSelected);
 		public ref bool RangeSrcReset => ref Unsafe.AsRef<bool>(&Handle->RangeSrcReset);
 		public ref int ItemsCount => ref Unsafe.AsRef<int>(&Handle->ItemsCount);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiSelectionRequest
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiSelectionRequest* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -28679,30 +28092,12 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiMultiSelectTempData
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiMultiSelectTempData* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImPoolImGuiMultiSelectState
 	{
-		public ImVectorImGuiMultiSelectState Buf;
+		public ImVector<ImGuiMultiSelectState> Buf;
 		public ImGuiStorage Map;
 		public int FreeIdx;
 		public int AliveCount;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiMultiSelectState
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiMultiSelectState* Data;
 
 	}
 
@@ -28713,9 +28108,9 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		public int ID;
 		public int CurLenW;
 		public int CurLenA;
-		public ImVectorImWchar TextW;
-		public ImVectorChar TextA;
-		public ImVectorChar InitialTextA;
+		public ImVector<char> TextW;
+		public ImVector<byte> TextA;
+		public ImVector<byte> InitialTextA;
 		public byte TextAIsValid;
 		public int BufCapacityA;
 		public float ScrollX;
@@ -28771,9 +28166,9 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
 		public ref int CurLenW => ref Unsafe.AsRef<int>(&Handle->CurLenW);
 		public ref int CurLenA => ref Unsafe.AsRef<int>(&Handle->CurLenA);
-		public ref ImVectorImWchar TextW => ref Unsafe.AsRef<ImVectorImWchar>(&Handle->TextW);
-		public ref ImVectorChar TextA => ref Unsafe.AsRef<ImVectorChar>(&Handle->TextA);
-		public ref ImVectorChar InitialTextA => ref Unsafe.AsRef<ImVectorChar>(&Handle->InitialTextA);
+		public ref ImVector<char> TextW => ref Unsafe.AsRef<ImVector<char>>(&Handle->TextW);
+		public ref ImVector<byte> TextA => ref Unsafe.AsRef<ImVector<byte>>(&Handle->TextA);
+		public ref ImVector<byte> InitialTextA => ref Unsafe.AsRef<ImVector<byte>>(&Handle->InitialTextA);
 		public ref bool TextAIsValid => ref Unsafe.AsRef<bool>(&Handle->TextAIsValid);
 		public ref int BufCapacityA => ref Unsafe.AsRef<int>(&Handle->BufCapacityA);
 		public ref float ScrollX => ref Unsafe.AsRef<float>(&Handle->ScrollX);
@@ -29941,7 +29336,7 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	public partial struct ImGuiInputTextDeactivatedState
 	{
 		public int ID;
-		public ImVectorChar TextA;
+		public ImVector<byte> TextA;
 
 	}
 
@@ -29982,7 +29377,7 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		private string DebuggerDisplay => string.Format("ImGuiInputTextDeactivatedStatePtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
 		public ref int ID => ref Unsafe.AsRef<int>(&Handle->ID);
-		public ref ImVectorChar TextA => ref Unsafe.AsRef<ImVectorChar>(&Handle->TextA);
+		public ref ImVector<byte> TextA => ref Unsafe.AsRef<ImVector<byte>>(&Handle->TextA);
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -30227,8 +29622,8 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	public partial struct ImGuiDockContext
 	{
 		public ImGuiStorage Nodes;
-		public ImVectorImGuiDockRequest Requests;
-		public ImVectorImGuiDockNodeSettings NodesSettings;
+		public ImVector<ImGuiDockRequest> Requests;
+		public ImVector<ImGuiDockNodeSettings> NodesSettings;
 		public byte WantFullRebuild;
 
 	}
@@ -30270,18 +29665,9 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		private string DebuggerDisplay => string.Format("ImGuiDockContextPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
 		public ref ImGuiStorage Nodes => ref Unsafe.AsRef<ImGuiStorage>(&Handle->Nodes);
-		public ref ImVectorImGuiDockRequest Requests => ref Unsafe.AsRef<ImVectorImGuiDockRequest>(&Handle->Requests);
-		public ref ImVectorImGuiDockNodeSettings NodesSettings => ref Unsafe.AsRef<ImVectorImGuiDockNodeSettings>(&Handle->NodesSettings);
+		public ref ImVector<ImGuiDockRequest> Requests => ref Unsafe.AsRef<ImVector<ImGuiDockRequest>>(&Handle->Requests);
+		public ref ImVector<ImGuiDockNodeSettings> NodesSettings => ref Unsafe.AsRef<ImVector<ImGuiDockNodeSettings>>(&Handle->NodesSettings);
 		public ref bool WantFullRebuild => ref Unsafe.AsRef<bool>(&Handle->WantFullRebuild);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiDockRequest
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiDockRequest* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -30329,15 +29715,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiDockNodeSettings
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiDockNodeSettings* Data;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiDockNodeSettings
 	{
 
@@ -30379,15 +29756,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiDockNodeSettingsPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiSettingsHandler
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiSettingsHandler* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -30455,23 +29823,14 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImChunkStreamImGuiWindowSettings
 	{
-		public ImVectorChar Buf;
+		public ImVector<byte> Buf;
 
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImChunkStreamImGuiTableSettings
 	{
-		public ImVectorChar Buf;
-
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiContextHook
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiContextHook* Data;
+		public ImVector<byte> Buf;
 
 	}
 
@@ -30532,7 +29891,7 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTextIndex
 	{
-		public ImVectorInt LineOffsets;
+		public ImVector<int> LineOffsets;
 		public int EndOffset;
 
 	}
@@ -30573,17 +29932,8 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImGuiTextIndexPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorInt LineOffsets => ref Unsafe.AsRef<ImVectorInt>(&Handle->LineOffsets);
+		public ref ImVector<int> LineOffsets => ref Unsafe.AsRef<ImVector<int>>(&Handle->LineOffsets);
 		public ref int EndOffset => ref Unsafe.AsRef<int>(&Handle->EndOffset);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorInt
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe int* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -30612,7 +29962,7 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		public int LastActiveFrame;
 		public int StackLevel;
 		public int QueryId;
-		public ImVectorImGuiStackLevelInfo Results;
+		public ImVector<ImGuiStackLevelInfo> Results;
 		public byte CopyToClipboardOnCtrlC;
 		public float CopyToClipboardLastTime;
 
@@ -30657,18 +30007,9 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		public ref int LastActiveFrame => ref Unsafe.AsRef<int>(&Handle->LastActiveFrame);
 		public ref int StackLevel => ref Unsafe.AsRef<int>(&Handle->StackLevel);
 		public ref int QueryId => ref Unsafe.AsRef<int>(&Handle->QueryId);
-		public ref ImVectorImGuiStackLevelInfo Results => ref Unsafe.AsRef<ImVectorImGuiStackLevelInfo>(&Handle->Results);
+		public ref ImVector<ImGuiStackLevelInfo> Results => ref Unsafe.AsRef<ImVector<ImGuiStackLevelInfo>>(&Handle->Results);
 		public ref bool CopyToClipboardOnCtrlC => ref Unsafe.AsRef<bool>(&Handle->CopyToClipboardOnCtrlC);
 		public ref float CopyToClipboardLastTime => ref Unsafe.AsRef<float>(&Handle->CopyToClipboardLastTime);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiStackLevelInfo
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiStackLevelInfo* Data;
-
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -32105,7 +31446,7 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		public byte InputBuf_253;
 		public byte InputBuf_254;
 		public byte InputBuf_255;
-		public ImVectorImGuiTextRange Filters;
+		public ImVector<ImGuiTextRange> Filters;
 		public int CountGrep;
 
 
@@ -32593,7 +31934,7 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 				return new Span<byte>(&Handle->InputBuf_0, 256);
 			}
 		}
-		public ref ImVectorImGuiTextRange Filters => ref Unsafe.AsRef<ImVectorImGuiTextRange>(&Handle->Filters);
+		public ref ImVector<ImGuiTextRange> Filters => ref Unsafe.AsRef<ImVector<ImGuiTextRange>>(&Handle->Filters);
 		public ref int CountGrep => ref Unsafe.AsRef<int>(&Handle->CountGrep);
 
 		public unsafe void Build()
@@ -32953,56 +32294,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorImGuiTextRange
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe ImGuiTextRange* Data;
-
-	}
-
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVectorImGuiTextRangePtr : IEquatable<ImVectorImGuiTextRangePtr>
-	{
-		public ImVectorImGuiTextRangePtr(ImVectorImGuiTextRange* handle) { Handle = handle; }
-
-		public ImVectorImGuiTextRange* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVectorImGuiTextRangePtr Null => new ImVectorImGuiTextRangePtr(null);
-
-		public static implicit operator ImVectorImGuiTextRangePtr(ImVectorImGuiTextRange* handle) => new ImVectorImGuiTextRangePtr(handle);
-
-		public static implicit operator ImVectorImGuiTextRange*(ImVectorImGuiTextRangePtr handle) => handle.Handle;
-
-		public static bool operator ==(ImVectorImGuiTextRangePtr left, ImVectorImGuiTextRangePtr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVectorImGuiTextRangePtr left, ImVectorImGuiTextRangePtr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVectorImGuiTextRangePtr left, ImVectorImGuiTextRange* right) => left.Handle == right;
-
-		public static bool operator !=(ImVectorImGuiTextRangePtr left, ImVectorImGuiTextRange* right) => left.Handle != right;
-
-		public bool Equals(ImVectorImGuiTextRangePtr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVectorImGuiTextRangePtr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVectorImGuiTextRangePtr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
-		public ref ImGuiTextRangePtr Data => ref Unsafe.AsRef<ImGuiTextRangePtr>(&Handle->Data);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiTextRange
 	{
 		public unsafe byte* B;
@@ -33026,7 +32317,7 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 			}
 		}
 
-		public unsafe void split(byte separator, ImVectorImGuiTextRangePtr output)
+		public unsafe void split(byte separator, ImVector<ImGuiTextRange>* output)
 		{
 			fixed (ImGuiTextRange* @this = &this)
 			{
@@ -33034,13 +32325,13 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 			}
 		}
 
-		public unsafe void split(byte separator, ref ImVectorImGuiTextRange output)
+		public unsafe void split(byte separator, ref ImVector<ImGuiTextRange> output)
 		{
 			fixed (ImGuiTextRange* @this = &this)
 			{
-				fixed (ImVectorImGuiTextRange* poutput = &output)
+				fixed (ImVector<ImGuiTextRange>* poutput = &output)
 				{
-					ImGui.splitNative(@this, separator, (ImVectorImGuiTextRange*)poutput);
+					ImGui.splitNative(@this, separator, (ImVector<ImGuiTextRange>*)poutput);
 				}
 			}
 		}
@@ -33097,16 +32388,16 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 			return ret != 0;
 		}
 
-		public unsafe void split(byte separator, ImVectorImGuiTextRangePtr output)
+		public unsafe void split(byte separator, ImVector<ImGuiTextRange>* output)
 		{
 			ImGui.splitNative(Handle, separator, output);
 		}
 
-		public unsafe void split(byte separator, ref ImVectorImGuiTextRange output)
+		public unsafe void split(byte separator, ref ImVector<ImGuiTextRange> output)
 		{
-			fixed (ImVectorImGuiTextRange* poutput = &output)
+			fixed (ImVector<ImGuiTextRange>* poutput = &output)
 			{
-				ImGui.splitNative(Handle, separator, (ImVectorImGuiTextRange*)poutput);
+				ImGui.splitNative(Handle, separator, (ImVector<ImGuiTextRange>*)poutput);
 			}
 		}
 
@@ -33115,7 +32406,7 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImBitVector
 	{
-		public ImVectorImU32 Storage;
+		public ImVector<uint> Storage;
 
 	}
 
@@ -33155,7 +32446,7 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		#if NET5_0_OR_GREATER
 		private string DebuggerDisplay => string.Format("ImBitVectorPtr [0x{0}]", ((nuint)Handle).ToString("X"));
 		#endif
-		public ref ImVectorImU32 Storage => ref Unsafe.AsRef<ImVectorImU32>(&Handle->Storage);
+		public ref ImVector<uint> Storage => ref Unsafe.AsRef<ImVector<uint>>(&Handle->Storage);
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -33442,56 +32733,6 @@ public unsafe void appendf(ReadOnlySpan<byte> fmt)
 		public ref bool IsChild => ref Unsafe.AsRef<bool>(&Handle->IsChild);
 		public ref bool WantApply => ref Unsafe.AsRef<bool>(&Handle->WantApply);
 		public ref bool WantDelete => ref Unsafe.AsRef<bool>(&Handle->WantDelete);
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	public partial struct ImVectorConstCharPtr
-	{
-		public int Size;
-		public int Capacity;
-		public unsafe byte** Data;
-
-	}
-
-	#if NET5_0_OR_GREATER
-	[DebuggerDisplay("{DebuggerDisplay,nq}")]
-	#endif
-	public unsafe struct ImVectorConstCharPtrPtr : IEquatable<ImVectorConstCharPtrPtr>
-	{
-		public ImVectorConstCharPtrPtr(ImVectorConstCharPtr* handle) { Handle = handle; }
-
-		public ImVectorConstCharPtr* Handle;
-
-		public bool IsNull => Handle == null;
-
-		public static ImVectorConstCharPtrPtr Null => new ImVectorConstCharPtrPtr(null);
-
-		public static implicit operator ImVectorConstCharPtrPtr(ImVectorConstCharPtr* handle) => new ImVectorConstCharPtrPtr(handle);
-
-		public static implicit operator ImVectorConstCharPtr*(ImVectorConstCharPtrPtr handle) => handle.Handle;
-
-		public static bool operator ==(ImVectorConstCharPtrPtr left, ImVectorConstCharPtrPtr right) => left.Handle == right.Handle;
-
-		public static bool operator !=(ImVectorConstCharPtrPtr left, ImVectorConstCharPtrPtr right) => left.Handle != right.Handle;
-
-		public static bool operator ==(ImVectorConstCharPtrPtr left, ImVectorConstCharPtr* right) => left.Handle == right;
-
-		public static bool operator !=(ImVectorConstCharPtrPtr left, ImVectorConstCharPtr* right) => left.Handle != right;
-
-		public bool Equals(ImVectorConstCharPtrPtr other) => Handle == other.Handle;
-
-		/// <inheritdoc/>
-		public override bool Equals(object obj) => obj is ImVectorConstCharPtrPtr handle && Equals(handle);
-
-		/// <inheritdoc/>
-		public override int GetHashCode() => ((nuint)Handle).GetHashCode();
-
-		#if NET5_0_OR_GREATER
-		private string DebuggerDisplay => string.Format("ImVectorConstCharPtrPtr [0x{0}]", ((nuint)Handle).ToString("X"));
-		#endif
-		public ref int Size => ref Unsafe.AsRef<int>(&Handle->Size);
-		public ref int Capacity => ref Unsafe.AsRef<int>(&Handle->Capacity);
-		public byte** Data { get => Handle->Data; set => Handle->Data = value; }
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
