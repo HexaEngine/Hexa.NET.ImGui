@@ -18,6 +18,9 @@ namespace Hexa.NET.ImNodes
 {
 	public unsafe partial class ImNodes
 	{
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static EmulateThreeButtonMouse* EmulateThreeButtonMouseNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -27,12 +30,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static EmulateThreeButtonMousePtr EmulateThreeButtonMouse()
 		{
 			EmulateThreeButtonMousePtr ret = EmulateThreeButtonMouseNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void DestroyNative(EmulateThreeButtonMouse* self)
 		{
 			#if NET5_0_OR_GREATER
@@ -42,11 +51,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(EmulateThreeButtonMousePtr self)
 		{
 			DestroyNative(self);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(ref EmulateThreeButtonMouse self)
 		{
 			fixed (EmulateThreeButtonMouse* pself = &self)
@@ -55,6 +70,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static LinkDetachWithModifierClick* LinkDetachWithModifierClickNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -64,12 +82,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static LinkDetachWithModifierClickPtr LinkDetachWithModifierClick()
 		{
 			LinkDetachWithModifierClickPtr ret = LinkDetachWithModifierClickNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void DestroyNative(LinkDetachWithModifierClick* self)
 		{
 			#if NET5_0_OR_GREATER
@@ -79,11 +103,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(LinkDetachWithModifierClickPtr self)
 		{
 			DestroyNative(self);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(ref LinkDetachWithModifierClick self)
 		{
 			fixed (LinkDetachWithModifierClick* pself = &self)
@@ -92,6 +122,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static MultipleSelectModifier* MultipleSelectModifierNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -101,12 +134,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static MultipleSelectModifierPtr MultipleSelectModifier()
 		{
 			MultipleSelectModifierPtr ret = MultipleSelectModifierNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void DestroyNative(MultipleSelectModifier* self)
 		{
 			#if NET5_0_OR_GREATER
@@ -116,11 +155,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(MultipleSelectModifierPtr self)
 		{
 			DestroyNative(self);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(ref MultipleSelectModifier self)
 		{
 			fixed (MultipleSelectModifier* pself = &self)
@@ -129,6 +174,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static ImNodesIO* ImNodesIONative()
 		{
 			#if NET5_0_OR_GREATER
@@ -138,12 +186,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static ImNodesIOPtr ImNodesIO()
 		{
 			ImNodesIOPtr ret = ImNodesIONative();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void DestroyNative(ImNodesIO* self)
 		{
 			#if NET5_0_OR_GREATER
@@ -153,11 +207,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(ImNodesIOPtr self)
 		{
 			DestroyNative(self);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(ref ImNodesIO self)
 		{
 			fixed (ImNodesIO* pself = &self)
@@ -166,6 +226,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static ImNodesStyle* ImNodesStyleNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -175,12 +238,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static ImNodesStylePtr ImNodesStyle()
 		{
 			ImNodesStylePtr ret = ImNodesStyleNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void DestroyNative(ImNodesStyle* self)
 		{
 			#if NET5_0_OR_GREATER
@@ -190,11 +259,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(ImNodesStylePtr self)
 		{
 			DestroyNative(self);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(ref ImNodesStyle self)
 		{
 			fixed (ImNodesStyle* pself = &self)
@@ -203,6 +278,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SetImGuiContextNative(ImGuiContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
@@ -212,11 +290,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
-		public static void SetImGuiContext(ImGuiContextPtr ctx)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SetImGuiContext(ImGuiContext* ctx)
 		{
 			SetImGuiContextNative(ctx);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SetImGuiContext(ref ImGuiContext ctx)
 		{
 			fixed (ImGuiContext* pctx = &ctx)
@@ -225,6 +309,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static ImNodesContext* CreateContextNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -234,12 +321,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static ImNodesContextPtr CreateContext()
 		{
 			ImNodesContextPtr ret = CreateContextNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void DestroyContextNative(ImNodesContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
@@ -249,16 +342,25 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void DestroyContext(ImNodesContextPtr ctx)
 		{
 			DestroyContextNative(ctx);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void DestroyContext()
 		{
 			DestroyContextNative((ImNodesContext*)(default));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void DestroyContext(ref ImNodesContext ctx)
 		{
 			fixed (ImNodesContext* pctx = &ctx)
@@ -267,6 +369,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static ImNodesContext* GetCurrentContextNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -276,12 +381,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static ImNodesContextPtr GetCurrentContext()
 		{
 			ImNodesContextPtr ret = GetCurrentContextNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SetCurrentContextNative(ImNodesContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
@@ -291,11 +402,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SetCurrentContext(ImNodesContextPtr ctx)
 		{
 			SetCurrentContextNative(ctx);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SetCurrentContext(ref ImNodesContext ctx)
 		{
 			fixed (ImNodesContext* pctx = &ctx)
@@ -304,6 +421,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static ImNodesEditorContext* EditorContextCreateNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -313,12 +433,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static ImNodesEditorContextPtr EditorContextCreate()
 		{
 			ImNodesEditorContextPtr ret = EditorContextCreateNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void EditorContextFreeNative(ImNodesEditorContext* noname1)
 		{
 			#if NET5_0_OR_GREATER
@@ -328,11 +454,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void EditorContextFree(ImNodesEditorContextPtr noname1)
 		{
 			EditorContextFreeNative(noname1);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void EditorContextFree(ref ImNodesEditorContext noname1)
 		{
 			fixed (ImNodesEditorContext* pnoname1 = &noname1)
@@ -341,6 +473,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void EditorContextSetNative(ImNodesEditorContext* noname1)
 		{
 			#if NET5_0_OR_GREATER
@@ -350,11 +485,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void EditorContextSet(ImNodesEditorContextPtr noname1)
 		{
 			EditorContextSetNative(noname1);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void EditorContextSet(ref ImNodesEditorContext noname1)
 		{
 			fixed (ImNodesEditorContext* pnoname1 = &noname1)
@@ -363,15 +504,21 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		internal static void EditorContextGetPanningNative(Vector2* output)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void EditorContextGetPanningNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[18])(output);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[18])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[18])((nint)output);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[18])((nint)pOut);
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static Vector2 EditorContextGetPanning()
 		{
 			Vector2 ret;
@@ -379,19 +526,28 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		public static void EditorContextGetPanning(Vector2* output)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void EditorContextGetPanning(Vector2* pOut)
 		{
-			EditorContextGetPanningNative(output);
+			EditorContextGetPanningNative(pOut);
 		}
 
-		public static void EditorContextGetPanning(ref Vector2 output)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void EditorContextGetPanning(ref Vector2 pOut)
 		{
-			fixed (Vector2* poutput = &output)
+			fixed (Vector2* ppOut = &pOut)
 			{
-				EditorContextGetPanningNative((Vector2*)poutput);
+				EditorContextGetPanningNative((Vector2*)ppOut);
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void EditorContextResetPanningNative(Vector2 pos)
 		{
 			#if NET5_0_OR_GREATER
@@ -401,11 +557,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void EditorContextResetPanning(Vector2 pos)
 		{
 			EditorContextResetPanningNative(pos);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void EditorContextMoveToNodeNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
@@ -415,11 +577,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void EditorContextMoveToNode(int nodeId)
 		{
 			EditorContextMoveToNodeNative(nodeId);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static ImNodesIO* GetIONative()
 		{
 			#if NET5_0_OR_GREATER
@@ -429,12 +597,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static ImNodesIOPtr GetIO()
 		{
 			ImNodesIOPtr ret = GetIONative();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static ImNodesStyle* GetStyleNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -444,12 +618,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static ImNodesStylePtr GetStyle()
 		{
 			ImNodesStylePtr ret = GetStyleNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void StyleColorsDarkNative(ImNodesStyle* dest)
 		{
 			#if NET5_0_OR_GREATER
@@ -459,16 +639,25 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void StyleColorsDark(ImNodesStylePtr dest)
 		{
 			StyleColorsDarkNative(dest);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void StyleColorsDark()
 		{
 			StyleColorsDarkNative((ImNodesStyle*)(default));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void StyleColorsDark(ref ImNodesStyle dest)
 		{
 			fixed (ImNodesStyle* pdest = &dest)
@@ -477,6 +666,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void StyleColorsClassicNative(ImNodesStyle* dest)
 		{
 			#if NET5_0_OR_GREATER
@@ -486,16 +678,25 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void StyleColorsClassic(ImNodesStylePtr dest)
 		{
 			StyleColorsClassicNative(dest);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void StyleColorsClassic()
 		{
 			StyleColorsClassicNative((ImNodesStyle*)(default));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void StyleColorsClassic(ref ImNodesStyle dest)
 		{
 			fixed (ImNodesStyle* pdest = &dest)
@@ -504,6 +705,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void StyleColorsLightNative(ImNodesStyle* dest)
 		{
 			#if NET5_0_OR_GREATER
@@ -513,16 +717,25 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void StyleColorsLight(ImNodesStylePtr dest)
 		{
 			StyleColorsLightNative(dest);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void StyleColorsLight()
 		{
 			StyleColorsLightNative((ImNodesStyle*)(default));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void StyleColorsLight(ref ImNodesStyle dest)
 		{
 			fixed (ImNodesStyle* pdest = &dest)
@@ -531,6 +744,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void BeginNodeEditorNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -540,11 +756,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void BeginNodeEditor()
 		{
 			BeginNodeEditorNative();
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void EndNodeEditorNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -554,11 +776,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void EndNodeEditor()
 		{
 			EndNodeEditorNative();
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void MiniMapNative(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
 		{
 			#if NET5_0_OR_GREATER
@@ -568,86 +796,137 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
 		{
 			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, nodeHoveringCallbackData);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
 		{
 			MiniMapNative(minimapSizeFraction, location, nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location)
 		{
 			MiniMapNative(minimapSizeFraction, location, (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(float minimapSizeFraction)
 		{
 			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap()
 		{
 			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(ImNodesMiniMapLocation location)
 		{
 			MiniMapNative((float)(0.2f), location, (ImNodesMiniMapNodeHoveringCallback)(default), (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
 		{
 			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
 		{
 			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback)
 		{
 			MiniMapNative((float)(0.2f), location, nodeHoveringCallback, (ImNodesMiniMapNodeHoveringCallbackUserData)(default));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
 		{
 			MiniMapNative(minimapSizeFraction, location, (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
 		{
 			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
 		{
 			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
 		{
 			MiniMapNative((float)(0.2f), location, (ImNodesMiniMapNodeHoveringCallback)(default), nodeHoveringCallbackData);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(float minimapSizeFraction, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
 		{
 			MiniMapNative(minimapSizeFraction, (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, nodeHoveringCallbackData);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
 		{
 			MiniMapNative((float)(0.2f), (ImNodesMiniMapLocation)(ImNodesMiniMapLocation.TopLeft), nodeHoveringCallback, nodeHoveringCallbackData);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void MiniMap(ImNodesMiniMapLocation location, ImNodesMiniMapNodeHoveringCallback nodeHoveringCallback, ImNodesMiniMapNodeHoveringCallbackUserData nodeHoveringCallbackData)
 		{
 			MiniMapNative((float)(0.2f), location, nodeHoveringCallback, nodeHoveringCallbackData);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PushColorStyleNative(ImNodesCol item, uint color)
 		{
 			#if NET5_0_OR_GREATER
@@ -657,11 +936,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PushColorStyle(ImNodesCol item, uint color)
 		{
 			PushColorStyleNative(item, color);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PopColorStyleNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -671,11 +956,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PopColorStyle()
 		{
 			PopColorStyleNative();
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PushStyleVarNative(ImNodesStyleVar styleItem, float value)
 		{
 			#if NET5_0_OR_GREATER
@@ -685,11 +976,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PushStyleVar(ImNodesStyleVar styleItem, float value)
 		{
 			PushStyleVarNative(styleItem, value);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PushStyleVarNative(ImNodesStyleVar styleItem, Vector2 value)
 		{
 			#if NET5_0_OR_GREATER
@@ -699,11 +996,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PushStyleVar(ImNodesStyleVar styleItem, Vector2 value)
 		{
 			PushStyleVarNative(styleItem, value);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PopStyleVarNative(int count)
 		{
 			#if NET5_0_OR_GREATER
@@ -713,16 +1016,25 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PopStyleVar(int count)
 		{
 			PopStyleVarNative(count);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PopStyleVar()
 		{
 			PopStyleVarNative((int)(1));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void BeginNodeNative(int id)
 		{
 			#if NET5_0_OR_GREATER
@@ -732,11 +1044,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void BeginNode(int id)
 		{
 			BeginNodeNative(id);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void EndNodeNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -746,20 +1064,29 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void EndNode()
 		{
 			EndNodeNative();
 		}
 
-		internal static void GetNodeDimensionsNative(Vector2* output, int id)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void GetNodeDimensionsNative(Vector2* pOut, int id)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[36])(output, id);
+			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[36])(pOut, id);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[36])((nint)output, id);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[36])((nint)pOut, id);
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static Vector2 GetNodeDimensions(int id)
 		{
 			Vector2 ret;
@@ -767,19 +1094,28 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		public static void GetNodeDimensions(Vector2* output, int id)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GetNodeDimensions(Vector2* pOut, int id)
 		{
-			GetNodeDimensionsNative(output, id);
+			GetNodeDimensionsNative(pOut, id);
 		}
 
-		public static void GetNodeDimensions(ref Vector2 output, int id)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GetNodeDimensions(ref Vector2 pOut, int id)
 		{
-			fixed (Vector2* poutput = &output)
+			fixed (Vector2* ppOut = &pOut)
 			{
-				GetNodeDimensionsNative((Vector2*)poutput, id);
+				GetNodeDimensionsNative((Vector2*)ppOut, id);
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void BeginNodeTitleBarNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -789,11 +1125,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void BeginNodeTitleBar()
 		{
 			BeginNodeTitleBarNative();
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void EndNodeTitleBarNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -803,11 +1145,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void EndNodeTitleBar()
 		{
 			EndNodeTitleBarNative();
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void BeginInputAttributeNative(int id, ImNodesPinShape shape)
 		{
 			#if NET5_0_OR_GREATER
@@ -817,16 +1165,25 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void BeginInputAttribute(int id, ImNodesPinShape shape)
 		{
 			BeginInputAttributeNative(id, shape);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void BeginInputAttribute(int id)
 		{
 			BeginInputAttributeNative(id, (ImNodesPinShape)(ImNodesPinShape.CircleFilled));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void EndInputAttributeNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -836,11 +1193,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void EndInputAttribute()
 		{
 			EndInputAttributeNative();
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void BeginOutputAttributeNative(int id, ImNodesPinShape shape)
 		{
 			#if NET5_0_OR_GREATER
@@ -850,16 +1213,25 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void BeginOutputAttribute(int id, ImNodesPinShape shape)
 		{
 			BeginOutputAttributeNative(id, shape);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void BeginOutputAttribute(int id)
 		{
 			BeginOutputAttributeNative(id, (ImNodesPinShape)(ImNodesPinShape.CircleFilled));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void EndOutputAttributeNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -869,11 +1241,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void EndOutputAttribute()
 		{
 			EndOutputAttributeNative();
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void BeginStaticAttributeNative(int id)
 		{
 			#if NET5_0_OR_GREATER
@@ -883,11 +1261,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void BeginStaticAttribute(int id)
 		{
 			BeginStaticAttributeNative(id);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void EndStaticAttributeNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -897,11 +1281,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void EndStaticAttribute()
 		{
 			EndStaticAttributeNative();
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PushAttributeFlagNative(ImNodesAttributeFlags flag)
 		{
 			#if NET5_0_OR_GREATER
@@ -911,11 +1301,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PushAttributeFlag(ImNodesAttributeFlags flag)
 		{
 			PushAttributeFlagNative(flag);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PopAttributeFlagNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -925,11 +1321,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PopAttributeFlag()
 		{
 			PopAttributeFlagNative();
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void LinkNative(int id, int startAttributeId, int endAttributeId)
 		{
 			#if NET5_0_OR_GREATER
@@ -939,11 +1341,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Link(int id, int startAttributeId, int endAttributeId)
 		{
 			LinkNative(id, startAttributeId, endAttributeId);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SetNodeDraggableNative(int nodeId, byte draggable)
 		{
 			#if NET5_0_OR_GREATER
@@ -953,11 +1361,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SetNodeDraggable(int nodeId, bool draggable)
 		{
 			SetNodeDraggableNative(nodeId, draggable ? (byte)1 : (byte)0);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SetNodeScreenSpacePosNative(int nodeId, Vector2 screenSpacePos)
 		{
 			#if NET5_0_OR_GREATER
@@ -967,11 +1381,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SetNodeScreenSpacePos(int nodeId, Vector2 screenSpacePos)
 		{
 			SetNodeScreenSpacePosNative(nodeId, screenSpacePos);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SetNodeEditorSpacePosNative(int nodeId, Vector2 editorSpacePos)
 		{
 			#if NET5_0_OR_GREATER
@@ -981,11 +1401,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SetNodeEditorSpacePos(int nodeId, Vector2 editorSpacePos)
 		{
 			SetNodeEditorSpacePosNative(nodeId, editorSpacePos);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SetNodeGridSpacePosNative(int nodeId, Vector2 gridPos)
 		{
 			#if NET5_0_OR_GREATER
@@ -995,20 +1421,29 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SetNodeGridSpacePos(int nodeId, Vector2 gridPos)
 		{
 			SetNodeGridSpacePosNative(nodeId, gridPos);
 		}
 
-		internal static void GetNodeScreenSpacePosNative(Vector2* output, int nodeId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void GetNodeScreenSpacePosNative(Vector2* pOut, int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[52])(output, nodeId);
+			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[52])(pOut, nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[52])((nint)output, nodeId);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[52])((nint)pOut, nodeId);
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static Vector2 GetNodeScreenSpacePos(int nodeId)
 		{
 			Vector2 ret;
@@ -1016,28 +1451,40 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		public static void GetNodeScreenSpacePos(Vector2* output, int nodeId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GetNodeScreenSpacePos(Vector2* pOut, int nodeId)
 		{
-			GetNodeScreenSpacePosNative(output, nodeId);
+			GetNodeScreenSpacePosNative(pOut, nodeId);
 		}
 
-		public static void GetNodeScreenSpacePos(ref Vector2 output, int nodeId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GetNodeScreenSpacePos(ref Vector2 pOut, int nodeId)
 		{
-			fixed (Vector2* poutput = &output)
+			fixed (Vector2* ppOut = &pOut)
 			{
-				GetNodeScreenSpacePosNative((Vector2*)poutput, nodeId);
+				GetNodeScreenSpacePosNative((Vector2*)ppOut, nodeId);
 			}
 		}
 
-		internal static void GetNodeEditorSpacePosNative(Vector2* output, int nodeId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void GetNodeEditorSpacePosNative(Vector2* pOut, int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[53])(output, nodeId);
+			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[53])(pOut, nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[53])((nint)output, nodeId);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[53])((nint)pOut, nodeId);
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static Vector2 GetNodeEditorSpacePos(int nodeId)
 		{
 			Vector2 ret;
@@ -1045,28 +1492,40 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		public static void GetNodeEditorSpacePos(Vector2* output, int nodeId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GetNodeEditorSpacePos(Vector2* pOut, int nodeId)
 		{
-			GetNodeEditorSpacePosNative(output, nodeId);
+			GetNodeEditorSpacePosNative(pOut, nodeId);
 		}
 
-		public static void GetNodeEditorSpacePos(ref Vector2 output, int nodeId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GetNodeEditorSpacePos(ref Vector2 pOut, int nodeId)
 		{
-			fixed (Vector2* poutput = &output)
+			fixed (Vector2* ppOut = &pOut)
 			{
-				GetNodeEditorSpacePosNative((Vector2*)poutput, nodeId);
+				GetNodeEditorSpacePosNative((Vector2*)ppOut, nodeId);
 			}
 		}
 
-		internal static void GetNodeGridSpacePosNative(Vector2* output, int nodeId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void GetNodeGridSpacePosNative(Vector2* pOut, int nodeId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[54])(output, nodeId);
+			((delegate* unmanaged[Cdecl]<Vector2*, int, void>)vt[54])(pOut, nodeId);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[54])((nint)output, nodeId);
+			((delegate* unmanaged[Cdecl]<nint, int, void>)vt[54])((nint)pOut, nodeId);
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static Vector2 GetNodeGridSpacePos(int nodeId)
 		{
 			Vector2 ret;
@@ -1074,19 +1533,28 @@ namespace Hexa.NET.ImNodes
 			return ret;
 		}
 
-		public static void GetNodeGridSpacePos(Vector2* output, int nodeId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GetNodeGridSpacePos(Vector2* pOut, int nodeId)
 		{
-			GetNodeGridSpacePosNative(output, nodeId);
+			GetNodeGridSpacePosNative(pOut, nodeId);
 		}
 
-		public static void GetNodeGridSpacePos(ref Vector2 output, int nodeId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void GetNodeGridSpacePos(ref Vector2 pOut, int nodeId)
 		{
-			fixed (Vector2* poutput = &output)
+			fixed (Vector2* ppOut = &pOut)
 			{
-				GetNodeGridSpacePosNative((Vector2*)poutput, nodeId);
+				GetNodeGridSpacePosNative((Vector2*)ppOut, nodeId);
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SnapNodeToGridNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
@@ -1096,11 +1564,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SnapNodeToGrid(int nodeId)
 		{
 			SnapNodeToGridNative(nodeId);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsEditorHoveredNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1110,12 +1584,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsEditorHovered()
 		{
 			byte ret = IsEditorHoveredNative();
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsNodeHoveredNative(int* nodeId)
 		{
 			#if NET5_0_OR_GREATER
@@ -1125,12 +1605,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsNodeHovered(int* nodeId)
 		{
 			byte ret = IsNodeHoveredNative(nodeId);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsNodeHovered(ref int nodeId)
 		{
 			fixed (int* pnodeId = &nodeId)
@@ -1140,6 +1626,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsLinkHoveredNative(int* linkId)
 		{
 			#if NET5_0_OR_GREATER
@@ -1149,12 +1638,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkHovered(int* linkId)
 		{
 			byte ret = IsLinkHoveredNative(linkId);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkHovered(ref int linkId)
 		{
 			fixed (int* plinkId = &linkId)
@@ -1164,6 +1659,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsPinHoveredNative(int* attributeId)
 		{
 			#if NET5_0_OR_GREATER
@@ -1173,12 +1671,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsPinHovered(int* attributeId)
 		{
 			byte ret = IsPinHoveredNative(attributeId);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsPinHovered(ref int attributeId)
 		{
 			fixed (int* pattributeId = &attributeId)
@@ -1188,6 +1692,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static int NumSelectedNodesNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1197,12 +1704,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static int NumSelectedNodes()
 		{
 			int ret = NumSelectedNodesNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static int NumSelectedLinksNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1212,12 +1725,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static int NumSelectedLinks()
 		{
 			int ret = NumSelectedLinksNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void GetSelectedNodesNative(int* nodeIds)
 		{
 			#if NET5_0_OR_GREATER
@@ -1227,11 +1746,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void GetSelectedNodes(int* nodeIds)
 		{
 			GetSelectedNodesNative(nodeIds);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void GetSelectedNodes(ref int nodeIds)
 		{
 			fixed (int* pnodeIds = &nodeIds)
@@ -1240,6 +1765,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void GetSelectedLinksNative(int* linkIds)
 		{
 			#if NET5_0_OR_GREATER
@@ -1249,11 +1777,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void GetSelectedLinks(int* linkIds)
 		{
 			GetSelectedLinksNative(linkIds);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void GetSelectedLinks(ref int linkIds)
 		{
 			fixed (int* plinkIds = &linkIds)
@@ -1262,6 +1796,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void ClearNodeSelectionNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1271,11 +1808,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void ClearNodeSelection()
 		{
 			ClearNodeSelectionNative();
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void ClearLinkSelectionNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1285,11 +1828,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void ClearLinkSelection()
 		{
 			ClearLinkSelectionNative();
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SelectNodeNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
@@ -1299,11 +1848,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SelectNode(int nodeId)
 		{
 			SelectNodeNative(nodeId);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void ClearNodeSelectionNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
@@ -1313,11 +1868,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void ClearNodeSelection(int nodeId)
 		{
 			ClearNodeSelectionNative(nodeId);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsNodeSelectedNative(int nodeId)
 		{
 			#if NET5_0_OR_GREATER
@@ -1327,12 +1888,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsNodeSelected(int nodeId)
 		{
 			byte ret = IsNodeSelectedNative(nodeId);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SelectLinkNative(int linkId)
 		{
 			#if NET5_0_OR_GREATER
@@ -1342,11 +1909,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SelectLink(int linkId)
 		{
 			SelectLinkNative(linkId);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void ClearLinkSelectionNative(int linkId)
 		{
 			#if NET5_0_OR_GREATER
@@ -1356,11 +1929,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void ClearLinkSelection(int linkId)
 		{
 			ClearLinkSelectionNative(linkId);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsLinkSelectedNative(int linkId)
 		{
 			#if NET5_0_OR_GREATER
@@ -1370,12 +1949,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkSelected(int linkId)
 		{
 			byte ret = IsLinkSelectedNative(linkId);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsAttributeActiveNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1385,12 +1970,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsAttributeActive()
 		{
 			byte ret = IsAttributeActiveNative();
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsAnyAttributeActiveNative(int* attributeId)
 		{
 			#if NET5_0_OR_GREATER
@@ -1400,18 +1991,27 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsAnyAttributeActive(int* attributeId)
 		{
 			byte ret = IsAnyAttributeActiveNative(attributeId);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsAnyAttributeActive()
 		{
 			byte ret = IsAnyAttributeActiveNative((int*)(default));
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsAnyAttributeActive(ref int attributeId)
 		{
 			fixed (int* pattributeId = &attributeId)
@@ -1421,6 +2021,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsLinkStartedNative(int* startedAtAttributeId)
 		{
 			#if NET5_0_OR_GREATER
@@ -1430,12 +2033,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkStarted(int* startedAtAttributeId)
 		{
 			byte ret = IsLinkStartedNative(startedAtAttributeId);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkStarted(ref int startedAtAttributeId)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1445,6 +2054,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsLinkDroppedNative(int* startedAtAttributeId, byte includingDetachedLinks)
 		{
 			#if NET5_0_OR_GREATER
@@ -1454,30 +2066,45 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkDropped(int* startedAtAttributeId, bool includingDetachedLinks)
 		{
 			byte ret = IsLinkDroppedNative(startedAtAttributeId, includingDetachedLinks ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkDropped(int* startedAtAttributeId)
 		{
 			byte ret = IsLinkDroppedNative(startedAtAttributeId, (byte)(1));
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkDropped()
 		{
 			byte ret = IsLinkDroppedNative((int*)(default), (byte)(1));
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkDropped(bool includingDetachedLinks)
 		{
 			byte ret = IsLinkDroppedNative((int*)(default), includingDetachedLinks ? (byte)1 : (byte)0);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkDropped(ref int startedAtAttributeId, bool includingDetachedLinks)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1487,6 +2114,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkDropped(ref int startedAtAttributeId)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1496,6 +2126,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsLinkCreatedNative(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			#if NET5_0_OR_GREATER
@@ -1505,18 +2138,27 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			byte ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, createdFromSnap);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId)
 		{
 			byte ret = IsLinkCreatedNative(startedAtAttributeId, endedAtAttributeId, (bool*)(default));
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtAttributeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1526,6 +2168,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtAttributeId, int* endedAtAttributeId)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1535,6 +2180,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtAttributeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
@@ -1544,6 +2192,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtAttributeId, ref int endedAtAttributeId)
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
@@ -1553,6 +2204,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtAttributeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1565,6 +2219,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtAttributeId, ref int endedAtAttributeId)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1577,6 +2234,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtAttributeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (bool* pcreatedFromSnap = &createdFromSnap)
@@ -1586,6 +2246,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtAttributeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1598,6 +2261,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtAttributeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
@@ -1610,6 +2276,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtAttributeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1625,6 +2294,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsLinkCreatedNative(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			#if NET5_0_OR_GREATER
@@ -1634,18 +2306,27 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, createdFromSnap);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
 		{
 			byte ret = IsLinkCreatedNative(startedAtNodeId, startedAtAttributeId, endedAtNodeId, endedAtAttributeId, (bool*)(default));
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -1655,6 +2336,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -1664,6 +2348,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1673,6 +2360,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1682,6 +2372,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -1694,6 +2387,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -1706,6 +2402,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pendedAtNodeId = &endedAtNodeId)
@@ -1715,6 +2414,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
 		{
 			fixed (int* pendedAtNodeId = &endedAtNodeId)
@@ -1724,6 +2426,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -1736,6 +2441,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -1748,6 +2456,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1760,6 +2471,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1772,6 +2486,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -1787,6 +2504,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -1802,6 +2522,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
@@ -1811,6 +2534,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
@@ -1820,6 +2546,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -1832,6 +2561,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -1844,6 +2576,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1856,6 +2591,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1868,6 +2606,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -1883,6 +2624,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -1898,6 +2642,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pendedAtNodeId = &endedAtNodeId)
@@ -1910,6 +2657,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
 		{
 			fixed (int* pendedAtNodeId = &endedAtNodeId)
@@ -1922,6 +2672,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -1937,6 +2690,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -1952,6 +2708,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1967,6 +2726,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -1982,6 +2744,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, bool* createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -2000,6 +2765,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -2018,6 +2786,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (bool* pcreatedFromSnap = &createdFromSnap)
@@ -2027,6 +2798,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -2039,6 +2813,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -2051,6 +2828,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -2066,6 +2846,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pendedAtNodeId = &endedAtNodeId)
@@ -2078,6 +2861,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -2093,6 +2879,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -2108,6 +2897,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, int* endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -2126,6 +2918,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pendedAtAttributeId = &endedAtAttributeId)
@@ -2138,6 +2933,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -2153,6 +2951,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -2168,6 +2969,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, int* endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -2186,6 +2990,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pendedAtNodeId = &endedAtNodeId)
@@ -2201,6 +3008,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, int* startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -2219,6 +3029,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(int* startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtAttributeId = &startedAtAttributeId)
@@ -2237,6 +3050,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkCreated(ref int startedAtNodeId, ref int startedAtAttributeId, ref int endedAtNodeId, ref int endedAtAttributeId, ref bool createdFromSnap)
 		{
 			fixed (int* pstartedAtNodeId = &startedAtNodeId)
@@ -2258,6 +3074,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsLinkDestroyedNative(int* linkId)
 		{
 			#if NET5_0_OR_GREATER
@@ -2267,12 +3086,18 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkDestroyed(int* linkId)
 		{
 			byte ret = IsLinkDestroyedNative(linkId);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsLinkDestroyed(ref int linkId)
 		{
 			fixed (int* plinkId = &linkId)
@@ -2282,91 +3107,130 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		internal static byte* SaveCurrentEditorStateToIniStringNative(nuint* dataSize)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static byte* SaveCurrentEditorStateToIniStringNative(ulong* dataSize)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<nuint*, byte*>)vt[79])(dataSize);
+			return ((delegate* unmanaged[Cdecl]<ulong*, byte*>)vt[79])(dataSize);
 			#else
 			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[79])((nint)dataSize);
 			#endif
 		}
 
-		public static byte* SaveCurrentEditorStateToIniString(nuint* dataSize)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* SaveCurrentEditorStateToIniString(ulong* dataSize)
 		{
 			byte* ret = SaveCurrentEditorStateToIniStringNative(dataSize);
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static byte* SaveCurrentEditorStateToIniString()
 		{
-			byte* ret = SaveCurrentEditorStateToIniStringNative((nuint*)(default));
+			byte* ret = SaveCurrentEditorStateToIniStringNative((ulong*)(default));
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static string SaveCurrentEditorStateToIniStringS()
 		{
-			string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative((nuint*)(default)));
+			string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative((ulong*)(default)));
 			return ret;
 		}
 
-		public static string SaveCurrentEditorStateToIniStringS(nuint* dataSize)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string SaveCurrentEditorStateToIniStringS(ulong* dataSize)
 		{
 			string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative(dataSize));
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static byte* SaveCurrentEditorStateToIniString(ref nuint dataSize)
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
-				byte* ret = SaveCurrentEditorStateToIniStringNative((nuint*)pdataSize);
+				byte* ret = SaveCurrentEditorStateToIniStringNative((ulong*)pdataSize);
 				return ret;
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static string SaveCurrentEditorStateToIniStringS(ref nuint dataSize)
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
-				string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative((nuint*)pdataSize));
+				string ret = Utils.DecodeStringUTF8(SaveCurrentEditorStateToIniStringNative((ulong*)pdataSize));
 				return ret;
 			}
 		}
 
-		internal static byte* SaveEditorStateToIniStringNative(ImNodesEditorContext* editor, nuint* dataSize)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static byte* SaveEditorStateToIniStringNative(ImNodesEditorContext* editor, ulong* dataSize)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, nuint*, byte*>)vt[80])(editor, dataSize);
+			return ((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, ulong*, byte*>)vt[80])(editor, dataSize);
 			#else
 			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)vt[80])((nint)editor, (nint)dataSize);
 			#endif
 		}
 
-		public static byte* SaveEditorStateToIniString(ImNodesEditorContextPtr editor, nuint* dataSize)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* SaveEditorStateToIniString(ImNodesEditorContextPtr editor, ulong* dataSize)
 		{
 			byte* ret = SaveEditorStateToIniStringNative(editor, dataSize);
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static byte* SaveEditorStateToIniString(ImNodesEditorContextPtr editor)
 		{
-			byte* ret = SaveEditorStateToIniStringNative(editor, (nuint*)(default));
+			byte* ret = SaveEditorStateToIniStringNative(editor, (ulong*)(default));
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static string SaveEditorStateToIniStringS(ImNodesEditorContextPtr editor)
 		{
-			string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, (nuint*)(default)));
+			string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, (ulong*)(default)));
 			return ret;
 		}
 
-		public static string SaveEditorStateToIniStringS(ImNodesEditorContextPtr editor, nuint* dataSize)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string SaveEditorStateToIniStringS(ImNodesEditorContextPtr editor, ulong* dataSize)
 		{
 			string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, dataSize));
 			return ret;
 		}
 
-		public static byte* SaveEditorStateToIniString(ref ImNodesEditorContext editor, nuint* dataSize)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static byte* SaveEditorStateToIniString(ref ImNodesEditorContext editor, ulong* dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
@@ -2375,25 +3239,34 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static byte* SaveEditorStateToIniString(ref ImNodesEditorContext editor)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
-				byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)(default));
+				byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (ulong*)(default));
 				return ret;
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
-				string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)(default)));
+				string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (ulong*)(default)));
 				return ret;
 			}
 		}
 
-		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor, nuint* dataSize)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor, ulong* dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
@@ -2402,62 +3275,142 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static byte* SaveEditorStateToIniString(ImNodesEditorContextPtr editor, ref nuint dataSize)
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
-				byte* ret = SaveEditorStateToIniStringNative(editor, (nuint*)pdataSize);
+				byte* ret = SaveEditorStateToIniStringNative(editor, (ulong*)pdataSize);
 				return ret;
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static string SaveEditorStateToIniStringS(ImNodesEditorContextPtr editor, ref nuint dataSize)
 		{
 			fixed (nuint* pdataSize = &dataSize)
 			{
-				string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, (nuint*)pdataSize));
+				string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative(editor, (ulong*)pdataSize));
 				return ret;
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static byte* SaveEditorStateToIniString(ref ImNodesEditorContext editor, ref nuint dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
 				fixed (nuint* pdataSize = &dataSize)
 				{
-					byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)pdataSize);
+					byte* ret = SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (ulong*)pdataSize);
 					return ret;
 				}
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static string SaveEditorStateToIniStringS(ref ImNodesEditorContext editor, ref nuint dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
 			{
 				fixed (nuint* pdataSize = &dataSize)
 				{
-					string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (nuint*)pdataSize));
+					string ret = Utils.DecodeStringUTF8(SaveEditorStateToIniStringNative((ImNodesEditorContext*)peditor, (ulong*)pdataSize));
 					return ret;
 				}
 			}
 		}
 
-		internal static void LoadCurrentEditorStateFromIniStringNative(byte* data, nuint dataSize)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void LoadCurrentEditorStateFromIniStringNative(byte* data, ulong dataSize)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[81])(data, dataSize);
+			((delegate* unmanaged[Cdecl]<byte*, ulong, void>)vt[81])(data, dataSize);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[81])((nint)data, dataSize);
+			((delegate* unmanaged[Cdecl]<nint, ulong, void>)vt[81])((nint)data, dataSize);
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadCurrentEditorStateFromIniString(byte* data, ulong dataSize)
+		{
+			LoadCurrentEditorStateFromIniStringNative(data, dataSize);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadCurrentEditorStateFromIniString(ref byte data, ulong dataSize)
+		{
+			fixed (byte* pdata = &data)
+			{
+				LoadCurrentEditorStateFromIniStringNative((byte*)pdata, dataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadCurrentEditorStateFromIniString(ReadOnlySpan<byte> data, ulong dataSize)
+		{
+			fixed (byte* pdata = data)
+			{
+				LoadCurrentEditorStateFromIniStringNative((byte*)pdata, dataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadCurrentEditorStateFromIniString(string data, ulong dataSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (data != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(data);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(data, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			LoadCurrentEditorStateFromIniStringNative(pStr0, dataSize);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadCurrentEditorStateFromIniString(byte* data, nuint dataSize)
 		{
 			LoadCurrentEditorStateFromIniStringNative(data, dataSize);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadCurrentEditorStateFromIniString(ref byte data, nuint dataSize)
 		{
 			fixed (byte* pdata = &data)
@@ -2466,6 +3419,20 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadCurrentEditorStateFromIniString(ReadOnlySpan<byte> data, nuint dataSize)
+		{
+			fixed (byte* pdata = data)
+			{
+				LoadCurrentEditorStateFromIniStringNative((byte*)pdata, dataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadCurrentEditorStateFromIniString(string data, nuint dataSize)
 		{
 			byte* pStr0 = null;
@@ -2492,28 +3459,159 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static void LoadCurrentEditorStateFromIniString(ReadOnlySpan<byte> data, nuint dataSize)
-		{
-			fixed (byte* pdata = data)
-			{
-				LoadCurrentEditorStateFromIniStringNative((byte*)pdata, dataSize);
-			}
-		}
-
-		internal static void LoadEditorStateFromIniStringNative(ImNodesEditorContext* editor, byte* data, nuint dataSize)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void LoadEditorStateFromIniStringNative(ImNodesEditorContext* editor, byte* data, ulong dataSize)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, byte*, nuint, void>)vt[82])(editor, data, dataSize);
+			((delegate* unmanaged[Cdecl]<ImNodesEditorContext*, byte*, ulong, void>)vt[82])(editor, data, dataSize);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)vt[82])((nint)editor, (nint)data, dataSize);
+			((delegate* unmanaged[Cdecl]<nint, nint, ulong, void>)vt[82])((nint)editor, (nint)data, dataSize);
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, byte* data, ulong dataSize)
+		{
+			LoadEditorStateFromIniStringNative(editor, data, dataSize);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, byte* data, ulong dataSize)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				LoadEditorStateFromIniStringNative((ImNodesEditorContext*)peditor, data, dataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, ref byte data, ulong dataSize)
+		{
+			fixed (byte* pdata = &data)
+			{
+				LoadEditorStateFromIniStringNative(editor, (byte*)pdata, dataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, ReadOnlySpan<byte> data, ulong dataSize)
+		{
+			fixed (byte* pdata = data)
+			{
+				LoadEditorStateFromIniStringNative(editor, (byte*)pdata, dataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, string data, ulong dataSize)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (data != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(data);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(data, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			LoadEditorStateFromIniStringNative(editor, pStr0, dataSize);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, ref byte data, ulong dataSize)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				fixed (byte* pdata = &data)
+				{
+					LoadEditorStateFromIniStringNative((ImNodesEditorContext*)peditor, (byte*)pdata, dataSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, ReadOnlySpan<byte> data, ulong dataSize)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				fixed (byte* pdata = data)
+				{
+					LoadEditorStateFromIniStringNative((ImNodesEditorContext*)peditor, (byte*)pdata, dataSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, string data, ulong dataSize)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (data != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(data);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(data, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				LoadEditorStateFromIniStringNative((ImNodesEditorContext*)peditor, pStr0, dataSize);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, byte* data, nuint dataSize)
 		{
 			LoadEditorStateFromIniStringNative(editor, data, dataSize);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, byte* data, nuint dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
@@ -2522,6 +3620,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, ref byte data, nuint dataSize)
 		{
 			fixed (byte* pdata = &data)
@@ -2530,6 +3631,20 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, ReadOnlySpan<byte> data, nuint dataSize)
+		{
+			fixed (byte* pdata = data)
+			{
+				LoadEditorStateFromIniStringNative(editor, (byte*)pdata, dataSize);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, string data, nuint dataSize)
 		{
 			byte* pStr0 = null;
@@ -2556,14 +3671,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static void LoadEditorStateFromIniString(ImNodesEditorContextPtr editor, ReadOnlySpan<byte> data, nuint dataSize)
-		{
-			fixed (byte* pdata = data)
-			{
-				LoadEditorStateFromIniStringNative(editor, (byte*)pdata, dataSize);
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, ref byte data, nuint dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
@@ -2575,6 +3685,23 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, ReadOnlySpan<byte> data, nuint dataSize)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				fixed (byte* pdata = data)
+				{
+					LoadEditorStateFromIniStringNative((ImNodesEditorContext*)peditor, (byte*)pdata, dataSize);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, string data, nuint dataSize)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
@@ -2604,17 +3731,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static void LoadEditorStateFromIniString(ref ImNodesEditorContext editor, ReadOnlySpan<byte> data, nuint dataSize)
-		{
-			fixed (ImNodesEditorContext* peditor = &editor)
-			{
-				fixed (byte* pdata = data)
-				{
-					LoadEditorStateFromIniStringNative((ImNodesEditorContext*)peditor, (byte*)pdata, dataSize);
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SaveCurrentEditorStateToIniFileNative(byte* fileName)
 		{
 			#if NET5_0_OR_GREATER
@@ -2624,11 +3743,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SaveCurrentEditorStateToIniFile(byte* fileName)
 		{
 			SaveCurrentEditorStateToIniFileNative(fileName);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SaveCurrentEditorStateToIniFile(ref byte fileName)
 		{
 			fixed (byte* pfileName = &fileName)
@@ -2637,6 +3762,20 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SaveCurrentEditorStateToIniFile(ReadOnlySpan<byte> fileName)
+		{
+			fixed (byte* pfileName = fileName)
+			{
+				SaveCurrentEditorStateToIniFileNative((byte*)pfileName);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SaveCurrentEditorStateToIniFile(string fileName)
 		{
 			byte* pStr0 = null;
@@ -2663,14 +3802,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static void SaveCurrentEditorStateToIniFile(ReadOnlySpan<byte> fileName)
-		{
-			fixed (byte* pfileName = fileName)
-			{
-				SaveCurrentEditorStateToIniFileNative((byte*)pfileName);
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SaveEditorStateToIniFileNative(ImNodesEditorContext* editor, byte* fileName)
 		{
 			#if NET5_0_OR_GREATER
@@ -2680,11 +3814,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SaveEditorStateToIniFile(ImNodesEditorContextPtr editor, byte* fileName)
 		{
 			SaveEditorStateToIniFileNative(editor, fileName);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SaveEditorStateToIniFile(ref ImNodesEditorContext editor, byte* fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
@@ -2693,6 +3833,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SaveEditorStateToIniFile(ImNodesEditorContextPtr editor, ref byte fileName)
 		{
 			fixed (byte* pfileName = &fileName)
@@ -2701,6 +3844,20 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SaveEditorStateToIniFile(ImNodesEditorContextPtr editor, ReadOnlySpan<byte> fileName)
+		{
+			fixed (byte* pfileName = fileName)
+			{
+				SaveEditorStateToIniFileNative(editor, (byte*)pfileName);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SaveEditorStateToIniFile(ImNodesEditorContextPtr editor, string fileName)
 		{
 			byte* pStr0 = null;
@@ -2727,14 +3884,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static void SaveEditorStateToIniFile(ImNodesEditorContextPtr editor, ReadOnlySpan<byte> fileName)
-		{
-			fixed (byte* pfileName = fileName)
-			{
-				SaveEditorStateToIniFileNative(editor, (byte*)pfileName);
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SaveEditorStateToIniFile(ref ImNodesEditorContext editor, ref byte fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
@@ -2746,6 +3898,23 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void SaveEditorStateToIniFile(ref ImNodesEditorContext editor, ReadOnlySpan<byte> fileName)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				fixed (byte* pfileName = fileName)
+				{
+					SaveEditorStateToIniFileNative((ImNodesEditorContext*)peditor, (byte*)pfileName);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SaveEditorStateToIniFile(ref ImNodesEditorContext editor, string fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
@@ -2775,17 +3944,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static void SaveEditorStateToIniFile(ref ImNodesEditorContext editor, ReadOnlySpan<byte> fileName)
-		{
-			fixed (ImNodesEditorContext* peditor = &editor)
-			{
-				fixed (byte* pfileName = fileName)
-				{
-					SaveEditorStateToIniFileNative((ImNodesEditorContext*)peditor, (byte*)pfileName);
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void LoadCurrentEditorStateFromIniFileNative(byte* fileName)
 		{
 			#if NET5_0_OR_GREATER
@@ -2795,11 +3956,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadCurrentEditorStateFromIniFile(byte* fileName)
 		{
 			LoadCurrentEditorStateFromIniFileNative(fileName);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadCurrentEditorStateFromIniFile(ref byte fileName)
 		{
 			fixed (byte* pfileName = &fileName)
@@ -2808,6 +3975,20 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadCurrentEditorStateFromIniFile(ReadOnlySpan<byte> fileName)
+		{
+			fixed (byte* pfileName = fileName)
+			{
+				LoadCurrentEditorStateFromIniFileNative((byte*)pfileName);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadCurrentEditorStateFromIniFile(string fileName)
 		{
 			byte* pStr0 = null;
@@ -2834,14 +4015,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static void LoadCurrentEditorStateFromIniFile(ReadOnlySpan<byte> fileName)
-		{
-			fixed (byte* pfileName = fileName)
-			{
-				LoadCurrentEditorStateFromIniFileNative((byte*)pfileName);
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void LoadEditorStateFromIniFileNative(ImNodesEditorContext* editor, byte* fileName)
 		{
 			#if NET5_0_OR_GREATER
@@ -2851,11 +4027,17 @@ namespace Hexa.NET.ImNodes
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadEditorStateFromIniFile(ImNodesEditorContextPtr editor, byte* fileName)
 		{
 			LoadEditorStateFromIniFileNative(editor, fileName);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadEditorStateFromIniFile(ref ImNodesEditorContext editor, byte* fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
@@ -2864,6 +4046,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadEditorStateFromIniFile(ImNodesEditorContextPtr editor, ref byte fileName)
 		{
 			fixed (byte* pfileName = &fileName)
@@ -2872,6 +4057,20 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniFile(ImNodesEditorContextPtr editor, ReadOnlySpan<byte> fileName)
+		{
+			fixed (byte* pfileName = fileName)
+			{
+				LoadEditorStateFromIniFileNative(editor, (byte*)pfileName);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadEditorStateFromIniFile(ImNodesEditorContextPtr editor, string fileName)
 		{
 			byte* pStr0 = null;
@@ -2898,14 +4097,9 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static void LoadEditorStateFromIniFile(ImNodesEditorContextPtr editor, ReadOnlySpan<byte> fileName)
-		{
-			fixed (byte* pfileName = fileName)
-			{
-				LoadEditorStateFromIniFileNative(editor, (byte*)pfileName);
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadEditorStateFromIniFile(ref ImNodesEditorContext editor, ref byte fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
@@ -2917,6 +4111,23 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void LoadEditorStateFromIniFile(ref ImNodesEditorContext editor, ReadOnlySpan<byte> fileName)
+		{
+			fixed (ImNodesEditorContext* peditor = &editor)
+			{
+				fixed (byte* pfileName = fileName)
+				{
+					LoadEditorStateFromIniFileNative((ImNodesEditorContext*)peditor, (byte*)pfileName);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void LoadEditorStateFromIniFile(ref ImNodesEditorContext editor, string fileName)
 		{
 			fixed (ImNodesEditorContext* peditor = &editor)
@@ -2946,21 +4157,10 @@ namespace Hexa.NET.ImNodes
 			}
 		}
 
-		public static void LoadEditorStateFromIniFile(ref ImNodesEditorContext editor, ReadOnlySpan<byte> fileName)
-		{
-			fixed (ImNodesEditorContext* peditor = &editor)
-			{
-				fixed (byte* pfileName = fileName)
-				{
-					LoadEditorStateFromIniFileNative((ImNodesEditorContext*)peditor, (byte*)pfileName);
-				}
-			}
-		}
-
 		/// <summary>
-		/// needed for io.link_detach_with_modifier_click.modifier = 
-		/// &ImGui
-		/// ::GetIO().KeyCtrl
+		/// needed for io.link_detach_with_modifier_click.modifier = <br/>
+		/// &ImGui<br/>
+		/// ::GetIO().KeyCtrl<br/>
 		/// </summary>
 		internal static bool* GetIOKeyCtrlPtrNative()
 		{
@@ -2972,11 +4172,11 @@ namespace Hexa.NET.ImNodes
 		}
 
 		/// <summary>
-/// needed for io.link_detach_with_modifier_click.modifier = 
-/// &ImGui
-/// ::GetIO().KeyCtrl
-/// </summary>
-public static bool* GetIOKeyCtrlPtr()
+		/// needed for io.link_detach_with_modifier_click.modifier = <br/>
+		/// &ImGui<br/>
+		/// ::GetIO().KeyCtrl<br/>
+		/// </summary>
+		public static bool* GetIOKeyCtrlPtr()
 		{
 			bool* ret = GetIOKeyCtrlPtrNative();
 			return ret;

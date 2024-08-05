@@ -19,1693 +19,249 @@ namespace Hexa.NET.ImPlot
 	public unsafe partial class ImPlot
 	{
 
-		public static void ImPlotImMinMaxArrayS32Ptr(ref int values, int count, ref int minOut, int* maxOut)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
 		{
-			fixed (int* pvalues = &values)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (int* pminOut = &minOut)
+				fixed (long* pxs = &xs)
 				{
-					ImPlotImMinMaxArrayS32PtrNative((int*)pvalues, count, (int*)pminOut, maxOut);
-				}
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayS32Ptr(int* values, int count, int* minOut, ref int maxOut)
-		{
-			fixed (int* pmaxOut = &maxOut)
-			{
-				ImPlotImMinMaxArrayS32PtrNative(values, count, minOut, (int*)pmaxOut);
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayS32Ptr(ref int values, int count, int* minOut, ref int maxOut)
-		{
-			fixed (int* pvalues = &values)
-			{
-				fixed (int* pmaxOut = &maxOut)
-				{
-					ImPlotImMinMaxArrayS32PtrNative((int*)pvalues, count, minOut, (int*)pmaxOut);
-				}
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayS32Ptr(int* values, int count, ref int minOut, ref int maxOut)
-		{
-			fixed (int* pminOut = &minOut)
-			{
-				fixed (int* pmaxOut = &maxOut)
-				{
-					ImPlotImMinMaxArrayS32PtrNative(values, count, (int*)pminOut, (int*)pmaxOut);
-				}
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayS32Ptr(ref int values, int count, ref int minOut, ref int maxOut)
-		{
-			fixed (int* pvalues = &values)
-			{
-				fixed (int* pminOut = &minOut)
-				{
-					fixed (int* pmaxOut = &maxOut)
+					fixed (long* pys = &ys)
 					{
-						ImPlotImMinMaxArrayS32PtrNative((int*)pvalues, count, (int*)pminOut, (int*)pmaxOut);
-					}
-				}
-			}
-		}
-
-		internal static void ImPlotImMinMaxArrayU32PtrNative(uint* values, int count, uint* minOut, uint* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<uint*, int, uint*, uint*, void>)vt[448])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[448])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		public static void ImPlotImMinMaxArrayU32Ptr(uint* values, int count, uint* minOut, uint* maxOut)
-		{
-			ImPlotImMinMaxArrayU32PtrNative(values, count, minOut, maxOut);
-		}
-
-		public static void ImPlotImMinMaxArrayU32Ptr(ref uint values, int count, uint* minOut, uint* maxOut)
-		{
-			fixed (uint* pvalues = &values)
-			{
-				ImPlotImMinMaxArrayU32PtrNative((uint*)pvalues, count, minOut, maxOut);
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayU32Ptr(uint* values, int count, ref uint minOut, uint* maxOut)
-		{
-			fixed (uint* pminOut = &minOut)
-			{
-				ImPlotImMinMaxArrayU32PtrNative(values, count, (uint*)pminOut, maxOut);
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayU32Ptr(ref uint values, int count, ref uint minOut, uint* maxOut)
-		{
-			fixed (uint* pvalues = &values)
-			{
-				fixed (uint* pminOut = &minOut)
-				{
-					ImPlotImMinMaxArrayU32PtrNative((uint*)pvalues, count, (uint*)pminOut, maxOut);
-				}
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayU32Ptr(uint* values, int count, uint* minOut, ref uint maxOut)
-		{
-			fixed (uint* pmaxOut = &maxOut)
-			{
-				ImPlotImMinMaxArrayU32PtrNative(values, count, minOut, (uint*)pmaxOut);
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayU32Ptr(ref uint values, int count, uint* minOut, ref uint maxOut)
-		{
-			fixed (uint* pvalues = &values)
-			{
-				fixed (uint* pmaxOut = &maxOut)
-				{
-					ImPlotImMinMaxArrayU32PtrNative((uint*)pvalues, count, minOut, (uint*)pmaxOut);
-				}
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayU32Ptr(uint* values, int count, ref uint minOut, ref uint maxOut)
-		{
-			fixed (uint* pminOut = &minOut)
-			{
-				fixed (uint* pmaxOut = &maxOut)
-				{
-					ImPlotImMinMaxArrayU32PtrNative(values, count, (uint*)pminOut, (uint*)pmaxOut);
-				}
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayU32Ptr(ref uint values, int count, ref uint minOut, ref uint maxOut)
-		{
-			fixed (uint* pvalues = &values)
-			{
-				fixed (uint* pminOut = &minOut)
-				{
-					fixed (uint* pmaxOut = &maxOut)
-					{
-						ImPlotImMinMaxArrayU32PtrNative((uint*)pvalues, count, (uint*)pminOut, (uint*)pmaxOut);
-					}
-				}
-			}
-		}
-
-		internal static void ImPlotImMinMaxArrayS64PtrNative(long* values, int count, long* minOut, long* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<long*, int, long*, long*, void>)vt[449])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[449])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		public static void ImPlotImMinMaxArrayS64Ptr(long* values, int count, long* minOut, long* maxOut)
-		{
-			ImPlotImMinMaxArrayS64PtrNative(values, count, minOut, maxOut);
-		}
-
-		public static void ImPlotImMinMaxArrayS64Ptr(ref long values, int count, long* minOut, long* maxOut)
-		{
-			fixed (long* pvalues = &values)
-			{
-				ImPlotImMinMaxArrayS64PtrNative((long*)pvalues, count, minOut, maxOut);
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayS64Ptr(long* values, int count, ref long minOut, long* maxOut)
-		{
-			fixed (long* pminOut = &minOut)
-			{
-				ImPlotImMinMaxArrayS64PtrNative(values, count, (long*)pminOut, maxOut);
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayS64Ptr(ref long values, int count, ref long minOut, long* maxOut)
-		{
-			fixed (long* pvalues = &values)
-			{
-				fixed (long* pminOut = &minOut)
-				{
-					ImPlotImMinMaxArrayS64PtrNative((long*)pvalues, count, (long*)pminOut, maxOut);
-				}
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayS64Ptr(long* values, int count, long* minOut, ref long maxOut)
-		{
-			fixed (long* pmaxOut = &maxOut)
-			{
-				ImPlotImMinMaxArrayS64PtrNative(values, count, minOut, (long*)pmaxOut);
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayS64Ptr(ref long values, int count, long* minOut, ref long maxOut)
-		{
-			fixed (long* pvalues = &values)
-			{
-				fixed (long* pmaxOut = &maxOut)
-				{
-					ImPlotImMinMaxArrayS64PtrNative((long*)pvalues, count, minOut, (long*)pmaxOut);
-				}
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayS64Ptr(long* values, int count, ref long minOut, ref long maxOut)
-		{
-			fixed (long* pminOut = &minOut)
-			{
-				fixed (long* pmaxOut = &maxOut)
-				{
-					ImPlotImMinMaxArrayS64PtrNative(values, count, (long*)pminOut, (long*)pmaxOut);
-				}
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayS64Ptr(ref long values, int count, ref long minOut, ref long maxOut)
-		{
-			fixed (long* pvalues = &values)
-			{
-				fixed (long* pminOut = &minOut)
-				{
-					fixed (long* pmaxOut = &maxOut)
-					{
-						ImPlotImMinMaxArrayS64PtrNative((long*)pvalues, count, (long*)pminOut, (long*)pmaxOut);
-					}
-				}
-			}
-		}
-
-		internal static void ImPlotImMinMaxArrayU64PtrNative(ulong* values, int count, ulong* minOut, ulong* maxOut)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ulong*, int, ulong*, ulong*, void>)vt[450])(values, count, minOut, maxOut);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, int, nint, nint, void>)vt[450])((nint)values, count, (nint)minOut, (nint)maxOut);
-			#endif
-		}
-
-		public static void ImPlotImMinMaxArrayU64Ptr(ulong* values, int count, ulong* minOut, ulong* maxOut)
-		{
-			ImPlotImMinMaxArrayU64PtrNative(values, count, minOut, maxOut);
-		}
-
-		public static void ImPlotImMinMaxArrayU64Ptr(ref ulong values, int count, ulong* minOut, ulong* maxOut)
-		{
-			fixed (ulong* pvalues = &values)
-			{
-				ImPlotImMinMaxArrayU64PtrNative((ulong*)pvalues, count, minOut, maxOut);
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayU64Ptr(ulong* values, int count, ref ulong minOut, ulong* maxOut)
-		{
-			fixed (ulong* pminOut = &minOut)
-			{
-				ImPlotImMinMaxArrayU64PtrNative(values, count, (ulong*)pminOut, maxOut);
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayU64Ptr(ref ulong values, int count, ref ulong minOut, ulong* maxOut)
-		{
-			fixed (ulong* pvalues = &values)
-			{
-				fixed (ulong* pminOut = &minOut)
-				{
-					ImPlotImMinMaxArrayU64PtrNative((ulong*)pvalues, count, (ulong*)pminOut, maxOut);
-				}
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayU64Ptr(ulong* values, int count, ulong* minOut, ref ulong maxOut)
-		{
-			fixed (ulong* pmaxOut = &maxOut)
-			{
-				ImPlotImMinMaxArrayU64PtrNative(values, count, minOut, (ulong*)pmaxOut);
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayU64Ptr(ref ulong values, int count, ulong* minOut, ref ulong maxOut)
-		{
-			fixed (ulong* pvalues = &values)
-			{
-				fixed (ulong* pmaxOut = &maxOut)
-				{
-					ImPlotImMinMaxArrayU64PtrNative((ulong*)pvalues, count, minOut, (ulong*)pmaxOut);
-				}
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayU64Ptr(ulong* values, int count, ref ulong minOut, ref ulong maxOut)
-		{
-			fixed (ulong* pminOut = &minOut)
-			{
-				fixed (ulong* pmaxOut = &maxOut)
-				{
-					ImPlotImMinMaxArrayU64PtrNative(values, count, (ulong*)pminOut, (ulong*)pmaxOut);
-				}
-			}
-		}
-
-		public static void ImPlotImMinMaxArrayU64Ptr(ref ulong values, int count, ref ulong minOut, ref ulong maxOut)
-		{
-			fixed (ulong* pvalues = &values)
-			{
-				fixed (ulong* pminOut = &minOut)
-				{
-					fixed (ulong* pmaxOut = &maxOut)
-					{
-						ImPlotImMinMaxArrayU64PtrNative((ulong*)pvalues, count, (ulong*)pminOut, (ulong*)pmaxOut);
-					}
-				}
-			}
-		}
-
-		internal static float ImPlotImSumFloatPtrNative(float* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float*, int, float>)vt[451])(values, count);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, int, float>)vt[451])((nint)values, count);
-			#endif
-		}
-
-		public static float ImPlotImSumFloatPtr(float* values, int count)
-		{
-			float ret = ImPlotImSumFloatPtrNative(values, count);
-			return ret;
-		}
-
-		public static float ImPlotImSumFloatPtr(ref float values, int count)
-		{
-			fixed (float* pvalues = &values)
-			{
-				float ret = ImPlotImSumFloatPtrNative((float*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImSumDoublePtrNative(double* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double*, int, double>)vt[452])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[452])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImSumDoublePtr(double* values, int count)
-		{
-			double ret = ImPlotImSumDoublePtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImSumDoublePtr(ref double values, int count)
-		{
-			fixed (double* pvalues = &values)
-			{
-				double ret = ImPlotImSumDoublePtrNative((double*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static sbyte ImPlotImSumS8PtrNative(sbyte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<sbyte*, int, sbyte>)vt[453])(values, count);
-			#else
-			return (sbyte)((delegate* unmanaged[Cdecl]<nint, int, sbyte>)vt[453])((nint)values, count);
-			#endif
-		}
-
-		public static sbyte ImPlotImSumS8Ptr(sbyte* values, int count)
-		{
-			sbyte ret = ImPlotImSumS8PtrNative(values, count);
-			return ret;
-		}
-
-		public static sbyte ImPlotImSumS8Ptr(ref sbyte values, int count)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				sbyte ret = ImPlotImSumS8PtrNative((sbyte*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static byte ImPlotImSumU8PtrNative(byte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, byte>)vt[454])(values, count);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, int, byte>)vt[454])((nint)values, count);
-			#endif
-		}
-
-		public static byte ImPlotImSumU8Ptr(byte* values, int count)
-		{
-			byte ret = ImPlotImSumU8PtrNative(values, count);
-			return ret;
-		}
-
-		public static byte ImPlotImSumU8Ptr(ref byte values, int count)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				byte ret = ImPlotImSumU8PtrNative((byte*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static short ImPlotImSumS16PtrNative(short* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short*, int, short>)vt[455])(values, count);
-			#else
-			return (short)((delegate* unmanaged[Cdecl]<nint, int, short>)vt[455])((nint)values, count);
-			#endif
-		}
-
-		public static short ImPlotImSumS16Ptr(short* values, int count)
-		{
-			short ret = ImPlotImSumS16PtrNative(values, count);
-			return ret;
-		}
-
-		public static short ImPlotImSumS16Ptr(ref short values, int count)
-		{
-			fixed (short* pvalues = &values)
-			{
-				short ret = ImPlotImSumS16PtrNative((short*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static ushort ImPlotImSumU16PtrNative(ushort* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort*, int, ushort>)vt[456])(values, count);
-			#else
-			return (ushort)((delegate* unmanaged[Cdecl]<nint, int, ushort>)vt[456])((nint)values, count);
-			#endif
-		}
-
-		public static ushort ImPlotImSumU16Ptr(ushort* values, int count)
-		{
-			ushort ret = ImPlotImSumU16PtrNative(values, count);
-			return ret;
-		}
-
-		public static ushort ImPlotImSumU16Ptr(ref ushort values, int count)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				ushort ret = ImPlotImSumU16PtrNative((ushort*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static int ImPlotImSumS32PtrNative(int* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int, int>)vt[457])(values, count);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int>)vt[457])((nint)values, count);
-			#endif
-		}
-
-		public static int ImPlotImSumS32Ptr(int* values, int count)
-		{
-			int ret = ImPlotImSumS32PtrNative(values, count);
-			return ret;
-		}
-
-		public static int ImPlotImSumS32Ptr(ref int values, int count)
-		{
-			fixed (int* pvalues = &values)
-			{
-				int ret = ImPlotImSumS32PtrNative((int*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static uint ImPlotImSumU32PtrNative(uint* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, uint>)vt[458])(values, count);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, uint>)vt[458])((nint)values, count);
-			#endif
-		}
-
-		public static uint ImPlotImSumU32Ptr(uint* values, int count)
-		{
-			uint ret = ImPlotImSumU32PtrNative(values, count);
-			return ret;
-		}
-
-		public static uint ImPlotImSumU32Ptr(ref uint values, int count)
-		{
-			fixed (uint* pvalues = &values)
-			{
-				uint ret = ImPlotImSumU32PtrNative((uint*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static long ImPlotImSumS64PtrNative(long* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long*, int, long>)vt[459])(values, count);
-			#else
-			return (long)((delegate* unmanaged[Cdecl]<nint, int, long>)vt[459])((nint)values, count);
-			#endif
-		}
-
-		public static long ImPlotImSumS64Ptr(long* values, int count)
-		{
-			long ret = ImPlotImSumS64PtrNative(values, count);
-			return ret;
-		}
-
-		public static long ImPlotImSumS64Ptr(ref long values, int count)
-		{
-			fixed (long* pvalues = &values)
-			{
-				long ret = ImPlotImSumS64PtrNative((long*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static ulong ImPlotImSumU64PtrNative(ulong* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, int, ulong>)vt[460])(values, count);
-			#else
-			return (ulong)((delegate* unmanaged[Cdecl]<nint, int, ulong>)vt[460])((nint)values, count);
-			#endif
-		}
-
-		public static ulong ImPlotImSumU64Ptr(ulong* values, int count)
-		{
-			ulong ret = ImPlotImSumU64PtrNative(values, count);
-			return ret;
-		}
-
-		public static ulong ImPlotImSumU64Ptr(ref ulong values, int count)
-		{
-			fixed (ulong* pvalues = &values)
-			{
-				ulong ret = ImPlotImSumU64PtrNative((ulong*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImMeanFloatPtrNative(float* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float*, int, double>)vt[461])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[461])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImMeanFloatPtr(float* values, int count)
-		{
-			double ret = ImPlotImMeanFloatPtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImMeanFloatPtr(ref float values, int count)
-		{
-			fixed (float* pvalues = &values)
-			{
-				double ret = ImPlotImMeanFloatPtrNative((float*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImMeanDoublePtrNative(double* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double*, int, double>)vt[462])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[462])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImMeanDoublePtr(double* values, int count)
-		{
-			double ret = ImPlotImMeanDoublePtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImMeanDoublePtr(ref double values, int count)
-		{
-			fixed (double* pvalues = &values)
-			{
-				double ret = ImPlotImMeanDoublePtrNative((double*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImMeanS8PtrNative(sbyte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<sbyte*, int, double>)vt[463])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[463])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImMeanS8Ptr(sbyte* values, int count)
-		{
-			double ret = ImPlotImMeanS8PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImMeanS8Ptr(ref sbyte values, int count)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				double ret = ImPlotImMeanS8PtrNative((sbyte*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImMeanU8PtrNative(byte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, double>)vt[464])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[464])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImMeanU8Ptr(byte* values, int count)
-		{
-			double ret = ImPlotImMeanU8PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImMeanU8Ptr(ref byte values, int count)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				double ret = ImPlotImMeanU8PtrNative((byte*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImMeanS16PtrNative(short* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short*, int, double>)vt[465])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[465])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImMeanS16Ptr(short* values, int count)
-		{
-			double ret = ImPlotImMeanS16PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImMeanS16Ptr(ref short values, int count)
-		{
-			fixed (short* pvalues = &values)
-			{
-				double ret = ImPlotImMeanS16PtrNative((short*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImMeanU16PtrNative(ushort* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort*, int, double>)vt[466])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[466])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImMeanU16Ptr(ushort* values, int count)
-		{
-			double ret = ImPlotImMeanU16PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImMeanU16Ptr(ref ushort values, int count)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				double ret = ImPlotImMeanU16PtrNative((ushort*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImMeanS32PtrNative(int* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int, double>)vt[467])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[467])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImMeanS32Ptr(int* values, int count)
-		{
-			double ret = ImPlotImMeanS32PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImMeanS32Ptr(ref int values, int count)
-		{
-			fixed (int* pvalues = &values)
-			{
-				double ret = ImPlotImMeanS32PtrNative((int*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImMeanU32PtrNative(uint* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, double>)vt[468])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[468])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImMeanU32Ptr(uint* values, int count)
-		{
-			double ret = ImPlotImMeanU32PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImMeanU32Ptr(ref uint values, int count)
-		{
-			fixed (uint* pvalues = &values)
-			{
-				double ret = ImPlotImMeanU32PtrNative((uint*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImMeanS64PtrNative(long* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long*, int, double>)vt[469])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[469])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImMeanS64Ptr(long* values, int count)
-		{
-			double ret = ImPlotImMeanS64PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImMeanS64Ptr(ref long values, int count)
-		{
-			fixed (long* pvalues = &values)
-			{
-				double ret = ImPlotImMeanS64PtrNative((long*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImMeanU64PtrNative(ulong* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, int, double>)vt[470])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[470])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImMeanU64Ptr(ulong* values, int count)
-		{
-			double ret = ImPlotImMeanU64PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImMeanU64Ptr(ref ulong values, int count)
-		{
-			fixed (ulong* pvalues = &values)
-			{
-				double ret = ImPlotImMeanU64PtrNative((ulong*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImStdDevFloatPtrNative(float* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float*, int, double>)vt[471])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[471])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImStdDevFloatPtr(float* values, int count)
-		{
-			double ret = ImPlotImStdDevFloatPtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImStdDevFloatPtr(ref float values, int count)
-		{
-			fixed (float* pvalues = &values)
-			{
-				double ret = ImPlotImStdDevFloatPtrNative((float*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImStdDevDoublePtrNative(double* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double*, int, double>)vt[472])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[472])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImStdDevDoublePtr(double* values, int count)
-		{
-			double ret = ImPlotImStdDevDoublePtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImStdDevDoublePtr(ref double values, int count)
-		{
-			fixed (double* pvalues = &values)
-			{
-				double ret = ImPlotImStdDevDoublePtrNative((double*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImStdDevS8PtrNative(sbyte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<sbyte*, int, double>)vt[473])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[473])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImStdDevS8Ptr(sbyte* values, int count)
-		{
-			double ret = ImPlotImStdDevS8PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImStdDevS8Ptr(ref sbyte values, int count)
-		{
-			fixed (sbyte* pvalues = &values)
-			{
-				double ret = ImPlotImStdDevS8PtrNative((sbyte*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImStdDevU8PtrNative(byte* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, double>)vt[474])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[474])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImStdDevU8Ptr(byte* values, int count)
-		{
-			double ret = ImPlotImStdDevU8PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImStdDevU8Ptr(ref byte values, int count)
-		{
-			fixed (byte* pvalues = &values)
-			{
-				double ret = ImPlotImStdDevU8PtrNative((byte*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImStdDevS16PtrNative(short* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short*, int, double>)vt[475])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[475])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImStdDevS16Ptr(short* values, int count)
-		{
-			double ret = ImPlotImStdDevS16PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImStdDevS16Ptr(ref short values, int count)
-		{
-			fixed (short* pvalues = &values)
-			{
-				double ret = ImPlotImStdDevS16PtrNative((short*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImStdDevU16PtrNative(ushort* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort*, int, double>)vt[476])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[476])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImStdDevU16Ptr(ushort* values, int count)
-		{
-			double ret = ImPlotImStdDevU16PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImStdDevU16Ptr(ref ushort values, int count)
-		{
-			fixed (ushort* pvalues = &values)
-			{
-				double ret = ImPlotImStdDevU16PtrNative((ushort*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImStdDevS32PtrNative(int* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int*, int, double>)vt[477])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[477])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImStdDevS32Ptr(int* values, int count)
-		{
-			double ret = ImPlotImStdDevS32PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImStdDevS32Ptr(ref int values, int count)
-		{
-			fixed (int* pvalues = &values)
-			{
-				double ret = ImPlotImStdDevS32PtrNative((int*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImStdDevU32PtrNative(uint* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, double>)vt[478])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[478])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImStdDevU32Ptr(uint* values, int count)
-		{
-			double ret = ImPlotImStdDevU32PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImStdDevU32Ptr(ref uint values, int count)
-		{
-			fixed (uint* pvalues = &values)
-			{
-				double ret = ImPlotImStdDevU32PtrNative((uint*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImStdDevS64PtrNative(long* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long*, int, double>)vt[479])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[479])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImStdDevS64Ptr(long* values, int count)
-		{
-			double ret = ImPlotImStdDevS64PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImStdDevS64Ptr(ref long values, int count)
-		{
-			fixed (long* pvalues = &values)
-			{
-				double ret = ImPlotImStdDevS64PtrNative((long*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotImStdDevU64PtrNative(ulong* values, int count)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong*, int, double>)vt[480])(values, count);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, int, double>)vt[480])((nint)values, count);
-			#endif
-		}
-
-		public static double ImPlotImStdDevU64Ptr(ulong* values, int count)
-		{
-			double ret = ImPlotImStdDevU64PtrNative(values, count);
-			return ret;
-		}
-
-		public static double ImPlotImStdDevU64Ptr(ref ulong values, int count)
-		{
-			fixed (ulong* pvalues = &values)
-			{
-				double ret = ImPlotImStdDevU64PtrNative((ulong*)pvalues, count);
-				return ret;
-			}
-		}
-
-		internal static uint ImPlotImMixU32Native(uint a, uint b, uint s)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, uint, uint, uint>)vt[481])(a, b, s);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, uint, uint, uint>)vt[481])(a, b, s);
-			#endif
-		}
-
-		public static uint ImPlotImMixU32(uint a, uint b, uint s)
-		{
-			uint ret = ImPlotImMixU32Native(a, b, s);
-			return ret;
-		}
-
-		internal static uint ImPlotImLerpU32Native(uint* colors, int size, float t)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint*, int, float, uint>)vt[482])(colors, size, t);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, int, float, uint>)vt[482])((nint)colors, size, t);
-			#endif
-		}
-
-		public static uint ImPlotImLerpU32(uint* colors, int size, float t)
-		{
-			uint ret = ImPlotImLerpU32Native(colors, size, t);
-			return ret;
-		}
-
-		public static uint ImPlotImLerpU32(ref uint colors, int size, float t)
-		{
-			fixed (uint* pcolors = &colors)
-			{
-				uint ret = ImPlotImLerpU32Native((uint*)pcolors, size, t);
-				return ret;
-			}
-		}
-
-		internal static uint ImPlotImAlphaU32Native(uint col, float alpha)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, float, uint>)vt[483])(col, alpha);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<uint, float, uint>)vt[483])(col, alpha);
-			#endif
-		}
-
-		public static uint ImPlotImAlphaU32(uint col, float alpha)
-		{
-			uint ret = ImPlotImAlphaU32Native(col, alpha);
-			return ret;
-		}
-
-		internal static byte ImPlotImOverlapsFloatNative(float minA, float maxA, float minB, float maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<float, float, float, float, byte>)vt[484])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<float, float, float, float, byte>)vt[484])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		public static bool ImPlotImOverlapsFloat(float minA, float maxA, float minB, float maxB)
-		{
-			byte ret = ImPlotImOverlapsFloatNative(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		internal static byte ImPlotImOverlapsDoubleNative(double minA, double maxA, double minB, double maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, double, double, byte>)vt[485])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<double, double, double, double, byte>)vt[485])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		public static bool ImPlotImOverlapsDouble(double minA, double maxA, double minB, double maxB)
-		{
-			byte ret = ImPlotImOverlapsDoubleNative(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		internal static byte ImPlotImOverlapsS8Native(sbyte minA, sbyte maxA, sbyte minB, sbyte maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<sbyte, sbyte, sbyte, sbyte, byte>)vt[486])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<sbyte, sbyte, sbyte, sbyte, byte>)vt[486])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		public static bool ImPlotImOverlapsS8(sbyte minA, sbyte maxA, sbyte minB, sbyte maxB)
-		{
-			byte ret = ImPlotImOverlapsS8Native(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		internal static byte ImPlotImOverlapsU8Native(byte minA, byte maxA, byte minB, byte maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte>)vt[487])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<byte, byte, byte, byte, byte>)vt[487])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		public static bool ImPlotImOverlapsU8(byte minA, byte maxA, byte minB, byte maxB)
-		{
-			byte ret = ImPlotImOverlapsU8Native(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		internal static byte ImPlotImOverlapsS16Native(short minA, short maxA, short minB, short maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<short, short, short, short, byte>)vt[488])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<short, short, short, short, byte>)vt[488])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		public static bool ImPlotImOverlapsS16(short minA, short maxA, short minB, short maxB)
-		{
-			byte ret = ImPlotImOverlapsS16Native(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		internal static byte ImPlotImOverlapsU16Native(ushort minA, ushort maxA, ushort minB, ushort maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort, byte>)vt[489])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ushort, ushort, ushort, ushort, byte>)vt[489])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		public static bool ImPlotImOverlapsU16(ushort minA, ushort maxA, ushort minB, ushort maxB)
-		{
-			byte ret = ImPlotImOverlapsU16Native(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		internal static byte ImPlotImOverlapsS32Native(int minA, int maxA, int minB, int maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int, int, int, byte>)vt[490])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, int, int, int, byte>)vt[490])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		public static bool ImPlotImOverlapsS32(int minA, int maxA, int minB, int maxB)
-		{
-			byte ret = ImPlotImOverlapsS32Native(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		internal static byte ImPlotImOverlapsU32Native(uint minA, uint maxA, uint minB, uint maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<uint, uint, uint, uint, byte>)vt[491])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<uint, uint, uint, uint, byte>)vt[491])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		public static bool ImPlotImOverlapsU32(uint minA, uint maxA, uint minB, uint maxB)
-		{
-			byte ret = ImPlotImOverlapsU32Native(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		internal static byte ImPlotImOverlapsS64Native(long minA, long maxA, long minB, long maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long, long, long, long, byte>)vt[492])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<long, long, long, long, byte>)vt[492])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		public static bool ImPlotImOverlapsS64(long minA, long maxA, long minB, long maxB)
-		{
-			byte ret = ImPlotImOverlapsS64Native(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		internal static byte ImPlotImOverlapsU64Native(ulong minA, ulong maxA, ulong minB, ulong maxB)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong, byte>)vt[493])(minA, maxA, minB, maxB);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ulong, ulong, ulong, ulong, byte>)vt[493])(minA, maxA, minB, maxB);
-			#endif
-		}
-
-		public static bool ImPlotImOverlapsU64(ulong minA, ulong maxA, ulong minB, ulong maxB)
-		{
-			byte ret = ImPlotImOverlapsU64Native(minA, maxA, minB, maxB);
-			return ret != 0;
-		}
-
-		internal static ImPlotDateTimeSpec* ImPlotDateTimeSpecImPlotDateTimeSpecNilNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotDateTimeSpec*>)vt[494])();
-			#else
-			return (ImPlotDateTimeSpec*)((delegate* unmanaged[Cdecl]<nint>)vt[494])();
-			#endif
-		}
-
-		public static ImPlotDateTimeSpecPtr ImPlotDateTimeSpecImPlotDateTimeSpecNil()
-		{
-			ImPlotDateTimeSpecPtr ret = ImPlotDateTimeSpecImPlotDateTimeSpecNilNative();
-			return ret;
-		}
-
-		internal static void ImPlotDateTimeSpecDestroyNative(ImPlotDateTimeSpec* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotDateTimeSpec*, void>)vt[495])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[495])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotDateTimeSpecDestroy(ImPlotDateTimeSpecPtr self)
-		{
-			ImPlotDateTimeSpecDestroyNative(self);
-		}
-
-		public static void ImPlotDateTimeSpecDestroy(ref ImPlotDateTimeSpec self)
-		{
-			fixed (ImPlotDateTimeSpec* pself = &self)
-			{
-				ImPlotDateTimeSpecDestroyNative((ImPlotDateTimeSpec*)pself);
-			}
-		}
-
-		internal static ImPlotDateTimeSpec* ImPlotDateTimeSpecImPlotDateTimeSpecPlotDateFmtNative(ImPlotDateFmt dateFmt, ImPlotTimeFmt timeFmt, byte use24HrClk, byte useIso8601)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotDateFmt, ImPlotTimeFmt, byte, byte, ImPlotDateTimeSpec*>)vt[496])(dateFmt, timeFmt, use24HrClk, useIso8601);
-			#else
-			return (ImPlotDateTimeSpec*)((delegate* unmanaged[Cdecl]<ImPlotDateFmt, ImPlotTimeFmt, byte, byte, nint>)vt[496])(dateFmt, timeFmt, use24HrClk, useIso8601);
-			#endif
-		}
-
-		public static ImPlotDateTimeSpecPtr ImPlotDateTimeSpecImPlotDateTimeSpecPlotDateFmt(ImPlotDateFmt dateFmt, ImPlotTimeFmt timeFmt, bool use24HrClk, bool useIso8601)
-		{
-			ImPlotDateTimeSpecPtr ret = ImPlotDateTimeSpecImPlotDateTimeSpecPlotDateFmtNative(dateFmt, timeFmt, use24HrClk ? (byte)1 : (byte)0, useIso8601 ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		internal static ImPlotTime* ImPlotTimeImPlotTimeNilNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTime*>)vt[497])();
-			#else
-			return (ImPlotTime*)((delegate* unmanaged[Cdecl]<nint>)vt[497])();
-			#endif
-		}
-
-		public static ImPlotTimePtr ImPlotTimeImPlotTimeNil()
-		{
-			ImPlotTimePtr ret = ImPlotTimeImPlotTimeNilNative();
-			return ret;
-		}
-
-		internal static void ImPlotTimeDestroyNative(ImPlotTime* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, void>)vt[498])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[498])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotTimeDestroy(ImPlotTimePtr self)
-		{
-			ImPlotTimeDestroyNative(self);
-		}
-
-		public static void ImPlotTimeDestroy(ref ImPlotTime self)
-		{
-			fixed (ImPlotTime* pself = &self)
-			{
-				ImPlotTimeDestroyNative((ImPlotTime*)pself);
-			}
-		}
-
-		internal static ImPlotTime* ImPlotTimeImPlotTimeTimeNative(long s, int us)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<long, int, ImPlotTime*>)vt[499])(s, us);
-			#else
-			return (ImPlotTime*)((delegate* unmanaged[Cdecl]<long, int, nint>)vt[499])(s, us);
-			#endif
-		}
-
-		public static ImPlotTimePtr ImPlotTimeImPlotTimeTime(long s, int us)
-		{
-			ImPlotTimePtr ret = ImPlotTimeImPlotTimeTimeNative(s, us);
-			return ret;
-		}
-
-		internal static void ImPlotTimeRollOverNative(ImPlotTime* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, void>)vt[500])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[500])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotTimeRollOver(ImPlotTimePtr self)
-		{
-			ImPlotTimeRollOverNative(self);
-		}
-
-		public static void ImPlotTimeRollOver(ref ImPlotTime self)
-		{
-			fixed (ImPlotTime* pself = &self)
-			{
-				ImPlotTimeRollOverNative((ImPlotTime*)pself);
-			}
-		}
-
-		internal static double ImPlotTimeToDoubleNative(ImPlotTime* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTime*, double>)vt[501])(self);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, double>)vt[501])((nint)self);
-			#endif
-		}
-
-		public static double ImPlotTimeToDouble(ImPlotTimePtr self)
-		{
-			double ret = ImPlotTimeToDoubleNative(self);
-			return ret;
-		}
-
-		public static double ImPlotTimeToDouble(ref ImPlotTime self)
-		{
-			fixed (ImPlotTime* pself = &self)
-			{
-				double ret = ImPlotTimeToDoubleNative((ImPlotTime*)pself);
-				return ret;
-			}
-		}
-
-		internal static void ImPlotTimeFromDoubleNative(ImPlotTime* output, double t)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTime*, double, void>)vt[502])(output, t);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, double, void>)vt[502])((nint)output, t);
-			#endif
-		}
-
-		public static ImPlotTime ImPlotTimeFromDouble(double t)
-		{
-			ImPlotTime ret;
-			ImPlotTimeFromDoubleNative(&ret, t);
-			return ret;
-		}
-
-		public static void ImPlotTimeFromDouble(ImPlotTimePtr output, double t)
-		{
-			ImPlotTimeFromDoubleNative(output, t);
-		}
-
-		public static void ImPlotTimeFromDouble(ref ImPlotTime output, double t)
-		{
-			fixed (ImPlotTime* poutput = &output)
-			{
-				ImPlotTimeFromDoubleNative((ImPlotTime*)poutput, t);
-			}
-		}
-
-		internal static ImPlotColormapData* ImPlotColormapDataImPlotColormapDataNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*>)vt[503])();
-			#else
-			return (ImPlotColormapData*)((delegate* unmanaged[Cdecl]<nint>)vt[503])();
-			#endif
-		}
-
-		public static ImPlotColormapDataPtr ImPlotColormapDataImPlotColormapData()
-		{
-			ImPlotColormapDataPtr ret = ImPlotColormapDataImPlotColormapDataNative();
-			return ret;
-		}
-
-		internal static void ImPlotColormapDataDestroyNative(ImPlotColormapData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotColormapData*, void>)vt[504])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[504])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotColormapDataDestroy(ImPlotColormapDataPtr self)
-		{
-			ImPlotColormapDataDestroyNative(self);
-		}
-
-		public static void ImPlotColormapDataDestroy(ref ImPlotColormapData self)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				ImPlotColormapDataDestroyNative((ImPlotColormapData*)pself);
-			}
-		}
-
-		internal static int ImPlotColormapDataAppendNative(ImPlotColormapData* self, byte* name, uint* keys, int count, byte qual)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, byte*, uint*, int, byte, int>)vt[505])(self, name, keys, count, qual);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, byte, int>)vt[505])((nint)self, (nint)name, (nint)keys, count, qual);
-			#endif
-		}
-
-		public static int ImPlotColormapDataAppend(ImPlotColormapDataPtr self, byte* name, uint* keys, int count, bool qual)
-		{
-			int ret = ImPlotColormapDataAppendNative(self, name, keys, count, qual ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		public static int ImPlotColormapDataAppend(ref ImPlotColormapData self, byte* name, uint* keys, int count, bool qual)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				int ret = ImPlotColormapDataAppendNative((ImPlotColormapData*)pself, name, keys, count, qual ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		public static int ImPlotColormapDataAppend(ImPlotColormapDataPtr self, ref byte name, uint* keys, int count, bool qual)
-		{
-			fixed (byte* pname = &name)
-			{
-				int ret = ImPlotColormapDataAppendNative(self, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		public static int ImPlotColormapDataAppend(ImPlotColormapDataPtr self, string name, uint* keys, int count, bool qual)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			int ret = ImPlotColormapDataAppendNative(self, pStr0, keys, count, qual ? (byte)1 : (byte)0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static int ImPlotColormapDataAppend(ImPlotColormapDataPtr self, ReadOnlySpan<byte> name, uint* keys, int count, bool qual)
-		{
-			fixed (byte* pname = name)
-			{
-				int ret = ImPlotColormapDataAppendNative(self, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		public static int ImPlotColormapDataAppend(ref ImPlotColormapData self, ref byte name, uint* keys, int count, bool qual)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				fixed (byte* pname = &name)
-				{
-					int ret = ImPlotColormapDataAppendNative((ImPlotColormapData*)pself, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
-					return ret;
-				}
-			}
-		}
-
-		public static int ImPlotColormapDataAppend(ref ImPlotColormapData self, string name, uint* keys, int count, bool qual)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (name != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(name);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				int ret = ImPlotColormapDataAppendNative((ImPlotColormapData*)pself, pStr0, keys, count, qual ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static int ImPlotColormapDataAppend(ref ImPlotColormapData self, ReadOnlySpan<byte> name, uint* keys, int count, bool qual)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				fixed (byte* pname = name)
-				{
-					int ret = ImPlotColormapDataAppendNative((ImPlotColormapData*)pself, (byte*)pname, keys, count, qual ? (byte)1 : (byte)0);
-					return ret;
-				}
-			}
-		}
-
-		public static int ImPlotColormapDataAppend(ImPlotColormapDataPtr self, byte* name, ref uint keys, int count, bool qual)
-		{
-			fixed (uint* pkeys = &keys)
-			{
-				int ret = ImPlotColormapDataAppendNative(self, name, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
-				return ret;
-			}
-		}
-
-		public static int ImPlotColormapDataAppend(ref ImPlotColormapData self, byte* name, ref uint keys, int count, bool qual)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				fixed (uint* pkeys = &keys)
-				{
-					int ret = ImPlotColormapDataAppendNative((ImPlotColormapData*)pself, name, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
-					return ret;
-				}
-			}
-		}
-
-		public static int ImPlotColormapDataAppend(ImPlotColormapDataPtr self, ref byte name, ref uint keys, int count, bool qual)
-		{
-			fixed (byte* pname = &name)
-			{
-				fixed (uint* pkeys = &keys)
-				{
-					int ret = ImPlotColormapDataAppendNative(self, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
-					return ret;
-				}
-			}
-		}
-
-		public static int ImPlotColormapDataAppend(ImPlotColormapDataPtr self, string name, ref uint keys, int count, bool qual)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (uint* pkeys = &keys)
-			{
-				int ret = ImPlotColormapDataAppendNative(self, pStr0, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static int ImPlotColormapDataAppend(ImPlotColormapDataPtr self, ReadOnlySpan<byte> name, ref uint keys, int count, bool qual)
-		{
-			fixed (byte* pname = name)
-			{
-				fixed (uint* pkeys = &keys)
-				{
-					int ret = ImPlotColormapDataAppendNative(self, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
-					return ret;
-				}
-			}
-		}
-
-		public static int ImPlotColormapDataAppend(ref ImPlotColormapData self, ref byte name, ref uint keys, int count, bool qual)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				fixed (byte* pname = &name)
-				{
-					fixed (uint* pkeys = &keys)
-					{
-						int ret = ImPlotColormapDataAppendNative((ImPlotColormapData*)pself, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+						double ret = PlotHistogram2DNative((byte*)plabelId, (long*)pxs, (long*)pys, count, xBins, yBins, range, flags);
 						return ret;
 					}
 				}
 			}
 		}
 
-		public static int ImPlotColormapDataAppend(ref ImPlotColormapData self, string name, ref uint keys, int count, bool qual)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
-			fixed (ImPlotColormapData* pself = &self)
+			fixed (byte* plabelId = labelId)
 			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (name != null)
+				fixed (long* pxs = &xs)
 				{
-					pStrSize0 = Utils.GetByteCountUTF8(name);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					fixed (long* pys = &ys)
 					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						double ret = PlotHistogram2DNative((byte*)plabelId, (long*)pxs, (long*)pys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+						return ret;
 					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
 				}
-				fixed (uint* pkeys = &keys)
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, int count, int xBins, int yBins)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (long* pxs = &xs)
 				{
-					int ret = ImPlotColormapDataAppendNative((ImPlotColormapData*)pself, pStr0, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+					fixed (long* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (long*)pxs, (long*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, int count, int xBins)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (long* pxs = &xs)
+				{
+					fixed (long* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (long*)pxs, (long*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (long* pxs = &xs)
+				{
+					fixed (long* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (long* pxs = &xs)
+				{
+					fixed (long* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (long*)pxs, (long*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (long* pxs = &xs)
+				{
+					fixed (long* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (long* pxs = &xs)
+				{
+					fixed (long* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (long*)pxs, (long*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (long* pxs = &xs)
+				{
+					fixed (long* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (long*)pxs, (long*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, int count, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (long* pxs = &xs)
+				{
+					fixed (long* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (long* pxs = &xs)
+				{
+					fixed (long* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (long*)pxs, (long*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref long xs, ref long ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (long* pxs = &xs)
+				{
+					fixed (long* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (long*)pxs, (long*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref long xs, ref long ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (long* pxs = &xs)
+			{
+				fixed (long* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (long*)pxs, (long*)pys, count, xBins, yBins, range, flags);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -1715,3310 +271,3586 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static int ImPlotColormapDataAppend(ref ImPlotColormapData self, ReadOnlySpan<byte> name, ref uint keys, int count, bool qual)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref long xs, ref long ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
-			fixed (ImPlotColormapData* pself = &self)
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
 			{
-				fixed (byte* pname = name)
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
-					fixed (uint* pkeys = &keys)
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (long* pxs = &xs)
+			{
+				fixed (long* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (long*)pxs, (long*)pys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
-						int ret = ImPlotColormapDataAppendNative((ImPlotColormapData*)pself, (byte*)pname, (uint*)pkeys, count, qual ? (byte)1 : (byte)0);
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref long xs, ref long ys, int count, int xBins, int yBins)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (long* pxs = &xs)
+			{
+				fixed (long* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (long*)pxs, (long*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref long xs, ref long ys, int count, int xBins)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (long* pxs = &xs)
+			{
+				fixed (long* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (long*)pxs, (long*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref long xs, ref long ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (long* pxs = &xs)
+			{
+				fixed (long* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (long*)pxs, (long*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref long xs, ref long ys, int count, int xBins, ImPlotRect range)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (long* pxs = &xs)
+			{
+				fixed (long* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (long*)pxs, (long*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref long xs, ref long ys, int count, ImPlotRect range)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (long* pxs = &xs)
+			{
+				fixed (long* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (long*)pxs, (long*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref long xs, ref long ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (long* pxs = &xs)
+			{
+				fixed (long* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (long*)pxs, (long*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref long xs, ref long ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (long* pxs = &xs)
+			{
+				fixed (long* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (long*)pxs, (long*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref long xs, ref long ys, int count, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (long* pxs = &xs)
+			{
+				fixed (long* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (long*)pxs, (long*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref long xs, ref long ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (long* pxs = &xs)
+			{
+				fixed (long* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (long*)pxs, (long*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref long xs, ref long ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (long* pxs = &xs)
+			{
+				fixed (long* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (long*)pxs, (long*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static double PlotHistogram2DNative(byte* labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			#if NET5_0_OR_GREATER
+			return ((delegate* unmanaged[Cdecl]<byte*, ulong*, ulong*, int, int, int, ImPlotRect, ImPlotHistogramFlags, double>)vt[256])(labelId, xs, ys, count, xBins, yBins, range, flags);
+			#else
+			return (double)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, int, int, ImPlotRect, ImPlotHistogramFlags, double>)vt[256])((nint)labelId, (nint)xs, (nint)ys, count, xBins, yBins, range, flags);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, yBins, range, flags);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ulong* ys, int count, int xBins)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ulong* ys, int count)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ulong* ys, int count, int xBins, ImPlotRect range)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotRect range)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ulong* ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotHistogramFlags flags)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ulong* ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ulong* ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			double ret = PlotHistogram2DNative(labelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, range, flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ulong* ys, int count, int xBins)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ulong* ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ulong* ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ulong* ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ulong* ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ulong* ys, int count, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ulong* ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ulong* ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, range, flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, int xBins)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ulong* ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				double ret = PlotHistogram2DNative((byte*)plabelId, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, yBins, range, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ulong* ys, int count, int xBins)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ulong* ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ulong* ys, int count, int xBins, ImPlotRect range)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ulong* ys, int count, ImPlotRect range)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ulong* ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ulong* ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ulong* ys, int count, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ulong* ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ulong* ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			double ret = PlotHistogram2DNative(pStr0, xs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, ys, count, xBins, yBins, range, flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, ys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ulong* ys, int count, int xBins)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ulong* ys, int count)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ulong* ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ulong* ys, int count, ImPlotRect range)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ulong* ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ulong* ys, int count, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ulong* ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ulong* ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, yBins, range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ulong* ys, int count, int xBins)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ulong* ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ulong* ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ulong* ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ulong* ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ulong* ys, int count, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ulong* ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ulong* ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, yBins, range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, int xBins)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ulong* ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, ys, count, xBins, yBins, range, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, ys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ulong* ys, int count, int xBins)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ulong* ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ulong* ys, int count, int xBins, ImPlotRect range)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ulong* ys, int count, ImPlotRect range)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ulong* ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, ys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ulong* ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ulong* ys, int count, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ulong* ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, ys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ulong* ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, ys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (ulong*)pys, count, xBins, yBins, range, flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (ulong*)pys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ref ulong ys, int count, int xBins)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ref ulong ys, int count)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ref ulong ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotRect range)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ref ulong ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ref ulong ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ulong* xs, ref ulong ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(labelId, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, yBins, range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ref ulong ys, int count, int xBins)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ref ulong ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ref ulong ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ref ulong ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ref ulong ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ref ulong ys, int count, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ref ulong ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ulong* xs, ref ulong ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, yBins, range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, int xBins)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ulong* xs, ref ulong ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative((byte*)plabelId, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(pStr0, xs, (ulong*)pys, count, xBins, yBins, range, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(pStr0, xs, (ulong*)pys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(pStr0, xs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ref ulong ys, int count, int xBins)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(pStr0, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ref ulong ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(pStr0, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ref ulong ys, int count, int xBins, ImPlotRect range)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(pStr0, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ref ulong ys, int count, ImPlotRect range)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(pStr0, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ref ulong ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(pStr0, xs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ref ulong ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(pStr0, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ref ulong ys, int count, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(pStr0, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ref ulong ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(pStr0, xs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ulong* xs, ref ulong ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pys = &ys)
+			{
+				double ret = PlotHistogram2DNative(pStr0, xs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ref ulong ys, int count, int xBins)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ref ulong ys, int count)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ref ulong ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ref ulong ys, int count, ImPlotRect range)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ref ulong ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ref ulong ys, int count, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ref ulong ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(byte* labelId, ref ulong xs, ref ulong ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(labelId, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, range, flags);
 						return ret;
 					}
 				}
 			}
 		}
 
-		internal static void ImPlotColormapDataAppendTableNative(ImPlotColormapData* self, ImPlotColormap cmap)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, void>)vt[506])(self, cmap);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, void>)vt[506])((nint)self, cmap);
-			#endif
-		}
-
-		public static void ImPlotColormapDataAppendTable(ImPlotColormapDataPtr self, ImPlotColormap cmap)
-		{
-			ImPlotColormapDataAppendTableNative(self, cmap);
-		}
-
-		public static void ImPlotColormapDataAppendTable(ref ImPlotColormapData self, ImPlotColormap cmap)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				ImPlotColormapDataAppendTableNative((ImPlotColormapData*)pself, cmap);
-			}
-		}
-
-		internal static void ImPlotColormapDataRebuildTablesNative(ImPlotColormapData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotColormapData*, void>)vt[507])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[507])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotColormapDataRebuildTables(ImPlotColormapDataPtr self)
-		{
-			ImPlotColormapDataRebuildTablesNative(self);
-		}
-
-		public static void ImPlotColormapDataRebuildTables(ref ImPlotColormapData self)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				ImPlotColormapDataRebuildTablesNative((ImPlotColormapData*)pself);
-			}
-		}
-
-		internal static byte ImPlotColormapDataIsQualNative(ImPlotColormapData* self, ImPlotColormap cmap)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, byte>)vt[508])(self, cmap);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, byte>)vt[508])((nint)self, cmap);
-			#endif
-		}
-
-		public static bool ImPlotColormapDataIsQual(ImPlotColormapDataPtr self, ImPlotColormap cmap)
-		{
-			byte ret = ImPlotColormapDataIsQualNative(self, cmap);
-			return ret != 0;
-		}
-
-		public static bool ImPlotColormapDataIsQual(ref ImPlotColormapData self, ImPlotColormap cmap)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				byte ret = ImPlotColormapDataIsQualNative((ImPlotColormapData*)pself, cmap);
-				return ret != 0;
-			}
-		}
-
-		internal static byte* ImPlotColormapDataGetNameNative(ImPlotColormapData* self, ImPlotColormap cmap)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, byte*>)vt[509])(self, cmap);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, nint>)vt[509])((nint)self, cmap);
-			#endif
-		}
-
-		public static byte* ImPlotColormapDataGetName(ImPlotColormapDataPtr self, ImPlotColormap cmap)
-		{
-			byte* ret = ImPlotColormapDataGetNameNative(self, cmap);
-			return ret;
-		}
-
-		public static string ImPlotColormapDataGetNameS(ImPlotColormapDataPtr self, ImPlotColormap cmap)
-		{
-			string ret = Utils.DecodeStringUTF8(ImPlotColormapDataGetNameNative(self, cmap));
-			return ret;
-		}
-
-		public static byte* ImPlotColormapDataGetName(ref ImPlotColormapData self, ImPlotColormap cmap)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				byte* ret = ImPlotColormapDataGetNameNative((ImPlotColormapData*)pself, cmap);
-				return ret;
-			}
-		}
-
-		public static string ImPlotColormapDataGetNameS(ref ImPlotColormapData self, ImPlotColormap cmap)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				string ret = Utils.DecodeStringUTF8(ImPlotColormapDataGetNameNative((ImPlotColormapData*)pself, cmap));
-				return ret;
-			}
-		}
-
-		internal static ImPlotColormap ImPlotColormapDataGetIndexNative(ImPlotColormapData* self, byte* name)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, byte*, ImPlotColormap>)vt[510])(self, name);
-			#else
-			return (ImPlotColormap)((delegate* unmanaged[Cdecl]<nint, nint, ImPlotColormap>)vt[510])((nint)self, (nint)name);
-			#endif
-		}
-
-		public static ImPlotColormap ImPlotColormapDataGetIndex(ImPlotColormapDataPtr self, byte* name)
-		{
-			ImPlotColormap ret = ImPlotColormapDataGetIndexNative(self, name);
-			return ret;
-		}
-
-		public static ImPlotColormap ImPlotColormapDataGetIndex(ref ImPlotColormapData self, byte* name)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				ImPlotColormap ret = ImPlotColormapDataGetIndexNative((ImPlotColormapData*)pself, name);
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap ImPlotColormapDataGetIndex(ImPlotColormapDataPtr self, ref byte name)
-		{
-			fixed (byte* pname = &name)
-			{
-				ImPlotColormap ret = ImPlotColormapDataGetIndexNative(self, (byte*)pname);
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap ImPlotColormapDataGetIndex(ImPlotColormapDataPtr self, string name)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (name != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(name);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImPlotColormap ret = ImPlotColormapDataGetIndexNative(self, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static ImPlotColormap ImPlotColormapDataGetIndex(ImPlotColormapDataPtr self, ReadOnlySpan<byte> name)
-		{
-			fixed (byte* pname = name)
-			{
-				ImPlotColormap ret = ImPlotColormapDataGetIndexNative(self, (byte*)pname);
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap ImPlotColormapDataGetIndex(ref ImPlotColormapData self, ref byte name)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				fixed (byte* pname = &name)
-				{
-					ImPlotColormap ret = ImPlotColormapDataGetIndexNative((ImPlotColormapData*)pself, (byte*)pname);
-					return ret;
-				}
-			}
-		}
-
-		public static ImPlotColormap ImPlotColormapDataGetIndex(ref ImPlotColormapData self, string name)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (name != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(name);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(name, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImPlotColormap ret = ImPlotColormapDataGetIndexNative((ImPlotColormapData*)pself, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static ImPlotColormap ImPlotColormapDataGetIndex(ref ImPlotColormapData self, ReadOnlySpan<byte> name)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				fixed (byte* pname = name)
-				{
-					ImPlotColormap ret = ImPlotColormapDataGetIndexNative((ImPlotColormapData*)pself, (byte*)pname);
-					return ret;
-				}
-			}
-		}
-
-		internal static uint* ImPlotColormapDataGetKeysNative(ImPlotColormapData* self, ImPlotColormap cmap)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, uint*>)vt[511])(self, cmap);
-			#else
-			return (uint*)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, nint>)vt[511])((nint)self, cmap);
-			#endif
-		}
-
-		public static uint* ImPlotColormapDataGetKeys(ImPlotColormapDataPtr self, ImPlotColormap cmap)
-		{
-			uint* ret = ImPlotColormapDataGetKeysNative(self, cmap);
-			return ret;
-		}
-
-		public static uint* ImPlotColormapDataGetKeys(ref ImPlotColormapData self, ImPlotColormap cmap)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				uint* ret = ImPlotColormapDataGetKeysNative((ImPlotColormapData*)pself, cmap);
-				return ret;
-			}
-		}
-
-		internal static int ImPlotColormapDataGetKeyCountNative(ImPlotColormapData* self, ImPlotColormap cmap)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int>)vt[512])(self, cmap);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int>)vt[512])((nint)self, cmap);
-			#endif
-		}
-
-		public static int ImPlotColormapDataGetKeyCount(ImPlotColormapDataPtr self, ImPlotColormap cmap)
-		{
-			int ret = ImPlotColormapDataGetKeyCountNative(self, cmap);
-			return ret;
-		}
-
-		public static int ImPlotColormapDataGetKeyCount(ref ImPlotColormapData self, ImPlotColormap cmap)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				int ret = ImPlotColormapDataGetKeyCountNative((ImPlotColormapData*)pself, cmap);
-				return ret;
-			}
-		}
-
-		internal static uint ImPlotColormapDataGetKeyColorNative(ImPlotColormapData* self, ImPlotColormap cmap, int idx)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int, uint>)vt[513])(self, cmap, idx);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int, uint>)vt[513])((nint)self, cmap, idx);
-			#endif
-		}
-
-		public static uint ImPlotColormapDataGetKeyColor(ImPlotColormapDataPtr self, ImPlotColormap cmap, int idx)
-		{
-			uint ret = ImPlotColormapDataGetKeyColorNative(self, cmap, idx);
-			return ret;
-		}
-
-		public static uint ImPlotColormapDataGetKeyColor(ref ImPlotColormapData self, ImPlotColormap cmap, int idx)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				uint ret = ImPlotColormapDataGetKeyColorNative((ImPlotColormapData*)pself, cmap, idx);
-				return ret;
-			}
-		}
-
-		internal static void ImPlotColormapDataSetKeyColorNative(ImPlotColormapData* self, ImPlotColormap cmap, int idx, uint value)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int, uint, void>)vt[514])(self, cmap, idx, value);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int, uint, void>)vt[514])((nint)self, cmap, idx, value);
-			#endif
-		}
-
-		public static void ImPlotColormapDataSetKeyColor(ImPlotColormapDataPtr self, ImPlotColormap cmap, int idx, uint value)
-		{
-			ImPlotColormapDataSetKeyColorNative(self, cmap, idx, value);
-		}
-
-		public static void ImPlotColormapDataSetKeyColor(ref ImPlotColormapData self, ImPlotColormap cmap, int idx, uint value)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				ImPlotColormapDataSetKeyColorNative((ImPlotColormapData*)pself, cmap, idx, value);
-			}
-		}
-
-		internal static uint* ImPlotColormapDataGetTableNative(ImPlotColormapData* self, ImPlotColormap cmap)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, uint*>)vt[515])(self, cmap);
-			#else
-			return (uint*)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, nint>)vt[515])((nint)self, cmap);
-			#endif
-		}
-
-		public static uint* ImPlotColormapDataGetTable(ImPlotColormapDataPtr self, ImPlotColormap cmap)
-		{
-			uint* ret = ImPlotColormapDataGetTableNative(self, cmap);
-			return ret;
-		}
-
-		public static uint* ImPlotColormapDataGetTable(ref ImPlotColormapData self, ImPlotColormap cmap)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				uint* ret = ImPlotColormapDataGetTableNative((ImPlotColormapData*)pself, cmap);
-				return ret;
-			}
-		}
-
-		internal static int ImPlotColormapDataGetTableSizeNative(ImPlotColormapData* self, ImPlotColormap cmap)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int>)vt[516])(self, cmap);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int>)vt[516])((nint)self, cmap);
-			#endif
-		}
-
-		public static int ImPlotColormapDataGetTableSize(ImPlotColormapDataPtr self, ImPlotColormap cmap)
-		{
-			int ret = ImPlotColormapDataGetTableSizeNative(self, cmap);
-			return ret;
-		}
-
-		public static int ImPlotColormapDataGetTableSize(ref ImPlotColormapData self, ImPlotColormap cmap)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				int ret = ImPlotColormapDataGetTableSizeNative((ImPlotColormapData*)pself, cmap);
-				return ret;
-			}
-		}
-
-		internal static uint ImPlotColormapDataGetTableColorNative(ImPlotColormapData* self, ImPlotColormap cmap, int idx)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, int, uint>)vt[517])(self, cmap, idx);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, int, uint>)vt[517])((nint)self, cmap, idx);
-			#endif
-		}
-
-		public static uint ImPlotColormapDataGetTableColor(ImPlotColormapDataPtr self, ImPlotColormap cmap, int idx)
-		{
-			uint ret = ImPlotColormapDataGetTableColorNative(self, cmap, idx);
-			return ret;
-		}
-
-		public static uint ImPlotColormapDataGetTableColor(ref ImPlotColormapData self, ImPlotColormap cmap, int idx)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				uint ret = ImPlotColormapDataGetTableColorNative((ImPlotColormapData*)pself, cmap, idx);
-				return ret;
-			}
-		}
-
-		internal static uint ImPlotColormapDataLerpTableNative(ImPlotColormapData* self, ImPlotColormap cmap, float t)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotColormapData*, ImPlotColormap, float, uint>)vt[518])(self, cmap, t);
-			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, ImPlotColormap, float, uint>)vt[518])((nint)self, cmap, t);
-			#endif
-		}
-
-		public static uint ImPlotColormapDataLerpTable(ImPlotColormapDataPtr self, ImPlotColormap cmap, float t)
-		{
-			uint ret = ImPlotColormapDataLerpTableNative(self, cmap, t);
-			return ret;
-		}
-
-		public static uint ImPlotColormapDataLerpTable(ref ImPlotColormapData self, ImPlotColormap cmap, float t)
-		{
-			fixed (ImPlotColormapData* pself = &self)
-			{
-				uint ret = ImPlotColormapDataLerpTableNative((ImPlotColormapData*)pself, cmap, t);
-				return ret;
-			}
-		}
-
-		internal static ImPlotPointError* ImPlotPointErrorImPlotPointErrorNative(double x, double y, double neg, double pos)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, double, double, double, ImPlotPointError*>)vt[519])(x, y, neg, pos);
-			#else
-			return (ImPlotPointError*)((delegate* unmanaged[Cdecl]<double, double, double, double, nint>)vt[519])(x, y, neg, pos);
-			#endif
-		}
-
-		public static ImPlotPointErrorPtr ImPlotPointErrorImPlotPointError(double x, double y, double neg, double pos)
-		{
-			ImPlotPointErrorPtr ret = ImPlotPointErrorImPlotPointErrorNative(x, y, neg, pos);
-			return ret;
-		}
-
-		internal static void ImPlotPointErrorDestroyNative(ImPlotPointError* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotPointError*, void>)vt[520])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[520])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotPointErrorDestroy(ImPlotPointErrorPtr self)
-		{
-			ImPlotPointErrorDestroyNative(self);
-		}
-
-		public static void ImPlotPointErrorDestroy(ref ImPlotPointError self)
-		{
-			fixed (ImPlotPointError* pself = &self)
-			{
-				ImPlotPointErrorDestroyNative((ImPlotPointError*)pself);
-			}
-		}
-
-		internal static ImPlotAnnotation* ImPlotAnnotationImPlotAnnotationNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAnnotation*>)vt[521])();
-			#else
-			return (ImPlotAnnotation*)((delegate* unmanaged[Cdecl]<nint>)vt[521])();
-			#endif
-		}
-
-		public static ImPlotAnnotationPtr ImPlotAnnotationImPlotAnnotation()
-		{
-			ImPlotAnnotationPtr ret = ImPlotAnnotationImPlotAnnotationNative();
-			return ret;
-		}
-
-		internal static void ImPlotAnnotationDestroyNative(ImPlotAnnotation* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAnnotation*, void>)vt[522])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[522])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotAnnotationDestroy(ImPlotAnnotationPtr self)
-		{
-			ImPlotAnnotationDestroyNative(self);
-		}
-
-		public static void ImPlotAnnotationDestroy(ref ImPlotAnnotation self)
-		{
-			fixed (ImPlotAnnotation* pself = &self)
-			{
-				ImPlotAnnotationDestroyNative((ImPlotAnnotation*)pself);
-			}
-		}
-
-		internal static ImPlotAnnotationCollection* ImPlotAnnotationCollectionImPlotAnnotationCollectionNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*>)vt[523])();
-			#else
-			return (ImPlotAnnotationCollection*)((delegate* unmanaged[Cdecl]<nint>)vt[523])();
-			#endif
-		}
-
-		public static ImPlotAnnotationCollectionPtr ImPlotAnnotationCollectionImPlotAnnotationCollection()
-		{
-			ImPlotAnnotationCollectionPtr ret = ImPlotAnnotationCollectionImPlotAnnotationCollectionNative();
-			return ret;
-		}
-
-		internal static void ImPlotAnnotationCollectionDestroyNative(ImPlotAnnotationCollection* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, void>)vt[524])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[524])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotAnnotationCollectionDestroy(ImPlotAnnotationCollectionPtr self)
-		{
-			ImPlotAnnotationCollectionDestroyNative(self);
-		}
-
-		public static void ImPlotAnnotationCollectionDestroy(ref ImPlotAnnotationCollection self)
-		{
-			fixed (ImPlotAnnotationCollection* pself = &self)
-			{
-				ImPlotAnnotationCollectionDestroyNative((ImPlotAnnotationCollection*)pself);
-			}
-		}
-
-		internal static void ImPlotAnnotationCollectionAppendVNative(ImPlotAnnotationCollection* self, Vector2 pos, Vector2 off, uint bg, uint fg, byte clamp, byte* fmt, nuint args)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, Vector2, Vector2, uint, uint, byte, byte*, nuint, void>)vt[525])(self, pos, off, bg, fg, clamp, fmt, args);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, uint, byte, nint, nuint, void>)vt[525])((nint)self, pos, off, bg, fg, clamp, (nint)fmt, args);
-			#endif
-		}
-
-		public static void ImPlotAnnotationCollectionAppendV(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, byte* fmt, nuint args)
-		{
-			ImPlotAnnotationCollectionAppendVNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, fmt, args);
-		}
-
-		public static void ImPlotAnnotationCollectionAppendV(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, byte* fmt, nuint args)
-		{
-			fixed (ImPlotAnnotationCollection* pself = &self)
-			{
-				ImPlotAnnotationCollectionAppendVNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, fmt, args);
-			}
-		}
-
-		public static void ImPlotAnnotationCollectionAppendV(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt, nuint args)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				ImPlotAnnotationCollectionAppendVNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt, args);
-			}
-		}
-
-		public static void ImPlotAnnotationCollectionAppendV(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, string fmt, nuint args)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImPlotAnnotationCollectionAppendVNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, pStr0, args);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ImPlotAnnotationCollectionAppendV(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ReadOnlySpan<byte> fmt, nuint args)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				ImPlotAnnotationCollectionAppendVNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt, args);
-			}
-		}
-
-		public static void ImPlotAnnotationCollectionAppendV(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt, nuint args)
-		{
-			fixed (ImPlotAnnotationCollection* pself = &self)
-			{
-				fixed (byte* pfmt = &fmt)
-				{
-					ImPlotAnnotationCollectionAppendVNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt, args);
-				}
-			}
-		}
-
-		public static void ImPlotAnnotationCollectionAppendV(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, string fmt, nuint args)
-		{
-			fixed (ImPlotAnnotationCollection* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (fmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(fmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImPlotAnnotationCollectionAppendVNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, pStr0, args);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void ImPlotAnnotationCollectionAppendV(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ReadOnlySpan<byte> fmt, nuint args)
-		{
-			fixed (ImPlotAnnotationCollection* pself = &self)
-			{
-				fixed (byte* pfmt = fmt)
-				{
-					ImPlotAnnotationCollectionAppendVNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt, args);
-				}
-			}
-		}
-
-		internal static void ImPlotAnnotationCollectionAppendNative(ImPlotAnnotationCollection* self, Vector2 pos, Vector2 off, uint bg, uint fg, byte clamp, byte* fmt)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, Vector2, Vector2, uint, uint, byte, byte*, void>)vt[526])(self, pos, off, bg, fg, clamp, fmt);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, uint, byte, nint, void>)vt[526])((nint)self, pos, off, bg, fg, clamp, (nint)fmt);
-			#endif
-		}
-
-		public static void ImPlotAnnotationCollectionAppend(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, byte* fmt)
-		{
-			ImPlotAnnotationCollectionAppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, fmt);
-		}
-
-		public static void ImPlotAnnotationCollectionAppend(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, byte* fmt)
-		{
-			fixed (ImPlotAnnotationCollection* pself = &self)
-			{
-				ImPlotAnnotationCollectionAppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, fmt);
-			}
-		}
-
-		public static void ImPlotAnnotationCollectionAppend(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				ImPlotAnnotationCollectionAppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt);
-			}
-		}
-
-		public static void ImPlotAnnotationCollectionAppend(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, string fmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImPlotAnnotationCollectionAppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ImPlotAnnotationCollectionAppend(ImPlotAnnotationCollectionPtr self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ReadOnlySpan<byte> fmt)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				ImPlotAnnotationCollectionAppendNative(self, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt);
-			}
-		}
-
-		public static void ImPlotAnnotationCollectionAppend(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ref byte fmt)
-		{
-			fixed (ImPlotAnnotationCollection* pself = &self)
-			{
-				fixed (byte* pfmt = &fmt)
-				{
-					ImPlotAnnotationCollectionAppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt);
-				}
-			}
-		}
-
-		public static void ImPlotAnnotationCollectionAppend(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, string fmt)
-		{
-			fixed (ImPlotAnnotationCollection* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (fmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(fmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImPlotAnnotationCollectionAppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void ImPlotAnnotationCollectionAppend(ref ImPlotAnnotationCollection self, Vector2 pos, Vector2 off, uint bg, uint fg, bool clamp, ReadOnlySpan<byte> fmt)
-		{
-			fixed (ImPlotAnnotationCollection* pself = &self)
-			{
-				fixed (byte* pfmt = fmt)
-				{
-					ImPlotAnnotationCollectionAppendNative((ImPlotAnnotationCollection*)pself, pos, off, bg, fg, clamp ? (byte)1 : (byte)0, (byte*)pfmt);
-				}
-			}
-		}
-
-		internal static byte* ImPlotAnnotationCollectionGetTextNative(ImPlotAnnotationCollection* self, int idx)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, int, byte*>)vt[527])(self, idx);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[527])((nint)self, idx);
-			#endif
-		}
-
-		public static byte* ImPlotAnnotationCollectionGetText(ImPlotAnnotationCollectionPtr self, int idx)
-		{
-			byte* ret = ImPlotAnnotationCollectionGetTextNative(self, idx);
-			return ret;
-		}
-
-		public static string ImPlotAnnotationCollectionGetTextS(ImPlotAnnotationCollectionPtr self, int idx)
-		{
-			string ret = Utils.DecodeStringUTF8(ImPlotAnnotationCollectionGetTextNative(self, idx));
-			return ret;
-		}
-
-		public static byte* ImPlotAnnotationCollectionGetText(ref ImPlotAnnotationCollection self, int idx)
-		{
-			fixed (ImPlotAnnotationCollection* pself = &self)
-			{
-				byte* ret = ImPlotAnnotationCollectionGetTextNative((ImPlotAnnotationCollection*)pself, idx);
-				return ret;
-			}
-		}
-
-		public static string ImPlotAnnotationCollectionGetTextS(ref ImPlotAnnotationCollection self, int idx)
-		{
-			fixed (ImPlotAnnotationCollection* pself = &self)
-			{
-				string ret = Utils.DecodeStringUTF8(ImPlotAnnotationCollectionGetTextNative((ImPlotAnnotationCollection*)pself, idx));
-				return ret;
-			}
-		}
-
-		internal static void ImPlotAnnotationCollectionResetNative(ImPlotAnnotationCollection* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAnnotationCollection*, void>)vt[528])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[528])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotAnnotationCollectionReset(ImPlotAnnotationCollectionPtr self)
-		{
-			ImPlotAnnotationCollectionResetNative(self);
-		}
-
-		public static void ImPlotAnnotationCollectionReset(ref ImPlotAnnotationCollection self)
-		{
-			fixed (ImPlotAnnotationCollection* pself = &self)
-			{
-				ImPlotAnnotationCollectionResetNative((ImPlotAnnotationCollection*)pself);
-			}
-		}
-
-		internal static ImPlotTagCollection* ImPlotTagCollectionImPlotTagCollectionNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTagCollection*>)vt[529])();
-			#else
-			return (ImPlotTagCollection*)((delegate* unmanaged[Cdecl]<nint>)vt[529])();
-			#endif
-		}
-
-		public static ImPlotTagCollectionPtr ImPlotTagCollectionImPlotTagCollection()
-		{
-			ImPlotTagCollectionPtr ret = ImPlotTagCollectionImPlotTagCollectionNative();
-			return ret;
-		}
-
-		internal static void ImPlotTagCollectionDestroyNative(ImPlotTagCollection* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, void>)vt[530])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[530])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotTagCollectionDestroy(ImPlotTagCollectionPtr self)
-		{
-			ImPlotTagCollectionDestroyNative(self);
-		}
-
-		public static void ImPlotTagCollectionDestroy(ref ImPlotTagCollection self)
-		{
-			fixed (ImPlotTagCollection* pself = &self)
-			{
-				ImPlotTagCollectionDestroyNative((ImPlotTagCollection*)pself);
-			}
-		}
-
-		internal static void ImPlotTagCollectionAppendVNative(ImPlotTagCollection* self, ImAxis axis, double value, uint bg, uint fg, byte* fmt, nuint args)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, ImAxis, double, uint, uint, byte*, nuint, void>)vt[531])(self, axis, value, bg, fg, fmt, args);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImAxis, double, uint, uint, nint, nuint, void>)vt[531])((nint)self, axis, value, bg, fg, (nint)fmt, args);
-			#endif
-		}
-
-		public static void ImPlotTagCollectionAppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, byte* fmt, nuint args)
-		{
-			ImPlotTagCollectionAppendVNative(self, axis, value, bg, fg, fmt, args);
-		}
-
-		public static void ImPlotTagCollectionAppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, byte* fmt, nuint args)
-		{
-			fixed (ImPlotTagCollection* pself = &self)
-			{
-				ImPlotTagCollectionAppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, fmt, args);
-			}
-		}
-
-		public static void ImPlotTagCollectionAppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt, nuint args)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				ImPlotTagCollectionAppendVNative(self, axis, value, bg, fg, (byte*)pfmt, args);
-			}
-		}
-
-		public static void ImPlotTagCollectionAppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, string fmt, nuint args)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImPlotTagCollectionAppendVNative(self, axis, value, bg, fg, pStr0, args);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ImPlotTagCollectionAppendV(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, ReadOnlySpan<byte> fmt, nuint args)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				ImPlotTagCollectionAppendVNative(self, axis, value, bg, fg, (byte*)pfmt, args);
-			}
-		}
-
-		public static void ImPlotTagCollectionAppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt, nuint args)
-		{
-			fixed (ImPlotTagCollection* pself = &self)
-			{
-				fixed (byte* pfmt = &fmt)
-				{
-					ImPlotTagCollectionAppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, (byte*)pfmt, args);
-				}
-			}
-		}
-
-		public static void ImPlotTagCollectionAppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, string fmt, nuint args)
-		{
-			fixed (ImPlotTagCollection* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (fmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(fmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImPlotTagCollectionAppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, pStr0, args);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void ImPlotTagCollectionAppendV(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, ReadOnlySpan<byte> fmt, nuint args)
-		{
-			fixed (ImPlotTagCollection* pself = &self)
-			{
-				fixed (byte* pfmt = fmt)
-				{
-					ImPlotTagCollectionAppendVNative((ImPlotTagCollection*)pself, axis, value, bg, fg, (byte*)pfmt, args);
-				}
-			}
-		}
-
-		internal static void ImPlotTagCollectionAppendNative(ImPlotTagCollection* self, ImAxis axis, double value, uint bg, uint fg, byte* fmt)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, ImAxis, double, uint, uint, byte*, void>)vt[532])(self, axis, value, bg, fg, fmt);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImAxis, double, uint, uint, nint, void>)vt[532])((nint)self, axis, value, bg, fg, (nint)fmt);
-			#endif
-		}
-
-		public static void ImPlotTagCollectionAppend(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, byte* fmt)
-		{
-			ImPlotTagCollectionAppendNative(self, axis, value, bg, fg, fmt);
-		}
-
-		public static void ImPlotTagCollectionAppend(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, byte* fmt)
-		{
-			fixed (ImPlotTagCollection* pself = &self)
-			{
-				ImPlotTagCollectionAppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, fmt);
-			}
-		}
-
-		public static void ImPlotTagCollectionAppend(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				ImPlotTagCollectionAppendNative(self, axis, value, bg, fg, (byte*)pfmt);
-			}
-		}
-
-		public static void ImPlotTagCollectionAppend(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, string fmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImPlotTagCollectionAppendNative(self, axis, value, bg, fg, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void ImPlotTagCollectionAppend(ImPlotTagCollectionPtr self, ImAxis axis, double value, uint bg, uint fg, ReadOnlySpan<byte> fmt)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				ImPlotTagCollectionAppendNative(self, axis, value, bg, fg, (byte*)pfmt);
-			}
-		}
-
-		public static void ImPlotTagCollectionAppend(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, ref byte fmt)
-		{
-			fixed (ImPlotTagCollection* pself = &self)
-			{
-				fixed (byte* pfmt = &fmt)
-				{
-					ImPlotTagCollectionAppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, (byte*)pfmt);
-				}
-			}
-		}
-
-		public static void ImPlotTagCollectionAppend(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, string fmt)
-		{
-			fixed (ImPlotTagCollection* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (fmt != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(fmt);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImPlotTagCollectionAppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void ImPlotTagCollectionAppend(ref ImPlotTagCollection self, ImAxis axis, double value, uint bg, uint fg, ReadOnlySpan<byte> fmt)
-		{
-			fixed (ImPlotTagCollection* pself = &self)
-			{
-				fixed (byte* pfmt = fmt)
-				{
-					ImPlotTagCollectionAppendNative((ImPlotTagCollection*)pself, axis, value, bg, fg, (byte*)pfmt);
-				}
-			}
-		}
-
-		internal static byte* ImPlotTagCollectionGetTextNative(ImPlotTagCollection* self, int idx)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, int, byte*>)vt[533])(self, idx);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[533])((nint)self, idx);
-			#endif
-		}
-
-		public static byte* ImPlotTagCollectionGetText(ImPlotTagCollectionPtr self, int idx)
-		{
-			byte* ret = ImPlotTagCollectionGetTextNative(self, idx);
-			return ret;
-		}
-
-		public static string ImPlotTagCollectionGetTextS(ImPlotTagCollectionPtr self, int idx)
-		{
-			string ret = Utils.DecodeStringUTF8(ImPlotTagCollectionGetTextNative(self, idx));
-			return ret;
-		}
-
-		public static byte* ImPlotTagCollectionGetText(ref ImPlotTagCollection self, int idx)
-		{
-			fixed (ImPlotTagCollection* pself = &self)
-			{
-				byte* ret = ImPlotTagCollectionGetTextNative((ImPlotTagCollection*)pself, idx);
-				return ret;
-			}
-		}
-
-		public static string ImPlotTagCollectionGetTextS(ref ImPlotTagCollection self, int idx)
-		{
-			fixed (ImPlotTagCollection* pself = &self)
-			{
-				string ret = Utils.DecodeStringUTF8(ImPlotTagCollectionGetTextNative((ImPlotTagCollection*)pself, idx));
-				return ret;
-			}
-		}
-
-		internal static void ImPlotTagCollectionResetNative(ImPlotTagCollection* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTagCollection*, void>)vt[534])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[534])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotTagCollectionReset(ImPlotTagCollectionPtr self)
-		{
-			ImPlotTagCollectionResetNative(self);
-		}
-
-		public static void ImPlotTagCollectionReset(ref ImPlotTagCollection self)
-		{
-			fixed (ImPlotTagCollection* pself = &self)
-			{
-				ImPlotTagCollectionResetNative((ImPlotTagCollection*)pself);
-			}
-		}
-
-		internal static ImPlotTick* ImPlotTickImPlotTickNative(double value, byte major, int level, byte showLabel)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<double, byte, int, byte, ImPlotTick*>)vt[535])(value, major, level, showLabel);
-			#else
-			return (ImPlotTick*)((delegate* unmanaged[Cdecl]<double, byte, int, byte, nint>)vt[535])(value, major, level, showLabel);
-			#endif
-		}
-
-		public static ImPlotTickPtr ImPlotTickImPlotTick(double value, bool major, int level, bool showLabel)
-		{
-			ImPlotTickPtr ret = ImPlotTickImPlotTickNative(value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0);
-			return ret;
-		}
-
-		internal static void ImPlotTickDestroyNative(ImPlotTick* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTick*, void>)vt[536])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[536])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotTickDestroy(ImPlotTickPtr self)
-		{
-			ImPlotTickDestroyNative(self);
-		}
-
-		public static void ImPlotTickDestroy(ref ImPlotTick self)
-		{
-			fixed (ImPlotTick* pself = &self)
-			{
-				ImPlotTickDestroyNative((ImPlotTick*)pself);
-			}
-		}
-
-		internal static ImPlotTicker* ImPlotTickerImPlotTickerNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*>)vt[537])();
-			#else
-			return (ImPlotTicker*)((delegate* unmanaged[Cdecl]<nint>)vt[537])();
-			#endif
-		}
-
-		public static ImPlotTickerPtr ImPlotTickerImPlotTicker()
-		{
-			ImPlotTickerPtr ret = ImPlotTickerImPlotTickerNative();
-			return ret;
-		}
-
-		internal static void ImPlotTickerDestroyNative(ImPlotTicker* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTicker*, void>)vt[538])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[538])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotTickerDestroy(ImPlotTickerPtr self)
-		{
-			ImPlotTickerDestroyNative(self);
-		}
-
-		public static void ImPlotTickerDestroy(ref ImPlotTicker self)
-		{
-			fixed (ImPlotTicker* pself = &self)
-			{
-				ImPlotTickerDestroyNative((ImPlotTicker*)pself);
-			}
-		}
-
-		internal static ImPlotTick* ImPlotTickerAddTickDoubleNative(ImPlotTicker* self, double value, byte major, int level, byte showLabel, byte* label)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, double, byte, int, byte, byte*, ImPlotTick*>)vt[539])(self, value, major, level, showLabel, label);
-			#else
-			return (ImPlotTick*)((delegate* unmanaged[Cdecl]<nint, double, byte, int, byte, nint, nint>)vt[539])((nint)self, value, major, level, showLabel, (nint)label);
-			#endif
-		}
-
-		public static ImPlotTickPtr ImPlotTickerAddTickDouble(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, byte* label)
-		{
-			ImPlotTickPtr ret = ImPlotTickerAddTickDoubleNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, label);
-			return ret;
-		}
-
-		public static ImPlotTickPtr ImPlotTickerAddTickDouble(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, byte* label)
-		{
-			fixed (ImPlotTicker* pself = &self)
-			{
-				ImPlotTickPtr ret = ImPlotTickerAddTickDoubleNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, label);
-				return ret;
-			}
-		}
-
-		public static ImPlotTickPtr ImPlotTickerAddTickDouble(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, ref byte label)
-		{
-			fixed (byte* plabel = &label)
-			{
-				ImPlotTickPtr ret = ImPlotTickerAddTickDoubleNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
-				return ret;
-			}
-		}
-
-		public static ImPlotTickPtr ImPlotTickerAddTickDouble(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, string label)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			ImPlotTickPtr ret = ImPlotTickerAddTickDoubleNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static ImPlotTickPtr ImPlotTickerAddTickDouble(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, ReadOnlySpan<byte> label)
-		{
-			fixed (byte* plabel = label)
-			{
-				ImPlotTickPtr ret = ImPlotTickerAddTickDoubleNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
-				return ret;
-			}
-		}
-
-		public static ImPlotTickPtr ImPlotTickerAddTickDouble(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, ref byte label)
-		{
-			fixed (ImPlotTicker* pself = &self)
-			{
-				fixed (byte* plabel = &label)
-				{
-					ImPlotTickPtr ret = ImPlotTickerAddTickDoubleNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
-					return ret;
-				}
-			}
-		}
-
-		public static ImPlotTickPtr ImPlotTickerAddTickDouble(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, string label)
-		{
-			fixed (ImPlotTicker* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (label != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(label);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
-					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-					}
-					else
-					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
-					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
-				}
-				ImPlotTickPtr ret = ImPlotTickerAddTickDoubleNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-				return ret;
-			}
-		}
-
-		public static ImPlotTickPtr ImPlotTickerAddTickDouble(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, ReadOnlySpan<byte> label)
-		{
-			fixed (ImPlotTicker* pself = &self)
-			{
-				fixed (byte* plabel = label)
-				{
-					ImPlotTickPtr ret = ImPlotTickerAddTickDoubleNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, (byte*)plabel);
-					return ret;
-				}
-			}
-		}
-
-		internal static ImPlotTick* ImPlotTickerAddTickDoublePlotFormatterNative(ImPlotTicker* self, double value, byte major, int level, byte showLabel, ImPlotFormatter formatter, void* data)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, double, byte, int, byte, delegate*<double, byte*, int, void*, int>, void*, ImPlotTick*>)vt[540])(self, value, major, level, showLabel, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), data);
-			#else
-			return (ImPlotTick*)((delegate* unmanaged[Cdecl]<nint, double, byte, int, byte, nint, nint, nint>)vt[540])((nint)self, value, major, level, showLabel, (nint)Utils.GetFunctionPointerForDelegate(formatter), (nint)data);
-			#endif
-		}
-
-		public static ImPlotTickPtr ImPlotTickerAddTickDoublePlotFormatter(ImPlotTickerPtr self, double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
-		{
-			ImPlotTickPtr ret = ImPlotTickerAddTickDoublePlotFormatterNative(self, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
-			return ret;
-		}
-
-		public static ImPlotTickPtr ImPlotTickerAddTickDoublePlotFormatter(ref ImPlotTicker self, double value, bool major, int level, bool showLabel, ImPlotFormatter formatter, void* data)
-		{
-			fixed (ImPlotTicker* pself = &self)
-			{
-				ImPlotTickPtr ret = ImPlotTickerAddTickDoublePlotFormatterNative((ImPlotTicker*)pself, value, major ? (byte)1 : (byte)0, level, showLabel ? (byte)1 : (byte)0, formatter, data);
-				return ret;
-			}
-		}
-
-		internal static ImPlotTick* ImPlotTickerAddTickPlotTickNative(ImPlotTicker* self, ImPlotTick tick)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotTick, ImPlotTick*>)vt[541])(self, tick);
-			#else
-			return (ImPlotTick*)((delegate* unmanaged[Cdecl]<nint, ImPlotTick, nint>)vt[541])((nint)self, tick);
-			#endif
-		}
-
-		public static ImPlotTickPtr ImPlotTickerAddTickPlotTick(ImPlotTickerPtr self, ImPlotTick tick)
-		{
-			ImPlotTickPtr ret = ImPlotTickerAddTickPlotTickNative(self, tick);
-			return ret;
-		}
-
-		public static ImPlotTickPtr ImPlotTickerAddTickPlotTick(ref ImPlotTicker self, ImPlotTick tick)
-		{
-			fixed (ImPlotTicker* pself = &self)
-			{
-				ImPlotTickPtr ret = ImPlotTickerAddTickPlotTickNative((ImPlotTicker*)pself, tick);
-				return ret;
-			}
-		}
-
-		internal static byte* ImPlotTickerGetTextIntNative(ImPlotTicker* self, int idx)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, int, byte*>)vt[542])(self, idx);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[542])((nint)self, idx);
-			#endif
-		}
-
-		public static byte* ImPlotTickerGetTextInt(ImPlotTickerPtr self, int idx)
-		{
-			byte* ret = ImPlotTickerGetTextIntNative(self, idx);
-			return ret;
-		}
-
-		public static string ImPlotTickerGetTextIntS(ImPlotTickerPtr self, int idx)
-		{
-			string ret = Utils.DecodeStringUTF8(ImPlotTickerGetTextIntNative(self, idx));
-			return ret;
-		}
-
-		public static byte* ImPlotTickerGetTextInt(ref ImPlotTicker self, int idx)
-		{
-			fixed (ImPlotTicker* pself = &self)
-			{
-				byte* ret = ImPlotTickerGetTextIntNative((ImPlotTicker*)pself, idx);
-				return ret;
-			}
-		}
-
-		public static string ImPlotTickerGetTextIntS(ref ImPlotTicker self, int idx)
-		{
-			fixed (ImPlotTicker* pself = &self)
-			{
-				string ret = Utils.DecodeStringUTF8(ImPlotTickerGetTextIntNative((ImPlotTicker*)pself, idx));
-				return ret;
-			}
-		}
-
-		internal static byte* ImPlotTickerGetTextPlotTickNative(ImPlotTicker* self, ImPlotTick tick)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotTick, byte*>)vt[543])(self, tick);
-			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, ImPlotTick, nint>)vt[543])((nint)self, tick);
-			#endif
-		}
-
-		public static byte* ImPlotTickerGetTextPlotTick(ImPlotTickerPtr self, ImPlotTick tick)
-		{
-			byte* ret = ImPlotTickerGetTextPlotTickNative(self, tick);
-			return ret;
-		}
-
-		public static string ImPlotTickerGetTextPlotTickS(ImPlotTickerPtr self, ImPlotTick tick)
-		{
-			string ret = Utils.DecodeStringUTF8(ImPlotTickerGetTextPlotTickNative(self, tick));
-			return ret;
-		}
-
-		public static byte* ImPlotTickerGetTextPlotTick(ref ImPlotTicker self, ImPlotTick tick)
-		{
-			fixed (ImPlotTicker* pself = &self)
-			{
-				byte* ret = ImPlotTickerGetTextPlotTickNative((ImPlotTicker*)pself, tick);
-				return ret;
-			}
-		}
-
-		public static string ImPlotTickerGetTextPlotTickS(ref ImPlotTicker self, ImPlotTick tick)
-		{
-			fixed (ImPlotTicker* pself = &self)
-			{
-				string ret = Utils.DecodeStringUTF8(ImPlotTickerGetTextPlotTickNative((ImPlotTicker*)pself, tick));
-				return ret;
-			}
-		}
-
-		internal static void ImPlotTickerOverrideSizeLateNative(ImPlotTicker* self, Vector2 size)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTicker*, Vector2, void>)vt[544])(self, size);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, void>)vt[544])((nint)self, size);
-			#endif
-		}
-
-		public static void ImPlotTickerOverrideSizeLate(ImPlotTickerPtr self, Vector2 size)
-		{
-			ImPlotTickerOverrideSizeLateNative(self, size);
-		}
-
-		public static void ImPlotTickerOverrideSizeLate(ref ImPlotTicker self, Vector2 size)
-		{
-			fixed (ImPlotTicker* pself = &self)
-			{
-				ImPlotTickerOverrideSizeLateNative((ImPlotTicker*)pself, size);
-			}
-		}
-
-		internal static void ImPlotTickerResetNative(ImPlotTicker* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotTicker*, void>)vt[545])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[545])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotTickerReset(ImPlotTickerPtr self)
-		{
-			ImPlotTickerResetNative(self);
-		}
-
-		public static void ImPlotTickerReset(ref ImPlotTicker self)
-		{
-			fixed (ImPlotTicker* pself = &self)
-			{
-				ImPlotTickerResetNative((ImPlotTicker*)pself);
-			}
-		}
-
-		internal static int ImPlotTickerTickCountNative(ImPlotTicker* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotTicker*, int>)vt[546])(self);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[546])((nint)self);
-			#endif
-		}
-
-		public static int ImPlotTickerTickCount(ImPlotTickerPtr self)
-		{
-			int ret = ImPlotTickerTickCountNative(self);
-			return ret;
-		}
-
-		public static int ImPlotTickerTickCount(ref ImPlotTicker self)
-		{
-			fixed (ImPlotTicker* pself = &self)
-			{
-				int ret = ImPlotTickerTickCountNative((ImPlotTicker*)pself);
-				return ret;
-			}
-		}
-
-		internal static ImPlotAxis* ImPlotAxisImPlotAxisNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*>)vt[547])();
-			#else
-			return (ImPlotAxis*)((delegate* unmanaged[Cdecl]<nint>)vt[547])();
-			#endif
-		}
-
-		public static ImPlotAxisPtr ImPlotAxisImPlotAxis()
-		{
-			ImPlotAxisPtr ret = ImPlotAxisImPlotAxisNative();
-			return ret;
-		}
-
-		internal static void ImPlotAxisDestroyNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[548])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[548])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotAxisDestroy(ImPlotAxisPtr self)
-		{
-			ImPlotAxisDestroyNative(self);
-		}
-
-		public static void ImPlotAxisDestroy(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				ImPlotAxisDestroyNative((ImPlotAxis*)pself);
-			}
-		}
-
-		internal static void ImPlotAxisResetNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[549])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[549])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotAxisReset(ImPlotAxisPtr self)
-		{
-			ImPlotAxisResetNative(self);
-		}
-
-		public static void ImPlotAxisReset(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				ImPlotAxisResetNative((ImPlotAxis*)pself);
-			}
-		}
-
-		internal static byte ImPlotAxisSetMinNative(ImPlotAxis* self, double min, byte force)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, byte, byte>)vt[550])(self, min, force);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, double, byte, byte>)vt[550])((nint)self, min, force);
-			#endif
-		}
-
-		public static bool ImPlotAxisSetMin(ImPlotAxisPtr self, double min, bool force)
-		{
-			byte ret = ImPlotAxisSetMinNative(self, min, force ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisSetMin(ref ImPlotAxis self, double min, bool force)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisSetMinNative((ImPlotAxis*)pself, min, force ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisSetMaxNative(ImPlotAxis* self, double max, byte force)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, byte, byte>)vt[551])(self, max, force);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, double, byte, byte>)vt[551])((nint)self, max, force);
-			#endif
-		}
-
-		public static bool ImPlotAxisSetMax(ImPlotAxisPtr self, double max, bool force)
-		{
-			byte ret = ImPlotAxisSetMaxNative(self, max, force ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisSetMax(ref ImPlotAxis self, double max, bool force)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisSetMaxNative((ImPlotAxis*)pself, max, force ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		internal static void ImPlotAxisSetRangeDoubleNative(ImPlotAxis* self, double v1, double v2)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, double, void>)vt[552])(self, v1, v2);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, double, double, void>)vt[552])((nint)self, v1, v2);
-			#endif
-		}
-
-		public static void ImPlotAxisSetRangeDouble(ImPlotAxisPtr self, double v1, double v2)
-		{
-			ImPlotAxisSetRangeDoubleNative(self, v1, v2);
-		}
-
-		public static void ImPlotAxisSetRangeDouble(ref ImPlotAxis self, double v1, double v2)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				ImPlotAxisSetRangeDoubleNative((ImPlotAxis*)pself, v1, v2);
-			}
-		}
-
-		internal static void ImPlotAxisSetRangePlotRangeNative(ImPlotAxis* self, ImPlotRange range)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, ImPlotRange, void>)vt[553])(self, range);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImPlotRange, void>)vt[553])((nint)self, range);
-			#endif
-		}
-
-		public static void ImPlotAxisSetRangePlotRange(ImPlotAxisPtr self, ImPlotRange range)
-		{
-			ImPlotAxisSetRangePlotRangeNative(self, range);
-		}
-
-		public static void ImPlotAxisSetRangePlotRange(ref ImPlotAxis self, ImPlotRange range)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				ImPlotAxisSetRangePlotRangeNative((ImPlotAxis*)pself, range);
-			}
-		}
-
-		internal static void ImPlotAxisSetAspectNative(ImPlotAxis* self, double unitPerPix)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, void>)vt[554])(self, unitPerPix);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, double, void>)vt[554])((nint)self, unitPerPix);
-			#endif
-		}
-
-		public static void ImPlotAxisSetAspect(ImPlotAxisPtr self, double unitPerPix)
-		{
-			ImPlotAxisSetAspectNative(self, unitPerPix);
-		}
-
-		public static void ImPlotAxisSetAspect(ref ImPlotAxis self, double unitPerPix)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				ImPlotAxisSetAspectNative((ImPlotAxis*)pself, unitPerPix);
-			}
-		}
-
-		internal static float ImPlotAxisPixelSizeNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, float>)vt[555])(self);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, float>)vt[555])((nint)self);
-			#endif
-		}
-
-		public static float ImPlotAxisPixelSize(ImPlotAxisPtr self)
-		{
-			float ret = ImPlotAxisPixelSizeNative(self);
-			return ret;
-		}
-
-		public static float ImPlotAxisPixelSize(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				float ret = ImPlotAxisPixelSizeNative((ImPlotAxis*)pself);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotAxisGetAspectNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, double>)vt[556])(self);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, double>)vt[556])((nint)self);
-			#endif
-		}
-
-		public static double ImPlotAxisGetAspect(ImPlotAxisPtr self)
-		{
-			double ret = ImPlotAxisGetAspectNative(self);
-			return ret;
-		}
-
-		public static double ImPlotAxisGetAspect(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				double ret = ImPlotAxisGetAspectNative((ImPlotAxis*)pself);
-				return ret;
-			}
-		}
-
-		internal static void ImPlotAxisConstrainNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[557])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[557])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotAxisConstrain(ImPlotAxisPtr self)
-		{
-			ImPlotAxisConstrainNative(self);
-		}
-
-		public static void ImPlotAxisConstrain(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				ImPlotAxisConstrainNative((ImPlotAxis*)pself);
-			}
-		}
-
-		internal static void ImPlotAxisUpdateTransformCacheNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[558])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[558])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotAxisUpdateTransformCache(ImPlotAxisPtr self)
-		{
-			ImPlotAxisUpdateTransformCacheNative(self);
-		}
-
-		public static void ImPlotAxisUpdateTransformCache(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				ImPlotAxisUpdateTransformCacheNative((ImPlotAxis*)pself);
-			}
-		}
-
-		internal static float ImPlotAxisPlotToPixelsNative(ImPlotAxis* self, double plt)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, float>)vt[559])(self, plt);
-			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, double, float>)vt[559])((nint)self, plt);
-			#endif
-		}
-
-		public static float ImPlotAxisPlotToPixels(ImPlotAxisPtr self, double plt)
-		{
-			float ret = ImPlotAxisPlotToPixelsNative(self, plt);
-			return ret;
-		}
-
-		public static float ImPlotAxisPlotToPixels(ref ImPlotAxis self, double plt)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				float ret = ImPlotAxisPlotToPixelsNative((ImPlotAxis*)pself, plt);
-				return ret;
-			}
-		}
-
-		internal static double ImPlotAxisPixelsToPlotNative(ImPlotAxis* self, float pix)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, float, double>)vt[560])(self, pix);
-			#else
-			return (double)((delegate* unmanaged[Cdecl]<nint, float, double>)vt[560])((nint)self, pix);
-			#endif
-		}
-
-		public static double ImPlotAxisPixelsToPlot(ImPlotAxisPtr self, float pix)
-		{
-			double ret = ImPlotAxisPixelsToPlotNative(self, pix);
-			return ret;
-		}
-
-		public static double ImPlotAxisPixelsToPlot(ref ImPlotAxis self, float pix)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				double ret = ImPlotAxisPixelsToPlotNative((ImPlotAxis*)pself, pix);
-				return ret;
-			}
-		}
-
-		internal static void ImPlotAxisExtendFitNative(ImPlotAxis* self, double v)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, double, void>)vt[561])(self, v);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, double, void>)vt[561])((nint)self, v);
-			#endif
-		}
-
-		public static void ImPlotAxisExtendFit(ImPlotAxisPtr self, double v)
-		{
-			ImPlotAxisExtendFitNative(self, v);
-		}
-
-		public static void ImPlotAxisExtendFit(ref ImPlotAxis self, double v)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				ImPlotAxisExtendFitNative((ImPlotAxis*)pself, v);
-			}
-		}
-
-		internal static void ImPlotAxisExtendFitWithNative(ImPlotAxis* self, ImPlotAxis* alt, double v, double vAlt)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, ImPlotAxis*, double, double, void>)vt[562])(self, alt, v, vAlt);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, double, double, void>)vt[562])((nint)self, (nint)alt, v, vAlt);
-			#endif
-		}
-
-		public static void ImPlotAxisExtendFitWith(ImPlotAxisPtr self, ImPlotAxisPtr alt, double v, double vAlt)
-		{
-			ImPlotAxisExtendFitWithNative(self, alt, v, vAlt);
-		}
-
-		public static void ImPlotAxisExtendFitWith(ref ImPlotAxis self, ImPlotAxisPtr alt, double v, double vAlt)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				ImPlotAxisExtendFitWithNative((ImPlotAxis*)pself, alt, v, vAlt);
-			}
-		}
-
-		public static void ImPlotAxisExtendFitWith(ImPlotAxisPtr self, ref ImPlotAxis alt, double v, double vAlt)
-		{
-			fixed (ImPlotAxis* palt = &alt)
-			{
-				ImPlotAxisExtendFitWithNative(self, (ImPlotAxis*)palt, v, vAlt);
-			}
-		}
-
-		public static void ImPlotAxisExtendFitWith(ref ImPlotAxis self, ref ImPlotAxis alt, double v, double vAlt)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				fixed (ImPlotAxis* palt = &alt)
-				{
-					ImPlotAxisExtendFitWithNative((ImPlotAxis*)pself, (ImPlotAxis*)palt, v, vAlt);
-				}
-			}
-		}
-
-		internal static void ImPlotAxisApplyFitNative(ImPlotAxis* self, float padding)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, float, void>)vt[563])(self, padding);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, float, void>)vt[563])((nint)self, padding);
-			#endif
-		}
-
-		public static void ImPlotAxisApplyFit(ImPlotAxisPtr self, float padding)
-		{
-			ImPlotAxisApplyFitNative(self, padding);
-		}
-
-		public static void ImPlotAxisApplyFit(ref ImPlotAxis self, float padding)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				ImPlotAxisApplyFitNative((ImPlotAxis*)pself, padding);
-			}
-		}
-
-		internal static byte ImPlotAxisHasLabelNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[564])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[564])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisHasLabel(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisHasLabelNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisHasLabel(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisHasLabelNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisHasGridLinesNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[565])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[565])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisHasGridLines(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisHasGridLinesNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisHasGridLines(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisHasGridLinesNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisHasTickLabelsNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[566])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[566])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisHasTickLabels(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisHasTickLabelsNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisHasTickLabels(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisHasTickLabelsNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisHasTickMarksNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[567])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[567])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisHasTickMarks(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisHasTickMarksNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisHasTickMarks(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisHasTickMarksNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisWillRenderNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[568])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[568])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisWillRender(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisWillRenderNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisWillRender(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisWillRenderNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisIsOppositeNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[569])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[569])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisIsOpposite(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisIsOppositeNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisIsOpposite(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisIsOppositeNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisIsInvertedNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[570])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[570])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisIsInverted(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisIsInvertedNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisIsInverted(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisIsInvertedNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisIsForegroundNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[571])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[571])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisIsForeground(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisIsForegroundNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisIsForeground(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisIsForegroundNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisIsAutoFittingNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[572])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[572])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisIsAutoFitting(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisIsAutoFittingNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisIsAutoFitting(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisIsAutoFittingNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisCanInitFitNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[573])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[573])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisCanInitFit(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisCanInitFitNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisCanInitFit(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisCanInitFitNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisIsRangeLockedNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[574])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[574])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisIsRangeLocked(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisIsRangeLockedNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisIsRangeLocked(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisIsRangeLockedNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisIsLockedMinNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[575])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[575])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisIsLockedMin(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisIsLockedMinNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisIsLockedMin(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisIsLockedMinNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisIsLockedMaxNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[576])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[576])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisIsLockedMax(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisIsLockedMaxNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisIsLockedMax(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisIsLockedMaxNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisIsLockedNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[577])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[577])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisIsLocked(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisIsLockedNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisIsLocked(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisIsLockedNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisIsInputLockedMinNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[578])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[578])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisIsInputLockedMin(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisIsInputLockedMinNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisIsInputLockedMin(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisIsInputLockedMinNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisIsInputLockedMaxNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[579])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[579])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisIsInputLockedMax(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisIsInputLockedMaxNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisIsInputLockedMax(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisIsInputLockedMaxNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisIsInputLockedNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[580])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[580])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisIsInputLocked(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisIsInputLockedNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisIsInputLocked(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisIsInputLockedNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisHasMenusNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte>)vt[581])(self);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[581])((nint)self);
-			#endif
-		}
-
-		public static bool ImPlotAxisHasMenus(ImPlotAxisPtr self)
-		{
-			byte ret = ImPlotAxisHasMenusNative(self);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisHasMenus(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisHasMenusNative((ImPlotAxis*)pself);
-				return ret != 0;
-			}
-		}
-
-		internal static byte ImPlotAxisIsPanLockedNative(ImPlotAxis* self, byte increasing)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAxis*, byte, byte>)vt[582])(self, increasing);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)vt[582])((nint)self, increasing);
-			#endif
-		}
-
-		public static bool ImPlotAxisIsPanLocked(ImPlotAxisPtr self, bool increasing)
-		{
-			byte ret = ImPlotAxisIsPanLockedNative(self, increasing ? (byte)1 : (byte)0);
-			return ret != 0;
-		}
-
-		public static bool ImPlotAxisIsPanLocked(ref ImPlotAxis self, bool increasing)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				byte ret = ImPlotAxisIsPanLockedNative((ImPlotAxis*)pself, increasing ? (byte)1 : (byte)0);
-				return ret != 0;
-			}
-		}
-
-		internal static void ImPlotAxisPushLinksNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[583])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[583])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotAxisPushLinks(ImPlotAxisPtr self)
-		{
-			ImPlotAxisPushLinksNative(self);
-		}
-
-		public static void ImPlotAxisPushLinks(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				ImPlotAxisPushLinksNative((ImPlotAxis*)pself);
-			}
-		}
-
-		internal static void ImPlotAxisPullLinksNative(ImPlotAxis* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAxis*, void>)vt[584])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[584])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotAxisPullLinks(ImPlotAxisPtr self)
-		{
-			ImPlotAxisPullLinksNative(self);
-		}
-
-		public static void ImPlotAxisPullLinks(ref ImPlotAxis self)
-		{
-			fixed (ImPlotAxis* pself = &self)
-			{
-				ImPlotAxisPullLinksNative((ImPlotAxis*)pself);
-			}
-		}
-
-		internal static ImPlotAlignmentData* ImPlotAlignmentDataImPlotAlignmentDataNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*>)vt[585])();
-			#else
-			return (ImPlotAlignmentData*)((delegate* unmanaged[Cdecl]<nint>)vt[585])();
-			#endif
-		}
-
-		public static ImPlotAlignmentDataPtr ImPlotAlignmentDataImPlotAlignmentData()
-		{
-			ImPlotAlignmentDataPtr ret = ImPlotAlignmentDataImPlotAlignmentDataNative();
-			return ret;
-		}
-
-		internal static void ImPlotAlignmentDataDestroyNative(ImPlotAlignmentData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, void>)vt[586])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[586])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotAlignmentDataDestroy(ImPlotAlignmentDataPtr self)
-		{
-			ImPlotAlignmentDataDestroyNative(self);
-		}
-
-		public static void ImPlotAlignmentDataDestroy(ref ImPlotAlignmentData self)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				ImPlotAlignmentDataDestroyNative((ImPlotAlignmentData*)pself);
-			}
-		}
-
-		internal static void ImPlotAlignmentDataBeginNative(ImPlotAlignmentData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, void>)vt[587])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[587])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotAlignmentDataBegin(ImPlotAlignmentDataPtr self)
-		{
-			ImPlotAlignmentDataBeginNative(self);
-		}
-
-		public static void ImPlotAlignmentDataBegin(ref ImPlotAlignmentData self)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				ImPlotAlignmentDataBeginNative((ImPlotAlignmentData*)pself);
-			}
-		}
-
-		internal static void ImPlotAlignmentDataUpdateNative(ImPlotAlignmentData* self, float* padA, float* padB, float* deltaA, float* deltaB)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, float*, float*, float*, float*, void>)vt[588])(self, padA, padB, deltaA, deltaB);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, void>)vt[588])((nint)self, (nint)padA, (nint)padB, (nint)deltaA, (nint)deltaB);
-			#endif
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, float* padB, float* deltaA, float* deltaB)
-		{
-			ImPlotAlignmentDataUpdateNative(self, padA, padB, deltaA, deltaB);
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, float* padB, float* deltaA, float* deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, padB, deltaA, deltaB);
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, float* padB, float* deltaA, float* deltaB)
-		{
-			fixed (float* ppadA = &padA)
-			{
-				ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, padB, deltaA, deltaB);
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, float* padB, float* deltaA, float* deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadA = &padA)
-				{
-					ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, deltaA, deltaB);
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, ref float padB, float* deltaA, float* deltaB)
-		{
-			fixed (float* ppadB = &padB)
-			{
-				ImPlotAlignmentDataUpdateNative(self, padA, (float*)ppadB, deltaA, deltaB);
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, ref float padB, float* deltaA, float* deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadB = &padB)
-				{
-					ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, deltaA, deltaB);
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, float* deltaA, float* deltaB)
-		{
-			fixed (float* ppadA = &padA)
-			{
-				fixed (float* ppadB = &padB)
-				{
-					ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, (float*)ppadB, deltaA, deltaB);
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, ref float padB, float* deltaA, float* deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadA = &padA)
-				{
-					fixed (float* ppadB = &padB)
-					{
-						ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, deltaA, deltaB);
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, float* padB, ref float deltaA, float* deltaB)
-		{
-			fixed (float* pdeltaA = &deltaA)
-			{
-				ImPlotAlignmentDataUpdateNative(self, padA, padB, (float*)pdeltaA, deltaB);
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, float* padB, ref float deltaA, float* deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* pdeltaA = &deltaA)
-				{
-					ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, padB, (float*)pdeltaA, deltaB);
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, float* padB, ref float deltaA, float* deltaB)
-		{
-			fixed (float* ppadA = &padA)
-			{
-				fixed (float* pdeltaA = &deltaA)
-				{
-					ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, padB, (float*)pdeltaA, deltaB);
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, float* padB, ref float deltaA, float* deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadA = &padA)
-				{
-					fixed (float* pdeltaA = &deltaA)
-					{
-						ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, (float*)pdeltaA, deltaB);
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, ref float padB, ref float deltaA, float* deltaB)
-		{
-			fixed (float* ppadB = &padB)
-			{
-				fixed (float* pdeltaA = &deltaA)
-				{
-					ImPlotAlignmentDataUpdateNative(self, padA, (float*)ppadB, (float*)pdeltaA, deltaB);
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, ref float padB, ref float deltaA, float* deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadB = &padB)
-				{
-					fixed (float* pdeltaA = &deltaA)
-					{
-						ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, (float*)pdeltaA, deltaB);
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, ref float deltaA, float* deltaB)
-		{
-			fixed (float* ppadA = &padA)
-			{
-				fixed (float* ppadB = &padB)
-				{
-					fixed (float* pdeltaA = &deltaA)
-					{
-						ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, deltaB);
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, ref float padB, ref float deltaA, float* deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadA = &padA)
-				{
-					fixed (float* ppadB = &padB)
-					{
-						fixed (float* pdeltaA = &deltaA)
-						{
-							ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, deltaB);
-						}
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, float* padB, float* deltaA, ref float deltaB)
-		{
-			fixed (float* pdeltaB = &deltaB)
-			{
-				ImPlotAlignmentDataUpdateNative(self, padA, padB, deltaA, (float*)pdeltaB);
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, float* padB, float* deltaA, ref float deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* pdeltaB = &deltaB)
-				{
-					ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, padB, deltaA, (float*)pdeltaB);
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, float* padB, float* deltaA, ref float deltaB)
-		{
-			fixed (float* ppadA = &padA)
-			{
-				fixed (float* pdeltaB = &deltaB)
-				{
-					ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, padB, deltaA, (float*)pdeltaB);
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, float* padB, float* deltaA, ref float deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadA = &padA)
-				{
-					fixed (float* pdeltaB = &deltaB)
-					{
-						ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, deltaA, (float*)pdeltaB);
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, ref float padB, float* deltaA, ref float deltaB)
-		{
-			fixed (float* ppadB = &padB)
-			{
-				fixed (float* pdeltaB = &deltaB)
-				{
-					ImPlotAlignmentDataUpdateNative(self, padA, (float*)ppadB, deltaA, (float*)pdeltaB);
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, ref float padB, float* deltaA, ref float deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadB = &padB)
-				{
-					fixed (float* pdeltaB = &deltaB)
-					{
-						ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, deltaA, (float*)pdeltaB);
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, float* deltaA, ref float deltaB)
-		{
-			fixed (float* ppadA = &padA)
-			{
-				fixed (float* ppadB = &padB)
-				{
-					fixed (float* pdeltaB = &deltaB)
-					{
-						ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, (float*)ppadB, deltaA, (float*)pdeltaB);
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, ref float padB, float* deltaA, ref float deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadA = &padA)
-				{
-					fixed (float* ppadB = &padB)
-					{
-						fixed (float* pdeltaB = &deltaB)
-						{
-							ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, deltaA, (float*)pdeltaB);
-						}
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, float* padB, ref float deltaA, ref float deltaB)
-		{
-			fixed (float* pdeltaA = &deltaA)
-			{
-				fixed (float* pdeltaB = &deltaB)
-				{
-					ImPlotAlignmentDataUpdateNative(self, padA, padB, (float*)pdeltaA, (float*)pdeltaB);
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, float* padB, ref float deltaA, ref float deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* pdeltaA = &deltaA)
-				{
-					fixed (float* pdeltaB = &deltaB)
-					{
-						ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, padB, (float*)pdeltaA, (float*)pdeltaB);
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, float* padB, ref float deltaA, ref float deltaB)
-		{
-			fixed (float* ppadA = &padA)
-			{
-				fixed (float* pdeltaA = &deltaA)
-				{
-					fixed (float* pdeltaB = &deltaB)
-					{
-						ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, padB, (float*)pdeltaA, (float*)pdeltaB);
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, float* padB, ref float deltaA, ref float deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadA = &padA)
-				{
-					fixed (float* pdeltaA = &deltaA)
-					{
-						fixed (float* pdeltaB = &deltaB)
-						{
-							ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, padB, (float*)pdeltaA, (float*)pdeltaB);
-						}
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, float* padA, ref float padB, ref float deltaA, ref float deltaB)
-		{
-			fixed (float* ppadB = &padB)
-			{
-				fixed (float* pdeltaA = &deltaA)
-				{
-					fixed (float* pdeltaB = &deltaB)
-					{
-						ImPlotAlignmentDataUpdateNative(self, padA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, float* padA, ref float padB, ref float deltaA, ref float deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadB = &padB)
-				{
-					fixed (float* pdeltaA = &deltaA)
-					{
-						fixed (float* pdeltaB = &deltaB)
-						{
-							ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, padA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
-						}
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ImPlotAlignmentDataPtr self, ref float padA, ref float padB, ref float deltaA, ref float deltaB)
-		{
-			fixed (float* ppadA = &padA)
-			{
-				fixed (float* ppadB = &padB)
-				{
-					fixed (float* pdeltaA = &deltaA)
-					{
-						fixed (float* pdeltaB = &deltaB)
-						{
-							ImPlotAlignmentDataUpdateNative(self, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
-						}
-					}
-				}
-			}
-		}
-
-		public static void ImPlotAlignmentDataUpdate(ref ImPlotAlignmentData self, ref float padA, ref float padB, ref float deltaA, ref float deltaB)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				fixed (float* ppadA = &padA)
-				{
-					fixed (float* ppadB = &padB)
-					{
-						fixed (float* pdeltaA = &deltaA)
-						{
-							fixed (float* pdeltaB = &deltaB)
-							{
-								ImPlotAlignmentDataUpdateNative((ImPlotAlignmentData*)pself, (float*)ppadA, (float*)ppadB, (float*)pdeltaA, (float*)pdeltaB);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		internal static void ImPlotAlignmentDataEndNative(ImPlotAlignmentData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, void>)vt[589])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[589])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotAlignmentDataEnd(ImPlotAlignmentDataPtr self)
-		{
-			ImPlotAlignmentDataEndNative(self);
-		}
-
-		public static void ImPlotAlignmentDataEnd(ref ImPlotAlignmentData self)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				ImPlotAlignmentDataEndNative((ImPlotAlignmentData*)pself);
-			}
-		}
-
-		internal static void ImPlotAlignmentDataResetNative(ImPlotAlignmentData* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotAlignmentData*, void>)vt[590])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[590])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotAlignmentDataReset(ImPlotAlignmentDataPtr self)
-		{
-			ImPlotAlignmentDataResetNative(self);
-		}
-
-		public static void ImPlotAlignmentDataReset(ref ImPlotAlignmentData self)
-		{
-			fixed (ImPlotAlignmentData* pself = &self)
-			{
-				ImPlotAlignmentDataResetNative((ImPlotAlignmentData*)pself);
-			}
-		}
-
-		internal static ImPlotItem* ImPlotItemImPlotItemNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItem*>)vt[591])();
-			#else
-			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint>)vt[591])();
-			#endif
-		}
-
-		public static ImPlotItemPtr ImPlotItemImPlotItem()
-		{
-			ImPlotItemPtr ret = ImPlotItemImPlotItemNative();
-			return ret;
-		}
-
-		internal static void ImPlotItemDestroyNative(ImPlotItem* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotItem*, void>)vt[592])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[592])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotItemDestroy(ImPlotItemPtr self)
-		{
-			ImPlotItemDestroyNative(self);
-		}
-
-		public static void ImPlotItemDestroy(ref ImPlotItem self)
-		{
-			fixed (ImPlotItem* pself = &self)
-			{
-				ImPlotItemDestroyNative((ImPlotItem*)pself);
-			}
-		}
-
-		internal static ImPlotLegend* ImPlotLegendImPlotLegendNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotLegend*>)vt[593])();
-			#else
-			return (ImPlotLegend*)((delegate* unmanaged[Cdecl]<nint>)vt[593])();
-			#endif
-		}
-
-		public static ImPlotLegendPtr ImPlotLegendImPlotLegend()
-		{
-			ImPlotLegendPtr ret = ImPlotLegendImPlotLegendNative();
-			return ret;
-		}
-
-		internal static void ImPlotLegendDestroyNative(ImPlotLegend* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotLegend*, void>)vt[594])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[594])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotLegendDestroy(ImPlotLegendPtr self)
-		{
-			ImPlotLegendDestroyNative(self);
-		}
-
-		public static void ImPlotLegendDestroy(ref ImPlotLegend self)
-		{
-			fixed (ImPlotLegend* pself = &self)
-			{
-				ImPlotLegendDestroyNative((ImPlotLegend*)pself);
-			}
-		}
-
-		internal static void ImPlotLegendResetNative(ImPlotLegend* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotLegend*, void>)vt[595])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[595])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotLegendReset(ImPlotLegendPtr self)
-		{
-			ImPlotLegendResetNative(self);
-		}
-
-		public static void ImPlotLegendReset(ref ImPlotLegend self)
-		{
-			fixed (ImPlotLegend* pself = &self)
-			{
-				ImPlotLegendResetNative((ImPlotLegend*)pself);
-			}
-		}
-
-		internal static ImPlotItemGroup* ImPlotItemGroupImPlotItemGroupNative()
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*>)vt[596])();
-			#else
-			return (ImPlotItemGroup*)((delegate* unmanaged[Cdecl]<nint>)vt[596])();
-			#endif
-		}
-
-		public static ImPlotItemGroupPtr ImPlotItemGroupImPlotItemGroup()
-		{
-			ImPlotItemGroupPtr ret = ImPlotItemGroupImPlotItemGroupNative();
-			return ret;
-		}
-
-		internal static void ImPlotItemGroupDestroyNative(ImPlotItemGroup* self)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, void>)vt[597])(self);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[597])((nint)self);
-			#endif
-		}
-
-		public static void ImPlotItemGroupDestroy(ImPlotItemGroupPtr self)
-		{
-			ImPlotItemGroupDestroyNative(self);
-		}
-
-		public static void ImPlotItemGroupDestroy(ref ImPlotItemGroup self)
-		{
-			fixed (ImPlotItemGroup* pself = &self)
-			{
-				ImPlotItemGroupDestroyNative((ImPlotItemGroup*)pself);
-			}
-		}
-
-		internal static int ImPlotItemGroupGetItemCountNative(ImPlotItemGroup* self)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, int>)vt[598])(self);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[598])((nint)self);
-			#endif
-		}
-
-		public static int ImPlotItemGroupGetItemCount(ImPlotItemGroupPtr self)
-		{
-			int ret = ImPlotItemGroupGetItemCountNative(self);
-			return ret;
-		}
-
-		public static int ImPlotItemGroupGetItemCount(ref ImPlotItemGroup self)
-		{
-			fixed (ImPlotItemGroup* pself = &self)
-			{
-				int ret = ImPlotItemGroupGetItemCountNative((ImPlotItemGroup*)pself);
-				return ret;
-			}
-		}
-
-		internal static int ImPlotItemGroupGetItemIDNative(ImPlotItemGroup* self, byte* labelId)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, byte*, int>)vt[599])(self, labelId);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)vt[599])((nint)self, (nint)labelId);
-			#endif
-		}
-
-		public static int ImPlotItemGroupGetItemID(ImPlotItemGroupPtr self, byte* labelId)
-		{
-			int ret = ImPlotItemGroupGetItemIDNative(self, labelId);
-			return ret;
-		}
-
-		public static int ImPlotItemGroupGetItemID(ref ImPlotItemGroup self, byte* labelId)
-		{
-			fixed (ImPlotItemGroup* pself = &self)
-			{
-				int ret = ImPlotItemGroupGetItemIDNative((ImPlotItemGroup*)pself, labelId);
-				return ret;
-			}
-		}
-
-		public static int ImPlotItemGroupGetItemID(ImPlotItemGroupPtr self, ref byte labelId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range)
 		{
 			fixed (byte* plabelId = &labelId)
 			{
-				int ret = ImPlotItemGroupGetItemIDNative(self, (byte*)plabelId);
-				return ret;
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+						return ret;
+					}
+				}
 			}
 		}
 
-		public static int ImPlotItemGroupGetItemID(ImPlotItemGroupPtr self, string labelId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins)
 		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
+			fixed (byte* plabelId = &labelId)
 			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+				fixed (ulong* pxs = &xs)
 				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+						return ret;
+					}
 				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ImPlotItemGroupGetItemIDNative(self, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
 		}
 
-		public static int ImPlotItemGroupGetItemID(ImPlotItemGroupPtr self, ReadOnlySpan<byte> labelId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ref ulong ys, int count, int xBins)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ref ulong ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ref ulong ys, int count, int xBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotRect range)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ref ulong ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ref ulong ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ref byte labelId, ref ulong xs, ref ulong ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
 			{
-				int ret = ImPlotItemGroupGetItemIDNative(self, (byte*)plabelId);
-				return ret;
-			}
-		}
-
-		public static int ImPlotItemGroupGetItemID(ref ImPlotItemGroup self, ref byte labelId)
-		{
-			fixed (ImPlotItemGroup* pself = &self)
-			{
-				fixed (byte* plabelId = &labelId)
+				fixed (ulong* pxs = &xs)
 				{
-					int ret = ImPlotItemGroupGetItemIDNative((ImPlotItemGroup*)pself, (byte*)plabelId);
-					return ret;
-				}
-			}
-		}
-
-		public static int ImPlotItemGroupGetItemID(ref ImPlotItemGroup self, string labelId)
-		{
-			fixed (ImPlotItemGroup* pself = &self)
-			{
-				byte* pStr0 = null;
-				int pStrSize0 = 0;
-				if (labelId != null)
-				{
-					pStrSize0 = Utils.GetByteCountUTF8(labelId);
-					if (pStrSize0 >= Utils.MaxStackallocSize)
+					fixed (ulong* pys = &ys)
 					{
-						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, range, flags);
+						return ret;
 					}
-					else
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
 					{
-						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-						pStr0 = pStrStack0;
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+						return ret;
 					}
-					int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-					pStr0[pStrOffset0] = 0;
 				}
-				int ret = ImPlotItemGroupGetItemIDNative((ImPlotItemGroup*)pself, pStr0);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
 				{
-					Utils.Free(pStr0);
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+						return ret;
+					}
 				}
-				return ret;
 			}
 		}
 
-		public static int ImPlotItemGroupGetItemID(ref ImPlotItemGroup self, ReadOnlySpan<byte> labelId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, int xBins)
 		{
-			fixed (ImPlotItemGroup* pself = &self)
+			fixed (byte* plabelId = labelId)
 			{
-				fixed (byte* plabelId = labelId)
+				fixed (ulong* pxs = &xs)
 				{
-					int ret = ImPlotItemGroupGetItemIDNative((ImPlotItemGroup*)pself, (byte*)plabelId);
-					return ret;
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+						return ret;
+					}
 				}
 			}
 		}
 
-		internal static ImPlotItem* ImPlotItemGroupGetItemIDNative(ImPlotItemGroup* self, int id)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, int, ImPlotItem*>)vt[600])(self, id);
-			#else
-			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[600])((nint)self, id);
-			#endif
-		}
-
-		public static ImPlotItemPtr ImPlotItemGroupGetItemID(ImPlotItemGroupPtr self, int id)
-		{
-			ImPlotItemPtr ret = ImPlotItemGroupGetItemIDNative(self, id);
-			return ret;
-		}
-
-		public static ImPlotItemPtr ImPlotItemGroupGetItemID(ref ImPlotItemGroup self, int id)
-		{
-			fixed (ImPlotItemGroup* pself = &self)
+			fixed (byte* plabelId = labelId)
 			{
-				ImPlotItemPtr ret = ImPlotItemGroupGetItemIDNative((ImPlotItemGroup*)pself, id);
-				return ret;
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+						return ret;
+					}
+				}
 			}
 		}
 
-		internal static ImPlotItem* ImPlotItemGroupGetItemNative(ImPlotItemGroup* self, byte* labelId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, int xBins, ImPlotRect range)
 		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImPlotItemGroup*, byte*, ImPlotItem*>)vt[601])(self, labelId);
-			#else
-			return (ImPlotItem*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)vt[601])((nint)self, (nint)labelId);
-			#endif
-		}
-
-		public static ImPlotItemPtr ImPlotItemGroupGetItem(ImPlotItemGroupPtr self, byte* labelId)
-		{
-			ImPlotItemPtr ret = ImPlotItemGroupGetItemNative(self, labelId);
-			return ret;
-		}
-
-		public static ImPlotItemPtr ImPlotItemGroupGetItem(ref ImPlotItemGroup self, byte* labelId)
-		{
-			fixed (ImPlotItemGroup* pself = &self)
+			fixed (byte* plabelId = labelId)
 			{
-				ImPlotItemPtr ret = ImPlotItemGroupGetItemNative((ImPlotItemGroup*)pself, labelId);
-				return ret;
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+						return ret;
+					}
+				}
 			}
 		}
 
-		public static ImPlotItemPtr ImPlotItemGroupGetItem(ImPlotItemGroupPtr self, ref byte labelId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, ImPlotRect range)
 		{
-			fixed (byte* plabelId = &labelId)
+			fixed (byte* plabelId = labelId)
 			{
-				ImPlotItemPtr ret = ImPlotItemGroupGetItemNative(self, (byte*)plabelId);
-				return ret;
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+						return ret;
+					}
+				}
 			}
 		}
 
-		public static ImPlotItemPtr ImPlotItemGroupGetItem(ImPlotItemGroupPtr self, string labelId)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(ReadOnlySpan<byte> labelId, ref ulong xs, ref ulong ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (ulong* pxs = &xs)
+				{
+					fixed (ulong* pys = &ys)
+					{
+						double ret = PlotHistogram2DNative((byte*)plabelId, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+						return ret;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range, ImPlotHistogramFlags flags)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -5037,12 +3869,1174 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImPlotItemPtr ret = ImPlotItemGroupGetItemNative(self, pStr0);
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, range, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins, ImPlotRect range)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, range, (ImPlotHistogramFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ref ulong ys, int count, int xBins)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ref ulong ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), (ImPlotHistogramFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ref ulong ys, int count, int xBins, ImPlotRect range)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotRect range)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, (ImPlotHistogramFlags)(0));
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ref ulong ys, int count, int xBins, int yBins, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, (ulong*)pys, count, xBins, yBins, (ImPlotRect)(*ImPlotRectNative()), flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ref ulong ys, int count, int xBins, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), (ImPlotRect)(*ImPlotRectNative()), flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ref ulong ys, int count, int xBins, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, (ulong*)pys, count, xBins, (int)((int)ImPlotBin.Sturges), range, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static double PlotHistogram2D(string labelId, ref ulong xs, ref ulong ys, int count, ImPlotRect range, ImPlotHistogramFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (ulong* pxs = &xs)
+			{
+				fixed (ulong* pys = &ys)
+				{
+					double ret = PlotHistogram2DNative(pStr0, (ulong*)pxs, (ulong*)pys, count, (int)((int)ImPlotBin.Sturges), (int)((int)ImPlotBin.Sturges), range, flags);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+					return ret;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static void PlotDigitalNative(byte* labelId, float* xs, float* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			#if NET5_0_OR_GREATER
+			((delegate* unmanaged[Cdecl]<byte*, float*, float*, int, ImPlotDigitalFlags, int, int, void>)vt[257])(labelId, xs, ys, count, flags, offset, stride);
+			#else
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, int, ImPlotDigitalFlags, int, int, void>)vt[257])((nint)labelId, (nint)xs, (nint)ys, count, flags, offset, stride);
+			#endif
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(byte* labelId, float* xs, float* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, flags, offset, stride);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(byte* labelId, float* xs, float* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, flags, offset, (int)(sizeof(float)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(byte* labelId, float* xs, float* ys, int count, ImPlotDigitalFlags flags)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, flags, (int)(0), (int)(sizeof(float)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(byte* labelId, float* xs, float* ys, int count)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(float)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(byte* labelId, float* xs, float* ys, int count, int offset)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(float)));
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(byte* labelId, float* xs, float* ys, int count, int offset, int stride)
+		{
+			PlotDigitalNative(labelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ref byte labelId, float* xs, float* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ref byte labelId, float* xs, float* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ref byte labelId, float* xs, float* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ref byte labelId, float* xs, float* ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ref byte labelId, float* xs, float* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ref byte labelId, float* xs, float* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ReadOnlySpan<byte> labelId, float* xs, float* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ReadOnlySpan<byte> labelId, float* xs, float* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ReadOnlySpan<byte> labelId, float* xs, float* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ReadOnlySpan<byte> labelId, float* xs, float* ys, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ReadOnlySpan<byte> labelId, float* xs, float* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ReadOnlySpan<byte> labelId, float* xs, float* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotDigitalNative((byte*)plabelId, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(string labelId, float* xs, float* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, flags, offset, stride);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
 			}
-			return ret;
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(string labelId, float* xs, float* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, flags, offset, (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(string labelId, float* xs, float* ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, flags, (int)(0), (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(string labelId, float* xs, float* ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(string labelId, float* xs, float* ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(float)));
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(string labelId, float* xs, float* ys, int count, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			PlotDigitalNative(pStr0, xs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(byte* labelId, ref float xs, float* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (float*)pxs, ys, count, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(byte* labelId, ref float xs, float* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (float*)pxs, ys, count, flags, offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(byte* labelId, ref float xs, float* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (float*)pxs, ys, count, flags, (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(byte* labelId, ref float xs, float* ys, int count)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (float*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(byte* labelId, ref float xs, float* ys, int count, int offset)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (float*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(float)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(byte* labelId, ref float xs, float* ys, int count, int offset, int stride)
+		{
+			fixed (float* pxs = &xs)
+			{
+				PlotDigitalNative(labelId, (float*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ref byte labelId, ref float xs, float* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (float*)pxs, ys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ref byte labelId, ref float xs, float* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (float*)pxs, ys, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ref byte labelId, ref float xs, float* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (float*)pxs, ys, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ref byte labelId, ref float xs, float* ys, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (float*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ref byte labelId, ref float xs, float* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (float*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ref byte labelId, ref float xs, float* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (float*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ReadOnlySpan<byte> labelId, ref float xs, float* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (float*)pxs, ys, count, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ReadOnlySpan<byte> labelId, ref float xs, float* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (float*)pxs, ys, count, flags, offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ReadOnlySpan<byte> labelId, ref float xs, float* ys, int count, ImPlotDigitalFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (float*)pxs, ys, count, flags, (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ReadOnlySpan<byte> labelId, ref float xs, float* ys, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (float*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ReadOnlySpan<byte> labelId, ref float xs, float* ys, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (float*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(float)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(ReadOnlySpan<byte> labelId, ref float xs, float* ys, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (float* pxs = &xs)
+				{
+					PlotDigitalNative((byte*)plabelId, (float*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(string labelId, ref float xs, float* ys, int count, ImPlotDigitalFlags flags, int offset, int stride)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (float*)pxs, ys, count, flags, offset, stride);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(string labelId, ref float xs, float* ys, int count, ImPlotDigitalFlags flags, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (float*)pxs, ys, count, flags, offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(string labelId, ref float xs, float* ys, int count, ImPlotDigitalFlags flags)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (float*)pxs, ys, count, flags, (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(string labelId, ref float xs, float* ys, int count)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (float*)pxs, ys, count, (ImPlotDigitalFlags)(0), (int)(0), (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotDigital(string labelId, ref float xs, float* ys, int count, int offset)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (labelId != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(labelId);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (float* pxs = &xs)
+			{
+				PlotDigitalNative(pStr0, (float*)pxs, ys, count, (ImPlotDigitalFlags)(0), offset, (int)(sizeof(float)));
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
 		}
 	}
 }

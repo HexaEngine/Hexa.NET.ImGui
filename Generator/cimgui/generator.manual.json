@@ -2,8 +2,11 @@
   "Namespace": "Hexa.NET.ImGui",
   "ApiName": "ImGui",
   "LibName": "cimgui",
-  "UseLibraryImport": true,
+  "ImportType": "VTable",
+  "EnableExperimentalOptions": true,
+  "GenerateConstructorsForStructs": true,
   "GenerateSizeOfStructs": false,
+  "AutoSquashTypedef": true,
   "KnownConstantNames": {},
   "KnownEnumValueNames": {
     "ImGuiInputFlags_Repeat": "ImGuiInputFlags.Repeat",
@@ -20,7 +23,7 @@
   "GenerateEnums": false,
   "GenerateExtensions": false,
   "GenerateFunctions": true,
-  "GenerateStructs": false,
+  "GenerateTypes": false,
   "GenerateHandles": false,
   "GenerateDelegates": false,
   "AllowedFunctions": [
@@ -57,7 +60,7 @@
       "Name": "ref Vector2"
     }
   ],
-  "NameMappings": {
+  "TypeMappings": {
     "uint8_t": "byte",
     "uint16_t": "ushort",
     "uint32_t": "uint",

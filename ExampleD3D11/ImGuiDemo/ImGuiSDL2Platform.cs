@@ -269,7 +269,7 @@
                             mouse_pos.Y += window_y;
                         }
 
-                        io.AddMouseSourceEvent(env.Motion.Which == unchecked((uint)-1) ? ImGuiMouseSource.TouchScreen : ImGuiMouseSource.Source);
+                        io.AddMouseSourceEvent(env.Motion.Which == unchecked((uint)-1) ? ImGuiMouseSource.TouchScreen : ImGuiMouseSource.Mouse);
                         io.AddMousePosEvent(mouse_pos.X, mouse_pos.Y);
                         return true;
                     }
@@ -282,7 +282,7 @@
 
                         //wheel_x /= 100.0f;
 
-                        io.AddMouseSourceEvent(env.Wheel.Which == unchecked((uint)-1) ? ImGuiMouseSource.TouchScreen : ImGuiMouseSource.Source);
+                        io.AddMouseSourceEvent(env.Wheel.Which == unchecked((uint)-1) ? ImGuiMouseSource.TouchScreen : ImGuiMouseSource.Mouse);
                         io.AddMouseWheelEvent(wheel_x, wheel_y);
                         return true;
                     }
@@ -298,7 +298,7 @@
                         if (mouse_button == -1)
                             break;
 
-                        io.AddMouseSourceEvent(env.Button.Which == unchecked((uint)-1) ? ImGuiMouseSource.TouchScreen : ImGuiMouseSource.Source);
+                        io.AddMouseSourceEvent(env.Button.Which == unchecked((uint)-1) ? ImGuiMouseSource.TouchScreen : ImGuiMouseSource.Mouse);
                         io.AddMouseButtonEvent(mouse_button, env.Type == (int)EventType.Mousebuttondown);
                         bd->MouseButtonsDown = env.Type == (int)EventType.Mousebuttondown ? bd->MouseButtonsDown | 1 << mouse_button : bd->MouseButtonsDown & ~(1 << mouse_button);
                         return true;
@@ -580,7 +580,7 @@
             // - [X] SDL backend correctly reports this regardless of another viewport behind focused and dragged from (we need this to find a useful drag and drop target).
             if ((io.BackendFlags & ImGuiBackendFlags.HasMouseHoveredViewport) != 0)
             {
-                int mouse_viewport_id = 0;
+                uint mouse_viewport_id = 0;
                 Window* sdl_mouse_window = sdl.GetWindowFromID(bd->MouseWindowID);
                 if (sdl_mouse_window != null)
                 {

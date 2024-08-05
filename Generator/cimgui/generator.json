@@ -2,8 +2,12 @@
   "Namespace": "Hexa.NET.ImGui",
   "ApiName": "ImGui",
   "LibName": "cimgui",
-  "UseLibraryImport": true,
+  "ImportType": "VTable",
+  "EnableExperimentalOptions": true,
+  "GenerateConstructorsForStructs": true,
   "GenerateSizeOfStructs": false,
+  "AutoSquashTypedef": true,
+  "GenerateExtensions": false,
   "KnownConstantNames": {},
   "KnownEnumValueNames": {
     "ImGuiInputFlags_Repeat": "ImGuiInputFlags.Repeat",
@@ -13,10 +17,10 @@
   "KnownExtensionPrefixes": {},
   "KnownExtensionNames": {},
   "KnownStructMethods": {},
-  "IgnoredParts": ["bit", "Ig", "ImGui", "Str", "Arr"],
-  "PreserveCaps": [""],
-  "Keywords": ["object", "event", "out", "base"],
-  "IgnoredTypes": ["ImVec4", "ImVec3", "ImVec2", "ImVector_ImDrawCmd"],
+  "IgnoredParts": [ "bit", "Ig", "ImGui", "Str", "Arr" ],
+  "PreserveCaps": [ "" ],
+  "Keywords": [ "object", "event", "out", "base" ],
+  "IgnoredTypes": [ "ImVec4", "ImVec3", "ImVec2", "ImVector_ImDrawCmd" ],
   "IgnoredFunctions": [
     "igInputText",
     "igInputTextMultiline",
@@ -48,7 +52,7 @@
       "Name": "ref Vector2"
     }
   ],
-  "NameMappings": {
+  "TypeMappings": {
     "ImVector_ImDrawCmd": "ImVector<ImDrawCmd>",
     "uint8_t": "byte",
     "uint16_t": "ushort",
@@ -91,5 +95,5 @@
   "AllowedTypes": [],
   "AllowedEnums": [],
   "AllowedTypedefs": [],
-  "Usings": ["System.Numerics"]
+  "Usings": [ "System.Numerics" ]
 }

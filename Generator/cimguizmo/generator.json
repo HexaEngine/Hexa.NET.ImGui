@@ -2,8 +2,12 @@
   "Namespace": "Hexa.NET.ImGuizmo",
   "ApiName": "ImGuizmo",
   "LibName": "cimguizmo",
-  "UseLibraryImport": true,
+  "ImportType": "VTable",
+  "EnableExperimentalOptions": true,
+  "GenerateConstructorsForStructs": true,
   "GenerateSizeOfStructs": false,
+  "AutoSquashTypedef": true,
+  "GenerateExtensions": false,
   "KnownConstantNames": {},
   "KnownEnumValueNames": { "": "" },
   "KnownEnumPrefixes": {},
@@ -50,7 +54,7 @@
       "Name": "ref Matrix4x4"
     }
   ],
-  "NameMappings": {
+  "TypeMappings": {
     "uint8_t": "byte",
     "uint16_t": "ushort",
     "uint32_t": "uint",

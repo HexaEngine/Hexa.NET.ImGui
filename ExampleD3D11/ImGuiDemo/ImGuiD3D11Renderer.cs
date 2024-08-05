@@ -731,8 +731,6 @@ namespace ExampleD3D11.ImGuiDemo
             RendererData* bd = GetBackendData();
             ViewportData* vd = (ViewportData*)viewport->RendererUserData;
 
-            vd->RTView = null;
-
             if (vd->RTView.Handle != null)
             {
                 vd->RTView.Release();

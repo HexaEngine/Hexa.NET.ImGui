@@ -23,7 +23,32 @@ namespace Hexa.NET.ImGuizmo
 		public static void InitApi()
 		{
 			vt = new VTable(GetLibraryName(), 26);
-			vt.Load(0, "ImGuizmo_SetDrawlist");			vt.Load(1, "ImGuizmo_BeginFrame");			vt.Load(2, "ImGuizmo_SetImGuiContext");			vt.Load(3, "ImGuizmo_IsOver_Nil");			vt.Load(4, "ImGuizmo_IsUsing");			vt.Load(5, "ImGuizmo_IsUsingAny");			vt.Load(6, "ImGuizmo_Enable");			vt.Load(7, "ImGuizmo_DecomposeMatrixToComponents");			vt.Load(8, "ImGuizmo_RecomposeMatrixFromComponents");			vt.Load(9, "ImGuizmo_SetRect");			vt.Load(10, "ImGuizmo_SetOrthographic");			vt.Load(11, "ImGuizmo_DrawCubes");			vt.Load(12, "ImGuizmo_DrawGrid");			vt.Load(13, "ImGuizmo_Manipulate");			vt.Load(14, "ImGuizmo_ViewManipulate_Float");			vt.Load(15, "ImGuizmo_ViewManipulate_FloatPtr");			vt.Load(16, "ImGuizmo_SetID");			vt.Load(17, "ImGuizmo_IsOver_OPERATION");			vt.Load(18, "ImGuizmo_SetGizmoSizeClipSpace");			vt.Load(19, "ImGuizmo_AllowAxisFlip");			vt.Load(20, "ImGuizmo_SetAxisLimit");			vt.Load(21, "ImGuizmo_SetPlaneLimit");			vt.Load(22, "Style_Style");			vt.Load(23, "Style_destroy");			vt.Load(24, "ImGuizmo_GetStyle");		}
+			vt.Load(0, "ImGuizmo_SetDrawlist");
+			vt.Load(1, "ImGuizmo_BeginFrame");
+			vt.Load(2, "ImGuizmo_SetImGuiContext");
+			vt.Load(3, "ImGuizmo_IsOver_Nil");
+			vt.Load(4, "ImGuizmo_IsUsing");
+			vt.Load(5, "ImGuizmo_IsUsingAny");
+			vt.Load(6, "ImGuizmo_Enable");
+			vt.Load(7, "ImGuizmo_DecomposeMatrixToComponents");
+			vt.Load(8, "ImGuizmo_RecomposeMatrixFromComponents");
+			vt.Load(9, "ImGuizmo_SetRect");
+			vt.Load(10, "ImGuizmo_SetOrthographic");
+			vt.Load(11, "ImGuizmo_DrawCubes");
+			vt.Load(12, "ImGuizmo_DrawGrid");
+			vt.Load(13, "ImGuizmo_Manipulate");
+			vt.Load(14, "ImGuizmo_ViewManipulate_Float");
+			vt.Load(15, "ImGuizmo_ViewManipulate_FloatPtr");
+			vt.Load(16, "ImGuizmo_SetID");
+			vt.Load(17, "ImGuizmo_IsOver_OPERATION");
+			vt.Load(18, "ImGuizmo_SetGizmoSizeClipSpace");
+			vt.Load(19, "ImGuizmo_AllowAxisFlip");
+			vt.Load(20, "ImGuizmo_SetAxisLimit");
+			vt.Load(21, "ImGuizmo_SetPlaneLimit");
+			vt.Load(22, "Style_Style");
+			vt.Load(23, "Style_destroy");
+			vt.Load(24, "ImGuizmo_GetStyle");
+		}
 
 		public static void FreeApi()
 		{

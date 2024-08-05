@@ -18,12 +18,18 @@ using Hexa.NET.ImGui;
 namespace Hexa.NET.ImNodes
 {
 	#if NET5_0_OR_GREATER
+	/// <summary>
+	/// To be documented.
+	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImNodesMiniMapNodeHoveringCallback(int intValue, void* voidValue);
+	public unsafe delegate void ImNodesMiniMapNodeHoveringCallback([NativeName(NativeNameType.Param, "")] [NativeName(NativeNameType.Type, "int")] int unknown0, [NativeName(NativeNameType.Param, "")] [NativeName(NativeNameType.Type, "void*")] void* unknown1);
 
 	#else
+	/// <summary>
+	/// To be documented.
+	/// </summary>
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-	public unsafe delegate void ImNodesMiniMapNodeHoveringCallback(int intValue, nint voidValue);
+	public unsafe delegate void ImNodesMiniMapNodeHoveringCallback([NativeName(NativeNameType.Param, "")] [NativeName(NativeNameType.Type, "int")] int unknown0, [NativeName(NativeNameType.Param, "")] [NativeName(NativeNameType.Type, "void*")] nint unknown1);
 
 	#endif
 

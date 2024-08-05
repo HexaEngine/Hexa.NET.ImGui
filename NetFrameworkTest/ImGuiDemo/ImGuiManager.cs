@@ -200,7 +200,7 @@
             ImGui.PopStyleColor(1);
         }
 
-        public static int DockSpaceId { get; private set; }
+        public static uint DockSpaceId { get; private set; }
 
         public unsafe void EndFrame()
         {

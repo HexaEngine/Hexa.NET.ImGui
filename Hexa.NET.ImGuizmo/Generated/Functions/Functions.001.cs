@@ -19,3075 +19,9 @@ namespace Hexa.NET.ImGuizmo
 	public unsafe partial class ImGuizmo
 	{
 
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* plocalBounds = &localBounds)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (float* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* plocalBounds = &localBounds)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* plocalBounds = &localBounds)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* plocalBounds = &localBounds)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pmatrix = &matrix)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (float* pmatrix = &matrix)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pmatrix = &matrix)
-					{
-						fixed (float* pdeltaMatrix = &deltaMatrix)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pmatrix = &matrix)
-					{
-						fixed (float* pdeltaMatrix = &deltaMatrix)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, boundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)(default));
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* psnap = &snap)
-			{
-				fixed (float* plocalBounds = &localBounds)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* psnap = &snap)
-			{
-				fixed (float* plocalBounds = &localBounds)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)(default), (float*)psnap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)(default), (float*)psnap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)(default), (float*)psnap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)(default), (float*)psnap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)(default), (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)(default), (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pmatrix = &matrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pmatrix = &matrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pmatrix = &matrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pmatrix = &matrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, (float*)plocalBounds, (float*)(default));
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, (float*)plocalBounds, boundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pmatrix = &matrix)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pmatrix = &matrix)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pmatrix = &matrix)
-					{
-						fixed (float* pdeltaMatrix = &deltaMatrix)
-						{
-							fixed (float* psnap = &snap)
-							{
-								fixed (float* plocalBounds = &localBounds)
-								{
-									byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-									return ret != 0;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pmatrix = &matrix)
-					{
-						fixed (float* pdeltaMatrix = &deltaMatrix)
-						{
-							fixed (float* psnap = &snap)
-							{
-								fixed (float* plocalBounds = &localBounds)
-								{
-									byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-									return ret != 0;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, float* boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-						{
-							fixed (float* psnap = &snap)
-							{
-								fixed (float* plocalBounds = &localBounds)
-								{
-									byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, boundsSnap);
-									return ret != 0;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-						{
-							fixed (float* psnap = &snap)
-							{
-								fixed (float* plocalBounds = &localBounds)
-								{
-									byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)(default));
-									return ret != 0;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pboundsSnap = &boundsSnap)
-			{
-				byte ret = ManipulateNative(view, projection, operation, mode, matrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-				return ret != 0;
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pboundsSnap = &boundsSnap)
-				{
-					byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (float* pboundsSnap = &boundsSnap)
-				{
-					byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pboundsSnap = &boundsSnap)
-				{
-					byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (float* pboundsSnap = &boundsSnap)
-				{
-					byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pmatrix = &matrix)
-			{
-				fixed (float* pboundsSnap = &boundsSnap)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (float* pboundsSnap = &boundsSnap)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pmatrix = &matrix)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, snap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* pboundsSnap = &boundsSnap)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* pboundsSnap = &boundsSnap)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pmatrix = &matrix)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pmatrix = &matrix)
-					{
-						fixed (float* pdeltaMatrix = &deltaMatrix)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, localBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* psnap = &snap)
-			{
-				fixed (float* pboundsSnap = &boundsSnap)
-				{
-					byte ret = ManipulateNative(view, projection, operation, mode, matrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)(default), (float*)psnap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)(default), (float*)psnap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)(default), (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pmatrix = &matrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pmatrix = &matrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, localBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pmatrix = &matrix)
-			{
-				fixed (float* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					fixed (float* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pmatrix = &matrix)
-					{
-						fixed (float* pdeltaMatrix = &deltaMatrix)
-						{
-							fixed (float* psnap = &snap)
-							{
-								fixed (float* pboundsSnap = &boundsSnap)
-								{
-									byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-									return ret != 0;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, float* localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-						{
-							fixed (float* psnap = &snap)
-							{
-								fixed (float* pboundsSnap = &boundsSnap)
-								{
-									byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, localBounds, (float*)pboundsSnap);
-									return ret != 0;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* plocalBounds = &localBounds)
@@ -3100,6 +34,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -3115,21 +52,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (float* plocalBounds = &localBounds)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, deltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
@@ -3145,21 +70,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (float* plocalBounds = &localBounds)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, deltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -3178,24 +91,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, deltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
@@ -3211,21 +109,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (float* plocalBounds = &localBounds)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, deltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -3244,24 +130,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, deltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
@@ -3280,24 +151,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -3319,27 +175,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
@@ -3355,21 +193,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* plocalBounds = &localBounds)
-				{
-					fixed (float* pboundsSnap = &boundsSnap)
-					{
-						byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-						return ret != 0;
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -3388,24 +214,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
@@ -3424,24 +235,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -3463,27 +259,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
@@ -3502,24 +280,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -3541,27 +304,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
@@ -3583,27 +328,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -3628,30 +355,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, float* snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								fixed (float* pboundsSnap = &boundsSnap)
-								{
-									byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, snap, (float*)plocalBounds, (float*)pboundsSnap);
-									return ret != 0;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* psnap = &snap)
@@ -3667,6 +373,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -3685,42 +394,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)(default), (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
@@ -3739,42 +415,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)(default), (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -3796,48 +439,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)(default), (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
@@ -3856,42 +460,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -3913,48 +484,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
@@ -3976,48 +508,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -4042,54 +535,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float* deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								fixed (float* pboundsSnap = &boundsSnap)
-								{
-									byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, deltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-									return ret != 0;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								fixed (float* pboundsSnap = &boundsSnap)
-								{
-									byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)(default), (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-									return ret != 0;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pdeltaMatrix = &deltaMatrix)
@@ -4108,24 +556,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-			{
-				fixed (float* psnap = &snap)
-				{
-					fixed (float* plocalBounds = &localBounds)
-					{
-						fixed (float* pboundsSnap = &boundsSnap)
-						{
-							byte ret = ManipulateNative(view, projection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-							return ret != 0;
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -4147,27 +580,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative((float*)pview, projection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
@@ -4189,27 +604,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -4234,30 +631,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								fixed (float* pboundsSnap = &boundsSnap)
-								{
-									byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-									return ret != 0;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pmatrix = &matrix)
@@ -4279,27 +655,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-				{
-					fixed (float* psnap = &snap)
-					{
-						fixed (float* plocalBounds = &localBounds)
-						{
-							fixed (float* pboundsSnap = &boundsSnap)
-							{
-								byte ret = ManipulateNative(view, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-								return ret != 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -4324,30 +682,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								fixed (float* pboundsSnap = &boundsSnap)
-								{
-									byte ret = ManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-									return ret != 0;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pprojection = &projection)
@@ -4372,30 +709,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-					{
-						fixed (float* psnap = &snap)
-						{
-							fixed (float* plocalBounds = &localBounds)
-							{
-								fixed (float* pboundsSnap = &boundsSnap)
-								{
-									byte ret = ManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-									return ret != 0;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Manipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, ref float deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
 		{
 			fixed (float* pview = &view)
@@ -4423,33 +739,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
-		public static bool Manipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, ref Matrix4x4 deltaMatrix, ref float snap, ref float localBounds, ref float boundsSnap)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					fixed (Matrix4x4* pmatrix = &matrix)
-					{
-						fixed (Matrix4x4* pdeltaMatrix = &deltaMatrix)
-						{
-							fixed (float* psnap = &snap)
-							{
-								fixed (float* plocalBounds = &localBounds)
-								{
-									fixed (float* pboundsSnap = &boundsSnap)
-									{
-										byte ret = ManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, (float*)pdeltaMatrix, (float*)psnap, (float*)plocalBounds, (float*)pboundsSnap);
-										return ret != 0;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void ViewManipulateNative(float* view, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			#if NET5_0_OR_GREATER
@@ -4459,19 +751,17 @@ namespace Hexa.NET.ImGuizmo
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void ViewManipulate(float* view, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			ViewManipulateNative(view, length, position, size, backgroundColor);
 		}
 
-		public static void ViewManipulate(ref float view, float length, Vector2 position, Vector2 size, uint backgroundColor)
-		{
-			fixed (float* pview = &view)
-			{
-				ViewManipulateNative((float*)pview, length, position, size, backgroundColor);
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void ViewManipulate(ref Matrix4x4 view, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			fixed (Matrix4x4* pview = &view)
@@ -4480,6 +770,20 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ViewManipulate(ref float view, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		{
+			fixed (float* pview = &view)
+			{
+				ViewManipulateNative((float*)pview, length, position, size, backgroundColor);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void ViewManipulateNative(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			#if NET5_0_OR_GREATER
@@ -4489,139 +793,17 @@ namespace Hexa.NET.ImGuizmo
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void ViewManipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			ViewManipulateNative(view, projection, operation, mode, matrix, length, position, size, backgroundColor);
 		}
 
-		public static void ViewManipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
-		{
-			fixed (float* pview = &view)
-			{
-				ViewManipulateNative((float*)pview, projection, operation, mode, matrix, length, position, size, backgroundColor);
-			}
-		}
-
-		public static void ViewManipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				ViewManipulateNative((float*)pview, projection, operation, mode, matrix, length, position, size, backgroundColor);
-			}
-		}
-
-		public static void ViewManipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				ViewManipulateNative(view, (float*)pprojection, operation, mode, matrix, length, position, size, backgroundColor);
-			}
-		}
-
-		public static void ViewManipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				ViewManipulateNative(view, (float*)pprojection, operation, mode, matrix, length, position, size, backgroundColor);
-			}
-		}
-
-		public static void ViewManipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					ViewManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, length, position, size, backgroundColor);
-				}
-			}
-		}
-
-		public static void ViewManipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pprojection = &projection)
-				{
-					ViewManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, length, position, size, backgroundColor);
-				}
-			}
-		}
-
-		public static void ViewManipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
-		{
-			fixed (float* pmatrix = &matrix)
-			{
-				ViewManipulateNative(view, projection, operation, mode, (float*)pmatrix, length, position, size, backgroundColor);
-			}
-		}
-
-		public static void ViewManipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
-		{
-			fixed (Matrix4x4* pmatrix = &matrix)
-			{
-				ViewManipulateNative(view, projection, operation, mode, (float*)pmatrix, length, position, size, backgroundColor);
-			}
-		}
-
-		public static void ViewManipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					ViewManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, length, position, size, backgroundColor);
-				}
-			}
-		}
-
-		public static void ViewManipulate(ref Matrix4x4 view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
-		{
-			fixed (Matrix4x4* pview = &view)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					ViewManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, length, position, size, backgroundColor);
-				}
-			}
-		}
-
-		public static void ViewManipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
-		{
-			fixed (float* pprojection = &projection)
-			{
-				fixed (float* pmatrix = &matrix)
-				{
-					ViewManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, length, position, size, backgroundColor);
-				}
-			}
-		}
-
-		public static void ViewManipulate(float* view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
-		{
-			fixed (Matrix4x4* pprojection = &projection)
-			{
-				fixed (Matrix4x4* pmatrix = &matrix)
-				{
-					ViewManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, length, position, size, backgroundColor);
-				}
-			}
-		}
-
-		public static void ViewManipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
-		{
-			fixed (float* pview = &view)
-			{
-				fixed (float* pprojection = &projection)
-				{
-					fixed (float* pmatrix = &matrix)
-					{
-						ViewManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, length, position, size, backgroundColor);
-					}
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void ViewManipulate(ref Matrix4x4 view, ref Matrix4x4 projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref Matrix4x4 matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
 		{
 			fixed (Matrix4x4* pview = &view)
@@ -4636,6 +818,101 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ViewManipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		{
+			fixed (float* pview = &view)
+			{
+				ViewManipulateNative((float*)pview, projection, operation, mode, matrix, length, position, size, backgroundColor);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ViewManipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		{
+			fixed (float* pprojection = &projection)
+			{
+				ViewManipulateNative(view, (float*)pprojection, operation, mode, matrix, length, position, size, backgroundColor);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ViewManipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, float* matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		{
+			fixed (float* pview = &view)
+			{
+				fixed (float* pprojection = &projection)
+				{
+					ViewManipulateNative((float*)pview, (float*)pprojection, operation, mode, matrix, length, position, size, backgroundColor);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ViewManipulate(float* view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		{
+			fixed (float* pmatrix = &matrix)
+			{
+				ViewManipulateNative(view, projection, operation, mode, (float*)pmatrix, length, position, size, backgroundColor);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ViewManipulate(ref float view, float* projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		{
+			fixed (float* pview = &view)
+			{
+				fixed (float* pmatrix = &matrix)
+				{
+					ViewManipulateNative((float*)pview, projection, operation, mode, (float*)pmatrix, length, position, size, backgroundColor);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ViewManipulate(float* view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		{
+			fixed (float* pprojection = &projection)
+			{
+				fixed (float* pmatrix = &matrix)
+				{
+					ViewManipulateNative(view, (float*)pprojection, operation, mode, (float*)pmatrix, length, position, size, backgroundColor);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void ViewManipulate(ref float view, ref float projection, ImGuizmoOperation operation, ImGuizmoMode mode, ref float matrix, float length, Vector2 position, Vector2 size, uint backgroundColor)
+		{
+			fixed (float* pview = &view)
+			{
+				fixed (float* pprojection = &projection)
+				{
+					fixed (float* pmatrix = &matrix)
+					{
+						ViewManipulateNative((float*)pview, (float*)pprojection, operation, mode, (float*)pmatrix, length, position, size, backgroundColor);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SetIDNative(int id)
 		{
 			#if NET5_0_OR_GREATER
@@ -4645,11 +922,17 @@ namespace Hexa.NET.ImGuizmo
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SetID(int id)
 		{
 			SetIDNative(id);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsOverNative(ImGuizmoOperation op)
 		{
 			#if NET5_0_OR_GREATER
@@ -4659,12 +942,18 @@ namespace Hexa.NET.ImGuizmo
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsOver(ImGuizmoOperation op)
 		{
 			byte ret = IsOverNative(op);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SetGizmoSizeClipSpaceNative(float value)
 		{
 			#if NET5_0_OR_GREATER
@@ -4674,11 +963,17 @@ namespace Hexa.NET.ImGuizmo
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SetGizmoSizeClipSpace(float value)
 		{
 			SetGizmoSizeClipSpaceNative(value);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void AllowAxisFlipNative(byte value)
 		{
 			#if NET5_0_OR_GREATER
@@ -4688,11 +983,17 @@ namespace Hexa.NET.ImGuizmo
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void AllowAxisFlip(bool value)
 		{
 			AllowAxisFlipNative(value ? (byte)1 : (byte)0);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SetAxisLimitNative(float value)
 		{
 			#if NET5_0_OR_GREATER
@@ -4702,11 +1003,17 @@ namespace Hexa.NET.ImGuizmo
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SetAxisLimit(float value)
 		{
 			SetAxisLimitNative(value);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SetPlaneLimitNative(float value)
 		{
 			#if NET5_0_OR_GREATER
@@ -4716,11 +1023,17 @@ namespace Hexa.NET.ImGuizmo
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SetPlaneLimit(float value)
 		{
 			SetPlaneLimitNative(value);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static Style* StyleNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -4730,12 +1043,18 @@ namespace Hexa.NET.ImGuizmo
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static StylePtr Style()
 		{
 			StylePtr ret = StyleNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void DestroyNative(Style* self)
 		{
 			#if NET5_0_OR_GREATER
@@ -4745,11 +1064,17 @@ namespace Hexa.NET.ImGuizmo
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(StylePtr self)
 		{
 			DestroyNative(self);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(ref Style self)
 		{
 			fixed (Style* pself = &self)
@@ -4758,6 +1083,9 @@ namespace Hexa.NET.ImGuizmo
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static Style* GetStyleNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -4767,6 +1095,9 @@ namespace Hexa.NET.ImGuizmo
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static StylePtr GetStyle()
 		{
 			StylePtr ret = GetStyleNative();

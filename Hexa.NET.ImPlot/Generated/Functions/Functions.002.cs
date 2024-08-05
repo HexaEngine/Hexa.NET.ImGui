@@ -19,6 +19,149 @@ namespace Hexa.NET.ImPlot
 	public unsafe partial class ImPlot
 	{
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ref byte labelId, ref byte values, int count)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ref byte labelId, ref byte values, int count, double xscale, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ref byte labelId, ref byte values, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ref byte labelId, ref byte values, int count, double xscale, double xstart, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ref byte labelId, ref byte values, int count, double xscale, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ref byte labelId, ref byte values, int count, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ref byte labelId, ref byte values, int count, double xscale, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ref byte labelId, ref byte values, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ref byte labelId, ref byte values, int count, double xscale, double xstart, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ref byte labelId, ref byte values, int count, double xscale, int offset, int stride)
+		{
+			fixed (byte* plabelId = &labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref byte values, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -30,6 +173,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref byte values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -41,6 +187,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref byte values, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -52,6 +201,261 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, double xstart, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, double xstart, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(sbyte)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, double xstart, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (byte* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -81,6 +485,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
 		{
 			byte* pStr0 = null;
@@ -102,7 +509,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(byte)));
+				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(sbyte)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -110,6 +517,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, double xscale, double xstart, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
@@ -131,7 +541,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(byte)));
+				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(sbyte)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -139,6 +549,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
@@ -160,7 +573,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(byte)));
+				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(sbyte)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -168,6 +581,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, double xscale)
 		{
 			byte* pStr0 = null;
@@ -189,7 +605,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(byte)));
+				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(sbyte)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -197,6 +613,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count)
 		{
 			byte* pStr0 = null;
@@ -218,7 +637,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(byte)));
+				PlotLineNative(pStr0, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(sbyte)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -226,6 +645,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, double xscale, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
@@ -247,7 +669,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(byte)));
+				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(sbyte)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -255,6 +677,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
@@ -276,7 +701,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (byte*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(byte)));
+				PlotLineNative(pStr0, (byte*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(sbyte)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -284,6 +709,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, double xscale, double xstart, int offset)
 		{
 			byte* pStr0 = null;
@@ -305,7 +733,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(byte)));
+				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(sbyte)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -313,6 +741,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, double xscale, int offset)
 		{
 			byte* pStr0 = null;
@@ -334,7 +765,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(byte)));
+				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(sbyte)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -342,6 +773,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, int offset)
 		{
 			byte* pStr0 = null;
@@ -363,7 +797,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(byte)));
+				PlotLineNative(pStr0, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(sbyte)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -371,6 +805,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, double xscale, ImPlotLineFlags flags, int offset)
 		{
 			byte* pStr0 = null;
@@ -392,7 +829,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(byte)));
+				PlotLineNative(pStr0, (byte*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(sbyte)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -400,6 +837,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, ImPlotLineFlags flags, int offset)
 		{
 			byte* pStr0 = null;
@@ -421,7 +861,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (byte* pvalues = &values)
 			{
-				PlotLineNative(pStr0, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(byte)));
+				PlotLineNative(pStr0, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(sbyte)));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -429,6 +869,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -458,6 +901,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, double xscale, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -487,6 +933,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -516,6 +965,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -545,6 +997,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref byte values, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -574,303 +1029,165 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, double xstart)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(byte)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, xscale, (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref byte values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (byte* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (byte*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PlotLineNative(byte* labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, short*, int, double, double, ImPlotLineFlags, int, int, void>)vt[58])(labelId, values, count, xscale, xstart, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, short*, int, double, double, ImPlotLineFlags, int, int, void>)vt[57])(labelId, values, count, xscale, xstart, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotLineFlags, int, int, void>)vt[58])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotLineFlags, int, int, void>)vt[57])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			PlotLineNative(labelId, values, count, xscale, xstart, flags, offset, stride);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
 		{
 			PlotLineNative(labelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(short)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
 		{
 			PlotLineNative(labelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(short)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, double xscale, double xstart)
 		{
 			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, double xscale)
 		{
 			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count)
 		{
 			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, double xscale, ImPlotLineFlags flags)
 		{
 			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(short)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, ImPlotLineFlags flags)
 		{
 			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(short)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, double xscale, double xstart, int offset)
 		{
 			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, double xscale, int offset)
 		{
 			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, int offset)
 		{
 			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, double xscale, ImPlotLineFlags flags, int offset)
 		{
 			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(short)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, ImPlotLineFlags flags, int offset)
 		{
 			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(short)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, double xscale, int offset, int stride)
 		{
 			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, int offset, int stride)
 		{
 			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
 		{
 			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, offset, stride);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, short* values, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, offset, stride);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -879,6 +1196,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -887,6 +1207,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -895,6 +1218,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -903,6 +1229,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -911,6 +1240,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -919,6 +1251,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, double xscale, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -927,6 +1262,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -935,6 +1273,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, double xscale, double xstart, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -943,6 +1284,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, double xscale, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -951,6 +1295,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -959,6 +1306,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, double xscale, ImPlotLineFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -967,6 +1317,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, ImPlotLineFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -975,6 +1328,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -983,6 +1339,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, double xscale, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -991,6 +1350,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -999,6 +1361,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1007,6 +1372,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, short* values, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1015,6 +1383,207 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(short)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(short)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(short)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(short)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, double xstart, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(short)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(short)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, double xstart, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -1041,6 +1610,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
 		{
 			byte* pStr0 = null;
@@ -1067,6 +1639,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
@@ -1093,6 +1668,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
@@ -1119,6 +1697,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, double xscale)
 		{
 			byte* pStr0 = null;
@@ -1145,6 +1726,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count)
 		{
 			byte* pStr0 = null;
@@ -1171,6 +1755,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, double xscale, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
@@ -1197,6 +1784,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
@@ -1223,6 +1813,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, double xscale, double xstart, int offset)
 		{
 			byte* pStr0 = null;
@@ -1249,6 +1842,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, double xscale, int offset)
 		{
 			byte* pStr0 = null;
@@ -1275,6 +1871,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, int offset)
 		{
 			byte* pStr0 = null;
@@ -1301,6 +1900,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, double xscale, ImPlotLineFlags flags, int offset)
 		{
 			byte* pStr0 = null;
@@ -1327,6 +1929,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, ImPlotLineFlags flags, int offset)
 		{
 			byte* pStr0 = null;
@@ -1353,6 +1958,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -1379,6 +1987,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, double xscale, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -1405,6 +2016,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -1431,6 +2045,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -1457,6 +2074,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, short* values, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -1483,150 +2103,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, stride);
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(short)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(short)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, double xstart)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(short)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(short)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(short)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(short)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, short* values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, stride);
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (short* pvalues = &values)
@@ -1635,6 +2114,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
 		{
 			fixed (short* pvalues = &values)
@@ -1643,6 +2125,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags)
 		{
 			fixed (short* pvalues = &values)
@@ -1651,6 +2136,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, double xscale, double xstart)
 		{
 			fixed (short* pvalues = &values)
@@ -1659,6 +2147,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, double xscale)
 		{
 			fixed (short* pvalues = &values)
@@ -1667,6 +2158,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count)
 		{
 			fixed (short* pvalues = &values)
@@ -1675,6 +2169,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, double xscale, ImPlotLineFlags flags)
 		{
 			fixed (short* pvalues = &values)
@@ -1683,6 +2180,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, ImPlotLineFlags flags)
 		{
 			fixed (short* pvalues = &values)
@@ -1691,6 +2191,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, double xscale, double xstart, int offset)
 		{
 			fixed (short* pvalues = &values)
@@ -1699,6 +2202,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, double xscale, int offset)
 		{
 			fixed (short* pvalues = &values)
@@ -1707,6 +2213,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, int offset)
 		{
 			fixed (short* pvalues = &values)
@@ -1715,6 +2224,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, double xscale, ImPlotLineFlags flags, int offset)
 		{
 			fixed (short* pvalues = &values)
@@ -1723,6 +2235,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, ImPlotLineFlags flags, int offset)
 		{
 			fixed (short* pvalues = &values)
@@ -1731,6 +2246,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			fixed (short* pvalues = &values)
@@ -1739,6 +2257,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, double xscale, int offset, int stride)
 		{
 			fixed (short* pvalues = &values)
@@ -1747,6 +2268,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, int offset, int stride)
 		{
 			fixed (short* pvalues = &values)
@@ -1755,6 +2279,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (short* pvalues = &values)
@@ -1763,6 +2290,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref short values, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (short* pvalues = &values)
@@ -1771,6 +2301,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1782,6 +2315,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1793,6 +2329,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1804,6 +2343,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1815,6 +2357,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1826,6 +2371,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1837,6 +2385,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, double xscale, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1848,6 +2399,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1859,6 +2413,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, double xscale, double xstart, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1870,6 +2427,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, double xscale, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1881,6 +2441,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1892,6 +2455,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, double xscale, ImPlotLineFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1903,6 +2469,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, ImPlotLineFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1914,6 +2483,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1925,6 +2497,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, double xscale, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1936,6 +2511,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1947,6 +2525,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1958,6 +2539,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref short values, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -1969,6 +2553,261 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(short)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(short)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(short)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(short)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, double xstart, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(short)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(short)));
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, double xstart, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				fixed (short* pvalues = &values)
+				{
+					PlotLineNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -1998,6 +2837,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
 		{
 			byte* pStr0 = null;
@@ -2027,6 +2869,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
@@ -2056,6 +2901,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
@@ -2085,6 +2933,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, double xscale)
 		{
 			byte* pStr0 = null;
@@ -2114,6 +2965,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count)
 		{
 			byte* pStr0 = null;
@@ -2143,6 +2997,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, double xscale, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
@@ -2172,6 +3029,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
@@ -2201,6 +3061,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, double xscale, double xstart, int offset)
 		{
 			byte* pStr0 = null;
@@ -2230,6 +3093,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, double xscale, int offset)
 		{
 			byte* pStr0 = null;
@@ -2259,6 +3125,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, int offset)
 		{
 			byte* pStr0 = null;
@@ -2288,6 +3157,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, double xscale, ImPlotLineFlags flags, int offset)
 		{
 			byte* pStr0 = null;
@@ -2317,6 +3189,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, ImPlotLineFlags flags, int offset)
 		{
 			byte* pStr0 = null;
@@ -2346,6 +3221,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -2375,6 +3253,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, double xscale, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -2404,6 +3285,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -2433,6 +3317,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -2462,6 +3349,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ref short values, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -2491,303 +3381,165 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, double xstart)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(short)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(short)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, xscale, (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref short values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (short* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (short*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PlotLineNative(byte* labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, ushort*, int, double, double, ImPlotLineFlags, int, int, void>)vt[59])(labelId, values, count, xscale, xstart, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<byte*, ushort*, int, double, double, ImPlotLineFlags, int, int, void>)vt[58])(labelId, values, count, xscale, xstart, flags, offset, stride);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotLineFlags, int, int, void>)vt[59])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
+			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotLineFlags, int, int, void>)vt[58])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			PlotLineNative(labelId, values, count, xscale, xstart, flags, offset, stride);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
 		{
 			PlotLineNative(labelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(ushort)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
 		{
 			PlotLineNative(labelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(ushort)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, double xscale, double xstart)
 		{
 			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, double xscale)
 		{
 			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count)
 		{
 			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags)
 		{
 			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, ImPlotLineFlags flags)
 		{
 			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, double xscale, double xstart, int offset)
 		{
 			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, double xscale, int offset)
 		{
 			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, int offset)
 		{
 			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags, int offset)
 		{
 			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(ushort)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, ImPlotLineFlags flags, int offset)
 		{
 			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, double xscale, int offset, int stride)
 		{
 			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, int offset, int stride)
 		{
 			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
 		{
 			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, offset, stride);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ushort* values, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, offset, stride);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2796,6 +3548,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2804,6 +3559,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2812,6 +3570,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2820,6 +3581,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2828,6 +3592,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2836,6 +3603,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2844,6 +3614,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2852,6 +3625,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, double xscale, double xstart, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2860,6 +3636,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, double xscale, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2868,6 +3647,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2876,6 +3658,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2884,6 +3669,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, ImPlotLineFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2892,6 +3680,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2900,6 +3691,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, double xscale, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2908,6 +3702,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2916,6 +3713,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2924,6 +3724,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ushort* values, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -2932,6 +3735,207 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, double xstart)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, ImPlotLineFlags flags)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, double xstart, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, ImPlotLineFlags flags, int offset)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, double xstart, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, ImPlotLineFlags flags, int offset, int stride)
+		{
+			fixed (byte* plabelId = labelId)
+			{
+				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, stride);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -2958,6 +3962,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
 		{
 			byte* pStr0 = null;
@@ -2984,6 +3991,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
@@ -3010,6 +4020,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, double xscale, double xstart)
 		{
 			byte* pStr0 = null;
@@ -3036,6 +4049,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, double xscale)
 		{
 			byte* pStr0 = null;
@@ -3062,6 +4078,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count)
 		{
 			byte* pStr0 = null;
@@ -3088,6 +4107,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
@@ -3114,6 +4136,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, ImPlotLineFlags flags)
 		{
 			byte* pStr0 = null;
@@ -3140,6 +4165,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, double xscale, double xstart, int offset)
 		{
 			byte* pStr0 = null;
@@ -3166,6 +4194,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, double xscale, int offset)
 		{
 			byte* pStr0 = null;
@@ -3192,6 +4223,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, int offset)
 		{
 			byte* pStr0 = null;
@@ -3218,6 +4252,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags, int offset)
 		{
 			byte* pStr0 = null;
@@ -3244,6 +4281,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, ImPlotLineFlags flags, int offset)
 		{
 			byte* pStr0 = null;
@@ -3270,6 +4310,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -3296,6 +4339,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, double xscale, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -3322,6 +4368,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -3348,6 +4397,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -3374,6 +4426,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(string labelId, ushort* values, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			byte* pStr0 = null;
@@ -3400,150 +4455,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, stride);
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, double xstart)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ushort* values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, stride);
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3552,6 +4466,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3560,6 +4477,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, double xscale, double xstart, ImPlotLineFlags flags)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3568,6 +4488,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, double xscale, double xstart)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3576,6 +4499,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, double xscale)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3584,6 +4510,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3592,6 +4521,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, double xscale, ImPlotLineFlags flags)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3600,6 +4532,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, ImPlotLineFlags flags)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3608,6 +4543,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, double xscale, double xstart, int offset)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3616,6 +4554,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, double xscale, int offset)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3624,6 +4565,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, int offset)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3632,6 +4576,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, double xscale, ImPlotLineFlags flags, int offset)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3640,6 +4587,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, ImPlotLineFlags flags, int offset)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3648,6 +4598,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3656,6 +4609,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, double xscale, int offset, int stride)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3664,6 +4620,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, int offset, int stride)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3672,6 +4631,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3680,6 +4642,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(byte* labelId, ref ushort values, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (ushort* pvalues = &values)
@@ -3688,6 +4653,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3699,6 +4667,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3710,6 +4681,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, double xscale, double xstart, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3721,6 +4695,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3732,6 +4709,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, double xscale)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3743,6 +4723,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3754,6 +4737,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, double xscale, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3765,6 +4751,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3776,6 +4765,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, double xscale, double xstart, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3787,6 +4779,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, double xscale, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3798,6 +4793,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3809,6 +4807,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, double xscale, ImPlotLineFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3820,6 +4821,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, ImPlotLineFlags flags, int offset)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3831,6 +4835,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, double xscale, double xstart, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3842,6 +4849,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, double xscale, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3853,6 +4863,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3864,6 +4877,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3875,6 +4891,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ref byte labelId, ref ushort values, int count, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = &labelId)
@@ -3886,528 +4905,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
-		public static void PlotLine(string labelId, ref ushort values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, xscale, xstart, flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, xscale, xstart, flags, offset, (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, xscale, xstart, flags, (int)(0), (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, double xscale, double xstart)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, double xscale)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, ImPlotLineFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, double xscale, double xstart, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, double xscale, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, ImPlotLineFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, double xscale, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, xscale, (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
-		public static void PlotLine(string labelId, ref ushort values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			fixed (ushort* pvalues = &values)
-			{
-				PlotLineNative(pStr0, (ushort*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					Utils.Free(pStr0);
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
 		{
 			fixed (byte* plabelId = labelId)
@@ -4419,6 +4919,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
 		{
 			fixed (byte* plabelId = labelId)
@@ -4430,6 +4933,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale, double xstart, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
@@ -4441,6 +4947,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale, double xstart)
 		{
 			fixed (byte* plabelId = labelId)
@@ -4452,6 +4961,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale)
 		{
 			fixed (byte* plabelId = labelId)
@@ -4463,6 +4975,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count)
 		{
 			fixed (byte* plabelId = labelId)
@@ -4474,6 +4989,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
@@ -4485,6 +5003,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, ImPlotLineFlags flags)
 		{
 			fixed (byte* plabelId = labelId)
@@ -4496,6 +5017,9 @@ namespace Hexa.NET.ImPlot
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale, double xstart, int offset)
 		{
 			fixed (byte* plabelId = labelId)
@@ -4504,530 +5028,6 @@ namespace Hexa.NET.ImPlot
 				{
 					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
 				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), flags, offset, (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(ushort)));
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, xscale, (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		public static void PlotLine(ReadOnlySpan<byte> labelId, ref ushort values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = labelId)
-			{
-				fixed (ushort* pvalues = &values)
-				{
-					PlotLineNative((byte*)plabelId, (ushort*)pvalues, count, (double)(1), (double)(0), flags, offset, stride);
-				}
-			}
-		}
-
-		internal static void PlotLineNative(byte* labelId, int* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, int*, int, double, double, ImPlotLineFlags, int, int, void>)vt[60])(labelId, values, count, xscale, xstart, flags, offset, stride);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, int, double, double, ImPlotLineFlags, int, int, void>)vt[60])((nint)labelId, (nint)values, count, xscale, xstart, flags, offset, stride);
-			#endif
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, flags, offset, stride);
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(int)));
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(int)));
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, double xscale, double xstart)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, double xscale)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(int)));
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, ImPlotLineFlags flags)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, double xscale, double xstart, int offset)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, double xscale, int offset)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, int offset)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(int)));
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, ImPlotLineFlags flags, int offset)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, double xscale, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, xscale, (double)(0), flags, offset, stride);
-		}
-
-		public static void PlotLine(byte* labelId, int* values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			PlotLineNative(labelId, values, count, (double)(1), (double)(0), flags, offset, stride);
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, stride);
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, offset, (int)(sizeof(int)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, double xscale, double xstart)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, double xscale)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, ImPlotLineFlags flags)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, (int)(0), (int)(sizeof(int)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, double xscale, double xstart, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, double xscale, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, (int)(sizeof(int)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, double xscale, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, (int)(sizeof(int)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, ImPlotLineFlags flags, int offset)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, (int)(sizeof(int)));
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, double xscale, double xstart, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, xstart, (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, double xscale, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), offset, stride);
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, double xscale, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, xscale, (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotLine(ref byte labelId, int* values, int count, ImPlotLineFlags flags, int offset, int stride)
-		{
-			fixed (byte* plabelId = &labelId)
-			{
-				PlotLineNative((byte*)plabelId, values, count, (double)(1), (double)(0), flags, offset, stride);
-			}
-		}
-
-		public static void PlotLine(string labelId, int* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset, int stride)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, flags, offset, stride);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, int* values, int count, double xscale, double xstart, ImPlotLineFlags flags, int offset)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, flags, offset, (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, int* values, int count, double xscale, double xstart, ImPlotLineFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, flags, (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, int* values, int count, double xscale, double xstart)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, xstart, (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, int* values, int count, double xscale)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, int* values, int count)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, (double)(1), (double)(0), (ImPlotLineFlags)(0), (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void PlotLine(string labelId, int* values, int count, double xscale, ImPlotLineFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (labelId != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(labelId);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(labelId, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			PlotLineNative(pStr0, values, count, xscale, (double)(0), flags, (int)(0), (int)(sizeof(int)));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
 			}
 		}
 	}

@@ -9,9 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CppAst" Version="0.11.0" />
-		<PackageReference Include="libclang.runtime.win-x64" Version="15.0.0" />
-		<PackageReference Include="libClangSharp.runtime.win-x64" Version="15.0.0" />
+		<PackageReference Include="HexaGen" Version="1.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
@@ -86,9 +84,6 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="cimplot\typedefs_dict.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="generator.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>

@@ -1,13 +1,11 @@
 namespace Generator
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
-    using System.IO;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
-    using System.Xml.Linq;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
 
     internal class ImguiDefinitions
     {
@@ -31,11 +29,35 @@ namespace Generator
             { "ImGuiMod_", "Mod" },
         };
 
+        private static string? GetComment(JToken? token)
+        {
+            if (token == null)
+                return null;
+            var above = token["above"]?.ToString();
+            var sameline = token["sameline"]?.ToString();
+            if (above == null && sameline == null)
+                return null;
+            if (above == null)
+                return sameline;
+            if (sameline == null)
+                return null;
+            return above + sameline;
+        }
+
         private static int GetInt(JToken token, string key)
         {
             var v = token[key];
             if (v == null) return 0;
             return v.ToObject<int>();
+        }
+
+        public ImguiDefinitions()
+        {
+        }
+
+        public ImguiDefinitions(string dir)
+        {
+            LoadFrom(dir);
         }
 
         public void LoadFrom(string directory)
@@ -67,21 +89,23 @@ namespace Generator
             {
                 JProperty jp = (JProperty)jt;
                 string name = jp.Name;
+                string? comment = typesJson["enum_comments"]?[name]?["above"]?.ToString();
                 if (typeLocations?[jp.Name]?.Value<string>().Contains("internal") ?? false)
                 {
                     return null;
                 }
                 EnumMember[] elements = jp.Values().Select(v =>
                 {
-                    return new EnumMember(v["name"].ToString(), v["calc_value"].ToString());
+                    return new EnumMember(v["name"].ToString(), v["calc_value"].ToString(), v["comment"]?.ToString());
                 }).ToArray();
-                return new EnumDefinition(name, elements);
+                return new EnumDefinition(name, elements, comment);
             }).Where(x => x != null).ToArray();
 
             Types = typesJson["structs"].Select(jt =>
             {
                 JProperty jp = (JProperty)jt;
                 string name = jp.Name;
+                string? comment = typesJson["struct_comments"]?[name]?["above"]?.ToString();
                 if (typeLocations?[jp.Name]?.Value<string>().Contains("internal") ?? false)
                 {
                     return null;
@@ -92,12 +116,13 @@ namespace Generator
 
                     return new TypeReference(
                         v["name"].ToString(),
+                        GetComment(v["comment"]),
                         v["type"].ToString(),
                             GetInt(v, "size"),
                         v["template_type"]?.ToString(),
                         Enums);
                 }).Where(tr => tr != null).ToArray();
-                return new TypeDefinition(name, fields);
+                return new TypeDefinition(name, fields, comment);
             }).Where(x => x != null).ToArray();
 
             Functions = functionsJson.Children().Select(jt =>
@@ -155,7 +180,7 @@ namespace Generator
                         defaultValues.Add(dvProp.Name, dvProp.Value.ToString());
                     }
                     string returnType = val["ret"]?.ToString() ?? "void";
-                    string comment = null;
+                    string? comment = val["comment"]?.ToString();
 
                     string structName = val["stname"].ToString();
                     bool isConstructor = val.Value<bool>("constructor");
@@ -195,12 +220,20 @@ namespace Generator
     {
         private readonly Dictionary<string, string> _sanitizedNames;
 
+        public string Name { get; }
+
         public string[] Names { get; }
+
         public string[] FriendlyNames { get; }
+
         public EnumMember[] Members { get; }
 
-        public EnumDefinition(string name, EnumMember[] elements)
+        public string? Comment { get; }
+
+        public EnumDefinition(string name, EnumMember[] elements, string? comment)
         {
+            Name = name;
+
             if (ImguiDefinitions.AlternateEnumPrefixes.TryGetValue(name, out string altName))
             {
                 Names = new[] { name, altName };
@@ -230,6 +263,8 @@ namespace Generator
             {
                 _sanitizedNames.Add(el.Name, SanitizeMemberName(el.Name));
             }
+
+            Comment = comment;
         }
 
         public string SanitizeNames(string text)
@@ -311,48 +346,64 @@ namespace Generator
 
     internal class EnumMember
     {
-        public EnumMember(string name, string value)
+        public EnumMember(string name, string value, string? comment)
         {
             Name = name;
             Value = value;
+            Comment = comment;
         }
 
         public string Name { get; }
+
         public string Value { get; }
+
+        public string? Comment { get; }
     }
 
     internal class TypeDefinition
     {
         public string Name { get; }
+
         public TypeReference[] Fields { get; }
 
-        public TypeDefinition(string name, TypeReference[] fields)
+        public string? Comment { get; }
+
+        public TypeDefinition(string name, TypeReference[] fields, string? comment)
         {
             Name = name;
             Fields = fields;
+            Comment = comment;
         }
     }
 
     internal class TypeReference
     {
         public string Name { get; }
+
         public string Type { get; }
+
         public string TemplateType { get; }
+
         public int ArraySize { get; }
+
         public bool IsFunctionPointer { get; }
+
         public string[] TypeVariants { get; }
+
         public bool IsEnum { get; }
 
-        public TypeReference(string name, string type, int asize, EnumDefinition[] enums)
-            : this(name, type, asize, null, enums, null) { }
+        public string? Comment { get; }
 
-        public TypeReference(string name, string type, int asize, EnumDefinition[] enums, string[] typeVariants)
-            : this(name, type, asize, null, enums, typeVariants) { }
+        public TypeReference(string name, string? comment, string type, int asize, EnumDefinition[] enums)
+            : this(name, comment, type, asize, null, enums, null) { }
 
-        public TypeReference(string name, string type, int asize, string templateType, EnumDefinition[] enums)
-            : this(name, type, asize, templateType, enums, null) { }
+        public TypeReference(string name, string? comment, string type, int asize, EnumDefinition[] enums, string[] typeVariants)
+            : this(name, comment, type, asize, null, enums, typeVariants) { }
 
-        public TypeReference(string name, string type, int asize, string templateType, EnumDefinition[] enums, string[] typeVariants)
+        public TypeReference(string name, string? comment, string type, int asize, string templateType, EnumDefinition[] enums)
+            : this(name, comment, type, asize, templateType, enums, null) { }
+
+        public TypeReference(string name, string? comment, string type, int asize, string templateType, EnumDefinition[] enums, string[] typeVariants)
         {
             Name = name;
             Type = type.Replace("const", string.Empty).Trim();
@@ -398,6 +449,8 @@ namespace Generator
             TypeVariants = typeVariants;
 
             IsEnum = enums.Any(t => t.Names.Contains(type) || t.FriendlyNames.Contains(type) || ImguiDefinitions.WellKnownEnums.Contains(type));
+
+            Comment = comment;
         }
 
         private int ParseSizeString(string sizePart, EnumDefinition[] enums)
@@ -437,7 +490,7 @@ namespace Generator
         public TypeReference WithVariant(int variantIndex, EnumDefinition[] enums)
         {
             if (variantIndex == 0) return this;
-            else return new TypeReference(Name, TypeVariants[variantIndex - 1], ArraySize, TemplateType, enums);
+            else return new TypeReference(Name, Comment, TypeVariants[variantIndex - 1], ArraySize, TemplateType, enums);
         }
     }
 

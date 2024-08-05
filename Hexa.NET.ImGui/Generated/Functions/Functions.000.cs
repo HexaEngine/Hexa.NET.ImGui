@@ -17,6 +17,9 @@ namespace Hexa.NET.ImGui
 {
 	public unsafe partial class ImGui
 	{
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static Vector2* ImVec2Native()
 		{
 			#if NET5_0_OR_GREATER
@@ -26,12 +29,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static Vector2* ImVec2()
 		{
 			Vector2* ret = ImVec2Native();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void DestroyNative(Vector2* self)
 		{
 			#if NET5_0_OR_GREATER
@@ -41,11 +50,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(Vector2* self)
 		{
 			DestroyNative(self);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(ref Vector2 self)
 		{
 			fixed (Vector2* pself = &self)
@@ -54,6 +69,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static Vector2* ImVec2Native(float x, float y)
 		{
 			#if NET5_0_OR_GREATER
@@ -63,12 +81,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static Vector2* ImVec2(float x, float y)
 		{
 			Vector2* ret = ImVec2Native(x, y);
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static Vector4* ImVec4Native()
 		{
 			#if NET5_0_OR_GREATER
@@ -78,12 +102,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static Vector4* ImVec4()
 		{
 			Vector4* ret = ImVec4Native();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void DestroyNative(Vector4* self)
 		{
 			#if NET5_0_OR_GREATER
@@ -93,11 +123,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(Vector4* self)
 		{
 			DestroyNative(self);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void Destroy(ref Vector4 self)
 		{
 			fixed (Vector4* pself = &self)
@@ -106,6 +142,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static Vector4* ImVec4Native(float x, float y, float z, float w)
 		{
 			#if NET5_0_OR_GREATER
@@ -115,12 +154,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static Vector4* ImVec4(float x, float y, float z, float w)
 		{
 			Vector4* ret = ImVec4Native(x, y, z, w);
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static ImGuiContext* CreateContextNative(ImFontAtlas* sharedFontAtlas)
 		{
 			#if NET5_0_OR_GREATER
@@ -130,18 +175,27 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static ImGuiContextPtr CreateContext(ImFontAtlasPtr sharedFontAtlas)
 		{
 			ImGuiContextPtr ret = CreateContextNative(sharedFontAtlas);
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static ImGuiContextPtr CreateContext()
 		{
 			ImGuiContextPtr ret = CreateContextNative((ImFontAtlas*)(default));
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static ImGuiContextPtr CreateContext(ref ImFontAtlas sharedFontAtlas)
 		{
 			fixed (ImFontAtlas* psharedFontAtlas = &sharedFontAtlas)
@@ -151,6 +205,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// NULL = destroy current context<br/>
+		/// </summary>
 		internal static void DestroyContextNative(ImGuiContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
@@ -160,16 +217,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// NULL = destroy current context<br/>
+		/// </summary>
 		public static void DestroyContext(ImGuiContextPtr ctx)
 		{
 			DestroyContextNative(ctx);
 		}
 
+		/// <summary>
+		/// NULL = destroy current context<br/>
+		/// </summary>
 		public static void DestroyContext()
 		{
 			DestroyContextNative((ImGuiContext*)(default));
 		}
 
+		/// <summary>
+		/// NULL = destroy current context<br/>
+		/// </summary>
 		public static void DestroyContext(ref ImGuiContext ctx)
 		{
 			fixed (ImGuiContext* pctx = &ctx)
@@ -178,6 +244,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static ImGuiContext* GetCurrentContextNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -187,12 +256,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static ImGuiContextPtr GetCurrentContext()
 		{
 			ImGuiContextPtr ret = GetCurrentContextNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void SetCurrentContextNative(ImGuiContext* ctx)
 		{
 			#if NET5_0_OR_GREATER
@@ -202,11 +277,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SetCurrentContext(ImGuiContextPtr ctx)
 		{
 			SetCurrentContextNative(ctx);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void SetCurrentContext(ref ImGuiContext ctx)
 		{
 			fixed (ImGuiContext* pctx = &ctx)
@@ -215,6 +296,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// access the IO structure (mousekeyboardgamepad inputs, time, various configuration optionsflags)<br/>
+		/// </summary>
 		internal static ImGuiIO* GetIONative()
 		{
 			#if NET5_0_OR_GREATER
@@ -224,12 +308,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// access the IO structure (mousekeyboardgamepad inputs, time, various configuration optionsflags)<br/>
+		/// </summary>
 		public static ImGuiIOPtr GetIO()
 		{
 			ImGuiIOPtr ret = GetIONative();
 			return ret;
 		}
 
+		/// <summary>
+		/// access the Style structure (colors, sizes). Always use PushStyleColor(), PushStyleVar() to modify style mid-frame!<br/>
+		/// </summary>
 		internal static ImGuiStyle* GetStyleNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -239,12 +329,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// access the Style structure (colors, sizes). Always use PushStyleColor(), PushStyleVar() to modify style mid-frame!<br/>
+		/// </summary>
 		public static ImGuiStylePtr GetStyle()
 		{
 			ImGuiStylePtr ret = GetStyleNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// start a new Dear ImGui frame, you can submit any command from this point until Render()EndFrame().<br/>
+		/// </summary>
 		internal static void NewFrameNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -254,11 +350,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// start a new Dear ImGui frame, you can submit any command from this point until Render()EndFrame().<br/>
+		/// </summary>
 		public static void NewFrame()
 		{
 			NewFrameNative();
 		}
 
+		/// <summary>
+		/// ends the Dear ImGui frame. automatically called by Render(). If you don't need to render data (skipping rendering) you may call EndFrame() without Render()... but you'll have wasted CPU already! If you don't need to render, better to not create any windows and not call NewFrame() at all!<br/>
+		/// </summary>
 		internal static void EndFrameNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -268,11 +370,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// ends the Dear ImGui frame. automatically called by Render(). If you don't need to render data (skipping rendering) you may call EndFrame() without Render()... but you'll have wasted CPU already! If you don't need to render, better to not create any windows and not call NewFrame() at all!<br/>
+		/// </summary>
 		public static void EndFrame()
 		{
 			EndFrameNative();
 		}
 
+		/// <summary>
+		/// ends the Dear ImGui frame, finalize the draw data. You can then get call GetDrawData().<br/>
+		/// </summary>
 		internal static void RenderNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -282,11 +390,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// ends the Dear ImGui frame, finalize the draw data. You can then get call GetDrawData().<br/>
+		/// </summary>
 		public static void Render()
 		{
 			RenderNative();
 		}
 
+		/// <summary>
+		/// valid after Render() and until the next call to NewFrame(). this is what you have to render.<br/>
+		/// </summary>
 		internal static ImDrawData* GetDrawDataNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -296,12 +410,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// valid after Render() and until the next call to NewFrame(). this is what you have to render.<br/>
+		/// </summary>
 		public static ImDrawDataPtr GetDrawData()
 		{
 			ImDrawDataPtr ret = GetDrawDataNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
+		/// </summary>
 		internal static void ShowDemoWindowNative(bool* pOpen)
 		{
 			#if NET5_0_OR_GREATER
@@ -311,16 +431,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
+		/// </summary>
 		public static void ShowDemoWindow(bool* pOpen)
 		{
 			ShowDemoWindowNative(pOpen);
 		}
 
+		/// <summary>
+		/// create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
+		/// </summary>
 		public static void ShowDemoWindow()
 		{
 			ShowDemoWindowNative((bool*)(default));
 		}
 
+		/// <summary>
+		/// create Demo window. demonstrate most ImGui features. call this to learn about the library! try to make it always available in your application!<br/>
+		/// </summary>
 		public static void ShowDemoWindow(ref bool pOpen)
 		{
 			fixed (bool* ppOpen = &pOpen)
@@ -329,6 +458,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// create MetricsDebugger window. display Dear ImGui internals: windows, draw commands, various internal state, etc.<br/>
+		/// </summary>
 		internal static void ShowMetricsWindowNative(bool* pOpen)
 		{
 			#if NET5_0_OR_GREATER
@@ -338,16 +470,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// create MetricsDebugger window. display Dear ImGui internals: windows, draw commands, various internal state, etc.<br/>
+		/// </summary>
 		public static void ShowMetricsWindow(bool* pOpen)
 		{
 			ShowMetricsWindowNative(pOpen);
 		}
 
+		/// <summary>
+		/// create MetricsDebugger window. display Dear ImGui internals: windows, draw commands, various internal state, etc.<br/>
+		/// </summary>
 		public static void ShowMetricsWindow()
 		{
 			ShowMetricsWindowNative((bool*)(default));
 		}
 
+		/// <summary>
+		/// create MetricsDebugger window. display Dear ImGui internals: windows, draw commands, various internal state, etc.<br/>
+		/// </summary>
 		public static void ShowMetricsWindow(ref bool pOpen)
 		{
 			fixed (bool* ppOpen = &pOpen)
@@ -356,6 +497,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// create Debug Log window. display a simplified log of important dear imgui events.<br/>
+		/// </summary>
 		internal static void ShowDebugLogWindowNative(bool* pOpen)
 		{
 			#if NET5_0_OR_GREATER
@@ -365,16 +509,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// create Debug Log window. display a simplified log of important dear imgui events.<br/>
+		/// </summary>
 		public static void ShowDebugLogWindow(bool* pOpen)
 		{
 			ShowDebugLogWindowNative(pOpen);
 		}
 
+		/// <summary>
+		/// create Debug Log window. display a simplified log of important dear imgui events.<br/>
+		/// </summary>
 		public static void ShowDebugLogWindow()
 		{
 			ShowDebugLogWindowNative((bool*)(default));
 		}
 
+		/// <summary>
+		/// create Debug Log window. display a simplified log of important dear imgui events.<br/>
+		/// </summary>
 		public static void ShowDebugLogWindow(ref bool pOpen)
 		{
 			fixed (bool* ppOpen = &pOpen)
@@ -383,6 +536,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// create Stack Tool window. hover items with mouse to query information about the source of their unique ID.<br/>
+		/// </summary>
 		internal static void ShowIDStackToolWindowNative(bool* pOpen)
 		{
 			#if NET5_0_OR_GREATER
@@ -392,16 +548,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// create Stack Tool window. hover items with mouse to query information about the source of their unique ID.<br/>
+		/// </summary>
 		public static void ShowIDStackToolWindow(bool* pOpen)
 		{
 			ShowIDStackToolWindowNative(pOpen);
 		}
 
+		/// <summary>
+		/// create Stack Tool window. hover items with mouse to query information about the source of their unique ID.<br/>
+		/// </summary>
 		public static void ShowIDStackToolWindow()
 		{
 			ShowIDStackToolWindowNative((bool*)(default));
 		}
 
+		/// <summary>
+		/// create Stack Tool window. hover items with mouse to query information about the source of their unique ID.<br/>
+		/// </summary>
 		public static void ShowIDStackToolWindow(ref bool pOpen)
 		{
 			fixed (bool* ppOpen = &pOpen)
@@ -410,6 +575,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// create About window. display Dear ImGui version, credits and buildsystem information.<br/>
+		/// </summary>
 		internal static void ShowAboutWindowNative(bool* pOpen)
 		{
 			#if NET5_0_OR_GREATER
@@ -419,16 +587,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// create About window. display Dear ImGui version, credits and buildsystem information.<br/>
+		/// </summary>
 		public static void ShowAboutWindow(bool* pOpen)
 		{
 			ShowAboutWindowNative(pOpen);
 		}
 
+		/// <summary>
+		/// create About window. display Dear ImGui version, credits and buildsystem information.<br/>
+		/// </summary>
 		public static void ShowAboutWindow()
 		{
 			ShowAboutWindowNative((bool*)(default));
 		}
 
+		/// <summary>
+		/// create About window. display Dear ImGui version, credits and buildsystem information.<br/>
+		/// </summary>
 		public static void ShowAboutWindow(ref bool pOpen)
 		{
 			fixed (bool* ppOpen = &pOpen)
@@ -437,6 +614,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// add style editor block (not a window). you can pass in a reference ImGuiStyle structure to compare to, revert to and save to (else it uses the default style)<br/>
+		/// </summary>
 		internal static void ShowStyleEditorNative(ImGuiStyle* reference)
 		{
 			#if NET5_0_OR_GREATER
@@ -446,16 +626,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// add style editor block (not a window). you can pass in a reference ImGuiStyle structure to compare to, revert to and save to (else it uses the default style)<br/>
+		/// </summary>
 		public static void ShowStyleEditor(ImGuiStylePtr reference)
 		{
 			ShowStyleEditorNative(reference);
 		}
 
+		/// <summary>
+		/// add style editor block (not a window). you can pass in a reference ImGuiStyle structure to compare to, revert to and save to (else it uses the default style)<br/>
+		/// </summary>
 		public static void ShowStyleEditor()
 		{
 			ShowStyleEditorNative((ImGuiStyle*)(default));
 		}
 
+		/// <summary>
+		/// add style editor block (not a window). you can pass in a reference ImGuiStyle structure to compare to, revert to and save to (else it uses the default style)<br/>
+		/// </summary>
 		public static void ShowStyleEditor(ref ImGuiStyle reference)
 		{
 			fixed (ImGuiStyle* preference = &reference)
@@ -464,6 +653,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// add style selector block (not a window), essentially a combo listing the default styles.<br/>
+		/// </summary>
 		internal static byte ShowStyleSelectorNative(byte* label)
 		{
 			#if NET5_0_OR_GREATER
@@ -473,12 +665,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// add style selector block (not a window), essentially a combo listing the default styles.<br/>
+		/// </summary>
 		public static bool ShowStyleSelector(byte* label)
 		{
 			byte ret = ShowStyleSelectorNative(label);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// add style selector block (not a window), essentially a combo listing the default styles.<br/>
+		/// </summary>
 		public static bool ShowStyleSelector(ref byte label)
 		{
 			fixed (byte* plabel = &label)
@@ -488,6 +686,21 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// add style selector block (not a window), essentially a combo listing the default styles.<br/>
+		/// </summary>
+		public static bool ShowStyleSelector(ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				byte ret = ShowStyleSelectorNative((byte*)plabel);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// add style selector block (not a window), essentially a combo listing the default styles.<br/>
+		/// </summary>
 		public static bool ShowStyleSelector(string label)
 		{
 			byte* pStr0 = null;
@@ -515,15 +728,9 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool ShowStyleSelector(ReadOnlySpan<byte> label)
-		{
-			fixed (byte* plabel = label)
-			{
-				byte ret = ShowStyleSelectorNative((byte*)plabel);
-				return ret != 0;
-			}
-		}
-
+		/// <summary>
+		/// add font selector block (not a window), essentially a combo listing the loaded fonts.<br/>
+		/// </summary>
 		internal static void ShowFontSelectorNative(byte* label)
 		{
 			#if NET5_0_OR_GREATER
@@ -533,11 +740,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// add font selector block (not a window), essentially a combo listing the loaded fonts.<br/>
+		/// </summary>
 		public static void ShowFontSelector(byte* label)
 		{
 			ShowFontSelectorNative(label);
 		}
 
+		/// <summary>
+		/// add font selector block (not a window), essentially a combo listing the loaded fonts.<br/>
+		/// </summary>
 		public static void ShowFontSelector(ref byte label)
 		{
 			fixed (byte* plabel = &label)
@@ -546,6 +759,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// add font selector block (not a window), essentially a combo listing the loaded fonts.<br/>
+		/// </summary>
+		public static void ShowFontSelector(ReadOnlySpan<byte> label)
+		{
+			fixed (byte* plabel = label)
+			{
+				ShowFontSelectorNative((byte*)plabel);
+			}
+		}
+
+		/// <summary>
+		/// add font selector block (not a window), essentially a combo listing the loaded fonts.<br/>
+		/// </summary>
 		public static void ShowFontSelector(string label)
 		{
 			byte* pStr0 = null;
@@ -572,14 +799,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void ShowFontSelector(ReadOnlySpan<byte> label)
-		{
-			fixed (byte* plabel = label)
-			{
-				ShowFontSelectorNative((byte*)plabel);
-			}
-		}
-
+		/// <summary>
+		/// add basic helpinfo block (not a window): how to manipulate ImGui as an end-user (mousekeyboard controls).<br/>
+		/// </summary>
 		internal static void ShowUserGuideNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -589,11 +811,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// add basic helpinfo block (not a window): how to manipulate ImGui as an end-user (mousekeyboard controls).<br/>
+		/// </summary>
 		public static void ShowUserGuide()
 		{
 			ShowUserGuideNative();
 		}
 
+		/// <summary>
+		/// get the compiled version string e.g. "1.80 WIP" (essentially the value for IMGUI_VERSION from the compiled version of imgui.cpp)<br/>
+		/// </summary>
 		internal static byte* GetVersionNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -603,18 +831,27 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// get the compiled version string e.g. "1.80 WIP" (essentially the value for IMGUI_VERSION from the compiled version of imgui.cpp)<br/>
+		/// </summary>
 		public static byte* GetVersion()
 		{
 			byte* ret = GetVersionNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// get the compiled version string e.g. "1.80 WIP" (essentially the value for IMGUI_VERSION from the compiled version of imgui.cpp)<br/>
+		/// </summary>
 		public static string GetVersionS()
 		{
 			string ret = Utils.DecodeStringUTF8(GetVersionNative());
 			return ret;
 		}
 
+		/// <summary>
+		/// new, recommended style (default)<br/>
+		/// </summary>
 		internal static void StyleColorsDarkNative(ImGuiStyle* dst)
 		{
 			#if NET5_0_OR_GREATER
@@ -624,16 +861,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// new, recommended style (default)<br/>
+		/// </summary>
 		public static void StyleColorsDark(ImGuiStylePtr dst)
 		{
 			StyleColorsDarkNative(dst);
 		}
 
+		/// <summary>
+		/// new, recommended style (default)<br/>
+		/// </summary>
 		public static void StyleColorsDark()
 		{
 			StyleColorsDarkNative((ImGuiStyle*)(default));
 		}
 
+		/// <summary>
+		/// new, recommended style (default)<br/>
+		/// </summary>
 		public static void StyleColorsDark(ref ImGuiStyle dst)
 		{
 			fixed (ImGuiStyle* pdst = &dst)
@@ -642,6 +888,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// best used with borders and a custom, thicker font<br/>
+		/// </summary>
 		internal static void StyleColorsLightNative(ImGuiStyle* dst)
 		{
 			#if NET5_0_OR_GREATER
@@ -651,16 +900,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// best used with borders and a custom, thicker font<br/>
+		/// </summary>
 		public static void StyleColorsLight(ImGuiStylePtr dst)
 		{
 			StyleColorsLightNative(dst);
 		}
 
+		/// <summary>
+		/// best used with borders and a custom, thicker font<br/>
+		/// </summary>
 		public static void StyleColorsLight()
 		{
 			StyleColorsLightNative((ImGuiStyle*)(default));
 		}
 
+		/// <summary>
+		/// best used with borders and a custom, thicker font<br/>
+		/// </summary>
 		public static void StyleColorsLight(ref ImGuiStyle dst)
 		{
 			fixed (ImGuiStyle* pdst = &dst)
@@ -669,6 +927,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// classic imgui style<br/>
+		/// </summary>
 		internal static void StyleColorsClassicNative(ImGuiStyle* dst)
 		{
 			#if NET5_0_OR_GREATER
@@ -678,16 +939,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// classic imgui style<br/>
+		/// </summary>
 		public static void StyleColorsClassic(ImGuiStylePtr dst)
 		{
 			StyleColorsClassicNative(dst);
 		}
 
+		/// <summary>
+		/// classic imgui style<br/>
+		/// </summary>
 		public static void StyleColorsClassic()
 		{
 			StyleColorsClassicNative((ImGuiStyle*)(default));
 		}
 
+		/// <summary>
+		/// classic imgui style<br/>
+		/// </summary>
 		public static void StyleColorsClassic(ref ImGuiStyle dst)
 		{
 			fixed (ImGuiStyle* pdst = &dst)
@@ -696,6 +966,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte BeginNative(byte* name, bool* pOpen, ImGuiWindowFlags flags)
 		{
 			#if NET5_0_OR_GREATER
@@ -705,30 +978,45 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(byte* name, bool* pOpen, ImGuiWindowFlags flags)
 		{
 			byte ret = BeginNative(name, pOpen, flags);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(byte* name, bool* pOpen)
 		{
 			byte ret = BeginNative(name, pOpen, (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(byte* name)
 		{
 			byte ret = BeginNative(name, (bool*)(default), (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(byte* name, ImGuiWindowFlags flags)
 		{
 			byte ret = BeginNative(name, (bool*)(default), flags);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(ref byte name, bool* pOpen, ImGuiWindowFlags flags)
 		{
 			fixed (byte* pname = &name)
@@ -738,6 +1026,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(ref byte name, bool* pOpen)
 		{
 			fixed (byte* pname = &name)
@@ -747,6 +1038,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(ref byte name)
 		{
 			fixed (byte* pname = &name)
@@ -756,6 +1050,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(ref byte name, ImGuiWindowFlags flags)
 		{
 			fixed (byte* pname = &name)
@@ -765,6 +1062,57 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Begin(ReadOnlySpan<byte> name, bool* pOpen, ImGuiWindowFlags flags)
+		{
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginNative((byte*)pname, pOpen, flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Begin(ReadOnlySpan<byte> name, bool* pOpen)
+		{
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginNative((byte*)pname, pOpen, (ImGuiWindowFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Begin(ReadOnlySpan<byte> name)
+		{
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginNative((byte*)pname, (bool*)(default), (ImGuiWindowFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Begin(ReadOnlySpan<byte> name, ImGuiWindowFlags flags)
+		{
+			fixed (byte* pname = name)
+			{
+				byte ret = BeginNative((byte*)pname, (bool*)(default), flags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(string name, bool* pOpen, ImGuiWindowFlags flags)
 		{
 			byte* pStr0 = null;
@@ -792,6 +1140,9 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(string name, bool* pOpen)
 		{
 			byte* pStr0 = null;
@@ -819,6 +1170,9 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(string name)
 		{
 			byte* pStr0 = null;
@@ -846,6 +1200,9 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(string name, ImGuiWindowFlags flags)
 		{
 			byte* pStr0 = null;
@@ -873,42 +1230,9 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool Begin(ReadOnlySpan<byte> name, bool* pOpen, ImGuiWindowFlags flags)
-		{
-			fixed (byte* pname = name)
-			{
-				byte ret = BeginNative((byte*)pname, pOpen, flags);
-				return ret != 0;
-			}
-		}
-
-		public static bool Begin(ReadOnlySpan<byte> name, bool* pOpen)
-		{
-			fixed (byte* pname = name)
-			{
-				byte ret = BeginNative((byte*)pname, pOpen, (ImGuiWindowFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		public static bool Begin(ReadOnlySpan<byte> name)
-		{
-			fixed (byte* pname = name)
-			{
-				byte ret = BeginNative((byte*)pname, (bool*)(default), (ImGuiWindowFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		public static bool Begin(ReadOnlySpan<byte> name, ImGuiWindowFlags flags)
-		{
-			fixed (byte* pname = name)
-			{
-				byte ret = BeginNative((byte*)pname, (bool*)(default), flags);
-				return ret != 0;
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(byte* name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
 			fixed (bool* ppOpen = &pOpen)
@@ -918,6 +1242,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(byte* name, ref bool pOpen)
 		{
 			fixed (bool* ppOpen = &pOpen)
@@ -927,6 +1254,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(ref byte name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
 			fixed (byte* pname = &name)
@@ -939,6 +1269,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(ref byte name, ref bool pOpen)
 		{
 			fixed (byte* pname = &name)
@@ -951,6 +1284,39 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Begin(ReadOnlySpan<byte> name, ref bool pOpen, ImGuiWindowFlags flags)
+		{
+			fixed (byte* pname = name)
+			{
+				fixed (bool* ppOpen = &pOpen)
+				{
+					byte ret = BeginNative((byte*)pname, (bool*)ppOpen, flags);
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool Begin(ReadOnlySpan<byte> name, ref bool pOpen)
+		{
+			fixed (byte* pname = name)
+			{
+				fixed (bool* ppOpen = &pOpen)
+				{
+					byte ret = BeginNative((byte*)pname, (bool*)ppOpen, (ImGuiWindowFlags)(0));
+					return ret != 0;
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(string name, ref bool pOpen, ImGuiWindowFlags flags)
 		{
 			byte* pStr0 = null;
@@ -981,6 +1347,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool Begin(string name, ref bool pOpen)
 		{
 			byte* pStr0 = null;
@@ -1011,30 +1380,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static bool Begin(ReadOnlySpan<byte> name, ref bool pOpen, ImGuiWindowFlags flags)
-		{
-			fixed (byte* pname = name)
-			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					byte ret = BeginNative((byte*)pname, (bool*)ppOpen, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		public static bool Begin(ReadOnlySpan<byte> name, ref bool pOpen)
-		{
-			fixed (byte* pname = name)
-			{
-				fixed (bool* ppOpen = &pOpen)
-				{
-					byte ret = BeginNative((byte*)pname, (bool*)ppOpen, (ImGuiWindowFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void EndNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1044,11 +1392,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void End()
 		{
 			EndNative();
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte BeginChildNative(byte* strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			#if NET5_0_OR_GREATER
@@ -1058,54 +1412,81 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(byte* strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			byte ret = BeginChildNative(strId, size, childFlags, windowFlags);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(byte* strId, Vector2 size, ImGuiChildFlags childFlags)
 		{
 			byte ret = BeginChildNative(strId, size, childFlags, (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(byte* strId, Vector2 size)
 		{
 			byte ret = BeginChildNative(strId, size, (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(byte* strId)
 		{
 			byte ret = BeginChildNative(strId, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(byte* strId, ImGuiChildFlags childFlags)
 		{
 			byte ret = BeginChildNative(strId, (Vector2)(new Vector2(0,0)), childFlags, (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(byte* strId, Vector2 size, ImGuiWindowFlags windowFlags)
 		{
 			byte ret = BeginChildNative(strId, size, (ImGuiChildFlags)(0), windowFlags);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(byte* strId, ImGuiWindowFlags windowFlags)
 		{
 			byte ret = BeginChildNative(strId, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), windowFlags);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(byte* strId, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			byte ret = BeginChildNative(strId, (Vector2)(new Vector2(0,0)), childFlags, windowFlags);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(ref byte strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			fixed (byte* pstrId = &strId)
@@ -1115,6 +1496,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(ref byte strId, Vector2 size, ImGuiChildFlags childFlags)
 		{
 			fixed (byte* pstrId = &strId)
@@ -1124,6 +1508,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(ref byte strId, Vector2 size)
 		{
 			fixed (byte* pstrId = &strId)
@@ -1133,6 +1520,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(ref byte strId)
 		{
 			fixed (byte* pstrId = &strId)
@@ -1142,6 +1532,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(ref byte strId, ImGuiChildFlags childFlags)
 		{
 			fixed (byte* pstrId = &strId)
@@ -1151,6 +1544,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(ref byte strId, Vector2 size, ImGuiWindowFlags windowFlags)
 		{
 			fixed (byte* pstrId = &strId)
@@ -1160,6 +1556,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(ref byte strId, ImGuiWindowFlags windowFlags)
 		{
 			fixed (byte* pstrId = &strId)
@@ -1169,6 +1568,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(ref byte strId, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			fixed (byte* pstrId = &strId)
@@ -1178,6 +1580,105 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(ReadOnlySpan<byte> strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginChildNative((byte*)pstrId, size, childFlags, windowFlags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(ReadOnlySpan<byte> strId, Vector2 size, ImGuiChildFlags childFlags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginChildNative((byte*)pstrId, size, childFlags, (ImGuiWindowFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(ReadOnlySpan<byte> strId, Vector2 size)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginChildNative((byte*)pstrId, size, (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(ReadOnlySpan<byte> strId)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(ReadOnlySpan<byte> strId, ImGuiChildFlags childFlags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), childFlags, (ImGuiWindowFlags)(0));
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(ReadOnlySpan<byte> strId, Vector2 size, ImGuiWindowFlags windowFlags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginChildNative((byte*)pstrId, size, (ImGuiChildFlags)(0), windowFlags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(ReadOnlySpan<byte> strId, ImGuiWindowFlags windowFlags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), windowFlags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(ReadOnlySpan<byte> strId, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), childFlags, windowFlags);
+				return ret != 0;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(string strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			byte* pStr0 = null;
@@ -1205,6 +1706,9 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(string strId, Vector2 size, ImGuiChildFlags childFlags)
 		{
 			byte* pStr0 = null;
@@ -1232,6 +1736,9 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(string strId, Vector2 size)
 		{
 			byte* pStr0 = null;
@@ -1259,6 +1766,9 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(string strId)
 		{
 			byte* pStr0 = null;
@@ -1286,6 +1796,9 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(string strId, ImGuiChildFlags childFlags)
 		{
 			byte* pStr0 = null;
@@ -1313,6 +1826,9 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(string strId, Vector2 size, ImGuiWindowFlags windowFlags)
 		{
 			byte* pStr0 = null;
@@ -1340,6 +1856,9 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(string strId, ImGuiWindowFlags windowFlags)
 		{
 			byte* pStr0 = null;
@@ -1367,6 +1886,9 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool BeginChild(string strId, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			byte* pStr0 = null;
@@ -1394,135 +1916,93 @@ namespace Hexa.NET.ImGui
 			return ret != 0;
 		}
 
-		public static bool BeginChild(ReadOnlySpan<byte> strId, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				byte ret = BeginChildNative((byte*)pstrId, size, childFlags, windowFlags);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginChild(ReadOnlySpan<byte> strId, Vector2 size, ImGuiChildFlags childFlags)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				byte ret = BeginChildNative((byte*)pstrId, size, childFlags, (ImGuiWindowFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginChild(ReadOnlySpan<byte> strId, Vector2 size)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				byte ret = BeginChildNative((byte*)pstrId, size, (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginChild(ReadOnlySpan<byte> strId)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginChild(ReadOnlySpan<byte> strId, ImGuiChildFlags childFlags)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), childFlags, (ImGuiWindowFlags)(0));
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginChild(ReadOnlySpan<byte> strId, Vector2 size, ImGuiWindowFlags windowFlags)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				byte ret = BeginChildNative((byte*)pstrId, size, (ImGuiChildFlags)(0), windowFlags);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginChild(ReadOnlySpan<byte> strId, ImGuiWindowFlags windowFlags)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), windowFlags);
-				return ret != 0;
-			}
-		}
-
-		public static bool BeginChild(ReadOnlySpan<byte> strId, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				byte ret = BeginChildNative((byte*)pstrId, (Vector2)(new Vector2(0,0)), childFlags, windowFlags);
-				return ret != 0;
-			}
-		}
-
-		internal static byte BeginChildNative(int id, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		internal static byte BeginChildNative(uint id, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, Vector2, ImGuiChildFlags, ImGuiWindowFlags, byte>)vt[32])(id, size, childFlags, windowFlags);
+			return ((delegate* unmanaged[Cdecl]<uint, Vector2, ImGuiChildFlags, ImGuiWindowFlags, byte>)vt[32])(id, size, childFlags, windowFlags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<int, Vector2, ImGuiChildFlags, ImGuiWindowFlags, byte>)vt[32])(id, size, childFlags, windowFlags);
+			return (byte)((delegate* unmanaged[Cdecl]<uint, Vector2, ImGuiChildFlags, ImGuiWindowFlags, byte>)vt[32])(id, size, childFlags, windowFlags);
 			#endif
 		}
 
-		public static bool BeginChild(int id, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(uint id, Vector2 size, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			byte ret = BeginChildNative(id, size, childFlags, windowFlags);
 			return ret != 0;
 		}
 
-		public static bool BeginChild(int id, Vector2 size, ImGuiChildFlags childFlags)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(uint id, Vector2 size, ImGuiChildFlags childFlags)
 		{
 			byte ret = BeginChildNative(id, size, childFlags, (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
-		public static bool BeginChild(int id, Vector2 size)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(uint id, Vector2 size)
 		{
 			byte ret = BeginChildNative(id, size, (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
-		public static bool BeginChild(int id)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(uint id)
 		{
 			byte ret = BeginChildNative(id, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
-		public static bool BeginChild(int id, ImGuiChildFlags childFlags)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(uint id, ImGuiChildFlags childFlags)
 		{
 			byte ret = BeginChildNative(id, (Vector2)(new Vector2(0,0)), childFlags, (ImGuiWindowFlags)(0));
 			return ret != 0;
 		}
 
-		public static bool BeginChild(int id, Vector2 size, ImGuiWindowFlags windowFlags)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(uint id, Vector2 size, ImGuiWindowFlags windowFlags)
 		{
 			byte ret = BeginChildNative(id, size, (ImGuiChildFlags)(0), windowFlags);
 			return ret != 0;
 		}
 
-		public static bool BeginChild(int id, ImGuiWindowFlags windowFlags)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(uint id, ImGuiWindowFlags windowFlags)
 		{
 			byte ret = BeginChildNative(id, (Vector2)(new Vector2(0,0)), (ImGuiChildFlags)(0), windowFlags);
 			return ret != 0;
 		}
 
-		public static bool BeginChild(int id, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool BeginChild(uint id, ImGuiChildFlags childFlags, ImGuiWindowFlags windowFlags)
 		{
 			byte ret = BeginChildNative(id, (Vector2)(new Vector2(0,0)), childFlags, windowFlags);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void EndChildNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1532,11 +2012,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void EndChild()
 		{
 			EndChildNative();
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsWindowAppearingNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1546,12 +2032,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsWindowAppearing()
 		{
 			byte ret = IsWindowAppearingNative();
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static byte IsWindowCollapsedNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1561,12 +2053,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool IsWindowCollapsed()
 		{
 			byte ret = IsWindowCollapsedNative();
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// is current window focused? or its rootchild, depending on flags. see flags for options.<br/>
+		/// </summary>
 		internal static byte IsWindowFocusedNative(ImGuiFocusedFlags flags)
 		{
 			#if NET5_0_OR_GREATER
@@ -1576,18 +2074,27 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// is current window focused? or its rootchild, depending on flags. see flags for options.<br/>
+		/// </summary>
 		public static bool IsWindowFocused(ImGuiFocusedFlags flags)
 		{
 			byte ret = IsWindowFocusedNative(flags);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// is current window focused? or its rootchild, depending on flags. see flags for options.<br/>
+		/// </summary>
 		public static bool IsWindowFocused()
 		{
 			byte ret = IsWindowFocusedNative((ImGuiFocusedFlags)(0));
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// is current window hovered and hoverable (e.g. not blocked by a popupmodal)? See ImGuiHoveredFlags_ for options. IMPORTANT: If you are trying to check whether your mouse should be dispatched to Dear ImGui or to your underlying app, you should not use this function! Use the 'io.WantCaptureMouse' boolean for that! Refer to FAQ entry "How can I tell whether to dispatch mousekeyboard to Dear ImGui or my application?" for details.<br/>
+		/// </summary>
 		internal static byte IsWindowHoveredNative(ImGuiHoveredFlags flags)
 		{
 			#if NET5_0_OR_GREATER
@@ -1597,18 +2104,27 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// is current window hovered and hoverable (e.g. not blocked by a popupmodal)? See ImGuiHoveredFlags_ for options. IMPORTANT: If you are trying to check whether your mouse should be dispatched to Dear ImGui or to your underlying app, you should not use this function! Use the 'io.WantCaptureMouse' boolean for that! Refer to FAQ entry "How can I tell whether to dispatch mousekeyboard to Dear ImGui or my application?" for details.<br/>
+		/// </summary>
 		public static bool IsWindowHovered(ImGuiHoveredFlags flags)
 		{
 			byte ret = IsWindowHoveredNative(flags);
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// is current window hovered and hoverable (e.g. not blocked by a popupmodal)? See ImGuiHoveredFlags_ for options. IMPORTANT: If you are trying to check whether your mouse should be dispatched to Dear ImGui or to your underlying app, you should not use this function! Use the 'io.WantCaptureMouse' boolean for that! Refer to FAQ entry "How can I tell whether to dispatch mousekeyboard to Dear ImGui or my application?" for details.<br/>
+		/// </summary>
 		public static bool IsWindowHovered()
 		{
 			byte ret = IsWindowHoveredNative((ImGuiHoveredFlags)(0));
 			return ret != 0;
 		}
 
+		/// <summary>
+		/// get draw list associated to the current window, to append your own drawing primitives<br/>
+		/// </summary>
 		internal static ImDrawList* GetWindowDrawListNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1618,12 +2134,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// get draw list associated to the current window, to append your own drawing primitives<br/>
+		/// </summary>
 		public static ImDrawListPtr GetWindowDrawList()
 		{
 			ImDrawListPtr ret = GetWindowDrawListNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// get DPI scale currently associated to the current window's viewport.<br/>
+		/// </summary>
 		internal static float GetWindowDpiScaleNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1633,21 +2155,30 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// get DPI scale currently associated to the current window's viewport.<br/>
+		/// </summary>
 		public static float GetWindowDpiScale()
 		{
 			float ret = GetWindowDpiScaleNative();
 			return ret;
 		}
 
-		internal static void GetWindowPosNative(Vector2* output)
+		/// <summary>
+		/// get current window position in screen space (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
+		/// </summary>
+		internal static void GetWindowPosNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[40])(output);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[40])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[40])((nint)output);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[40])((nint)pOut);
 			#endif
 		}
 
+		/// <summary>
+		/// get current window position in screen space (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
+		/// </summary>
 		public static Vector2 GetWindowPos()
 		{
 			Vector2 ret;
@@ -1655,28 +2186,40 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		public static void GetWindowPos(Vector2* output)
+		/// <summary>
+		/// get current window position in screen space (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
+		/// </summary>
+		public static void GetWindowPos(Vector2* pOut)
 		{
-			GetWindowPosNative(output);
+			GetWindowPosNative(pOut);
 		}
 
-		public static void GetWindowPos(ref Vector2 output)
+		/// <summary>
+		/// get current window position in screen space (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
+		/// </summary>
+		public static void GetWindowPos(ref Vector2 pOut)
 		{
-			fixed (Vector2* poutput = &output)
+			fixed (Vector2* ppOut = &pOut)
 			{
-				GetWindowPosNative((Vector2*)poutput);
+				GetWindowPosNative((Vector2*)ppOut);
 			}
 		}
 
-		internal static void GetWindowSizeNative(Vector2* output)
+		/// <summary>
+		/// get current window size (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
+		/// </summary>
+		internal static void GetWindowSizeNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[41])(output);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[41])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[41])((nint)output);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[41])((nint)pOut);
 			#endif
 		}
 
+		/// <summary>
+		/// get current window size (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
+		/// </summary>
 		public static Vector2 GetWindowSize()
 		{
 			Vector2 ret;
@@ -1684,19 +2227,28 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		public static void GetWindowSize(Vector2* output)
+		/// <summary>
+		/// get current window size (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
+		/// </summary>
+		public static void GetWindowSize(Vector2* pOut)
 		{
-			GetWindowSizeNative(output);
+			GetWindowSizeNative(pOut);
 		}
 
-		public static void GetWindowSize(ref Vector2 output)
+		/// <summary>
+		/// get current window size (IT IS UNLIKELY YOU EVER NEED TO USE THIS. Consider always using GetCursorScreenPos() and GetContentRegionAvail() instead)<br/>
+		/// </summary>
+		public static void GetWindowSize(ref Vector2 pOut)
 		{
-			fixed (Vector2* poutput = &output)
+			fixed (Vector2* ppOut = &pOut)
 			{
-				GetWindowSizeNative((Vector2*)poutput);
+				GetWindowSizeNative((Vector2*)ppOut);
 			}
 		}
 
+		/// <summary>
+		/// get current window width (IT IS UNLIKELY YOU EVER NEED TO USE THIS). Shortcut for GetWindowSize().x.<br/>
+		/// </summary>
 		internal static float GetWindowWidthNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1706,12 +2258,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// get current window width (IT IS UNLIKELY YOU EVER NEED TO USE THIS). Shortcut for GetWindowSize().x.<br/>
+		/// </summary>
 		public static float GetWindowWidth()
 		{
 			float ret = GetWindowWidthNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// get current window height (IT IS UNLIKELY YOU EVER NEED TO USE THIS). Shortcut for GetWindowSize().y.<br/>
+		/// </summary>
 		internal static float GetWindowHeightNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1721,12 +2279,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// get current window height (IT IS UNLIKELY YOU EVER NEED TO USE THIS). Shortcut for GetWindowSize().y.<br/>
+		/// </summary>
 		public static float GetWindowHeight()
 		{
 			float ret = GetWindowHeightNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// get viewport currently associated to the current window.<br/>
+		/// </summary>
 		internal static ImGuiViewport* GetWindowViewportNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1736,12 +2300,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// get viewport currently associated to the current window.<br/>
+		/// </summary>
 		public static ImGuiViewportPtr GetWindowViewport()
 		{
 			ImGuiViewportPtr ret = GetWindowViewportNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
+		/// </summary>
 		internal static void SetNextWindowPosNative(Vector2 pos, ImGuiCond cond, Vector2 pivot)
 		{
 			#if NET5_0_OR_GREATER
@@ -1751,26 +2321,41 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
+		/// </summary>
 		public static void SetNextWindowPos(Vector2 pos, ImGuiCond cond, Vector2 pivot)
 		{
 			SetNextWindowPosNative(pos, cond, pivot);
 		}
 
+		/// <summary>
+		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
+		/// </summary>
 		public static void SetNextWindowPos(Vector2 pos, ImGuiCond cond)
 		{
 			SetNextWindowPosNative(pos, cond, (Vector2)(new Vector2(0,0)));
 		}
 
+		/// <summary>
+		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
+		/// </summary>
 		public static void SetNextWindowPos(Vector2 pos)
 		{
 			SetNextWindowPosNative(pos, (ImGuiCond)(0), (Vector2)(new Vector2(0,0)));
 		}
 
+		/// <summary>
+		/// set next window position. call before Begin(). use pivot=(0.5f,0.5f) to center on given point, etc.<br/>
+		/// </summary>
 		public static void SetNextWindowPos(Vector2 pos, Vector2 pivot)
 		{
 			SetNextWindowPosNative(pos, (ImGuiCond)(0), pivot);
 		}
 
+		/// <summary>
+		/// set next window size. set axis to 0.0f to force an auto-fit on this axis. call before Begin()<br/>
+		/// </summary>
 		internal static void SetNextWindowSizeNative(Vector2 size, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
@@ -1780,16 +2365,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set next window size. set axis to 0.0f to force an auto-fit on this axis. call before Begin()<br/>
+		/// </summary>
 		public static void SetNextWindowSize(Vector2 size, ImGuiCond cond)
 		{
 			SetNextWindowSizeNative(size, cond);
 		}
 
+		/// <summary>
+		/// set next window size. set axis to 0.0f to force an auto-fit on this axis. call before Begin()<br/>
+		/// </summary>
 		public static void SetNextWindowSize(Vector2 size)
 		{
 			SetNextWindowSizeNative(size, (ImGuiCond)(0));
 		}
 
+		/// <summary>
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
+		/// </summary>
 		internal static void SetNextWindowSizeConstraintsNative(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback, void* customCallbackData)
 		{
 			#if NET5_0_OR_GREATER
@@ -1799,26 +2393,41 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
+		/// </summary>
 		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback, void* customCallbackData)
 		{
 			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, customCallback, customCallbackData);
 		}
 
+		/// <summary>
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
+		/// </summary>
 		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, ImGuiSizeCallback customCallback)
 		{
 			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, customCallback, (void*)(default));
 		}
 
+		/// <summary>
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
+		/// </summary>
 		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax)
 		{
 			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, (ImGuiSizeCallback)(default), (void*)(default));
 		}
 
+		/// <summary>
+		/// set next window size limits. use 0.0f or FLT_MAX if you don't want limits. Use -1 for both min and max of same axis to preserve current size (which itself is a constraint). Use callback to apply non-trivial programmatic constraints.<br/>
+		/// </summary>
 		public static void SetNextWindowSizeConstraints(Vector2 sizeMin, Vector2 sizeMax, void* customCallbackData)
 		{
 			SetNextWindowSizeConstraintsNative(sizeMin, sizeMax, (ImGuiSizeCallback)(default), customCallbackData);
 		}
 
+		/// <summary>
+		/// set next window content size (~ scrollable client area, which enforce the range of scrollbars). Not including window decorations (title bar, menu bar, etc.) nor WindowPadding. set an axis to 0.0f to leave it automatic. call before Begin()<br/>
+		/// </summary>
 		internal static void SetNextWindowContentSizeNative(Vector2 size)
 		{
 			#if NET5_0_OR_GREATER
@@ -1828,11 +2437,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set next window content size (~ scrollable client area, which enforce the range of scrollbars). Not including window decorations (title bar, menu bar, etc.) nor WindowPadding. set an axis to 0.0f to leave it automatic. call before Begin()<br/>
+		/// </summary>
 		public static void SetNextWindowContentSize(Vector2 size)
 		{
 			SetNextWindowContentSizeNative(size);
 		}
 
+		/// <summary>
+		/// set next window collapsed state. call before Begin()<br/>
+		/// </summary>
 		internal static void SetNextWindowCollapsedNative(byte collapsed, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
@@ -1842,16 +2457,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set next window collapsed state. call before Begin()<br/>
+		/// </summary>
 		public static void SetNextWindowCollapsed(bool collapsed, ImGuiCond cond)
 		{
 			SetNextWindowCollapsedNative(collapsed ? (byte)1 : (byte)0, cond);
 		}
 
+		/// <summary>
+		/// set next window collapsed state. call before Begin()<br/>
+		/// </summary>
 		public static void SetNextWindowCollapsed(bool collapsed)
 		{
 			SetNextWindowCollapsedNative(collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
 		}
 
+		/// <summary>
+		/// set next window to be focused  top-most. call before Begin()<br/>
+		/// </summary>
 		internal static void SetNextWindowFocusNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1861,11 +2485,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set next window to be focused  top-most. call before Begin()<br/>
+		/// </summary>
 		public static void SetNextWindowFocus()
 		{
 			SetNextWindowFocusNative();
 		}
 
+		/// <summary>
+		/// set next window scrolling value (use &lt; 0.0f to not affect a given axis).<br/>
+		/// </summary>
 		internal static void SetNextWindowScrollNative(Vector2 scroll)
 		{
 			#if NET5_0_OR_GREATER
@@ -1875,11 +2505,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set next window scrolling value (use &lt; 0.0f to not affect a given axis).<br/>
+		/// </summary>
 		public static void SetNextWindowScroll(Vector2 scroll)
 		{
 			SetNextWindowScrollNative(scroll);
 		}
 
+		/// <summary>
+		/// set next window background color alpha. helper to easily override the Alpha component of ImGuiCol_WindowBgChildBgPopupBg. you may also use ImGuiWindowFlags_NoBackground.<br/>
+		/// </summary>
 		internal static void SetNextWindowBgAlphaNative(float alpha)
 		{
 			#if NET5_0_OR_GREATER
@@ -1889,25 +2525,37 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set next window background color alpha. helper to easily override the Alpha component of ImGuiCol_WindowBgChildBgPopupBg. you may also use ImGuiWindowFlags_NoBackground.<br/>
+		/// </summary>
 		public static void SetNextWindowBgAlpha(float alpha)
 		{
 			SetNextWindowBgAlphaNative(alpha);
 		}
 
-		internal static void SetNextWindowViewportNative(int viewportId)
+		/// <summary>
+		/// set next window viewport<br/>
+		/// </summary>
+		internal static void SetNextWindowViewportNative(uint viewportId)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<int, void>)vt[53])(viewportId);
+			((delegate* unmanaged[Cdecl]<uint, void>)vt[53])(viewportId);
 			#else
-			((delegate* unmanaged[Cdecl]<int, void>)vt[53])(viewportId);
+			((delegate* unmanaged[Cdecl]<uint, void>)vt[53])(viewportId);
 			#endif
 		}
 
-		public static void SetNextWindowViewport(int viewportId)
+		/// <summary>
+		/// set next window viewport<br/>
+		/// </summary>
+		public static void SetNextWindowViewport(uint viewportId)
 		{
 			SetNextWindowViewportNative(viewportId);
 		}
 
+		/// <summary>
+		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
+		/// </summary>
 		internal static void SetWindowPosNative(Vector2 pos, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
@@ -1917,16 +2565,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
+		/// </summary>
 		public static void SetWindowPos(Vector2 pos, ImGuiCond cond)
 		{
 			SetWindowPosNative(pos, cond);
 		}
 
+		/// <summary>
+		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
+		/// </summary>
 		public static void SetWindowPos(Vector2 pos)
 		{
 			SetWindowPosNative(pos, (ImGuiCond)(0));
 		}
 
+		/// <summary>
+		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
+		/// </summary>
 		internal static void SetWindowSizeNative(Vector2 size, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
@@ -1936,16 +2593,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
+		/// </summary>
 		public static void SetWindowSize(Vector2 size, ImGuiCond cond)
 		{
 			SetWindowSizeNative(size, cond);
 		}
 
+		/// <summary>
+		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
+		/// </summary>
 		public static void SetWindowSize(Vector2 size)
 		{
 			SetWindowSizeNative(size, (ImGuiCond)(0));
 		}
 
+		/// <summary>
+		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
+		/// </summary>
 		internal static void SetWindowCollapsedNative(byte collapsed, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
@@ -1955,16 +2621,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
+		/// </summary>
 		public static void SetWindowCollapsed(bool collapsed, ImGuiCond cond)
 		{
 			SetWindowCollapsedNative(collapsed ? (byte)1 : (byte)0, cond);
 		}
 
+		/// <summary>
+		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
+		/// </summary>
 		public static void SetWindowCollapsed(bool collapsed)
 		{
 			SetWindowCollapsedNative(collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
 		}
 
+		/// <summary>
+		/// (not recommended) set current window to be focused  top-most. prefer using SetNextWindowFocus().<br/>
+		/// </summary>
 		internal static void SetWindowFocusNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -1974,11 +2649,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// (not recommended) set current window to be focused  top-most. prefer using SetNextWindowFocus().<br/>
+		/// </summary>
 		public static void SetWindowFocus()
 		{
 			SetWindowFocusNative();
 		}
 
+		/// <summary>
+		/// [OBSOLETE] set font scale. Adjust IO.FontGlobalScale if you want to scale all windows. This is an old API! For correct scaling, prefer to reload font + rebuild ImFontAtlas + call style.ScaleAllSizes().<br/>
+		/// </summary>
 		internal static void SetWindowFontScaleNative(float scale)
 		{
 			#if NET5_0_OR_GREATER
@@ -1988,11 +2669,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// [OBSOLETE] set font scale. Adjust IO.FontGlobalScale if you want to scale all windows. This is an old API! For correct scaling, prefer to reload font + rebuild ImFontAtlas + call style.ScaleAllSizes().<br/>
+		/// </summary>
 		public static void SetWindowFontScale(float scale)
 		{
 			SetWindowFontScaleNative(scale);
 		}
 
+		/// <summary>
+		/// (not recommended) set current window position - call within Begin()End(). prefer using SetNextWindowPos(), as this may incur tearing and side-effects.<br/>
+		/// </summary>
 		internal static void SetWindowPosNative(byte* name, Vector2 pos, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
@@ -2002,16 +2689,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
 		public static void SetWindowPos(byte* name, Vector2 pos, ImGuiCond cond)
 		{
 			SetWindowPosNative(name, pos, cond);
 		}
 
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
 		public static void SetWindowPos(byte* name, Vector2 pos)
 		{
 			SetWindowPosNative(name, pos, (ImGuiCond)(0));
 		}
 
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
 		public static void SetWindowPos(ref byte name, Vector2 pos, ImGuiCond cond)
 		{
 			fixed (byte* pname = &name)
@@ -2020,6 +2716,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
 		public static void SetWindowPos(ref byte name, Vector2 pos)
 		{
 			fixed (byte* pname = &name)
@@ -2028,6 +2727,31 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
+		public static void SetWindowPos(ReadOnlySpan<byte> name, Vector2 pos, ImGuiCond cond)
+		{
+			fixed (byte* pname = name)
+			{
+				SetWindowPosNative((byte*)pname, pos, cond);
+			}
+		}
+
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
+		public static void SetWindowPos(ReadOnlySpan<byte> name, Vector2 pos)
+		{
+			fixed (byte* pname = name)
+			{
+				SetWindowPosNative((byte*)pname, pos, (ImGuiCond)(0));
+			}
+		}
+
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
 		public static void SetWindowPos(string name, Vector2 pos, ImGuiCond cond)
 		{
 			byte* pStr0 = null;
@@ -2054,6 +2778,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// set named window position.<br/>
+		/// </summary>
 		public static void SetWindowPos(string name, Vector2 pos)
 		{
 			byte* pStr0 = null;
@@ -2080,22 +2807,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void SetWindowPos(ReadOnlySpan<byte> name, Vector2 pos, ImGuiCond cond)
-		{
-			fixed (byte* pname = name)
-			{
-				SetWindowPosNative((byte*)pname, pos, cond);
-			}
-		}
-
-		public static void SetWindowPos(ReadOnlySpan<byte> name, Vector2 pos)
-		{
-			fixed (byte* pname = name)
-			{
-				SetWindowPosNative((byte*)pname, pos, (ImGuiCond)(0));
-			}
-		}
-
+		/// <summary>
+		/// (not recommended) set current window size - call within Begin()End(). set to ImVec2(0, 0) to force an auto-fit. prefer using SetNextWindowSize(), as this may incur tearing and minor side-effects.<br/>
+		/// </summary>
 		internal static void SetWindowSizeNative(byte* name, Vector2 size, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
@@ -2105,16 +2819,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
 		public static void SetWindowSize(byte* name, Vector2 size, ImGuiCond cond)
 		{
 			SetWindowSizeNative(name, size, cond);
 		}
 
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
 		public static void SetWindowSize(byte* name, Vector2 size)
 		{
 			SetWindowSizeNative(name, size, (ImGuiCond)(0));
 		}
 
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
 		public static void SetWindowSize(ref byte name, Vector2 size, ImGuiCond cond)
 		{
 			fixed (byte* pname = &name)
@@ -2123,6 +2846,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
 		public static void SetWindowSize(ref byte name, Vector2 size)
 		{
 			fixed (byte* pname = &name)
@@ -2131,6 +2857,31 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
+		public static void SetWindowSize(ReadOnlySpan<byte> name, Vector2 size, ImGuiCond cond)
+		{
+			fixed (byte* pname = name)
+			{
+				SetWindowSizeNative((byte*)pname, size, cond);
+			}
+		}
+
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
+		public static void SetWindowSize(ReadOnlySpan<byte> name, Vector2 size)
+		{
+			fixed (byte* pname = name)
+			{
+				SetWindowSizeNative((byte*)pname, size, (ImGuiCond)(0));
+			}
+		}
+
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
 		public static void SetWindowSize(string name, Vector2 size, ImGuiCond cond)
 		{
 			byte* pStr0 = null;
@@ -2157,6 +2908,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// set named window size. set axis to 0.0f to force an auto-fit on this axis.<br/>
+		/// </summary>
 		public static void SetWindowSize(string name, Vector2 size)
 		{
 			byte* pStr0 = null;
@@ -2183,22 +2937,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void SetWindowSize(ReadOnlySpan<byte> name, Vector2 size, ImGuiCond cond)
-		{
-			fixed (byte* pname = name)
-			{
-				SetWindowSizeNative((byte*)pname, size, cond);
-			}
-		}
-
-		public static void SetWindowSize(ReadOnlySpan<byte> name, Vector2 size)
-		{
-			fixed (byte* pname = name)
-			{
-				SetWindowSizeNative((byte*)pname, size, (ImGuiCond)(0));
-			}
-		}
-
+		/// <summary>
+		/// (not recommended) set current window collapsed state. prefer using SetNextWindowCollapsed().<br/>
+		/// </summary>
 		internal static void SetWindowCollapsedNative(byte* name, byte collapsed, ImGuiCond cond)
 		{
 			#if NET5_0_OR_GREATER
@@ -2208,16 +2949,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
 		public static void SetWindowCollapsed(byte* name, bool collapsed, ImGuiCond cond)
 		{
 			SetWindowCollapsedNative(name, collapsed ? (byte)1 : (byte)0, cond);
 		}
 
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
 		public static void SetWindowCollapsed(byte* name, bool collapsed)
 		{
 			SetWindowCollapsedNative(name, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
 		}
 
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
 		public static void SetWindowCollapsed(ref byte name, bool collapsed, ImGuiCond cond)
 		{
 			fixed (byte* pname = &name)
@@ -2226,6 +2976,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
 		public static void SetWindowCollapsed(ref byte name, bool collapsed)
 		{
 			fixed (byte* pname = &name)
@@ -2234,6 +2987,31 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
+		public static void SetWindowCollapsed(ReadOnlySpan<byte> name, bool collapsed, ImGuiCond cond)
+		{
+			fixed (byte* pname = name)
+			{
+				SetWindowCollapsedNative((byte*)pname, collapsed ? (byte)1 : (byte)0, cond);
+			}
+		}
+
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
+		public static void SetWindowCollapsed(ReadOnlySpan<byte> name, bool collapsed)
+		{
+			fixed (byte* pname = name)
+			{
+				SetWindowCollapsedNative((byte*)pname, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
+			}
+		}
+
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
 		public static void SetWindowCollapsed(string name, bool collapsed, ImGuiCond cond)
 		{
 			byte* pStr0 = null;
@@ -2260,6 +3038,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// set named window collapsed state<br/>
+		/// </summary>
 		public static void SetWindowCollapsed(string name, bool collapsed)
 		{
 			byte* pStr0 = null;
@@ -2286,22 +3067,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void SetWindowCollapsed(ReadOnlySpan<byte> name, bool collapsed, ImGuiCond cond)
-		{
-			fixed (byte* pname = name)
-			{
-				SetWindowCollapsedNative((byte*)pname, collapsed ? (byte)1 : (byte)0, cond);
-			}
-		}
-
-		public static void SetWindowCollapsed(ReadOnlySpan<byte> name, bool collapsed)
-		{
-			fixed (byte* pname = name)
-			{
-				SetWindowCollapsedNative((byte*)pname, collapsed ? (byte)1 : (byte)0, (ImGuiCond)(0));
-			}
-		}
-
+		/// <summary>
+		/// (not recommended) set current window to be focused  top-most. prefer using SetNextWindowFocus().<br/>
+		/// </summary>
 		internal static void SetWindowFocusNative(byte* name)
 		{
 			#if NET5_0_OR_GREATER
@@ -2311,11 +3079,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set named window to be focused  top-most. use NULL to remove focus.<br/>
+		/// </summary>
 		public static void SetWindowFocus(byte* name)
 		{
 			SetWindowFocusNative(name);
 		}
 
+		/// <summary>
+		/// set named window to be focused  top-most. use NULL to remove focus.<br/>
+		/// </summary>
 		public static void SetWindowFocus(ref byte name)
 		{
 			fixed (byte* pname = &name)
@@ -2324,6 +3098,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// set named window to be focused  top-most. use NULL to remove focus.<br/>
+		/// </summary>
+		public static void SetWindowFocus(ReadOnlySpan<byte> name)
+		{
+			fixed (byte* pname = name)
+			{
+				SetWindowFocusNative((byte*)pname);
+			}
+		}
+
+		/// <summary>
+		/// set named window to be focused  top-most. use NULL to remove focus.<br/>
+		/// </summary>
 		public static void SetWindowFocus(string name)
 		{
 			byte* pStr0 = null;
@@ -2350,14 +3138,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void SetWindowFocus(ReadOnlySpan<byte> name)
-		{
-			fixed (byte* pname = name)
-			{
-				SetWindowFocusNative((byte*)pname);
-			}
-		}
-
+		/// <summary>
+		/// get scrolling amount [0 .. GetScrollMaxX()]<br/>
+		/// </summary>
 		internal static float GetScrollXNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -2367,12 +3150,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// get scrolling amount [0 .. GetScrollMaxX()]<br/>
+		/// </summary>
 		public static float GetScrollX()
 		{
 			float ret = GetScrollXNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// get scrolling amount [0 .. GetScrollMaxY()]<br/>
+		/// </summary>
 		internal static float GetScrollYNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -2382,12 +3171,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// get scrolling amount [0 .. GetScrollMaxY()]<br/>
+		/// </summary>
 		public static float GetScrollY()
 		{
 			float ret = GetScrollYNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// set scrolling amount [0 .. GetScrollMaxX()]<br/>
+		/// </summary>
 		internal static void SetScrollXNative(float scrollX)
 		{
 			#if NET5_0_OR_GREATER
@@ -2397,11 +3192,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set scrolling amount [0 .. GetScrollMaxX()]<br/>
+		/// </summary>
 		public static void SetScrollX(float scrollX)
 		{
 			SetScrollXNative(scrollX);
 		}
 
+		/// <summary>
+		/// set scrolling amount [0 .. GetScrollMaxY()]<br/>
+		/// </summary>
 		internal static void SetScrollYNative(float scrollY)
 		{
 			#if NET5_0_OR_GREATER
@@ -2411,11 +3212,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set scrolling amount [0 .. GetScrollMaxY()]<br/>
+		/// </summary>
 		public static void SetScrollY(float scrollY)
 		{
 			SetScrollYNative(scrollY);
 		}
 
+		/// <summary>
+		/// get maximum scrolling amount ~~ ContentSize.x - WindowSize.x - DecorationsSize.x<br/>
+		/// </summary>
 		internal static float GetScrollMaxXNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -2425,12 +3232,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// get maximum scrolling amount ~~ ContentSize.x - WindowSize.x - DecorationsSize.x<br/>
+		/// </summary>
 		public static float GetScrollMaxX()
 		{
 			float ret = GetScrollMaxXNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// get maximum scrolling amount ~~ ContentSize.y - WindowSize.y - DecorationsSize.y<br/>
+		/// </summary>
 		internal static float GetScrollMaxYNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -2440,12 +3253,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// get maximum scrolling amount ~~ ContentSize.y - WindowSize.y - DecorationsSize.y<br/>
+		/// </summary>
 		public static float GetScrollMaxY()
 		{
 			float ret = GetScrollMaxYNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// adjust scrolling amount to make current cursor position visible. center_x_ratio=0.0: left, 0.5: center, 1.0: right. When using to make a "defaultcurrent item" visible, consider using SetItemDefaultFocus() instead.<br/>
+		/// </summary>
 		internal static void SetScrollHereXNative(float centerXRatio)
 		{
 			#if NET5_0_OR_GREATER
@@ -2455,16 +3274,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// adjust scrolling amount to make current cursor position visible. center_x_ratio=0.0: left, 0.5: center, 1.0: right. When using to make a "defaultcurrent item" visible, consider using SetItemDefaultFocus() instead.<br/>
+		/// </summary>
 		public static void SetScrollHereX(float centerXRatio)
 		{
 			SetScrollHereXNative(centerXRatio);
 		}
 
+		/// <summary>
+		/// adjust scrolling amount to make current cursor position visible. center_x_ratio=0.0: left, 0.5: center, 1.0: right. When using to make a "defaultcurrent item" visible, consider using SetItemDefaultFocus() instead.<br/>
+		/// </summary>
 		public static void SetScrollHereX()
 		{
 			SetScrollHereXNative((float)(0.5f));
 		}
 
+		/// <summary>
+		/// adjust scrolling amount to make current cursor position visible. center_y_ratio=0.0: top, 0.5: center, 1.0: bottom. When using to make a "defaultcurrent item" visible, consider using SetItemDefaultFocus() instead.<br/>
+		/// </summary>
 		internal static void SetScrollHereYNative(float centerYRatio)
 		{
 			#if NET5_0_OR_GREATER
@@ -2474,16 +3302,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// adjust scrolling amount to make current cursor position visible. center_y_ratio=0.0: top, 0.5: center, 1.0: bottom. When using to make a "defaultcurrent item" visible, consider using SetItemDefaultFocus() instead.<br/>
+		/// </summary>
 		public static void SetScrollHereY(float centerYRatio)
 		{
 			SetScrollHereYNative(centerYRatio);
 		}
 
+		/// <summary>
+		/// adjust scrolling amount to make current cursor position visible. center_y_ratio=0.0: top, 0.5: center, 1.0: bottom. When using to make a "defaultcurrent item" visible, consider using SetItemDefaultFocus() instead.<br/>
+		/// </summary>
 		public static void SetScrollHereY()
 		{
 			SetScrollHereYNative((float)(0.5f));
 		}
 
+		/// <summary>
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
+		/// </summary>
 		internal static void SetScrollFromPosXNative(float localX, float centerXRatio)
 		{
 			#if NET5_0_OR_GREATER
@@ -2493,16 +3330,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
+		/// </summary>
 		public static void SetScrollFromPosX(float localX, float centerXRatio)
 		{
 			SetScrollFromPosXNative(localX, centerXRatio);
 		}
 
+		/// <summary>
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
+		/// </summary>
 		public static void SetScrollFromPosX(float localX)
 		{
 			SetScrollFromPosXNative(localX, (float)(0.5f));
 		}
 
+		/// <summary>
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
+		/// </summary>
 		internal static void SetScrollFromPosYNative(float localY, float centerYRatio)
 		{
 			#if NET5_0_OR_GREATER
@@ -2512,16 +3358,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
+		/// </summary>
 		public static void SetScrollFromPosY(float localY, float centerYRatio)
 		{
 			SetScrollFromPosYNative(localY, centerYRatio);
 		}
 
+		/// <summary>
+		/// adjust scrolling amount to make given position visible. Generally GetCursorStartPos() + offset to compute a valid position.<br/>
+		/// </summary>
 		public static void SetScrollFromPosY(float localY)
 		{
 			SetScrollFromPosYNative(localY, (float)(0.5f));
 		}
 
+		/// <summary>
+		/// use NULL as a shortcut to push default font<br/>
+		/// </summary>
 		internal static void PushFontNative(ImFont* font)
 		{
 			#if NET5_0_OR_GREATER
@@ -2531,11 +3386,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// use NULL as a shortcut to push default font<br/>
+		/// </summary>
 		public static void PushFont(ImFontPtr font)
 		{
 			PushFontNative(font);
 		}
 
+		/// <summary>
+		/// use NULL as a shortcut to push default font<br/>
+		/// </summary>
 		public static void PushFont(ref ImFont font)
 		{
 			fixed (ImFont* pfont = &font)
@@ -2544,6 +3405,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PopFontNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -2553,11 +3417,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PopFont()
 		{
 			PopFontNative();
 		}
 
+		/// <summary>
+		/// modify a style color. always use this if you modify the style after NewFrame().<br/>
+		/// </summary>
 		internal static void PushStyleColorNative(ImGuiCol idx, uint col)
 		{
 			#if NET5_0_OR_GREATER
@@ -2567,11 +3437,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// modify a style color. always use this if you modify the style after NewFrame().<br/>
+		/// </summary>
 		public static void PushStyleColor(ImGuiCol idx, uint col)
 		{
 			PushStyleColorNative(idx, col);
 		}
 
+		/// <summary>
+		/// modify a style color. always use this if you modify the style after NewFrame().<br/>
+		/// </summary>
 		internal static void PushStyleColorNative(ImGuiCol idx, Vector4 col)
 		{
 			#if NET5_0_OR_GREATER
@@ -2581,11 +3457,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// modify a style color. always use this if you modify the style after NewFrame().<br/>
+		/// </summary>
 		public static void PushStyleColor(ImGuiCol idx, Vector4 col)
 		{
 			PushStyleColorNative(idx, col);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PopStyleColorNative(int count)
 		{
 			#if NET5_0_OR_GREATER
@@ -2595,16 +3477,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PopStyleColor(int count)
 		{
 			PopStyleColorNative(count);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PopStyleColor()
 		{
 			PopStyleColorNative((int)(1));
 		}
 
+		/// <summary>
+		/// modify a style float variable. always use this if you modify the style after NewFrame().<br/>
+		/// </summary>
 		internal static void PushStyleVarNative(ImGuiStyleVar idx, float val)
 		{
 			#if NET5_0_OR_GREATER
@@ -2614,11 +3505,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// modify a style float variable. always use this if you modify the style after NewFrame().<br/>
+		/// </summary>
 		public static void PushStyleVar(ImGuiStyleVar idx, float val)
 		{
 			PushStyleVarNative(idx, val);
 		}
 
+		/// <summary>
+		/// modify a style float variable. always use this if you modify the style after NewFrame().<br/>
+		/// </summary>
 		internal static void PushStyleVarNative(ImGuiStyleVar idx, Vector2 val)
 		{
 			#if NET5_0_OR_GREATER
@@ -2628,11 +3525,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// modify a style ImVec2 variable. always use this if you modify the style after NewFrame().<br/>
+		/// </summary>
 		public static void PushStyleVar(ImGuiStyleVar idx, Vector2 val)
 		{
 			PushStyleVarNative(idx, val);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PopStyleVarNative(int count)
 		{
 			#if NET5_0_OR_GREATER
@@ -2642,16 +3545,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PopStyleVar(int count)
 		{
 			PopStyleVarNative(count);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PopStyleVar()
 		{
 			PopStyleVarNative((int)(1));
 		}
 
+		/// <summary>
+		/// modify specified shared item flag, e.g. PushItemFlag(ImGuiItemFlags_NoTabStop, true)<br/>
+		/// </summary>
 		internal static void PushItemFlagNative(ImGuiItemFlags option, byte enabled)
 		{
 			#if NET5_0_OR_GREATER
@@ -2661,11 +3573,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// modify specified shared item flag, e.g. PushItemFlag(ImGuiItemFlags_NoTabStop, true)<br/>
+		/// </summary>
 		public static void PushItemFlag(ImGuiItemFlags option, bool enabled)
 		{
 			PushItemFlagNative(option, enabled ? (byte)1 : (byte)0);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PopItemFlagNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -2675,11 +3593,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PopItemFlag()
 		{
 			PopItemFlagNative();
 		}
 
+		/// <summary>
+		/// push width of items for common large "item+label" widgets. &gt;0.0f: width in pixels, &lt;0.0f align xx pixels to the right of window (so -FLT_MIN always align width to the right side).<br/>
+		/// </summary>
 		internal static void PushItemWidthNative(float itemWidth)
 		{
 			#if NET5_0_OR_GREATER
@@ -2689,11 +3613,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// push width of items for common large "item+label" widgets. &gt;0.0f: width in pixels, &lt;0.0f align xx pixels to the right of window (so -FLT_MIN always align width to the right side).<br/>
+		/// </summary>
 		public static void PushItemWidth(float itemWidth)
 		{
 			PushItemWidthNative(itemWidth);
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PopItemWidthNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -2703,11 +3633,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PopItemWidth()
 		{
 			PopItemWidthNative();
 		}
 
+		/// <summary>
+		/// set width of the _next_ common large "item+label" widget. &gt;0.0f: width in pixels, &lt;0.0f align xx pixels to the right of window (so -FLT_MIN always align width to the right side)<br/>
+		/// </summary>
 		internal static void SetNextItemWidthNative(float itemWidth)
 		{
 			#if NET5_0_OR_GREATER
@@ -2717,11 +3653,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// set width of the _next_ common large "item+label" widget. &gt;0.0f: width in pixels, &lt;0.0f align xx pixels to the right of window (so -FLT_MIN always align width to the right side)<br/>
+		/// </summary>
 		public static void SetNextItemWidth(float itemWidth)
 		{
 			SetNextItemWidthNative(itemWidth);
 		}
 
+		/// <summary>
+		/// width of item given pushed settings and current cursor position. NOT necessarily the width of last item unlike most 'Item' functions.<br/>
+		/// </summary>
 		internal static float CalcItemWidthNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -2731,12 +3673,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// width of item given pushed settings and current cursor position. NOT necessarily the width of last item unlike most 'Item' functions.<br/>
+		/// </summary>
 		public static float CalcItemWidth()
 		{
 			float ret = CalcItemWidthNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// push word-wrapping position for Text*() commands. &lt; 0.0f: no wrapping; 0.0f: wrap to end of window (or column); &gt; 0.0f: wrap at 'wrap_pos_x' position in window local space<br/>
+		/// </summary>
 		internal static void PushTextWrapPosNative(float wrapLocalPosX)
 		{
 			#if NET5_0_OR_GREATER
@@ -2746,16 +3694,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// push word-wrapping position for Text*() commands. &lt; 0.0f: no wrapping; 0.0f: wrap to end of window (or column); &gt; 0.0f: wrap at 'wrap_pos_x' position in window local space<br/>
+		/// </summary>
 		public static void PushTextWrapPos(float wrapLocalPosX)
 		{
 			PushTextWrapPosNative(wrapLocalPosX);
 		}
 
+		/// <summary>
+		/// push word-wrapping position for Text*() commands. &lt; 0.0f: no wrapping; 0.0f: wrap to end of window (or column); &gt; 0.0f: wrap at 'wrap_pos_x' position in window local space<br/>
+		/// </summary>
 		public static void PushTextWrapPos()
 		{
 			PushTextWrapPosNative((float)(0.0f));
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void PopTextWrapPosNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -2765,11 +3722,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static void PopTextWrapPos()
 		{
 			PopTextWrapPosNative();
 		}
 
+		/// <summary>
+		/// get current font<br/>
+		/// </summary>
 		internal static ImFont* GetFontNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -2779,12 +3742,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// get current font<br/>
+		/// </summary>
 		public static ImFontPtr GetFont()
 		{
 			ImFontPtr ret = GetFontNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// get current font size (= height in pixels) of current font with current scale applied<br/>
+		/// </summary>
 		internal static float GetFontSizeNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -2794,21 +3763,30 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// get current font size (= height in pixels) of current font with current scale applied<br/>
+		/// </summary>
 		public static float GetFontSize()
 		{
 			float ret = GetFontSizeNative();
 			return ret;
 		}
 
-		internal static void GetFontTexUvWhitePixelNative(Vector2* output)
+		/// <summary>
+		/// get UV coordinate for a while pixel, useful to draw custom shapes via the ImDrawList API<br/>
+		/// </summary>
+		internal static void GetFontTexUvWhitePixelNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[91])(output);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[91])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[91])((nint)output);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[91])((nint)pOut);
 			#endif
 		}
 
+		/// <summary>
+		/// get UV coordinate for a while pixel, useful to draw custom shapes via the ImDrawList API<br/>
+		/// </summary>
 		public static Vector2 GetFontTexUvWhitePixel()
 		{
 			Vector2 ret;
@@ -2816,19 +3794,28 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		public static void GetFontTexUvWhitePixel(Vector2* output)
+		/// <summary>
+		/// get UV coordinate for a while pixel, useful to draw custom shapes via the ImDrawList API<br/>
+		/// </summary>
+		public static void GetFontTexUvWhitePixel(Vector2* pOut)
 		{
-			GetFontTexUvWhitePixelNative(output);
+			GetFontTexUvWhitePixelNative(pOut);
 		}
 
-		public static void GetFontTexUvWhitePixel(ref Vector2 output)
+		/// <summary>
+		/// get UV coordinate for a while pixel, useful to draw custom shapes via the ImDrawList API<br/>
+		/// </summary>
+		public static void GetFontTexUvWhitePixel(ref Vector2 pOut)
 		{
-			fixed (Vector2* poutput = &output)
+			fixed (Vector2* ppOut = &pOut)
 			{
-				GetFontTexUvWhitePixelNative((Vector2*)poutput);
+				GetFontTexUvWhitePixelNative((Vector2*)ppOut);
 			}
 		}
 
+		/// <summary>
+		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
+		/// </summary>
 		internal static uint GetColorU32Native(ImGuiCol idx, float alphaMul)
 		{
 			#if NET5_0_OR_GREATER
@@ -2838,18 +3825,27 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
+		/// </summary>
 		public static uint GetColorU32(ImGuiCol idx, float alphaMul)
 		{
 			uint ret = GetColorU32Native(idx, alphaMul);
 			return ret;
 		}
 
+		/// <summary>
+		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
+		/// </summary>
 		public static uint GetColorU32(ImGuiCol idx)
 		{
 			uint ret = GetColorU32Native(idx, (float)(1.0f));
 			return ret;
 		}
 
+		/// <summary>
+		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
+		/// </summary>
 		internal static uint GetColorU32Native(Vector4 col)
 		{
 			#if NET5_0_OR_GREATER
@@ -2859,12 +3855,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// retrieve given color with style alpha applied, packed as a 32-bit value suitable for ImDrawList<br/>
+		/// </summary>
 		public static uint GetColorU32(Vector4 col)
 		{
 			uint ret = GetColorU32Native(col);
 			return ret;
 		}
 
+		/// <summary>
+		/// retrieve given style color with style alpha applied and optional extra alpha multiplier, packed as a 32-bit value suitable for ImDrawList<br/>
+		/// </summary>
 		internal static uint GetColorU32Native(uint col, float alphaMul)
 		{
 			#if NET5_0_OR_GREATER
@@ -2874,18 +3876,27 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// retrieve given color with style alpha applied, packed as a 32-bit value suitable for ImDrawList<br/>
+		/// </summary>
 		public static uint GetColorU32(uint col, float alphaMul)
 		{
 			uint ret = GetColorU32Native(col, alphaMul);
 			return ret;
 		}
 
+		/// <summary>
+		/// retrieve given color with style alpha applied, packed as a 32-bit value suitable for ImDrawList<br/>
+		/// </summary>
 		public static uint GetColorU32(uint col)
 		{
 			uint ret = GetColorU32Native(col, (float)(1.0f));
 			return ret;
 		}
 
+		/// <summary>
+		/// retrieve style color as stored in ImGuiStyle structure. use to feed back into PushStyleColor(), otherwise use GetColorU32() to get style color with style alpha baked in.<br/>
+		/// </summary>
 		internal static Vector4* GetStyleColorVec4Native(ImGuiCol idx)
 		{
 			#if NET5_0_OR_GREATER
@@ -2895,21 +3906,30 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// retrieve style color as stored in ImGuiStyle structure. use to feed back into PushStyleColor(), otherwise use GetColorU32() to get style color with style alpha baked in.<br/>
+		/// </summary>
 		public static Vector4* GetStyleColorVec4(ImGuiCol idx)
 		{
 			Vector4* ret = GetStyleColorVec4Native(idx);
 			return ret;
 		}
 
-		internal static void GetCursorScreenPosNative(Vector2* output)
+		/// <summary>
+		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND (prefer using this rather than GetCursorPos(), also more useful to work with ImDrawList API).<br/>
+		/// </summary>
+		internal static void GetCursorScreenPosNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[96])(output);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[96])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[96])((nint)output);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[96])((nint)pOut);
 			#endif
 		}
 
+		/// <summary>
+		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND (prefer using this rather than GetCursorPos(), also more useful to work with ImDrawList API).<br/>
+		/// </summary>
 		public static Vector2 GetCursorScreenPos()
 		{
 			Vector2 ret;
@@ -2917,19 +3937,28 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		public static void GetCursorScreenPos(Vector2* output)
+		/// <summary>
+		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND (prefer using this rather than GetCursorPos(), also more useful to work with ImDrawList API).<br/>
+		/// </summary>
+		public static void GetCursorScreenPos(Vector2* pOut)
 		{
-			GetCursorScreenPosNative(output);
+			GetCursorScreenPosNative(pOut);
 		}
 
-		public static void GetCursorScreenPos(ref Vector2 output)
+		/// <summary>
+		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND (prefer using this rather than GetCursorPos(), also more useful to work with ImDrawList API).<br/>
+		/// </summary>
+		public static void GetCursorScreenPos(ref Vector2 pOut)
 		{
-			fixed (Vector2* poutput = &output)
+			fixed (Vector2* ppOut = &pOut)
 			{
-				GetCursorScreenPosNative((Vector2*)poutput);
+				GetCursorScreenPosNative((Vector2*)ppOut);
 			}
 		}
 
+		/// <summary>
+		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND.<br/>
+		/// </summary>
 		internal static void SetCursorScreenPosNative(Vector2 pos)
 		{
 			#if NET5_0_OR_GREATER
@@ -2939,20 +3968,29 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// cursor position, absolute coordinates. THIS IS YOUR BEST FRIEND.<br/>
+		/// </summary>
 		public static void SetCursorScreenPos(Vector2 pos)
 		{
 			SetCursorScreenPosNative(pos);
 		}
 
-		internal static void GetContentRegionAvailNative(Vector2* output)
+		/// <summary>
+		/// available space from current position. THIS IS YOUR BEST FRIEND.<br/>
+		/// </summary>
+		internal static void GetContentRegionAvailNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[98])(output);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[98])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[98])((nint)output);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[98])((nint)pOut);
 			#endif
 		}
 
+		/// <summary>
+		/// available space from current position. THIS IS YOUR BEST FRIEND.<br/>
+		/// </summary>
 		public static Vector2 GetContentRegionAvail()
 		{
 			Vector2 ret;
@@ -2960,28 +3998,40 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		public static void GetContentRegionAvail(Vector2* output)
+		/// <summary>
+		/// available space from current position. THIS IS YOUR BEST FRIEND.<br/>
+		/// </summary>
+		public static void GetContentRegionAvail(Vector2* pOut)
 		{
-			GetContentRegionAvailNative(output);
+			GetContentRegionAvailNative(pOut);
 		}
 
-		public static void GetContentRegionAvail(ref Vector2 output)
+		/// <summary>
+		/// available space from current position. THIS IS YOUR BEST FRIEND.<br/>
+		/// </summary>
+		public static void GetContentRegionAvail(ref Vector2 pOut)
 		{
-			fixed (Vector2* poutput = &output)
+			fixed (Vector2* ppOut = &pOut)
 			{
-				GetContentRegionAvailNative((Vector2*)poutput);
+				GetContentRegionAvailNative((Vector2*)ppOut);
 			}
 		}
 
-		internal static void GetCursorPosNative(Vector2* output)
+		/// <summary>
+		/// [window-local] cursor position in window-local coordinates. This is not your best friend.<br/>
+		/// </summary>
+		internal static void GetCursorPosNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[99])(output);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[99])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[99])((nint)output);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[99])((nint)pOut);
 			#endif
 		}
 
+		/// <summary>
+		/// [window-local] cursor position in window-local coordinates. This is not your best friend.<br/>
+		/// </summary>
 		public static Vector2 GetCursorPos()
 		{
 			Vector2 ret;
@@ -2989,19 +4039,28 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		public static void GetCursorPos(Vector2* output)
+		/// <summary>
+		/// [window-local] cursor position in window-local coordinates. This is not your best friend.<br/>
+		/// </summary>
+		public static void GetCursorPos(Vector2* pOut)
 		{
-			GetCursorPosNative(output);
+			GetCursorPosNative(pOut);
 		}
 
-		public static void GetCursorPos(ref Vector2 output)
+		/// <summary>
+		/// [window-local] cursor position in window-local coordinates. This is not your best friend.<br/>
+		/// </summary>
+		public static void GetCursorPos(ref Vector2 pOut)
 		{
-			fixed (Vector2* poutput = &output)
+			fixed (Vector2* ppOut = &pOut)
 			{
-				GetCursorPosNative((Vector2*)poutput);
+				GetCursorPosNative((Vector2*)ppOut);
 			}
 		}
 
+		/// <summary>
+		/// [window-local] "<br/>
+		/// </summary>
 		internal static float GetCursorPosXNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -3011,12 +4070,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// [window-local] "<br/>
+		/// </summary>
 		public static float GetCursorPosX()
 		{
 			float ret = GetCursorPosXNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// [window-local] "<br/>
+		/// </summary>
 		internal static float GetCursorPosYNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -3026,12 +4091,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// [window-local] "<br/>
+		/// </summary>
 		public static float GetCursorPosY()
 		{
 			float ret = GetCursorPosYNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// [window-local] "<br/>
+		/// </summary>
 		internal static void SetCursorPosNative(Vector2 localPos)
 		{
 			#if NET5_0_OR_GREATER
@@ -3041,11 +4112,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// [window-local] "<br/>
+		/// </summary>
 		public static void SetCursorPos(Vector2 localPos)
 		{
 			SetCursorPosNative(localPos);
 		}
 
+		/// <summary>
+		/// [window-local] "<br/>
+		/// </summary>
 		internal static void SetCursorPosXNative(float localX)
 		{
 			#if NET5_0_OR_GREATER
@@ -3055,11 +4132,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// [window-local] "<br/>
+		/// </summary>
 		public static void SetCursorPosX(float localX)
 		{
 			SetCursorPosXNative(localX);
 		}
 
+		/// <summary>
+		/// [window-local] "<br/>
+		/// </summary>
 		internal static void SetCursorPosYNative(float localY)
 		{
 			#if NET5_0_OR_GREATER
@@ -3069,20 +4152,29 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// [window-local] "<br/>
+		/// </summary>
 		public static void SetCursorPosY(float localY)
 		{
 			SetCursorPosYNative(localY);
 		}
 
-		internal static void GetCursorStartPosNative(Vector2* output)
+		/// <summary>
+		/// [window-local] initial cursor position, in window-local coordinates. Call GetCursorScreenPos() after Begin() to get the absolute coordinates version.<br/>
+		/// </summary>
+		internal static void GetCursorStartPosNative(Vector2* pOut)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[105])(output);
+			((delegate* unmanaged[Cdecl]<Vector2*, void>)vt[105])(pOut);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[105])((nint)output);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[105])((nint)pOut);
 			#endif
 		}
 
+		/// <summary>
+		/// [window-local] initial cursor position, in window-local coordinates. Call GetCursorScreenPos() after Begin() to get the absolute coordinates version.<br/>
+		/// </summary>
 		public static Vector2 GetCursorStartPos()
 		{
 			Vector2 ret;
@@ -3090,19 +4182,28 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		public static void GetCursorStartPos(Vector2* output)
+		/// <summary>
+		/// [window-local] initial cursor position, in window-local coordinates. Call GetCursorScreenPos() after Begin() to get the absolute coordinates version.<br/>
+		/// </summary>
+		public static void GetCursorStartPos(Vector2* pOut)
 		{
-			GetCursorStartPosNative(output);
+			GetCursorStartPosNative(pOut);
 		}
 
-		public static void GetCursorStartPos(ref Vector2 output)
+		/// <summary>
+		/// [window-local] initial cursor position, in window-local coordinates. Call GetCursorScreenPos() after Begin() to get the absolute coordinates version.<br/>
+		/// </summary>
+		public static void GetCursorStartPos(ref Vector2 pOut)
 		{
-			fixed (Vector2* poutput = &output)
+			fixed (Vector2* ppOut = &pOut)
 			{
-				GetCursorStartPosNative((Vector2*)poutput);
+				GetCursorStartPosNative((Vector2*)ppOut);
 			}
 		}
 
+		/// <summary>
+		/// separator, generally horizontal. inside a menu bar or in horizontal layout mode, this becomes a vertical separator.<br/>
+		/// </summary>
 		internal static void SeparatorNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -3112,11 +4213,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// separator, generally horizontal. inside a menu bar or in horizontal layout mode, this becomes a vertical separator.<br/>
+		/// </summary>
 		public static void Separator()
 		{
 			SeparatorNative();
 		}
 
+		/// <summary>
+		/// call between widgets or groups to layout them horizontally. X position given in window coordinates.<br/>
+		/// </summary>
 		internal static void SameLineNative(float offsetFromStartX, float spacing)
 		{
 			#if NET5_0_OR_GREATER
@@ -3126,21 +4233,33 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// call between widgets or groups to layout them horizontally. X position given in window coordinates.<br/>
+		/// </summary>
 		public static void SameLine(float offsetFromStartX, float spacing)
 		{
 			SameLineNative(offsetFromStartX, spacing);
 		}
 
+		/// <summary>
+		/// call between widgets or groups to layout them horizontally. X position given in window coordinates.<br/>
+		/// </summary>
 		public static void SameLine(float offsetFromStartX)
 		{
 			SameLineNative(offsetFromStartX, (float)(-1.0f));
 		}
 
+		/// <summary>
+		/// call between widgets or groups to layout them horizontally. X position given in window coordinates.<br/>
+		/// </summary>
 		public static void SameLine()
 		{
 			SameLineNative((float)(0.0f), (float)(-1.0f));
 		}
 
+		/// <summary>
+		/// undo a SameLine() or force a new line when in a horizontal-layout context.<br/>
+		/// </summary>
 		internal static void NewLineNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -3150,11 +4269,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// undo a SameLine() or force a new line when in a horizontal-layout context.<br/>
+		/// </summary>
 		public static void NewLine()
 		{
 			NewLineNative();
 		}
 
+		/// <summary>
+		/// add vertical spacing.<br/>
+		/// </summary>
 		internal static void SpacingNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -3164,11 +4289,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// add vertical spacing.<br/>
+		/// </summary>
 		public static void Spacing()
 		{
 			SpacingNative();
 		}
 
+		/// <summary>
+		/// add a dummy item of given size. unlike InvisibleButton(), Dummy() won't take the mouse click or be navigable into.<br/>
+		/// </summary>
 		internal static void DummyNative(Vector2 size)
 		{
 			#if NET5_0_OR_GREATER
@@ -3178,11 +4309,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// add a dummy item of given size. unlike InvisibleButton(), Dummy() won't take the mouse click or be navigable into.<br/>
+		/// </summary>
 		public static void Dummy(Vector2 size)
 		{
 			DummyNative(size);
 		}
 
+		/// <summary>
+		/// move content position toward the right, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
+		/// </summary>
 		internal static void IndentNative(float indentW)
 		{
 			#if NET5_0_OR_GREATER
@@ -3192,16 +4329,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// move content position toward the right, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
+		/// </summary>
 		public static void Indent(float indentW)
 		{
 			IndentNative(indentW);
 		}
 
+		/// <summary>
+		/// move content position toward the right, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
+		/// </summary>
 		public static void Indent()
 		{
 			IndentNative((float)(0.0f));
 		}
 
+		/// <summary>
+		/// move content position back to the left, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
+		/// </summary>
 		internal static void UnindentNative(float indentW)
 		{
 			#if NET5_0_OR_GREATER
@@ -3211,16 +4357,25 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// move content position back to the left, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
+		/// </summary>
 		public static void Unindent(float indentW)
 		{
 			UnindentNative(indentW);
 		}
 
+		/// <summary>
+		/// move content position back to the left, by indent_w, or style.IndentSpacing if indent_w &lt;= 0<br/>
+		/// </summary>
 		public static void Unindent()
 		{
 			UnindentNative((float)(0.0f));
 		}
 
+		/// <summary>
+		/// lock horizontal starting position<br/>
+		/// </summary>
 		internal static void BeginGroupNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -3230,11 +4385,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// lock horizontal starting position<br/>
+		/// </summary>
 		public static void BeginGroup()
 		{
 			BeginGroupNative();
 		}
 
+		/// <summary>
+		/// unlock horizontal starting position + capture the whole group bounding box into one "item" (so you can use IsItemHovered() or layout primitives such as SameLine() on whole group, etc.)<br/>
+		/// </summary>
 		internal static void EndGroupNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -3244,11 +4405,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// unlock horizontal starting position + capture the whole group bounding box into one "item" (so you can use IsItemHovered() or layout primitives such as SameLine() on whole group, etc.)<br/>
+		/// </summary>
 		public static void EndGroup()
 		{
 			EndGroupNative();
 		}
 
+		/// <summary>
+		/// vertically align upcoming text baseline to FramePadding.y so that it will align properly to regularly framed items (call if you have text on a line before a framed item)<br/>
+		/// </summary>
 		internal static void AlignTextToFramePaddingNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -3258,11 +4425,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// vertically align upcoming text baseline to FramePadding.y so that it will align properly to regularly framed items (call if you have text on a line before a framed item)<br/>
+		/// </summary>
 		public static void AlignTextToFramePadding()
 		{
 			AlignTextToFramePaddingNative();
 		}
 
+		/// <summary>
+		/// ~ FontSize<br/>
+		/// </summary>
 		internal static float GetTextLineHeightNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -3272,12 +4445,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// ~ FontSize<br/>
+		/// </summary>
 		public static float GetTextLineHeight()
 		{
 			float ret = GetTextLineHeightNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// ~ FontSize + style.ItemSpacing.y (distance in pixels between 2 consecutive lines of text)<br/>
+		/// </summary>
 		internal static float GetTextLineHeightWithSpacingNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -3287,12 +4466,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// ~ FontSize + style.ItemSpacing.y (distance in pixels between 2 consecutive lines of text)<br/>
+		/// </summary>
 		public static float GetTextLineHeightWithSpacing()
 		{
 			float ret = GetTextLineHeightWithSpacingNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// ~ FontSize + style.FramePadding.y * 2<br/>
+		/// </summary>
 		internal static float GetFrameHeightNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -3302,12 +4487,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// ~ FontSize + style.FramePadding.y * 2<br/>
+		/// </summary>
 		public static float GetFrameHeight()
 		{
 			float ret = GetFrameHeightNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// ~ FontSize + style.FramePadding.y * 2 + style.ItemSpacing.y (distance in pixels between 2 consecutive lines of framed widgets)<br/>
+		/// </summary>
 		internal static float GetFrameHeightWithSpacingNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -3317,12 +4508,18 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// ~ FontSize + style.FramePadding.y * 2 + style.ItemSpacing.y (distance in pixels between 2 consecutive lines of framed widgets)<br/>
+		/// </summary>
 		public static float GetFrameHeightWithSpacing()
 		{
 			float ret = GetFrameHeightWithSpacingNative();
 			return ret;
 		}
 
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
 		internal static void PushIDNative(byte* strId)
 		{
 			#if NET5_0_OR_GREATER
@@ -3332,11 +4529,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
 		public static void PushID(byte* strId)
 		{
 			PushIDNative(strId);
 		}
 
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
 		public static void PushID(ref byte strId)
 		{
 			fixed (byte* pstrId = &strId)
@@ -3345,6 +4548,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
+		public static void PushID(ReadOnlySpan<byte> strId)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				PushIDNative((byte*)pstrId);
+			}
+		}
+
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
 		public static void PushID(string strId)
 		{
 			byte* pStr0 = null;
@@ -3371,14 +4588,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void PushID(ReadOnlySpan<byte> strId)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				PushIDNative((byte*)pstrId);
-			}
-		}
-
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
 		internal static void PushIDNative(byte* strIdBegin, byte* strIdEnd)
 		{
 			#if NET5_0_OR_GREATER
@@ -3388,11 +4600,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
 		public static void PushID(byte* strIdBegin, byte* strIdEnd)
 		{
 			PushIDNative(strIdBegin, strIdEnd);
 		}
 
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
 		public static void PushID(ref byte strIdBegin, byte* strIdEnd)
 		{
 			fixed (byte* pstrIdBegin = &strIdBegin)
@@ -3401,6 +4619,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
+		public static void PushID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
+		{
+			fixed (byte* pstrIdBegin = strIdBegin)
+			{
+				PushIDNative((byte*)pstrIdBegin, strIdEnd);
+			}
+		}
+
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
 		public static void PushID(string strIdBegin, byte* strIdEnd)
 		{
 			byte* pStr0 = null;
@@ -3427,14 +4659,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void PushID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = strIdBegin)
-			{
-				PushIDNative((byte*)pstrIdBegin, strIdEnd);
-			}
-		}
-
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
 		public static void PushID(byte* strIdBegin, ref byte strIdEnd)
 		{
 			fixed (byte* pstrIdEnd = &strIdEnd)
@@ -3443,6 +4670,20 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
+		public static void PushID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
+		{
+			fixed (byte* pstrIdEnd = strIdEnd)
+			{
+				PushIDNative(strIdBegin, (byte*)pstrIdEnd);
+			}
+		}
+
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
 		public static void PushID(byte* strIdBegin, string strIdEnd)
 		{
 			byte* pStr0 = null;
@@ -3469,14 +4710,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void PushID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
-		{
-			fixed (byte* pstrIdEnd = strIdEnd)
-			{
-				PushIDNative(strIdBegin, (byte*)pstrIdEnd);
-			}
-		}
-
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
 		public static void PushID(ref byte strIdBegin, ref byte strIdEnd)
 		{
 			fixed (byte* pstrIdBegin = &strIdBegin)
@@ -3488,6 +4724,23 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
+		public static void PushID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
+		{
+			fixed (byte* pstrIdBegin = strIdBegin)
+			{
+				fixed (byte* pstrIdEnd = strIdEnd)
+				{
+					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
+				}
+			}
+		}
+
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
 		public static void PushID(string strIdBegin, string strIdEnd)
 		{
 			byte* pStr0 = null;
@@ -3535,17 +4788,9 @@ namespace Hexa.NET.ImGui
 			}
 		}
 
-		public static void PushID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = strIdEnd)
-				{
-					PushIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-				}
-			}
-		}
-
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
 		internal static void PushIDNative(void* ptrId)
 		{
 			#if NET5_0_OR_GREATER
@@ -3555,11 +4800,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// push pointer into the ID stack (will hash pointer).<br/>
+		/// </summary>
 		public static void PushID(void* ptrId)
 		{
 			PushIDNative(ptrId);
 		}
 
+		/// <summary>
+		/// push string into the ID stack (will hash string).<br/>
+		/// </summary>
 		internal static void PushIDNative(int intId)
 		{
 			#if NET5_0_OR_GREATER
@@ -3569,11 +4820,17 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// push integer into the ID stack (will hash integer).<br/>
+		/// </summary>
 		public static void PushID(int intId)
 		{
 			PushIDNative(intId);
 		}
 
+		/// <summary>
+		/// pop from the ID stack.<br/>
+		/// </summary>
 		internal static void PopIDNative()
 		{
 			#if NET5_0_OR_GREATER
@@ -3583,36 +4840,63 @@ namespace Hexa.NET.ImGui
 			#endif
 		}
 
+		/// <summary>
+		/// pop from the ID stack.<br/>
+		/// </summary>
 		public static void PopID()
 		{
 			PopIDNative();
 		}
 
-		internal static int GetIDNative(byte* strId)
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		internal static uint GetIDNative(byte* strId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int>)vt[125])(strId);
+			return ((delegate* unmanaged[Cdecl]<byte*, uint>)vt[125])(strId);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[125])((nint)strId);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)vt[125])((nint)strId);
 			#endif
 		}
 
-		public static int GetID(byte* strId)
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		public static uint GetID(byte* strId)
 		{
-			int ret = GetIDNative(strId);
+			uint ret = GetIDNative(strId);
 			return ret;
 		}
 
-		public static int GetID(ref byte strId)
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		public static uint GetID(ref byte strId)
 		{
 			fixed (byte* pstrId = &strId)
 			{
-				int ret = GetIDNative((byte*)pstrId);
+				uint ret = GetIDNative((byte*)pstrId);
 				return ret;
 			}
 		}
 
-		public static int GetID(string strId)
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		public static uint GetID(ReadOnlySpan<byte> strId)
+		{
+			fixed (byte* pstrId = strId)
+			{
+				uint ret = GetIDNative((byte*)pstrId);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		public static uint GetID(string strId)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3631,7 +4915,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strId, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = GetIDNative(pStr0);
+			uint ret = GetIDNative(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3639,40 +4923,55 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		public static int GetID(ReadOnlySpan<byte> strId)
-		{
-			fixed (byte* pstrId = strId)
-			{
-				int ret = GetIDNative((byte*)pstrId);
-				return ret;
-			}
-		}
-
-		internal static int GetIDNative(byte* strIdBegin, byte* strIdEnd)
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		internal static uint GetIDNative(byte* strIdBegin, byte* strIdEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, int>)vt[126])(strIdBegin, strIdEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, uint>)vt[126])(strIdBegin, strIdEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, int>)vt[126])((nint)strIdBegin, (nint)strIdEnd);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, nint, uint>)vt[126])((nint)strIdBegin, (nint)strIdEnd);
 			#endif
 		}
 
-		public static int GetID(byte* strIdBegin, byte* strIdEnd)
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		public static uint GetID(byte* strIdBegin, byte* strIdEnd)
 		{
-			int ret = GetIDNative(strIdBegin, strIdEnd);
+			uint ret = GetIDNative(strIdBegin, strIdEnd);
 			return ret;
 		}
 
-		public static int GetID(ref byte strIdBegin, byte* strIdEnd)
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		public static uint GetID(ref byte strIdBegin, byte* strIdEnd)
 		{
 			fixed (byte* pstrIdBegin = &strIdBegin)
 			{
-				int ret = GetIDNative((byte*)pstrIdBegin, strIdEnd);
+				uint ret = GetIDNative((byte*)pstrIdBegin, strIdEnd);
 				return ret;
 			}
 		}
 
-		public static int GetID(string strIdBegin, byte* strIdEnd)
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		public static uint GetID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
+		{
+			fixed (byte* pstrIdBegin = strIdBegin)
+			{
+				uint ret = GetIDNative((byte*)pstrIdBegin, strIdEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		public static uint GetID(string strIdBegin, byte* strIdEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3691,7 +4990,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(strIdBegin, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = GetIDNative(pStr0, strIdEnd);
+			uint ret = GetIDNative(pStr0, strIdEnd);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3699,1323 +4998,27 @@ namespace Hexa.NET.ImGui
 			return ret;
 		}
 
-		public static int GetID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = strIdBegin)
-			{
-				int ret = GetIDNative((byte*)pstrIdBegin, strIdEnd);
-				return ret;
-			}
-		}
-
-		public static int GetID(byte* strIdBegin, ref byte strIdEnd)
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		public static uint GetID(byte* strIdBegin, ref byte strIdEnd)
 		{
 			fixed (byte* pstrIdEnd = &strIdEnd)
 			{
-				int ret = GetIDNative(strIdBegin, (byte*)pstrIdEnd);
+				uint ret = GetIDNative(strIdBegin, (byte*)pstrIdEnd);
 				return ret;
 			}
 		}
 
-		public static int GetID(byte* strIdBegin, string strIdEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strIdEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strIdEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strIdEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			int ret = GetIDNative(strIdBegin, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static int GetID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		public static uint GetID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
 		{
 			fixed (byte* pstrIdEnd = strIdEnd)
 			{
-				int ret = GetIDNative(strIdBegin, (byte*)pstrIdEnd);
+				uint ret = GetIDNative(strIdBegin, (byte*)pstrIdEnd);
 				return ret;
-			}
-		}
-
-		public static int GetID(ref byte strIdBegin, ref byte strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = &strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = &strIdEnd)
-				{
-					int ret = GetIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-					return ret;
-				}
-			}
-		}
-
-		public static int GetID(string strIdBegin, string strIdEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (strIdBegin != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(strIdBegin);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(strIdBegin, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (strIdEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(strIdEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(strIdEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			int ret = GetIDNative(pStr0, pStr1);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-			return ret;
-		}
-
-		public static int GetID(ReadOnlySpan<byte> strIdBegin, ReadOnlySpan<byte> strIdEnd)
-		{
-			fixed (byte* pstrIdBegin = strIdBegin)
-			{
-				fixed (byte* pstrIdEnd = strIdEnd)
-				{
-					int ret = GetIDNative((byte*)pstrIdBegin, (byte*)pstrIdEnd);
-					return ret;
-				}
-			}
-		}
-
-		internal static int GetIDNative(void* ptrId)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, int>)vt[127])(ptrId);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int>)vt[127])((nint)ptrId);
-			#endif
-		}
-
-		public static int GetID(void* ptrId)
-		{
-			int ret = GetIDNative(ptrId);
-			return ret;
-		}
-
-		internal static int GetIDNative(int intId)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, int>)vt[128])(intId);
-			#else
-			return (int)((delegate* unmanaged[Cdecl]<int, int>)vt[128])(intId);
-			#endif
-		}
-
-		public static int GetID(int intId)
-		{
-			int ret = GetIDNative(intId);
-			return ret;
-		}
-
-		internal static void TextUnformattedNative(byte* text, byte* textEnd)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[129])(text, textEnd);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[129])((nint)text, (nint)textEnd);
-			#endif
-		}
-
-		public static void TextUnformatted(byte* text, byte* textEnd)
-		{
-			TextUnformattedNative(text, textEnd);
-		}
-
-		public static void TextUnformatted(byte* text)
-		{
-			TextUnformattedNative(text, (byte*)(default));
-		}
-
-		public static void TextUnformatted(ref byte text, byte* textEnd)
-		{
-			fixed (byte* ptext = &text)
-			{
-				TextUnformattedNative((byte*)ptext, textEnd);
-			}
-		}
-
-		public static void TextUnformatted(ref byte text)
-		{
-			fixed (byte* ptext = &text)
-			{
-				TextUnformattedNative((byte*)ptext, (byte*)(default));
-			}
-		}
-
-		public static void TextUnformatted(string text, byte* textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextUnformattedNative(pStr0, textEnd);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TextUnformatted(string text)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextUnformattedNative(pStr0, (byte*)(default));
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TextUnformatted(ReadOnlySpan<byte> text, byte* textEnd)
-		{
-			fixed (byte* ptext = text)
-			{
-				TextUnformattedNative((byte*)ptext, textEnd);
-			}
-		}
-
-		public static void TextUnformatted(ReadOnlySpan<byte> text)
-		{
-			fixed (byte* ptext = text)
-			{
-				TextUnformattedNative((byte*)ptext, (byte*)(default));
-			}
-		}
-
-		public static void TextUnformatted(byte* text, ref byte textEnd)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				TextUnformattedNative(text, (byte*)ptextEnd);
-			}
-		}
-
-		public static void TextUnformatted(byte* text, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextUnformattedNative(text, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TextUnformatted(byte* text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				TextUnformattedNative(text, (byte*)ptextEnd);
-			}
-		}
-
-		public static void TextUnformatted(ref byte text, ref byte textEnd)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					TextUnformattedNative((byte*)ptext, (byte*)ptextEnd);
-				}
-			}
-		}
-
-		public static void TextUnformatted(string text, string textEnd)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			TextUnformattedNative(pStr0, pStr1);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TextUnformatted(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					TextUnformattedNative((byte*)ptext, (byte*)ptextEnd);
-				}
-			}
-		}
-
-		internal static void TextNative(byte* fmt)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[130])(fmt);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[130])((nint)fmt);
-			#endif
-		}
-
-		public static void Text(byte* fmt)
-		{
-			TextNative(fmt);
-		}
-
-		public static void Text(ref byte fmt)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				TextNative((byte*)pfmt);
-			}
-		}
-
-		public static void Text(string fmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void Text(ReadOnlySpan<byte> fmt)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				TextNative((byte*)pfmt);
-			}
-		}
-
-		internal static void TextVNative(byte* fmt, nuint args)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[131])(fmt, args);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[131])((nint)fmt, args);
-			#endif
-		}
-
-		public static void TextV(byte* fmt, nuint args)
-		{
-			TextVNative(fmt, args);
-		}
-
-		public static void TextV(ref byte fmt, nuint args)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				TextVNative((byte*)pfmt, args);
-			}
-		}
-
-		public static void TextV(string fmt, nuint args)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextVNative(pStr0, args);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TextV(ReadOnlySpan<byte> fmt, nuint args)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				TextVNative((byte*)pfmt, args);
-			}
-		}
-
-		internal static void TextColoredNative(Vector4 col, byte* fmt)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4, byte*, void>)vt[132])(col, fmt);
-			#else
-			((delegate* unmanaged[Cdecl]<Vector4, nint, void>)vt[132])(col, (nint)fmt);
-			#endif
-		}
-
-		public static void TextColored(Vector4 col, byte* fmt)
-		{
-			TextColoredNative(col, fmt);
-		}
-
-		public static void TextColored(Vector4 col, ref byte fmt)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				TextColoredNative(col, (byte*)pfmt);
-			}
-		}
-
-		public static void TextColored(Vector4 col, string fmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextColoredNative(col, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TextColored(Vector4 col, ReadOnlySpan<byte> fmt)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				TextColoredNative(col, (byte*)pfmt);
-			}
-		}
-
-		internal static void TextColoredVNative(Vector4 col, byte* fmt, nuint args)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4, byte*, nuint, void>)vt[133])(col, fmt, args);
-			#else
-			((delegate* unmanaged[Cdecl]<Vector4, nint, nuint, void>)vt[133])(col, (nint)fmt, args);
-			#endif
-		}
-
-		public static void TextColoredV(Vector4 col, byte* fmt, nuint args)
-		{
-			TextColoredVNative(col, fmt, args);
-		}
-
-		public static void TextColoredV(Vector4 col, ref byte fmt, nuint args)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				TextColoredVNative(col, (byte*)pfmt, args);
-			}
-		}
-
-		public static void TextColoredV(Vector4 col, string fmt, nuint args)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextColoredVNative(col, pStr0, args);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TextColoredV(Vector4 col, ReadOnlySpan<byte> fmt, nuint args)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				TextColoredVNative(col, (byte*)pfmt, args);
-			}
-		}
-
-		internal static void TextDisabledNative(byte* fmt)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[134])(fmt);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[134])((nint)fmt);
-			#endif
-		}
-
-		public static void TextDisabled(byte* fmt)
-		{
-			TextDisabledNative(fmt);
-		}
-
-		public static void TextDisabled(ref byte fmt)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				TextDisabledNative((byte*)pfmt);
-			}
-		}
-
-		public static void TextDisabled(string fmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextDisabledNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TextDisabled(ReadOnlySpan<byte> fmt)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				TextDisabledNative((byte*)pfmt);
-			}
-		}
-
-		internal static void TextDisabledVNative(byte* fmt, nuint args)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[135])(fmt, args);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[135])((nint)fmt, args);
-			#endif
-		}
-
-		public static void TextDisabledV(byte* fmt, nuint args)
-		{
-			TextDisabledVNative(fmt, args);
-		}
-
-		public static void TextDisabledV(ref byte fmt, nuint args)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				TextDisabledVNative((byte*)pfmt, args);
-			}
-		}
-
-		public static void TextDisabledV(string fmt, nuint args)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextDisabledVNative(pStr0, args);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TextDisabledV(ReadOnlySpan<byte> fmt, nuint args)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				TextDisabledVNative((byte*)pfmt, args);
-			}
-		}
-
-		internal static void TextWrappedNative(byte* fmt)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[136])(fmt);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[136])((nint)fmt);
-			#endif
-		}
-
-		public static void TextWrapped(byte* fmt)
-		{
-			TextWrappedNative(fmt);
-		}
-
-		public static void TextWrapped(ref byte fmt)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				TextWrappedNative((byte*)pfmt);
-			}
-		}
-
-		public static void TextWrapped(string fmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextWrappedNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TextWrapped(ReadOnlySpan<byte> fmt)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				TextWrappedNative((byte*)pfmt);
-			}
-		}
-
-		internal static void TextWrappedVNative(byte* fmt, nuint args)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[137])(fmt, args);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[137])((nint)fmt, args);
-			#endif
-		}
-
-		public static void TextWrappedV(byte* fmt, nuint args)
-		{
-			TextWrappedVNative(fmt, args);
-		}
-
-		public static void TextWrappedV(ref byte fmt, nuint args)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				TextWrappedVNative((byte*)pfmt, args);
-			}
-		}
-
-		public static void TextWrappedV(string fmt, nuint args)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextWrappedVNative(pStr0, args);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void TextWrappedV(ReadOnlySpan<byte> fmt, nuint args)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				TextWrappedVNative((byte*)pfmt, args);
-			}
-		}
-
-		internal static void LabelTextNative(byte* label, byte* fmt)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[138])(label, fmt);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[138])((nint)label, (nint)fmt);
-			#endif
-		}
-
-		public static void LabelText(byte* label, byte* fmt)
-		{
-			LabelTextNative(label, fmt);
-		}
-
-		public static void LabelText(ref byte label, byte* fmt)
-		{
-			fixed (byte* plabel = &label)
-			{
-				LabelTextNative((byte*)plabel, fmt);
-			}
-		}
-
-		public static void LabelText(string label, byte* fmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			LabelTextNative(pStr0, fmt);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void LabelText(ReadOnlySpan<byte> label, byte* fmt)
-		{
-			fixed (byte* plabel = label)
-			{
-				LabelTextNative((byte*)plabel, fmt);
-			}
-		}
-
-		public static void LabelText(byte* label, ref byte fmt)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				LabelTextNative(label, (byte*)pfmt);
-			}
-		}
-
-		public static void LabelText(byte* label, string fmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			LabelTextNative(label, pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void LabelText(byte* label, ReadOnlySpan<byte> fmt)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				LabelTextNative(label, (byte*)pfmt);
-			}
-		}
-
-		public static void LabelText(ref byte label, ref byte fmt)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pfmt = &fmt)
-				{
-					LabelTextNative((byte*)plabel, (byte*)pfmt);
-				}
-			}
-		}
-
-		public static void LabelText(string label, string fmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (fmt != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(fmt, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			LabelTextNative(pStr0, pStr1);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void LabelText(ReadOnlySpan<byte> label, ReadOnlySpan<byte> fmt)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pfmt = fmt)
-				{
-					LabelTextNative((byte*)plabel, (byte*)pfmt);
-				}
-			}
-		}
-
-		internal static void LabelTextVNative(byte* label, byte* fmt, nuint args)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, void>)vt[139])(label, fmt, args);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)vt[139])((nint)label, (nint)fmt, args);
-			#endif
-		}
-
-		public static void LabelTextV(byte* label, byte* fmt, nuint args)
-		{
-			LabelTextVNative(label, fmt, args);
-		}
-
-		public static void LabelTextV(ref byte label, byte* fmt, nuint args)
-		{
-			fixed (byte* plabel = &label)
-			{
-				LabelTextVNative((byte*)plabel, fmt, args);
-			}
-		}
-
-		public static void LabelTextV(string label, byte* fmt, nuint args)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			LabelTextVNative(pStr0, fmt, args);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void LabelTextV(ReadOnlySpan<byte> label, byte* fmt, nuint args)
-		{
-			fixed (byte* plabel = label)
-			{
-				LabelTextVNative((byte*)plabel, fmt, args);
-			}
-		}
-
-		public static void LabelTextV(byte* label, ref byte fmt, nuint args)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				LabelTextVNative(label, (byte*)pfmt, args);
-			}
-		}
-
-		public static void LabelTextV(byte* label, string fmt, nuint args)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			LabelTextVNative(label, pStr0, args);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void LabelTextV(byte* label, ReadOnlySpan<byte> fmt, nuint args)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				LabelTextVNative(label, (byte*)pfmt, args);
-			}
-		}
-
-		public static void LabelTextV(ref byte label, ref byte fmt, nuint args)
-		{
-			fixed (byte* plabel = &label)
-			{
-				fixed (byte* pfmt = &fmt)
-				{
-					LabelTextVNative((byte*)plabel, (byte*)pfmt, args);
-				}
-			}
-		}
-
-		public static void LabelTextV(string label, string fmt, nuint args)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (fmt != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(fmt, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			LabelTextVNative(pStr0, pStr1, args);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void LabelTextV(ReadOnlySpan<byte> label, ReadOnlySpan<byte> fmt, nuint args)
-		{
-			fixed (byte* plabel = label)
-			{
-				fixed (byte* pfmt = fmt)
-				{
-					LabelTextVNative((byte*)plabel, (byte*)pfmt, args);
-				}
-			}
-		}
-
-		internal static void BulletTextNative(byte* fmt)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[140])(fmt);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[140])((nint)fmt);
-			#endif
-		}
-
-		public static void BulletText(byte* fmt)
-		{
-			BulletTextNative(fmt);
-		}
-
-		public static void BulletText(ref byte fmt)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				BulletTextNative((byte*)pfmt);
-			}
-		}
-
-		public static void BulletText(string fmt)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			BulletTextNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void BulletText(ReadOnlySpan<byte> fmt)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				BulletTextNative((byte*)pfmt);
-			}
-		}
-
-		internal static void BulletTextVNative(byte* fmt, nuint args)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[141])(fmt, args);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[141])((nint)fmt, args);
-			#endif
-		}
-
-		public static void BulletTextV(byte* fmt, nuint args)
-		{
-			BulletTextVNative(fmt, args);
-		}
-
-		public static void BulletTextV(ref byte fmt, nuint args)
-		{
-			fixed (byte* pfmt = &fmt)
-			{
-				BulletTextVNative((byte*)pfmt, args);
-			}
-		}
-
-		public static void BulletTextV(string fmt, nuint args)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (fmt != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(fmt);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(fmt, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			BulletTextVNative(pStr0, args);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void BulletTextV(ReadOnlySpan<byte> fmt, nuint args)
-		{
-			fixed (byte* pfmt = fmt)
-			{
-				BulletTextVNative((byte*)pfmt, args);
-			}
-		}
-
-		internal static void SeparatorTextNative(byte* label)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[142])(label);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[142])((nint)label);
-			#endif
-		}
-
-		public static void SeparatorText(byte* label)
-		{
-			SeparatorTextNative(label);
-		}
-
-		public static void SeparatorText(ref byte label)
-		{
-			fixed (byte* plabel = &label)
-			{
-				SeparatorTextNative((byte*)plabel);
-			}
-		}
-
-		public static void SeparatorText(string label)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (label != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(label);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			SeparatorTextNative(pStr0);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		public static void SeparatorText(ReadOnlySpan<byte> label)
-		{
-			fixed (byte* plabel = label)
-			{
-				SeparatorTextNative((byte*)plabel);
 			}
 		}
 	}

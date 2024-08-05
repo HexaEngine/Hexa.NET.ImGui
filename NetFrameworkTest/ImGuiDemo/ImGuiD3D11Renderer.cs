@@ -145,14 +145,14 @@ namespace ExampleD3D11.ImGuiDemo
             {
                 var cmdlList = data->CmdLists.Data[n];
 
-                var vertBytes = cmdlList->VtxBuffer.Size * sizeof(ImDrawVert);
-                System.Buffer.MemoryCopy(cmdlList->VtxBuffer.Data, vertexResourcePointer, vertBytes, vertBytes);
+                var vertBytes = cmdlList.VtxBuffer.Size * sizeof(ImDrawVert);
+                System.Buffer.MemoryCopy(cmdlList.VtxBuffer.Data, vertexResourcePointer, vertBytes, vertBytes);
 
-                var idxBytes = cmdlList->IdxBuffer.Size * sizeof(ImDrawIdx);
-                System.Buffer.MemoryCopy(cmdlList->IdxBuffer.Data, indexResourcePointer, idxBytes, idxBytes);
+                var idxBytes = cmdlList.IdxBuffer.Size * sizeof(ImDrawIdx);
+                System.Buffer.MemoryCopy(cmdlList.IdxBuffer.Data, indexResourcePointer, idxBytes, idxBytes);
 
-                vertexResourcePointer += cmdlList->VtxBuffer.Size;
-                indexResourcePointer += cmdlList->IdxBuffer.Size;
+                vertexResourcePointer += cmdlList.VtxBuffer.Size;
+                indexResourcePointer += cmdlList.IdxBuffer.Size;
             }
             ctx.Unmap(bd->vertexBuffer, 0);
             ctx.Unmap(bd->indexBuffer, 0);
@@ -191,9 +191,9 @@ namespace ExampleD3D11.ImGuiDemo
             {
                 var cmdList = data->CmdLists.Data[n];
 
-                for (int i = 0; i < cmdList->CmdBuffer.Size; i++)
+                for (int i = 0; i < cmdList.CmdBuffer.Size; i++)
                 {
-                    var cmd = cmdList->CmdBuffer.Data[i];
+                    var cmd = cmdList.CmdBuffer.Data[i];
                     if (cmd.UserCallback != null)
                     {
                         // User callback, registered via ImDrawList::AddCallback()
@@ -225,8 +225,8 @@ namespace ExampleD3D11.ImGuiDemo
                         ctx.DrawIndexedInstanced(cmd.ElemCount, 1, (uint)(cmd.IdxOffset + global_idx_offset), (int)(cmd.VtxOffset + global_vtx_offset), 0);
                     }
                 }
-                global_idx_offset += cmdList->IdxBuffer.Size;
-                global_vtx_offset += cmdList->VtxBuffer.Size;
+                global_idx_offset += cmdList.IdxBuffer.Size;
+                global_vtx_offset += cmdList.VtxBuffer.Size;
             }
 
             void* nullObj = null;
