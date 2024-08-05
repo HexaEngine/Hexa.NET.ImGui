@@ -13,7 +13,7 @@
 		<IsAotCompatible>true</IsAotCompatible>
 
 		<AssemblyVersion>1.91.0</AssemblyVersion>
-		<PackageVersion>2.0.1</PackageVersion>
+		<PackageVersion>2.1.0</PackageVersion>
 		<Description>A .NET wrapper for the Dear ImGui library. (1.91.0)</Description>
 		<PackageTags>ImGui UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>
@@ -23,6 +23,9 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
