@@ -1,5 +1,6 @@
 ﻿namespace ExampleD3D11
 {
+    using ExampleFramework;
     using Silk.NET.Core.Native;
     using Silk.NET.Direct3D.Compilers;
     using Silk.NET.Direct3D11;
@@ -8,6 +9,7 @@
     using System;
     using System.Numerics;
     using System.Runtime.CompilerServices;
+    using Window = Silk.NET.SDL.Window;
 
     public unsafe class D3D11Manager : IDisposable
     {
@@ -69,7 +71,7 @@
 
         private void CreateSwapChain(Window* window)
         {
-            Sdl sdl = Program.sdl;
+            Sdl sdl = App.sdl;
             SysWMInfo info;
             sdl.GetVersion(&info.Version);
             sdl.GetWindowWMInfo(window, &info);
