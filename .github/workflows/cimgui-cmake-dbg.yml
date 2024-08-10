@@ -62,6 +62,5 @@ jobs:
       with:
         name: ${{ matrix.os }}-${{ matrix.arch }}-artifacts 
         path: |
-          cimgui/build/Debug/*.{dll,pbd}
-          cimgui/build/*.{so,pdb,dylib}
+          cimgui/build/
         if-no-files-found: ignore # 'warn' or 'ignore' or 'error'
