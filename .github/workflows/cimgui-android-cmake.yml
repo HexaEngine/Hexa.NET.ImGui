@@ -1,4 +1,4 @@
-name: Build cimgui Libraries
+name: Build cimgui Libraries (Android)
 
 on: [workflow_dispatch]
 
