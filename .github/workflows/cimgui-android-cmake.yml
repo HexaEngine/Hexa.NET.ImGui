@@ -1,0 +1,71 @@
+name: Build cimgui Libraries
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            arch: x86_64
+    steps:
+    - uses: actions/checkout@v4.1.7
+      with:
+        repository: 'cimgui/cimgui'
+        path: 'cimgui'
+        submodules: true
+
+    - name: Install dependencies on Ubuntu
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake
+
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: 17
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v2.0.10
+
+    - name: Install Android NDK
+      run: sdkmanager --install "ndk-bundle"
+
+    - name: Build for arm64-v8a
+      run: |
+          cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release \
+                -DCMAKE_SYSTEM_NAME=Android \
+                -DCMAKE_ANDROID_NDK=$ANDROID_NDK_HOME \
+                -DCMAKE_ANDROID_ARCH_ABI=arm64-v8a \
+                -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
+                -DCMAKE_ANDROID_STL_TYPE=c++_shared \
+                -DCMAKE_ANDROID_API=21 \
+                -S cimgui \
+                -B cimgui/build/arm64-v8a
+          cmake --build cimgui/build/arm64-v8a  --config Release
+
+    - name: Build for x86_64
+      run: |
+          cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release \
+                -DCMAKE_SYSTEM_NAME=Android \
+                -DCMAKE_ANDROID_NDK=$ANDROID_NDK_HOME \
+                -DCMAKE_ANDROID_ARCH_ABI=x86_64 \
+                -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
+                -DCMAKE_ANDROID_STL_TYPE=c++_shared \
+                -DCMAKE_ANDROID_API=21 \
+                -S cimgui \
+                -B cimgui/build/x86_64
+          cmake --build cimgui/build/x86_64 --config Release
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4.3.4
+      with:
+        name: ${{ matrix.os }}-${{ matrix.arch }}-artifacts 
+        path: |
+          cimgui/build/arm64-v8a/*.so
+          cimgui/build/x86_64/*.so
+        if-no-files-found: ignore # 'warn' or 'ignore' or 'error'
