@@ -519,7 +519,7 @@
             if (bd->ClipboardTextData != null)
                 sdl.Free(bd->ClipboardTextData);
             for (ImGuiMouseCursor cursor_n = 0; cursor_n < ImGuiMouseCursor.Count; cursor_n++)
-                sdl.Free(bd->MouseCursors[(int)cursor_n]);
+                sdl.FreeCursor(bd->MouseCursors[(int)cursor_n]);
             Free(bd->MouseCursors);
             CloseGamepads();
 
