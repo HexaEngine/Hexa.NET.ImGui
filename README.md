@@ -2,6 +2,8 @@
 
 Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performance, API-compatible alternative to ImGuiNET, offering enhanced speed, additional functionality, and comprehensive access to ImGui's internal structures. With optimizations that bring near C performance and significantly reduced startup times, Hexa.NET.ImGui provides the best of both worlds: the power of C and the productivity of C#.
 
+#### The code generator in use [HexaGen](https://github.com/HexaEngine/HexaGen).
+
 ## Features
 
 - **Comprehensive Wrapper**: Integrates the core Dear ImGui library along with essential addons such as ImGuizmo, ImNodes, and ImPlot.
