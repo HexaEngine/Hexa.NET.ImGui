@@ -99,11 +99,6 @@ ImGui.Text("A C# string"u8);
 
 <img src="https://github.com/user-attachments/assets/b54145fe-5bd5-4998-b36f-24efe8345aba" alt="HexaEngine Editor" width="400"/>
 
-## TODO
-
-- **Refactor the generator**: Improve the code generation process for better performance and maintainability.
-- **More demos**: Add additional demo applications to showcase various features and use cases.
-
 ## Screenshots
 
 ### Main Interface
