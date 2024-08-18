@@ -22,7 +22,7 @@ namespace Hexa.NET.ImNodes
 
 		public static void InitApi()
 		{
-			vt = new VTable(GetLibraryName(), 89);
+			vt = new VTable(LibraryLoader.LoadLibrary(), 89);
 			vt.Load(0, "EmulateThreeButtonMouse_EmulateThreeButtonMouse");
 			vt.Load(1, "EmulateThreeButtonMouse_destroy");
 			vt.Load(2, "LinkDetachWithModifierClick_LinkDetachWithModifierClick");

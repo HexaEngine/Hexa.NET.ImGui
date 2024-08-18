@@ -31,7 +31,7 @@
 
         private static bool Generate(string header, string settingsPath, string output, CsCodeGeneratorMetadata? lib, out CsCodeGeneratorMetadata metadata)
         {
-            CsCodeGeneratorSettings settings = CsCodeGeneratorSettings.Load(settingsPath);
+            CsCodeGeneratorConfig settings = CsCodeGeneratorConfig.Load(settingsPath);
             settings.WrapPointersAsHandle = true;
             ImGuiCodeGenerator generator = new(settings);
             generator.PatchEngine.RegisterPrePatch(new ImVectorPatch());

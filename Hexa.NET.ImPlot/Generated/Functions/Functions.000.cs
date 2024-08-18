@@ -2806,17 +2806,17 @@ namespace Hexa.NET.ImPlot
 		public static void SetupAxisTicks(ImAxis axis, double* values, int nTicks, string[] labels, bool keepDefault)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labels);
+			int pStrArray0Size = Utils.GetByteCountArray(labels);
 			if (labels != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labels.Length; i++)
@@ -2828,7 +2828,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -2840,17 +2840,17 @@ namespace Hexa.NET.ImPlot
 		public static void SetupAxisTicks(ImAxis axis, double* values, int nTicks, string[] labels)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labels);
+			int pStrArray0Size = Utils.GetByteCountArray(labels);
 			if (labels != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labels.Length; i++)
@@ -2862,7 +2862,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -2876,17 +2876,17 @@ namespace Hexa.NET.ImPlot
 			fixed (double* pvalues = &values)
 			{
 				byte** pStrArray0 = null;
-				int pStrArraySize0 = Utils.GetByteCountArray(labels);
+				int pStrArray0Size = Utils.GetByteCountArray(labels);
 				if (labels != null)
 				{
-					if (pStrArraySize0 > Utils.MaxStackallocSize)
+					if (pStrArray0Size > Utils.MaxStackallocSize)
 					{
-						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 					}
 					else
 					{
-						byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-						pStrArray0 = (byte**)pStrArrayStack0;
+						byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+						pStrArray0 = (byte**)pStrArray0Stack;
 					}
 				}
 				for (int i = 0; i < labels.Length; i++)
@@ -2898,7 +2898,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -2913,17 +2913,17 @@ namespace Hexa.NET.ImPlot
 			fixed (double* pvalues = &values)
 			{
 				byte** pStrArray0 = null;
-				int pStrArraySize0 = Utils.GetByteCountArray(labels);
+				int pStrArray0Size = Utils.GetByteCountArray(labels);
 				if (labels != null)
 				{
-					if (pStrArraySize0 > Utils.MaxStackallocSize)
+					if (pStrArray0Size > Utils.MaxStackallocSize)
 					{
-						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 					}
 					else
 					{
-						byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-						pStrArray0 = (byte**)pStrArrayStack0;
+						byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+						pStrArray0 = (byte**)pStrArray0Stack;
 					}
 				}
 				for (int i = 0; i < labels.Length; i++)
@@ -2935,7 +2935,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -2992,17 +2992,17 @@ namespace Hexa.NET.ImPlot
 		public static void SetupAxisTicks(ImAxis axis, double vMin, double vMax, int nTicks, string[] labels, bool keepDefault)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labels);
+			int pStrArray0Size = Utils.GetByteCountArray(labels);
 			if (labels != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labels.Length; i++)
@@ -3014,7 +3014,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3026,17 +3026,17 @@ namespace Hexa.NET.ImPlot
 		public static void SetupAxisTicks(ImAxis axis, double vMin, double vMax, int nTicks, string[] labels)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labels);
+			int pStrArray0Size = Utils.GetByteCountArray(labels);
 			if (labels != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labels.Length; i++)
@@ -3048,7 +3048,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}

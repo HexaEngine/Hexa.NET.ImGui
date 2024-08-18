@@ -6,10 +6,5 @@ namespace Hexa.NET.ImPlot
         {
             InitApi();
         }
-
-        public static nint GetLibraryName()
-        {
-            return LibraryLoader.LoadLibrary();
-        }
     }
 }

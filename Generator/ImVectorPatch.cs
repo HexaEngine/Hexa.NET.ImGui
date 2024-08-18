@@ -7,12 +7,12 @@
 
     public class ImVectorPatch : PrePatch
     {
-        public override void Apply(PatchContext context, CsCodeGeneratorSettings settings, List<string> files, CppCompilation compilation)
+        public override void Apply(PatchContext context, CsCodeGeneratorConfig settings, List<string> files, CppCompilation compilation)
         {
             base.Apply(context, settings, files, compilation);
         }
 
-        protected override void PatchClass(CsCodeGeneratorSettings settings, CppClass cppClass)
+        protected override void PatchClass(CsCodeGeneratorConfig settings, CppClass cppClass)
         {
             if (cppClass.Name.StartsWith("ImVector_"))
             {
@@ -39,7 +39,7 @@
             }
         }
 
-        protected override void PatchTypedef(CsCodeGeneratorSettings settings, CppTypedef cppTypedef)
+        protected override void PatchTypedef(CsCodeGeneratorConfig settings, CppTypedef cppTypedef)
         {
             if (cppTypedef.Name.StartsWith("ImVector_"))
             {

@@ -7,7 +7,7 @@
 
     public class ImGuizmoPrePatch : PrePatch
     {
-        protected override void PatchCompilation(CsCodeGeneratorSettings settings, CppCompilation compilation)
+        protected override void PatchCompilation(CsCodeGeneratorConfig settings, CppCompilation compilation)
         {
             if (settings.LibName != "cimguizmo")
             {

@@ -4597,17 +4597,17 @@ namespace Hexa.NET.ImGui
 		public static bool Combo(byte* label, int* currentItem, string[] items, int itemsCount, int popupMaxHeightInItems)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(items);
+			int pStrArray0Size = Utils.GetByteCountArray(items);
 			if (items != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < items.Length; i++)
@@ -4619,7 +4619,7 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4632,17 +4632,17 @@ namespace Hexa.NET.ImGui
 		public static bool Combo(byte* label, int* currentItem, string[] items, int itemsCount)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(items);
+			int pStrArray0Size = Utils.GetByteCountArray(items);
 			if (items != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < items.Length; i++)
@@ -4654,7 +4654,7 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4684,17 +4684,17 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(items);
+			int pStrArray0Size = Utils.GetByteCountArray(items);
 			if (items != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < items.Length; i++)
@@ -4706,7 +4706,7 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4740,17 +4740,17 @@ namespace Hexa.NET.ImGui
 				pStr0[pStrOffset0] = 0;
 			}
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(items);
+			int pStrArray0Size = Utils.GetByteCountArray(items);
 			if (items != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < items.Length; i++)
@@ -4762,7 +4762,7 @@ namespace Hexa.NET.ImGui
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4781,17 +4781,17 @@ namespace Hexa.NET.ImGui
 			fixed (int* pcurrentItem = &currentItem)
 			{
 				byte** pStrArray0 = null;
-				int pStrArraySize0 = Utils.GetByteCountArray(items);
+				int pStrArray0Size = Utils.GetByteCountArray(items);
 				if (items != null)
 				{
-					if (pStrArraySize0 > Utils.MaxStackallocSize)
+					if (pStrArray0Size > Utils.MaxStackallocSize)
 					{
-						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 					}
 					else
 					{
-						byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-						pStrArray0 = (byte**)pStrArrayStack0;
+						byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+						pStrArray0 = (byte**)pStrArray0Stack;
 					}
 				}
 				for (int i = 0; i < items.Length; i++)
@@ -4803,7 +4803,7 @@ namespace Hexa.NET.ImGui
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4819,17 +4819,17 @@ namespace Hexa.NET.ImGui
 			fixed (int* pcurrentItem = &currentItem)
 			{
 				byte** pStrArray0 = null;
-				int pStrArraySize0 = Utils.GetByteCountArray(items);
+				int pStrArray0Size = Utils.GetByteCountArray(items);
 				if (items != null)
 				{
-					if (pStrArraySize0 > Utils.MaxStackallocSize)
+					if (pStrArray0Size > Utils.MaxStackallocSize)
 					{
-						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 					}
 					else
 					{
-						byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-						pStrArray0 = (byte**)pStrArrayStack0;
+						byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+						pStrArray0 = (byte**)pStrArray0Stack;
 					}
 				}
 				for (int i = 0; i < items.Length; i++)
@@ -4841,7 +4841,7 @@ namespace Hexa.NET.ImGui
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4874,17 +4874,17 @@ namespace Hexa.NET.ImGui
 			fixed (int* pcurrentItem = &currentItem)
 			{
 				byte** pStrArray0 = null;
-				int pStrArraySize0 = Utils.GetByteCountArray(items);
+				int pStrArray0Size = Utils.GetByteCountArray(items);
 				if (items != null)
 				{
-					if (pStrArraySize0 > Utils.MaxStackallocSize)
+					if (pStrArray0Size > Utils.MaxStackallocSize)
 					{
-						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 					}
 					else
 					{
-						byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-						pStrArray0 = (byte**)pStrArrayStack0;
+						byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+						pStrArray0 = (byte**)pStrArray0Stack;
 					}
 				}
 				for (int i = 0; i < items.Length; i++)
@@ -4896,7 +4896,7 @@ namespace Hexa.NET.ImGui
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4933,17 +4933,17 @@ namespace Hexa.NET.ImGui
 			fixed (int* pcurrentItem = &currentItem)
 			{
 				byte** pStrArray0 = null;
-				int pStrArraySize0 = Utils.GetByteCountArray(items);
+				int pStrArray0Size = Utils.GetByteCountArray(items);
 				if (items != null)
 				{
-					if (pStrArraySize0 > Utils.MaxStackallocSize)
+					if (pStrArray0Size > Utils.MaxStackallocSize)
 					{
-						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+						pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 					}
 					else
 					{
-						byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-						pStrArray0 = (byte**)pStrArrayStack0;
+						byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+						pStrArray0 = (byte**)pStrArray0Stack;
 					}
 				}
 				for (int i = 0; i < items.Length; i++)
@@ -4955,7 +4955,7 @@ namespace Hexa.NET.ImGui
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}

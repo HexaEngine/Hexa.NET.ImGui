@@ -7,7 +7,7 @@
 
     public class ImGuiDefinitionsIgnorePatch : PrePatch
     {
-        public override void Apply(PatchContext context, CsCodeGeneratorSettings settings, List<string> files, CppCompilation compilation)
+        public override void Apply(PatchContext context, CsCodeGeneratorConfig settings, List<string> files, CppCompilation compilation)
         {
             if (settings.LibName != "cimgui")
             {
@@ -52,7 +52,7 @@
 
     public class ImGuiDefinitionsPatch : PrePatch
     {
-        protected override void PatchCompilation(CsCodeGeneratorSettings settings, CppCompilation compilation)
+        protected override void PatchCompilation(CsCodeGeneratorConfig settings, CppCompilation compilation)
         {
             ImguiDefinitions imguiDefinitions = new();
             imguiDefinitions.LoadFrom(settings.LibName);

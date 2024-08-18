@@ -6,10 +6,5 @@ namespace Hexa.NET.ImNodes
         {
             InitApi();
         }
-
-        public static nint GetLibraryName()
-        {
-            return LibraryLoader.LoadLibrary();
-        }
     }
 }

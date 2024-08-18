@@ -20,7 +20,7 @@
             {
                 return;
             }
-            var settingsManual = CsCodeGeneratorSettings.Load(CImGuiManualConfig);
+            var settingsManual = CsCodeGeneratorConfig.Load(CImGuiManualConfig);
 
             settingsManual.VTableStart = metadata.VTableLength;
 
@@ -40,7 +40,7 @@
                 const string vtPatchFile = manual + "Functions.VT.cs";
 
                 var vtContent = File.ReadAllText(vtTargetFile);
-                var rootMatch = Regex.Match(vtContent, "vt = new VTable\\(GetLibraryName\\(\\), (.*)\\);");
+                var rootMatch = Regex.Match(vtContent, "vt = new VTable\\(LibraryLoader\\.LoadLibrary\\(\\), (.*)\\);");
 
                 Regex loadPattern = new("vt.Load\\((.*), \"(.*)\"\\);", RegexOptions.Singleline);
                 var matches = loadPattern.Matches(vtContent);
@@ -58,7 +58,7 @@
                 }
 
                 builder.Remove(rootMatch.Index, rootMatch.Length);
-                builder.Insert(rootMatch.Index, $"vt = new VTable(GetLibraryName(), {patchMetadata.VTableLength});");
+                builder.Insert(rootMatch.Index, $"vt = new VTable(LibraryLoader.LoadLibrary(), {patchMetadata.VTableLength});");
 
                 builder.Append(vtContent.AsSpan(start));
 

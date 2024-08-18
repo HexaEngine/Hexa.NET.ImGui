@@ -16,6 +16,7 @@ namespace Hexa.NET.ImGui
 	/// <summary>
 	/// To be documented.
 	/// </summary>
+	[Flags]
 	public enum ImGuiLayoutType : int
 	{
 		/// <summary>

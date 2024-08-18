@@ -2951,17 +2951,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, float* values, int itemCount, int groupCount, double groupSize, double shift, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2973,7 +2973,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -2985,17 +2985,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, float* values, int itemCount, int groupCount, double groupSize, double shift)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3007,7 +3007,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3019,17 +3019,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, float* values, int itemCount, int groupCount, double groupSize)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3041,7 +3041,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3053,17 +3053,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, float* values, int itemCount, int groupCount)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3075,7 +3075,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3087,17 +3087,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, float* values, int itemCount, int groupCount, double groupSize, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3109,7 +3109,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3121,17 +3121,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, float* values, int itemCount, int groupCount, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3143,7 +3143,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3221,17 +3221,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref float values, int itemCount, int groupCount, double groupSize, double shift, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3245,7 +3245,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3258,17 +3258,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref float values, int itemCount, int groupCount, double groupSize, double shift)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3282,7 +3282,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3295,17 +3295,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref float values, int itemCount, int groupCount, double groupSize)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3319,7 +3319,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3332,17 +3332,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref float values, int itemCount, int groupCount)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3356,7 +3356,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3369,17 +3369,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref float values, int itemCount, int groupCount, double groupSize, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3393,7 +3393,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3406,17 +3406,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref float values, int itemCount, int groupCount, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3430,7 +3430,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3503,17 +3503,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, double* values, int itemCount, int groupCount, double groupSize, double shift, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3525,7 +3525,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3537,17 +3537,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, double* values, int itemCount, int groupCount, double groupSize, double shift)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3559,7 +3559,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3571,17 +3571,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, double* values, int itemCount, int groupCount, double groupSize)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3593,7 +3593,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3605,17 +3605,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, double* values, int itemCount, int groupCount)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3627,7 +3627,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3639,17 +3639,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, double* values, int itemCount, int groupCount, double groupSize, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3661,7 +3661,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3673,17 +3673,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, double* values, int itemCount, int groupCount, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3695,7 +3695,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3773,17 +3773,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref double values, int itemCount, int groupCount, double groupSize, double shift, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3797,7 +3797,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3810,17 +3810,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref double values, int itemCount, int groupCount, double groupSize, double shift)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3834,7 +3834,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3847,17 +3847,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref double values, int itemCount, int groupCount, double groupSize)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3871,7 +3871,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3884,17 +3884,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref double values, int itemCount, int groupCount)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3908,7 +3908,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3921,17 +3921,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref double values, int itemCount, int groupCount, double groupSize, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3945,7 +3945,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3958,17 +3958,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref double values, int itemCount, int groupCount, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3982,7 +3982,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4055,17 +4055,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, byte* values, int itemCount, int groupCount, double groupSize, double shift, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4077,7 +4077,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4089,17 +4089,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, byte* values, int itemCount, int groupCount, double groupSize, double shift)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4111,7 +4111,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4123,17 +4123,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, byte* values, int itemCount, int groupCount, double groupSize)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4145,7 +4145,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4157,17 +4157,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, byte* values, int itemCount, int groupCount)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4179,7 +4179,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4191,17 +4191,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, byte* values, int itemCount, int groupCount, double groupSize, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4213,7 +4213,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4225,17 +4225,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, byte* values, int itemCount, int groupCount, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4247,7 +4247,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4325,17 +4325,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref byte values, int itemCount, int groupCount, double groupSize, double shift, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4349,7 +4349,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4362,17 +4362,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref byte values, int itemCount, int groupCount, double groupSize, double shift)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4386,7 +4386,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4399,17 +4399,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref byte values, int itemCount, int groupCount, double groupSize)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4423,7 +4423,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4436,17 +4436,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref byte values, int itemCount, int groupCount)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4460,7 +4460,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4473,17 +4473,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref byte values, int itemCount, int groupCount, double groupSize, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4497,7 +4497,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4510,17 +4510,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref byte values, int itemCount, int groupCount, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4534,7 +4534,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4607,17 +4607,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, short* values, int itemCount, int groupCount, double groupSize, double shift, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4629,7 +4629,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4641,17 +4641,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, short* values, int itemCount, int groupCount, double groupSize, double shift)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4663,7 +4663,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4675,17 +4675,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, short* values, int itemCount, int groupCount, double groupSize)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4697,7 +4697,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4709,17 +4709,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, short* values, int itemCount, int groupCount)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4731,7 +4731,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4743,17 +4743,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, short* values, int itemCount, int groupCount, double groupSize, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4765,7 +4765,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4777,17 +4777,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, short* values, int itemCount, int groupCount, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4799,7 +4799,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4877,17 +4877,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref short values, int itemCount, int groupCount, double groupSize, double shift, ImPlotBarGroupsFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4901,7 +4901,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4914,17 +4914,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref short values, int itemCount, int groupCount, double groupSize, double shift)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4938,7 +4938,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4951,17 +4951,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref short values, int itemCount, int groupCount, double groupSize)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4975,7 +4975,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4988,17 +4988,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotBarGroups(string[] labelIds, ref short values, int itemCount, int groupCount)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -5012,7 +5012,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}

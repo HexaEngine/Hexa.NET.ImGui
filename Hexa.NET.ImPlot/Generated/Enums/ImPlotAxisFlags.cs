@@ -17,6 +17,7 @@ namespace Hexa.NET.ImPlot
 	/// <summary>
 	/// To be documented.
 	/// </summary>
+	[Flags]
 	public enum ImPlotAxisFlags : int
 	{
 		/// <summary>

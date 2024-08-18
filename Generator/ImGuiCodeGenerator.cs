@@ -6,13 +6,13 @@
 
     public class ImGuiCodeGenerator : CsCodeGenerator
     {
-        public ImGuiCodeGenerator(CsCodeGeneratorSettings settings) : base(settings, new ImGuiFunctionGenerator(settings))
+        public ImGuiCodeGenerator(CsCodeGeneratorConfig settings) : base(settings, new ImGuiFunctionGenerator(settings))
         {
         }
 
         public class ImGuiFunctionGenerator : FunctionGenerator
         {
-            public ImGuiFunctionGenerator(CsCodeGeneratorSettings settings) : base(settings)
+            public ImGuiFunctionGenerator(CsCodeGeneratorConfig settings) : base(settings)
             {
                 OverwriteStep<ReturnVariationGenStep>(new ImGuiReturnVariationStep());
                 OverwriteStep<DefaultValueGenStep>(new ImGuiDefaultValueStep());

@@ -102,17 +102,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref ulong values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -126,7 +126,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -139,17 +139,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref ulong values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -163,7 +163,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -176,17 +176,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref ulong values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -200,7 +200,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -213,17 +213,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref ulong values, int count, double x, double y, double radius, ImPlotFormatter fmt)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -237,7 +237,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -250,17 +250,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref ulong values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -274,7 +274,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -287,17 +287,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref ulong values, int count, double x, double y, double radius, ImPlotFormatter fmt, void* fmtData, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -311,7 +311,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -324,17 +324,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref ulong values, int count, double x, double y, double radius, ImPlotFormatter fmt, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -348,7 +348,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -361,17 +361,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref ulong values, int count, double x, double y, double radius, ImPlotFormatter fmt, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -385,7 +385,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -474,17 +474,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -496,7 +496,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -508,17 +508,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -530,7 +530,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -542,17 +542,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, byte* labelFmt)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -564,7 +564,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -576,17 +576,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -598,7 +598,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -610,17 +610,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -632,7 +632,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -644,17 +644,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -666,7 +666,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -678,17 +678,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -700,7 +700,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -712,17 +712,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -734,7 +734,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -834,17 +834,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -858,7 +858,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -871,17 +871,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -895,7 +895,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -908,17 +908,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, byte* labelFmt)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -932,7 +932,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -945,17 +945,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -969,7 +969,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -982,17 +982,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -1006,7 +1006,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -1019,17 +1019,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -1043,7 +1043,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -1056,17 +1056,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -1080,7 +1080,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -1093,17 +1093,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -1117,7 +1117,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -1334,17 +1334,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -1373,7 +1373,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -1389,17 +1389,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, string labelFmt, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -1428,7 +1428,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -1444,17 +1444,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, string labelFmt)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -1483,7 +1483,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -1499,17 +1499,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, float* values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -1538,7 +1538,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -1794,17 +1794,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -1835,7 +1835,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -1852,17 +1852,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, string labelFmt, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -1893,7 +1893,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -1910,17 +1910,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, string labelFmt)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -1951,7 +1951,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -1968,17 +1968,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref float values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2009,7 +2009,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -2102,17 +2102,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2124,7 +2124,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -2136,17 +2136,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2158,7 +2158,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -2170,17 +2170,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius, byte* labelFmt)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2192,7 +2192,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -2204,17 +2204,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2226,7 +2226,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -2238,17 +2238,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2260,7 +2260,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -2272,17 +2272,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2294,7 +2294,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -2306,17 +2306,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2328,7 +2328,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -2340,17 +2340,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2362,7 +2362,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -2462,17 +2462,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref double values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2486,7 +2486,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -2499,17 +2499,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref double values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2523,7 +2523,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -2536,17 +2536,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref double values, int count, double x, double y, double radius, byte* labelFmt)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2560,7 +2560,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -2573,17 +2573,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref double values, int count, double x, double y, double radius)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2597,7 +2597,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -2610,17 +2610,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref double values, int count, double x, double y, double radius, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2634,7 +2634,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -2647,17 +2647,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref double values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2671,7 +2671,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -2684,17 +2684,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref double values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2708,7 +2708,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -2721,17 +2721,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref double values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -2745,7 +2745,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -2962,17 +2962,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3001,7 +3001,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3017,17 +3017,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius, string labelFmt, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3056,7 +3056,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3072,17 +3072,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius, string labelFmt)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3111,7 +3111,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3127,17 +3127,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, double* values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3166,7 +3166,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3422,17 +3422,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref double values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3463,7 +3463,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3480,17 +3480,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref double values, int count, double x, double y, double radius, string labelFmt, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3521,7 +3521,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3538,17 +3538,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref double values, int count, double x, double y, double radius, string labelFmt)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3579,7 +3579,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3596,17 +3596,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref double values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3637,7 +3637,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -3730,17 +3730,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3752,7 +3752,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3764,17 +3764,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3786,7 +3786,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3798,17 +3798,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3820,7 +3820,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3832,17 +3832,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3854,7 +3854,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3866,17 +3866,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3888,7 +3888,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3900,17 +3900,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3922,7 +3922,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3934,17 +3934,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3956,7 +3956,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -3968,17 +3968,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -3990,7 +3990,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4090,17 +4090,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, byte* labelFmt, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4114,7 +4114,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4127,17 +4127,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, byte* labelFmt, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4151,7 +4151,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4164,17 +4164,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, byte* labelFmt)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4188,7 +4188,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4201,17 +4201,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4225,7 +4225,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4238,17 +4238,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4262,7 +4262,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4275,17 +4275,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, byte* labelFmt, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4299,7 +4299,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4312,17 +4312,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4336,7 +4336,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4349,17 +4349,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, ref byte values, int count, double x, double y, double radius, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4373,7 +4373,7 @@ namespace Hexa.NET.ImPlot
 				{
 					Utils.Free(pStrArray0[i]);
 				}
-				if (pStrArraySize0 >= Utils.MaxStackallocSize)
+				if (pStrArray0Size >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStrArray0);
 				}
@@ -4590,17 +4590,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, string labelFmt, double angle0, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4629,7 +4629,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4645,17 +4645,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, string labelFmt, double angle0)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4684,7 +4684,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4700,17 +4700,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, string labelFmt)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4739,7 +4739,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
@@ -4755,17 +4755,17 @@ namespace Hexa.NET.ImPlot
 		public static void PlotPieChart(string[] labelIds, byte* values, int count, double x, double y, double radius, string labelFmt, ImPlotPieChartFlags flags)
 		{
 			byte** pStrArray0 = null;
-			int pStrArraySize0 = Utils.GetByteCountArray(labelIds);
+			int pStrArray0Size = Utils.GetByteCountArray(labelIds);
 			if (labelIds != null)
 			{
-				if (pStrArraySize0 > Utils.MaxStackallocSize)
+				if (pStrArray0Size > Utils.MaxStackallocSize)
 				{
-					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArraySize0);
+					pStrArray0 = (byte**)Utils.Alloc<byte>(pStrArray0Size);
 				}
 				else
 				{
-					byte* pStrArrayStack0 = stackalloc byte[pStrArraySize0];
-					pStrArray0 = (byte**)pStrArrayStack0;
+					byte* pStrArray0Stack = stackalloc byte[pStrArray0Size];
+					pStrArray0 = (byte**)pStrArray0Stack;
 				}
 			}
 			for (int i = 0; i < labelIds.Length; i++)
@@ -4794,7 +4794,7 @@ namespace Hexa.NET.ImPlot
 			{
 				Utils.Free(pStrArray0[i]);
 			}
-			if (pStrArraySize0 >= Utils.MaxStackallocSize)
+			if (pStrArray0Size >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStrArray0);
 			}
