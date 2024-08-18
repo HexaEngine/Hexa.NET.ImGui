@@ -1,6 +1,8 @@
 # Hexa.NET.ImGui 
 
-Hexa.NET.ImGui is a .NET wrapper for the Dear ImGui (1.90.9) library, including support for internal components and popular addons like ImGuizmo, ImNodes, and ImPlot. This wrapper allows developers to leverage the powerful and flexible Dear ImGui library within the .NET ecosystem.
+Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performance, API-compatible alternative to ImGuiNET, offering enhanced speed, additional functionality, and comprehensive access to ImGui's internal structures. With optimizations that bring near C performance and significantly reduced startup times, Hexa.NET.ImGui provides the best of both worlds: the power of C and the productivity of C#.
+
+#### The code generator in use [HexaGen](https://github.com/HexaEngine/HexaGen).
 
 ## Features
 
@@ -12,6 +14,7 @@ Hexa.NET.ImGui is a .NET wrapper for the Dear ImGui (1.90.9) library, including 
 - **Access to Internals**: Allows users to access Dear ImGui internals for advanced customization and functionality.
 - **Drop in replacement for ImGuiNET** Adapt to the library with minimal effort by simply changing the namespace.
 - **High performance** Using a static VTable, all API calls are faster and startup time is reduced.
+- **Optimized String Handling**: Overloads that bypass UTF-8 encoding and avoid allocations.
 
 ## Packages
 
@@ -64,17 +67,39 @@ For a comprehensive example of how to use the library, refer to the [ExampleD3D1
 
 For details on how to set up the library, check the [ImGuiManager.cs](https://github.com/HexaEngine/Hexa.NET.ImGui/blob/master/ExampleD3D11/ImGuiDemo/ImGuiManager.cs) file in the ExampleD3D11 project.
 
+### Using the Flexible and Optimized API
+
+Hexa.NET.ImGui supports both safe and unsafe API calls, along with optimized string handling to bypass UTF-8 encoding and avoid allocations. Here are some examples:
+    
+ 1. Safe API Call:
+    
+```cs
+ImGui.Text("A normal C# string");
+```
+
+ 2. Unsafe API Call:
+```cs
+unsafe
+{
+    byte* pText = (byte*)Marshal.StringToHGlobalAnsi("A string from an unsafe pointer").ToPointer();
+    ImGui.Text(pText);
+    Marshal.FreeHGlobal((IntPtr)pText);
+}
+```
+
+ 3. Optimized String Handling:
+```cs
+ImGui.Text("A C# string"u8);
+```
+**This overload bypasses UTF-8 encoding and avoids allocations, providing a highly optimized way to render text.**
+
+
 
 ## Projects Using Hexa.NET.ImGui
 
 [HexaEngine](https://github.com/HexaEngine/HexaEngine)
 
 <img src="https://github.com/user-attachments/assets/b54145fe-5bd5-4998-b36f-24efe8345aba" alt="HexaEngine Editor" width="400"/>
-
-## TODO
-
-- **Refactor the generator**: Improve the code generation process for better performance and maintainability.
-- **More demos**: Add additional demo applications to showcase various features and use cases.
 
 ## Screenshots
 
