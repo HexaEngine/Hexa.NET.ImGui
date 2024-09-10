@@ -85,7 +85,7 @@ namespace Hexa.NET.ImGui
 		NoSortDescending = unchecked(2048),
 
 		/// <summary>
-		/// TableHeadersRow() will not submit horizontal label for this column. Convenient for some small columns. Name will still appear in context menu or in angled headers.<br/>
+		/// TableHeadersRow() will submit an empty label for this column. Convenient for some small columns. Name will still appear in context menu or in angled headers. You may append into this cell by calling TableSetColumnIndex() right after the TableHeadersRow() call.<br/>
 		/// </summary>
 		NoHeaderLabel = unchecked(4096),
 

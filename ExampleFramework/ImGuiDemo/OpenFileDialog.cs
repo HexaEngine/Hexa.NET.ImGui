@@ -234,7 +234,7 @@ namespace ExampleFramework.ImGuiDemo
                 ImGui.EndChild();
 
                 ImGui.SameLine();
-                if (ImGui.BeginChild(2, new Vector2(width, -footerHeightToReserve), ImGuiChildFlags.Border, 0))
+                if (ImGui.BeginChild(2, new Vector2(width, -footerHeightToReserve), ImGuiChildFlags.Borders, 0))
                 {
                     if (currentDir.Exists)
                     {

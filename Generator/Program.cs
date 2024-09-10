@@ -22,7 +22,12 @@
 
         private static void Main(string[] args)
         {
-            Directory.Delete("patches", true);
+            if (Directory.Exists("patches"))
+            {
+                Directory.Delete("patches", true);
+            }
+
+            Directory.CreateDirectory("./patches");
             Generate(CImGuiHeader, CImGuiConfig, ImGuiOutputPath, null, out var metadata);
             Generate(CImGuizmoHeader, CImGuizmoConfig, ImGuizmoOutputPath, metadata, out _);
             Generate(CImPlotHeader, CImPlotConfig, ImPlotOutputPath, metadata, out _);

@@ -17,11 +17,51 @@ using System.Numerics;
 namespace Hexa.NET.ImGui
 {
 	/// <summary>
-	/// (Optional) Access via ImGui::GetPlatformIO()<br/>
+	/// Access via ImGui::GetPlatformIO()<br/>
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public partial struct ImGuiPlatformIO
 	{
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void* PlatformGetClipboardTextFn;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void* PlatformSetClipboardTextFn;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void* PlatformClipboardUserData;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void* PlatformOpenInShellFn;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void* PlatformOpenInShellUserData;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void* PlatformSetImeDataFn;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void* PlatformImeUserData;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public char PlatformLocaleDecimalPoint;
+
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -110,6 +150,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe void* PlatformGetWindowWorkAreaInsets;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public unsafe void* PlatformCreateVkSurface;
 
 		/// <summary>
@@ -151,8 +196,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiPlatformIO(delegate*<ImGuiViewport*, void> platformCreatewindow = default, delegate*<ImGuiViewport*, void> platformDestroywindow = default, delegate*<ImGuiViewport*, void> platformShowwindow = default, delegate*<ImGuiViewport*, Vector2, void> platformSetwindowpos = default, delegate*<ImGuiViewport*, Vector2> platformGetwindowpos = default, delegate*<ImGuiViewport*, Vector2, void> platformSetwindowsize = default, delegate*<ImGuiViewport*, Vector2> platformGetwindowsize = default, delegate*<ImGuiViewport*, void> platformSetwindowfocus = default, delegate*<ImGuiViewport*, bool> platformGetwindowfocus = default, delegate*<ImGuiViewport*, bool> platformGetwindowminimized = default, delegate*<ImGuiViewport*, byte*, void> platformSetwindowtitle = default, delegate*<ImGuiViewport*, float, void> platformSetwindowalpha = default, delegate*<ImGuiViewport*, void> platformUpdatewindow = default, delegate*<ImGuiViewport*, void*, void> platformRenderwindow = default, delegate*<ImGuiViewport*, void*, void> platformSwapbuffers = default, delegate*<ImGuiViewport*, float> platformGetwindowdpiscale = default, delegate*<ImGuiViewport*, void> platformOnchangedviewport = default, delegate*<ImGuiViewport*, ulong, void*, ulong*, int> platformCreatevksurface = default, delegate*<ImGuiViewport*, void> rendererCreatewindow = default, delegate*<ImGuiViewport*, void> rendererDestroywindow = default, delegate*<ImGuiViewport*, Vector2, void> rendererSetwindowsize = default, delegate*<ImGuiViewport*, void*, void> rendererRenderwindow = default, delegate*<ImGuiViewport*, void*, void> rendererSwapbuffers = default, ImVector<ImGuiPlatformMonitor> monitors = default, ImVector<ImGuiViewportPtr> viewports = default)
+		public unsafe ImGuiPlatformIO(delegate*<ImGuiContext*, byte*> platformGetclipboardtextfn = default, delegate*<ImGuiContext*, byte*, void> platformSetclipboardtextfn = default, void* platformClipboarduserdata = default, delegate*<ImGuiContext*, byte*, bool> platformOpeninshellfn = default, void* platformOpeninshelluserdata = default, delegate*<ImGuiContext*, ImGuiViewport*, ImGuiPlatformImeData*, void> platformSetimedatafn = default, void* platformImeuserdata = default, char platformLocaledecimalpoint = default, delegate*<ImGuiViewport*, void> platformCreatewindow = default, delegate*<ImGuiViewport*, void> platformDestroywindow = default, delegate*<ImGuiViewport*, void> platformShowwindow = default, delegate*<ImGuiViewport*, Vector2, void> platformSetwindowpos = default, delegate*<ImGuiViewport*, Vector2> platformGetwindowpos = default, delegate*<ImGuiViewport*, Vector2, void> platformSetwindowsize = default, delegate*<ImGuiViewport*, Vector2> platformGetwindowsize = default, delegate*<ImGuiViewport*, void> platformSetwindowfocus = default, delegate*<ImGuiViewport*, bool> platformGetwindowfocus = default, delegate*<ImGuiViewport*, bool> platformGetwindowminimized = default, delegate*<ImGuiViewport*, byte*, void> platformSetwindowtitle = default, delegate*<ImGuiViewport*, float, void> platformSetwindowalpha = default, delegate*<ImGuiViewport*, void> platformUpdatewindow = default, delegate*<ImGuiViewport*, void*, void> platformRenderwindow = default, delegate*<ImGuiViewport*, void*, void> platformSwapbuffers = default, delegate*<ImGuiViewport*, float> platformGetwindowdpiscale = default, delegate*<ImGuiViewport*, void> platformOnchangedviewport = default, delegate*<ImGuiViewport*, Vector4> platformGetwindowworkareainsets = default, delegate*<ImGuiViewport*, ulong, void*, ulong*, int> platformCreatevksurface = default, delegate*<ImGuiViewport*, void> rendererCreatewindow = default, delegate*<ImGuiViewport*, void> rendererDestroywindow = default, delegate*<ImGuiViewport*, Vector2, void> rendererSetwindowsize = default, delegate*<ImGuiViewport*, void*, void> rendererRenderwindow = default, delegate*<ImGuiViewport*, void*, void> rendererSwapbuffers = default, ImVector<ImGuiPlatformMonitor> monitors = default, ImVector<ImGuiViewportPtr> viewports = default)
 		{
+			PlatformGetClipboardTextFn = (void*)platformGetclipboardtextfn;
+			PlatformSetClipboardTextFn = (void*)platformSetclipboardtextfn;
+			PlatformClipboardUserData = platformClipboarduserdata;
+			PlatformOpenInShellFn = (void*)platformOpeninshellfn;
+			PlatformOpenInShellUserData = platformOpeninshelluserdata;
+			PlatformSetImeDataFn = (void*)platformSetimedatafn;
+			PlatformImeUserData = platformImeuserdata;
+			PlatformLocaleDecimalPoint = platformLocaledecimalpoint;
 			PlatformCreateWindow = (void*)platformCreatewindow;
 			PlatformDestroyWindow = (void*)platformDestroywindow;
 			PlatformShowWindow = (void*)platformShowwindow;
@@ -170,6 +223,7 @@ namespace Hexa.NET.ImGui
 			PlatformSwapBuffers = (void*)platformSwapbuffers;
 			PlatformGetWindowDpiScale = (void*)platformGetwindowdpiscale;
 			PlatformOnChangedViewport = (void*)platformOnchangedviewport;
+			PlatformGetWindowWorkAreaInsets = (void*)platformGetwindowworkareainsets;
 			PlatformCreateVkSurface = (void*)platformCreatevksurface;
 			RendererCreateWindow = (void*)rendererCreatewindow;
 			RendererDestroyWindow = (void*)rendererDestroywindow;
@@ -238,6 +292,38 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public void* PlatformGetClipboardTextFn { get => Handle->PlatformGetClipboardTextFn; set => Handle->PlatformGetClipboardTextFn = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* PlatformSetClipboardTextFn { get => Handle->PlatformSetClipboardTextFn; set => Handle->PlatformSetClipboardTextFn = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* PlatformClipboardUserData { get => Handle->PlatformClipboardUserData; set => Handle->PlatformClipboardUserData = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* PlatformOpenInShellFn { get => Handle->PlatformOpenInShellFn; set => Handle->PlatformOpenInShellFn = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* PlatformOpenInShellUserData { get => Handle->PlatformOpenInShellUserData; set => Handle->PlatformOpenInShellUserData = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* PlatformSetImeDataFn { get => Handle->PlatformSetImeDataFn; set => Handle->PlatformSetImeDataFn = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* PlatformImeUserData { get => Handle->PlatformImeUserData; set => Handle->PlatformImeUserData = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref char PlatformLocaleDecimalPoint => ref Unsafe.AsRef<char>(&Handle->PlatformLocaleDecimalPoint);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public void* PlatformCreateWindow { get => Handle->PlatformCreateWindow; set => Handle->PlatformCreateWindow = value; }
 		/// <summary>
 		/// To be documented.
@@ -303,6 +389,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public void* PlatformOnChangedViewport { get => Handle->PlatformOnChangedViewport; set => Handle->PlatformOnChangedViewport = value; }
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public void* PlatformGetWindowWorkAreaInsets { get => Handle->PlatformGetWindowWorkAreaInsets; set => Handle->PlatformGetWindowWorkAreaInsets = value; }
 		/// <summary>
 		/// To be documented.
 		/// </summary>

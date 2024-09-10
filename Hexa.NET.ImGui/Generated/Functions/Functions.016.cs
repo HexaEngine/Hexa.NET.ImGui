@@ -21,6 +21,66 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static bool DragInt4(ref byte label, int* v, float vSpeed, int vMin, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				bool ret = DragInt4((byte*)plabel, v, vSpeed, vMin, (int)(0), (string)"%d", flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragInt4(ref byte label, int* v, float vSpeed, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				bool ret = DragInt4((byte*)plabel, v, vSpeed, (int)(0), (int)(0), (string)"%d", flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragInt4(ref byte label, int* v, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				bool ret = DragInt4((byte*)plabel, v, (float)(1.0f), (int)(0), (int)(0), (string)"%d", flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragInt4(ref byte label, int* v, int vMin, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				bool ret = DragInt4((byte*)plabel, v, (float)(1.0f), vMin, (int)(0), (string)"%d", flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static bool DragInt4(ref byte label, int* v, int vMin, int vMax, ImGuiSliderFlags flags)
+		{
+			fixed (byte* plabel = &label)
+			{
+				bool ret = DragInt4((byte*)plabel, v, (float)(1.0f), vMin, vMax, (string)"%d", flags);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public static bool DragInt4(ref byte label, int* v, float vSpeed, int vMin, byte* format, ImGuiSliderFlags flags)
 		{
 			fixed (byte* plabel = &label)
@@ -4954,66 +5014,6 @@ namespace Hexa.NET.ImGui
 				fixed (byte* pformat = &format)
 				{
 					byte ret = DragInt4Native(label, (int*)pv, (float)(1.0f), vMin, (int)(0), (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragInt4(byte* label, ref int v, int vMin, int vMax, ref byte format, ImGuiSliderFlags flags)
-		{
-			fixed (int* pv = &v)
-			{
-				fixed (byte* pformat = &format)
-				{
-					byte ret = DragInt4Native(label, (int*)pv, (float)(1.0f), vMin, vMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragInt4(byte* label, ReadOnlySpan<int> v, float vSpeed, int vMin, int vMax, ReadOnlySpan<byte> format, ImGuiSliderFlags flags)
-		{
-			fixed (int* pv = v)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = DragInt4Native(label, (int*)pv, vSpeed, vMin, vMax, (byte*)pformat, flags);
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragInt4(byte* label, ReadOnlySpan<int> v, float vSpeed, int vMin, int vMax, ReadOnlySpan<byte> format)
-		{
-			fixed (int* pv = v)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = DragInt4Native(label, (int*)pv, vSpeed, vMin, vMax, (byte*)pformat, (ImGuiSliderFlags)(0));
-					return ret != 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static bool DragInt4(byte* label, ReadOnlySpan<int> v, float vSpeed, int vMin, ReadOnlySpan<byte> format)
-		{
-			fixed (int* pv = v)
-			{
-				fixed (byte* pformat = format)
-				{
-					byte ret = DragInt4Native(label, (int*)pv, vSpeed, vMin, (int)(0), (byte*)pformat, (ImGuiSliderFlags)(0));
 					return ret != 0;
 				}
 			}

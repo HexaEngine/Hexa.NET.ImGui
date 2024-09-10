@@ -27,7 +27,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// Show an outer border and enable WindowPadding. (IMPORTANT: this is always == 1 == true for legacy reason)<br/>
 		/// </summary>
-		Border = unchecked(1),
+		Borders = unchecked(1),
 
 		/// <summary>
 		/// Pad with style.WindowPadding even if no border are drawn (no padding by default for non-bordered child windows because it makes more sense)<br/>

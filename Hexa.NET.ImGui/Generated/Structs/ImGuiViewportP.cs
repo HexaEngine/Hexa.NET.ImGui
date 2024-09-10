@@ -117,28 +117,28 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public Vector2 WorkOffsetMin;
+		public Vector2 WorkInsetMin;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public Vector2 WorkOffsetMax;
+		public Vector2 WorkInsetMax;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public Vector2 BuildWorkOffsetMin;
+		public Vector2 BuildWorkInsetMin;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public Vector2 BuildWorkOffsetMax;
+		public Vector2 BuildWorkInsetMax;
 
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiViewportP(ImGuiViewport imGuiViewport = default, ImGuiWindowPtr window = default, int idx = default, int lastFrameActive = default, int lastFocusedStampCount = default, uint lastNameHash = default, Vector2 lastPos = default, float alpha = default, float lastAlpha = default, bool lastFocusedHadNavWindow = default, short platformMonitor = default, int* bgFgDrawListsLastFrame = default, ImDrawListPtrPtr bgFgDrawLists = default, ImDrawData drawDataP = default, ImDrawDataBuilder drawDataBuilder = default, Vector2 lastPlatformPos = default, Vector2 lastPlatformSize = default, Vector2 lastRendererSize = default, Vector2 workOffsetMin = default, Vector2 workOffsetMax = default, Vector2 buildWorkOffsetMin = default, Vector2 buildWorkOffsetMax = default)
+		public unsafe ImGuiViewportP(ImGuiViewport imGuiViewport = default, ImGuiWindowPtr window = default, int idx = default, int lastFrameActive = default, int lastFocusedStampCount = default, uint lastNameHash = default, Vector2 lastPos = default, float alpha = default, float lastAlpha = default, bool lastFocusedHadNavWindow = default, short platformMonitor = default, int* bgFgDrawListsLastFrame = default, ImDrawListPtrPtr bgFgDrawLists = default, ImDrawData drawDataP = default, ImDrawDataBuilder drawDataBuilder = default, Vector2 lastPlatformPos = default, Vector2 lastPlatformSize = default, Vector2 lastRendererSize = default, Vector2 workInsetMin = default, Vector2 workInsetMax = default, Vector2 buildWorkInsetMin = default, Vector2 buildWorkInsetMax = default)
 		{
 			ImGuiViewport = imGuiViewport;
 			Window = window;
@@ -166,16 +166,16 @@ namespace Hexa.NET.ImGui
 			LastPlatformPos = lastPlatformPos;
 			LastPlatformSize = lastPlatformSize;
 			LastRendererSize = lastRendererSize;
-			WorkOffsetMin = workOffsetMin;
-			WorkOffsetMax = workOffsetMax;
-			BuildWorkOffsetMin = buildWorkOffsetMin;
-			BuildWorkOffsetMax = buildWorkOffsetMax;
+			WorkInsetMin = workInsetMin;
+			WorkInsetMax = workInsetMax;
+			BuildWorkInsetMin = buildWorkInsetMin;
+			BuildWorkInsetMax = buildWorkInsetMax;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiViewportP(ImGuiViewport imGuiViewport = default, ImGuiWindowPtr window = default, int idx = default, int lastFrameActive = default, int lastFocusedStampCount = default, uint lastNameHash = default, Vector2 lastPos = default, float alpha = default, float lastAlpha = default, bool lastFocusedHadNavWindow = default, short platformMonitor = default, Span<int> bgFgDrawListsLastFrame = default, Span<Pointer<ImDrawList>> bgFgDrawLists = default, ImDrawData drawDataP = default, ImDrawDataBuilder drawDataBuilder = default, Vector2 lastPlatformPos = default, Vector2 lastPlatformSize = default, Vector2 lastRendererSize = default, Vector2 workOffsetMin = default, Vector2 workOffsetMax = default, Vector2 buildWorkOffsetMin = default, Vector2 buildWorkOffsetMax = default)
+		public unsafe ImGuiViewportP(ImGuiViewport imGuiViewport = default, ImGuiWindowPtr window = default, int idx = default, int lastFrameActive = default, int lastFocusedStampCount = default, uint lastNameHash = default, Vector2 lastPos = default, float alpha = default, float lastAlpha = default, bool lastFocusedHadNavWindow = default, short platformMonitor = default, Span<int> bgFgDrawListsLastFrame = default, Span<Pointer<ImDrawList>> bgFgDrawLists = default, ImDrawData drawDataP = default, ImDrawDataBuilder drawDataBuilder = default, Vector2 lastPlatformPos = default, Vector2 lastPlatformSize = default, Vector2 lastRendererSize = default, Vector2 workInsetMin = default, Vector2 workInsetMax = default, Vector2 buildWorkInsetMin = default, Vector2 buildWorkInsetMax = default)
 		{
 			ImGuiViewport = imGuiViewport;
 			Window = window;
@@ -203,10 +203,10 @@ namespace Hexa.NET.ImGui
 			LastPlatformPos = lastPlatformPos;
 			LastPlatformSize = lastPlatformSize;
 			LastRendererSize = lastRendererSize;
-			WorkOffsetMin = workOffsetMin;
-			WorkOffsetMax = workOffsetMax;
-			BuildWorkOffsetMin = buildWorkOffsetMin;
-			BuildWorkOffsetMax = buildWorkOffsetMax;
+			WorkInsetMin = workInsetMin;
+			WorkInsetMax = workInsetMax;
+			BuildWorkInsetMin = buildWorkInsetMin;
+			BuildWorkInsetMax = buildWorkInsetMax;
 		}
 
 
@@ -348,19 +348,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref Vector2 WorkOffsetMin => ref Unsafe.AsRef<Vector2>(&Handle->WorkOffsetMin);
+		public ref Vector2 WorkInsetMin => ref Unsafe.AsRef<Vector2>(&Handle->WorkInsetMin);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref Vector2 WorkOffsetMax => ref Unsafe.AsRef<Vector2>(&Handle->WorkOffsetMax);
+		public ref Vector2 WorkInsetMax => ref Unsafe.AsRef<Vector2>(&Handle->WorkInsetMax);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref Vector2 BuildWorkOffsetMin => ref Unsafe.AsRef<Vector2>(&Handle->BuildWorkOffsetMin);
+		public ref Vector2 BuildWorkInsetMin => ref Unsafe.AsRef<Vector2>(&Handle->BuildWorkInsetMin);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref Vector2 BuildWorkOffsetMax => ref Unsafe.AsRef<Vector2>(&Handle->BuildWorkOffsetMax);
+		public ref Vector2 BuildWorkInsetMax => ref Unsafe.AsRef<Vector2>(&Handle->BuildWorkInsetMax);
 	}
 
 	/// <summary>

@@ -232,6 +232,17 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe void _SetTextureID(ImTextureID textureId)
+		{
+			fixed (ImDrawList* @this = &this)
+			{
+				ImGui._SetTextureIDNative(@this, textureId);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public unsafe void _TryMergeDrawCmds()
 		{
 			fixed (ImDrawList* @this = &this)
@@ -5822,6 +5833,14 @@ namespace Hexa.NET.ImGui
 		public unsafe void _ResetForNewFrame()
 		{
 			ImGui._ResetForNewFrameNative(Handle);
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public unsafe void _SetTextureID(ImTextureID textureId)
+		{
+			ImGui._SetTextureIDNative(Handle, textureId);
 		}
 
 		/// <summary>

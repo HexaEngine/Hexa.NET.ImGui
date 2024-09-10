@@ -35,7 +35,7 @@ namespace Hexa.NET.ImGui
 		IsPlatformMonitor = unchecked(2),
 
 		/// <summary>
-		/// Platform Window: Was createdmanaged by the user application? (rather than our backend)<br/>
+		/// Platform Window: Is createdmanaged by the user application? (rather than our backend)<br/>
 		/// </summary>
 		OwnedByApp = unchecked(4),
 

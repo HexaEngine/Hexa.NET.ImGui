@@ -20,7 +20,7 @@ namespace Hexa.NET.ImGui
 	/// Helpers: ImVec2ImVec4 operators<br/>
 	/// - It is important that we are keeping those disabled by default so they don't leak in user space.<br/>
 	/// - This is in order to allow user enabling implicit cast operators between ImVec2ImVec4 and their own types (using IM_VEC2_CLASS_EXTRA in imconfig.h)<br/>
-	/// - You can use '#define IMGUI_DEFINE_MATH_OPERATORS' to import our operators, provided as a courtesy.<br/>
+	/// - Add '#define IMGUI_DEFINE_MATH_OPERATORS' before including this file (or in imconfig.h) to access courtesy maths operators for ImVec2 and ImVec4.<br/>
 	/// Helpers macros to generate 32-bit encoded colors<br/>
 	/// User can declare their own format by #defining the 5 _SHIFT_MASK macros in their imconfig file.<br/>
 	/// Helper: ImColor() implicitly converts colors to either ImU32 (packed 4x1 byte) or ImVec4 (4x1 float)<br/>

@@ -24,9 +24,9 @@ namespace Hexa.NET.ImGui
 		internal static void DestroyNative(ImFont* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFont*, void>)vt[651])(self);
+			((delegate* unmanaged[Cdecl]<ImFont*, void>)vt[654])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[651])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[654])((nint)self);
 			#endif
 		}
 
@@ -55,9 +55,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFontGlyph* FindGlyphNative(ImFont* self, char c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFont*, char, ImFontGlyph*>)vt[652])(self, c);
+			return ((delegate* unmanaged[Cdecl]<ImFont*, char, ImFontGlyph*>)vt[655])(self, c);
 			#else
-			return (ImFontGlyph*)((delegate* unmanaged[Cdecl]<nint, char, nint>)vt[652])((nint)self, c);
+			return (ImFontGlyph*)((delegate* unmanaged[Cdecl]<nint, char, nint>)vt[655])((nint)self, c);
 			#endif
 		}
 
@@ -88,9 +88,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFontGlyph* FindGlyphNoFallbackNative(ImFont* self, char c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFont*, char, ImFontGlyph*>)vt[653])(self, c);
+			return ((delegate* unmanaged[Cdecl]<ImFont*, char, ImFontGlyph*>)vt[656])(self, c);
 			#else
-			return (ImFontGlyph*)((delegate* unmanaged[Cdecl]<nint, char, nint>)vt[653])((nint)self, c);
+			return (ImFontGlyph*)((delegate* unmanaged[Cdecl]<nint, char, nint>)vt[656])((nint)self, c);
 			#endif
 		}
 
@@ -121,9 +121,9 @@ namespace Hexa.NET.ImGui
 		internal static float GetCharAdvanceNative(ImFont* self, char c)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFont*, char, float>)vt[654])(self, c);
+			return ((delegate* unmanaged[Cdecl]<ImFont*, char, float>)vt[657])(self, c);
 			#else
-			return (float)((delegate* unmanaged[Cdecl]<nint, char, float>)vt[654])((nint)self, c);
+			return (float)((delegate* unmanaged[Cdecl]<nint, char, float>)vt[657])((nint)self, c);
 			#endif
 		}
 
@@ -154,9 +154,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsLoadedNative(ImFont* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFont*, byte>)vt[655])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFont*, byte>)vt[658])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[655])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[658])((nint)self);
 			#endif
 		}
 
@@ -187,9 +187,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* GetDebugNameNative(ImFont* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFont*, byte*>)vt[656])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFont*, byte*>)vt[659])(self);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[656])((nint)self);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[659])((nint)self);
 			#endif
 		}
 
@@ -241,9 +241,9 @@ namespace Hexa.NET.ImGui
 		internal static void CalcTextSizeANative(Vector2* pOut, ImFont* self, float size, float maxWidth, float wrapWidth, byte* textBegin, byte* textEnd, byte** remaining)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2*, ImFont*, float, float, float, byte*, byte*, byte**, void>)vt[657])(pOut, self, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
+			((delegate* unmanaged[Cdecl]<Vector2*, ImFont*, float, float, float, byte*, byte*, byte**, void>)vt[660])(pOut, self, size, maxWidth, wrapWidth, textBegin, textEnd, remaining);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, float, float, float, nint, nint, nint, void>)vt[657])((nint)pOut, (nint)self, size, maxWidth, wrapWidth, (nint)textBegin, (nint)textEnd, (nint)remaining);
+			((delegate* unmanaged[Cdecl]<nint, nint, float, float, float, nint, nint, nint, void>)vt[660])((nint)pOut, (nint)self, size, maxWidth, wrapWidth, (nint)textBegin, (nint)textEnd, (nint)remaining);
 			#endif
 		}
 

@@ -22,7 +22,7 @@
       "above": "// Flags for InvisibleButton() [extended in imgui_internal.h]"
     },
     "ImGuiChildFlags_": {
-      "above": "// Flags for ImGui::BeginChild()\n// (Legacy: bit 0 must always correspond to ImGuiChildFlags_Border to be backward compatible with old API using 'bool border = false'.\n// About using AutoResizeX/AutoResizeY flags:\n// - May be combined with SetNextWindowSizeConstraints() to set a min/max size for each axis (see \"Demo->Child->Auto-resize with Constraints\").\n// - Size measurement for a given axis is only performed when the child window is within visible boundaries, or is just appearing.\n//   - This allows BeginChild() to return false when not within boundaries (e.g. when scrolling), which is more optimal. BUT it won't update its auto-size while clipped.\n//     While not perfect, it is a better default behavior as the always-on performance gain is more valuable than the occasional \"resizing after becoming visible again\" glitch.\n//   - You may also use ImGuiChildFlags_AlwaysAutoResize to force an update even when child window is not in view.\n//     HOWEVER PLEASE UNDERSTAND THAT DOING SO WILL PREVENT BeginChild() FROM EVER RETURNING FALSE, disabling benefits of coarse clipping."
+      "above": "// Flags for ImGui::BeginChild()\n// (Legacy: bit 0 must always correspond to ImGuiChildFlags_Borders to be backward compatible with old API using 'bool border = false'.\n// About using AutoResizeX/AutoResizeY flags:\n// - May be combined with SetNextWindowSizeConstraints() to set a min/max size for each axis (see \"Demo->Child->Auto-resize with Constraints\").\n// - Size measurement for a given axis is only performed when the child window is within visible boundaries, or is just appearing.\n//   - This allows BeginChild() to return false when not within boundaries (e.g. when scrolling), which is more optimal. BUT it won't update its auto-size while clipped.\n//     While not perfect, it is a better default behavior as the always-on performance gain is more valuable than the occasional \"resizing after becoming visible again\" glitch.\n//   - You may also use ImGuiChildFlags_AlwaysAutoResize to force an update even when child window is not in view.\n//     HOWEVER PLEASE UNDERSTAND THAT DOING SO WILL PREVENT BeginChild() FROM EVER RETURNING FALSE, disabling benefits of coarse clipping."
     },
     "ImGuiCol_": {
       "above": "// Enumeration for PushStyleColor() / PopStyleColor()"
@@ -586,7 +586,7 @@
       {
         "calc_value": 1,
         "comment": "// Show an outer border and enable WindowPadding. (IMPORTANT: this is always == 1 == true for legacy reason)",
-        "name": "ImGuiChildFlags_Border",
+        "name": "ImGuiChildFlags_Borders",
         "value": "1 << 0"
       },
       {
@@ -1667,12 +1667,12 @@
       {
         "calc_value": 196640,
         "name": "ImGuiDockNodeFlags_NoResizeFlagsMask_",
-        "value": "ImGuiDockNodeFlags_NoResize | ImGuiDockNodeFlags_NoResizeX | ImGuiDockNodeFlags_NoResizeY"
+        "value": "(int)ImGuiDockNodeFlags_NoResize | ImGuiDockNodeFlags_NoResizeX | ImGuiDockNodeFlags_NoResizeY"
       },
       {
         "calc_value": 260208,
         "name": "ImGuiDockNodeFlags_LocalFlagsTransferMask_",
-        "value": "ImGuiDockNodeFlags_NoDockingSplit | ImGuiDockNodeFlags_NoResizeFlagsMask_ | ImGuiDockNodeFlags_AutoHideTabBar | ImGuiDockNodeFlags_CentralNode | ImGuiDockNodeFlags_NoTabBar | ImGuiDockNodeFlags_HiddenTabBar | ImGuiDockNodeFlags_NoWindowMenuButton | ImGuiDockNodeFlags_NoCloseButton"
+        "value": "(int)ImGuiDockNodeFlags_NoDockingSplit | ImGuiDockNodeFlags_NoResizeFlagsMask_ | (int)ImGuiDockNodeFlags_AutoHideTabBar | ImGuiDockNodeFlags_CentralNode | ImGuiDockNodeFlags_NoTabBar | ImGuiDockNodeFlags_HiddenTabBar | ImGuiDockNodeFlags_NoWindowMenuButton | ImGuiDockNodeFlags_NoCloseButton"
       },
       {
         "calc_value": 261152,
@@ -4999,7 +4999,7 @@
       },
       {
         "calc_value": 4096,
-        "comment": "// TableHeadersRow() will not submit horizontal label for this column. Convenient for some small columns. Name will still appear in context menu or in angled headers.",
+        "comment": "// TableHeadersRow() will submit an empty label for this column. Convenient for some small columns. Name will still appear in context menu or in angled headers. You may append into this cell by calling TableSetColumnIndex() right after the TableHeadersRow() call.",
         "name": "ImGuiTableColumnFlags_NoHeaderLabel",
         "value": "1 << 12"
       },
@@ -5357,6 +5357,11 @@
         "comment": "// FIXME-WIP: Turn Down arrow into an Up arrow, but reversed trees (#6517)",
         "name": "ImGuiTreeNodeFlags_UpsideDownArrow",
         "value": "1 << 29"
+      },
+      {
+        "calc_value": 192,
+        "name": "ImGuiTreeNodeFlags_OpenOnMask_",
+        "value": "ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_OpenOnArrow"
       }
     ],
     "ImGuiTreeNodeFlags_": [
@@ -5403,13 +5408,13 @@
       },
       {
         "calc_value": 64,
-        "comment": "// Need double-click to open node",
+        "comment": "// Open on double-click instead of simple click (default for multi-select unless any _OpenOnXXX behavior is set explicitly). Both behaviors may be combined.",
         "name": "ImGuiTreeNodeFlags_OpenOnDoubleClick",
         "value": "1 << 6"
       },
       {
         "calc_value": 128,
-        "comment": "// Only open when clicking on the arrow part. If ImGuiTreeNodeFlags_OpenOnDoubleClick is also set, single-click arrow or double-click all box to open.",
+        "comment": "// Open when clicking on the arrow part (default for multi-select unless any _OpenOnXXX behavior is set explicitly). Both behaviors may be combined.",
         "name": "ImGuiTreeNodeFlags_OpenOnArrow",
         "value": "1 << 7"
       },
@@ -5506,7 +5511,7 @@
       },
       {
         "calc_value": 4,
-        "comment": "// Platform Window: Was created/managed by the user application? (rather than our backend)",
+        "comment": "// Platform Window: Is created/managed by the user application? (rather than our backend)",
         "name": "ImGuiViewportFlags_OwnedByApp",
         "value": "1 << 2"
       },
@@ -5837,201 +5842,201 @@
   },
   "locations": {
     "ImBitVector": "imgui_internal:625",
-    "ImColor": "imgui:2837",
-    "ImDrawChannel": "imgui:3075",
-    "ImDrawCmd": "imgui:3034",
-    "ImDrawCmdHeader": "imgui:3067",
+    "ImColor": "imgui:2836",
+    "ImDrawChannel": "imgui:3074",
+    "ImDrawCmd": "imgui:3033",
+    "ImDrawCmdHeader": "imgui:3066",
     "ImDrawData": "imgui:3279",
     "ImDrawDataBuilder": "imgui_internal:814",
-    "ImDrawFlags_": "imgui:3101",
-    "ImDrawList": "imgui:3139",
-    "ImDrawListFlags_": "imgui:3121",
+    "ImDrawFlags_": "imgui:3100",
+    "ImDrawList": "imgui:3138",
+    "ImDrawListFlags_": "imgui:3120",
     "ImDrawListSharedData": "imgui_internal:790",
-    "ImDrawListSplitter": "imgui:3084",
-    "ImDrawVert": "imgui:3052",
+    "ImDrawListSplitter": "imgui:3083",
+    "ImDrawVert": "imgui:3051",
     "ImFont": "imgui:3502",
     "ImFontAtlas": "imgui:3398",
     "ImFontAtlasCustomRect": "imgui:3360",
     "ImFontAtlasFlags_": "imgui:3373",
-    "ImFontBuilderIO": "imgui_internal:3976",
+    "ImFontBuilderIO": "imgui_internal:3985",
     "ImFontConfig": "imgui:3303",
     "ImFontGlyph": "imgui:3333",
     "ImFontGlyphRangesBuilder": "imgui:3345",
-    "ImGuiActivateFlags_": "imgui_internal:1557",
-    "ImGuiAxis": "imgui_internal:1035",
-    "ImGuiBackendFlags_": "imgui:1670",
-    "ImGuiBoxSelectState": "imgui_internal:1740",
+    "ImGuiActivateFlags_": "imgui_internal:1558",
+    "ImGuiAxis": "imgui_internal:1036",
+    "ImGuiBackendFlags_": "imgui:1678",
+    "ImGuiBoxSelectState": "imgui_internal:1741",
     "ImGuiButtonFlagsPrivate_": "imgui_internal:929",
-    "ImGuiButtonFlags_": "imgui:1803",
-    "ImGuiChildFlags_": "imgui:1145",
-    "ImGuiCol_": "imgui:1685",
-    "ImGuiColorEditFlags_": "imgui:1814",
-    "ImGuiColorMod": "imgui_internal:1049",
+    "ImGuiButtonFlags_": "imgui:1811",
+    "ImGuiChildFlags_": "imgui:1148",
+    "ImGuiCol_": "imgui:1693",
+    "ImGuiColorEditFlags_": "imgui:1822",
+    "ImGuiColorMod": "imgui_internal:1050",
     "ImGuiComboFlagsPrivate_": "imgui_internal:954",
-    "ImGuiComboFlags_": "imgui:1282",
-    "ImGuiComboPreviewData": "imgui_internal:1066",
-    "ImGuiCond_": "imgui:1916",
-    "ImGuiConfigFlags_": "imgui:1644",
-    "ImGuiContext": "imgui_internal:2183",
-    "ImGuiContextHook": "imgui_internal:2168",
-    "ImGuiContextHookType": "imgui_internal:2166",
-    "ImGuiDataAuthority_": "imgui_internal:1850",
+    "ImGuiComboFlags_": "imgui:1290",
+    "ImGuiComboPreviewData": "imgui_internal:1067",
+    "ImGuiCond_": "imgui:1924",
+    "ImGuiConfigFlags_": "imgui:1652",
+    "ImGuiContext": "imgui_internal:2190",
+    "ImGuiContextHook": "imgui_internal:2175",
+    "ImGuiContextHookType": "imgui_internal:2173",
+    "ImGuiDataAuthority_": "imgui_internal:1852",
     "ImGuiDataTypeInfo": "imgui_internal:840",
     "ImGuiDataTypePrivate_": "imgui_internal:849",
     "ImGuiDataTypeStorage": "imgui_internal:834",
-    "ImGuiDataType_": "imgui:1430",
+    "ImGuiDataType_": "imgui:1438",
     "ImGuiDataVarInfo": "imgui_internal:826",
-    "ImGuiDebugAllocEntry": "imgui_internal:2102",
-    "ImGuiDebugAllocInfo": "imgui_internal:2109",
-    "ImGuiDebugLogFlags_": "imgui_internal:2082",
-    "ImGuiDir": "imgui:1447",
-    "ImGuiDockContext": "imgui_internal:1952",
-    "ImGuiDockNode": "imgui_internal:1866",
-    "ImGuiDockNodeFlagsPrivate_": "imgui_internal:1821",
-    "ImGuiDockNodeFlags_": "imgui:1383",
-    "ImGuiDockNodeState": "imgui_internal:1857",
-    "ImGuiDragDropFlags_": "imgui:1402",
-    "ImGuiFocusRequestFlags_": "imgui_internal:998",
-    "ImGuiFocusScopeData": "imgui_internal:1637",
-    "ImGuiFocusedFlags_": "imgui:1329",
-    "ImGuiGroupData": "imgui_internal:1079",
+    "ImGuiDebugAllocEntry": "imgui_internal:2109",
+    "ImGuiDebugAllocInfo": "imgui_internal:2116",
+    "ImGuiDebugLogFlags_": "imgui_internal:2089",
+    "ImGuiDir": "imgui:1455",
+    "ImGuiDockContext": "imgui_internal:1954",
+    "ImGuiDockNode": "imgui_internal:1868",
+    "ImGuiDockNodeFlagsPrivate_": "imgui_internal:1822",
+    "ImGuiDockNodeFlags_": "imgui:1391",
+    "ImGuiDockNodeState": "imgui_internal:1859",
+    "ImGuiDragDropFlags_": "imgui:1410",
+    "ImGuiFocusRequestFlags_": "imgui_internal:999",
+    "ImGuiFocusScopeData": "imgui_internal:1638",
+    "ImGuiFocusedFlags_": "imgui:1337",
+    "ImGuiGroupData": "imgui_internal:1080",
     "ImGuiHoveredFlagsPrivate_": "imgui_internal:911",
-    "ImGuiHoveredFlags_": "imgui:1343",
-    "ImGuiIDStackTool": "imgui_internal:2149",
-    "ImGuiIO": "imgui:2287",
-    "ImGuiInputEvent": "imgui_internal:1417",
-    "ImGuiInputEventAppFocused": "imgui_internal:1415",
-    "ImGuiInputEventKey": "imgui_internal:1413",
-    "ImGuiInputEventMouseButton": "imgui_internal:1411",
-    "ImGuiInputEventMousePos": "imgui_internal:1409",
-    "ImGuiInputEventMouseViewport": "imgui_internal:1412",
-    "ImGuiInputEventMouseWheel": "imgui_internal:1410",
-    "ImGuiInputEventText": "imgui_internal:1414",
-    "ImGuiInputEventType": "imgui_internal:1385",
-    "ImGuiInputFlagsPrivate_": "imgui_internal:1484",
-    "ImGuiInputFlags_": "imgui:1609",
-    "ImGuiInputSource": "imgui_internal:1398",
-    "ImGuiInputTextCallbackData": "imgui:2516",
-    "ImGuiInputTextDeactivatedState": "imgui_internal:1115",
+    "ImGuiHoveredFlags_": "imgui:1351",
+    "ImGuiIDStackTool": "imgui_internal:2156",
+    "ImGuiIO": "imgui:2297",
+    "ImGuiInputEvent": "imgui_internal:1418",
+    "ImGuiInputEventAppFocused": "imgui_internal:1416",
+    "ImGuiInputEventKey": "imgui_internal:1414",
+    "ImGuiInputEventMouseButton": "imgui_internal:1412",
+    "ImGuiInputEventMousePos": "imgui_internal:1410",
+    "ImGuiInputEventMouseViewport": "imgui_internal:1413",
+    "ImGuiInputEventMouseWheel": "imgui_internal:1411",
+    "ImGuiInputEventText": "imgui_internal:1415",
+    "ImGuiInputEventType": "imgui_internal:1386",
+    "ImGuiInputFlagsPrivate_": "imgui_internal:1485",
+    "ImGuiInputFlags_": "imgui:1617",
+    "ImGuiInputSource": "imgui_internal:1399",
+    "ImGuiInputTextCallbackData": "imgui:2515",
+    "ImGuiInputTextDeactivatedState": "imgui_internal:1116",
     "ImGuiInputTextFlagsPrivate_": "imgui_internal:919",
-    "ImGuiInputTextFlags_": "imgui:1173",
-    "ImGuiInputTextState": "imgui_internal:1125",
+    "ImGuiInputTextFlags_": "imgui:1181",
+    "ImGuiInputTextState": "imgui_internal:1126",
     "ImGuiItemFlagsPrivate_": "imgui_internal:863",
-    "ImGuiItemFlags_": "imgui:1161",
+    "ImGuiItemFlags_": "imgui:1169",
     "ImGuiItemStatusFlags_": "imgui_internal:885",
-    "ImGuiKey": "imgui:1476",
-    "ImGuiKeyData": "imgui:2279",
-    "ImGuiKeyOwnerData": "imgui_internal:1471",
-    "ImGuiKeyRoutingData": "imgui_internal:1445",
-    "ImGuiKeyRoutingTable": "imgui_internal:1459",
-    "ImGuiLastItemData": "imgui_internal:1261",
-    "ImGuiLayoutType_": "imgui_internal:1019",
-    "ImGuiListClipper": "imgui:2745",
-    "ImGuiListClipperData": "imgui_internal:1541",
-    "ImGuiListClipperRange": "imgui_internal:1528",
-    "ImGuiLocEntry": "imgui_internal:2071",
-    "ImGuiLocKey": "imgui_internal:2054",
-    "ImGuiLogType": "imgui_internal:1025",
-    "ImGuiMenuColumns": "imgui_internal:1097",
-    "ImGuiMetricsConfig": "imgui_internal:2119",
-    "ImGuiMouseButton_": "imgui:1876",
-    "ImGuiMouseCursor_": "imgui:1886",
-    "ImGuiMouseSource": "imgui:1905",
-    "ImGuiMultiSelectFlags_": "imgui:2895",
-    "ImGuiMultiSelectIO": "imgui:2922",
-    "ImGuiMultiSelectState": "imgui_internal:1797",
-    "ImGuiMultiSelectTempData": "imgui_internal:1772",
-    "ImGuiNavHighlightFlags_": "imgui_internal:1582",
-    "ImGuiNavItemData": "imgui_internal:1620",
-    "ImGuiNavLayer": "imgui_internal:1612",
-    "ImGuiNavMoveFlags_": "imgui_internal:1590",
-    "ImGuiNextItemData": "imgui_internal:1241",
-    "ImGuiNextItemDataFlags_": "imgui_internal:1231",
-    "ImGuiNextWindowData": "imgui_internal:1202",
-    "ImGuiNextWindowDataFlags_": "imgui_internal:1183",
-    "ImGuiOldColumnData": "imgui_internal:1705",
-    "ImGuiOldColumnFlags_": "imgui_internal:1685",
-    "ImGuiOldColumns": "imgui_internal:1715",
-    "ImGuiOnceUponAFrame": "imgui:2616",
-    "ImGuiPayload": "imgui:2581",
-    "ImGuiPlatformIO": "imgui:3672",
-    "ImGuiPlatformImeData": "imgui:3745",
-    "ImGuiPlatformMonitor": "imgui:3735",
-    "ImGuiPlotType": "imgui_internal:1042",
-    "ImGuiPopupData": "imgui_internal:1342",
-    "ImGuiPopupFlags_": "imgui:1247",
-    "ImGuiPopupPositionPolicy": "imgui_internal:1334",
-    "ImGuiPtrOrIndex": "imgui_internal:1321",
-    "ImGuiScrollFlags_": "imgui_internal:1568",
+    "ImGuiKey": "imgui:1484",
+    "ImGuiKeyData": "imgui:2289",
+    "ImGuiKeyOwnerData": "imgui_internal:1472",
+    "ImGuiKeyRoutingData": "imgui_internal:1446",
+    "ImGuiKeyRoutingTable": "imgui_internal:1460",
+    "ImGuiLastItemData": "imgui_internal:1262",
+    "ImGuiLayoutType_": "imgui_internal:1020",
+    "ImGuiListClipper": "imgui:2744",
+    "ImGuiListClipperData": "imgui_internal:1542",
+    "ImGuiListClipperRange": "imgui_internal:1529",
+    "ImGuiLocEntry": "imgui_internal:2078",
+    "ImGuiLocKey": "imgui_internal:2061",
+    "ImGuiLogType": "imgui_internal:1026",
+    "ImGuiMenuColumns": "imgui_internal:1098",
+    "ImGuiMetricsConfig": "imgui_internal:2126",
+    "ImGuiMouseButton_": "imgui:1884",
+    "ImGuiMouseCursor_": "imgui:1894",
+    "ImGuiMouseSource": "imgui:1913",
+    "ImGuiMultiSelectFlags_": "imgui:2894",
+    "ImGuiMultiSelectIO": "imgui:2921",
+    "ImGuiMultiSelectState": "imgui_internal:1798",
+    "ImGuiMultiSelectTempData": "imgui_internal:1773",
+    "ImGuiNavHighlightFlags_": "imgui_internal:1583",
+    "ImGuiNavItemData": "imgui_internal:1621",
+    "ImGuiNavLayer": "imgui_internal:1613",
+    "ImGuiNavMoveFlags_": "imgui_internal:1591",
+    "ImGuiNextItemData": "imgui_internal:1242",
+    "ImGuiNextItemDataFlags_": "imgui_internal:1232",
+    "ImGuiNextWindowData": "imgui_internal:1203",
+    "ImGuiNextWindowDataFlags_": "imgui_internal:1184",
+    "ImGuiOldColumnData": "imgui_internal:1706",
+    "ImGuiOldColumnFlags_": "imgui_internal:1686",
+    "ImGuiOldColumns": "imgui_internal:1716",
+    "ImGuiOnceUponAFrame": "imgui:2615",
+    "ImGuiPayload": "imgui:2580",
+    "ImGuiPlatformIO": "imgui:3673",
+    "ImGuiPlatformImeData": "imgui:3772",
+    "ImGuiPlatformMonitor": "imgui:3762",
+    "ImGuiPlotType": "imgui_internal:1043",
+    "ImGuiPopupData": "imgui_internal:1343",
+    "ImGuiPopupFlags_": "imgui:1255",
+    "ImGuiPopupPositionPolicy": "imgui_internal:1335",
+    "ImGuiPtrOrIndex": "imgui_internal:1322",
+    "ImGuiScrollFlags_": "imgui_internal:1569",
     "ImGuiSelectableFlagsPrivate_": "imgui_internal:967",
-    "ImGuiSelectableFlags_": "imgui:1265",
-    "ImGuiSelectionBasicStorage": "imgui:2968",
-    "ImGuiSelectionExternalStorage": "imgui:2991",
-    "ImGuiSelectionRequest": "imgui:2942",
-    "ImGuiSelectionRequestType": "imgui:2934",
-    "ImGuiSeparatorFlags_": "imgui_internal:987",
-    "ImGuiSettingsHandler": "imgui_internal:2034",
-    "ImGuiShrinkWidthItem": "imgui_internal:1314",
-    "ImGuiSizeCallbackData": "imgui:2550",
+    "ImGuiSelectableFlags_": "imgui:1273",
+    "ImGuiSelectionBasicStorage": "imgui:2967",
+    "ImGuiSelectionExternalStorage": "imgui:2990",
+    "ImGuiSelectionRequest": "imgui:2941",
+    "ImGuiSelectionRequestType": "imgui:2933",
+    "ImGuiSeparatorFlags_": "imgui_internal:988",
+    "ImGuiSettingsHandler": "imgui_internal:2041",
+    "ImGuiShrinkWidthItem": "imgui_internal:1315",
+    "ImGuiSizeCallbackData": "imgui:2549",
     "ImGuiSliderFlagsPrivate_": "imgui_internal:960",
-    "ImGuiSliderFlags_": "imgui:1860",
-    "ImGuiSortDirection": "imgui:1458",
-    "ImGuiStackLevelInfo": "imgui_internal:2137",
-    "ImGuiStackSizes": "imgui_internal:1288",
-    "ImGuiStorage": "imgui:2688",
-    "ImGuiStoragePair": "imgui:2671",
-    "ImGuiStyle": "imgui:2203",
-    "ImGuiStyleMod": "imgui_internal:1056",
-    "ImGuiStyleVar_": "imgui:1762",
-    "ImGuiTabBar": "imgui_internal:3007",
-    "ImGuiTabBarFlagsPrivate_": "imgui_internal:2970",
-    "ImGuiTabBarFlags_": "imgui:1297",
-    "ImGuiTabItem": "imgui_internal:2987",
-    "ImGuiTabItemFlagsPrivate_": "imgui_internal:2978",
-    "ImGuiTabItemFlags_": "imgui:1314",
-    "ImGuiTable": "imgui_internal:3152",
-    "ImGuiTableBgTarget_": "imgui:2057",
-    "ImGuiTableCellData": "imgui_internal:3120",
-    "ImGuiTableColumn": "imgui_internal:3061",
-    "ImGuiTableColumnFlags_": "imgui:2004",
-    "ImGuiTableColumnSettings": "imgui_internal:3299",
-    "ImGuiTableColumnSortSpecs": "imgui:2079",
-    "ImGuiTableFlags_": "imgui:1951",
-    "ImGuiTableHeaderData": "imgui_internal:3129",
-    "ImGuiTableInstanceData": "imgui_internal:3139",
-    "ImGuiTableRowFlags_": "imgui:2042",
-    "ImGuiTableSettings": "imgui_internal:3323",
-    "ImGuiTableSortSpecs": "imgui:2069",
-    "ImGuiTableTempData": "imgui_internal:3276",
-    "ImGuiTextBuffer": "imgui:2651",
-    "ImGuiTextFilter": "imgui:2624",
-    "ImGuiTextFlags_": "imgui_internal:1005",
+    "ImGuiSliderFlags_": "imgui:1868",
+    "ImGuiSortDirection": "imgui:1466",
+    "ImGuiStackLevelInfo": "imgui_internal:2144",
+    "ImGuiStackSizes": "imgui_internal:1289",
+    "ImGuiStorage": "imgui:2687",
+    "ImGuiStoragePair": "imgui:2670",
+    "ImGuiStyle": "imgui:2211",
+    "ImGuiStyleMod": "imgui_internal:1057",
+    "ImGuiStyleVar_": "imgui:1770",
+    "ImGuiTabBar": "imgui_internal:3015",
+    "ImGuiTabBarFlagsPrivate_": "imgui_internal:2978",
+    "ImGuiTabBarFlags_": "imgui:1305",
+    "ImGuiTabItem": "imgui_internal:2995",
+    "ImGuiTabItemFlagsPrivate_": "imgui_internal:2986",
+    "ImGuiTabItemFlags_": "imgui:1322",
+    "ImGuiTable": "imgui_internal:3161",
+    "ImGuiTableBgTarget_": "imgui:2065",
+    "ImGuiTableCellData": "imgui_internal:3129",
+    "ImGuiTableColumn": "imgui_internal:3069",
+    "ImGuiTableColumnFlags_": "imgui:2012",
+    "ImGuiTableColumnSettings": "imgui_internal:3308",
+    "ImGuiTableColumnSortSpecs": "imgui:2087",
+    "ImGuiTableFlags_": "imgui:1959",
+    "ImGuiTableHeaderData": "imgui_internal:3138",
+    "ImGuiTableInstanceData": "imgui_internal:3148",
+    "ImGuiTableRowFlags_": "imgui:2050",
+    "ImGuiTableSettings": "imgui_internal:3332",
+    "ImGuiTableSortSpecs": "imgui:2077",
+    "ImGuiTableTempData": "imgui_internal:3285",
+    "ImGuiTextBuffer": "imgui:2650",
+    "ImGuiTextFilter": "imgui:2623",
+    "ImGuiTextFlags_": "imgui_internal:1006",
     "ImGuiTextIndex": "imgui_internal:745",
-    "ImGuiTextRange": "imgui:2634",
-    "ImGuiTooltipFlags_": "imgui_internal:1011",
+    "ImGuiTextRange": "imgui:2633",
+    "ImGuiTooltipFlags_": "imgui_internal:1012",
     "ImGuiTreeNodeFlagsPrivate_": "imgui_internal:981",
-    "ImGuiTreeNodeFlags_": "imgui:1212",
-    "ImGuiTreeNodeStackData": "imgui_internal:1280",
-    "ImGuiTypingSelectFlags_": "imgui_internal:1648",
-    "ImGuiTypingSelectRequest": "imgui_internal:1656",
-    "ImGuiTypingSelectState": "imgui_internal:1667",
+    "ImGuiTreeNodeFlags_": "imgui:1220",
+    "ImGuiTreeNodeStackData": "imgui_internal:1281",
+    "ImGuiTypingSelectFlags_": "imgui_internal:1649",
+    "ImGuiTypingSelectRequest": "imgui_internal:1657",
+    "ImGuiTypingSelectState": "imgui_internal:1668",
     "ImGuiViewport": "imgui:3588",
     "ImGuiViewportFlags_": "imgui:3560",
-    "ImGuiViewportP": "imgui_internal:1969",
-    "ImGuiWindow": "imgui_internal:2819",
-    "ImGuiWindowClass": "imgui:2565",
-    "ImGuiWindowDockStyle": "imgui_internal:1947",
-    "ImGuiWindowDockStyleCol": "imgui_internal:1933",
-    "ImGuiWindowFlags_": "imgui:1094",
-    "ImGuiWindowRefreshFlags_": "imgui_internal:1174",
-    "ImGuiWindowSettings": "imgui_internal:2015",
-    "ImGuiWindowStackData": "imgui_internal:1306",
-    "ImGuiWindowTempData": "imgui_internal:2769",
+    "ImGuiViewportP": "imgui_internal:1971",
+    "ImGuiWindow": "imgui_internal:2826",
+    "ImGuiWindowClass": "imgui:2564",
+    "ImGuiWindowDockStyle": "imgui_internal:1949",
+    "ImGuiWindowDockStyleCol": "imgui_internal:1935",
+    "ImGuiWindowFlags_": "imgui:1097",
+    "ImGuiWindowRefreshFlags_": "imgui_internal:1175",
+    "ImGuiWindowSettings": "imgui_internal:2022",
+    "ImGuiWindowStackData": "imgui_internal:1307",
+    "ImGuiWindowTempData": "imgui_internal:2776",
     "ImRect": "imgui_internal:547",
     "ImVec1": "imgui_internal:529",
-    "ImVec2": "imgui:292",
+    "ImVec2": "imgui:293",
     "ImVec2ih": "imgui_internal:537",
-    "ImVec4": "imgui:305",
+    "ImVec4": "imgui:306",
     "STB_TexteditState": "imstb_textedit:321",
     "StbTexteditRow": "imstb_textedit:368",
     "StbUndoRecord": "imstb_textedit:303",
@@ -6042,7 +6047,7 @@
       "above": "// Helper: ImBitVector\n// Store 1-bit per value."
     },
     "ImColor": {
-      "above": "// Helpers: ImVec2/ImVec4 operators\n// - It is important that we are keeping those disabled by default so they don't leak in user space.\n// - This is in order to allow user enabling implicit cast operators between ImVec2/ImVec4 and their own types (using IM_VEC2_CLASS_EXTRA in imconfig.h)\n// - You can use '#define IMGUI_DEFINE_MATH_OPERATORS' to import our operators, provided as a courtesy.\n// Helpers macros to generate 32-bit encoded colors\n// User can declare their own format by #defining the 5 _SHIFT/_MASK macros in their imconfig file.\n// Helper: ImColor() implicitly converts colors to either ImU32 (packed 4x1 byte) or ImVec4 (4x1 float)\n// Prefer using IM_COL32() macros if you want a guaranteed compile-time ImU32 for usage with ImDrawList API.\n// **Avoid storing ImColor! Store either u32 of ImVec4. This is not a full-featured color class. MAY OBSOLETE.\n// **None of the ImGui API are using ImColor directly but you can use it as a convenience to pass colors in either ImU32 or ImVec4 formats. Explicitly cast to ImU32 or ImVec4 if needed."
+      "above": "// Helpers: ImVec2/ImVec4 operators\n// - It is important that we are keeping those disabled by default so they don't leak in user space.\n// - This is in order to allow user enabling implicit cast operators between ImVec2/ImVec4 and their own types (using IM_VEC2_CLASS_EXTRA in imconfig.h)\n// - Add '#define IMGUI_DEFINE_MATH_OPERATORS' before including this file (or in imconfig.h) to access courtesy maths operators for ImVec2 and ImVec4.\n// Helpers macros to generate 32-bit encoded colors\n// User can declare their own format by #defining the 5 _SHIFT/_MASK macros in their imconfig file.\n// Helper: ImColor() implicitly converts colors to either ImU32 (packed 4x1 byte) or ImVec4 (4x1 float)\n// Prefer using IM_COL32() macros if you want a guaranteed compile-time ImU32 for usage with ImDrawList API.\n// **Avoid storing ImColor! Store either u32 of ImVec4. This is not a full-featured color class. MAY OBSOLETE.\n// **None of the ImGui API are using ImColor directly but you can use it as a convenience to pass colors in either ImU32 or ImVec4 formats. Explicitly cast to ImU32 or ImVec4 if needed."
     },
     "ImDrawChannel": {
       "above": "// [Internal] For use by ImDrawListSplitter"
@@ -6165,10 +6170,10 @@
       "above": "// Data payload for Drag and Drop operations: AcceptDragDropPayload(), GetDragDropPayload()"
     },
     "ImGuiPlatformIO": {
-      "above": "// (Optional) Access via ImGui::GetPlatformIO()"
+      "above": "// Access via ImGui::GetPlatformIO()"
     },
     "ImGuiPlatformImeData": {
-      "above": "// (Optional) Support for IME (Input Method Editor) via the io.PlatformSetImeDataFn() function."
+      "above": "// (Optional) Support for IME (Input Method Editor) via the platform_io.Platform_SetImeDataFn() function."
     },
     "ImGuiPlatformMonitor": {
       "above": "// (Optional) This is required when enabling multi-viewport. Represent the bounds of each connected monitor/display and their DPI.\n// We use this information for multiple DPI support + clamping the position of popups and tooltips so they don't straddle multiple monitors."
@@ -6721,7 +6726,7 @@
       {
         "comment": {
           "above": "\n    // Members: Hot ~20/24 bytes (for CalcTextSize)",
-          "sameline": "// 12-16 // out //            // Sparse. Glyphs->AdvanceX in a directly indexable way (cache-friendly for CalcTextSize functions which only this this info, and are often bottleneck in large UI)."
+          "sameline": "// 12-16 // out //            // Sparse. Glyphs->AdvanceX in a directly indexable way (cache-friendly for CalcTextSize functions which only this info, and are often bottleneck in large UI)."
         },
         "name": "IndexAdvanceX",
         "template_type": "float",
@@ -9023,7 +9028,7 @@
       },
       {
         "comment": {
-          "sameline": "// Previous frame data. When changed we call the io.PlatformSetImeDataFn() handler."
+          "sameline": "// Previous frame data. When changed we call the platform_io.Platform_SetImeDataFn() handler."
         },
         "name": "PlatformImeDataPrev",
         "type": "ImGuiPlatformImeData"
@@ -10165,47 +10170,6 @@
       },
       {
         "comment": {
-          "above": "    // Optional: Access OS clipboard\n    // (default to use native Win32 clipboard on Windows, otherwise uses a private clipboard. Override to access OS clipboard on other architectures)"
-        },
-        "name": "GetClipboardTextFn",
-        "type": "const char*(*)(void* user_data)"
-      },
-      {
-        "name": "SetClipboardTextFn",
-        "type": "void(*)(void* user_data,const char* text)"
-      },
-      {
-        "name": "ClipboardUserData",
-        "type": "void*"
-      },
-      {
-        "comment": {
-          "above": "    // Optional: Open link/folder/file in OS Shell\n    // (default to use ShellExecuteA() on Windows, system() on Linux/Mac)"
-        },
-        "name": "PlatformOpenInShellFn",
-        "type": "bool(*)(ImGuiContext* ctx,const char* path)"
-      },
-      {
-        "name": "PlatformOpenInShellUserData",
-        "type": "void*"
-      },
-      {
-        "comment": {
-          "above": "    // Optional: Notify OS Input Method Editor of the screen position of your cursor for text input position (e.g. when using Japanese/Chinese IME on Windows)\n    // (default to use native imm32 api on Windows)"
-        },
-        "name": "PlatformSetImeDataFn",
-        "type": "void(*)(ImGuiContext* ctx,ImGuiViewport* viewport,ImGuiPlatformImeData* data)"
-      },
-      {
-        "comment": {
-          "above": "    // Optional: Platform locale",
-          "sameline": "// '.'              // [Experimental] Configure decimal point e.g. '.' or ',' useful for some languages (e.g. German), generally pulled from *localeconv()->decimal_point"
-        },
-        "name": "PlatformLocaleDecimalPoint",
-        "type": "ImWchar"
-      },
-      {
-        "comment": {
           "sameline": "// Set when Dear ImGui will use mouse inputs, in this case do not dispatch them to your main game/application (either way, always pass on mouse inputs to imgui). (e.g. unclicked mouse is hovering over an imgui window, widget is active, mouse was clicked over an imgui window, etc.)."
         },
         "name": "WantCaptureMouse",
@@ -10855,10 +10819,10 @@
       },
       {
         "comment": {
-          "sameline": "// horizontal scrolling/offset"
+          "sameline": "// horizontal offset (managed manually) + vertical scrolling (pulled from child window's own Scroll.y)"
         },
-        "name": "ScrollX",
-        "type": "float"
+        "name": "Scroll",
+        "type": "ImVec2"
       },
       {
         "comment": {
@@ -11928,7 +11892,52 @@
     "ImGuiPlatformIO": [
       {
         "comment": {
-          "above": "    // Platform function --------------------------------------------------- Called by -----",
+          "above": "    // Optional: Access OS clipboard\n    // (default to use native Win32 clipboard on Windows, otherwise uses a private clipboard. Override to access OS clipboard on other architectures)"
+        },
+        "name": "Platform_GetClipboardTextFn",
+        "type": "const char*(*)(ImGuiContext* ctx)"
+      },
+      {
+        "name": "Platform_SetClipboardTextFn",
+        "type": "void(*)(ImGuiContext* ctx,const char* text)"
+      },
+      {
+        "name": "Platform_ClipboardUserData",
+        "type": "void*"
+      },
+      {
+        "comment": {
+          "above": "    // Optional: Open link/folder/file in OS Shell\n    // (default to use ShellExecuteA() on Windows, system() on Linux/Mac)"
+        },
+        "name": "Platform_OpenInShellFn",
+        "type": "bool(*)(ImGuiContext* ctx,const char* path)"
+      },
+      {
+        "name": "Platform_OpenInShellUserData",
+        "type": "void*"
+      },
+      {
+        "comment": {
+          "above": "    // Optional: Notify OS Input Method Editor of the screen position of your cursor for text input position (e.g. when using Japanese/Chinese IME on Windows)\n    // (default to use native imm32 api on Windows)"
+        },
+        "name": "Platform_SetImeDataFn",
+        "type": "void(*)(ImGuiContext* ctx,ImGuiViewport* viewport,ImGuiPlatformImeData* data)"
+      },
+      {
+        "name": "Platform_ImeUserData",
+        "type": "void*"
+      },
+      {
+        "comment": {
+          "above": "    // Optional: Platform locale\n    // [Experimental] Configure decimal point e.g. '.' or ',' useful for some languages (e.g. German), generally pulled from *localeconv()->decimal_point",
+          "sameline": "// '.'"
+        },
+        "name": "Platform_LocaleDecimalPoint",
+        "type": "ImWchar"
+      },
+      {
+        "comment": {
+          "above": "    // Platform Backend functions (e.g. Win32, GLFW, SDL) ------------------- Called by -----",
           "sameline": "// . . U . .  // Create a new platform window for the given viewport"
         },
         "name": "Platform_CreateWindow",
@@ -12048,6 +12057,13 @@
       },
       {
         "comment": {
+          "sameline": "// N . . . .  // (Optional) [BETA] Get initial work area inset for the viewport (won't be covered by main menu bar, dockspace over viewport etc.). Default to (0,0),(0,0). 'safeAreaInsets' in iOS land, 'DisplayCutout' in Android land."
+        },
+        "name": "Platform_GetWindowWorkAreaInsets",
+        "type": "ImVec4(*)(ImGuiViewport* vp)"
+      },
+      {
+        "comment": {
           "sameline": "// (Optional) For a Vulkan Renderer to call into Platform code (since the surface creation needs to tie them both)."
         },
         "name": "Platform_CreateVkSurface",
@@ -12055,7 +12071,7 @@
       },
       {
         "comment": {
-          "above": "    // (Optional) Renderer functions (e.g. DirectX, OpenGL, Vulkan)",
+          "above": "    // Renderer Backend functions (e.g. DirectX, OpenGL, Vulkan) ------------ Called by -----",
           "sameline": "// . . U . .  // Create swap chain, frame buffers etc. (called after Platform_CreateWindow)"
         },
         "name": "Renderer_CreateWindow",
@@ -13942,6 +13958,13 @@
       },
       {
         "comment": {
+          "sameline": "// Maximum width (FIXME: overwritten by each instance)"
+        },
+        "name": "WidthMax",
+        "type": "float"
+      },
+      {
+        "comment": {
           "sameline": "// Master width weight when (Flags & _WidthStretch). Often around ~1.0f initially."
         },
         "name": "StretchWeight",
@@ -14839,30 +14862,31 @@
       },
       {
         "comment": {
-          "sameline": "// Work Area: Offset from Pos to top-left corner of Work Area. Generally (0,0) or (0,+main_menu_bar_height). Work Area is Full Area but without menu-bars/status-bars (so WorkArea always fit inside Pos/Size!)"
+          "above": "    // Per-viewport work area\n    // - Insets are >= 0.0f values, distance from viewport corners to work area.\n    // - BeginMainMenuBar() and DockspaceOverViewport() tend to use work area to avoid stepping over existing contents.\n    // - Generally 'safeAreaInsets' in iOS land, 'DisplayCutout' in Android land.",
+          "sameline": "// Work Area inset locked for the frame. GetWorkRect() always fits within GetMainRect()."
         },
-        "name": "WorkOffsetMin",
+        "name": "WorkInsetMin",
         "type": "ImVec2"
       },
       {
         "comment": {
-          "sameline": "// Work Area: Offset from Pos+Size to bottom-right corner of Work Area. Generally (0,0) or (0,-status_bar_height)."
+          "sameline": "// \""
         },
-        "name": "WorkOffsetMax",
+        "name": "WorkInsetMax",
         "type": "ImVec2"
       },
       {
         "comment": {
-          "sameline": "// Work Area: Offset being built during current frame. Generally >= 0.0f."
+          "sameline": "// Work Area inset accumulator for current frame, to become next frame's WorkInset"
         },
-        "name": "BuildWorkOffsetMin",
+        "name": "BuildWorkInsetMin",
         "type": "ImVec2"
       },
       {
         "comment": {
-          "sameline": "// Work Area: Offset being built during current frame. Generally <= 0.0f."
+          "sameline": "// \""
         },
-        "name": "BuildWorkOffsetMax",
+        "name": "BuildWorkInsetMax",
         "type": "ImVec2"
       }
     ],

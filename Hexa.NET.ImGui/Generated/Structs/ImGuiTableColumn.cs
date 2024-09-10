@@ -55,6 +55,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public float WidthMax;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public float StretchWeight;
 
 		/// <summary>
@@ -231,7 +236,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiTableColumn(ImGuiTableColumnFlags flags = default, float widthGiven = default, float minX = default, float maxX = default, float widthRequest = default, float widthAuto = default, float stretchWeight = default, float initStretchWeightOrWidth = default, ImRect clipRect = default, uint userId = default, float workMinX = default, float workMaxX = default, float itemWidth = default, float contentMaxXFrozen = default, float contentMaxXUnfrozen = default, float contentMaxXHeadersUsed = default, float contentMaxXHeadersIdeal = default, short nameOffset = default, sbyte displayOrder = default, sbyte indexWithinEnabledSet = default, sbyte prevEnabledColumn = default, sbyte nextEnabledColumn = default, sbyte sortOrder = default, byte drawChannelCurrent = default, byte drawChannelFrozen = default, byte drawChannelUnfrozen = default, bool isEnabled = default, bool isUserEnabled = default, bool isUserEnabledNextFrame = default, bool isVisibleX = default, bool isVisibleY = default, bool isRequestOutput = default, bool isSkipItems = default, bool isPreserveWidthAuto = default, byte navLayerCurrent = default, byte autoFitQueue = default, byte cannotSkipItemsQueue = default, byte sortDirection = default, byte sortDirectionsAvailCount = default, byte sortDirectionsAvailMask = default, byte sortDirectionsAvailList = default)
+		public unsafe ImGuiTableColumn(ImGuiTableColumnFlags flags = default, float widthGiven = default, float minX = default, float maxX = default, float widthRequest = default, float widthAuto = default, float widthMax = default, float stretchWeight = default, float initStretchWeightOrWidth = default, ImRect clipRect = default, uint userId = default, float workMinX = default, float workMaxX = default, float itemWidth = default, float contentMaxXFrozen = default, float contentMaxXUnfrozen = default, float contentMaxXHeadersUsed = default, float contentMaxXHeadersIdeal = default, short nameOffset = default, sbyte displayOrder = default, sbyte indexWithinEnabledSet = default, sbyte prevEnabledColumn = default, sbyte nextEnabledColumn = default, sbyte sortOrder = default, byte drawChannelCurrent = default, byte drawChannelFrozen = default, byte drawChannelUnfrozen = default, bool isEnabled = default, bool isUserEnabled = default, bool isUserEnabledNextFrame = default, bool isVisibleX = default, bool isVisibleY = default, bool isRequestOutput = default, bool isSkipItems = default, bool isPreserveWidthAuto = default, byte navLayerCurrent = default, byte autoFitQueue = default, byte cannotSkipItemsQueue = default, byte sortDirection = default, byte sortDirectionsAvailCount = default, byte sortDirectionsAvailMask = default, byte sortDirectionsAvailList = default)
 		{
 			Flags = flags;
 			WidthGiven = widthGiven;
@@ -239,6 +244,7 @@ namespace Hexa.NET.ImGui
 			MaxX = maxX;
 			WidthRequest = widthRequest;
 			WidthAuto = widthAuto;
+			WidthMax = widthMax;
 			StretchWeight = stretchWeight;
 			InitStretchWeightOrWidth = initStretchWeightOrWidth;
 			ClipRect = clipRect;
@@ -344,6 +350,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref float WidthAuto => ref Unsafe.AsRef<float>(&Handle->WidthAuto);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref float WidthMax => ref Unsafe.AsRef<float>(&Handle->WidthMax);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

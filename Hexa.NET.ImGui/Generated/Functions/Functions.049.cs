@@ -24,9 +24,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFont* AddFontFromMemoryCompressedTTFNative(ImFontAtlas* self, void* compressedFontData, int compressedFontDataSize, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, void*, int, float, ImFontConfig*, char*, ImFont*>)vt[625])(self, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, void*, int, float, ImFontConfig*, char*, ImFont*>)vt[628])(self, compressedFontData, compressedFontDataSize, sizePixels, fontCfg, glyphRanges);
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, int, float, nint, nint, nint>)vt[625])((nint)self, (nint)compressedFontData, compressedFontDataSize, sizePixels, (nint)fontCfg, (nint)glyphRanges);
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, int, float, nint, nint, nint>)vt[628])((nint)self, (nint)compressedFontData, compressedFontDataSize, sizePixels, (nint)fontCfg, (nint)glyphRanges);
 			#endif
 		}
 
@@ -261,9 +261,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFont* AddFontFromMemoryCompressedBase85TTFNative(ImFontAtlas* self, byte* compressedFontDatabase85, float sizePixels, ImFontConfig* fontCfg, char* glyphRanges)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte*, float, ImFontConfig*, char*, ImFont*>)vt[626])(self, compressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte*, float, ImFontConfig*, char*, ImFont*>)vt[629])(self, compressedFontDatabase85, sizePixels, fontCfg, glyphRanges);
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, float, nint, nint, nint>)vt[626])((nint)self, (nint)compressedFontDatabase85, sizePixels, (nint)fontCfg, (nint)glyphRanges);
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint, nint, float, nint, nint, nint>)vt[629])((nint)self, (nint)compressedFontDatabase85, sizePixels, (nint)fontCfg, (nint)glyphRanges);
 			#endif
 		}
 
@@ -1659,9 +1659,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearInputDataNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)vt[627])(self);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)vt[630])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[627])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[630])((nint)self);
 			#endif
 		}
 
@@ -1690,9 +1690,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearTexDataNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)vt[628])(self);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)vt[631])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[628])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[631])((nint)self);
 			#endif
 		}
 
@@ -1721,9 +1721,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearFontsNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)vt[629])(self);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)vt[632])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[629])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[632])((nint)self);
 			#endif
 		}
 
@@ -1752,9 +1752,9 @@ namespace Hexa.NET.ImGui
 		internal static void ClearNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)vt[630])(self);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, void>)vt[633])(self);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[630])((nint)self);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[633])((nint)self);
 			#endif
 		}
 
@@ -1783,9 +1783,9 @@ namespace Hexa.NET.ImGui
 		internal static byte BuildNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte>)vt[631])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte>)vt[634])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[631])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[634])((nint)self);
 			#endif
 		}
 
@@ -1816,9 +1816,9 @@ namespace Hexa.NET.ImGui
 		internal static void GetTexDataAsAlpha8Native(ImFontAtlas* self, byte** outPixels, int* outWidth, int* outHeight, int* outBytesPerPixel)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte**, int*, int*, int*, void>)vt[632])(self, outPixels, outWidth, outHeight, outBytesPerPixel);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte**, int*, int*, int*, void>)vt[635])(self, outPixels, outWidth, outHeight, outBytesPerPixel);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, void>)vt[632])((nint)self, (nint)outPixels, (nint)outWidth, (nint)outHeight, (nint)outBytesPerPixel);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, void>)vt[635])((nint)self, (nint)outPixels, (nint)outWidth, (nint)outHeight, (nint)outBytesPerPixel);
 			#endif
 		}
 
@@ -2548,9 +2548,9 @@ namespace Hexa.NET.ImGui
 		internal static void GetTexDataAsRGBA32Native(ImFontAtlas* self, byte** outPixels, int* outWidth, int* outHeight, int* outBytesPerPixel)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte**, int*, int*, int*, void>)vt[633])(self, outPixels, outWidth, outHeight, outBytesPerPixel);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte**, int*, int*, int*, void>)vt[636])(self, outPixels, outWidth, outHeight, outBytesPerPixel);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, void>)vt[633])((nint)self, (nint)outPixels, (nint)outWidth, (nint)outHeight, (nint)outBytesPerPixel);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, nint, void>)vt[636])((nint)self, (nint)outPixels, (nint)outWidth, (nint)outHeight, (nint)outBytesPerPixel);
 			#endif
 		}
 
@@ -3280,9 +3280,9 @@ namespace Hexa.NET.ImGui
 		internal static byte IsBuiltNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte>)vt[634])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, byte>)vt[637])(self);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[634])((nint)self);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[637])((nint)self);
 			#endif
 		}
 
@@ -3313,9 +3313,9 @@ namespace Hexa.NET.ImGui
 		internal static void SetTexIDNative(ImFontAtlas* self, ImTextureID id)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImTextureID, void>)vt[635])(self, id);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImTextureID, void>)vt[638])(self, id);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, ImTextureID, void>)vt[635])((nint)self, id);
+			((delegate* unmanaged[Cdecl]<nint, ImTextureID, void>)vt[638])((nint)self, id);
 			#endif
 		}
 
@@ -3344,9 +3344,9 @@ namespace Hexa.NET.ImGui
 		internal static char* GetGlyphRangesDefaultNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[636])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[639])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[636])((nint)self);
+			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[639])((nint)self);
 			#endif
 		}
 
@@ -3377,9 +3377,9 @@ namespace Hexa.NET.ImGui
 		internal static char* GetGlyphRangesGreekNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[637])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[640])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[637])((nint)self);
+			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[640])((nint)self);
 			#endif
 		}
 
@@ -3410,9 +3410,9 @@ namespace Hexa.NET.ImGui
 		internal static char* GetGlyphRangesKoreanNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[638])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[641])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[638])((nint)self);
+			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[641])((nint)self);
 			#endif
 		}
 
@@ -3443,9 +3443,9 @@ namespace Hexa.NET.ImGui
 		internal static char* GetGlyphRangesJapaneseNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[639])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[642])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[639])((nint)self);
+			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[642])((nint)self);
 			#endif
 		}
 
@@ -3476,9 +3476,9 @@ namespace Hexa.NET.ImGui
 		internal static char* GetGlyphRangesChineseFullNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[640])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[643])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[640])((nint)self);
+			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[643])((nint)self);
 			#endif
 		}
 
@@ -3509,9 +3509,9 @@ namespace Hexa.NET.ImGui
 		internal static char* GetGlyphRangesChineseSimplifiedCommonNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[641])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[644])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[641])((nint)self);
+			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[644])((nint)self);
 			#endif
 		}
 
@@ -3542,9 +3542,9 @@ namespace Hexa.NET.ImGui
 		internal static char* GetGlyphRangesCyrillicNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[642])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[645])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[642])((nint)self);
+			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[645])((nint)self);
 			#endif
 		}
 
@@ -3575,9 +3575,9 @@ namespace Hexa.NET.ImGui
 		internal static char* GetGlyphRangesThaiNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[643])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[646])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[643])((nint)self);
+			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[646])((nint)self);
 			#endif
 		}
 
@@ -3608,9 +3608,9 @@ namespace Hexa.NET.ImGui
 		internal static char* GetGlyphRangesVietnameseNative(ImFontAtlas* self)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[644])(self);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, char*>)vt[647])(self);
 			#else
-			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[644])((nint)self);
+			return (char*)((delegate* unmanaged[Cdecl]<nint, nint>)vt[647])((nint)self);
 			#endif
 		}
 
@@ -3641,9 +3641,9 @@ namespace Hexa.NET.ImGui
 		internal static int AddCustomRectRegularNative(ImFontAtlas* self, int width, int height)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, int, int>)vt[645])(self, width, height);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, int, int>)vt[648])(self, width, height);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, int, int>)vt[645])((nint)self, width, height);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, int, int>)vt[648])((nint)self, width, height);
 			#endif
 		}
 
@@ -3674,9 +3674,9 @@ namespace Hexa.NET.ImGui
 		internal static int AddCustomRectFontGlyphNative(ImFontAtlas* self, ImFont* font, char id, int width, int height, float advanceX, Vector2 offset)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, char, int, int, float, Vector2, int>)vt[646])(self, font, id, width, height, advanceX, offset);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFont*, char, int, int, float, Vector2, int>)vt[649])(self, font, id, width, height, advanceX, offset);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, nint, char, int, int, float, Vector2, int>)vt[646])((nint)self, (nint)font, id, width, height, advanceX, offset);
+			return (int)((delegate* unmanaged[Cdecl]<nint, nint, char, int, int, float, Vector2, int>)vt[649])((nint)self, (nint)font, id, width, height, advanceX, offset);
 			#endif
 		}
 
@@ -3782,9 +3782,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFontAtlasCustomRect* GetCustomRectByIndexNative(ImFontAtlas* self, int index)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, ImFontAtlasCustomRect*>)vt[647])(self, index);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, int, ImFontAtlasCustomRect*>)vt[650])(self, index);
 			#else
-			return (ImFontAtlasCustomRect*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[647])((nint)self, index);
+			return (ImFontAtlasCustomRect*)((delegate* unmanaged[Cdecl]<nint, int, nint>)vt[650])((nint)self, index);
 			#endif
 		}
 
@@ -3815,9 +3815,9 @@ namespace Hexa.NET.ImGui
 		internal static void CalcCustomRectUVNative(ImFontAtlas* self, ImFontAtlasCustomRect* rect, Vector2* outUvMin, Vector2* outUvMax)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontAtlasCustomRect*, Vector2*, Vector2*, void>)vt[648])(self, rect, outUvMin, outUvMax);
+			((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImFontAtlasCustomRect*, Vector2*, Vector2*, void>)vt[651])(self, rect, outUvMin, outUvMax);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, void>)vt[648])((nint)self, (nint)rect, (nint)outUvMin, (nint)outUvMax);
+			((delegate* unmanaged[Cdecl]<nint, nint, nint, nint, void>)vt[651])((nint)self, (nint)rect, (nint)outUvMin, (nint)outUvMax);
 			#endif
 		}
 
@@ -4051,9 +4051,9 @@ namespace Hexa.NET.ImGui
 		internal static byte GetMouseCursorTexDataNative(ImFontAtlas* self, ImGuiMouseCursor cursor, Vector2* outOffset, Vector2* outSize, Vector2* outUvBorder, Vector2* outUvFill)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImGuiMouseCursor, Vector2*, Vector2*, Vector2*, Vector2*, byte>)vt[649])(self, cursor, outOffset, outSize, outUvBorder, outUvFill);
+			return ((delegate* unmanaged[Cdecl]<ImFontAtlas*, ImGuiMouseCursor, Vector2*, Vector2*, Vector2*, Vector2*, byte>)vt[652])(self, cursor, outOffset, outSize, outUvBorder, outUvFill);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiMouseCursor, nint, nint, nint, nint, byte>)vt[649])((nint)self, cursor, (nint)outOffset, (nint)outSize, (nint)outUvBorder, (nint)outUvFill);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiMouseCursor, nint, nint, nint, nint, byte>)vt[652])((nint)self, cursor, (nint)outOffset, (nint)outSize, (nint)outUvBorder, (nint)outUvFill);
 			#endif
 		}
 
@@ -5011,9 +5011,9 @@ namespace Hexa.NET.ImGui
 		internal static ImFont* ImFontNative()
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImFont*>)vt[650])();
+			return ((delegate* unmanaged[Cdecl]<ImFont*>)vt[653])();
 			#else
-			return (ImFont*)((delegate* unmanaged[Cdecl]<nint>)vt[650])();
+			return (ImFont*)((delegate* unmanaged[Cdecl]<nint>)vt[653])();
 			#endif
 		}
 

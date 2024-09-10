@@ -70,7 +70,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public float ScrollX;
+		public Vector2 Scroll;
 
 		/// <summary>
 		/// To be documented.
@@ -121,7 +121,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, uint id = default, int curLenW = default, int curLenA = default, ImVector<char> textW = default, ImVector<byte> textA = default, ImVector<byte> initialTextA = default, bool textAIsValid = default, int bufCapacityA = default, float scrollX = default, STBTexteditState stb = default, float cursorAnim = default, bool cursorFollow = default, bool selectedAllMouseLock = default, bool edited = default, ImGuiInputTextFlags flags = default, bool reloadUserBuf = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
+		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, uint id = default, int curLenW = default, int curLenA = default, ImVector<char> textW = default, ImVector<byte> textA = default, ImVector<byte> initialTextA = default, bool textAIsValid = default, int bufCapacityA = default, Vector2 scroll = default, STBTexteditState stb = default, float cursorAnim = default, bool cursorFollow = default, bool selectedAllMouseLock = default, bool edited = default, ImGuiInputTextFlags flags = default, bool reloadUserBuf = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
 		{
 			Ctx = ctx;
 			ID = id;
@@ -132,7 +132,7 @@ namespace Hexa.NET.ImGui
 			InitialTextA = initialTextA;
 			TextAIsValid = textAIsValid ? (byte)1 : (byte)0;
 			BufCapacityA = bufCapacityA;
-			ScrollX = scrollX;
+			Scroll = scroll;
 			Stb = stb;
 			CursorAnim = cursorAnim;
 			CursorFollow = cursorFollow ? (byte)1 : (byte)0;
@@ -227,7 +227,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref float ScrollX => ref Unsafe.AsRef<float>(&Handle->ScrollX);
+		public ref Vector2 Scroll => ref Unsafe.AsRef<Vector2>(&Handle->Scroll);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

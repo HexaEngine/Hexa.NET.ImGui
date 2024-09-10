@@ -21,6 +21,72 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
 		/// </summary>
+		public static uint GetID(ReadOnlySpan<byte> strIdBegin, byte* strIdEnd)
+		{
+			fixed (byte* pstrIdBegin = strIdBegin)
+			{
+				uint ret = GetIDNative((byte*)pstrIdBegin, strIdEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		public static uint GetID(string strIdBegin, byte* strIdEnd)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (strIdBegin != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(strIdBegin);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(strIdBegin, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			uint ret = GetIDNative(pStr0, strIdEnd);
+			if (pStrSize0 >= Utils.MaxStackallocSize)
+			{
+				Utils.Free(pStr0);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		public static uint GetID(byte* strIdBegin, ref byte strIdEnd)
+		{
+			fixed (byte* pstrIdEnd = &strIdEnd)
+			{
+				uint ret = GetIDNative(strIdBegin, (byte*)pstrIdEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
+		public static uint GetID(byte* strIdBegin, ReadOnlySpan<byte> strIdEnd)
+		{
+			fixed (byte* pstrIdEnd = strIdEnd)
+			{
+				uint ret = GetIDNative(strIdBegin, (byte*)pstrIdEnd);
+				return ret;
+			}
+		}
+
+		/// <summary>
+		/// calculate unique ID (hash of whole ID stack + given parameter). e.g. if you want to query into ImGuiStorage yourself<br/>
+		/// </summary>
 		public static uint GetID(byte* strIdBegin, string strIdEnd)
 		{
 			byte* pStr0 = null;
@@ -135,9 +201,9 @@ namespace Hexa.NET.ImGui
 		internal static uint GetIDNative(void* ptrId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<void*, uint>)vt[127])(ptrId);
+			return ((delegate* unmanaged[Cdecl]<void*, uint>)vt[130])(ptrId);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)vt[127])((nint)ptrId);
+			return (uint)((delegate* unmanaged[Cdecl]<nint, uint>)vt[130])((nint)ptrId);
 			#endif
 		}
 
@@ -156,9 +222,9 @@ namespace Hexa.NET.ImGui
 		internal static uint GetIDNative(int intId)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, uint>)vt[128])(intId);
+			return ((delegate* unmanaged[Cdecl]<int, uint>)vt[131])(intId);
 			#else
-			return (uint)((delegate* unmanaged[Cdecl]<int, uint>)vt[128])(intId);
+			return (uint)((delegate* unmanaged[Cdecl]<int, uint>)vt[131])(intId);
 			#endif
 		}
 
@@ -177,9 +243,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextUnformattedNative(byte* text, byte* textEnd)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[129])(text, textEnd);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[132])(text, textEnd);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[129])((nint)text, (nint)textEnd);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[132])((nint)text, (nint)textEnd);
 			#endif
 		}
 
@@ -436,9 +502,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[130])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[133])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[130])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[133])((nint)fmt);
 			#endif
 		}
 
@@ -507,9 +573,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[131])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[134])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[131])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[134])((nint)fmt, args);
 			#endif
 		}
 
@@ -578,9 +644,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextColoredNative(Vector4 col, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4, byte*, void>)vt[132])(col, fmt);
+			((delegate* unmanaged[Cdecl]<Vector4, byte*, void>)vt[135])(col, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector4, nint, void>)vt[132])(col, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<Vector4, nint, void>)vt[135])(col, (nint)fmt);
 			#endif
 		}
 
@@ -649,9 +715,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextColoredVNative(Vector4 col, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector4, byte*, nuint, void>)vt[133])(col, fmt, args);
+			((delegate* unmanaged[Cdecl]<Vector4, byte*, nuint, void>)vt[136])(col, fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector4, nint, nuint, void>)vt[133])(col, (nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<Vector4, nint, nuint, void>)vt[136])(col, (nint)fmt, args);
 			#endif
 		}
 
@@ -720,9 +786,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextDisabledNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[134])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[137])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[134])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[137])((nint)fmt);
 			#endif
 		}
 
@@ -791,9 +857,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextDisabledVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[135])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[138])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[135])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[138])((nint)fmt, args);
 			#endif
 		}
 
@@ -862,9 +928,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextWrappedNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[136])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[139])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[136])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[139])((nint)fmt);
 			#endif
 		}
 
@@ -933,9 +999,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextWrappedVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[137])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[140])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[137])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[140])((nint)fmt, args);
 			#endif
 		}
 
@@ -1004,9 +1070,9 @@ namespace Hexa.NET.ImGui
 		internal static void LabelTextNative(byte* label, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[138])(label, fmt);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[141])(label, fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[138])((nint)label, (nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[141])((nint)label, (nint)fmt);
 			#endif
 		}
 
@@ -1204,9 +1270,9 @@ namespace Hexa.NET.ImGui
 		internal static void LabelTextVNative(byte* label, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, void>)vt[139])(label, fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, nuint, void>)vt[142])(label, fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)vt[139])((nint)label, (nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nint, nuint, void>)vt[142])((nint)label, (nint)fmt, args);
 			#endif
 		}
 
@@ -1404,9 +1470,9 @@ namespace Hexa.NET.ImGui
 		internal static void BulletTextNative(byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[140])(fmt);
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[143])(fmt);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[140])((nint)fmt);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[143])((nint)fmt);
 			#endif
 		}
 
@@ -1475,9 +1541,9 @@ namespace Hexa.NET.ImGui
 		internal static void BulletTextVNative(byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[141])(fmt, args);
+			((delegate* unmanaged[Cdecl]<byte*, nuint, void>)vt[144])(fmt, args);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[141])((nint)fmt, args);
+			((delegate* unmanaged[Cdecl]<nint, nuint, void>)vt[144])((nint)fmt, args);
 			#endif
 		}
 
@@ -1546,9 +1612,9 @@ namespace Hexa.NET.ImGui
 		internal static void SeparatorTextNative(byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, void>)vt[142])(label);
+			((delegate* unmanaged[Cdecl]<byte*, void>)vt[145])(label);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, void>)vt[142])((nint)label);
+			((delegate* unmanaged[Cdecl]<nint, void>)vt[145])((nint)label);
 			#endif
 		}
 
@@ -1617,9 +1683,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ButtonNative(byte* label, Vector2 size)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, byte>)vt[143])(label, size);
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, byte>)vt[146])(label, size);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, byte>)vt[143])((nint)label, size);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, byte>)vt[146])((nint)label, size);
 			#endif
 		}
 
@@ -1755,9 +1821,9 @@ namespace Hexa.NET.ImGui
 		internal static byte SmallButtonNative(byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte>)vt[144])(label);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)vt[147])(label);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[144])((nint)label);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[147])((nint)label);
 			#endif
 		}
 
@@ -1830,9 +1896,9 @@ namespace Hexa.NET.ImGui
 		internal static byte InvisibleButtonNative(byte* strId, Vector2 size, ImGuiButtonFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiButtonFlags, byte>)vt[145])(strId, size, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, Vector2, ImGuiButtonFlags, byte>)vt[148])(strId, size, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiButtonFlags, byte>)vt[145])((nint)strId, size, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, Vector2, ImGuiButtonFlags, byte>)vt[148])((nint)strId, size, flags);
 			#endif
 		}
 
@@ -1968,9 +2034,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ArrowButtonNative(byte* strId, ImGuiDir dir)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDir, byte>)vt[146])(strId, dir);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImGuiDir, byte>)vt[149])(strId, dir);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDir, byte>)vt[146])((nint)strId, dir);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImGuiDir, byte>)vt[149])((nint)strId, dir);
 			#endif
 		}
 
@@ -2043,9 +2109,9 @@ namespace Hexa.NET.ImGui
 		internal static byte CheckboxNative(byte* label, bool* v)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, bool*, byte>)vt[147])(label, v);
+			return ((delegate* unmanaged[Cdecl]<byte*, bool*, byte>)vt[150])(label, v);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)vt[147])((nint)label, (nint)v);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, byte>)vt[150])((nint)label, (nint)v);
 			#endif
 		}
 
@@ -2193,9 +2259,9 @@ namespace Hexa.NET.ImGui
 		internal static byte CheckboxFlagsNative(byte* label, int* flags, int flagsValue)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)vt[148])(label, flags, flagsValue);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)vt[151])(label, flags, flagsValue);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, byte>)vt[148])((nint)label, (nint)flags, flagsValue);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, byte>)vt[151])((nint)label, (nint)flags, flagsValue);
 			#endif
 		}
 
@@ -2343,9 +2409,9 @@ namespace Hexa.NET.ImGui
 		internal static byte CheckboxFlagsNative(byte* label, uint* flags, uint flagsValue)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, uint*, uint, byte>)vt[149])(label, flags, flagsValue);
+			return ((delegate* unmanaged[Cdecl]<byte*, uint*, uint, byte>)vt[152])(label, flags, flagsValue);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, uint, byte>)vt[149])((nint)label, (nint)flags, flagsValue);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, uint, byte>)vt[152])((nint)label, (nint)flags, flagsValue);
 			#endif
 		}
 
@@ -2493,9 +2559,9 @@ namespace Hexa.NET.ImGui
 		internal static byte RadioButtonNative(byte* label, byte active)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte, byte>)vt[150])(label, active);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte, byte>)vt[153])(label, active);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)vt[150])((nint)label, active);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte, byte>)vt[153])((nint)label, active);
 			#endif
 		}
 
@@ -2568,9 +2634,9 @@ namespace Hexa.NET.ImGui
 		internal static byte RadioButtonNative(byte* label, int* v, int vButton)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)vt[151])(label, v, vButton);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, int, byte>)vt[154])(label, v, vButton);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, byte>)vt[151])((nint)label, (nint)v, vButton);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, int, byte>)vt[154])((nint)label, (nint)v, vButton);
 			#endif
 		}
 
@@ -2718,9 +2784,9 @@ namespace Hexa.NET.ImGui
 		internal static void ProgressBarNative(float fraction, Vector2 sizeArg, byte* overlay)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<float, Vector2, byte*, void>)vt[152])(fraction, sizeArg, overlay);
+			((delegate* unmanaged[Cdecl]<float, Vector2, byte*, void>)vt[155])(fraction, sizeArg, overlay);
 			#else
-			((delegate* unmanaged[Cdecl]<float, Vector2, nint, void>)vt[152])(fraction, sizeArg, (nint)overlay);
+			((delegate* unmanaged[Cdecl]<float, Vector2, nint, void>)vt[155])(fraction, sizeArg, (nint)overlay);
 			#endif
 		}
 
@@ -2864,9 +2930,9 @@ namespace Hexa.NET.ImGui
 		internal static void BulletNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[153])();
+			((delegate* unmanaged[Cdecl]<void>)vt[156])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[153])();
+			((delegate* unmanaged[Cdecl]<void>)vt[156])();
 			#endif
 		}
 
@@ -2884,9 +2950,9 @@ namespace Hexa.NET.ImGui
 		internal static byte TextLinkNative(byte* label)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte>)vt[154])(label);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte>)vt[157])(label);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[154])((nint)label);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, byte>)vt[157])((nint)label);
 			#endif
 		}
 
@@ -2959,9 +3025,9 @@ namespace Hexa.NET.ImGui
 		internal static void TextLinkOpenURLNative(byte* label, byte* url)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[155])(label, url);
+			((delegate* unmanaged[Cdecl]<byte*, byte*, void>)vt[158])(label, url);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[155])((nint)label, (nint)url);
+			((delegate* unmanaged[Cdecl]<nint, nint, void>)vt[158])((nint)label, (nint)url);
 			#endif
 		}
 
@@ -3218,9 +3284,9 @@ namespace Hexa.NET.ImGui
 		internal static void ImageNative(ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 tintCol, Vector4 borderCol)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, void>)vt[156])(userTextureId, imageSize, uv0, uv1, tintCol, borderCol);
+			((delegate* unmanaged[Cdecl]<ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, void>)vt[159])(userTextureId, imageSize, uv0, uv1, tintCol, borderCol);
 			#else
-			((delegate* unmanaged[Cdecl]<ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, void>)vt[156])(userTextureId, imageSize, uv0, uv1, tintCol, borderCol);
+			((delegate* unmanaged[Cdecl]<ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, void>)vt[159])(userTextureId, imageSize, uv0, uv1, tintCol, borderCol);
 			#endif
 		}
 
@@ -3302,9 +3368,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ImageButtonNative(byte* strId, ImTextureID userTextureId, Vector2 imageSize, Vector2 uv0, Vector2 uv1, Vector4 bgCol, Vector4 tintCol)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)vt[157])(strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+			return ((delegate* unmanaged[Cdecl]<byte*, ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)vt[160])(strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)vt[157])((nint)strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, ImTextureID, Vector2, Vector2, Vector2, Vector4, Vector4, byte>)vt[160])((nint)strId, userTextureId, imageSize, uv0, uv1, bgCol, tintCol);
 			#endif
 		}
 
@@ -3881,9 +3947,9 @@ namespace Hexa.NET.ImGui
 		internal static byte BeginComboNative(byte* label, byte* previewValue, ImGuiComboFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ImGuiComboFlags, byte>)vt[158])(label, previewValue, flags);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ImGuiComboFlags, byte>)vt[161])(label, previewValue, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiComboFlags, byte>)vt[158])((nint)label, (nint)previewValue, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, ImGuiComboFlags, byte>)vt[161])((nint)label, (nint)previewValue, flags);
 			#endif
 		}
 
@@ -4289,9 +4355,9 @@ namespace Hexa.NET.ImGui
 		internal static void EndComboNative()
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<void>)vt[159])();
+			((delegate* unmanaged[Cdecl]<void>)vt[162])();
 			#else
-			((delegate* unmanaged[Cdecl]<void>)vt[159])();
+			((delegate* unmanaged[Cdecl]<void>)vt[162])();
 			#endif
 		}
 
@@ -4309,9 +4375,9 @@ namespace Hexa.NET.ImGui
 		internal static byte ComboNative(byte* label, int* currentItem, byte** items, int itemsCount, int popupMaxHeightInItems)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, byte**, int, int, byte>)vt[160])(label, currentItem, items, itemsCount, popupMaxHeightInItems);
+			return ((delegate* unmanaged[Cdecl]<byte*, int*, byte**, int, int, byte>)vt[163])(label, currentItem, items, itemsCount, popupMaxHeightInItems);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, int, byte>)vt[160])((nint)label, (nint)currentItem, (nint)items, itemsCount, popupMaxHeightInItems);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, int, byte>)vt[163])((nint)label, (nint)currentItem, (nint)items, itemsCount, popupMaxHeightInItems);
 			#endif
 		}
 
@@ -4963,60 +5029,6 @@ namespace Hexa.NET.ImGui
 				{
 					Utils.Free(pStr0);
 				}
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static byte ComboNative(byte* label, int* currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int*, byte*, int, byte>)vt[161])(label, currentItem, itemsSeparatedByZeros, popupMaxHeightInItems);
-			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, byte>)vt[161])((nint)label, (nint)currentItem, (nint)itemsSeparatedByZeros, popupMaxHeightInItems);
-			#endif
-		}
-
-		/// <summary>
-		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
-		/// </summary>
-		public static bool Combo(byte* label, int* currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
-		{
-			byte ret = ComboNative(label, currentItem, itemsSeparatedByZeros, popupMaxHeightInItems);
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
-		/// </summary>
-		public static bool Combo(byte* label, int* currentItem, byte* itemsSeparatedByZeros)
-		{
-			byte ret = ComboNative(label, currentItem, itemsSeparatedByZeros, (int)(-1));
-			return ret != 0;
-		}
-
-		/// <summary>
-		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
-		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, byte* itemsSeparatedByZeros, int popupMaxHeightInItems)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ComboNative((byte*)plabel, currentItem, itemsSeparatedByZeros, popupMaxHeightInItems);
-				return ret != 0;
-			}
-		}
-
-		/// <summary>
-		/// Separate items with \0 within a string, end item-list with \0\0. e.g. "One\0Two\0Three\0"<br/>
-		/// </summary>
-		public static bool Combo(ref byte label, int* currentItem, byte* itemsSeparatedByZeros)
-		{
-			fixed (byte* plabel = &label)
-			{
-				byte ret = ComboNative((byte*)plabel, currentItem, itemsSeparatedByZeros, (int)(-1));
 				return ret != 0;
 			}
 		}

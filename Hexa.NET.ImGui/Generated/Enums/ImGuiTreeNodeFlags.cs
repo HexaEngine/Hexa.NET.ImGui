@@ -55,12 +55,12 @@ namespace Hexa.NET.ImGui
 		DefaultOpen = unchecked(32),
 
 		/// <summary>
-		/// Need double-click to open node<br/>
+		/// Open on double-click instead of simple click (default for multi-select unless any _OpenOnXXX behavior is set explicitly). Both behaviors may be combined.<br/>
 		/// </summary>
 		OpenOnDoubleClick = unchecked(64),
 
 		/// <summary>
-		/// Only open when clicking on the arrow part. If ImGuiTreeNodeFlags_OpenOnDoubleClick is also set, single-click arrow or double-click all box to open.<br/>
+		/// Open when clicking on the arrow part (default for multi-select unless any _OpenOnXXX behavior is set explicitly). Both behaviors may be combined.<br/>
 		/// </summary>
 		OpenOnArrow = unchecked(128),
 

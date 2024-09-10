@@ -28,5 +28,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		UpsideDownArrow = unchecked(536870912),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		OpenOnMask = unchecked(192),
 	}
 }
