@@ -60,11 +60,11 @@ jobs:
 
     - name: Configure cimgui with CMake for macOS
       if: matrix.os == 'macos-latest'
-      run: cmake -S cimgui -B cimgui/build -DCMAKE_OSX_ARCHITECTURES=${{ matrix.arch-cmake }}
+      run: cmake -S cimgui -B cimgui/build -DCMAKE_OSX_ARCHITECTURES=${{ matrix.cmake-arch }}
 
     - name: Configure cimgui with CMake for Windows
       if: matrix.os == 'windows-latest'
-      run: cmake -S cimgui -B cimgui/build -A ${{ matrix.arch-cmake }}
+      run: cmake -S cimgui -B cimgui/build -A ${{ matrix.cmake-arch }}
 
     - name: Build cimgui
       run: cmake --build cimgui/build --config Release
