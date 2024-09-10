@@ -25,7 +25,7 @@ jobs:
             cmake-arch: arm64
           - os: macos-latest
             arch: x86_64
-            cmake-arch: x64
+            cmake-arch: x86_64
           - os: macos-latest
             arch: arm64
             cmake-arch: arm64
