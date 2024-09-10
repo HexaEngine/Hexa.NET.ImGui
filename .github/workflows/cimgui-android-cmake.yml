@@ -1,4 +1,4 @@
-name: Build cimgui Libraries (Android)
+name: Build all Libraries (Android)
 
 on: [workflow_dispatch]
 
@@ -10,11 +10,43 @@ jobs:
         include:
           - os: ubuntu-latest
             arch: x86_64
+            lib: cimgui
+          - os: ubuntu-latest
+            arch: x86_64
+            lib: cimguizmo
+          - os: ubuntu-latest
+            arch: x86_64
+            lib: cimnodes
+          - os: ubuntu-latest
+            arch: x86_64
+            lib: cimplot
+            
     steps:
     - uses: actions/checkout@v4.1.7
       with:
         repository: 'cimgui/cimgui'
         path: 'cimgui'
+        submodules: true
+        
+    - uses: actions/checkout@v4.1.7
+      if: matrix.lib == 'cimguizmo'
+      with:
+        repository: 'JunaMeinhold/cimguizmo'
+        path: 'cimguizmo'
+        submodules: true
+
+    - uses: actions/checkout@v4.1.7
+      if: matrix.lib == 'cimnodes'
+      with:
+        repository: 'JunaMeinhold/cimnodes'
+        path: 'cimnodes'
+        submodules: true
+
+    - uses: actions/checkout@v4.1.7
+      if: matrix.lib == 'cimplot'
+      with:
+        repository: 'JunaMeinhold/cimplot'
+        path: 'cimplot'
         submodules: true
 
     - name: Install dependencies on Ubuntu
@@ -44,9 +76,9 @@ jobs:
                 -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
                 -DCMAKE_ANDROID_STL_TYPE=c++_shared \
                 -DCMAKE_ANDROID_API=21 \
-                -S cimgui \
-                -B cimgui/build/arm64-v8a
-          cmake --build cimgui/build/arm64-v8a  --config Release
+                -S ${{ matrix.lib }} \
+                -B ${{ matrix.lib }}/build/arm64-v8a
+          cmake --build ${{ matrix.lib }}/build/arm64-v8a  --config Release
 
     - name: Build for x86_64
       run: |
@@ -57,15 +89,15 @@ jobs:
                 -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
                 -DCMAKE_ANDROID_STL_TYPE=c++_shared \
                 -DCMAKE_ANDROID_API=21 \
-                -S cimgui \
-                -B cimgui/build/x86_64
-          cmake --build cimgui/build/x86_64 --config Release
+                -S ${{ matrix.lib }} \
+                -B ${{ matrix.lib }}/build/x86_64
+          cmake --build ${{ matrix.lib }}/build/x86_64 --config Release
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4.3.4
       with:
-        name: ${{ matrix.os }}-${{ matrix.arch }}-artifacts 
+        name: ${{ matrix.lib }}-${{ matrix.os }}-${{ matrix.arch }}-artifacts 
         path: |
-          cimgui/build/arm64-v8a/*.so
-          cimgui/build/x86_64/*.so
+          ${{ matrix.lib }}/build/arm64-v8a/*.so
+          ${{ matrix.lib }}/build/x86_64/*.so
         if-no-files-found: ignore # 'warn' or 'ignore' or 'error'
