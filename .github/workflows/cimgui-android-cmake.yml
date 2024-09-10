@@ -54,18 +54,33 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y build-essential cmake ninja-build
-
+        
     - name: Setup Java
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
         java-version: 17
 
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v2.0.10
-
-    - name: Install Android NDK
-      run: sdkmanager --install "ndk-bundle"
+    - name: Install Android SDK Command-Line Tools
+      run: |
+        wget https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip -O android-sdk-tools.zip
+        unzip android-sdk-tools.zip -d tools
+        mkdir $HOME/android-sdk/
+        mkdir $HOME/android-sdk/cmdline-tools/
+        mkdir $HOME/android-sdk/cmdline-tools/latest/
+        mv ./tools/cmdline-tools/* $HOME/android-sdk/cmdline-tools/latest/
+        chmod +x $HOME/android-sdk/cmdline-tools/latest/bin/*
+        echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
+        echo "ANDROID_SDK_ROOT=$HOME/android-sdk" >> $GITHUB_ENV
+        
+    - name: Accept Android SDK Licenses
+      run: |
+        yes | $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+    - name: Install Specific Android NDK Version 26.3.11579264
+      run: |
+        yes | $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --install "ndk;26.3.11579264"      
+        echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/26.3.11579264" >> $GITHUB_ENV
+        echo "PATH=$PATH:$ANDROID_HOME/ndk/26.3.11579264" >> $GITHUB_ENV
 
     - name: Build for arm64-v8a
       run: |
