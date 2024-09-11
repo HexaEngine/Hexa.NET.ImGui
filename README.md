@@ -1,4 +1,4 @@
-# Hexa.NET.ImGui 
+# Hexa.NET.ImGui
 
 Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performance, API-compatible alternative to ImGuiNET, offering enhanced speed, additional functionality, and comprehensive access to ImGui's internal structures. With optimizations that bring near C performance and significantly reduced startup times, Hexa.NET.ImGui provides the best of both worlds: the power of C and the productivity of C#.
 
@@ -70,9 +70,9 @@ For details on how to set up the library, check the [ImGuiManager.cs](https://gi
 ### Using the Flexible and Optimized API
 
 Hexa.NET.ImGui supports both safe and unsafe API calls, along with optimized string handling to bypass UTF-8 encoding and avoid allocations. Here are some examples:
-    
+
  1. Safe API Call:
-    
+
 ```cs
 ImGui.Text("A normal C# string");
 ```
@@ -93,8 +93,6 @@ ImGui.Text("A C# string"u8);
 ```
 **This overload bypasses UTF-8 encoding and avoids allocations, providing a highly optimized way to render text.**
 
-
-
 ## Projects Using Hexa.NET.ImGui
 
 [HexaEngine](https://github.com/HexaEngine/HexaEngine)
@@ -112,6 +110,10 @@ ImGui.Text("A C# string"u8);
 ## Contributing
 
 Contributions are welcome! If you have ideas for improvements or new features, feel free to submit a pull request or open an issue.
+
+## Credits
+
+[ImGui.NET](https://github.com/ImGuiNET/ImGui.NET/) for the JSON parsing of the cimgui metadata.
 
 ## License
 
