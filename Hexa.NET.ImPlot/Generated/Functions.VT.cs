@@ -22,7 +22,7 @@ namespace Hexa.NET.ImPlot
 
 		public static void InitApi()
 		{
-			vt = new VTable(LibraryLoader.LoadLibrary(), 718);
+			vt = new VTable(LibraryLoader.LoadLibrary(() => "cimplot", null), 718);
 			vt.Load(0, "ImPlotPoint_ImPlotPoint_Nil");
 			vt.Load(1, "ImPlotPoint_destroy");
 			vt.Load(2, "ImPlotPoint_ImPlotPoint_double");
