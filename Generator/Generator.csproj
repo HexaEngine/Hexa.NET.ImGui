@@ -6,10 +6,12 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<Configurations>Debug;Release;NodeEditor</Configurations>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HexaGen" Version="1.1.3" />
+		<PackageReference Include="HexaGen" Version="1.1.3" Condition="'$(Configuration)' != 'NodeEditor'" />
+		<PackageReference Include="HexaGen" Version="1.1.5-unstable" Condition="'$(Configuration)' == 'NodeEditor'" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
@@ -85,6 +87,15 @@
 		</None>
 		<None Update="cimplot\typedefs_dict.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="imgui-node-editor\generator.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="imgui-node-editor\imgui_node_editor.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="imgui-node-editor\metadata.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 </Project>
