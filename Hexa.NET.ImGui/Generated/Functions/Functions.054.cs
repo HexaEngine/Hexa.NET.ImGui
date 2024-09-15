@@ -4213,7 +4213,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImGuiTextIndexClearNative(ImGuiTextIndex* self)
+		internal static void TextIndexClearNative(ImGuiTextIndex* self)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiTextIndex*, void>)vt[815])(self);
@@ -4225,26 +4225,26 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTextIndexClear(ImGuiTextIndexPtr self)
+		public static void TextIndexClear(ImGuiTextIndexPtr self)
 		{
-			ImGuiTextIndexClearNative(self);
+			TextIndexClearNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTextIndexClear(ref ImGuiTextIndex self)
+		public static void TextIndexClear(ref ImGuiTextIndex self)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
-				ImGuiTextIndexClearNative((ImGuiTextIndex*)pself);
+				TextIndexClearNative((ImGuiTextIndex*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImGuiTextIndexSizeNative(ImGuiTextIndex* self)
+		internal static int TextIndexSizeNative(ImGuiTextIndex* self)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImGuiTextIndex*, int>)vt[816])(self);
@@ -4256,20 +4256,20 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImGuiTextIndexSize(ImGuiTextIndexPtr self)
+		public static int TextIndexSize(ImGuiTextIndexPtr self)
 		{
-			int ret = ImGuiTextIndexSizeNative(self);
+			int ret = TextIndexSizeNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImGuiTextIndexSize(ref ImGuiTextIndex self)
+		public static int TextIndexSize(ref ImGuiTextIndex self)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
-				int ret = ImGuiTextIndexSizeNative((ImGuiTextIndex*)pself);
+				int ret = TextIndexSizeNative((ImGuiTextIndex*)pself);
 				return ret;
 			}
 		}
@@ -4277,7 +4277,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte* ImGuiTextIndexGetLineBeginNative(ImGuiTextIndex* self, byte* baseValue, int n)
+		internal static byte* TextIndexGetLineBeginNative(ImGuiTextIndex* self, byte* baseValue, int n)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImGuiTextIndex*, byte*, int, byte*>)vt[817])(self, baseValue, n);
@@ -4289,29 +4289,29 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineBegin(ImGuiTextIndexPtr self, byte* baseValue, int n)
+		public static byte* TextIndexGetLineBegin(ImGuiTextIndexPtr self, byte* baseValue, int n)
 		{
-			byte* ret = ImGuiTextIndexGetLineBeginNative(self, baseValue, n);
+			byte* ret = TextIndexGetLineBeginNative(self, baseValue, n);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineBeginS(ImGuiTextIndexPtr self, byte* baseValue, int n)
+		public static string TextIndexGetLineBeginS(ImGuiTextIndexPtr self, byte* baseValue, int n)
 		{
-			string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineBeginNative(self, baseValue, n));
+			string ret = Utils.DecodeStringUTF8(TextIndexGetLineBeginNative(self, baseValue, n));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineBegin(ref ImGuiTextIndex self, byte* baseValue, int n)
+		public static byte* TextIndexGetLineBegin(ref ImGuiTextIndex self, byte* baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
-				byte* ret = ImGuiTextIndexGetLineBeginNative((ImGuiTextIndex*)pself, baseValue, n);
+				byte* ret = TextIndexGetLineBeginNative((ImGuiTextIndex*)pself, baseValue, n);
 				return ret;
 			}
 		}
@@ -4319,11 +4319,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineBeginS(ref ImGuiTextIndex self, byte* baseValue, int n)
+		public static string TextIndexGetLineBeginS(ref ImGuiTextIndex self, byte* baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineBeginNative((ImGuiTextIndex*)pself, baseValue, n));
+				string ret = Utils.DecodeStringUTF8(TextIndexGetLineBeginNative((ImGuiTextIndex*)pself, baseValue, n));
 				return ret;
 			}
 		}
@@ -4331,11 +4331,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineBegin(ImGuiTextIndexPtr self, ref byte baseValue, int n)
+		public static byte* TextIndexGetLineBegin(ImGuiTextIndexPtr self, ref byte baseValue, int n)
 		{
 			fixed (byte* pbaseValue = &baseValue)
 			{
-				byte* ret = ImGuiTextIndexGetLineBeginNative(self, (byte*)pbaseValue, n);
+				byte* ret = TextIndexGetLineBeginNative(self, (byte*)pbaseValue, n);
 				return ret;
 			}
 		}
@@ -4343,11 +4343,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineBeginS(ImGuiTextIndexPtr self, ref byte baseValue, int n)
+		public static string TextIndexGetLineBeginS(ImGuiTextIndexPtr self, ref byte baseValue, int n)
 		{
 			fixed (byte* pbaseValue = &baseValue)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineBeginNative(self, (byte*)pbaseValue, n));
+				string ret = Utils.DecodeStringUTF8(TextIndexGetLineBeginNative(self, (byte*)pbaseValue, n));
 				return ret;
 			}
 		}
@@ -4355,11 +4355,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineBegin(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int n)
+		public static byte* TextIndexGetLineBegin(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int n)
 		{
 			fixed (byte* pbaseValue = baseValue)
 			{
-				byte* ret = ImGuiTextIndexGetLineBeginNative(self, (byte*)pbaseValue, n);
+				byte* ret = TextIndexGetLineBeginNative(self, (byte*)pbaseValue, n);
 				return ret;
 			}
 		}
@@ -4367,11 +4367,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineBeginS(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int n)
+		public static string TextIndexGetLineBeginS(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int n)
 		{
 			fixed (byte* pbaseValue = baseValue)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineBeginNative(self, (byte*)pbaseValue, n));
+				string ret = Utils.DecodeStringUTF8(TextIndexGetLineBeginNative(self, (byte*)pbaseValue, n));
 				return ret;
 			}
 		}
@@ -4379,7 +4379,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineBegin(ImGuiTextIndexPtr self, string baseValue, int n)
+		public static byte* TextIndexGetLineBegin(ImGuiTextIndexPtr self, string baseValue, int n)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4398,7 +4398,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte* ret = ImGuiTextIndexGetLineBeginNative(self, pStr0, n);
+			byte* ret = TextIndexGetLineBeginNative(self, pStr0, n);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4409,7 +4409,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineBeginS(ImGuiTextIndexPtr self, string baseValue, int n)
+		public static string TextIndexGetLineBeginS(ImGuiTextIndexPtr self, string baseValue, int n)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4428,7 +4428,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineBeginNative(self, pStr0, n));
+			string ret = Utils.DecodeStringUTF8(TextIndexGetLineBeginNative(self, pStr0, n));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4439,13 +4439,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineBegin(ref ImGuiTextIndex self, ref byte baseValue, int n)
+		public static byte* TextIndexGetLineBegin(ref ImGuiTextIndex self, ref byte baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
 				fixed (byte* pbaseValue = &baseValue)
 				{
-					byte* ret = ImGuiTextIndexGetLineBeginNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n);
+					byte* ret = TextIndexGetLineBeginNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n);
 					return ret;
 				}
 			}
@@ -4454,13 +4454,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineBeginS(ref ImGuiTextIndex self, ref byte baseValue, int n)
+		public static string TextIndexGetLineBeginS(ref ImGuiTextIndex self, ref byte baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
 				fixed (byte* pbaseValue = &baseValue)
 				{
-					string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineBeginNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n));
+					string ret = Utils.DecodeStringUTF8(TextIndexGetLineBeginNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n));
 					return ret;
 				}
 			}
@@ -4469,13 +4469,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineBegin(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int n)
+		public static byte* TextIndexGetLineBegin(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
 				fixed (byte* pbaseValue = baseValue)
 				{
-					byte* ret = ImGuiTextIndexGetLineBeginNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n);
+					byte* ret = TextIndexGetLineBeginNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n);
 					return ret;
 				}
 			}
@@ -4484,13 +4484,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineBeginS(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int n)
+		public static string TextIndexGetLineBeginS(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
 				fixed (byte* pbaseValue = baseValue)
 				{
-					string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineBeginNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n));
+					string ret = Utils.DecodeStringUTF8(TextIndexGetLineBeginNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n));
 					return ret;
 				}
 			}
@@ -4499,7 +4499,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineBegin(ref ImGuiTextIndex self, string baseValue, int n)
+		public static byte* TextIndexGetLineBegin(ref ImGuiTextIndex self, string baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
@@ -4520,7 +4520,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte* ret = ImGuiTextIndexGetLineBeginNative((ImGuiTextIndex*)pself, pStr0, n);
+				byte* ret = TextIndexGetLineBeginNative((ImGuiTextIndex*)pself, pStr0, n);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4532,7 +4532,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineBeginS(ref ImGuiTextIndex self, string baseValue, int n)
+		public static string TextIndexGetLineBeginS(ref ImGuiTextIndex self, string baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
@@ -4553,7 +4553,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineBeginNative((ImGuiTextIndex*)pself, pStr0, n));
+				string ret = Utils.DecodeStringUTF8(TextIndexGetLineBeginNative((ImGuiTextIndex*)pself, pStr0, n));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4565,7 +4565,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte* ImGuiTextIndexGetLineEndNative(ImGuiTextIndex* self, byte* baseValue, int n)
+		internal static byte* TextIndexGetLineEndNative(ImGuiTextIndex* self, byte* baseValue, int n)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImGuiTextIndex*, byte*, int, byte*>)vt[818])(self, baseValue, n);
@@ -4577,29 +4577,29 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineEnd(ImGuiTextIndexPtr self, byte* baseValue, int n)
+		public static byte* TextIndexGetLineEnd(ImGuiTextIndexPtr self, byte* baseValue, int n)
 		{
-			byte* ret = ImGuiTextIndexGetLineEndNative(self, baseValue, n);
+			byte* ret = TextIndexGetLineEndNative(self, baseValue, n);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineEndS(ImGuiTextIndexPtr self, byte* baseValue, int n)
+		public static string TextIndexGetLineEndS(ImGuiTextIndexPtr self, byte* baseValue, int n)
 		{
-			string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineEndNative(self, baseValue, n));
+			string ret = Utils.DecodeStringUTF8(TextIndexGetLineEndNative(self, baseValue, n));
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineEnd(ref ImGuiTextIndex self, byte* baseValue, int n)
+		public static byte* TextIndexGetLineEnd(ref ImGuiTextIndex self, byte* baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
-				byte* ret = ImGuiTextIndexGetLineEndNative((ImGuiTextIndex*)pself, baseValue, n);
+				byte* ret = TextIndexGetLineEndNative((ImGuiTextIndex*)pself, baseValue, n);
 				return ret;
 			}
 		}
@@ -4607,11 +4607,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineEndS(ref ImGuiTextIndex self, byte* baseValue, int n)
+		public static string TextIndexGetLineEndS(ref ImGuiTextIndex self, byte* baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineEndNative((ImGuiTextIndex*)pself, baseValue, n));
+				string ret = Utils.DecodeStringUTF8(TextIndexGetLineEndNative((ImGuiTextIndex*)pself, baseValue, n));
 				return ret;
 			}
 		}
@@ -4619,11 +4619,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineEnd(ImGuiTextIndexPtr self, ref byte baseValue, int n)
+		public static byte* TextIndexGetLineEnd(ImGuiTextIndexPtr self, ref byte baseValue, int n)
 		{
 			fixed (byte* pbaseValue = &baseValue)
 			{
-				byte* ret = ImGuiTextIndexGetLineEndNative(self, (byte*)pbaseValue, n);
+				byte* ret = TextIndexGetLineEndNative(self, (byte*)pbaseValue, n);
 				return ret;
 			}
 		}
@@ -4631,11 +4631,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineEndS(ImGuiTextIndexPtr self, ref byte baseValue, int n)
+		public static string TextIndexGetLineEndS(ImGuiTextIndexPtr self, ref byte baseValue, int n)
 		{
 			fixed (byte* pbaseValue = &baseValue)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineEndNative(self, (byte*)pbaseValue, n));
+				string ret = Utils.DecodeStringUTF8(TextIndexGetLineEndNative(self, (byte*)pbaseValue, n));
 				return ret;
 			}
 		}
@@ -4643,11 +4643,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineEnd(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int n)
+		public static byte* TextIndexGetLineEnd(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int n)
 		{
 			fixed (byte* pbaseValue = baseValue)
 			{
-				byte* ret = ImGuiTextIndexGetLineEndNative(self, (byte*)pbaseValue, n);
+				byte* ret = TextIndexGetLineEndNative(self, (byte*)pbaseValue, n);
 				return ret;
 			}
 		}
@@ -4655,11 +4655,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineEndS(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int n)
+		public static string TextIndexGetLineEndS(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int n)
 		{
 			fixed (byte* pbaseValue = baseValue)
 			{
-				string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineEndNative(self, (byte*)pbaseValue, n));
+				string ret = Utils.DecodeStringUTF8(TextIndexGetLineEndNative(self, (byte*)pbaseValue, n));
 				return ret;
 			}
 		}
@@ -4667,7 +4667,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineEnd(ImGuiTextIndexPtr self, string baseValue, int n)
+		public static byte* TextIndexGetLineEnd(ImGuiTextIndexPtr self, string baseValue, int n)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4686,7 +4686,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte* ret = ImGuiTextIndexGetLineEndNative(self, pStr0, n);
+			byte* ret = TextIndexGetLineEndNative(self, pStr0, n);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4697,7 +4697,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineEndS(ImGuiTextIndexPtr self, string baseValue, int n)
+		public static string TextIndexGetLineEndS(ImGuiTextIndexPtr self, string baseValue, int n)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4716,7 +4716,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineEndNative(self, pStr0, n));
+			string ret = Utils.DecodeStringUTF8(TextIndexGetLineEndNative(self, pStr0, n));
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4727,13 +4727,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineEnd(ref ImGuiTextIndex self, ref byte baseValue, int n)
+		public static byte* TextIndexGetLineEnd(ref ImGuiTextIndex self, ref byte baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
 				fixed (byte* pbaseValue = &baseValue)
 				{
-					byte* ret = ImGuiTextIndexGetLineEndNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n);
+					byte* ret = TextIndexGetLineEndNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n);
 					return ret;
 				}
 			}
@@ -4742,13 +4742,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineEndS(ref ImGuiTextIndex self, ref byte baseValue, int n)
+		public static string TextIndexGetLineEndS(ref ImGuiTextIndex self, ref byte baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
 				fixed (byte* pbaseValue = &baseValue)
 				{
-					string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineEndNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n));
+					string ret = Utils.DecodeStringUTF8(TextIndexGetLineEndNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n));
 					return ret;
 				}
 			}
@@ -4757,13 +4757,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineEnd(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int n)
+		public static byte* TextIndexGetLineEnd(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
 				fixed (byte* pbaseValue = baseValue)
 				{
-					byte* ret = ImGuiTextIndexGetLineEndNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n);
+					byte* ret = TextIndexGetLineEndNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n);
 					return ret;
 				}
 			}
@@ -4772,13 +4772,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineEndS(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int n)
+		public static string TextIndexGetLineEndS(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
 				fixed (byte* pbaseValue = baseValue)
 				{
-					string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineEndNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n));
+					string ret = Utils.DecodeStringUTF8(TextIndexGetLineEndNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, n));
 					return ret;
 				}
 			}
@@ -4787,7 +4787,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static byte* ImGuiTextIndexGetLineEnd(ref ImGuiTextIndex self, string baseValue, int n)
+		public static byte* TextIndexGetLineEnd(ref ImGuiTextIndex self, string baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
@@ -4808,7 +4808,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				byte* ret = ImGuiTextIndexGetLineEndNative((ImGuiTextIndex*)pself, pStr0, n);
+				byte* ret = TextIndexGetLineEndNative((ImGuiTextIndex*)pself, pStr0, n);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4820,7 +4820,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static string ImGuiTextIndexGetLineEndS(ref ImGuiTextIndex self, string baseValue, int n)
+		public static string TextIndexGetLineEndS(ref ImGuiTextIndex self, string baseValue, int n)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
@@ -4841,7 +4841,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				string ret = Utils.DecodeStringUTF8(ImGuiTextIndexGetLineEndNative((ImGuiTextIndex*)pself, pStr0, n));
+				string ret = Utils.DecodeStringUTF8(TextIndexGetLineEndNative((ImGuiTextIndex*)pself, pStr0, n));
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4853,7 +4853,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImGuiTextIndexAppendNative(ImGuiTextIndex* self, byte* baseValue, int oldSize, int newSize)
+		internal static void TextIndexAppendNative(ImGuiTextIndex* self, byte* baseValue, int oldSize, int newSize)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiTextIndex*, byte*, int, int, void>)vt[819])(self, baseValue, oldSize, newSize);
@@ -4865,48 +4865,48 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTextIndexAppend(ImGuiTextIndexPtr self, byte* baseValue, int oldSize, int newSize)
+		public static void TextIndexAppend(ImGuiTextIndexPtr self, byte* baseValue, int oldSize, int newSize)
 		{
-			ImGuiTextIndexAppendNative(self, baseValue, oldSize, newSize);
+			TextIndexAppendNative(self, baseValue, oldSize, newSize);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTextIndexAppend(ref ImGuiTextIndex self, byte* baseValue, int oldSize, int newSize)
+		public static void TextIndexAppend(ref ImGuiTextIndex self, byte* baseValue, int oldSize, int newSize)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
-				ImGuiTextIndexAppendNative((ImGuiTextIndex*)pself, baseValue, oldSize, newSize);
+				TextIndexAppendNative((ImGuiTextIndex*)pself, baseValue, oldSize, newSize);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTextIndexAppend(ImGuiTextIndexPtr self, ref byte baseValue, int oldSize, int newSize)
+		public static void TextIndexAppend(ImGuiTextIndexPtr self, ref byte baseValue, int oldSize, int newSize)
 		{
 			fixed (byte* pbaseValue = &baseValue)
 			{
-				ImGuiTextIndexAppendNative(self, (byte*)pbaseValue, oldSize, newSize);
+				TextIndexAppendNative(self, (byte*)pbaseValue, oldSize, newSize);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTextIndexAppend(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int oldSize, int newSize)
+		public static void TextIndexAppend(ImGuiTextIndexPtr self, ReadOnlySpan<byte> baseValue, int oldSize, int newSize)
 		{
 			fixed (byte* pbaseValue = baseValue)
 			{
-				ImGuiTextIndexAppendNative(self, (byte*)pbaseValue, oldSize, newSize);
+				TextIndexAppendNative(self, (byte*)pbaseValue, oldSize, newSize);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTextIndexAppend(ImGuiTextIndexPtr self, string baseValue, int oldSize, int newSize)
+		public static void TextIndexAppend(ImGuiTextIndexPtr self, string baseValue, int oldSize, int newSize)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4925,7 +4925,7 @@ namespace Hexa.NET.ImGui
 				int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			ImGuiTextIndexAppendNative(self, pStr0, oldSize, newSize);
+			TextIndexAppendNative(self, pStr0, oldSize, newSize);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -4935,13 +4935,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTextIndexAppend(ref ImGuiTextIndex self, ref byte baseValue, int oldSize, int newSize)
+		public static void TextIndexAppend(ref ImGuiTextIndex self, ref byte baseValue, int oldSize, int newSize)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
 				fixed (byte* pbaseValue = &baseValue)
 				{
-					ImGuiTextIndexAppendNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, oldSize, newSize);
+					TextIndexAppendNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, oldSize, newSize);
 				}
 			}
 		}
@@ -4949,13 +4949,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTextIndexAppend(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int oldSize, int newSize)
+		public static void TextIndexAppend(ref ImGuiTextIndex self, ReadOnlySpan<byte> baseValue, int oldSize, int newSize)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
 				fixed (byte* pbaseValue = baseValue)
 				{
-					ImGuiTextIndexAppendNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, oldSize, newSize);
+					TextIndexAppendNative((ImGuiTextIndex*)pself, (byte*)pbaseValue, oldSize, newSize);
 				}
 			}
 		}
@@ -4963,7 +4963,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTextIndexAppend(ref ImGuiTextIndex self, string baseValue, int oldSize, int newSize)
+		public static void TextIndexAppend(ref ImGuiTextIndex self, string baseValue, int oldSize, int newSize)
 		{
 			fixed (ImGuiTextIndex* pself = &self)
 			{
@@ -4984,7 +4984,7 @@ namespace Hexa.NET.ImGui
 					int pStrOffset0 = Utils.EncodeStringUTF8(baseValue, pStr0, pStrSize0);
 					pStr0[pStrOffset0] = 0;
 				}
-				ImGuiTextIndexAppendNative((ImGuiTextIndex*)pself, pStr0, oldSize, newSize);
+				TextIndexAppendNative((ImGuiTextIndex*)pself, pStr0, oldSize, newSize);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);

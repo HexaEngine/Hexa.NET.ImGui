@@ -1685,7 +1685,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImGuiPlatformIOSetPlatformGetWindowPosNative(ImGuiPlatformIO* platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
+		internal static void PlatformIOSetPlatformGetWindowPosNative(ImGuiPlatformIO* platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiPlatformIO*, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void>, void>)vt[1421])(platformIo, userCallback);
@@ -1697,26 +1697,26 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiPlatformIOSetPlatformGetWindowPos(ImGuiPlatformIOPtr platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
+		public static void PlatformIOSetPlatformGetWindowPos(ImGuiPlatformIOPtr platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
 		{
-			ImGuiPlatformIOSetPlatformGetWindowPosNative(platformIo, userCallback);
+			PlatformIOSetPlatformGetWindowPosNative(platformIo, userCallback);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiPlatformIOSetPlatformGetWindowPos(ref ImGuiPlatformIO platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
+		public static void PlatformIOSetPlatformGetWindowPos(ref ImGuiPlatformIO platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
 		{
 			fixed (ImGuiPlatformIO* pplatformIo = &platformIo)
 			{
-				ImGuiPlatformIOSetPlatformGetWindowPosNative((ImGuiPlatformIO*)pplatformIo, userCallback);
+				PlatformIOSetPlatformGetWindowPosNative((ImGuiPlatformIO*)pplatformIo, userCallback);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImGuiPlatformIOSetPlatformGetWindowSizeNative(ImGuiPlatformIO* platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
+		internal static void PlatformIOSetPlatformGetWindowSizeNative(ImGuiPlatformIO* platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiPlatformIO*, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void>, void>)vt[1422])(platformIo, userCallback);
@@ -1728,19 +1728,19 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiPlatformIOSetPlatformGetWindowSize(ImGuiPlatformIOPtr platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
+		public static void PlatformIOSetPlatformGetWindowSize(ImGuiPlatformIOPtr platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
 		{
-			ImGuiPlatformIOSetPlatformGetWindowSizeNative(platformIo, userCallback);
+			PlatformIOSetPlatformGetWindowSizeNative(platformIo, userCallback);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiPlatformIOSetPlatformGetWindowSize(ref ImGuiPlatformIO platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
+		public static void PlatformIOSetPlatformGetWindowSize(ref ImGuiPlatformIO platformIo, delegate*<ImGuiPlatformIO*, delegate*<ImGuiViewport*, Vector2*, void>, void> userCallback)
 		{
 			fixed (ImGuiPlatformIO* pplatformIo = &platformIo)
 			{
-				ImGuiPlatformIOSetPlatformGetWindowSizeNative((ImGuiPlatformIO*)pplatformIo, userCallback);
+				PlatformIOSetPlatformGetWindowSizeNative((ImGuiPlatformIO*)pplatformIo, userCallback);
 			}
 		}
 

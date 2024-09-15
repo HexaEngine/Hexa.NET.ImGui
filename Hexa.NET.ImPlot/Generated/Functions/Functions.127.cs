@@ -22,7 +22,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint ImPlotCalcHoverColorNative(uint col)
+		internal static uint CalcHoverColorNative(uint col)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<uint, uint>)vt[654])(col);
@@ -34,16 +34,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ImPlotCalcHoverColor(uint col)
+		public static uint CalcHoverColor(uint col)
 		{
-			uint ret = ImPlotCalcHoverColorNative(col);
+			uint ret = CalcHoverColorNative(col);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotClampLabelPosNative(Vector2* pOut, Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
+		internal static void ClampLabelPosNative(Vector2* pOut, Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<Vector2*, Vector2, Vector2, Vector2, Vector2, void>)vt[655])(pOut, pos, size, min, max);
@@ -55,36 +55,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImPlotClampLabelPos(Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
+		public static Vector2 ClampLabelPos(Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
 		{
 			Vector2 ret;
-			ImPlotClampLabelPosNative(&ret, pos, size, min, max);
+			ClampLabelPosNative(&ret, pos, size, min, max);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotClampLabelPos(Vector2* pOut, Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
+		public static void ClampLabelPos(Vector2* pOut, Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
 		{
-			ImPlotClampLabelPosNative(pOut, pos, size, min, max);
+			ClampLabelPosNative(pOut, pos, size, min, max);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotClampLabelPos(ref Vector2 pOut, Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
+		public static void ClampLabelPos(ref Vector2 pOut, Vector2 pos, Vector2 size, Vector2 min, Vector2 max)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
-				ImPlotClampLabelPosNative((Vector2*)ppOut, pos, size, min, max);
+				ClampLabelPosNative((Vector2*)ppOut, pos, size, min, max);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint ImPlotGetColormapColorU32Native(int idx, ImPlotColormap cmap)
+		internal static uint GetColormapColorU32Native(int idx, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<int, ImPlotColormap, uint>)vt[656])(idx, cmap);
@@ -96,16 +96,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ImPlotGetColormapColorU32(int idx, ImPlotColormap cmap)
+		public static uint GetColormapColorU32(int idx, ImPlotColormap cmap)
 		{
-			uint ret = ImPlotGetColormapColorU32Native(idx, cmap);
+			uint ret = GetColormapColorU32Native(idx, cmap);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint ImPlotNextColormapColorU32Native()
+		internal static uint NextColormapColorU32Native()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<uint>)vt[657])();
@@ -117,16 +117,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ImPlotNextColormapColorU32()
+		public static uint NextColormapColorU32()
 		{
-			uint ret = ImPlotNextColormapColorU32Native();
+			uint ret = NextColormapColorU32Native();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static uint ImPlotSampleColormapU32Native(float t, ImPlotColormap cmap)
+		internal static uint SampleColormapU32Native(float t, ImPlotColormap cmap)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<float, ImPlotColormap, uint>)vt[658])(t, cmap);
@@ -138,16 +138,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static uint ImPlotSampleColormapU32(float t, ImPlotColormap cmap)
+		public static uint SampleColormapU32(float t, ImPlotColormap cmap)
 		{
-			uint ret = ImPlotSampleColormapU32Native(t, cmap);
+			uint ret = SampleColormapU32Native(t, cmap);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotRenderColorBarNative(uint* colors, int size, ImDrawList* drawList, ImRect bounds, byte vert, byte reversed, byte continuous)
+		internal static void RenderColorBarNative(uint* colors, int size, ImDrawList* drawList, ImRect bounds, byte vert, byte reversed, byte continuous)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<uint*, int, ImDrawList*, ImRect, byte, byte, byte, void>)vt[659])(colors, size, drawList, bounds, vert, reversed, continuous);
@@ -159,43 +159,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotRenderColorBar(uint* colors, int size, ImDrawList* drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
+		public static void RenderColorBar(uint* colors, int size, ImDrawList* drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
 		{
-			ImPlotRenderColorBarNative(colors, size, drawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
+			RenderColorBarNative(colors, size, drawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotRenderColorBar(ref uint colors, int size, ImDrawList* drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
+		public static void RenderColorBar(ref uint colors, int size, ImDrawList* drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
 		{
 			fixed (uint* pcolors = &colors)
 			{
-				ImPlotRenderColorBarNative((uint*)pcolors, size, drawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
+				RenderColorBarNative((uint*)pcolors, size, drawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotRenderColorBar(uint* colors, int size, ref ImDrawList drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
+		public static void RenderColorBar(uint* colors, int size, ref ImDrawList drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
 		{
 			fixed (ImDrawList* pdrawList = &drawList)
 			{
-				ImPlotRenderColorBarNative(colors, size, (ImDrawList*)pdrawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
+				RenderColorBarNative(colors, size, (ImDrawList*)pdrawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotRenderColorBar(ref uint colors, int size, ref ImDrawList drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
+		public static void RenderColorBar(ref uint colors, int size, ref ImDrawList drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
 		{
 			fixed (uint* pcolors = &colors)
 			{
 				fixed (ImDrawList* pdrawList = &drawList)
 				{
-					ImPlotRenderColorBarNative((uint*)pcolors, size, (ImDrawList*)pdrawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
+					RenderColorBarNative((uint*)pcolors, size, (ImDrawList*)pdrawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
 				}
 			}
 		}
@@ -203,7 +203,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImPlotNiceNumNative(double x, byte round)
+		internal static double NiceNumNative(double x, byte round)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, byte, double>)vt[660])(x, round);
@@ -215,16 +215,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImPlotNiceNum(double x, bool round)
+		public static double NiceNum(double x, bool round)
 		{
-			double ret = ImPlotNiceNumNative(x, round ? (byte)1 : (byte)0);
+			double ret = NiceNumNative(x, round ? (byte)1 : (byte)0);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImPlotOrderOfMagnitudeNative(double val)
+		internal static int OrderOfMagnitudeNative(double val)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, int>)vt[661])(val);
@@ -236,16 +236,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotOrderOfMagnitude(double val)
+		public static int OrderOfMagnitude(double val)
 		{
-			int ret = ImPlotOrderOfMagnitudeNative(val);
+			int ret = OrderOfMagnitudeNative(val);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImPlotOrderToPrecisionNative(int order)
+		internal static int OrderToPrecisionNative(int order)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<int, int>)vt[662])(order);
@@ -257,16 +257,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotOrderToPrecision(int order)
+		public static int OrderToPrecision(int order)
 		{
-			int ret = ImPlotOrderToPrecisionNative(order);
+			int ret = OrderToPrecisionNative(order);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImPlotPrecisionNative(double val)
+		internal static int PrecisionNative(double val)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, int>)vt[663])(val);
@@ -278,16 +278,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotPrecision(double val)
+		public static int Precision(double val)
 		{
-			int ret = ImPlotPrecisionNative(val);
+			int ret = PrecisionNative(val);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImPlotRoundToNative(double val, int prec)
+		internal static double RoundToNative(double val, int prec)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, int, double>)vt[664])(val, prec);
@@ -299,16 +299,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImPlotRoundTo(double val, int prec)
+		public static double RoundTo(double val, int prec)
 		{
-			double ret = ImPlotRoundToNative(val, prec);
+			double ret = RoundToNative(val, prec);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotIntersectionNative(Vector2* pOut, Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
+		internal static void IntersectionNative(Vector2* pOut, Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<Vector2*, Vector2, Vector2, Vector2, Vector2, void>)vt[665])(pOut, a1, a2, b1, b2);
@@ -320,36 +320,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Vector2 ImPlotIntersection(Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
+		public static Vector2 Intersection(Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
 		{
 			Vector2 ret;
-			ImPlotIntersectionNative(&ret, a1, a2, b1, b2);
+			IntersectionNative(&ret, a1, a2, b1, b2);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotIntersection(Vector2* pOut, Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
+		public static void Intersection(Vector2* pOut, Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
 		{
-			ImPlotIntersectionNative(pOut, a1, a2, b1, b2);
+			IntersectionNative(pOut, a1, a2, b1, b2);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotIntersection(ref Vector2 pOut, Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
+		public static void Intersection(ref Vector2 pOut, Vector2 a1, Vector2 a2, Vector2 b1, Vector2 b2)
 		{
 			fixed (Vector2* ppOut = &pOut)
 			{
-				ImPlotIntersectionNative((Vector2*)ppOut, a1, a2, b1, b2);
+				IntersectionNative((Vector2*)ppOut, a1, a2, b1, b2);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotFillRangeVectorFloatPtrNative(ImVector<float>* buffer, int n, float vmin, float vmax)
+		internal static void FillRangeVectorFloatPtrNative(ImVector<float>* buffer, int n, float vmin, float vmax)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImVector<float>*, int, float, float, void>)vt[666])(buffer, n, vmin, vmax);
@@ -361,26 +361,26 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorFloatPtr(ImVector<float>* buffer, int n, float vmin, float vmax)
+		public static void FillRangeVectorFloatPtr(ImVector<float>* buffer, int n, float vmin, float vmax)
 		{
-			ImPlotFillRangeVectorFloatPtrNative(buffer, n, vmin, vmax);
+			FillRangeVectorFloatPtrNative(buffer, n, vmin, vmax);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorFloatPtr(ref ImVector<float> buffer, int n, float vmin, float vmax)
+		public static void FillRangeVectorFloatPtr(ref ImVector<float> buffer, int n, float vmin, float vmax)
 		{
 			fixed (ImVector<float>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorFloatPtrNative((ImVector<float>*)pbuffer, n, vmin, vmax);
+				FillRangeVectorFloatPtrNative((ImVector<float>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotFillRangeVectorDoublePtrNative(ImVector<double>* buffer, int n, double vmin, double vmax)
+		internal static void FillRangeVectorDoublePtrNative(ImVector<double>* buffer, int n, double vmin, double vmax)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImVector<double>*, int, double, double, void>)vt[667])(buffer, n, vmin, vmax);
@@ -392,26 +392,26 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorDoublePtr(ImVector<double>* buffer, int n, double vmin, double vmax)
+		public static void FillRangeVectorDoublePtr(ImVector<double>* buffer, int n, double vmin, double vmax)
 		{
-			ImPlotFillRangeVectorDoublePtrNative(buffer, n, vmin, vmax);
+			FillRangeVectorDoublePtrNative(buffer, n, vmin, vmax);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorDoublePtr(ref ImVector<double> buffer, int n, double vmin, double vmax)
+		public static void FillRangeVectorDoublePtr(ref ImVector<double> buffer, int n, double vmin, double vmax)
 		{
 			fixed (ImVector<double>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorDoublePtrNative((ImVector<double>*)pbuffer, n, vmin, vmax);
+				FillRangeVectorDoublePtrNative((ImVector<double>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotFillRangeVectorS8PtrNative(ImVector<sbyte>* buffer, int n, byte vmin, byte vmax)
+		internal static void FillRangeVectorS8PtrNative(ImVector<sbyte>* buffer, int n, byte vmin, byte vmax)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImVector<sbyte>*, int, byte, byte, void>)vt[668])(buffer, n, vmin, vmax);
@@ -423,26 +423,26 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorS8Ptr(ImVector<sbyte>* buffer, int n, byte vmin, byte vmax)
+		public static void FillRangeVectorS8Ptr(ImVector<sbyte>* buffer, int n, byte vmin, byte vmax)
 		{
-			ImPlotFillRangeVectorS8PtrNative(buffer, n, vmin, vmax);
+			FillRangeVectorS8PtrNative(buffer, n, vmin, vmax);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorS8Ptr(ref ImVector<sbyte> buffer, int n, byte vmin, byte vmax)
+		public static void FillRangeVectorS8Ptr(ref ImVector<sbyte> buffer, int n, byte vmin, byte vmax)
 		{
 			fixed (ImVector<sbyte>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorS8PtrNative((ImVector<sbyte>*)pbuffer, n, vmin, vmax);
+				FillRangeVectorS8PtrNative((ImVector<sbyte>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotFillRangeVectorU8PtrNative(ImVector<byte>* buffer, int n, byte vmin, byte vmax)
+		internal static void FillRangeVectorU8PtrNative(ImVector<byte>* buffer, int n, byte vmin, byte vmax)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImVector<byte>*, int, byte, byte, void>)vt[669])(buffer, n, vmin, vmax);
@@ -454,26 +454,26 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorU8Ptr(ImVector<byte>* buffer, int n, byte vmin, byte vmax)
+		public static void FillRangeVectorU8Ptr(ImVector<byte>* buffer, int n, byte vmin, byte vmax)
 		{
-			ImPlotFillRangeVectorU8PtrNative(buffer, n, vmin, vmax);
+			FillRangeVectorU8PtrNative(buffer, n, vmin, vmax);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorU8Ptr(ref ImVector<byte> buffer, int n, byte vmin, byte vmax)
+		public static void FillRangeVectorU8Ptr(ref ImVector<byte> buffer, int n, byte vmin, byte vmax)
 		{
 			fixed (ImVector<byte>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorU8PtrNative((ImVector<byte>*)pbuffer, n, vmin, vmax);
+				FillRangeVectorU8PtrNative((ImVector<byte>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotFillRangeVectorS16PtrNative(ImVector<short>* buffer, int n, short vmin, short vmax)
+		internal static void FillRangeVectorS16PtrNative(ImVector<short>* buffer, int n, short vmin, short vmax)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImVector<short>*, int, short, short, void>)vt[670])(buffer, n, vmin, vmax);
@@ -485,26 +485,26 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorS16Ptr(ImVector<short>* buffer, int n, short vmin, short vmax)
+		public static void FillRangeVectorS16Ptr(ImVector<short>* buffer, int n, short vmin, short vmax)
 		{
-			ImPlotFillRangeVectorS16PtrNative(buffer, n, vmin, vmax);
+			FillRangeVectorS16PtrNative(buffer, n, vmin, vmax);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorS16Ptr(ref ImVector<short> buffer, int n, short vmin, short vmax)
+		public static void FillRangeVectorS16Ptr(ref ImVector<short> buffer, int n, short vmin, short vmax)
 		{
 			fixed (ImVector<short>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorS16PtrNative((ImVector<short>*)pbuffer, n, vmin, vmax);
+				FillRangeVectorS16PtrNative((ImVector<short>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotFillRangeVectorU16PtrNative(ImVector<ushort>* buffer, int n, ushort vmin, ushort vmax)
+		internal static void FillRangeVectorU16PtrNative(ImVector<ushort>* buffer, int n, ushort vmin, ushort vmax)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImVector<ushort>*, int, ushort, ushort, void>)vt[671])(buffer, n, vmin, vmax);
@@ -516,26 +516,26 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorU16Ptr(ImVector<ushort>* buffer, int n, ushort vmin, ushort vmax)
+		public static void FillRangeVectorU16Ptr(ImVector<ushort>* buffer, int n, ushort vmin, ushort vmax)
 		{
-			ImPlotFillRangeVectorU16PtrNative(buffer, n, vmin, vmax);
+			FillRangeVectorU16PtrNative(buffer, n, vmin, vmax);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorU16Ptr(ref ImVector<ushort> buffer, int n, ushort vmin, ushort vmax)
+		public static void FillRangeVectorU16Ptr(ref ImVector<ushort> buffer, int n, ushort vmin, ushort vmax)
 		{
 			fixed (ImVector<ushort>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorU16PtrNative((ImVector<ushort>*)pbuffer, n, vmin, vmax);
+				FillRangeVectorU16PtrNative((ImVector<ushort>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotFillRangeVectorS32PtrNative(ImVector<int>* buffer, int n, int vmin, int vmax)
+		internal static void FillRangeVectorS32PtrNative(ImVector<int>* buffer, int n, int vmin, int vmax)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImVector<int>*, int, int, int, void>)vt[672])(buffer, n, vmin, vmax);
@@ -547,26 +547,26 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorS32Ptr(ImVector<int>* buffer, int n, int vmin, int vmax)
+		public static void FillRangeVectorS32Ptr(ImVector<int>* buffer, int n, int vmin, int vmax)
 		{
-			ImPlotFillRangeVectorS32PtrNative(buffer, n, vmin, vmax);
+			FillRangeVectorS32PtrNative(buffer, n, vmin, vmax);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorS32Ptr(ref ImVector<int> buffer, int n, int vmin, int vmax)
+		public static void FillRangeVectorS32Ptr(ref ImVector<int> buffer, int n, int vmin, int vmax)
 		{
 			fixed (ImVector<int>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorS32PtrNative((ImVector<int>*)pbuffer, n, vmin, vmax);
+				FillRangeVectorS32PtrNative((ImVector<int>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotFillRangeVectorU32PtrNative(ImVector<uint>* buffer, int n, uint vmin, uint vmax)
+		internal static void FillRangeVectorU32PtrNative(ImVector<uint>* buffer, int n, uint vmin, uint vmax)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImVector<uint>*, int, uint, uint, void>)vt[673])(buffer, n, vmin, vmax);
@@ -578,26 +578,26 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorU32Ptr(ImVector<uint>* buffer, int n, uint vmin, uint vmax)
+		public static void FillRangeVectorU32Ptr(ImVector<uint>* buffer, int n, uint vmin, uint vmax)
 		{
-			ImPlotFillRangeVectorU32PtrNative(buffer, n, vmin, vmax);
+			FillRangeVectorU32PtrNative(buffer, n, vmin, vmax);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorU32Ptr(ref ImVector<uint> buffer, int n, uint vmin, uint vmax)
+		public static void FillRangeVectorU32Ptr(ref ImVector<uint> buffer, int n, uint vmin, uint vmax)
 		{
 			fixed (ImVector<uint>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorU32PtrNative((ImVector<uint>*)pbuffer, n, vmin, vmax);
+				FillRangeVectorU32PtrNative((ImVector<uint>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotFillRangeVectorS64PtrNative(ImVector<long>* buffer, int n, long vmin, long vmax)
+		internal static void FillRangeVectorS64PtrNative(ImVector<long>* buffer, int n, long vmin, long vmax)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImVector<long>*, int, long, long, void>)vt[674])(buffer, n, vmin, vmax);
@@ -609,26 +609,26 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorS64Ptr(ImVector<long>* buffer, int n, long vmin, long vmax)
+		public static void FillRangeVectorS64Ptr(ImVector<long>* buffer, int n, long vmin, long vmax)
 		{
-			ImPlotFillRangeVectorS64PtrNative(buffer, n, vmin, vmax);
+			FillRangeVectorS64PtrNative(buffer, n, vmin, vmax);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorS64Ptr(ref ImVector<long> buffer, int n, long vmin, long vmax)
+		public static void FillRangeVectorS64Ptr(ref ImVector<long> buffer, int n, long vmin, long vmax)
 		{
 			fixed (ImVector<long>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorS64PtrNative((ImVector<long>*)pbuffer, n, vmin, vmax);
+				FillRangeVectorS64PtrNative((ImVector<long>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotFillRangeVectorU64PtrNative(ImVector<ulong>* buffer, int n, ulong vmin, ulong vmax)
+		internal static void FillRangeVectorU64PtrNative(ImVector<ulong>* buffer, int n, ulong vmin, ulong vmax)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImVector<ulong>*, int, ulong, ulong, void>)vt[675])(buffer, n, vmin, vmax);
@@ -640,26 +640,26 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorU64Ptr(ImVector<ulong>* buffer, int n, ulong vmin, ulong vmax)
+		public static void FillRangeVectorU64Ptr(ImVector<ulong>* buffer, int n, ulong vmin, ulong vmax)
 		{
-			ImPlotFillRangeVectorU64PtrNative(buffer, n, vmin, vmax);
+			FillRangeVectorU64PtrNative(buffer, n, vmin, vmax);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFillRangeVectorU64Ptr(ref ImVector<ulong> buffer, int n, ulong vmin, ulong vmax)
+		public static void FillRangeVectorU64Ptr(ref ImVector<ulong> buffer, int n, ulong vmin, ulong vmax)
 		{
 			fixed (ImVector<ulong>* pbuffer = &buffer)
 			{
-				ImPlotFillRangeVectorU64PtrNative((ImVector<ulong>*)pbuffer, n, vmin, vmax);
+				FillRangeVectorU64PtrNative((ImVector<ulong>*)pbuffer, n, vmin, vmax);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotCalculateBinsFloatPtrNative(float* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		internal static void CalculateBinsFloatPtrNative(float* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<float*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[676])(values, count, meth, range, binsOut, widthOut);
@@ -671,43 +671,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsFloatPtr(float* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsFloatPtr(float* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
-			ImPlotCalculateBinsFloatPtrNative(values, count, meth, range, binsOut, widthOut);
+			CalculateBinsFloatPtrNative(values, count, meth, range, binsOut, widthOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsFloatPtr(ref float values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsFloatPtr(ref float values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			fixed (float* pvalues = &values)
 			{
-				ImPlotCalculateBinsFloatPtrNative((float*)pvalues, count, meth, range, binsOut, widthOut);
+				CalculateBinsFloatPtrNative((float*)pvalues, count, meth, range, binsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsFloatPtr(float* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsFloatPtr(float* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
-				ImPlotCalculateBinsFloatPtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
+				CalculateBinsFloatPtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsFloatPtr(ref float values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsFloatPtr(ref float values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (float* pvalues = &values)
 			{
 				fixed (int* pbinsOut = &binsOut)
 				{
-					ImPlotCalculateBinsFloatPtrNative((float*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
+					CalculateBinsFloatPtrNative((float*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
 				}
 			}
 		}
@@ -715,24 +715,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsFloatPtr(float* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsFloatPtr(float* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (double* pwidthOut = &widthOut)
 			{
-				ImPlotCalculateBinsFloatPtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
+				CalculateBinsFloatPtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsFloatPtr(ref float values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsFloatPtr(ref float values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (float* pvalues = &values)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsFloatPtrNative((float*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
+					CalculateBinsFloatPtrNative((float*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -740,13 +740,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsFloatPtr(float* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsFloatPtr(float* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsFloatPtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+					CalculateBinsFloatPtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -754,7 +754,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsFloatPtr(ref float values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsFloatPtr(ref float values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (float* pvalues = &values)
 			{
@@ -762,7 +762,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (double* pwidthOut = &widthOut)
 					{
-						ImPlotCalculateBinsFloatPtrNative((float*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+						CalculateBinsFloatPtrNative((float*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 					}
 				}
 			}
@@ -771,7 +771,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotCalculateBinsDoublePtrNative(double* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		internal static void CalculateBinsDoublePtrNative(double* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<double*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[677])(values, count, meth, range, binsOut, widthOut);
@@ -783,43 +783,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsDoublePtr(double* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsDoublePtr(double* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
-			ImPlotCalculateBinsDoublePtrNative(values, count, meth, range, binsOut, widthOut);
+			CalculateBinsDoublePtrNative(values, count, meth, range, binsOut, widthOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsDoublePtr(ref double values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsDoublePtr(ref double values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			fixed (double* pvalues = &values)
 			{
-				ImPlotCalculateBinsDoublePtrNative((double*)pvalues, count, meth, range, binsOut, widthOut);
+				CalculateBinsDoublePtrNative((double*)pvalues, count, meth, range, binsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsDoublePtr(double* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsDoublePtr(double* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
-				ImPlotCalculateBinsDoublePtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
+				CalculateBinsDoublePtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsDoublePtr(ref double values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsDoublePtr(ref double values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (double* pvalues = &values)
 			{
 				fixed (int* pbinsOut = &binsOut)
 				{
-					ImPlotCalculateBinsDoublePtrNative((double*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
+					CalculateBinsDoublePtrNative((double*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
 				}
 			}
 		}
@@ -827,24 +827,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsDoublePtr(double* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsDoublePtr(double* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (double* pwidthOut = &widthOut)
 			{
-				ImPlotCalculateBinsDoublePtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
+				CalculateBinsDoublePtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsDoublePtr(ref double values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsDoublePtr(ref double values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (double* pvalues = &values)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsDoublePtrNative((double*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
+					CalculateBinsDoublePtrNative((double*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -852,13 +852,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsDoublePtr(double* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsDoublePtr(double* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsDoublePtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+					CalculateBinsDoublePtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -866,7 +866,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsDoublePtr(ref double values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsDoublePtr(ref double values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (double* pvalues = &values)
 			{
@@ -874,7 +874,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (double* pwidthOut = &widthOut)
 					{
-						ImPlotCalculateBinsDoublePtrNative((double*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+						CalculateBinsDoublePtrNative((double*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 					}
 				}
 			}
@@ -883,7 +883,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotCalculateBinsS8PtrNative(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		internal static void CalculateBinsS8PtrNative(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<byte*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[678])(values, count, meth, range, binsOut, widthOut);
@@ -895,43 +895,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsS8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
-			ImPlotCalculateBinsS8PtrNative(values, count, meth, range, binsOut, widthOut);
+			CalculateBinsS8PtrNative(values, count, meth, range, binsOut, widthOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsS8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			fixed (byte* pvalues = &values)
 			{
-				ImPlotCalculateBinsS8PtrNative((byte*)pvalues, count, meth, range, binsOut, widthOut);
+				CalculateBinsS8PtrNative((byte*)pvalues, count, meth, range, binsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsS8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
-				ImPlotCalculateBinsS8PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
+				CalculateBinsS8PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsS8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (byte* pvalues = &values)
 			{
 				fixed (int* pbinsOut = &binsOut)
 				{
-					ImPlotCalculateBinsS8PtrNative((byte*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
+					CalculateBinsS8PtrNative((byte*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
 				}
 			}
 		}
@@ -939,24 +939,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsS8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (double* pwidthOut = &widthOut)
 			{
-				ImPlotCalculateBinsS8PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
+				CalculateBinsS8PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsS8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (byte* pvalues = &values)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsS8PtrNative((byte*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
+					CalculateBinsS8PtrNative((byte*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -964,13 +964,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsS8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsS8PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+					CalculateBinsS8PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -978,7 +978,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsS8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (byte* pvalues = &values)
 			{
@@ -986,7 +986,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (double* pwidthOut = &widthOut)
 					{
-						ImPlotCalculateBinsS8PtrNative((byte*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+						CalculateBinsS8PtrNative((byte*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 					}
 				}
 			}
@@ -995,7 +995,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotCalculateBinsU8PtrNative(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		internal static void CalculateBinsU8PtrNative(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<byte*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[679])(values, count, meth, range, binsOut, widthOut);
@@ -1007,43 +1007,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsU8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
-			ImPlotCalculateBinsU8PtrNative(values, count, meth, range, binsOut, widthOut);
+			CalculateBinsU8PtrNative(values, count, meth, range, binsOut, widthOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsU8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			fixed (byte* pvalues = &values)
 			{
-				ImPlotCalculateBinsU8PtrNative((byte*)pvalues, count, meth, range, binsOut, widthOut);
+				CalculateBinsU8PtrNative((byte*)pvalues, count, meth, range, binsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsU8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
-				ImPlotCalculateBinsU8PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
+				CalculateBinsU8PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsU8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (byte* pvalues = &values)
 			{
 				fixed (int* pbinsOut = &binsOut)
 				{
-					ImPlotCalculateBinsU8PtrNative((byte*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
+					CalculateBinsU8PtrNative((byte*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
 				}
 			}
 		}
@@ -1051,24 +1051,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsU8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (double* pwidthOut = &widthOut)
 			{
-				ImPlotCalculateBinsU8PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
+				CalculateBinsU8PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsU8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (byte* pvalues = &values)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsU8PtrNative((byte*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
+					CalculateBinsU8PtrNative((byte*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -1076,13 +1076,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsU8Ptr(byte* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsU8PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+					CalculateBinsU8PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -1090,7 +1090,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsU8Ptr(ref byte values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (byte* pvalues = &values)
 			{
@@ -1098,7 +1098,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (double* pwidthOut = &widthOut)
 					{
-						ImPlotCalculateBinsU8PtrNative((byte*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+						CalculateBinsU8PtrNative((byte*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 					}
 				}
 			}
@@ -1107,7 +1107,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotCalculateBinsS16PtrNative(short* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		internal static void CalculateBinsS16PtrNative(short* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<short*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[680])(values, count, meth, range, binsOut, widthOut);
@@ -1119,43 +1119,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS16Ptr(short* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsS16Ptr(short* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
-			ImPlotCalculateBinsS16PtrNative(values, count, meth, range, binsOut, widthOut);
+			CalculateBinsS16PtrNative(values, count, meth, range, binsOut, widthOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS16Ptr(ref short values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsS16Ptr(ref short values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			fixed (short* pvalues = &values)
 			{
-				ImPlotCalculateBinsS16PtrNative((short*)pvalues, count, meth, range, binsOut, widthOut);
+				CalculateBinsS16PtrNative((short*)pvalues, count, meth, range, binsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS16Ptr(short* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsS16Ptr(short* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
-				ImPlotCalculateBinsS16PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
+				CalculateBinsS16PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS16Ptr(ref short values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsS16Ptr(ref short values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (short* pvalues = &values)
 			{
 				fixed (int* pbinsOut = &binsOut)
 				{
-					ImPlotCalculateBinsS16PtrNative((short*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
+					CalculateBinsS16PtrNative((short*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
 				}
 			}
 		}
@@ -1163,24 +1163,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS16Ptr(short* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsS16Ptr(short* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (double* pwidthOut = &widthOut)
 			{
-				ImPlotCalculateBinsS16PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
+				CalculateBinsS16PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS16Ptr(ref short values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsS16Ptr(ref short values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (short* pvalues = &values)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsS16PtrNative((short*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
+					CalculateBinsS16PtrNative((short*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -1188,13 +1188,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS16Ptr(short* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsS16Ptr(short* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsS16PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+					CalculateBinsS16PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -1202,7 +1202,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS16Ptr(ref short values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsS16Ptr(ref short values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (short* pvalues = &values)
 			{
@@ -1210,7 +1210,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (double* pwidthOut = &widthOut)
 					{
-						ImPlotCalculateBinsS16PtrNative((short*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+						CalculateBinsS16PtrNative((short*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 					}
 				}
 			}
@@ -1219,7 +1219,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotCalculateBinsU16PtrNative(ushort* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		internal static void CalculateBinsU16PtrNative(ushort* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ushort*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[681])(values, count, meth, range, binsOut, widthOut);
@@ -1231,43 +1231,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU16Ptr(ushort* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsU16Ptr(ushort* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
-			ImPlotCalculateBinsU16PtrNative(values, count, meth, range, binsOut, widthOut);
+			CalculateBinsU16PtrNative(values, count, meth, range, binsOut, widthOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU16Ptr(ref ushort values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsU16Ptr(ref ushort values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			fixed (ushort* pvalues = &values)
 			{
-				ImPlotCalculateBinsU16PtrNative((ushort*)pvalues, count, meth, range, binsOut, widthOut);
+				CalculateBinsU16PtrNative((ushort*)pvalues, count, meth, range, binsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU16Ptr(ushort* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsU16Ptr(ushort* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
-				ImPlotCalculateBinsU16PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
+				CalculateBinsU16PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU16Ptr(ref ushort values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsU16Ptr(ref ushort values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (ushort* pvalues = &values)
 			{
 				fixed (int* pbinsOut = &binsOut)
 				{
-					ImPlotCalculateBinsU16PtrNative((ushort*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
+					CalculateBinsU16PtrNative((ushort*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
 				}
 			}
 		}
@@ -1275,24 +1275,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU16Ptr(ushort* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsU16Ptr(ushort* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (double* pwidthOut = &widthOut)
 			{
-				ImPlotCalculateBinsU16PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
+				CalculateBinsU16PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU16Ptr(ref ushort values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsU16Ptr(ref ushort values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (ushort* pvalues = &values)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsU16PtrNative((ushort*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
+					CalculateBinsU16PtrNative((ushort*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -1300,13 +1300,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU16Ptr(ushort* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsU16Ptr(ushort* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsU16PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+					CalculateBinsU16PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -1314,7 +1314,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU16Ptr(ref ushort values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsU16Ptr(ref ushort values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (ushort* pvalues = &values)
 			{
@@ -1322,7 +1322,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (double* pwidthOut = &widthOut)
 					{
-						ImPlotCalculateBinsU16PtrNative((ushort*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+						CalculateBinsU16PtrNative((ushort*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 					}
 				}
 			}
@@ -1331,7 +1331,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotCalculateBinsS32PtrNative(int* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		internal static void CalculateBinsS32PtrNative(int* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<int*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[682])(values, count, meth, range, binsOut, widthOut);
@@ -1343,43 +1343,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS32Ptr(int* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsS32Ptr(int* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
-			ImPlotCalculateBinsS32PtrNative(values, count, meth, range, binsOut, widthOut);
+			CalculateBinsS32PtrNative(values, count, meth, range, binsOut, widthOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS32Ptr(ref int values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsS32Ptr(ref int values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			fixed (int* pvalues = &values)
 			{
-				ImPlotCalculateBinsS32PtrNative((int*)pvalues, count, meth, range, binsOut, widthOut);
+				CalculateBinsS32PtrNative((int*)pvalues, count, meth, range, binsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS32Ptr(int* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsS32Ptr(int* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
-				ImPlotCalculateBinsS32PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
+				CalculateBinsS32PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS32Ptr(ref int values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsS32Ptr(ref int values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (int* pvalues = &values)
 			{
 				fixed (int* pbinsOut = &binsOut)
 				{
-					ImPlotCalculateBinsS32PtrNative((int*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
+					CalculateBinsS32PtrNative((int*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
 				}
 			}
 		}
@@ -1387,24 +1387,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS32Ptr(int* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsS32Ptr(int* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (double* pwidthOut = &widthOut)
 			{
-				ImPlotCalculateBinsS32PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
+				CalculateBinsS32PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS32Ptr(ref int values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsS32Ptr(ref int values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (int* pvalues = &values)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsS32PtrNative((int*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
+					CalculateBinsS32PtrNative((int*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -1412,13 +1412,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS32Ptr(int* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsS32Ptr(int* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsS32PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+					CalculateBinsS32PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -1426,7 +1426,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS32Ptr(ref int values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsS32Ptr(ref int values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (int* pvalues = &values)
 			{
@@ -1434,7 +1434,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (double* pwidthOut = &widthOut)
 					{
-						ImPlotCalculateBinsS32PtrNative((int*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+						CalculateBinsS32PtrNative((int*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 					}
 				}
 			}
@@ -1443,7 +1443,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotCalculateBinsU32PtrNative(uint* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		internal static void CalculateBinsU32PtrNative(uint* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<uint*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[683])(values, count, meth, range, binsOut, widthOut);
@@ -1455,43 +1455,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU32Ptr(uint* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsU32Ptr(uint* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
-			ImPlotCalculateBinsU32PtrNative(values, count, meth, range, binsOut, widthOut);
+			CalculateBinsU32PtrNative(values, count, meth, range, binsOut, widthOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU32Ptr(ref uint values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsU32Ptr(ref uint values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			fixed (uint* pvalues = &values)
 			{
-				ImPlotCalculateBinsU32PtrNative((uint*)pvalues, count, meth, range, binsOut, widthOut);
+				CalculateBinsU32PtrNative((uint*)pvalues, count, meth, range, binsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU32Ptr(uint* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsU32Ptr(uint* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
-				ImPlotCalculateBinsU32PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
+				CalculateBinsU32PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU32Ptr(ref uint values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsU32Ptr(ref uint values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (uint* pvalues = &values)
 			{
 				fixed (int* pbinsOut = &binsOut)
 				{
-					ImPlotCalculateBinsU32PtrNative((uint*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
+					CalculateBinsU32PtrNative((uint*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
 				}
 			}
 		}
@@ -1499,24 +1499,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU32Ptr(uint* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsU32Ptr(uint* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (double* pwidthOut = &widthOut)
 			{
-				ImPlotCalculateBinsU32PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
+				CalculateBinsU32PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU32Ptr(ref uint values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsU32Ptr(ref uint values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (uint* pvalues = &values)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsU32PtrNative((uint*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
+					CalculateBinsU32PtrNative((uint*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -1524,13 +1524,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU32Ptr(uint* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsU32Ptr(uint* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsU32PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+					CalculateBinsU32PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -1538,7 +1538,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU32Ptr(ref uint values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsU32Ptr(ref uint values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (uint* pvalues = &values)
 			{
@@ -1546,7 +1546,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (double* pwidthOut = &widthOut)
 					{
-						ImPlotCalculateBinsU32PtrNative((uint*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+						CalculateBinsU32PtrNative((uint*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 					}
 				}
 			}
@@ -1555,7 +1555,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotCalculateBinsS64PtrNative(long* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		internal static void CalculateBinsS64PtrNative(long* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<long*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[684])(values, count, meth, range, binsOut, widthOut);
@@ -1567,43 +1567,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS64Ptr(long* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsS64Ptr(long* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
-			ImPlotCalculateBinsS64PtrNative(values, count, meth, range, binsOut, widthOut);
+			CalculateBinsS64PtrNative(values, count, meth, range, binsOut, widthOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS64Ptr(ref long values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsS64Ptr(ref long values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			fixed (long* pvalues = &values)
 			{
-				ImPlotCalculateBinsS64PtrNative((long*)pvalues, count, meth, range, binsOut, widthOut);
+				CalculateBinsS64PtrNative((long*)pvalues, count, meth, range, binsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS64Ptr(long* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsS64Ptr(long* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
-				ImPlotCalculateBinsS64PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
+				CalculateBinsS64PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS64Ptr(ref long values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsS64Ptr(ref long values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (long* pvalues = &values)
 			{
 				fixed (int* pbinsOut = &binsOut)
 				{
-					ImPlotCalculateBinsS64PtrNative((long*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
+					CalculateBinsS64PtrNative((long*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
 				}
 			}
 		}
@@ -1611,24 +1611,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS64Ptr(long* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsS64Ptr(long* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (double* pwidthOut = &widthOut)
 			{
-				ImPlotCalculateBinsS64PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
+				CalculateBinsS64PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS64Ptr(ref long values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsS64Ptr(ref long values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (long* pvalues = &values)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsS64PtrNative((long*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
+					CalculateBinsS64PtrNative((long*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -1636,13 +1636,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS64Ptr(long* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsS64Ptr(long* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsS64PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+					CalculateBinsS64PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -1650,7 +1650,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsS64Ptr(ref long values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsS64Ptr(ref long values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (long* pvalues = &values)
 			{
@@ -1658,7 +1658,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (double* pwidthOut = &widthOut)
 					{
-						ImPlotCalculateBinsS64PtrNative((long*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+						CalculateBinsS64PtrNative((long*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 					}
 				}
 			}
@@ -1667,7 +1667,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotCalculateBinsU64PtrNative(ulong* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		internal static void CalculateBinsU64PtrNative(ulong* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ulong*, int, ImPlotBin, ImPlotRange, int*, double*, void>)vt[685])(values, count, meth, range, binsOut, widthOut);
@@ -1679,43 +1679,43 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU64Ptr(ulong* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsU64Ptr(ulong* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
-			ImPlotCalculateBinsU64PtrNative(values, count, meth, range, binsOut, widthOut);
+			CalculateBinsU64PtrNative(values, count, meth, range, binsOut, widthOut);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU64Ptr(ref ulong values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
+		public static void CalculateBinsU64Ptr(ref ulong values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, double* widthOut)
 		{
 			fixed (ulong* pvalues = &values)
 			{
-				ImPlotCalculateBinsU64PtrNative((ulong*)pvalues, count, meth, range, binsOut, widthOut);
+				CalculateBinsU64PtrNative((ulong*)pvalues, count, meth, range, binsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU64Ptr(ulong* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsU64Ptr(ulong* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
-				ImPlotCalculateBinsU64PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
+				CalculateBinsU64PtrNative(values, count, meth, range, (int*)pbinsOut, widthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU64Ptr(ref ulong values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
+		public static void CalculateBinsU64Ptr(ref ulong values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, double* widthOut)
 		{
 			fixed (ulong* pvalues = &values)
 			{
 				fixed (int* pbinsOut = &binsOut)
 				{
-					ImPlotCalculateBinsU64PtrNative((ulong*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
+					CalculateBinsU64PtrNative((ulong*)pvalues, count, meth, range, (int*)pbinsOut, widthOut);
 				}
 			}
 		}
@@ -1723,24 +1723,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU64Ptr(ulong* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsU64Ptr(ulong* values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (double* pwidthOut = &widthOut)
 			{
-				ImPlotCalculateBinsU64PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
+				CalculateBinsU64PtrNative(values, count, meth, range, binsOut, (double*)pwidthOut);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU64Ptr(ref ulong values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
+		public static void CalculateBinsU64Ptr(ref ulong values, int count, ImPlotBin meth, ImPlotRange range, int* binsOut, ref double widthOut)
 		{
 			fixed (ulong* pvalues = &values)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsU64PtrNative((ulong*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
+					CalculateBinsU64PtrNative((ulong*)pvalues, count, meth, range, binsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -1748,13 +1748,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU64Ptr(ulong* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsU64Ptr(ulong* values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (int* pbinsOut = &binsOut)
 			{
 				fixed (double* pwidthOut = &widthOut)
 				{
-					ImPlotCalculateBinsU64PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+					CalculateBinsU64PtrNative(values, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 				}
 			}
 		}
@@ -1762,7 +1762,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCalculateBinsU64Ptr(ref ulong values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
+		public static void CalculateBinsU64Ptr(ref ulong values, int count, ImPlotBin meth, ImPlotRange range, ref int binsOut, ref double widthOut)
 		{
 			fixed (ulong* pvalues = &values)
 			{
@@ -1770,7 +1770,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (double* pwidthOut = &widthOut)
 					{
-						ImPlotCalculateBinsU64PtrNative((ulong*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
+						CalculateBinsU64PtrNative((ulong*)pvalues, count, meth, range, (int*)pbinsOut, (double*)pwidthOut);
 					}
 				}
 			}
@@ -1779,7 +1779,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImPlotIsLeapYearNative(int year)
+		internal static byte IsLeapYearNative(int year)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<int, byte>)vt[686])(year);
@@ -1791,16 +1791,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotIsLeapYear(int year)
+		public static bool IsLeapYear(int year)
 		{
-			byte ret = ImPlotIsLeapYearNative(year);
+			byte ret = IsLeapYearNative(year);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImPlotGetDaysInMonthNative(int year, int month)
+		internal static int GetDaysInMonthNative(int year, int month)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<int, int, int>)vt[687])(year, month);
@@ -1812,16 +1812,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotGetDaysInMonth(int year, int month)
+		public static int GetDaysInMonth(int year, int month)
 		{
-			int ret = ImPlotGetDaysInMonthNative(year, month);
+			int ret = GetDaysInMonthNative(year, month);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotMkGmtTimeNative(ImPlotTime* pOut, Tm* ptm)
+		internal static void MkGmtTimeNative(ImPlotTime* pOut, Tm* ptm)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImPlotTime*, Tm*, void>)vt[688])(pOut, ptm);
@@ -1833,41 +1833,41 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTime ImPlotMkGmtTime(Tm* ptm)
+		public static ImPlotTime MkGmtTime(Tm* ptm)
 		{
 			ImPlotTime ret;
-			ImPlotMkGmtTimeNative(&ret, ptm);
+			MkGmtTimeNative(&ret, ptm);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotMkGmtTime(ImPlotTimePtr pOut, Tm* ptm)
+		public static void MkGmtTime(ImPlotTimePtr pOut, Tm* ptm)
 		{
-			ImPlotMkGmtTimeNative(pOut, ptm);
+			MkGmtTimeNative(pOut, ptm);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotMkGmtTime(ref ImPlotTime pOut, Tm* ptm)
+		public static void MkGmtTime(ref ImPlotTime pOut, Tm* ptm)
 		{
 			fixed (ImPlotTime* ppOut = &pOut)
 			{
-				ImPlotMkGmtTimeNative((ImPlotTime*)ppOut, ptm);
+				MkGmtTimeNative((ImPlotTime*)ppOut, ptm);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTime ImPlotMkGmtTime(ref Tm ptm)
+		public static ImPlotTime MkGmtTime(ref Tm ptm)
 		{
 			fixed (Tm* pptm = &ptm)
 			{
 				ImPlotTime ret;
-				ImPlotMkGmtTimeNative(&ret, (Tm*)pptm);
+				MkGmtTimeNative(&ret, (Tm*)pptm);
 				return ret;
 			}
 		}
@@ -1875,24 +1875,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotMkGmtTime(ImPlotTimePtr pOut, ref Tm ptm)
+		public static void MkGmtTime(ImPlotTimePtr pOut, ref Tm ptm)
 		{
 			fixed (Tm* pptm = &ptm)
 			{
-				ImPlotMkGmtTimeNative(pOut, (Tm*)pptm);
+				MkGmtTimeNative(pOut, (Tm*)pptm);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotMkGmtTime(ref ImPlotTime pOut, ref Tm ptm)
+		public static void MkGmtTime(ref ImPlotTime pOut, ref Tm ptm)
 		{
 			fixed (ImPlotTime* ppOut = &pOut)
 			{
 				fixed (Tm* pptm = &ptm)
 				{
-					ImPlotMkGmtTimeNative((ImPlotTime*)ppOut, (Tm*)pptm);
+					MkGmtTimeNative((ImPlotTime*)ppOut, (Tm*)pptm);
 				}
 			}
 		}
@@ -1900,7 +1900,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static Tm* ImPlotGetGmtTimeNative(ImPlotTime t, Tm* ptm)
+		internal static Tm* GetGmtTimeNative(ImPlotTime t, Tm* ptm)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotTime, Tm*, Tm*>)vt[689])(t, ptm);
@@ -1912,20 +1912,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Tm* ImPlotGetGmtTime(ImPlotTime t, Tm* ptm)
+		public static Tm* GetGmtTime(ImPlotTime t, Tm* ptm)
 		{
-			Tm* ret = ImPlotGetGmtTimeNative(t, ptm);
+			Tm* ret = GetGmtTimeNative(t, ptm);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Tm* ImPlotGetGmtTime(ImPlotTime t, ref Tm ptm)
+		public static Tm* GetGmtTime(ImPlotTime t, ref Tm ptm)
 		{
 			fixed (Tm* pptm = &ptm)
 			{
-				Tm* ret = ImPlotGetGmtTimeNative(t, (Tm*)pptm);
+				Tm* ret = GetGmtTimeNative(t, (Tm*)pptm);
 				return ret;
 			}
 		}
@@ -1933,7 +1933,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotMkLocTimeNative(ImPlotTime* pOut, Tm* ptm)
+		internal static void MkLocTimeNative(ImPlotTime* pOut, Tm* ptm)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImPlotTime*, Tm*, void>)vt[690])(pOut, ptm);
@@ -1945,41 +1945,41 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTime ImPlotMkLocTime(Tm* ptm)
+		public static ImPlotTime MkLocTime(Tm* ptm)
 		{
 			ImPlotTime ret;
-			ImPlotMkLocTimeNative(&ret, ptm);
+			MkLocTimeNative(&ret, ptm);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotMkLocTime(ImPlotTimePtr pOut, Tm* ptm)
+		public static void MkLocTime(ImPlotTimePtr pOut, Tm* ptm)
 		{
-			ImPlotMkLocTimeNative(pOut, ptm);
+			MkLocTimeNative(pOut, ptm);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotMkLocTime(ref ImPlotTime pOut, Tm* ptm)
+		public static void MkLocTime(ref ImPlotTime pOut, Tm* ptm)
 		{
 			fixed (ImPlotTime* ppOut = &pOut)
 			{
-				ImPlotMkLocTimeNative((ImPlotTime*)ppOut, ptm);
+				MkLocTimeNative((ImPlotTime*)ppOut, ptm);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTime ImPlotMkLocTime(ref Tm ptm)
+		public static ImPlotTime MkLocTime(ref Tm ptm)
 		{
 			fixed (Tm* pptm = &ptm)
 			{
 				ImPlotTime ret;
-				ImPlotMkLocTimeNative(&ret, (Tm*)pptm);
+				MkLocTimeNative(&ret, (Tm*)pptm);
 				return ret;
 			}
 		}
@@ -1987,24 +1987,24 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotMkLocTime(ImPlotTimePtr pOut, ref Tm ptm)
+		public static void MkLocTime(ImPlotTimePtr pOut, ref Tm ptm)
 		{
 			fixed (Tm* pptm = &ptm)
 			{
-				ImPlotMkLocTimeNative(pOut, (Tm*)pptm);
+				MkLocTimeNative(pOut, (Tm*)pptm);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotMkLocTime(ref ImPlotTime pOut, ref Tm ptm)
+		public static void MkLocTime(ref ImPlotTime pOut, ref Tm ptm)
 		{
 			fixed (ImPlotTime* ppOut = &pOut)
 			{
 				fixed (Tm* pptm = &ptm)
 				{
-					ImPlotMkLocTimeNative((ImPlotTime*)ppOut, (Tm*)pptm);
+					MkLocTimeNative((ImPlotTime*)ppOut, (Tm*)pptm);
 				}
 			}
 		}
@@ -2012,7 +2012,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static Tm* ImPlotGetLocTimeNative(ImPlotTime t, Tm* ptm)
+		internal static Tm* GetLocTimeNative(ImPlotTime t, Tm* ptm)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotTime, Tm*, Tm*>)vt[691])(t, ptm);
@@ -2024,20 +2024,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Tm* ImPlotGetLocTime(ImPlotTime t, Tm* ptm)
+		public static Tm* GetLocTime(ImPlotTime t, Tm* ptm)
 		{
-			Tm* ret = ImPlotGetLocTimeNative(t, ptm);
+			Tm* ret = GetLocTimeNative(t, ptm);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static Tm* ImPlotGetLocTime(ImPlotTime t, ref Tm ptm)
+		public static Tm* GetLocTime(ImPlotTime t, ref Tm ptm)
 		{
 			fixed (Tm* pptm = &ptm)
 			{
-				Tm* ret = ImPlotGetLocTimeNative(t, (Tm*)pptm);
+				Tm* ret = GetLocTimeNative(t, (Tm*)pptm);
 				return ret;
 			}
 		}
@@ -2045,7 +2045,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotMakeTimeNative(ImPlotTime* pOut, int year, int month, int day, int hour, int min, int sec, int us)
+		internal static void MakeTimeNative(ImPlotTime* pOut, int year, int month, int day, int hour, int min, int sec, int us)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImPlotTime*, int, int, int, int, int, int, int, void>)vt[692])(pOut, year, month, day, hour, min, sec, us);
@@ -2057,36 +2057,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTime ImPlotMakeTime(int year, int month, int day, int hour, int min, int sec, int us)
+		public static ImPlotTime MakeTime(int year, int month, int day, int hour, int min, int sec, int us)
 		{
 			ImPlotTime ret;
-			ImPlotMakeTimeNative(&ret, year, month, day, hour, min, sec, us);
+			MakeTimeNative(&ret, year, month, day, hour, min, sec, us);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotMakeTime(ImPlotTimePtr pOut, int year, int month, int day, int hour, int min, int sec, int us)
+		public static void MakeTime(ImPlotTimePtr pOut, int year, int month, int day, int hour, int min, int sec, int us)
 		{
-			ImPlotMakeTimeNative(pOut, year, month, day, hour, min, sec, us);
+			MakeTimeNative(pOut, year, month, day, hour, min, sec, us);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotMakeTime(ref ImPlotTime pOut, int year, int month, int day, int hour, int min, int sec, int us)
+		public static void MakeTime(ref ImPlotTime pOut, int year, int month, int day, int hour, int min, int sec, int us)
 		{
 			fixed (ImPlotTime* ppOut = &pOut)
 			{
-				ImPlotMakeTimeNative((ImPlotTime*)ppOut, year, month, day, hour, min, sec, us);
+				MakeTimeNative((ImPlotTime*)ppOut, year, month, day, hour, min, sec, us);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImPlotGetYearNative(ImPlotTime t)
+		internal static int GetYearNative(ImPlotTime t)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotTime, int>)vt[693])(t);
@@ -2098,16 +2098,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotGetYear(ImPlotTime t)
+		public static int GetYear(ImPlotTime t)
 		{
-			int ret = ImPlotGetYearNative(t);
+			int ret = GetYearNative(t);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotAddTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit, int count)
+		internal static void AddTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit, int count)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, int, void>)vt[694])(pOut, t, unit, count);
@@ -2119,36 +2119,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTime ImPlotAddTime(ImPlotTime t, ImPlotTimeUnit unit, int count)
+		public static ImPlotTime AddTime(ImPlotTime t, ImPlotTimeUnit unit, int count)
 		{
 			ImPlotTime ret;
-			ImPlotAddTimeNative(&ret, t, unit, count);
+			AddTimeNative(&ret, t, unit, count);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotAddTime(ImPlotTimePtr pOut, ImPlotTime t, ImPlotTimeUnit unit, int count)
+		public static void AddTime(ImPlotTimePtr pOut, ImPlotTime t, ImPlotTimeUnit unit, int count)
 		{
-			ImPlotAddTimeNative(pOut, t, unit, count);
+			AddTimeNative(pOut, t, unit, count);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotAddTime(ref ImPlotTime pOut, ImPlotTime t, ImPlotTimeUnit unit, int count)
+		public static void AddTime(ref ImPlotTime pOut, ImPlotTime t, ImPlotTimeUnit unit, int count)
 		{
 			fixed (ImPlotTime* ppOut = &pOut)
 			{
-				ImPlotAddTimeNative((ImPlotTime*)ppOut, t, unit, count);
+				AddTimeNative((ImPlotTime*)ppOut, t, unit, count);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotFloorTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit)
+		internal static void FloorTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)vt[695])(pOut, t, unit);
@@ -2160,36 +2160,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTime ImPlotFloorTime(ImPlotTime t, ImPlotTimeUnit unit)
+		public static ImPlotTime FloorTime(ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			ImPlotTime ret;
-			ImPlotFloorTimeNative(&ret, t, unit);
+			FloorTimeNative(&ret, t, unit);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFloorTime(ImPlotTimePtr pOut, ImPlotTime t, ImPlotTimeUnit unit)
+		public static void FloorTime(ImPlotTimePtr pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
-			ImPlotFloorTimeNative(pOut, t, unit);
+			FloorTimeNative(pOut, t, unit);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotFloorTime(ref ImPlotTime pOut, ImPlotTime t, ImPlotTimeUnit unit)
+		public static void FloorTime(ref ImPlotTime pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			fixed (ImPlotTime* ppOut = &pOut)
 			{
-				ImPlotFloorTimeNative((ImPlotTime*)ppOut, t, unit);
+				FloorTimeNative((ImPlotTime*)ppOut, t, unit);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotCeilTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit)
+		internal static void CeilTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)vt[696])(pOut, t, unit);
@@ -2201,36 +2201,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTime ImPlotCeilTime(ImPlotTime t, ImPlotTimeUnit unit)
+		public static ImPlotTime CeilTime(ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			ImPlotTime ret;
-			ImPlotCeilTimeNative(&ret, t, unit);
+			CeilTimeNative(&ret, t, unit);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCeilTime(ImPlotTimePtr pOut, ImPlotTime t, ImPlotTimeUnit unit)
+		public static void CeilTime(ImPlotTimePtr pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
-			ImPlotCeilTimeNative(pOut, t, unit);
+			CeilTimeNative(pOut, t, unit);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCeilTime(ref ImPlotTime pOut, ImPlotTime t, ImPlotTimeUnit unit)
+		public static void CeilTime(ref ImPlotTime pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			fixed (ImPlotTime* ppOut = &pOut)
 			{
-				ImPlotCeilTimeNative((ImPlotTime*)ppOut, t, unit);
+				CeilTimeNative((ImPlotTime*)ppOut, t, unit);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotRoundTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit)
+		internal static void RoundTimeNative(ImPlotTime* pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTimeUnit, void>)vt[697])(pOut, t, unit);
@@ -2242,36 +2242,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTime ImPlotRoundTime(ImPlotTime t, ImPlotTimeUnit unit)
+		public static ImPlotTime RoundTime(ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			ImPlotTime ret;
-			ImPlotRoundTimeNative(&ret, t, unit);
+			RoundTimeNative(&ret, t, unit);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotRoundTime(ImPlotTimePtr pOut, ImPlotTime t, ImPlotTimeUnit unit)
+		public static void RoundTime(ImPlotTimePtr pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
-			ImPlotRoundTimeNative(pOut, t, unit);
+			RoundTimeNative(pOut, t, unit);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotRoundTime(ref ImPlotTime pOut, ImPlotTime t, ImPlotTimeUnit unit)
+		public static void RoundTime(ref ImPlotTime pOut, ImPlotTime t, ImPlotTimeUnit unit)
 		{
 			fixed (ImPlotTime* ppOut = &pOut)
 			{
-				ImPlotRoundTimeNative((ImPlotTime*)ppOut, t, unit);
+				RoundTimeNative((ImPlotTime*)ppOut, t, unit);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotCombineDateTimeNative(ImPlotTime* pOut, ImPlotTime datePart, ImPlotTime timePart)
+		internal static void CombineDateTimeNative(ImPlotTime* pOut, ImPlotTime datePart, ImPlotTime timePart)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImPlotTime*, ImPlotTime, ImPlotTime, void>)vt[698])(pOut, datePart, timePart);
@@ -2283,36 +2283,36 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImPlotTime ImPlotCombineDateTime(ImPlotTime datePart, ImPlotTime timePart)
+		public static ImPlotTime CombineDateTime(ImPlotTime datePart, ImPlotTime timePart)
 		{
 			ImPlotTime ret;
-			ImPlotCombineDateTimeNative(&ret, datePart, timePart);
+			CombineDateTimeNative(&ret, datePart, timePart);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCombineDateTime(ImPlotTimePtr pOut, ImPlotTime datePart, ImPlotTime timePart)
+		public static void CombineDateTime(ImPlotTimePtr pOut, ImPlotTime datePart, ImPlotTime timePart)
 		{
-			ImPlotCombineDateTimeNative(pOut, datePart, timePart);
+			CombineDateTimeNative(pOut, datePart, timePart);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotCombineDateTime(ref ImPlotTime pOut, ImPlotTime datePart, ImPlotTime timePart)
+		public static void CombineDateTime(ref ImPlotTime pOut, ImPlotTime datePart, ImPlotTime timePart)
 		{
 			fixed (ImPlotTime* ppOut = &pOut)
 			{
-				ImPlotCombineDateTimeNative((ImPlotTime*)ppOut, datePart, timePart);
+				CombineDateTimeNative((ImPlotTime*)ppOut, datePart, timePart);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImPlotFormatTimeNative(ImPlotTime t, byte* buffer, int size, ImPlotTimeFmt fmt, byte use24HrClk)
+		internal static int FormatTimeNative(ImPlotTime t, byte* buffer, int size, ImPlotTimeFmt fmt, byte use24HrClk)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotTimeFmt, byte, int>)vt[699])(t, buffer, size, fmt, use24HrClk);
@@ -2324,20 +2324,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatTime(ImPlotTime t, byte* buffer, int size, ImPlotTimeFmt fmt, bool use24HrClk)
+		public static int FormatTime(ImPlotTime t, byte* buffer, int size, ImPlotTimeFmt fmt, bool use24HrClk)
 		{
-			int ret = ImPlotFormatTimeNative(t, buffer, size, fmt, use24HrClk ? (byte)1 : (byte)0);
+			int ret = FormatTimeNative(t, buffer, size, fmt, use24HrClk ? (byte)1 : (byte)0);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatTime(ImPlotTime t, ref byte buffer, int size, ImPlotTimeFmt fmt, bool use24HrClk)
+		public static int FormatTime(ImPlotTime t, ref byte buffer, int size, ImPlotTimeFmt fmt, bool use24HrClk)
 		{
 			fixed (byte* pbuffer = &buffer)
 			{
-				int ret = ImPlotFormatTimeNative(t, (byte*)pbuffer, size, fmt, use24HrClk ? (byte)1 : (byte)0);
+				int ret = FormatTimeNative(t, (byte*)pbuffer, size, fmt, use24HrClk ? (byte)1 : (byte)0);
 				return ret;
 			}
 		}
@@ -2345,7 +2345,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatTime(ImPlotTime t, ref string buffer, int size, ImPlotTimeFmt fmt, bool use24HrClk)
+		public static int FormatTime(ImPlotTime t, ref string buffer, int size, ImPlotTimeFmt fmt, bool use24HrClk)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2364,7 +2364,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(buffer, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ImPlotFormatTimeNative(t, pStr0, size, fmt, use24HrClk ? (byte)1 : (byte)0);
+			int ret = FormatTimeNative(t, pStr0, size, fmt, use24HrClk ? (byte)1 : (byte)0);
 			buffer = Utils.DecodeStringUTF8(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
@@ -2376,7 +2376,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImPlotFormatDateNative(ImPlotTime t, byte* buffer, int size, ImPlotDateFmt fmt, byte useIso8601)
+		internal static int FormatDateNative(ImPlotTime t, byte* buffer, int size, ImPlotDateFmt fmt, byte useIso8601)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotDateFmt, byte, int>)vt[700])(t, buffer, size, fmt, useIso8601);
@@ -2388,20 +2388,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatDate(ImPlotTime t, byte* buffer, int size, ImPlotDateFmt fmt, bool useIso8601)
+		public static int FormatDate(ImPlotTime t, byte* buffer, int size, ImPlotDateFmt fmt, bool useIso8601)
 		{
-			int ret = ImPlotFormatDateNative(t, buffer, size, fmt, useIso8601 ? (byte)1 : (byte)0);
+			int ret = FormatDateNative(t, buffer, size, fmt, useIso8601 ? (byte)1 : (byte)0);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatDate(ImPlotTime t, ref byte buffer, int size, ImPlotDateFmt fmt, bool useIso8601)
+		public static int FormatDate(ImPlotTime t, ref byte buffer, int size, ImPlotDateFmt fmt, bool useIso8601)
 		{
 			fixed (byte* pbuffer = &buffer)
 			{
-				int ret = ImPlotFormatDateNative(t, (byte*)pbuffer, size, fmt, useIso8601 ? (byte)1 : (byte)0);
+				int ret = FormatDateNative(t, (byte*)pbuffer, size, fmt, useIso8601 ? (byte)1 : (byte)0);
 				return ret;
 			}
 		}
@@ -2409,7 +2409,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatDate(ImPlotTime t, ref string buffer, int size, ImPlotDateFmt fmt, bool useIso8601)
+		public static int FormatDate(ImPlotTime t, ref string buffer, int size, ImPlotDateFmt fmt, bool useIso8601)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2428,7 +2428,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(buffer, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ImPlotFormatDateNative(t, pStr0, size, fmt, useIso8601 ? (byte)1 : (byte)0);
+			int ret = FormatDateNative(t, pStr0, size, fmt, useIso8601 ? (byte)1 : (byte)0);
 			buffer = Utils.DecodeStringUTF8(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
@@ -2440,7 +2440,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImPlotFormatDateTimeNative(ImPlotTime t, byte* buffer, int size, ImPlotDateTimeSpec fmt)
+		internal static int FormatDateTimeNative(ImPlotTime t, byte* buffer, int size, ImPlotDateTimeSpec fmt)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImPlotTime, byte*, int, ImPlotDateTimeSpec, int>)vt[701])(t, buffer, size, fmt);
@@ -2452,20 +2452,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatDateTime(ImPlotTime t, byte* buffer, int size, ImPlotDateTimeSpec fmt)
+		public static int FormatDateTime(ImPlotTime t, byte* buffer, int size, ImPlotDateTimeSpec fmt)
 		{
-			int ret = ImPlotFormatDateTimeNative(t, buffer, size, fmt);
+			int ret = FormatDateTimeNative(t, buffer, size, fmt);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatDateTime(ImPlotTime t, ref byte buffer, int size, ImPlotDateTimeSpec fmt)
+		public static int FormatDateTime(ImPlotTime t, ref byte buffer, int size, ImPlotDateTimeSpec fmt)
 		{
 			fixed (byte* pbuffer = &buffer)
 			{
-				int ret = ImPlotFormatDateTimeNative(t, (byte*)pbuffer, size, fmt);
+				int ret = FormatDateTimeNative(t, (byte*)pbuffer, size, fmt);
 				return ret;
 			}
 		}
@@ -2473,7 +2473,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatDateTime(ImPlotTime t, ref string buffer, int size, ImPlotDateTimeSpec fmt)
+		public static int FormatDateTime(ImPlotTime t, ref string buffer, int size, ImPlotDateTimeSpec fmt)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2492,7 +2492,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(buffer, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ImPlotFormatDateTimeNative(t, pStr0, size, fmt);
+			int ret = FormatDateTimeNative(t, pStr0, size, fmt);
 			buffer = Utils.DecodeStringUTF8(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
@@ -2504,7 +2504,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImPlotShowDatePickerNative(byte* id, int* level, ImPlotTime* t, ImPlotTime* t1, ImPlotTime* t2)
+		internal static byte ShowDatePickerNative(byte* id, int* level, ImPlotTime* t, ImPlotTime* t1, ImPlotTime* t2)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<byte*, int*, ImPlotTime*, ImPlotTime*, ImPlotTime*, byte>)vt[702])(id, level, t, t1, t2);
@@ -2516,20 +2516,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
-			byte ret = ImPlotShowDatePickerNative(id, level, t, t1, t2);
+			byte ret = ShowDatePickerNative(id, level, t, t1, t2);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ref byte id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = &id)
 			{
-				byte ret = ImPlotShowDatePickerNative((byte*)pid, level, t, t1, t2);
+				byte ret = ShowDatePickerNative((byte*)pid, level, t, t1, t2);
 				return ret != 0;
 			}
 		}
@@ -2537,11 +2537,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = id)
 			{
-				byte ret = ImPlotShowDatePickerNative((byte*)pid, level, t, t1, t2);
+				byte ret = ShowDatePickerNative((byte*)pid, level, t, t1, t2);
 				return ret != 0;
 			}
 		}
@@ -2549,7 +2549,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(string id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2568,7 +2568,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImPlotShowDatePickerNative(pStr0, level, t, t1, t2);
+			byte ret = ShowDatePickerNative(pStr0, level, t, t1, t2);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -2579,11 +2579,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(byte* id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			fixed (int* plevel = &level)
 			{
-				byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, t, t1, t2);
+				byte ret = ShowDatePickerNative(id, (int*)plevel, t, t1, t2);
 				return ret != 0;
 			}
 		}
@@ -2591,13 +2591,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ref byte id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = &id)
 			{
 				fixed (int* plevel = &level)
 				{
-					byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, t, t1, t2);
+					byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, t, t1, t2);
 					return ret != 0;
 				}
 			}
@@ -2606,13 +2606,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = id)
 			{
 				fixed (int* plevel = &level)
 				{
-					byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, t, t1, t2);
+					byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, t, t1, t2);
 					return ret != 0;
 				}
 			}
@@ -2621,7 +2621,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(string id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2642,7 +2642,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (int* plevel = &level)
 			{
-				byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, t, t1, t2);
+				byte ret = ShowDatePickerNative(pStr0, (int*)plevel, t, t1, t2);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2654,11 +2654,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(byte* id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			fixed (ImPlotTime* pt = &t)
 			{
-				byte ret = ImPlotShowDatePickerNative(id, level, (ImPlotTime*)pt, t1, t2);
+				byte ret = ShowDatePickerNative(id, level, (ImPlotTime*)pt, t1, t2);
 				return ret != 0;
 			}
 		}
@@ -2666,13 +2666,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ref byte id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = &id)
 			{
 				fixed (ImPlotTime* pt = &t)
 				{
-					byte ret = ImPlotShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, t1, t2);
+					byte ret = ShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, t1, t2);
 					return ret != 0;
 				}
 			}
@@ -2681,13 +2681,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = id)
 			{
 				fixed (ImPlotTime* pt = &t)
 				{
-					byte ret = ImPlotShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, t1, t2);
+					byte ret = ShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, t1, t2);
 					return ret != 0;
 				}
 			}
@@ -2696,7 +2696,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(string id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2717,7 +2717,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (ImPlotTime* pt = &t)
 			{
-				byte ret = ImPlotShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, t1, t2);
+				byte ret = ShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, t1, t2);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2729,13 +2729,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			fixed (int* plevel = &level)
 			{
 				fixed (ImPlotTime* pt = &t)
 				{
-					byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, t1, t2);
+					byte ret = ShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, t1, t2);
 					return ret != 0;
 				}
 			}
@@ -2744,7 +2744,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = &id)
 			{
@@ -2752,7 +2752,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt = &t)
 					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, t1, t2);
+						byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, t1, t2);
 						return ret != 0;
 					}
 				}
@@ -2762,7 +2762,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = id)
 			{
@@ -2770,7 +2770,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt = &t)
 					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, t1, t2);
+						byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, t1, t2);
 						return ret != 0;
 					}
 				}
@@ -2780,7 +2780,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(string id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ImPlotTimePtr t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2803,7 +2803,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (ImPlotTime* pt = &t)
 				{
-					byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, t1, t2);
+					byte ret = ShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, t1, t2);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2816,11 +2816,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			fixed (ImPlotTime* pt1 = &t1)
 			{
-				byte ret = ImPlotShowDatePickerNative(id, level, t, (ImPlotTime*)pt1, t2);
+				byte ret = ShowDatePickerNative(id, level, t, (ImPlotTime*)pt1, t2);
 				return ret != 0;
 			}
 		}
@@ -2828,13 +2828,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ref byte id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = &id)
 			{
 				fixed (ImPlotTime* pt1 = &t1)
 				{
-					byte ret = ImPlotShowDatePickerNative((byte*)pid, level, t, (ImPlotTime*)pt1, t2);
+					byte ret = ShowDatePickerNative((byte*)pid, level, t, (ImPlotTime*)pt1, t2);
 					return ret != 0;
 				}
 			}
@@ -2843,13 +2843,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = id)
 			{
 				fixed (ImPlotTime* pt1 = &t1)
 				{
-					byte ret = ImPlotShowDatePickerNative((byte*)pid, level, t, (ImPlotTime*)pt1, t2);
+					byte ret = ShowDatePickerNative((byte*)pid, level, t, (ImPlotTime*)pt1, t2);
 					return ret != 0;
 				}
 			}
@@ -2858,7 +2858,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(string id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2879,7 +2879,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (ImPlotTime* pt1 = &t1)
 			{
-				byte ret = ImPlotShowDatePickerNative(pStr0, level, t, (ImPlotTime*)pt1, t2);
+				byte ret = ShowDatePickerNative(pStr0, level, t, (ImPlotTime*)pt1, t2);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -2891,13 +2891,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(byte* id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			fixed (int* plevel = &level)
 			{
 				fixed (ImPlotTime* pt1 = &t1)
 				{
-					byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, t, (ImPlotTime*)pt1, t2);
+					byte ret = ShowDatePickerNative(id, (int*)plevel, t, (ImPlotTime*)pt1, t2);
 					return ret != 0;
 				}
 			}
@@ -2906,7 +2906,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ref byte id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = &id)
 			{
@@ -2914,7 +2914,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt1 = &t1)
 					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, t, (ImPlotTime*)pt1, t2);
+						byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, t, (ImPlotTime*)pt1, t2);
 						return ret != 0;
 					}
 				}
@@ -2924,7 +2924,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = id)
 			{
@@ -2932,7 +2932,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt1 = &t1)
 					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, t, (ImPlotTime*)pt1, t2);
+						byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, t, (ImPlotTime*)pt1, t2);
 						return ret != 0;
 					}
 				}
@@ -2942,7 +2942,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(string id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -2965,7 +2965,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (ImPlotTime* pt1 = &t1)
 				{
-					byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, t, (ImPlotTime*)pt1, t2);
+					byte ret = ShowDatePickerNative(pStr0, (int*)plevel, t, (ImPlotTime*)pt1, t2);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -2978,13 +2978,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(byte* id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			fixed (ImPlotTime* pt = &t)
 			{
 				fixed (ImPlotTime* pt1 = &t1)
 				{
-					byte ret = ImPlotShowDatePickerNative(id, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
+					byte ret = ShowDatePickerNative(id, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
 					return ret != 0;
 				}
 			}
@@ -2993,7 +2993,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ref byte id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = &id)
 			{
@@ -3001,7 +3001,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt1 = &t1)
 					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
+						byte ret = ShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
 						return ret != 0;
 					}
 				}
@@ -3011,7 +3011,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = id)
 			{
@@ -3019,7 +3019,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt1 = &t1)
 					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
+						byte ret = ShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
 						return ret != 0;
 					}
 				}
@@ -3029,7 +3029,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(string id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3052,7 +3052,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (ImPlotTime* pt1 = &t1)
 				{
-					byte ret = ImPlotShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
+					byte ret = ShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3065,7 +3065,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			fixed (int* plevel = &level)
 			{
@@ -3073,7 +3073,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt1 = &t1)
 					{
-						byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
+						byte ret = ShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
 						return ret != 0;
 					}
 				}
@@ -3083,7 +3083,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = &id)
 			{
@@ -3093,7 +3093,7 @@ namespace Hexa.NET.ImPlot
 					{
 						fixed (ImPlotTime* pt1 = &t1)
 						{
-							byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
+							byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
 							return ret != 0;
 						}
 					}
@@ -3104,7 +3104,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			fixed (byte* pid = id)
 			{
@@ -3114,7 +3114,7 @@ namespace Hexa.NET.ImPlot
 					{
 						fixed (ImPlotTime* pt1 = &t1)
 						{
-							byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
+							byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
 							return ret != 0;
 						}
 					}
@@ -3125,7 +3125,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
+		public static bool ShowDatePicker(string id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ImPlotTimePtr t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3150,7 +3150,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt1 = &t1)
 					{
-						byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
+						byte ret = ShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, t2);
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
 							Utils.Free(pStr0);
@@ -3164,11 +3164,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			fixed (ImPlotTime* pt2 = &t2)
 			{
-				byte ret = ImPlotShowDatePickerNative(id, level, t, t1, (ImPlotTime*)pt2);
+				byte ret = ShowDatePickerNative(id, level, t, t1, (ImPlotTime*)pt2);
 				return ret != 0;
 			}
 		}
@@ -3176,13 +3176,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ref byte id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = &id)
 			{
 				fixed (ImPlotTime* pt2 = &t2)
 				{
-					byte ret = ImPlotShowDatePickerNative((byte*)pid, level, t, t1, (ImPlotTime*)pt2);
+					byte ret = ShowDatePickerNative((byte*)pid, level, t, t1, (ImPlotTime*)pt2);
 					return ret != 0;
 				}
 			}
@@ -3191,13 +3191,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = id)
 			{
 				fixed (ImPlotTime* pt2 = &t2)
 				{
-					byte ret = ImPlotShowDatePickerNative((byte*)pid, level, t, t1, (ImPlotTime*)pt2);
+					byte ret = ShowDatePickerNative((byte*)pid, level, t, t1, (ImPlotTime*)pt2);
 					return ret != 0;
 				}
 			}
@@ -3206,7 +3206,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(string id, int* level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3227,7 +3227,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (ImPlotTime* pt2 = &t2)
 			{
-				byte ret = ImPlotShowDatePickerNative(pStr0, level, t, t1, (ImPlotTime*)pt2);
+				byte ret = ShowDatePickerNative(pStr0, level, t, t1, (ImPlotTime*)pt2);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -3239,13 +3239,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(byte* id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			fixed (int* plevel = &level)
 			{
 				fixed (ImPlotTime* pt2 = &t2)
 				{
-					byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, t, t1, (ImPlotTime*)pt2);
+					byte ret = ShowDatePickerNative(id, (int*)plevel, t, t1, (ImPlotTime*)pt2);
 					return ret != 0;
 				}
 			}
@@ -3254,7 +3254,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ref byte id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = &id)
 			{
@@ -3262,7 +3262,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt2 = &t2)
 					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, t, t1, (ImPlotTime*)pt2);
+						byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, t, t1, (ImPlotTime*)pt2);
 						return ret != 0;
 					}
 				}
@@ -3272,7 +3272,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = id)
 			{
@@ -3280,7 +3280,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt2 = &t2)
 					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, t, t1, (ImPlotTime*)pt2);
+						byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, t, t1, (ImPlotTime*)pt2);
 						return ret != 0;
 					}
 				}
@@ -3290,7 +3290,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(string id, ref int level, ImPlotTimePtr t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3313,7 +3313,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (ImPlotTime* pt2 = &t2)
 				{
-					byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, t, t1, (ImPlotTime*)pt2);
+					byte ret = ShowDatePickerNative(pStr0, (int*)plevel, t, t1, (ImPlotTime*)pt2);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3326,13 +3326,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(byte* id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			fixed (ImPlotTime* pt = &t)
 			{
 				fixed (ImPlotTime* pt2 = &t2)
 				{
-					byte ret = ImPlotShowDatePickerNative(id, level, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
+					byte ret = ShowDatePickerNative(id, level, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
 					return ret != 0;
 				}
 			}
@@ -3341,7 +3341,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ref byte id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = &id)
 			{
@@ -3349,7 +3349,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt2 = &t2)
 					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
+						byte ret = ShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
 						return ret != 0;
 					}
 				}
@@ -3359,7 +3359,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = id)
 			{
@@ -3367,7 +3367,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt2 = &t2)
 					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
+						byte ret = ShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
 						return ret != 0;
 					}
 				}
@@ -3377,7 +3377,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(string id, int* level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3400,7 +3400,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (ImPlotTime* pt2 = &t2)
 				{
-					byte ret = ImPlotShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
+					byte ret = ShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3413,7 +3413,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			fixed (int* plevel = &level)
 			{
@@ -3421,7 +3421,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt2 = &t2)
 					{
-						byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
+						byte ret = ShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
 						return ret != 0;
 					}
 				}
@@ -3431,7 +3431,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = &id)
 			{
@@ -3441,7 +3441,7 @@ namespace Hexa.NET.ImPlot
 					{
 						fixed (ImPlotTime* pt2 = &t2)
 						{
-							byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
+							byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
 							return ret != 0;
 						}
 					}
@@ -3452,7 +3452,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = id)
 			{
@@ -3462,7 +3462,7 @@ namespace Hexa.NET.ImPlot
 					{
 						fixed (ImPlotTime* pt2 = &t2)
 						{
-							byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
+							byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
 							return ret != 0;
 						}
 					}
@@ -3473,7 +3473,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(string id, ref int level, ref ImPlotTime t, ImPlotTimePtr t1, ref ImPlotTime t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3498,7 +3498,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt2 = &t2)
 					{
-						byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
+						byte ret = ShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, t1, (ImPlotTime*)pt2);
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
 							Utils.Free(pStr0);
@@ -3512,13 +3512,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(byte* id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			fixed (ImPlotTime* pt1 = &t1)
 			{
 				fixed (ImPlotTime* pt2 = &t2)
 				{
-					byte ret = ImPlotShowDatePickerNative(id, level, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+					byte ret = ShowDatePickerNative(id, level, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 					return ret != 0;
 				}
 			}
@@ -3527,7 +3527,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ref byte id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = &id)
 			{
@@ -3535,7 +3535,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt2 = &t2)
 					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, level, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+						byte ret = ShowDatePickerNative((byte*)pid, level, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 						return ret != 0;
 					}
 				}
@@ -3545,7 +3545,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = id)
 			{
@@ -3553,7 +3553,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt2 = &t2)
 					{
-						byte ret = ImPlotShowDatePickerNative((byte*)pid, level, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+						byte ret = ShowDatePickerNative((byte*)pid, level, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 						return ret != 0;
 					}
 				}
@@ -3563,7 +3563,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(string id, int* level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3586,7 +3586,7 @@ namespace Hexa.NET.ImPlot
 			{
 				fixed (ImPlotTime* pt2 = &t2)
 				{
-					byte ret = ImPlotShowDatePickerNative(pStr0, level, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+					byte ret = ShowDatePickerNative(pStr0, level, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 					if (pStrSize0 >= Utils.MaxStackallocSize)
 					{
 						Utils.Free(pStr0);
@@ -3599,7 +3599,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(byte* id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			fixed (int* plevel = &level)
 			{
@@ -3607,7 +3607,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt2 = &t2)
 					{
-						byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+						byte ret = ShowDatePickerNative(id, (int*)plevel, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 						return ret != 0;
 					}
 				}
@@ -3617,7 +3617,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ref byte id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = &id)
 			{
@@ -3627,7 +3627,7 @@ namespace Hexa.NET.ImPlot
 					{
 						fixed (ImPlotTime* pt2 = &t2)
 						{
-							byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+							byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 							return ret != 0;
 						}
 					}
@@ -3638,7 +3638,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = id)
 			{
@@ -3648,7 +3648,7 @@ namespace Hexa.NET.ImPlot
 					{
 						fixed (ImPlotTime* pt2 = &t2)
 						{
-							byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+							byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 							return ret != 0;
 						}
 					}
@@ -3659,7 +3659,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(string id, ref int level, ImPlotTimePtr t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3684,7 +3684,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt2 = &t2)
 					{
-						byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+						byte ret = ShowDatePickerNative(pStr0, (int*)plevel, t, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
 							Utils.Free(pStr0);
@@ -3698,7 +3698,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(byte* id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			fixed (ImPlotTime* pt = &t)
 			{
@@ -3706,7 +3706,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt2 = &t2)
 					{
-						byte ret = ImPlotShowDatePickerNative(id, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+						byte ret = ShowDatePickerNative(id, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 						return ret != 0;
 					}
 				}
@@ -3716,7 +3716,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ref byte id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = &id)
 			{
@@ -3726,7 +3726,7 @@ namespace Hexa.NET.ImPlot
 					{
 						fixed (ImPlotTime* pt2 = &t2)
 						{
-							byte ret = ImPlotShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+							byte ret = ShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 							return ret != 0;
 						}
 					}
@@ -3737,7 +3737,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = id)
 			{
@@ -3747,7 +3747,7 @@ namespace Hexa.NET.ImPlot
 					{
 						fixed (ImPlotTime* pt2 = &t2)
 						{
-							byte ret = ImPlotShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+							byte ret = ShowDatePickerNative((byte*)pid, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 							return ret != 0;
 						}
 					}
@@ -3758,7 +3758,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(string id, int* level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3783,7 +3783,7 @@ namespace Hexa.NET.ImPlot
 				{
 					fixed (ImPlotTime* pt2 = &t2)
 					{
-						byte ret = ImPlotShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+						byte ret = ShowDatePickerNative(pStr0, level, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 						if (pStrSize0 >= Utils.MaxStackallocSize)
 						{
 							Utils.Free(pStr0);
@@ -3797,7 +3797,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(byte* id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			fixed (int* plevel = &level)
 			{
@@ -3807,7 +3807,7 @@ namespace Hexa.NET.ImPlot
 					{
 						fixed (ImPlotTime* pt2 = &t2)
 						{
-							byte ret = ImPlotShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+							byte ret = ShowDatePickerNative(id, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 							return ret != 0;
 						}
 					}
@@ -3818,7 +3818,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ref byte id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = &id)
 			{
@@ -3830,7 +3830,7 @@ namespace Hexa.NET.ImPlot
 						{
 							fixed (ImPlotTime* pt2 = &t2)
 							{
-								byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+								byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 								return ret != 0;
 							}
 						}
@@ -3842,7 +3842,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(ReadOnlySpan<byte> id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(ReadOnlySpan<byte> id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			fixed (byte* pid = id)
 			{
@@ -3854,7 +3854,7 @@ namespace Hexa.NET.ImPlot
 						{
 							fixed (ImPlotTime* pt2 = &t2)
 							{
-								byte ret = ImPlotShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+								byte ret = ShowDatePickerNative((byte*)pid, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 								return ret != 0;
 							}
 						}
@@ -3866,7 +3866,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowDatePicker(string id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
+		public static bool ShowDatePicker(string id, ref int level, ref ImPlotTime t, ref ImPlotTime t1, ref ImPlotTime t2)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3893,7 +3893,7 @@ namespace Hexa.NET.ImPlot
 					{
 						fixed (ImPlotTime* pt2 = &t2)
 						{
-							byte ret = ImPlotShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
+							byte ret = ShowDatePickerNative(pStr0, (int*)plevel, (ImPlotTime*)pt, (ImPlotTime*)pt1, (ImPlotTime*)pt2);
 							if (pStrSize0 >= Utils.MaxStackallocSize)
 							{
 								Utils.Free(pStr0);
@@ -3908,7 +3908,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static byte ImPlotShowTimePickerNative(byte* id, ImPlotTime* t)
+		internal static byte ShowTimePickerNative(byte* id, ImPlotTime* t)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<byte*, ImPlotTime*, byte>)vt[703])(id, t);
@@ -3920,20 +3920,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowTimePicker(byte* id, ImPlotTimePtr t)
+		public static bool ShowTimePicker(byte* id, ImPlotTimePtr t)
 		{
-			byte ret = ImPlotShowTimePickerNative(id, t);
+			byte ret = ShowTimePickerNative(id, t);
 			return ret != 0;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowTimePicker(ref byte id, ImPlotTimePtr t)
+		public static bool ShowTimePicker(ref byte id, ImPlotTimePtr t)
 		{
 			fixed (byte* pid = &id)
 			{
-				byte ret = ImPlotShowTimePickerNative((byte*)pid, t);
+				byte ret = ShowTimePickerNative((byte*)pid, t);
 				return ret != 0;
 			}
 		}
@@ -3941,11 +3941,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowTimePicker(ReadOnlySpan<byte> id, ImPlotTimePtr t)
+		public static bool ShowTimePicker(ReadOnlySpan<byte> id, ImPlotTimePtr t)
 		{
 			fixed (byte* pid = id)
 			{
-				byte ret = ImPlotShowTimePickerNative((byte*)pid, t);
+				byte ret = ShowTimePickerNative((byte*)pid, t);
 				return ret != 0;
 			}
 		}
@@ -3953,7 +3953,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowTimePicker(string id, ImPlotTimePtr t)
+		public static bool ShowTimePicker(string id, ImPlotTimePtr t)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -3972,7 +3972,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(id, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			byte ret = ImPlotShowTimePickerNative(pStr0, t);
+			byte ret = ShowTimePickerNative(pStr0, t);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
 				Utils.Free(pStr0);
@@ -3983,11 +3983,11 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowTimePicker(byte* id, ref ImPlotTime t)
+		public static bool ShowTimePicker(byte* id, ref ImPlotTime t)
 		{
 			fixed (ImPlotTime* pt = &t)
 			{
-				byte ret = ImPlotShowTimePickerNative(id, (ImPlotTime*)pt);
+				byte ret = ShowTimePickerNative(id, (ImPlotTime*)pt);
 				return ret != 0;
 			}
 		}
@@ -3995,13 +3995,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowTimePicker(ref byte id, ref ImPlotTime t)
+		public static bool ShowTimePicker(ref byte id, ref ImPlotTime t)
 		{
 			fixed (byte* pid = &id)
 			{
 				fixed (ImPlotTime* pt = &t)
 				{
-					byte ret = ImPlotShowTimePickerNative((byte*)pid, (ImPlotTime*)pt);
+					byte ret = ShowTimePickerNative((byte*)pid, (ImPlotTime*)pt);
 					return ret != 0;
 				}
 			}
@@ -4010,13 +4010,13 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowTimePicker(ReadOnlySpan<byte> id, ref ImPlotTime t)
+		public static bool ShowTimePicker(ReadOnlySpan<byte> id, ref ImPlotTime t)
 		{
 			fixed (byte* pid = id)
 			{
 				fixed (ImPlotTime* pt = &t)
 				{
-					byte ret = ImPlotShowTimePickerNative((byte*)pid, (ImPlotTime*)pt);
+					byte ret = ShowTimePickerNative((byte*)pid, (ImPlotTime*)pt);
 					return ret != 0;
 				}
 			}
@@ -4025,7 +4025,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ImPlotShowTimePicker(string id, ref ImPlotTime t)
+		public static bool ShowTimePicker(string id, ref ImPlotTime t)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4046,7 +4046,7 @@ namespace Hexa.NET.ImPlot
 			}
 			fixed (ImPlotTime* pt = &t)
 			{
-				byte ret = ImPlotShowTimePickerNative(pStr0, (ImPlotTime*)pt);
+				byte ret = ShowTimePickerNative(pStr0, (ImPlotTime*)pt);
 				if (pStrSize0 >= Utils.MaxStackallocSize)
 				{
 					Utils.Free(pStr0);
@@ -4058,7 +4058,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImPlotTransformForwardLog10Native(double v, void* noname1)
+		internal static double TransformForwardLog10Native(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[704])(v, noname1);
@@ -4070,16 +4070,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImPlotTransformForwardLog10(double v, void* noname1)
+		public static double TransformForwardLog10(double v, void* noname1)
 		{
-			double ret = ImPlotTransformForwardLog10Native(v, noname1);
+			double ret = TransformForwardLog10Native(v, noname1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImPlotTransformInverseLog10Native(double v, void* noname1)
+		internal static double TransformInverseLog10Native(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[705])(v, noname1);
@@ -4091,16 +4091,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImPlotTransformInverseLog10(double v, void* noname1)
+		public static double TransformInverseLog10(double v, void* noname1)
 		{
-			double ret = ImPlotTransformInverseLog10Native(v, noname1);
+			double ret = TransformInverseLog10Native(v, noname1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImPlotTransformForwardSymLogNative(double v, void* noname1)
+		internal static double TransformForwardSymLogNative(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[706])(v, noname1);
@@ -4112,16 +4112,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImPlotTransformForwardSymLog(double v, void* noname1)
+		public static double TransformForwardSymLog(double v, void* noname1)
 		{
-			double ret = ImPlotTransformForwardSymLogNative(v, noname1);
+			double ret = TransformForwardSymLogNative(v, noname1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImPlotTransformInverseSymLogNative(double v, void* noname1)
+		internal static double TransformInverseSymLogNative(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[707])(v, noname1);
@@ -4133,16 +4133,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImPlotTransformInverseSymLog(double v, void* noname1)
+		public static double TransformInverseSymLog(double v, void* noname1)
 		{
-			double ret = ImPlotTransformInverseSymLogNative(v, noname1);
+			double ret = TransformInverseSymLogNative(v, noname1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImPlotTransformForwardLogitNative(double v, void* noname1)
+		internal static double TransformForwardLogitNative(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[708])(v, noname1);
@@ -4154,16 +4154,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImPlotTransformForwardLogit(double v, void* noname1)
+		public static double TransformForwardLogit(double v, void* noname1)
 		{
-			double ret = ImPlotTransformForwardLogitNative(v, noname1);
+			double ret = TransformForwardLogitNative(v, noname1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static double ImPlotTransformInverseLogitNative(double v, void* noname1)
+		internal static double TransformInverseLogitNative(double v, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, void*, double>)vt[709])(v, noname1);
@@ -4175,16 +4175,16 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static double ImPlotTransformInverseLogit(double v, void* noname1)
+		public static double TransformInverseLogit(double v, void* noname1)
 		{
-			double ret = ImPlotTransformInverseLogitNative(v, noname1);
+			double ret = TransformInverseLogitNative(v, noname1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImPlotFormatterDefaultNative(double value, byte* buff, int size, void* data)
+		internal static int FormatterDefaultNative(double value, byte* buff, int size, void* data)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)vt[710])(value, buff, size, data);
@@ -4196,20 +4196,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatterDefault(double value, byte* buff, int size, void* data)
+		public static int FormatterDefault(double value, byte* buff, int size, void* data)
 		{
-			int ret = ImPlotFormatterDefaultNative(value, buff, size, data);
+			int ret = FormatterDefaultNative(value, buff, size, data);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatterDefault(double value, ref byte buff, int size, void* data)
+		public static int FormatterDefault(double value, ref byte buff, int size, void* data)
 		{
 			fixed (byte* pbuff = &buff)
 			{
-				int ret = ImPlotFormatterDefaultNative(value, (byte*)pbuff, size, data);
+				int ret = FormatterDefaultNative(value, (byte*)pbuff, size, data);
 				return ret;
 			}
 		}
@@ -4217,7 +4217,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatterDefault(double value, ref string buff, int size, void* data)
+		public static int FormatterDefault(double value, ref string buff, int size, void* data)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4236,7 +4236,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(buff, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ImPlotFormatterDefaultNative(value, pStr0, size, data);
+			int ret = FormatterDefaultNative(value, pStr0, size, data);
 			buff = Utils.DecodeStringUTF8(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
@@ -4248,7 +4248,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImPlotFormatterLogitNative(double value, byte* buff, int size, void* noname1)
+		internal static int FormatterLogitNative(double value, byte* buff, int size, void* noname1)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)vt[711])(value, buff, size, noname1);
@@ -4260,20 +4260,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatterLogit(double value, byte* buff, int size, void* noname1)
+		public static int FormatterLogit(double value, byte* buff, int size, void* noname1)
 		{
-			int ret = ImPlotFormatterLogitNative(value, buff, size, noname1);
+			int ret = FormatterLogitNative(value, buff, size, noname1);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatterLogit(double value, ref byte buff, int size, void* noname1)
+		public static int FormatterLogit(double value, ref byte buff, int size, void* noname1)
 		{
 			fixed (byte* pbuff = &buff)
 			{
-				int ret = ImPlotFormatterLogitNative(value, (byte*)pbuff, size, noname1);
+				int ret = FormatterLogitNative(value, (byte*)pbuff, size, noname1);
 				return ret;
 			}
 		}
@@ -4281,7 +4281,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatterLogit(double value, ref string buff, int size, void* noname1)
+		public static int FormatterLogit(double value, ref string buff, int size, void* noname1)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4300,7 +4300,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(buff, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ImPlotFormatterLogitNative(value, pStr0, size, noname1);
+			int ret = FormatterLogitNative(value, pStr0, size, noname1);
 			buff = Utils.DecodeStringUTF8(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
@@ -4312,7 +4312,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static int ImPlotFormatterTimeNative(double noname1, byte* buff, int size, void* data)
+		internal static int FormatterTimeNative(double noname1, byte* buff, int size, void* data)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<double, byte*, int, void*, int>)vt[712])(noname1, buff, size, data);
@@ -4324,20 +4324,20 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatterTime(double noname1, byte* buff, int size, void* data)
+		public static int FormatterTime(double noname1, byte* buff, int size, void* data)
 		{
-			int ret = ImPlotFormatterTimeNative(noname1, buff, size, data);
+			int ret = FormatterTimeNative(noname1, buff, size, data);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatterTime(double noname1, ref byte buff, int size, void* data)
+		public static int FormatterTime(double noname1, ref byte buff, int size, void* data)
 		{
 			fixed (byte* pbuff = &buff)
 			{
-				int ret = ImPlotFormatterTimeNative(noname1, (byte*)pbuff, size, data);
+				int ret = FormatterTimeNative(noname1, (byte*)pbuff, size, data);
 				return ret;
 			}
 		}
@@ -4345,7 +4345,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static int ImPlotFormatterTime(double noname1, ref string buff, int size, void* data)
+		public static int FormatterTime(double noname1, ref string buff, int size, void* data)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4364,7 +4364,7 @@ namespace Hexa.NET.ImPlot
 				int pStrOffset0 = Utils.EncodeStringUTF8(buff, pStr0, pStrSize0);
 				pStr0[pStrOffset0] = 0;
 			}
-			int ret = ImPlotFormatterTimeNative(noname1, pStr0, size, data);
+			int ret = FormatterTimeNative(noname1, pStr0, size, data);
 			buff = Utils.DecodeStringUTF8(pStr0);
 			if (pStrSize0 >= Utils.MaxStackallocSize)
 			{
@@ -4376,7 +4376,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotLocatorDefaultNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
+		internal static void LocatorDefaultNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)vt[713])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
@@ -4388,26 +4388,26 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotLocatorDefault(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
+		public static void LocatorDefault(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
 		{
-			ImPlotLocatorDefaultNative(ticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
+			LocatorDefaultNative(ticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotLocatorDefault(ref ImPlotTicker ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
+		public static void LocatorDefault(ref ImPlotTicker ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			fixed (ImPlotTicker* pticker = &ticker)
 			{
-				ImPlotLocatorDefaultNative((ImPlotTicker*)pticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
+				LocatorDefaultNative((ImPlotTicker*)pticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotLocatorTimeNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
+		internal static void LocatorTimeNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)vt[714])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
@@ -4419,26 +4419,26 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotLocatorTime(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
+		public static void LocatorTime(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
 		{
-			ImPlotLocatorTimeNative(ticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
+			LocatorTimeNative(ticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotLocatorTime(ref ImPlotTicker ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
+		public static void LocatorTime(ref ImPlotTicker ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			fixed (ImPlotTicker* pticker = &ticker)
 			{
-				ImPlotLocatorTimeNative((ImPlotTicker*)pticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
+				LocatorTimeNative((ImPlotTicker*)pticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotLocatorLog10Native(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
+		internal static void LocatorLog10Native(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)vt[715])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
@@ -4450,26 +4450,26 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotLocatorLog10(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
+		public static void LocatorLog10(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
 		{
-			ImPlotLocatorLog10Native(ticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
+			LocatorLog10Native(ticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotLocatorLog10(ref ImPlotTicker ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
+		public static void LocatorLog10(ref ImPlotTicker ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			fixed (ImPlotTicker* pticker = &ticker)
 			{
-				ImPlotLocatorLog10Native((ImPlotTicker*)pticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
+				LocatorLog10Native((ImPlotTicker*)pticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImPlotLocatorSymLogNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
+		internal static void LocatorSymLogNative(ImPlotTicker* ticker, ImPlotRange range, float pixels, byte vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImPlotTicker*, ImPlotRange, float, byte, delegate*<double, byte*, int, void*, int>, void*, void>)vt[716])(ticker, range, pixels, vertical, (delegate*<double, byte*, int, void*, int>)Utils.GetFunctionPointerForDelegate(formatter), formatterData);
@@ -4481,19 +4481,19 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotLocatorSymLog(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
+		public static void LocatorSymLog(ImPlotTickerPtr ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
 		{
-			ImPlotLocatorSymLogNative(ticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
+			LocatorSymLogNative(ticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImPlotLocatorSymLog(ref ImPlotTicker ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
+		public static void LocatorSymLog(ref ImPlotTicker ticker, ImPlotRange range, float pixels, bool vertical, ImPlotFormatter formatter, void* formatterData)
 		{
 			fixed (ImPlotTicker* pticker = &ticker)
 			{
-				ImPlotLocatorSymLogNative((ImPlotTicker*)pticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
+				LocatorSymLogNative((ImPlotTicker*)pticker, range, pixels, vertical ? (byte)1 : (byte)0, formatter, formatterData);
 			}
 		}
 

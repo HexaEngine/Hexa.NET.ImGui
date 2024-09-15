@@ -21,13 +21,13 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiWindowMenuBarRect(ref ImRect pOut, ref ImGuiWindow self)
+		public static void WindowMenuBarRect(ref ImRect pOut, ref ImGuiWindow self)
 		{
 			fixed (ImRect* ppOut = &pOut)
 			{
 				fixed (ImGuiWindow* pself = &self)
 				{
-					ImGuiWindowMenuBarRectNative((ImRect*)ppOut, (ImGuiWindow*)pself);
+					WindowMenuBarRectNative((ImRect*)ppOut, (ImGuiWindow*)pself);
 				}
 			}
 		}
@@ -35,7 +35,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImGuiTabItem* ImGuiTabItemImGuiTabItemNative()
+		internal static ImGuiTabItem* TabItemImGuiTabItemNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImGuiTabItem*>)vt[959])();
@@ -47,16 +47,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiTabItemPtr ImGuiTabItemImGuiTabItem()
+		public static ImGuiTabItemPtr TabItemImGuiTabItem()
 		{
-			ImGuiTabItemPtr ret = ImGuiTabItemImGuiTabItemNative();
+			ImGuiTabItemPtr ret = TabItemImGuiTabItemNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImGuiTabItemDestroyNative(ImGuiTabItem* self)
+		internal static void TabItemDestroyNative(ImGuiTabItem* self)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiTabItem*, void>)vt[960])(self);
@@ -68,26 +68,26 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTabItemDestroy(ImGuiTabItemPtr self)
+		public static void TabItemDestroy(ImGuiTabItemPtr self)
 		{
-			ImGuiTabItemDestroyNative(self);
+			TabItemDestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTabItemDestroy(ref ImGuiTabItem self)
+		public static void TabItemDestroy(ref ImGuiTabItem self)
 		{
 			fixed (ImGuiTabItem* pself = &self)
 			{
-				ImGuiTabItemDestroyNative((ImGuiTabItem*)pself);
+				TabItemDestroyNative((ImGuiTabItem*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImGuiTabBar* ImGuiTabBarImGuiTabBarNative()
+		internal static ImGuiTabBar* TabBarImGuiTabBarNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImGuiTabBar*>)vt[961])();
@@ -99,16 +99,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiTabBarPtr ImGuiTabBarImGuiTabBar()
+		public static ImGuiTabBarPtr TabBarImGuiTabBar()
 		{
-			ImGuiTabBarPtr ret = ImGuiTabBarImGuiTabBarNative();
+			ImGuiTabBarPtr ret = TabBarImGuiTabBarNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImGuiTabBarDestroyNative(ImGuiTabBar* self)
+		internal static void TabBarDestroyNative(ImGuiTabBar* self)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiTabBar*, void>)vt[962])(self);
@@ -120,26 +120,26 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTabBarDestroy(ImGuiTabBarPtr self)
+		public static void TabBarDestroy(ImGuiTabBarPtr self)
 		{
-			ImGuiTabBarDestroyNative(self);
+			TabBarDestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTabBarDestroy(ref ImGuiTabBar self)
+		public static void TabBarDestroy(ref ImGuiTabBar self)
 		{
 			fixed (ImGuiTabBar* pself = &self)
 			{
-				ImGuiTabBarDestroyNative((ImGuiTabBar*)pself);
+				TabBarDestroyNative((ImGuiTabBar*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImGuiTableColumn* ImGuiTableColumnImGuiTableColumnNative()
+		internal static ImGuiTableColumn* TableColumnImGuiTableColumnNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImGuiTableColumn*>)vt[963])();
@@ -151,16 +151,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiTableColumnPtr ImGuiTableColumnImGuiTableColumn()
+		public static ImGuiTableColumnPtr TableColumnImGuiTableColumn()
 		{
-			ImGuiTableColumnPtr ret = ImGuiTableColumnImGuiTableColumnNative();
+			ImGuiTableColumnPtr ret = TableColumnImGuiTableColumnNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImGuiTableColumnDestroyNative(ImGuiTableColumn* self)
+		internal static void TableColumnDestroyNative(ImGuiTableColumn* self)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiTableColumn*, void>)vt[964])(self);
@@ -172,26 +172,26 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTableColumnDestroy(ImGuiTableColumnPtr self)
+		public static void TableColumnDestroy(ImGuiTableColumnPtr self)
 		{
-			ImGuiTableColumnDestroyNative(self);
+			TableColumnDestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTableColumnDestroy(ref ImGuiTableColumn self)
+		public static void TableColumnDestroy(ref ImGuiTableColumn self)
 		{
 			fixed (ImGuiTableColumn* pself = &self)
 			{
-				ImGuiTableColumnDestroyNative((ImGuiTableColumn*)pself);
+				TableColumnDestroyNative((ImGuiTableColumn*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImGuiTableInstanceData* ImGuiTableInstanceDataImGuiTableInstanceDataNative()
+		internal static ImGuiTableInstanceData* TableInstanceDataImGuiTableInstanceDataNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImGuiTableInstanceData*>)vt[965])();
@@ -203,16 +203,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiTableInstanceDataPtr ImGuiTableInstanceDataImGuiTableInstanceData()
+		public static ImGuiTableInstanceDataPtr TableInstanceDataImGuiTableInstanceData()
 		{
-			ImGuiTableInstanceDataPtr ret = ImGuiTableInstanceDataImGuiTableInstanceDataNative();
+			ImGuiTableInstanceDataPtr ret = TableInstanceDataImGuiTableInstanceDataNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImGuiTableInstanceDataDestroyNative(ImGuiTableInstanceData* self)
+		internal static void TableInstanceDataDestroyNative(ImGuiTableInstanceData* self)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiTableInstanceData*, void>)vt[966])(self);
@@ -224,26 +224,26 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTableInstanceDataDestroy(ImGuiTableInstanceDataPtr self)
+		public static void TableInstanceDataDestroy(ImGuiTableInstanceDataPtr self)
 		{
-			ImGuiTableInstanceDataDestroyNative(self);
+			TableInstanceDataDestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTableInstanceDataDestroy(ref ImGuiTableInstanceData self)
+		public static void TableInstanceDataDestroy(ref ImGuiTableInstanceData self)
 		{
 			fixed (ImGuiTableInstanceData* pself = &self)
 			{
-				ImGuiTableInstanceDataDestroyNative((ImGuiTableInstanceData*)pself);
+				TableInstanceDataDestroyNative((ImGuiTableInstanceData*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImGuiTable* ImGuiTableImGuiTableNative()
+		internal static ImGuiTable* TableImGuiTableNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImGuiTable*>)vt[967])();
@@ -255,16 +255,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiTablePtr ImGuiTableImGuiTable()
+		public static ImGuiTablePtr TableImGuiTable()
 		{
-			ImGuiTablePtr ret = ImGuiTableImGuiTableNative();
+			ImGuiTablePtr ret = TableImGuiTableNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImGuiTableDestroyNative(ImGuiTable* self)
+		internal static void TableDestroyNative(ImGuiTable* self)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiTable*, void>)vt[968])(self);
@@ -276,26 +276,26 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTableDestroy(ImGuiTablePtr self)
+		public static void TableDestroy(ImGuiTablePtr self)
 		{
-			ImGuiTableDestroyNative(self);
+			TableDestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTableDestroy(ref ImGuiTable self)
+		public static void TableDestroy(ref ImGuiTable self)
 		{
 			fixed (ImGuiTable* pself = &self)
 			{
-				ImGuiTableDestroyNative((ImGuiTable*)pself);
+				TableDestroyNative((ImGuiTable*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImGuiTableTempData* ImGuiTableTempDataImGuiTableTempDataNative()
+		internal static ImGuiTableTempData* TableTempDataImGuiTableTempDataNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImGuiTableTempData*>)vt[969])();
@@ -307,16 +307,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiTableTempDataPtr ImGuiTableTempDataImGuiTableTempData()
+		public static ImGuiTableTempDataPtr TableTempDataImGuiTableTempData()
 		{
-			ImGuiTableTempDataPtr ret = ImGuiTableTempDataImGuiTableTempDataNative();
+			ImGuiTableTempDataPtr ret = TableTempDataImGuiTableTempDataNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImGuiTableTempDataDestroyNative(ImGuiTableTempData* self)
+		internal static void TableTempDataDestroyNative(ImGuiTableTempData* self)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiTableTempData*, void>)vt[970])(self);
@@ -328,26 +328,26 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTableTempDataDestroy(ImGuiTableTempDataPtr self)
+		public static void TableTempDataDestroy(ImGuiTableTempDataPtr self)
 		{
-			ImGuiTableTempDataDestroyNative(self);
+			TableTempDataDestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTableTempDataDestroy(ref ImGuiTableTempData self)
+		public static void TableTempDataDestroy(ref ImGuiTableTempData self)
 		{
 			fixed (ImGuiTableTempData* pself = &self)
 			{
-				ImGuiTableTempDataDestroyNative((ImGuiTableTempData*)pself);
+				TableTempDataDestroyNative((ImGuiTableTempData*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImGuiTableColumnSettings* ImGuiTableColumnSettingsImGuiTableColumnSettingsNative()
+		internal static ImGuiTableColumnSettings* TableColumnSettingsImGuiTableColumnSettingsNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImGuiTableColumnSettings*>)vt[971])();
@@ -359,16 +359,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiTableColumnSettingsPtr ImGuiTableColumnSettingsImGuiTableColumnSettings()
+		public static ImGuiTableColumnSettingsPtr TableColumnSettingsImGuiTableColumnSettings()
 		{
-			ImGuiTableColumnSettingsPtr ret = ImGuiTableColumnSettingsImGuiTableColumnSettingsNative();
+			ImGuiTableColumnSettingsPtr ret = TableColumnSettingsImGuiTableColumnSettingsNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImGuiTableColumnSettingsDestroyNative(ImGuiTableColumnSettings* self)
+		internal static void TableColumnSettingsDestroyNative(ImGuiTableColumnSettings* self)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiTableColumnSettings*, void>)vt[972])(self);
@@ -380,26 +380,26 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTableColumnSettingsDestroy(ImGuiTableColumnSettingsPtr self)
+		public static void TableColumnSettingsDestroy(ImGuiTableColumnSettingsPtr self)
 		{
-			ImGuiTableColumnSettingsDestroyNative(self);
+			TableColumnSettingsDestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTableColumnSettingsDestroy(ref ImGuiTableColumnSettings self)
+		public static void TableColumnSettingsDestroy(ref ImGuiTableColumnSettings self)
 		{
 			fixed (ImGuiTableColumnSettings* pself = &self)
 			{
-				ImGuiTableColumnSettingsDestroyNative((ImGuiTableColumnSettings*)pself);
+				TableColumnSettingsDestroyNative((ImGuiTableColumnSettings*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImGuiTableSettings* ImGuiTableSettingsImGuiTableSettingsNative()
+		internal static ImGuiTableSettings* TableSettingsImGuiTableSettingsNative()
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImGuiTableSettings*>)vt[973])();
@@ -411,16 +411,16 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiTableSettingsPtr ImGuiTableSettingsImGuiTableSettings()
+		public static ImGuiTableSettingsPtr TableSettingsImGuiTableSettings()
 		{
-			ImGuiTableSettingsPtr ret = ImGuiTableSettingsImGuiTableSettingsNative();
+			ImGuiTableSettingsPtr ret = TableSettingsImGuiTableSettingsNative();
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static void ImGuiTableSettingsDestroyNative(ImGuiTableSettings* self)
+		internal static void TableSettingsDestroyNative(ImGuiTableSettings* self)
 		{
 			#if NET5_0_OR_GREATER
 			((delegate* unmanaged[Cdecl]<ImGuiTableSettings*, void>)vt[974])(self);
@@ -432,26 +432,26 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTableSettingsDestroy(ImGuiTableSettingsPtr self)
+		public static void TableSettingsDestroy(ImGuiTableSettingsPtr self)
 		{
-			ImGuiTableSettingsDestroyNative(self);
+			TableSettingsDestroyNative(self);
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void ImGuiTableSettingsDestroy(ref ImGuiTableSettings self)
+		public static void TableSettingsDestroy(ref ImGuiTableSettings self)
 		{
 			fixed (ImGuiTableSettings* pself = &self)
 			{
-				ImGuiTableSettingsDestroyNative((ImGuiTableSettings*)pself);
+				TableSettingsDestroyNative((ImGuiTableSettings*)pself);
 			}
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		internal static ImGuiTableColumnSettings* ImGuiTableSettingsGetColumnSettingsNative(ImGuiTableSettings* self)
+		internal static ImGuiTableColumnSettings* TableSettingsGetColumnSettingsNative(ImGuiTableSettings* self)
 		{
 			#if NET5_0_OR_GREATER
 			return ((delegate* unmanaged[Cdecl]<ImGuiTableSettings*, ImGuiTableColumnSettings*>)vt[975])(self);
@@ -463,20 +463,20 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiTableColumnSettingsPtr ImGuiTableSettingsGetColumnSettings(ImGuiTableSettingsPtr self)
+		public static ImGuiTableColumnSettingsPtr TableSettingsGetColumnSettings(ImGuiTableSettingsPtr self)
 		{
-			ImGuiTableColumnSettingsPtr ret = ImGuiTableSettingsGetColumnSettingsNative(self);
+			ImGuiTableColumnSettingsPtr ret = TableSettingsGetColumnSettingsNative(self);
 			return ret;
 		}
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImGuiTableColumnSettingsPtr ImGuiTableSettingsGetColumnSettings(ref ImGuiTableSettings self)
+		public static ImGuiTableColumnSettingsPtr TableSettingsGetColumnSettings(ref ImGuiTableSettings self)
 		{
 			fixed (ImGuiTableSettings* pself = &self)
 			{
-				ImGuiTableColumnSettingsPtr ret = ImGuiTableSettingsGetColumnSettingsNative((ImGuiTableSettings*)pself);
+				ImGuiTableColumnSettingsPtr ret = TableSettingsGetColumnSettingsNative((ImGuiTableSettings*)pself);
 				return ret;
 			}
 		}

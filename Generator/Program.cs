@@ -43,6 +43,7 @@
             generator.PatchEngine.RegisterPrePatch(new ImGuiDefinitionsPatch());
             generator.PatchEngine.RegisterPrePatch(new ImGuizmoPrePatch());
             generator.PatchEngine.RegisterPrePatch(new ImGuiPrePatch());
+            generator.PatchEngine.RegisterPrePatch(new NamingPatch("ImGui", "ImGuizmo", "ImNodes", "ImPlot"));
             generator.PatchEngine.RegisterPostPatch(new ImGuiPostPatch());
 
             generator.LogEvent += GeneratorLogEvent;
