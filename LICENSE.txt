@@ -12,6 +12,9 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
+**Naming Clause:**
+The use of the "Hexa.NET" name, prefix, or any derivative thereof in the naming of derivative projects, redistributed packages, or modified versions is not permitted without explicit written permission from the original author (Juna Meinhold). Any usage of the Hexa.NET name outside of the official projects must clearly indicate that it is not an official Hexa.NET package.
+
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
