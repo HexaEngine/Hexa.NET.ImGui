@@ -293,7 +293,7 @@ namespace Hexa.NET.ImNodes
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetImGuiContext(ImGuiContext* ctx)
+		public static void SetImGuiContext(ImGuiContextPtr ctx)
 		{
 			SetImGuiContextNative(ctx);
 		}

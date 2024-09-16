@@ -1049,7 +1049,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetImGuiContext(ImGuiContext* ctx)
+		public static void SetImGuiContext(ImGuiContextPtr ctx)
 		{
 			SetImGuiContextNative(ctx);
 		}

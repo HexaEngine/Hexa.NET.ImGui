@@ -13,7 +13,7 @@
 		<IsAotCompatible>true</IsAotCompatible>
 
 		<AssemblyVersion>1.91.1</AssemblyVersion>
-		<PackageVersion>2.1.4</PackageVersion>
+		<PackageVersion>2.1.5</PackageVersion>
 		<Description>A .NET wrapper for the Dear ImGui library. (1.91.0)</Description>
 		<PackageTags>ImGui UI Immidate GUI Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>

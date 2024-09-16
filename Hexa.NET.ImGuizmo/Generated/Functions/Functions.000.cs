@@ -33,7 +33,7 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetDrawlist(ImDrawList* drawlist)
+		public static void SetDrawlist(ImDrawListPtr drawlist)
 		{
 			SetDrawlistNative(drawlist);
 		}
@@ -92,7 +92,7 @@ namespace Hexa.NET.ImGuizmo
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void SetImGuiContext(ImGuiContext* ctx)
+		public static void SetImGuiContext(ImGuiContextPtr ctx)
 		{
 			SetImGuiContextNative(ctx);
 		}

@@ -3577,7 +3577,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ClampLegendRect(ImRect* legendRect, ImRect outerRect, Vector2 pad)
+		public static bool ClampLegendRect(ImRectPtr legendRect, ImRect outerRect, Vector2 pad)
 		{
 			byte ret = ClampLegendRectNative(legendRect, outerRect, pad);
 			return ret != 0;
@@ -3610,7 +3610,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ShowLegendEntries(ImPlotItemGroupPtr items, ImRect legendBb, bool interactable, Vector2 pad, Vector2 spacing, bool vertical, ImDrawList* drawList)
+		public static bool ShowLegendEntries(ImPlotItemGroupPtr items, ImRect legendBb, bool interactable, Vector2 pad, Vector2 spacing, bool vertical, ImDrawListPtr drawList)
 		{
 			byte ret = ShowLegendEntriesNative(items, legendBb, interactable ? (byte)1 : (byte)0, pad, spacing, vertical ? (byte)1 : (byte)0, drawList);
 			return ret != 0;
@@ -3619,7 +3619,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static bool ShowLegendEntries(ref ImPlotItemGroup items, ImRect legendBb, bool interactable, Vector2 pad, Vector2 spacing, bool vertical, ImDrawList* drawList)
+		public static bool ShowLegendEntries(ref ImPlotItemGroup items, ImRect legendBb, bool interactable, Vector2 pad, Vector2 spacing, bool vertical, ImDrawListPtr drawList)
 		{
 			fixed (ImPlotItemGroup* pitems = &items)
 			{
@@ -4001,7 +4001,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextVertical(ImDrawList* drawList, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, byte* textBegin, byte* textEnd)
 		{
 			AddTextVerticalNative(drawList, pos, col, textBegin, textEnd);
 		}
@@ -4020,7 +4020,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextVertical(ImDrawList* drawList, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, ref byte textBegin, byte* textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -4031,7 +4031,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextVertical(ImDrawList* drawList, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -4042,7 +4042,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextVertical(ImDrawList* drawList, Vector2 pos, uint col, string textBegin, byte* textEnd)
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, string textBegin, byte* textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4131,7 +4131,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextVertical(ImDrawList* drawList, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, byte* textBegin, ref byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
@@ -4142,7 +4142,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextVertical(ImDrawList* drawList, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (byte* ptextEnd = textEnd)
 			{
@@ -4153,7 +4153,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextVertical(ImDrawList* drawList, Vector2 pos, uint col, byte* textBegin, string textEnd)
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, byte* textBegin, string textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4242,7 +4242,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextVertical(ImDrawList* drawList, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, ref byte textBegin, ref byte textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -4256,7 +4256,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextVertical(ImDrawList* drawList, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -4270,7 +4270,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextVertical(ImDrawList* drawList, Vector2 pos, uint col, string textBegin, string textEnd)
+		public static void AddTextVertical(ImDrawListPtr drawList, Vector2 pos, uint col, string textBegin, string textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4419,7 +4419,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextCentered(ImDrawList* drawList, Vector2 topCenter, uint col, byte* textBegin, byte* textEnd)
+		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, byte* textEnd)
 		{
 			AddTextCenteredNative(drawList, topCenter, col, textBegin, textEnd);
 		}
@@ -4438,7 +4438,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextCentered(ImDrawList* drawList, Vector2 topCenter, uint col, ref byte textBegin, byte* textEnd)
+		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, ref byte textBegin, byte* textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -4449,7 +4449,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextCentered(ImDrawList* drawList, Vector2 topCenter, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
+		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, ReadOnlySpan<byte> textBegin, byte* textEnd)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -4460,7 +4460,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextCentered(ImDrawList* drawList, Vector2 topCenter, uint col, string textBegin, byte* textEnd)
+		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, string textBegin, byte* textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4549,7 +4549,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextCentered(ImDrawList* drawList, Vector2 topCenter, uint col, byte* textBegin, ref byte textEnd)
+		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, ref byte textEnd)
 		{
 			fixed (byte* ptextEnd = &textEnd)
 			{
@@ -4560,7 +4560,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextCentered(ImDrawList* drawList, Vector2 topCenter, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
+		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (byte* ptextEnd = textEnd)
 			{
@@ -4571,7 +4571,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextCentered(ImDrawList* drawList, Vector2 topCenter, uint col, byte* textBegin, string textEnd)
+		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, byte* textBegin, string textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;
@@ -4660,7 +4660,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextCentered(ImDrawList* drawList, Vector2 topCenter, uint col, ref byte textBegin, ref byte textEnd)
+		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, ref byte textBegin, ref byte textEnd)
 		{
 			fixed (byte* ptextBegin = &textBegin)
 			{
@@ -4674,7 +4674,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextCentered(ImDrawList* drawList, Vector2 topCenter, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
+		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, ReadOnlySpan<byte> textBegin, ReadOnlySpan<byte> textEnd)
 		{
 			fixed (byte* ptextBegin = textBegin)
 			{
@@ -4688,7 +4688,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void AddTextCentered(ImDrawList* drawList, Vector2 topCenter, uint col, string textBegin, string textEnd)
+		public static void AddTextCentered(ImDrawListPtr drawList, Vector2 topCenter, uint col, string textBegin, string textEnd)
 		{
 			byte* pStr0 = null;
 			int pStrSize0 = 0;

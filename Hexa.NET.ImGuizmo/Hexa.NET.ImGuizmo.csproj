@@ -13,7 +13,7 @@
 		<IsAotCompatible>true</IsAotCompatible>
 
 		<AssemblyVersion>1.89.0</AssemblyVersion>
-		<PackageVersion>2.1.4</PackageVersion>
+		<PackageVersion>2.1.5</PackageVersion>
 		<Description>A .NET wrapper for the ImGuizmo library. (1.89.0 WIP)</Description>
 		<PackageTags>ImGuizmo UI Immidate GUI Guizmo Hexa HexaGen Source Generator C# .NET DotNet Sharp Windows macOS Android Bindings Wrapper Native</PackageTags>
 		<Authors>Juna Meinhold</Authors>

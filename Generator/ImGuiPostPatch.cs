@@ -1,6 +1,7 @@
 ﻿namespace Generator
 {
     using HexaGen;
+    using HexaGen.Metadata;
     using HexaGen.Patching;
     using System.Text;
     using System.Text.RegularExpressions;

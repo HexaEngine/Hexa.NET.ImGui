@@ -1796,9 +1796,9 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static ImDrawList* GetPlotDrawList()
+		public static ImDrawListPtr GetPlotDrawList()
 		{
-			ImDrawList* ret = GetPlotDrawListNative();
+			ImDrawListPtr ret = GetPlotDrawListNative();
 			return ret;
 		}
 

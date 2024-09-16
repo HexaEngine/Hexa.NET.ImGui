@@ -159,7 +159,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void RenderColorBar(uint* colors, int size, ImDrawList* drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
+		public static void RenderColorBar(uint* colors, int size, ImDrawListPtr drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
 		{
 			RenderColorBarNative(colors, size, drawList, bounds, vert ? (byte)1 : (byte)0, reversed ? (byte)1 : (byte)0, continuous ? (byte)1 : (byte)0);
 		}
@@ -167,7 +167,7 @@ namespace Hexa.NET.ImPlot
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public static void RenderColorBar(ref uint colors, int size, ImDrawList* drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
+		public static void RenderColorBar(ref uint colors, int size, ImDrawListPtr drawList, ImRect bounds, bool vert, bool reversed, bool continuous)
 		{
 			fixed (uint* pcolors = &colors)
 			{
