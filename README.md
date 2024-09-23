@@ -16,6 +16,9 @@ Welcome to Hexa.NET.ImGui! This custom wrapper is designed to be a high-performa
 - **High performance** Using a static VTable, all API calls are faster and startup time is reduced.
 - **Optimized String Handling**: Overloads that bypass UTF-8 encoding and avoid allocations.
 
+## Community
+- Discord: [https://discord.gg/VawN5d8HMh](https://discord.gg/VawN5d8HMh)
+
 ## Packages
 
 Hexa.NET.ImGui is divided into four different packages to provide modularity and flexibility. You can choose to install only the packages you need:
