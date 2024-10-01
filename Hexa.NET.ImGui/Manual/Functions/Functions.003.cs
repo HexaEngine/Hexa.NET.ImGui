@@ -2270,9 +2270,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImFormatStringNative(byte* buf, ulong bufSize, byte* fmt)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ulong, byte*, int>)vt[1427])(buf, bufSize, fmt);
+			return ((delegate* unmanaged[Cdecl]<byte*, ulong, byte*, int>)vt[1426])(buf, bufSize, fmt);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, ulong, nint, int>)vt[1427])((nint)buf, bufSize, (nint)fmt);
+			return (int)((delegate* unmanaged[Cdecl]<nint, ulong, nint, int>)vt[1426])((nint)buf, bufSize, (nint)fmt);
 			#endif
 		}
 
@@ -2658,9 +2658,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImFormatStringVNative(byte* buf, ulong bufSize, byte* fmt, nuint args)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, ulong, byte*, nuint, int>)vt[1428])(buf, bufSize, fmt, args);
+			return ((delegate* unmanaged[Cdecl]<byte*, ulong, byte*, nuint, int>)vt[1427])(buf, bufSize, fmt, args);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, ulong, nint, nuint, int>)vt[1428])((nint)buf, bufSize, (nint)fmt, args);
+			return (int)((delegate* unmanaged[Cdecl]<nint, ulong, nint, nuint, int>)vt[1427])((nint)buf, bufSize, (nint)fmt, args);
 			#endif
 		}
 
@@ -3046,9 +3046,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* ImParseFormatTrimDecorationsNative(byte* format, byte* buf, ulong bufSize)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, byte*>)vt[1429])(format, buf, bufSize);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, ulong, byte*>)vt[1428])(format, buf, bufSize);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, ulong, nint>)vt[1429])((nint)format, (nint)buf, bufSize);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, ulong, nint>)vt[1428])((nint)format, (nint)buf, bufSize);
 			#endif
 		}
 
@@ -3810,9 +3810,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextToUtf8Native(byte* outBuf, int outBufSize, char* inText, char* inTextEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, char*, char*, int>)vt[1430])(outBuf, outBufSize, inText, inTextEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, char*, char*, int>)vt[1429])(outBuf, outBufSize, inText, inTextEnd);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, int>)vt[1430])((nint)outBuf, outBufSize, (nint)inText, (nint)inTextEnd);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, int>)vt[1429])((nint)outBuf, outBufSize, (nint)inText, (nint)inTextEnd);
 			#endif
 		}
 
@@ -4066,9 +4066,9 @@ namespace Hexa.NET.ImGui
 		internal static int ImTextFromUtf8Native(char* outBuf, int outBufSize, byte* inText, byte* inTextEnd, byte** inRemaining)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<char*, int, byte*, byte*, byte**, int>)vt[1431])(outBuf, outBufSize, inText, inTextEnd, inRemaining);
+			return ((delegate* unmanaged[Cdecl]<char*, int, byte*, byte*, byte**, int>)vt[1430])(outBuf, outBufSize, inText, inTextEnd, inRemaining);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, nint, int>)vt[1431])((nint)outBuf, outBufSize, (nint)inText, (nint)inTextEnd, (nint)inRemaining);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, nint, nint, nint, int>)vt[1430])((nint)outBuf, outBufSize, (nint)inText, (nint)inTextEnd, (nint)inRemaining);
 			#endif
 		}
 
@@ -4990,9 +4990,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* GetKeyChordNameNative(int keyChord)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<int, byte*>)vt[1432])(keyChord);
+			return ((delegate* unmanaged[Cdecl]<int, byte*>)vt[1431])(keyChord);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<int, nint>)vt[1432])(keyChord);
+			return (byte*)((delegate* unmanaged[Cdecl]<int, nint>)vt[1431])(keyChord);
 			#endif
 		}
 
@@ -5020,9 +5020,9 @@ namespace Hexa.NET.ImGui
 		internal static int DataTypeFormatStringNative(byte* buf, int bufSize, ImGuiDataType dataType, void* pData, byte* format)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, int, ImGuiDataType, void*, byte*, int>)vt[1433])(buf, bufSize, dataType, pData, format);
+			return ((delegate* unmanaged[Cdecl]<byte*, int, ImGuiDataType, void*, byte*, int>)vt[1432])(buf, bufSize, dataType, pData, format);
 			#else
-			return (int)((delegate* unmanaged[Cdecl]<nint, int, ImGuiDataType, nint, nint, int>)vt[1433])((nint)buf, bufSize, dataType, (nint)pData, (nint)format);
+			return (int)((delegate* unmanaged[Cdecl]<nint, int, ImGuiDataType, nint, nint, int>)vt[1432])((nint)buf, bufSize, dataType, (nint)pData, (nint)format);
 			#endif
 		}
 	}

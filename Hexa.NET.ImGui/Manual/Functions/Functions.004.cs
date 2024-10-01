@@ -212,9 +212,9 @@ namespace Hexa.NET.ImGui
 		internal static byte InputTextExNative(byte* label, byte* hint, byte* buf, int bufSize, Vector2 sizeArg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback, void* userData)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, int, Vector2, ImGuiInputTextFlags, delegate*<ImGuiInputTextCallbackData*, int>, void*, byte>)vt[1434])(label, hint, buf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*, int, Vector2, ImGuiInputTextFlags, delegate*<ImGuiInputTextCallbackData*, int>, void*, byte>)vt[1433])(label, hint, buf, bufSize, sizeArg, flags, (delegate*<ImGuiInputTextCallbackData*, int>)Utils.GetFunctionPointerForDelegate(callback), userData);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, Vector2, ImGuiInputTextFlags, nint, nint, byte>)vt[1434])((nint)label, (nint)hint, (nint)buf, bufSize, sizeArg, flags, (nint)Utils.GetFunctionPointerForDelegate(callback), (nint)userData);
+			return (byte)((delegate* unmanaged[Cdecl]<nint, nint, nint, int, Vector2, ImGuiInputTextFlags, nint, nint, byte>)vt[1433])((nint)label, (nint)hint, (nint)buf, bufSize, sizeArg, flags, (nint)Utils.GetFunctionPointerForDelegate(callback), (nint)userData);
 			#endif
 		}
 
@@ -738,9 +738,9 @@ namespace Hexa.NET.ImGui
 		internal static byte TempInputTextNative(ImRect bb, uint id, byte* label, byte* buf, int bufSize, ImGuiInputTextFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect, uint, byte*, byte*, int, ImGuiInputTextFlags, byte>)vt[1435])(bb, id, label, buf, bufSize, flags);
+			return ((delegate* unmanaged[Cdecl]<ImRect, uint, byte*, byte*, int, ImGuiInputTextFlags, byte>)vt[1434])(bb, id, label, buf, bufSize, flags);
 			#else
-			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, nint, nint, int, ImGuiInputTextFlags, byte>)vt[1435])(bb, id, (nint)label, (nint)buf, bufSize, flags);
+			return (byte)((delegate* unmanaged[Cdecl]<ImRect, uint, nint, nint, int, ImGuiInputTextFlags, byte>)vt[1434])(bb, id, (nint)label, (nint)buf, bufSize, flags);
 			#endif
 		}
 

@@ -30,22 +30,17 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public unsafe STBTexteditState* Stb;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public uint ID;
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public int CurLenW;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public int CurLenA;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ImVector<char> TextW;
 
 		/// <summary>
 		/// To be documented.
@@ -60,7 +55,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public byte TextAIsValid;
+		public ImVector<byte> CallbackTextBackup;
 
 		/// <summary>
 		/// To be documented.
@@ -71,11 +66,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public Vector2 Scroll;
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public STBTexteditState Stb;
 
 		/// <summary>
 		/// To be documented.
@@ -121,19 +111,17 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, uint id = default, int curLenW = default, int curLenA = default, ImVector<char> textW = default, ImVector<byte> textA = default, ImVector<byte> initialTextA = default, bool textAIsValid = default, int bufCapacityA = default, Vector2 scroll = default, STBTexteditState stb = default, float cursorAnim = default, bool cursorFollow = default, bool selectedAllMouseLock = default, bool edited = default, ImGuiInputTextFlags flags = default, bool reloadUserBuf = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
+		public unsafe ImGuiInputTextState(ImGuiContextPtr ctx = default, STBTexteditState* stb = default, uint id = default, int curLenA = default, ImVector<byte> textA = default, ImVector<byte> initialTextA = default, ImVector<byte> callbackTextBackup = default, int bufCapacityA = default, Vector2 scroll = default, float cursorAnim = default, bool cursorFollow = default, bool selectedAllMouseLock = default, bool edited = default, ImGuiInputTextFlags flags = default, bool reloadUserBuf = default, int reloadSelectionStart = default, int reloadSelectionEnd = default)
 		{
 			Ctx = ctx;
+			Stb = stb;
 			ID = id;
-			CurLenW = curLenW;
 			CurLenA = curLenA;
-			TextW = textW;
 			TextA = textA;
 			InitialTextA = initialTextA;
-			TextAIsValid = textAIsValid ? (byte)1 : (byte)0;
+			CallbackTextBackup = callbackTextBackup;
 			BufCapacityA = bufCapacityA;
 			Scroll = scroll;
-			Stb = stb;
 			CursorAnim = cursorAnim;
 			CursorFollow = cursorFollow ? (byte)1 : (byte)0;
 			SelectedAllMouseLock = selectedAllMouseLock ? (byte)1 : (byte)0;
@@ -195,19 +183,15 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public ref STBTexteditState Stb => ref Unsafe.AsRef<STBTexteditState>(&Handle->Stb);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public ref uint ID => ref Unsafe.AsRef<uint>(&Handle->ID);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref int CurLenW => ref Unsafe.AsRef<int>(&Handle->CurLenW);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
 		public ref int CurLenA => ref Unsafe.AsRef<int>(&Handle->CurLenA);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref ImVector<char> TextW => ref Unsafe.AsRef<ImVector<char>>(&Handle->TextW);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -219,7 +203,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public ref bool TextAIsValid => ref Unsafe.AsRef<bool>(&Handle->TextAIsValid);
+		public ref ImVector<byte> CallbackTextBackup => ref Unsafe.AsRef<ImVector<byte>>(&Handle->CallbackTextBackup);
 		/// <summary>
 		/// To be documented.
 		/// </summary>
@@ -228,10 +212,6 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref Vector2 Scroll => ref Unsafe.AsRef<Vector2>(&Handle->Scroll);
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public ref STBTexteditState Stb => ref Unsafe.AsRef<STBTexteditState>(&Handle->Stb);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

@@ -62,26 +62,31 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		CopyLink = unchecked(8),
+		OpenLinkS = unchecked(8),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		DockingHideTabBar = unchecked(9),
+		CopyLink = unchecked(9),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		DockingHoldShiftToDock = unchecked(10),
+		DockingHideTabBar = unchecked(10),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		DockingDragToUndockOrMoveNode = unchecked(11),
+		DockingHoldShiftToDock = unchecked(11),
 
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		Count = unchecked(12),
+		DockingDragToUndockOrMoveNode = unchecked(12),
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		Count = unchecked(13),
 	}
 }

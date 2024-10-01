@@ -21,12 +21,379 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, uint tabId, uint closeButtonId, bool isContentsVisible, ref bool outJustClosed, bool* outTextClipped)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (bool* poutJustClosed = &outJustClosed)
+				{
+					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, outTextClipped);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, uint tabId, uint closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
+		{
+			fixed (bool* poutTextClipped = &outTextClipped)
+			{
+				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, uint tabId, uint closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (bool* poutTextClipped = &outTextClipped)
+				{
+					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, uint tabId, uint closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (bool* poutTextClipped = &outTextClipped)
+				{
+					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ReadOnlySpan<byte> label, uint tabId, uint closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (bool* poutTextClipped = &outTextClipped)
+				{
+					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, uint tabId, uint closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (bool* poutTextClipped = &outTextClipped)
+			{
+				TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					Utils.Free(pStr0);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, uint tabId, uint closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* plabel = &label)
+				{
+					fixed (bool* poutTextClipped = &outTextClipped)
+					{
+						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ReadOnlySpan<byte> label, uint tabId, uint closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* plabel = label)
+				{
+					fixed (bool* poutTextClipped = &outTextClipped)
+					{
+						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, uint tabId, uint closeButtonId, bool isContentsVisible, bool* outJustClosed, ref bool outTextClipped)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (bool* poutTextClipped = &outTextClipped)
+				{
+					TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, outJustClosed, (bool*)poutTextClipped);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, uint tabId, uint closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
+		{
+			fixed (bool* poutJustClosed = &outJustClosed)
+			{
+				fixed (bool* poutTextClipped = &outTextClipped)
+				{
+					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, byte* label, uint tabId, uint closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (bool* poutJustClosed = &outJustClosed)
+				{
+					fixed (bool* poutTextClipped = &outTextClipped)
+					{
+						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, label, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, uint tabId, uint closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
+		{
+			fixed (byte* plabel = &label)
+			{
+				fixed (bool* poutJustClosed = &outJustClosed)
+				{
+					fixed (bool* poutTextClipped = &outTextClipped)
+					{
+						TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ReadOnlySpan<byte> label, uint tabId, uint closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
+		{
+			fixed (byte* plabel = label)
+			{
+				fixed (bool* poutJustClosed = &outJustClosed)
+				{
+					fixed (bool* poutTextClipped = &outTextClipped)
+					{
+						TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ImDrawListPtr drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, uint tabId, uint closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
+		{
+			byte* pStr0 = null;
+			int pStrSize0 = 0;
+			if (label != null)
+			{
+				pStrSize0 = Utils.GetByteCountUTF8(label);
+				if (pStrSize0 >= Utils.MaxStackallocSize)
+				{
+					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+				}
+				else
+				{
+					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+					pStr0 = pStrStack0;
+				}
+				int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+				pStr0[pStrOffset0] = 0;
+			}
+			fixed (bool* poutJustClosed = &outJustClosed)
+			{
+				fixed (bool* poutTextClipped = &outTextClipped)
+				{
+					TabItemLabelAndCloseButtonNative(drawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						Utils.Free(pStr0);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ref byte label, uint tabId, uint closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* plabel = &label)
+				{
+					fixed (bool* poutJustClosed = &outJustClosed)
+					{
+						fixed (bool* poutTextClipped = &outTextClipped)
+						{
+							TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, ReadOnlySpan<byte> label, uint tabId, uint closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				fixed (byte* plabel = label)
+				{
+					fixed (bool* poutJustClosed = &outJustClosed)
+					{
+						fixed (bool* poutTextClipped = &outTextClipped)
+						{
+							TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, (byte*)plabel, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public static void TabItemLabelAndCloseButton(ref ImDrawList drawList, ImRect bb, ImGuiTabItemFlags flags, Vector2 framePadding, string label, uint tabId, uint closeButtonId, bool isContentsVisible, ref bool outJustClosed, ref bool outTextClipped)
+		{
+			fixed (ImDrawList* pdrawList = &drawList)
+			{
+				byte* pStr0 = null;
+				int pStrSize0 = 0;
+				if (label != null)
+				{
+					pStrSize0 = Utils.GetByteCountUTF8(label);
+					if (pStrSize0 >= Utils.MaxStackallocSize)
+					{
+						pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
+					}
+					else
+					{
+						byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
+						pStr0 = pStrStack0;
+					}
+					int pStrOffset0 = Utils.EncodeStringUTF8(label, pStr0, pStrSize0);
+					pStr0[pStrOffset0] = 0;
+				}
+				fixed (bool* poutJustClosed = &outJustClosed)
+				{
+					fixed (bool* poutTextClipped = &outTextClipped)
+					{
+						TabItemLabelAndCloseButtonNative((ImDrawList*)pdrawList, bb, flags, framePadding, pStr0, tabId, closeButtonId, isContentsVisible ? (byte)1 : (byte)0, (bool*)poutJustClosed, (bool*)poutTextClipped);
+						if (pStrSize0 >= Utils.MaxStackallocSize)
+						{
+							Utils.Free(pStr0);
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		internal static void RenderTextNative(Vector2 pos, byte* text, byte* textEnd, byte hideTextAfterHash)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, byte*, byte*, byte, void>)vt[1302])(pos, text, textEnd, hideTextAfterHash);
+			((delegate* unmanaged[Cdecl]<Vector2, byte*, byte*, byte, void>)vt[1301])(pos, text, textEnd, hideTextAfterHash);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, nint, nint, byte, void>)vt[1302])(pos, (nint)text, (nint)textEnd, hideTextAfterHash);
+			((delegate* unmanaged[Cdecl]<Vector2, nint, nint, byte, void>)vt[1301])(pos, (nint)text, (nint)textEnd, hideTextAfterHash);
 			#endif
 		}
 
@@ -224,9 +591,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderTextWrappedNative(Vector2 pos, byte* text, byte* textEnd, float wrapWidth)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, byte*, byte*, float, void>)vt[1303])(pos, text, textEnd, wrapWidth);
+			((delegate* unmanaged[Cdecl]<Vector2, byte*, byte*, float, void>)vt[1302])(pos, text, textEnd, wrapWidth);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, nint, nint, float, void>)vt[1303])(pos, (nint)text, (nint)textEnd, wrapWidth);
+			((delegate* unmanaged[Cdecl]<Vector2, nint, nint, float, void>)vt[1302])(pos, (nint)text, (nint)textEnd, wrapWidth);
 			#endif
 		}
 
@@ -424,9 +791,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderTextClippedNative(Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte*, byte*, Vector2*, Vector2, ImRect*, void>)vt[1304])(posMin, posMax, text, textEnd, textSizeIfKnown, align, clipRect);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, byte*, byte*, Vector2*, Vector2, ImRect*, void>)vt[1303])(posMin, posMax, text, textEnd, textSizeIfKnown, align, clipRect);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, nint, nint, nint, Vector2, nint, void>)vt[1304])(posMin, posMax, (nint)text, (nint)textEnd, (nint)textSizeIfKnown, align, (nint)clipRect);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, nint, nint, nint, Vector2, nint, void>)vt[1303])(posMin, posMax, (nint)text, (nint)textEnd, (nint)textSizeIfKnown, align, (nint)clipRect);
 			#endif
 		}
 
@@ -1308,9 +1675,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderTextClippedExNative(ImDrawList* drawList, Vector2 posMin, Vector2 posMax, byte* text, byte* textEnd, Vector2* textSizeIfKnown, Vector2 align, ImRect* clipRect)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, byte*, byte*, Vector2*, Vector2, ImRect*, void>)vt[1305])(drawList, posMin, posMax, text, textEnd, textSizeIfKnown, align, clipRect);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, byte*, byte*, Vector2*, Vector2, ImRect*, void>)vt[1304])(drawList, posMin, posMax, text, textEnd, textSizeIfKnown, align, clipRect);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, nint, nint, nint, Vector2, nint, void>)vt[1305])((nint)drawList, posMin, posMax, (nint)text, (nint)textEnd, (nint)textSizeIfKnown, align, (nint)clipRect);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, nint, nint, nint, Vector2, nint, void>)vt[1304])((nint)drawList, posMin, posMax, (nint)text, (nint)textEnd, (nint)textSizeIfKnown, align, (nint)clipRect);
 			#endif
 		}
 
@@ -3184,9 +3551,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderTextEllipsisNative(ImDrawList* drawList, Vector2 posMin, Vector2 posMax, float clipMaxX, float ellipsisMaxX, byte* text, byte* textEnd, Vector2* textSizeIfKnown)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, float, byte*, byte*, Vector2*, void>)vt[1306])(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, textEnd, textSizeIfKnown);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, float, float, byte*, byte*, Vector2*, void>)vt[1305])(drawList, posMin, posMax, clipMaxX, ellipsisMaxX, text, textEnd, textSizeIfKnown);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, float, float, nint, nint, nint, void>)vt[1306])((nint)drawList, posMin, posMax, clipMaxX, ellipsisMaxX, (nint)text, (nint)textEnd, (nint)textSizeIfKnown);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, float, float, nint, nint, nint, void>)vt[1305])((nint)drawList, posMin, posMax, clipMaxX, ellipsisMaxX, (nint)text, (nint)textEnd, (nint)textSizeIfKnown);
 			#endif
 		}
 
@@ -4068,9 +4435,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderFrameNative(Vector2 pMin, Vector2 pMax, uint fillCol, byte borders, float rounding)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)vt[1307])(pMin, pMax, fillCol, borders, rounding);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)vt[1306])(pMin, pMax, fillCol, borders, rounding);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)vt[1307])(pMin, pMax, fillCol, borders, rounding);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, uint, byte, float, void>)vt[1306])(pMin, pMax, fillCol, borders, rounding);
 			#endif
 		}
 
@@ -4088,9 +4455,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderFrameBorderNative(Vector2 pMin, Vector2 pMax, float rounding)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)vt[1308])(pMin, pMax, rounding);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)vt[1307])(pMin, pMax, rounding);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)vt[1308])(pMin, pMax, rounding);
+			((delegate* unmanaged[Cdecl]<Vector2, Vector2, float, void>)vt[1307])(pMin, pMax, rounding);
 			#endif
 		}
 
@@ -4108,9 +4475,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderColorRectWithAlphaCheckerboardNative(ImDrawList* drawList, Vector2 pMin, Vector2 pMax, uint fillCol, float gridStep, Vector2 gridOff, float rounding, ImDrawFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)vt[1309])(drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)vt[1308])(drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)vt[1309])((nint)drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, uint, float, Vector2, float, ImDrawFlags, void>)vt[1308])((nint)drawList, pMin, pMax, fillCol, gridStep, gridOff, rounding, flags);
 			#endif
 		}
 
@@ -4139,9 +4506,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderNavHighlightNative(ImRect bb, uint id, ImGuiNavHighlightFlags flags)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiNavHighlightFlags, void>)vt[1310])(bb, id, flags);
+			((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiNavHighlightFlags, void>)vt[1309])(bb, id, flags);
 			#else
-			((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiNavHighlightFlags, void>)vt[1310])(bb, id, flags);
+			((delegate* unmanaged[Cdecl]<ImRect, uint, ImGuiNavHighlightFlags, void>)vt[1309])(bb, id, flags);
 			#endif
 		}
 
@@ -4159,9 +4526,9 @@ namespace Hexa.NET.ImGui
 		internal static byte* FindRenderedTextEndNative(byte* text, byte* textEnd)
 		{
 			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)vt[1311])(text, textEnd);
+			return ((delegate* unmanaged[Cdecl]<byte*, byte*, byte*>)vt[1310])(text, textEnd);
 			#else
-			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)vt[1311])((nint)text, (nint)textEnd);
+			return (byte*)((delegate* unmanaged[Cdecl]<nint, nint, nint>)vt[1310])((nint)text, (nint)textEnd);
 			#endif
 		}
 
@@ -4567,9 +4934,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderMouseCursorNative(Vector2 pos, float scale, ImGuiMouseCursor mouseCursor, uint colFill, uint colBorder, uint colShadow)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)vt[1312])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
+			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)vt[1311])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
 			#else
-			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)vt[1312])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
+			((delegate* unmanaged[Cdecl]<Vector2, float, ImGuiMouseCursor, uint, uint, uint, void>)vt[1311])(pos, scale, mouseCursor, colFill, colBorder, colShadow);
 			#endif
 		}
 
@@ -4587,9 +4954,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderArrowNative(ImDrawList* drawList, Vector2 pos, uint col, ImGuiDir dir, float scale)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, ImGuiDir, float, void>)vt[1313])(drawList, pos, col, dir, scale);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, ImGuiDir, float, void>)vt[1312])(drawList, pos, col, dir, scale);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, ImGuiDir, float, void>)vt[1313])((nint)drawList, pos, col, dir, scale);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, ImGuiDir, float, void>)vt[1312])((nint)drawList, pos, col, dir, scale);
 			#endif
 		}
 
@@ -4618,9 +4985,9 @@ namespace Hexa.NET.ImGui
 		internal static void RenderBulletNative(ImDrawList* drawList, Vector2 pos, uint col)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, void>)vt[1314])(drawList, pos, col);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, void>)vt[1313])(drawList, pos, col);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, void>)vt[1314])((nint)drawList, pos, col);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, void>)vt[1313])((nint)drawList, pos, col);
 			#endif
 		}
 
@@ -4649,374 +5016,10 @@ namespace Hexa.NET.ImGui
 		internal static void RenderCheckMarkNative(ImDrawList* drawList, Vector2 pos, uint col, float sz)
 		{
 			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, float, void>)vt[1315])(drawList, pos, col, sz);
+			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, uint, float, void>)vt[1314])(drawList, pos, col, sz);
 			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, float, void>)vt[1315])((nint)drawList, pos, col, sz);
+			((delegate* unmanaged[Cdecl]<nint, Vector2, uint, float, void>)vt[1314])((nint)drawList, pos, col, sz);
 			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderCheckMark(ImDrawListPtr drawList, Vector2 pos, uint col, float sz)
-		{
-			RenderCheckMarkNative(drawList, pos, col, sz);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderCheckMark(ref ImDrawList drawList, Vector2 pos, uint col, float sz)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				RenderCheckMarkNative((ImDrawList*)pdrawList, pos, col, sz);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void RenderArrowPointingAtNative(ImDrawList* drawList, Vector2 pos, Vector2 halfSz, ImGuiDir direction, uint col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, Vector2, ImGuiDir, uint, void>)vt[1316])(drawList, pos, halfSz, direction, col);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, Vector2, ImGuiDir, uint, void>)vt[1316])((nint)drawList, pos, halfSz, direction, col);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderArrowPointingAt(ImDrawListPtr drawList, Vector2 pos, Vector2 halfSz, ImGuiDir direction, uint col)
-		{
-			RenderArrowPointingAtNative(drawList, pos, halfSz, direction, col);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderArrowPointingAt(ref ImDrawList drawList, Vector2 pos, Vector2 halfSz, ImGuiDir direction, uint col)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				RenderArrowPointingAtNative((ImDrawList*)pdrawList, pos, halfSz, direction, col);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void RenderArrowDockMenuNative(ImDrawList* drawList, Vector2 pMin, float sz, uint col)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, Vector2, float, uint, void>)vt[1317])(drawList, pMin, sz, col);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, Vector2, float, uint, void>)vt[1317])((nint)drawList, pMin, sz, col);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderArrowDockMenu(ImDrawListPtr drawList, Vector2 pMin, float sz, uint col)
-		{
-			RenderArrowDockMenuNative(drawList, pMin, sz, col);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderArrowDockMenu(ref ImDrawList drawList, Vector2 pMin, float sz, uint col)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				RenderArrowDockMenuNative((ImDrawList*)pdrawList, pMin, sz, col);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void RenderRectFilledRangeHNative(ImDrawList* drawList, ImRect rect, uint col, float xStartNorm, float xEndNorm, float rounding)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, uint, float, float, float, void>)vt[1318])(drawList, rect, col, xStartNorm, xEndNorm, rounding);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, uint, float, float, float, void>)vt[1318])((nint)drawList, rect, col, xStartNorm, xEndNorm, rounding);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderRectFilledRangeH(ImDrawListPtr drawList, ImRect rect, uint col, float xStartNorm, float xEndNorm, float rounding)
-		{
-			RenderRectFilledRangeHNative(drawList, rect, col, xStartNorm, xEndNorm, rounding);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderRectFilledRangeH(ref ImDrawList drawList, ImRect rect, uint col, float xStartNorm, float xEndNorm, float rounding)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				RenderRectFilledRangeHNative((ImDrawList*)pdrawList, rect, col, xStartNorm, xEndNorm, rounding);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void RenderRectFilledWithHoleNative(ImDrawList* drawList, ImRect outer, ImRect inner, uint col, float rounding)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<ImDrawList*, ImRect, ImRect, uint, float, void>)vt[1319])(drawList, outer, inner, col, rounding);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, ImRect, ImRect, uint, float, void>)vt[1319])((nint)drawList, outer, inner, col, rounding);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderRectFilledWithHole(ImDrawListPtr drawList, ImRect outer, ImRect inner, uint col, float rounding)
-		{
-			RenderRectFilledWithHoleNative(drawList, outer, inner, col, rounding);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void RenderRectFilledWithHole(ref ImDrawList drawList, ImRect outer, ImRect inner, uint col, float rounding)
-		{
-			fixed (ImDrawList* pdrawList = &drawList)
-			{
-				RenderRectFilledWithHoleNative((ImDrawList*)pdrawList, outer, inner, col, rounding);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static ImDrawFlags CalcRoundingFlagsForRectInRectNative(ImRect rIn, ImRect rOuter, float threshold)
-		{
-			#if NET5_0_OR_GREATER
-			return ((delegate* unmanaged[Cdecl]<ImRect, ImRect, float, ImDrawFlags>)vt[1320])(rIn, rOuter, threshold);
-			#else
-			return (ImDrawFlags)((delegate* unmanaged[Cdecl]<ImRect, ImRect, float, ImDrawFlags>)vt[1320])(rIn, rOuter, threshold);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static ImDrawFlags CalcRoundingFlagsForRectInRect(ImRect rIn, ImRect rOuter, float threshold)
-		{
-			ImDrawFlags ret = CalcRoundingFlagsForRectInRectNative(rIn, rOuter, threshold);
-			return ret;
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		internal static void TextExNative(byte* text, byte* textEnd, ImGuiTextFlags flags)
-		{
-			#if NET5_0_OR_GREATER
-			((delegate* unmanaged[Cdecl]<byte*, byte*, ImGuiTextFlags, void>)vt[1321])(text, textEnd, flags);
-			#else
-			((delegate* unmanaged[Cdecl]<nint, nint, ImGuiTextFlags, void>)vt[1321])((nint)text, (nint)textEnd, flags);
-			#endif
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TextEx(byte* text, byte* textEnd, ImGuiTextFlags flags)
-		{
-			TextExNative(text, textEnd, flags);
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TextEx(ref byte text, byte* textEnd, ImGuiTextFlags flags)
-		{
-			fixed (byte* ptext = &text)
-			{
-				TextExNative((byte*)ptext, textEnd, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TextEx(ReadOnlySpan<byte> text, byte* textEnd, ImGuiTextFlags flags)
-		{
-			fixed (byte* ptext = text)
-			{
-				TextExNative((byte*)ptext, textEnd, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TextEx(string text, byte* textEnd, ImGuiTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextExNative(pStr0, textEnd, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TextEx(byte* text, ref byte textEnd, ImGuiTextFlags flags)
-		{
-			fixed (byte* ptextEnd = &textEnd)
-			{
-				TextExNative(text, (byte*)ptextEnd, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TextEx(byte* text, ReadOnlySpan<byte> textEnd, ImGuiTextFlags flags)
-		{
-			fixed (byte* ptextEnd = textEnd)
-			{
-				TextExNative(text, (byte*)ptextEnd, flags);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TextEx(byte* text, string textEnd, ImGuiTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (textEnd != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(textEnd, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			TextExNative(text, pStr0, flags);
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TextEx(ref byte text, ref byte textEnd, ImGuiTextFlags flags)
-		{
-			fixed (byte* ptext = &text)
-			{
-				fixed (byte* ptextEnd = &textEnd)
-				{
-					TextExNative((byte*)ptext, (byte*)ptextEnd, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TextEx(ReadOnlySpan<byte> text, ReadOnlySpan<byte> textEnd, ImGuiTextFlags flags)
-		{
-			fixed (byte* ptext = text)
-			{
-				fixed (byte* ptextEnd = textEnd)
-				{
-					TextExNative((byte*)ptext, (byte*)ptextEnd, flags);
-				}
-			}
-		}
-
-		/// <summary>
-		/// To be documented.
-		/// </summary>
-		public static void TextEx(string text, string textEnd, ImGuiTextFlags flags)
-		{
-			byte* pStr0 = null;
-			int pStrSize0 = 0;
-			if (text != null)
-			{
-				pStrSize0 = Utils.GetByteCountUTF8(text);
-				if (pStrSize0 >= Utils.MaxStackallocSize)
-				{
-					pStr0 = Utils.Alloc<byte>(pStrSize0 + 1);
-				}
-				else
-				{
-					byte* pStrStack0 = stackalloc byte[pStrSize0 + 1];
-					pStr0 = pStrStack0;
-				}
-				int pStrOffset0 = Utils.EncodeStringUTF8(text, pStr0, pStrSize0);
-				pStr0[pStrOffset0] = 0;
-			}
-			byte* pStr1 = null;
-			int pStrSize1 = 0;
-			if (textEnd != null)
-			{
-				pStrSize1 = Utils.GetByteCountUTF8(textEnd);
-				if (pStrSize1 >= Utils.MaxStackallocSize)
-				{
-					pStr1 = Utils.Alloc<byte>(pStrSize1 + 1);
-				}
-				else
-				{
-					byte* pStrStack1 = stackalloc byte[pStrSize1 + 1];
-					pStr1 = pStrStack1;
-				}
-				int pStrOffset1 = Utils.EncodeStringUTF8(textEnd, pStr1, pStrSize1);
-				pStr1[pStrOffset1] = 0;
-			}
-			TextExNative(pStr0, pStr1, flags);
-			if (pStrSize1 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr1);
-			}
-			if (pStrSize0 >= Utils.MaxStackallocSize)
-			{
-				Utils.Free(pStr0);
-			}
 		}
 	}
 }

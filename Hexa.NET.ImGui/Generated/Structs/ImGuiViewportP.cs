@@ -60,6 +60,11 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
+		public Vector2 LastSize;
+
+		/// <summary>
+		/// To be documented.
+		/// </summary>
 		public float Alpha;
 
 		/// <summary>
@@ -138,7 +143,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiViewportP(ImGuiViewport imGuiViewport = default, ImGuiWindowPtr window = default, int idx = default, int lastFrameActive = default, int lastFocusedStampCount = default, uint lastNameHash = default, Vector2 lastPos = default, float alpha = default, float lastAlpha = default, bool lastFocusedHadNavWindow = default, short platformMonitor = default, int* bgFgDrawListsLastFrame = default, ImDrawListPtrPtr bgFgDrawLists = default, ImDrawData drawDataP = default, ImDrawDataBuilder drawDataBuilder = default, Vector2 lastPlatformPos = default, Vector2 lastPlatformSize = default, Vector2 lastRendererSize = default, Vector2 workInsetMin = default, Vector2 workInsetMax = default, Vector2 buildWorkInsetMin = default, Vector2 buildWorkInsetMax = default)
+		public unsafe ImGuiViewportP(ImGuiViewport imGuiViewport = default, ImGuiWindowPtr window = default, int idx = default, int lastFrameActive = default, int lastFocusedStampCount = default, uint lastNameHash = default, Vector2 lastPos = default, Vector2 lastSize = default, float alpha = default, float lastAlpha = default, bool lastFocusedHadNavWindow = default, short platformMonitor = default, int* bgFgDrawListsLastFrame = default, ImDrawListPtrPtr bgFgDrawLists = default, ImDrawData drawDataP = default, ImDrawDataBuilder drawDataBuilder = default, Vector2 lastPlatformPos = default, Vector2 lastPlatformSize = default, Vector2 lastRendererSize = default, Vector2 workInsetMin = default, Vector2 workInsetMax = default, Vector2 buildWorkInsetMin = default, Vector2 buildWorkInsetMax = default)
 		{
 			ImGuiViewport = imGuiViewport;
 			Window = window;
@@ -147,6 +152,7 @@ namespace Hexa.NET.ImGui
 			LastFocusedStampCount = lastFocusedStampCount;
 			LastNameHash = lastNameHash;
 			LastPos = lastPos;
+			LastSize = lastSize;
 			Alpha = alpha;
 			LastAlpha = lastAlpha;
 			LastFocusedHadNavWindow = lastFocusedHadNavWindow ? (byte)1 : (byte)0;
@@ -175,7 +181,7 @@ namespace Hexa.NET.ImGui
 		/// <summary>
 		/// To be documented.
 		/// </summary>
-		public unsafe ImGuiViewportP(ImGuiViewport imGuiViewport = default, ImGuiWindowPtr window = default, int idx = default, int lastFrameActive = default, int lastFocusedStampCount = default, uint lastNameHash = default, Vector2 lastPos = default, float alpha = default, float lastAlpha = default, bool lastFocusedHadNavWindow = default, short platformMonitor = default, Span<int> bgFgDrawListsLastFrame = default, Span<Pointer<ImDrawList>> bgFgDrawLists = default, ImDrawData drawDataP = default, ImDrawDataBuilder drawDataBuilder = default, Vector2 lastPlatformPos = default, Vector2 lastPlatformSize = default, Vector2 lastRendererSize = default, Vector2 workInsetMin = default, Vector2 workInsetMax = default, Vector2 buildWorkInsetMin = default, Vector2 buildWorkInsetMax = default)
+		public unsafe ImGuiViewportP(ImGuiViewport imGuiViewport = default, ImGuiWindowPtr window = default, int idx = default, int lastFrameActive = default, int lastFocusedStampCount = default, uint lastNameHash = default, Vector2 lastPos = default, Vector2 lastSize = default, float alpha = default, float lastAlpha = default, bool lastFocusedHadNavWindow = default, short platformMonitor = default, Span<int> bgFgDrawListsLastFrame = default, Span<Pointer<ImDrawList>> bgFgDrawLists = default, ImDrawData drawDataP = default, ImDrawDataBuilder drawDataBuilder = default, Vector2 lastPlatformPos = default, Vector2 lastPlatformSize = default, Vector2 lastRendererSize = default, Vector2 workInsetMin = default, Vector2 workInsetMax = default, Vector2 buildWorkInsetMin = default, Vector2 buildWorkInsetMax = default)
 		{
 			ImGuiViewport = imGuiViewport;
 			Window = window;
@@ -184,6 +190,7 @@ namespace Hexa.NET.ImGui
 			LastFocusedStampCount = lastFocusedStampCount;
 			LastNameHash = lastNameHash;
 			LastPos = lastPos;
+			LastSize = lastSize;
 			Alpha = alpha;
 			LastAlpha = lastAlpha;
 			LastFocusedHadNavWindow = lastFocusedHadNavWindow ? (byte)1 : (byte)0;
@@ -295,6 +302,10 @@ namespace Hexa.NET.ImGui
 		/// To be documented.
 		/// </summary>
 		public ref Vector2 LastPos => ref Unsafe.AsRef<Vector2>(&Handle->LastPos);
+		/// <summary>
+		/// To be documented.
+		/// </summary>
+		public ref Vector2 LastSize => ref Unsafe.AsRef<Vector2>(&Handle->LastSize);
 		/// <summary>
 		/// To be documented.
 		/// </summary>

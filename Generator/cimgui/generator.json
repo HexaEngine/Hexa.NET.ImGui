@@ -89,6 +89,7 @@
     "ImGuiTableColumnIdx": "sbyte",
     "ImGuiSelectionUserData": "long",
     "ImBitArrayForNamedKeys": "nuint",
+    "ImStbTexteditState": "STBTexteditState",
     "va_list": "nuint"
   },
   "AllowedFunctions": [],
