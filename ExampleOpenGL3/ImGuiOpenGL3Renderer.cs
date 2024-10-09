@@ -14,6 +14,7 @@ namespace ExampleOpenGL3
     using System.Diagnostics;
     using System.Numerics;
     using System.Runtime.InteropServices;
+    using static System.Runtime.InteropServices.JavaScript.JSType;
     using ImDrawIdx = UInt16;
 
     public static unsafe class ImGuiOpenGL3Renderer
@@ -425,13 +426,13 @@ namespace ExampleOpenGL3
                     {
                         // User callback, registered via ImDrawList::AddCallback()
                         // (ImDrawCallback_ResetRenderState is a special callback value used by the user to request the renderer to reset render state.)
-                        if ((nint)pcmd.UserCallback == -1)
+                        if ((nint)pcmd.UserCallback == ImGui.ImDrawCallbackResetRenderState)
                         {
                             SetupRenderState(draw_data, fb_width, fb_height, vertex_array_object);
                         }
                         else
                         {
-                            Marshal.GetDelegateForFunctionPointer<UserCallback>((nint)pcmd.UserCallback)(cmd_list, &pcmd);
+                            ((delegate*<ImDrawList*, ImDrawCmd*, void>)pcmd.UserCallback)(cmd_list, &pcmd);
                         }
                     }
                     else

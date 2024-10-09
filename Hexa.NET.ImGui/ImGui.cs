@@ -13,5 +13,7 @@ namespace Hexa.NET.ImGui
         {
             return "cimgui";
         }
+
+        public const nint ImDrawCallbackResetRenderState = -8;
     }
 }
